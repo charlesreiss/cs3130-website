@@ -1,0 +1,87 @@
+---
+title: Pipeline Diagrams
+...
+
+# Your Task
+
+Fill in a pipeline diagram for a small function's full execution.
+
+Place you answer in the online tool <https://kytos.cs.virginia.edu/coa2/pld.php>.
+
+# Guidelines
+
+Consider the following code:
+
+```c
+long count_odd(long *arr, long len) {
+    long ans = 0;
+    for(long i=0; i<len; i+=1)
+        ans += arr[i]&1;
+    return ans;
+}
+```
+
+which has been compiled to (numbers inserted for ease of reference)
+
+```asm
+    count_odd:
+0.  	xorl	%eax, %eax
+1.  	testq	%rsi, %rsi
+2.  	jle	.LBB0_2
+    .LBB0_1:
+3.  	movq	(%rdi), %rcx
+4.  	andl	$1, %ecx
+5.  	addq	%rcx, %rax
+6.  	addq	$8, %rdi
+7.  	decq	%rsi
+8.  	jne	.LBB0_1
+    .LBB0_2:
+9.  	retq
+```
+
+Assume that this is run on a five-stage pipeline, where
+
+- every instruction must go through all five stages in order
+
+- each stage may handle at most one instruction per cycle
+
+- decode needs to stall until values (program register and condition code) are available, but only needs values by the end of its cycle.
+   
+   - e.g., if a memory read is followed by an operation on the read value, the decode stage of the operation can be co-scheduled with the memory stage of the read.
+    
+        |     |   |   |   |   |   |   |   |
+        |:----|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+        |read | F | D | E | M | W |   |   |
+        |use  |   | F | D | D | E | M | W |
+
+    - e.g., if a computation is followed by an operation on the computed value, the decode stage of the operation can be co-scheduled with the execute stage of the computation.
+   
+        |        |   |   |   |   |   |   |
+        |:-------|:-:|:-:|:-:|:-:|:-:|:-:|
+        |compute | F | D | E | M | W |   |
+        |use     |   | F | D | E | M | W |
+
+- computation not available until the end of execute includes
+    - results of arithmetic, logic, and address computation
+    - condition code creation from test, compare, arithmetic, and logic
+    - condition code comparison for conditional moves and jumps
+
+    e.g., if a conditional jump is poorly speculated, the correct instruction will be fetched after the jump completes its execute stage.
+   
+    |        |   |   |   |   |   |   |   |   |
+    |:-------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+    |jump    | F | D | E | M | W |   |   |   |
+    |guess~1~|   | F | D |   |   |   |   |   |
+    |guess~2~|   |   | F |   |   |   |   |   |
+    |correct |   |   |   | F | D | E | M | W |
+
+- conditional jumps are speculated using the "backwards-taken forwards-not-taken" branch prediction heuristic
+
+You're asked to expand this assuming 
+
+1. you start with the first instruction after `count_odd` is called
+1. the first instruction of `count_odd` does not need to stall
+1. `arr` pointing to the array `{1, 2}`
+1. `len` stores the value `2`
+1. the `retq` is the last instruction you need to handle
+

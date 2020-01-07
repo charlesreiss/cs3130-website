@@ -1,0 +1,398 @@
+Special Dates:
+  Courses begin: 2020-01-13
+  Courses end: 2020-04-28
+  Add deadline: 2020-01-27
+  Drop deadline: 2020-02-24
+  Withdraw deadline: 2020-03-16
+  MLK break: 2020-01-20
+  Spring recess:
+    start: 2020-03-07
+    end: 2020-03-15
+  Exam 1: [2020-02-17]
+  Exam 2: [2020-03-30]
+  Exam 3: 2020-05-07
+
+meta:
+  timezone: America/New_York
+  name: COA2
+  lecture exam: true
+  home: https://www.cs.virginia.edu/luther/COA2/F2020/
+  final:
+    start: 2020-05-07 14:00:00
+    duration: 180
+    room: Thornton E316
+
+office hours:
+  .begin: 2020-09-04
+  faculty:
+    Tychonievich:
+      where: Rice 208
+      when: []
+  TA:
+    where: Thorton A-233
+    Omika:
+      when: []
+    
+
+sections:
+  CS2501-200:
+    type: lecture
+    room: Thornton E316
+    days: [Monday, Wednesday, Friday]
+    start: 14:00:00
+    duration: 50
+  CS2501-201:
+    type: lab
+    room: Olsson 001
+    days: [Tuesday]
+    start: 17:00:00
+    duration: 75
+  CS2501-202:
+    type: lab
+    room: Olsson 001
+    days: [Tuesday]
+    start: 18:30:00
+    duration: 75
+
+
+lectures:
+    - welcome
+    - [building, privilege]
+    - [privilege, interrupts]
+    - interrupts
+    - user accounts
+    - privilege escalation
+    - virtual memory
+    - virtual memory
+    - [buses, DMA]
+    - IP
+    - [UDP, TCP, ports]
+    - [DNS, DHCP]
+    - TLS
+    - review Q&A
+    - TLS
+    - caches
+    - caches
+
+
+    - concurrency
+    - Q&A
+    - concurrency
+    - Pilot town hall meeting
+    - synchronization
+    - synchronization
+    - pthreads
+    - pthreads
+    - roll back
+    - deadlock
+    - deadlock
+    - consistency models
+    - processors revisited
+    - pipeline
+    - pipeline
+
+    - power
+    - speculation
+    - out-of-order
+    - [meltdown, spectre]
+    - [meltdown, spectre]
+    - ask me anything
+    - review
+    
+
+
+labs: 
+    - No lab today
+    - make
+    - accounts
+    - signal handling
+    - networking
+    - encryption
+    - memoizing
+    - parallel big-O
+    - locks and races
+    - pthread coding
+    - openmp
+    - optimization
+    - optimization
+    - meltdown
+    - review
+
+
+
+reading:
+    make:
+        - {txt: make lab, lnk: lab01-make.html}
+
+    building: 
+        - {txt: ssh, lnk: remote.html}
+        - {txt: make, lnk: make.html}
+    welcome: 
+        - {txt: introduction, lnk: intro.html}
+    spectre: 
+        - txt: https://meltdownattack.com/
+          lnk: https://meltdownattack.com/
+    interrupts:
+        - {txt: kernels §2, lnk: kernel.html#exceptions}
+    privilege: 
+        - {txt: kernels §1, lnk: kernel.html}
+    virtual memory: 
+        - {txt: kernels §3, lnk: kernel.html#virtual-memory}
+        - {txt: worksheet, lnk: 'https://kytos.cs.virginia.edu/coa2-s2020/vmem/'}
+    process issolation:
+        - {txt: kernels, lnk: kernel.html}
+    DMA:
+        - {txt: kernels §3.4.4, lnk: kernel.html#direct-memory-access}
+    caches:
+        - {txt: caches, lnk: cache.html}
+    user accounts:
+        - {txt: accounts, lnk: accounts.html}
+    privilege escalation:
+        - {txt: wikipedia, lnk: 'https://en.wikipedia.org/wiki/Privilege_escalation'}
+    buses:
+        - {txt: bus and network, lnk: bus.html}
+    IP:
+        - {txt: protocols §1--2, lnk: protocols.html}
+    UDP:
+        - {txt: protocols §2.2, lnk: protocols.html#udp}
+    TCP: 
+        - {txt: protocols §2.3, lnk: protocols.html#tcp}
+    DNS:
+        - {txt: protocols §3, lnk: protocols.html#urls}
+    DHCP:
+        - {txt: wikipedia, lnk: 'https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol'}
+    spoofing:
+        - {txt: wikipedia, lnk: 'https://en.wikipedia.org/wiki/IP_address_spoofing'}
+    TLS:
+        - {txt: security, lnk: sec.html}
+    synchronization:
+        - {txt: sync, lnk: sync.html}
+    concurrency:
+        - {txt: thread and process §1--2, lnk: thread.html}
+    pthreads: 
+        - {txt: pthreads, lnk: pthreads.html}
+    deadlock:
+        - {txt: deadlock, lnk: deadlock.html}
+    consistency models:
+        - {txt: consistency, lnk: consistency.html}
+    processors revisited:
+        - {txt: COA1 processor, lnk: ../../COA1/F2020/lab03-simulator.html}
+    // pipeline: [{txt: sequential diagram, lnk: files/seq.png}, {txt: pipelined diagram, lnk: files/pipe.png}]
+    // ask me anything: {txt: 'ask here', lnk: 'http://www.tricider.com/brainstorming/2bnaQ7fhZZ3'}
+
+
+assignments:
+    ".groups":
+        PA:
+            portion: "40"
+            late-policy: [0.9, 0.8]
+            total: 10
+        Exam:
+            portion: "50"
+            rubric: {"kind":"percentage"}
+        Quiz:
+            portion: "20"
+            drop: 2
+            portion: "10"
+            duration: -1
+            rubric: {"kind":"percentage"}
+            link: https://kytos.cs.virginia.edu/coa2-s2020/quizzes/
+
+    PA01:
+        title: 'warmup'
+        link: pa01-warmup.html
+        due: 2020-01-23 17:00:00
+        files: [main.c, primes.c, primes.h, Makefile]
+        rubric: {"kind":"percentage"}
+        weight: 0.5
+
+    PA02:
+        title: 'page tables'
+        link: pa02-pagetable.html
+        due: 2020-02-13 17:00:00
+        files: ["*.c", "*.h", Makefile]
+        rubric:
+            kind: hybrid
+            auto-weight: 0
+            auto-late-days: 2
+            late-penalty: 1
+            human:
+                - Makefile build .o files
+                - .c files follow .h types
+                - '.c files use #defines, not hard-coding'
+                - invoke posix_memalign with good sizes
+                - get page offset from VA correctly
+                - get VPNs from VA correctly
+                - restore page offset to translated values correctly
+                - use VPNs as indices into page tables correctly
+                - handles the valid bit properly
+                - many test cases pass
+    
+    PA03:
+        title: 'page tables part 2'
+        due: 2020-03-05 17:00:00
+        open: 2020-02-13 17:00:00
+        files: ["*.c", "*.h", Makefile, README, LICENSE, ACKNOWLEDGEMENTS, "licenses.txt", '*']
+        rubric: 
+            kind: hybrid
+            auto-weight: 0
+            auto-late-days: 0
+            late-penalty: 1
+            human:
+                - passed most tests
+                - passed all tests
+                
+                - no warnings
+                - good style
+                - meaningful variable names
+                - reasonable organization
+                - in-code documentation
+                
+                - makes mlpt.a
+                - readme - config.h
+                - readme - example use case
+                - license
+                - acknowledgements
+                
+                - licenses.txt
+                
+                - de-allocate - implemented or described why not
+
+    PA04:
+        title: 'TLB'
+        link: pa04-tlb.html
+        open: 2020-03-05 17:00:00
+        due: 2020-03-26 17:00:00
+        late-days: 5
+        files: ["*.c", "*.h", Makefile, '*']
+
+    PA05:
+        title: 'DP'
+        link: pa05-dp.html
+        open: 2020-03-26 17:00:00
+        due: 2020-04-02 17:00:00
+        files: ["dp_arbitrator.c", "dp_hierarchy.c", "dp_message.c"]
+        
+        rubric: 
+            kind: hybrid
+            auto-weight: 0
+            auto-late-days: 0
+            late-penalty: 1
+            human:
+                - all – make argv[1] or 5 threads
+                - all – malloc threads and locks
+                - all – all threads get same set of locks (handle locks only by pointer, not value)
+                - all – free what you malloc
+                
+                - dp_arbitrator.c – one extra mutex shared by all threads
+                - dp_arbitrator.c – shared mutex locks acquiring both other mutexes
+                - dp_arbitrator.c – shared mutex does not lock eating or releasing
+
+                - dp_hierarchy.c – no extra synchronization primitives
+                - dp_hierarchy.c – case with n,0 locks 0 before n
+                - dp_hierarchy.c – other cases unchanged
+        
+    PA06:
+        title: 'Fork'
+        link: pa06-fork.html
+        open: 2020-04-02 17:00:00
+        due: 2020-04-09 17:00:00
+        files: ["fork_run.c"]
+
+    PA07:
+        title: 'Life'
+        link: pa07-life.html
+        open: 2020-04-09 17:00:00
+        due: 2020-04-23 17:00:00
+        files: ["life-parallel.c"]
+        rubric: 
+            kind: hybrid
+            auto-weight: 0.8
+            auto-late-days: 2
+            late-penalty: 1
+            human:
+                - code could work for any number of threads
+                - no race conditions
+        
+    PA08:
+        title: 'Pipeline'
+        link: pa08-pipeline.html
+        open: 2020-04-08 17:00:00
+        due: 2020-04-28 17:00:00
+        
+        
+        
+    Quiz01:
+        due: 2020-01-22 12:00:00
+    Quiz02:
+        due: 2020-01-27 12:00:00
+    Quiz03:
+        due: 2020-02-03 12:00:00
+    Quiz04:
+        due: 2020-02-10 12:00:00
+    
+    Quiz05:
+        due: 2020-02-24 12:00:00
+    Quiz06:
+        due: 2020-03-02 12:00:00
+    Quiz07:
+        due: 2020-03-16 12:00:00
+    Quiz08:
+        due: 2020-03-23 12:00:00
+    
+    Quiz09:
+        due: 2020-04-06 12:00:00
+    Quiz10:
+        due: 2020-04-13 12:00:00
+    Quiz11:
+        due: 2020-04-20 12:00:00
+    Quiz12:
+        due: 2020-04-27 12:00:00
+        
+    Exam1:
+        due: 2020-02-17 14:50:00
+        late-days: 0
+        rubric: {"kind": "percentage"}
+    Exam2:
+        due: 2020-03-30 14:50:00
+        late-days: 0
+        rubric: {"kind": "percentage"}
+    Exam3:
+        due: 2020-05-07 17:00:00
+        weight: 3
+      
+    Lab01:
+        due: 2020-09-05 19:00:00
+        open: 2020-09-04 17:00:00
+    Lab02:
+        due: 2020-09-12 19:00:00
+        open: 2020-09-11 17:00:00
+    Lab03:
+        due: 2020-09-19 19:00:00
+        open: 2020-09-18 17:00:00
+    Lab04:
+        due: 2020-09-26 19:00:00
+        open: 2020-09-25 17:00:00
+
+    Lab05:
+        due: 2020-10-10 19:00:00
+        open: 2020-10-09 17:00:00
+    Lab06:
+        due: 2020-10-17 19:00:00
+        open: 2020-10-16 17:00:00
+    Lab07:
+        due: 2020-10-24 19:00:00
+        open: 2020-10-23 17:00:00
+    Lab08:
+        due: 2020-10-31 19:00:00
+        open: 2020-10-30 17:00:00
+
+    Lab09:
+        due: 2020-11-14 19:00:00
+        open: 2020-11-13 17:00:00
+    Lab10:
+        due: 2020-11-21 19:00:00
+        open: 2020-11-20 17:00:00
+    Lab11:
+        due: 2020-12-05 19:00:00
+        open: 2020-12-04 17:00:00
