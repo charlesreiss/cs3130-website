@@ -138,7 +138,7 @@ reading:
         - {txt: kernels §1, lnk: kernel.html}
     virtual memory: 
         - {txt: kernels §3, lnk: kernel.html#virtual-memory}
-        - {txt: worksheet, lnk: 'https://kytos.cs.virginia.edu/coa2-s2020/vmem/'}
+        - {txt: worksheet, lnk: 'https://kytos.cs.virginia.edu/coa2/vmem/'}
     process issolation:
         - {txt: kernels, lnk: kernel.html}
     DMA:
@@ -196,7 +196,7 @@ assignments:
             portion: "10"
             duration: -1
             rubric: {"kind":"percentage"}
-            link: https://kytos.cs.virginia.edu/coa2-s2020/quizzes/
+            link: https://kytos.cs.virginia.edu/coa2/quizzes/
 
     PA01:
         title: 'warmup'

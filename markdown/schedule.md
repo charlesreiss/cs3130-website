@@ -62,7 +62,7 @@ It may be adjusted as the semester progresses to reflect actual pacing and uptak
     border-top: thick solid grey;
     min-height: 2em;
 }
-.agenda .day {
+.agenda .day:not(.empty) {
     display: block; border-top: thin solid grey; width: 100%;
     padding: 0;
 }
@@ -95,7 +95,7 @@ summary { margin-left: -1em; }
 .day.today { box-shadow: 0 0 0.5ex 0.5ex grey; }
 .agenda .day.today .wrapper { margin: 0.5ex 0;}
 
-div.day.empty { background: rgba(0,0,0,0); padding: 0em; margin: 0em; border: none; border-radius: 0; min-height: 1.5em; }
+.calendar div.day.empty { background: rgba(0,0,0,0); padding: 0em; margin: 0em; border: none; border-radius: 0; min-height: 1.5em; }
 
 </style>
 
