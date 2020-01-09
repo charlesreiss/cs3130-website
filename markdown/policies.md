@@ -21,41 +21,51 @@ At the end of it, you will be able to
 ## Meetings
 
 Lecture is optional but strongly encouraged.
-Monday, Wednesday, and Friday, 2:00–2:50, in Olsson 005.
-There is no lab.
+Monday, Wednesday, and Friday, 2:00–2:50, in Thornton E316.
+
+There are two lab sections, both meeting in Olsson 001:
+one on Tuesday 5:00--6:15 pm
+and the other on Tuesday 6:30--7:45 pm.
+Please attend your assigned lab section.
+
 I do not schedule review sessions or the like outside of usual class time.
+
 
 ## Tasks
 
 The exact details of course assignments are still being determined.
 However, we do know you will be asked to
 
+- Participate in lab
+    - Labs are primarily learning exercises and most credit is for participation, but learning only occurs if sufficient progress is made so each lab has milestones that need to be reached for full credit.
+    - We expect everyone to be ill, need to travel, or otherwise miss one lab, which will be excused without the need to provide documentation of your situation. To be excused for more than one lab, documentation of why each was missed is needed.
 - Do homework
-	- Each homework is an individual assignment unless otherwise announced
-	- Some homework will be programming assignments; others will be puzzles, worksheets, or other kinds of activities.
+    - Each homework is an individual assignment unless otherwise announced.
+    - Some homework will be programming assignments; others will be puzzles, worksheets, or other kinds of activities.
 - Take quizzes
-	- We will have weekly quizzes, administered online.
+    - We will have weekly quizzes, administered online.
 - Take exams
-	- Exams will be in-class and must be taken in person.
+    - Exams will either be in-class or in-lab and must be taken in person..
 
 
 ## Contact
 
 |        | Instructor | TAs |
 |--------|------------|-----|
-| Name | Luther Tychonievich | Anders Christoffersen, Rossi McCall |
+| Name | Luther Tychonievich | Dylan Cao, Anders Christoffersen, Rashid Lasker, William Mayes, Gustavo Moreira |
 | Location | Rice 208 | Thornton Stacks (A235) |
-| Office Hours | Monday 10--11am; Thursday 1--2pm and 5--6pm; Friday 11am--12 | Monday 4--6pm; Tuesday 11--12pm; Thursday 11--12pm  |
+| Office Hours | Mo 3-4; Tu 10-11; We 11-12; Th 2-3 | TBA  |
 | Phone | 243-3789 | (none) |
-| Email | <a href="mailto:tychonievich@virginia.edu?subject=COA2">tychonievich@virginia.edu</a> | use [Piazza](https://piazza.com/class/jqwcpou09v64k1) |
+| Email | <a href="mailto:tychonievich@virginia.edu?subject=COA2">tychonievich@virginia.edu</a> | use [Piazza](https://piazza.com/class/k571ccotjhd55) |
 
-For most communication, [Piazza](https://piazza.com/class/jqwcpou09v64k1) is preferred to email.
+For communication about course content, [Piazza](https://piazza.com/class/k571ccotjhd55) is preferred to email.
+For communication about personal circumstances, email or in-person visits are preferred.
 If you email, include "COA2" in the subject line to prevent your email from skipping my inbox and never getting read.
 
 ## Readings
 
 Although we have several textbooks we are considering for use,
-none of them were settled on in time for this pilot.
+none of them were settled on for this pilot.
 Readings written by us or selected from articles or web pages will periodically be posted on the schedule.
 Some of these may have "reading quizzes" associated with them:
 quizzes to be taken based on the reading prior to the lecture in which they are discussed.
