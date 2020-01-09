@@ -101,9 +101,9 @@ summary { margin-left: -1em; }
 
 
 <p>View as 
-<label><input type="radio" name="viewmode" onchange="viewmode(this)" value="calendar" id="viewmode=calendar"> calendar</label>
+<label><input type="radio" name="viewmode" onchange="viewmode(this)" checked value="calendar" id="viewmode=calendar"> calendar</label>
 or
-<label><input type="radio" name="viewmode" onchange="viewmode(this)" checked value="agenda" id="viewmode=agenda"> agenda</label>;
+<label><input type="radio" name="viewmode" onchange="viewmode(this)" value="agenda" id="viewmode=agenda"> agenda</label>;
 <label><input type="checkbox" name="showpast" onclick="showPast(this)" checked id="showpast"> show past</label>;
 readings can be <input type="button" value="shown" onclick="document.querySelectorAll('details').forEach(x => x.setAttribute('open','open'))"></input> or <input type="button" value="hidden" onclick="document.querySelectorAll('details').forEach(x => x.removeAttribute('open'))"></input> as a whole, or clicked on individually to toggle visibility.
 </p>
