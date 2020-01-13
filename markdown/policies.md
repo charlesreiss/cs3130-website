@@ -93,7 +93,7 @@ Any such adjustment will be discussed in class before being implemented.
 Task | Weight | Comments
 -----|--------|-----------------------------------------------------------------
 Quizzes     | 10% | Drop lowest score
-Labs  		| 10% |
+Labs  		| 10% | Drop lowest score
 Assignments | 40% | 
 Exams  		| 40% |
 
