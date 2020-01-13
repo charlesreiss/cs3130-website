@@ -93,8 +93,9 @@ Any such adjustment will be discussed in class before being implemented.
 Task | Weight | Comments
 -----|--------|-----------------------------------------------------------------
 Quizzes     | 10% | Drop lowest score
+Labs  		| 10% |
 Assignments | 40% | 
-Exams  		| 50% |
+Exams  		| 40% |
 
 Your final grade is computed based on the percentage of points you have earned and is designed to match the GPA value of each letter. For reasons I do not understand, that is not a linear scale: for example, `A-` &minus; `B+` = 0.4 grade points while `B+` &minus; `B` = 0.3 grade points. For reasons even farther from my ken, the most common grading scale I have seen is also not linear but differently spaced than the grade points (using \_7 instead of \_6 below). Following is a scale spaced like the grade point scale:
 

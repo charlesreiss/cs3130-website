@@ -188,7 +188,7 @@ assignments:
             late-policy: [0.9, 0.8]
             total: 10
         Exam:
-            portion: "50"
+            portion: "40"
             rubric: {"kind":"percentage"}
         Quiz:
             drop: 2
