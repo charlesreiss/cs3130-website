@@ -191,12 +191,13 @@ assignments:
             portion: "50"
             rubric: {"kind":"percentage"}
         Quiz:
-            portion: "20"
             drop: 2
             portion: "10"
             duration: -1
             rubric: {"kind":"percentage"}
             link: https://kytos.cs.virginia.edu/coa2/quizzes/
+        Lab:
+            portion: "10"
 
     PA01:
         title: 'warmup'
