@@ -962,8 +962,8 @@ requires 512MB.
 between tiny and huge pages, though how well they compare with other sizes in practice
 depends in large part on the application domain.
 
-The trade-off between big and small pages is more significant
-the larger the address space becomes.
+The trade-off between big and small pages becomes more significant
+as the address space increases.
 Trying to mitigate this trade-off is part of the reason why
 x86-64 only actually uses 48 bits of its 64-bit addresses.
 
