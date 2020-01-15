@@ -9,8 +9,11 @@ This lab is designed to help you feel comfortable using GNU Make, one of the old
 With a partner (unless you are a loner by choice),
 
 1. Download [`lab01-make.tar`](files/lab01-make.tar) (you can do this using the link on this page, or from a command line via `wget http://www.cs.virginia.edu/luther/COA2/F2020/files/lab01-make.tar)`{.bash})
+
 2. Expand it using `tar xvf lab01-make.tar`{.bash}
+
 3. Read enough of the files to get an idea what they do. Then build them with `clang *.c` and run `./a.out` to verify your understanding. Ask a TA for help if you are not sure you fully understand.
+
 4. Add a `Makefile` in the resulting `lab01-make` directory, which
     - has targets for the following
         - build each `.c` file into a `.o` file
@@ -23,6 +26,7 @@ With a partner (unless you are a loner by choice),
     - editing any .c file causes its .o file to be rebuilt, along with the library and/or program if they depend on the .c file
         - Note: if you chose library format `libsay.a`, then `guesser` should be rebuilt if `libsay.a` changes;
             but if you chose library format `libsay.so`, then `guesser` should not be rebuilt if `libsay.so` changes, only if `say.h` or `guesser.c` change.
+
 5. Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
 {/}
 
