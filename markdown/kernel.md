@@ -513,11 +513,15 @@ which cannot be handled with simple `goto` because it may skip multiple function
 More efficient approaches to this have since been developed.
 `setjmp` records much of the state of the program in advance,
 which gives it a significant cost in time;
-because `try` is generally assumed to be executed far more often than `throw`.
+because `try` is generally assumed to be executed far more often than `throw`,
+we'd rather make `throw` the expensive one, not `try`.
 Most of the information stored by `setjmp` into the `jmp_buf`
 can be found somewhere in the `setjmp`-invoking function's stack frame,
 which many languages maintain with sufficient discipline
 that it can be "unwound" to restore a previous state upon a `throw`.
+C, however, lets you do anything, including violating assumptions about the stack organization,
+so C has an expensive `setjmp` and less expensive `longjmp`
+instead of an expensive `throw` and less expensive `try`.
 
 
 # Virtual Memory
