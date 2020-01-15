@@ -809,12 +809,12 @@ using a total of 16^3^ + 1 = 2^12^ + 1 = 4,097 pointers,
 including the `root` pointer.
 {/}
 
-Fixed-depth fixed-width trees can be accessed using bit masks
-to treat like an array.
-If the width of each node is a power of two,
-this is done by splitting up the bits of the index,
-using the high-order bits for the first index
-and lower-order bits as the tree is navigated.
+Fixed-depth trees with power-of-two width in each node
+can be accessed with integer indexes, like an array,
+by using bit masks to turn indexes into tree navigation.
+The bits of the index are split up,
+using the high-order bits for the first tree node index
+and lower-order bits for subsequent nodes until a leaf is reached.
 
 {.example ...} In the following figure,
 which uses width 8 instead of 16 to avoid over-cluttering the figure,
@@ -891,8 +891,8 @@ PAYLOAD *arr(struct height3 *root, unsigned short index) {
 }
 ```
 
-While this code is even less efficient than the previous code in runtime,
-it is significantly more space efficient if only a few values are in the "array".
+While this code is even less time-efficient than the previous code,
+it is significantly more space-efficient if only a few values are in the "array".
 For example, if only indices 0--10 (0x0000--0x000A) and 60,000--60,050 (0xEA60--0zEA92) are used,
 the only non-NULL pointers are to:
 
