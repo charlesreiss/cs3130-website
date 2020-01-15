@@ -313,8 +313,8 @@ Signals permit the opposite direction of communication.
 
                      → User code     → Kernel code   → Hardware
 ------------------- --------------  --------------- -----------------------
-User code →         ---             Trap            _via kernel_
-Kernel code →       **Signal**      ---             protected instructions
+User code →         ordinary code   Trap            _via kernel_
+Kernel code →       **Signal**      ordinary code   protected instructions
 Hardware →          _via kernel_    Interrupt       ---
 
 Signals are roughly the kernel-to-user equivalent of an interrupt.
