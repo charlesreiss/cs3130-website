@@ -953,7 +953,7 @@ means that the smallest possible program needs at least two pages
 (128MB of memory) to run: one for the page table and one for the code,
 and a more realistic minimal program
 with at least 1 page of code, 1 page of read-only globals,
-1 page of read.write globals, 1 page of heap, 1 page of stack,
+1 page of read/write globals, 1 page of heap, 1 page of stack,
 1 page of shared library functions, and 1 page of kernel memory,
 plus the page table itself,
 requires 512MB.
