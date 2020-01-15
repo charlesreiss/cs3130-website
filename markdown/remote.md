@@ -5,49 +5,45 @@ title: Accessing remote servers
 If you are running a POSIX-compatible system, most of the coding you'll be asked to do this semester should work fine on your own machine.
 If not, consider the following options.
 
-# NX with GUI editor
+# Use SSH without passwords
 
-The NX system has some GUI editors.
+Typing passwords is both less secure (key-sniffers, typos, typing wrong passwords, etc) and more tedious than using a private key.
 
-The easiest GUI editor for people used to Windows or MacOS to use and setup
-is gedit, which the NX build calls simply "Text Editor" in title bars, etc.
+## Concept
 
-1. Run gedit by clicking the "Activities" button and typing `gedit`
-2. To set up gedit for code editing
-    a. Click the "Text Editor" item on the task switcher toolbar, then "Preferences" in the drop-down menu
-        - In the *View* tab, check at least
-            - Display line numbers
-            - Enable text wrapping
-            - Do not split words over two lines
-            - Highlight matching brackets
-        - In the "Editor" tab, check at least "Enable automatic indentation"
-        - In the "Plugins" tab, check at least "External Tools"
-    b. Click the "Text Editor" item on the task switcher toolbar, then "Manage External Tools..." in the drop-down menu
-        
-        Here you can write keyboard-shortcut commands to simplify common tasks.
-        A few I suggest (and might be present by default) are
-        
-        Make (F8)
-        :   
-            ````bash
-            #!/bin/sh
-            
-            make
-            ````
-        
-        Run (F5)
-        :   ````bash
-            #!/bin/sh
-            
-            make run
-            ````
+You'll place a file on your computer and a file on the remote computer.
+They are matched, and each provides half of the work needed to do a job.
+When you log in, the remote computer will do half the work with its file, then send that to your computer to do the other half, then send it back, thus allowing both computers to be confident the other computer is who it says it is^[This is a gross over-simplification, but gets the core idea across. We'll see what's really going on when we discuss digital certificates].
+
+## Setup
+
+The following commands should work on any system with SSH installed,
+with appropriate changes to `username@the.server.edu`;[^error]
+
+```bash
+ssh-keygen -f ~/.ssh/id_rsa -t rsa -b 2048
+```
+
+When prompted for a passphrase by `ssh-keygen`, just press enter without typing anything.
+
+```
+ssh-copy-id -i ~/.ssh/id_rsa.pub username@the.server.edu
+```
+
+When prompted for a passphrase by `ssh-copy-id`, use your UVA CS account password.
+
+
+[^error]:
+    If on Windows, you also may need to use `\` instead of `/` (whether you do or not depends on which command line tool you use).
     
-        Test (F6)
-        :   ````bash
-            #!/bin/sh
-            
-            make test
-            ````
+    There is a slight chance that `~/.ssh` will not already exist. In that case `ssh-keygen` will fail; if you see such a failure you can fix it by running 
+
+    ````bash
+    mkdir ~/.ssh
+    chmod 700 ~/.ssh
+    ````
+
+    and then re-run the above commands
 
 
 # Edit local, compile remote
@@ -78,47 +74,11 @@ To run commands remotely
             
             For example, you might do something like `"cd coa2/warmup; make"`
 
-# ssh with X-forwarding
+You can even put all of this in a makefile, as e.g.
 
-If your computer has an X11 client installed (which is sadly uncommon),
-you might be able to use something far more flexible than NX:
+```makefile
+.PHONY remote:
+    scp * mst3k@portal.cs.virginia.edu:code/project/directory/
+    ssh mst3k@portal.cs.virginia.edu "cd code/project/directory/; make"
+```
 
-Try running `ssh -XC mst3k@portal.cs.virginia.edu` and then typing `gedit`.
-If this works, you'll see a gedit window appearing that is running on the server
-but being rendered on your computer.
-You can then make use of full integration between your computer and the server
-without relying on NX, Nomachine, etc.
-If you see an error message, this option is not supported by your OS.
-
-# Run a POSIX-compliant OS with clang
-
-The `clang` compiler (part of the LLVM project) is desigend to be mostly cross-platform.
-Not everything we do in class will work on all OS's, but most should.
-If you take notes on any installation nuances and post them on Piazza,
-I'm sure your fellow students would apprecite that.
-
-Windows
-:   - Clang via <http://releases.llvm.org/download.html>
- 
-    - Make via <http://gnuwin32.sourceforge.net/packages/make.htm>
- 
-    - I didn't find a clean-looking LLDB installation guide
-
-MacOS
-:   - Clang via `xcode-select --install`
-  
-    - I didn't find a clean-looking Make installation guide, but it might come with clang?
-  
-    - I didn't find a clean-looking LLDB installation guide, but it might come with clang?
-
-Windows, with WSL
-:   Windows ships with the ability to enable some POSIX-compliant features
-    and then install an entire open-source OS to run inside Windows.
-    
-    See <https://docs.microsoft.com/en-us/windows/wsl/install-win10> for instructions.
-
-# ssh without X-forwarding
-
-Try running `ssh mst3k@portal.cs.virginia.edu` and then using command-line tools like `nano`.
-This is likely to have many little issues if you run Windows, as `ssh` is designed assuming POSIX-compliance and Windows is not POSIX-compliant.
-It should basically work, but you might have to put up with things like backspace not working, etc.
