@@ -166,7 +166,7 @@ Suppose you and I are communicating, using the (insecure) $f$ from the previous 
 3. You use what I shared (`0xa25ec891`) and your secret (`0xd380203f`) to compute `f(0xa25ec891, 0xd380203f) = 0x99e57baf`
 4. You and I now both know `0x99e57baf`, but all anyone listening in knows are `0x3308006d`, `0xa25ec891`, and `0x9c85bad3`.
     
-    Because we picked and insecure operator $f$, this public information does allow others to figure out our secret keys via the extended Euclid's algorithm and thus learn our shared secret.
+    Because we picked an insecure operator $f$, this public information does allow others to figure out our secret keys via the extended Euclid's algorithm and thus learn our shared secret.
     If we had picked a better $f$ (an elliptic curve, perhaps) this would not have been feasible.
 {/}
 
