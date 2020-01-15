@@ -119,7 +119,7 @@ Typically, keys are generated in pairs and one of them (chosen arbitrarily) is k
 If you have my public key, you can use it to encrypt messages only I can decrypt (you can't even decrypt them yourself)
 and to decrypt messages only I can encrypt.
 
-Unlike [symmetric ciphers], of which there are many,
+Unlike [symmetric ciphers](#symmetric-ciphers), of which there are many,
 only a few asymmetric ciphers have ever been popular.
 RSA^[RSA is short for Rivest-Shamir-Adleman, named after Ron Rivest, Adi Shamir, and Len Adleman, its inventors. It was previously invented by Clifford Cocks, but Cocks' document describing it was given a top-secret classification by the British government and not made public until 1997.]  is the most common by far,
 so much so that "RSA" is sometimes used as a generic noun for all asymmetric ciphers.
@@ -289,7 +289,7 @@ Task
 Solution
 :   Since communication has patterns that can be used to bypass the security of public key cryptography, we need to establish a shared key for use with a [symmetric cipher](#symmetric-ciphers).
     Such a key is generally little more than a random number,
-    so we can use [Diffie-Hellman] to generate it.
+    so we can use [Diffie-Hellman](#diffie-hellman) to generate it.
     
     Of course, first we need to agree on which symmetric cipher to use,
     and possibly share [certificates](#should-i-trust-you) to make sure we are who we say we are;
@@ -307,7 +307,7 @@ However, side channels are also a major possible weakness.
 A **side channel** is something that can carry information, but was not the communication channel the designer of the system had in mind.
 There are many side channels and may side channel attacks, but one example will suffice to show the complexity involved in anticipating and preventing them.
 
-Suppose I want to learn the randomly-generated private key you used in [Diffie-Hellman].
+Suppose I want to learn the randomly-generated private key you used in [Diffie-Hellman](#diffie-hellman).
 I look through your code and consult the specs of your processor
 and notice that it takes your code 2 microseconds to process each 0-bit and 3 microseconds to process each 1-bit.
 There are a few other aspects that are hard for me to time perfectly,
