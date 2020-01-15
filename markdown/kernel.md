@@ -288,9 +288,8 @@ Let's walk through this a bit at a time:
     The exception handler at index 128 checks that `%rax` contains a valid system call number (which 41 is),
     after which it jumps to the kernel's `system_call_handler[41]`, the address of the socket call implementation.
     
-    The kernel's system calling convention,
-    which has the same first three arguments as C's calling convention,
-    so it has access to the arguments from the `int socket(int domain, int type, int protocol)`{.c} invocation.
+    The kernel's system calling convention has the same first three arguments as C's calling convention,
+    so the handler has access to the arguments from the `int socket(int domain, int type, int protocol)`{.c} invocation.
     It uses them to do whatever work is needed to create a socket,
     placing its file descriptor in `%rax` to be a return value.
     
@@ -301,7 +300,8 @@ Let's walk through this a bit at a time:
     - returns to user mode, and
     - jumps back to user code
     
-After that is some error checking code, and then the function returns. The whole function's only 11 instructions (24 bytes) long.
+After that is some error checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
+The code in `system_call_handler[41]` of the kernel is considerably longer.
 {/}
 
 ## Exception-Like Constructs
