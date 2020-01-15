@@ -999,7 +999,7 @@ might do something like
 
 ````c
 handle_page_fault(size_t va, int access_type) {
-    int flags = permitted_actions(va, segment_list)
+    int flags = permitted_actions(va, segment_list);
     if ((access_type & flags) != access_type))
         send_signal(SIGSEGV);
     ssize_t ppn = get_unused_physical_page();
