@@ -128,7 +128,7 @@ so much so that "RSA" is sometimes used as a generic noun for all asymmetric cip
 
 The **Diffie-Hellman key exchange**^[There is some difference of opinion about the justice of this name. Whitfield Diffie and Martin Hellman published a paper describing it in 1976, but Hellman later stated the idea in the paper was that of their graduate student Ralph Merkle.] is a method of causing two (or more) parties to agree on a single shared random integer without anyone else listening in being able to know what number they agreed upon.
 
-The process requires identifying a "cyclic group" -- that is, a set of values (integers are preferred) and an operator on elements of that set such that $op(op(x, y), z) = op((x, z), y)$.
+The process requires identifying a "cyclic group" -- that is, a set of values (integers are preferred) and an operator on elements of that set such that $op(op(x, y), z) = op(op(x, z), y)$.
 To be secure, the set should be large and the operation hard to undo (i.e., knowing both $x$ and $op(x,y)$ should not make it easy to determine $y$).
 
 {.example ...} The following code implements a cyclic group (i.e., `f(f(x,y),z) == f(f(x,z),y)`{.c}, albeit not a secure one
