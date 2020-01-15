@@ -183,7 +183,7 @@ if you know the value of that state, you can predict the sequence of "random" nu
 and observing a sequence of generated numbers is sufficient to re-construct the state.
 
 Cryptographically-secure random number generators instead rely on some form of **entropy harvesting** to collect unpredictable bits from sources invisible to outsiders.
-For example, as I type this writeup low-order bit of the microsecond at which I press each key may appear to be "pure entropy"---that is, without pattern or meaning.
+For example, as I type this writeup the low-order bit of the microsecond at which I press each key may appear to be "pure entropy"---that is, without pattern or meaning.
 We could likewise harvest the low-order bits of each mouse movement, CPU temperature reading, etc.
 We don't actually know that such measurements are random; there might be a pattern we haven't noticed, and if so even secure algorithms may be breakable by attackers that know those patterns.
 However, it's almost certainly more secure than using something entirely predictable
