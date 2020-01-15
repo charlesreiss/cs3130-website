@@ -407,7 +407,7 @@ From a bash command line, you can send signals to running processes.
 - `bg` causes a suspended process to resume running, but in the background so you can use the terminal for other purposes.
 - `fg` causes a suspended or background process to resume running in the foreground, re-attaching the keyboard to `stdin`.
 - `kill <pid>` sends SIGTERM, the "terminate" signal, to the process with process ID `<pid>`.
-    The "terminate" signal that means "I want you to shut down now."
+    The "terminate" signal means "I want you to shut down now" but can be handled to, e.g. save unsaved work or the like.
 - `kill -9 <pid>` sends SIGKILL, the "kill" signal, to the process with process ID `<pid>`.
     The "kill" signal cannot be handled; it always causes the OS to terminate the program.
     
