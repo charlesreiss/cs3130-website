@@ -301,7 +301,7 @@ Let's walk through this a bit at a time:
     - jumps back to user code
     
 After that is some error checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
-The code in `system_call_handler[41]` of the kernel is considerably longer.
+The code in `system_call_handler[41]` of the kernel is considerably longer; many thousands of lines of C code, in fact (see <https://github.com/torvalds/linux/tree/master/net>).
 {/}
 
 ## Exception-Like Constructs
