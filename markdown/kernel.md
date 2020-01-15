@@ -959,7 +959,7 @@ plus the page table itself,
 requires 512MB.
 
 4KB pages are generally seen as a nice intermediate point
-between tiny and huge pages, though their correctness
+between tiny and huge pages, though how well they compare with other sizes in practice
 depends in large part on the application domain.
 
 The trade-off between big and small pages is more significant
