@@ -261,7 +261,7 @@ Solution
     One partial solution to this is to *salt* the password before hashing:
     we generate a random value, store it with the password, and include it and the password in the hash.
 
-Passwords on the internet much less secure than this.
+Passwords on the internet are much less secure than this.
 We hope servers store only hashes (though verifying this is hard),
 but we still have to get the password to them to hash
 so they typically are transmitted in their raw form.
