@@ -24,7 +24,7 @@ and another representing the restrictions on the requested resource.
 
 The operating system maintains information for all running processes.
 This information necessarily includes the processor state each had when it was last suspended by an exception and the base address of its page table.
-It also has a per-preocess list of open file descriptors
+It also has a per-process list of open file descriptors
 and bookkeeping information
 such as the processes' name, how long it has been running,
 and its priority for getting scheduled to run again.
@@ -62,11 +62,11 @@ Let's take this line apart bit by bit:
 :	Processes running under any user account that belongs to group `coa` are allowed to read and execute this file, but not write to it.
 
 `---`
-:	Processes running under any user account other than `mst3k` and not belonging to the group `wheel` are not allowed to read, write, or execute it.
+:	Processes running under any user account other than `mst3k` and not belonging to the group `coa` are not allowed to read, write, or execute it.
 
 `371`
 :	The file contains 371 bytes of data.
-	This does not include its metadata: the filename, permissions, etc, listed here.
+	This does not include its metadata (the filename, permissions, etc, listed by `ls`), only its contents.
 
 `Jan 18  2019`
 :	The file claims to have been last modified on `2019-01-18`.
@@ -93,9 +93,9 @@ physical access to a computer, coupled with the right resources and patience,
 can bypass all user-account based protections.
 
 Being logged in as a user
-simply means that the software you see as the user interface,
-weather that's a terminal or a visual display,
-is running with that user in the operating system's bookkeeping for that process.
+means that the software you see as the user interface
+(whether that's a terminal or a visual display)
+is has that user listed in the operating system's bookkeeping for that process.
 Since a process typically opens up other processes using the same account,
 that means that all the processes you run from this session will be under that same user.
 
@@ -105,7 +105,7 @@ For example, Android, which is based on the Linux kernel and thus has the same b
 creates [a different user account for each app](https://source.android.com/security/app-sandbox).
 Thus the user interface user can become any app's user when launching the app,
 and different apps cannot (by default) access files created for one another.
-When apps are installed, Android not only installs its files
+When an app is installed, Android not only installs its files
 but also creates a user account for it and provides a list of permissions for that account.
 {/}
 
