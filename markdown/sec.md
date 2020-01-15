@@ -45,8 +45,8 @@ A **symmetric cipher** or **symmetric-key cipher** is a pair of functions, one t
 each taking two inputs: a message of arbitrary length and a limited-size *secret key*.
 They should have the following properties:
 
-- $e(m, k) = c \ne m$ -- that is, encryption results in a **ciphertext** which is unlike the original message
-- $d(e(m, k), k) = m$ -- that is, decryption undoes encryption
+- $e(m, k) = c \ne m$ --- that is, encryption results in a **ciphertext** which is unlike the original message
+- $d(e(m, k), k) = m$ --- that is, decryption undoes encryption
 - recovering $m$ from $e$ and $c$ without $k$ is no easier than trying every possible $k$ until one works
 
 {.example ...} The following code implements a symmetric cipher, albeit not a secure one
@@ -72,9 +72,9 @@ Getting the first two properties is easy; getting the third is hard, contributin
 An **asymmetric cipher** or **public-key cipher**^[Note that "public-key" is an overloaded term; for example, [Diffie-Hellman] does not use the type of asymmetric cipher described here, but is asymmetric in a different way and is also sometimes called a "public-key" protocol.] is a function that can both encrypt and decrypt.
 However, keys come in pairs. If $f$ is an asymmetric cipher and $(k_1, k_2)$ is a key pair then
 
-- $f(f(m, k_1), k_2) = m$ -- $k_2$ decrypts what $k_1$ encrypts
-- $f(f(m, k_2), k_1) = m$ -- $k_1$ decrypts what $k_2$ encrypts
-- $f(f(m, k_i), k_i) \ne m$ -- neither key decrypts what it encrypts
+- $f(f(m, k_1), k_2) = m$ --- $k_2$ decrypts what $k_1$ encrypts
+- $f(f(m, k_2), k_1) = m$ --- $k_1$ decrypts what $k_2$ encrypts
+- $f(f(m, k_i), k_i) \ne m$ --- neither key decrypts what it encrypts
 
 The cipher should also follow the security property:
 
