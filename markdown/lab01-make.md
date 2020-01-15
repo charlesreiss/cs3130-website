@@ -241,6 +241,7 @@ A project
     :   A separate project that creates a library used by this project
     
     Projects generally are designed to either create a library or a program, but not both.
+    This lab is an exception, having both a library and a program using it in one project to keep the lab short enough to be manageable.
 
 Creating a shared library
 :   1. Compile each `.c` file into a `.o` file; use the `-fPIC` compiler flag so the resulting code can be shared by multiple applications.
@@ -301,6 +302,6 @@ Creating a program
         with `libflub.so` or `libflub.a` (whichever it can find),
         `libflux.so` or `libflux.a` (whichever it can find), and
         `libflibber.so` or `libflibber.a` (whichever it can find),
-        looking for each library in the directories `../mylib/` and `another/`
+        looking for each library in the directories `../mylib/` and `./`
         as well as the system-wide library path (usually `/usr/lib/` and `/usr/local/lib/`).
 
