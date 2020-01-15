@@ -27,7 +27,7 @@ ssh-keygen -f ~/.ssh/id_rsa -t rsa -b 2048
 When prompted for a passphrase by `ssh-keygen`, just press enter without typing anything.
 Once `ssh-keygen` is done, type the following with appropriate changes to `username@the.server.edu`:
 
-```
+```bash
 ssh-copy-id -i ~/.ssh/id_rsa.pub username@the.server.edu
 ```
 
