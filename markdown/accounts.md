@@ -128,7 +128,7 @@ It is common for OSs to limit this ability in two ways:
 	but only after the operating system forces them to type a password
 
 This has some parallel to how privileged mode operation works on hardware:
-if you are already privileged, you can loose that freely;
+if you are already privileged, you can lose that freely;
 but to gain privilege you have to pass through a special piece of OS-owned software---in this case, an OS-owned identity confirmation process to make sure the human who owns this account actually wants this process to become the superuser.
 
 For a combination of historical reasons and the annoyance of having to type passwords to install things,
@@ -163,13 +163,13 @@ These processes are daemons, and can be thought of as the software parallel
 to an interrupt handler.
 Like an interrupt handler, they take up some memory at all times
 but only use the CPU when something happens.
-That "something", however, is not an external even like a keystroke
-but rather an internal event OS-moderated like data appearing on a socket.
+That "something", however, is not an external event like a keystroke
+but rather an internal OS-moderated event like data appearing on a socket.
 There are various purposes to having a daemon,
 but one of them is to provide controlled, limited access to a different user account.
 
 {.example ...}
-Most Linux systems use CUPS^[formerly "the Common UNIX Printing System" but officially changes to just CUPS due to trademark disputes about the use of the word UNIX] to manage printing;
+Most Linux systems use CUPS^[formerly "the Common UNIX Printing System" but officially changed to just CUPS due to trademark disputes about the use of the word UNIX] to manage printing;
 CUPS runs primarily^[see [the CUPS design overview](https://www.cups.org/doc/spec-design.html) for how `cupsd` this works with the other components of CUPS] as a daemon `cupsd`.
 Because printing can involve large amounts of data being fed slowly though a mechanical device^[among other reasons...],
 print jobs are "spooled" into files temporarily while being printed.

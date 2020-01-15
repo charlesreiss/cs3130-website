@@ -60,7 +60,7 @@ but if both speak at once neither understand the other.
 
 Half-duplex systems typically require some type of protocol
 for resolving who gets to use the channel when and for how long.
-Because that protocol may mean that a signal may not be placed in the channel at the moment it is wanted,
+Because that protocol may mean that the channel might not be available when a sender wishes to use it,
 there is often a need to queue messages until the channel is available for sending.
 
 ## Full-duplex
@@ -72,7 +72,7 @@ Voting by raised hands can be seen as such a system: one person's raised hand
 does not prevent another person's lowered hand from being simultaneously visible,
 and each can both send and receive information simultaneously.
 
-Full-duplex channels are generally implemented as one simplex system channel
+Full-duplex channels are generally implemented as one simplex channel
 per potential sender/receiver pair.
 In the raised hands example, the line-of-sight channel between a given sender's hand and receiver's eyes form that simplex channel.
 Because of this, full-duplex systems do not scale to an arbitrary number of parties.
@@ -87,9 +87,9 @@ not the number of screen-to-eye simplex channels we could create.
 
 Duplexing, also known as full-duplex emulation, is the process of using a protocol
 over a half-duplex channel to simulate full-duplex communication.
-It always involves delays in message delivery,
-but generally are designed to make it look like the messages are traveling simultaneously
-but at a slower pace than the channel would be able to support in half-duplex mode.
+Duplexing always involves delays in message delivery,
+but can provide the illusion of messages are traveling simultaneously in both directions,
+though at a slower pace than the channel would be able to support in half-duplex mode.
 
 There are many methods of duplexing possible.
 Simply alternating bytes from each sender is simple to describe,
@@ -193,7 +193,7 @@ SCSI
 
 SATA
 :   The Serial ATA^[ATA stands for "AT Attachment". AT is short for "IBM Personal Computer AT," the product which popularized this attachment technology. In that computer's name, AT stood for "advanced technology".]
-    typically is used to connect drives (hard drives, optical drives, etc)
+    is typically used to connect drives (hard drives, optical drives, etc)
     to the front-side bus.
     Topologically, this is a point-to-point network with port multipliers;
     basically this means the maximal number of connections (or "ports") has to be decided in advance,
