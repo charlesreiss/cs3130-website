@@ -213,8 +213,8 @@ begin closing connection
 ------------------------------------------------------------------
 
 In general, either side may re-send a message if they have not received the expected response, and neither needs to wait for the other's message to send the next.
-This way if messages seem to be arriving well, more messages may be send in groups
-while if acknowledgments are not arriving.
+This way if messages seem to be arriving well, more messages may be sent in groups;
+if acknowledgments are not arriving, transmission may be slowed down to wait for ACKs before the next sending.
 {/}
 
 TCP is significantly slower than UDP,
