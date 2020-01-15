@@ -6,7 +6,7 @@ This lab is designed to help you feel comfortable using GNU Make, one of the old
 
 {.exercise ...} Your task:
 
-With a partner (unless you are a loner by choice),
+With a partner (unless you really want to work alone),
 
 1. Download [`lab01-make.tar`](files/lab01-make.tar) (you can do this using the link on this page, or from a command line via `wget http://www.cs.virginia.edu/luther/COA2/F2020/files/lab01-make.tar)`{.bash})
 
@@ -29,6 +29,9 @@ With a partner (unless you are a loner by choice),
 
 5. Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
 {/}
+
+The information needed to achieve these goals is explained below.
+We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
 
 # Overview
 
@@ -105,8 +108,10 @@ Most makefiles define at least the following variables:
 Name        example     notes
 --------    ----------  ----------------------------------
 CC          clang       The C compiler to use
-CFLAGS      -O2 -g      Compile-time flags for the compiler
+CFLAGS      -O2 -g      Compile-time flags for the C compiler
 LDFLAGS     -lm         Link-time flags for the compiler
+CXX         clang++     The C++ compiler to use
+CXXFLAGS    -O2 -g      Compile-time flags for the C++ compiler
 --------    ----------  ----------------------------------
 
 Even if you need no linker flags, it's still common to define a blank `LDFLAGS :=` and use `$(LDFLAGS)` in all linking locations so that if you later realize you need to link to an external library (like the math library, `-lm`), you can easily do so.
