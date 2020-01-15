@@ -63,8 +63,8 @@ When caching memory, it is typical to remember not just the exact memory accesse
 but also the memory nearby, on the assumption (based on spatial locality)
 that if one address is accessed nearby addresses will soon be accessed as well.
 
-The most common way to do this is that when address `x` is accessed,
-all addresses with the same high-order bits are loaded into the cache;
+The most common way to do this is that when an address $x$ is accessed,
+all addresses with the same high-order bits as $x$ are loaded into the cache;
 the data thus fetched is called a *block*.
 The *tag* of a block is not the full address, just the higher-order bits that all bytes in the block share.
 
@@ -130,7 +130,7 @@ needing both more storage and more computation.
 ### Capacity miss
 
 A **cache miss** is when a cache is accessed but the line desired is not located in it.
-Some misses are inevitable, not matter the cache design,
+Some misses are inevitable, no matter the cache design,
 such as the **cold miss** when the address is accessed for the very first time.
 Other misses are caused by the specific design of the cache.
 
@@ -164,8 +164,8 @@ this is illustrated in [Fig 1](#fig1).
 </svg>
 <figcaption id="fig1"><strong>Fig 1</strong>: Breakdown of direct-mapped address.
 The $\log_2($bytes per block$)$ low-order bits are the block offset;
-the $\log_2($lines in cache$)$ next lowest are the index;
-and the remaining higher-order bits are the tag.</figcaption>
+the next $\log_2($lines in cache$)$ are the index;
+and the remaining bits are the tag.</figcaption>
 </figure>
 
 Direct mapped caches are very efficient, and can be made far larger than fully-associative caches can.
