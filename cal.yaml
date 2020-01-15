@@ -123,6 +123,8 @@ labs:
 reading:
     make:
         - {txt: make lab, lnk: lab01-make.html}
+    accounts:
+        - {txt: accounts lab, lnk: lab02-accounts.html}
 
     building: 
         - {txt: ssh, lnk: remote.html}
