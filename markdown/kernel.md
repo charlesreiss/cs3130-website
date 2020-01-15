@@ -935,7 +935,7 @@ x86-64-compatible processors handle 64-bit addresses as follows:
     
     The most common such page size is 4KB pages
     with 2^9^ PTE per node (9+9+9+9+12 = 48).
-    Other page sizes also work; for example 256K pages
+    Other page sizes also work; for example 256KB pages
     with 2^15^ PTE per node (15+15+18 = 48) fits perfectly,
     and at a slight loss of space efficiency other sizes can be used as well.
     
