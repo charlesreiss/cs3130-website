@@ -26,7 +26,7 @@ such as a box instead of an envelope,
 but we could also take a few pages at a time and put each in an envelope.
 As long as the pages are numbered, the recipient could reassemble the book
 no matter what order the envelopes arrived in.
-If we had a book with unnumbered pages, we could add the ordering to the envelope instead to still permit resembling the whole message.
+If we had a book with unnumbered pages, we could add the ordering to the envelope instead to still permit reassembling the book.
 
 ## Digital
 
@@ -59,12 +59,11 @@ Digital communication also puts containers inside containers
 and the set of containers used are called "layers"
 There are different numbers of layers possible,
 but [the OSI model](https://en.wikipedia.org/wiki/OSI_model#Description_of_OSI_layers) is often seen as the default set
-though [the Internet Protocol Suite](https://en.wikipedia.org/wiki/Internet_protocol_suite#Key_architectural_principles) is better known.
-Note that OSI numbers its layers,
-and numbers the message with a larger number than its envelope.
+even though [the Internet Protocol Suite](https://en.wikipedia.org/wiki/Internet_protocol_suite#Key_architectural_principles) is better known.
+Note that OSI numbers its layers, where containers have smaller numbers than their contents.
 
 {.example ...}
-Consider using a `SOCK_STREAM` `socket`, as you did in [COA1](//www.cs.virginia.edu/luther/COA1/F2018/lab09-sockets.html).
+Consider using a `SOCK_STREAM` `socket`, as you did in [COA1](/luther/COA1/F2019/lab09-sockets.html).
 When you `write` a message, the result is
 
 - The message you sent over the socket, wrapped in
@@ -178,8 +177,8 @@ sends ("triumph", 3)
 
                                         receives ("triumph", 3)
 
-                                        expected a message, 
-                                        none received
+                                        expected message number 2, 
+                                        not received
 
                                         resends (ACK, 2)
 
