@@ -126,7 +126,6 @@ reading:
 
     building: 
         - {txt: ssh, lnk: remote.html}
-        - {txt: make, lnk: make.html}
     welcome: 
         - {txt: introduction, lnk: intro.html}
     spectre: 
