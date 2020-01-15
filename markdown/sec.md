@@ -229,10 +229,10 @@ Task
 :   Convince someone you don't know that you are who you say you are.
 
 Solution
-:   1. Have someone who knows you both [sign](#signatures) a document saying "this person's public key is $X$".
+:   1. Have someone who knows you both [sign](#signatures) a document saying "this person's public key is $x$".
     2. Give that document, called a *certificate*, to the skeptic who doubts your identity.
-    3. The skeptic then generates a random number, encrypts it with your [public key](#asymmetric-ciphers), and tells you the encrypted result
-    4. You decrypt it with your [private key](#asymmetric-ciphers) and tell the skeptic "it's really me: your number was $X$"
+    3. The skeptic then generates a random number $y$, encrypts it with your [public key](#asymmetric-ciphers), and tells you the encrypted result $z$
+    4. You decrypt $z$ with your [private key](#asymmetric-ciphers) and tell the skeptic "it's really me: your number was $y$"
     
     The internet today uses a few well-known *certificate authorities*
     who build entire businesses on validating website identity and signing certificates.
