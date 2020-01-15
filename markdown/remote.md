@@ -17,14 +17,15 @@ When you log in, the remote computer will do half the work with its file, then s
 
 ## Setup
 
-The following commands should work on any system with SSH installed,
-with appropriate changes to `username@the.server.edu`;[^error]
+The following commands should work on any system with SSH installed[^error],
+
 
 ```bash
 ssh-keygen -f ~/.ssh/id_rsa -t rsa -b 2048
 ```
 
 When prompted for a passphrase by `ssh-keygen`, just press enter without typing anything.
+Once `ssh-keygen` is done, type the following with appropriate changes to `username@the.server.edu`:
 
 ```
 ssh-copy-id -i ~/.ssh/id_rsa.pub username@the.server.edu
