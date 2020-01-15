@@ -4,6 +4,28 @@ title: Make lab
 
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
+{.exercise ...} Your task:
+
+With a partner (unless you are a loner by choice),
+
+1. Download [`lab01-make.tar`](files/lab01-make.tar) (you can do this using the link on this page, or from a command line via `wget http://www.cs.virginia.edu/luther/COA2/F2020/files/lab01-make.tar)`{.bash})
+2. Expand it using `tar xvf lab01-make.tar`{.bash}
+3. Read enough of the files to get an idea what they do. Then build them with `clang *.c` and run `./a.out` to verify your understanding. Ask a TA for help if you are not sure you fully understand.
+4. Add a `Makefile` in the resulting `lab01-make` directory, which
+    - has targets for the following
+        - build each `.c` file into a `.o` file
+        - combine `cheer.o` and `grunt.o` into a library (either `libsay.a` or `libsay.so`)
+        - combine the library and `guesser.o` into program `guesser`
+    - has `CC`, `CFLAGS`, and `LDFLAGS` we can edit
+    - `make all` creates `guesser` and its dependencies
+    - `make clean` deletes all files that `make` can recreate
+    - editing `say.h` causes all files to be rebuilt
+    - editing any .c file causes its .o file to be rebuilt, along with the library and/or program if they depend on the .c file
+        - Note: if you chose library format `libsay.a`, then `guesser` should be rebuilt if `libsay.a` changes;
+            but if you chose library format `libsay.so`, then `guesser` should not be rebuilt if `libsay.so` changes, only if `say.h` or `guesser.c` change.
+5. Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
+{/}
+
 # Overview
 
 `make` is a took that reads a file (called a makefile, named `Makefile` be default) and decides what commands it need to run to update your project.
@@ -278,50 +300,3 @@ Creating a program
         looking for each library in the directories `../mylib/` and `another/`
         as well as the system-wide library path (usually `/usr/lib/` and `/usr/local/lib/`).
 
-# Your task
-
-In this lab, you should do the following.
-
-## Make a library
-
-Create a static library `libsay.a` out of files
-
-- `cheer.c`, defining two functions: 
-    - `void hip()`{.c} which displays a short celebratory line.
-    - `void hooray(int rep)`{.c} which displays a celebratory line consisting of `rep` repetitions of some word or phrase.
-- `grunt.c`, defining two functions:
-    - `void accept()`{.c} which displays a line repesenting an accepting nonverbal noise
-    - `void reject()`{.c} which displays a line repesenting an rejecting nonverbal noise
-    - `void weep(int rep)`{.c} which displays a line repesenting an emphatic rejection including `rep` repetitions of some word or phrase.
-
-Create a file `say.h` with declarations for all five functions in `libsay.a`.
-
-## Guessing-game program
-
-Create a guessing-game program named `guesser` that picks a "correct" number and then repeatedly
-
-- asks the user to guess a number
-- uses `libsay` to react based on what they do:
-    - if they pick the correct number, `hooray(10 - guesses_used)`{.c} times and stop
-    - if they pick a number closer to the correct than their last pick, `hip`
-    - if they pick a number the same distance from the correct than their last pick, `accept`
-    - if they pick a number further from the correct than their last pick, `weep(increase_in_distance)`{.c}
-    - if they've made 10 guesses without the right answer, `reject` and stop
-
-## Organization and makefile
-
-The makefile you create with the project is a key part of it. Your makefile should do the following:
-
-- If we `touch`^[`touch foo`{.bash} makes `foo` look like we just now edited it] a file, all files the depend on it, and only those files, should be rebuilt. This includes `touch say.h` rebuilding everything.
-- The program should be named `guesser`, not `a.out`
-- The program should link to `libsay.a`, not to other files for the say functions.
-- There should be `CC`, `CFLAGS`, and `LDFLAGS` we can edit.
-- `make all` and `make clean` should work as expected.
-
-If you have time, you mgiht also add a target `make shared` that creates shared library `libsay.so` and verify that you can edit `libsay.so`, then re-run `guesser` without rebuilding it and see the new `libsay` behavior.
-
-
-## Pass off
-
-To pass off this lab, show your lab TA your makefile and program.
-The makefile is more important than the program; prioritize getting it right rather than the code.

@@ -75,7 +75,7 @@ To run commands remotely
             
             For example, you might do something like `"cd coa2/warmup; make"`
 
-You can even put all of this in a makefile, as e.g.
+You can even put all of this in a [makefile](lab01-make.html), as e.g.
 
 ```makefile
 .PHONY remote:
