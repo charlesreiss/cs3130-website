@@ -203,7 +203,7 @@ assignments:
     PA01:
         title: 'warmup'
         link: pa01-warmup.html
-        due: 2020-01-23 17:00:00
+        due: 2020-01-28 17:00:00
         files: [main.c, primes.c, primes.h, Makefile]
         rubric: {"kind":"percentage"}
         weight: 0.5
@@ -211,7 +211,7 @@ assignments:
     PA02:
         title: 'page tables'
         link: pa02-pagetable.html
-        due: 2020-02-13 17:00:00
+        due: 2020-02-18 17:00:00
         files: ["*.c", "*.h", Makefile]
         rubric:
             kind: hybrid
@@ -232,8 +232,8 @@ assignments:
     
     PA03:
         title: 'page tables part 2'
-        due: 2020-03-05 17:00:00
-        open: 2020-02-13 17:00:00
+        due: 2020-03-10 17:00:00
+        open: 2020-02-18 17:00:00
         files: ["*.c", "*.h", Makefile, README, LICENSE, ACKNOWLEDGEMENTS, "licenses.txt", '*']
         rubric: 
             kind: hybrid
@@ -264,15 +264,14 @@ assignments:
         title: 'TLB'
         link: pa04-tlb.html
         open: 2020-03-05 17:00:00
-        due: 2020-03-26 17:00:00
+        due: 2020-03-24 17:00:00
         late-days: 5
         files: ["*.c", "*.h", Makefile, '*']
 
     PA05:
         title: 'DP'
         link: pa05-dp.html
-        open: 2020-03-26 17:00:00
-        due: 2020-04-02 17:00:00
+        due: 2020-03-31 17:00:00
         files: ["dp_arbitrator.c", "dp_hierarchy.c", "dp_message.c"]
         
         rubric: 
@@ -297,15 +296,13 @@ assignments:
     PA06:
         title: 'Fork'
         link: pa06-fork.html
-        open: 2020-04-02 17:00:00
-        due: 2020-04-09 17:00:00
+        due: 2020-04-07 17:00:00
         files: ["fork_run.c"]
 
     PA07:
         title: 'Life'
         link: pa07-life.html
-        open: 2020-04-09 17:00:00
-        due: 2020-04-23 17:00:00
+        due: 2020-04-21 17:00:00
         files: ["life-parallel.c"]
         rubric: 
             kind: hybrid
@@ -319,7 +316,6 @@ assignments:
     PA08:
         title: 'Pipeline'
         link: pa08-pipeline.html
-        open: 2020-04-08 17:00:00
         due: 2020-04-28 17:00:00
         
         
