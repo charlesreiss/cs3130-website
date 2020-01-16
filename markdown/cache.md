@@ -266,6 +266,9 @@ Write back
     Write back policies typically use a "dirty bit" in each cache line
     to mark which lines have been edited (are "dirty") and need to be written upon eviction
     and which were read without being modified.
+    
+    Write back caches make sense when lines are edited many times before being evicted,
+    as they minimize the number of writes that go to the larger caches.
 
 Write through
 :   Each edit is immediately sent to the next larger layer of the cache hierarchy.
@@ -273,6 +276,9 @@ Write through
     between the cache layers and that if it is full
     the write happens at the speed of the slower cache instead of the faster,
     but it also means that evicting a cache line does not itself slow down processing.
+
+    Write through caches make sense when lines are rarely edited before being evicted,
+    as they minimize the delay of the eviction action.
 
 There is no need for all of the cache layers to use the same write policy;
 a write-back L1 coupled with a write-though L2 is a perfectly doable configuration.
