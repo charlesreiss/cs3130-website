@@ -255,7 +255,7 @@ L2--L*n*
     as processors continue to get faster than memory
     and more intermediate levels make sense.
 
-If a block of data is stored in the L$i$ cache, it is also stored in the L$i+1$ cache and so on back up to RAM.
+    If a block of data is stored in the L$i$ cache, it is also stored in the L$i+1$ cache and so on back up to RAM.
 
 Each cache also has a policy for how memory writes are sent to larger components of the cache hierarchy.
 The two most common such policies are
