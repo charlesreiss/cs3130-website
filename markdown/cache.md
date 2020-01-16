@@ -296,7 +296,6 @@ Writing cache efficient code is a fairly involved topic,
 well beyond the scope of this course.
 It often involves counter-intuitive decisions such as adding more loops to code
 and using data structures with worse asymptotic behavior but better cache locality.
-A common trend is these make code harder for humans to read, understand, and adjust,
-so they should generally be used only when the speed increases they provide are actually needed.
-If you end up  writing high-performance code at some point,
-these will be techniques to learn.
+As with other forms of performance optimization,
+cache efficient code tends to be harder for humans to read, understand, and adjust,
+so it should be used only when the resulting speed increases are actually needed.
