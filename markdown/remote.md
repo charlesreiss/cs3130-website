@@ -78,8 +78,10 @@ To run commands remotely
 You can even put all of this in a [makefile](lab01-make.html), as e.g.
 
 ```makefile
-.PHONY remote:
-	scp * mst3k@portal.cs.virginia.edu:code/project/directory/ \
+.PHONY: remote
+
+remote:
+	scp * mst3k@portal.cs.virginia.edu:code/project/directory/
 	ssh mst3k@portal.cs.virginia.edu "cd code/project/directory/; make"
 ```
 
