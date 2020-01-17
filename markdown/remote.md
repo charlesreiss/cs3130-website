@@ -53,6 +53,13 @@ When prompted for a passphrase by `ssh-copy-id`, use your UVA CS account passwor
     ````bash
     cat "~/.ssh/id_rsa.pub" | ssh username@portal.cs.virginia.edu "cat >> .ssh/authorized_keys"
     ````
+    
+    On Windows, you might need to use `type` instead of `cat`:
+    
+    ````
+    type "~/.ssh/id_rsa.pub" | ssh username@portal.cs.virginia.edu "cat >> .ssh/authorized_keys"
+    ````
+    
 
 
 # Edit local, compile remote
