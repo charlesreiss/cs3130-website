@@ -25,7 +25,7 @@ ssh-keygen -f ~/.ssh/id_rsa -t rsa -b 2048
 ```
 
 When prompted for a passphrase by `ssh-keygen`, just press enter without typing anything.
-Once `ssh-keygen` is done, type the following with appropriate changes to `username@the.server.edu`:
+Once `ssh-keygen` is done, type the following[^manual] with appropriate changes to `username@the.server.edu`:
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa.pub username@the.server.edu
@@ -45,6 +45,14 @@ When prompted for a passphrase by `ssh-copy-id`, use your UVA CS account passwor
     ````
 
     and then re-run the above commands
+
+[^manual]:
+    `ssh-copy-id` is simple enough, some distributions of OpenSSL don't include it.
+    If you don't have it, try 
+    
+    ````bash
+    cat "~/.ssh/id_rsa.pub" | ssh username@portal.cs.virginia.edu "cat >> .ssh/authorized_keys"
+    ````
 
 
 # Edit local, compile remote
