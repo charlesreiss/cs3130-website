@@ -8,7 +8,7 @@ This lab is designed to help you feel comfortable using GNU Make, one of the old
 
 With a partner (unless you really want to work alone),
 
-1. Download [`lab01-make.tar`](files/lab01-make.tar) (you can do this using the link on this page, or from a command line via `wget http://www.cs.virginia.edu/luther/COA2/F2020/files/lab01-make.tar)`{.bash})
+1. Download [`lab01-make.tar`](files/lab01-make.tar) (you can do this using the link on this page, or from a command line via `wget http://www.cs.virginia.edu/luther/COA2/S2020/files/lab01-make.tar`){.bash})
 
 2. Expand it using `tar xvf lab01-make.tar`{.bash}
 
