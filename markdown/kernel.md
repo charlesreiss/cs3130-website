@@ -186,7 +186,7 @@ AfterSwitch:
 supported by the following jump table
 
 ````asm
-    .section    .rodata,"a",@progbits
+    .section    .rodata
 Table:
     .quad   Case0
     .quad   Case1
