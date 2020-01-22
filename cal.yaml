@@ -23,15 +23,37 @@ meta:
     room: Thornton E316
 
 office hours:
-  .begin: 2020-09-04
+  .begin: 2020-01-22
   faculty:
     Tychonievich:
       where: Rice 208
-      when: []
+      when:
+        - dow: Monday
+          start: 15:00:00
+          end: 16:00:00
+        - dow: Tuesday
+          start: 10:00:00
+          end: 11:00:00
+        - dow: Wednesday
+          start: 11:00:00
+          end: 12:00:00
+        - dow: Thursday
+          start: 14:00:00
+          end: 15:00:00
   TA:
-    where: Thorton A-233
-    Omika:
-      when: []
+    where: Stacks
+    Gustavo:
+      when:
+        - dow: Monday
+          start: 11:00:00
+          end: 12:00:00
+        - dow: Wednesday
+          start: 11:00:00
+          end: 12:00:00
+        - dow: Friday
+          start: 15:00:00
+          end: 17:30:00
+
     
 
 sections:
