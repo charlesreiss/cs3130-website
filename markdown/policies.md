@@ -54,7 +54,7 @@ However, we do know you will be asked to
 |--------|------------|-----|
 | Name | Luther Tychonievich | Dylan Cao, Anders Christoffersen, Rashid Lasker, William Mayes, Gustavo Moreira |
 | Location | Rice 208 | Thornton Stacks (A235) |
-| Office Hours | Mo 3-4; Tu 10-11; We 11-12; Th 2-3 | TBA  |
+| Office Hours | Mo 3-4; Tu 10-11; We 11-12; Th 2-3 | See the [OH page](oh.html)  |
 | Phone | 243-3789 | (none) |
 | Email | <a href="mailto:tychonievich@virginia.edu?subject=COA2">tychonievich@virginia.edu</a> | use [Piazza](https://piazza.com/class/k571ccotjhd55) |
 
