@@ -53,7 +53,28 @@ office hours:
         - dow: Friday
           start: 15:00:00
           end: 17:30:00
-
+    Dylan:
+      when:
+        - dow: Monday
+          start: 10:00:00
+          end: 11:15:00
+        - dow: Wednesday
+          start: 10:00:00
+          end: 11:15:00
+        - dow: Thursday
+          start: 11:00:00
+          end: 11:45:00
+    Anders:
+      when:
+        - dow: Wednesday
+          start: 10:00:00
+          end: 11:00:00
+        - dow: Thursday
+          start: 17:00:00
+          end: 19:00:00
+        - dow: Friday
+          start: 11:00:00
+          end: 13:00:00
     
 
 sections:
