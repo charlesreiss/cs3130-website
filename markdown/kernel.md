@@ -158,13 +158,15 @@ switch(x) {
     case 4:
     case 5: f5();
     case 6: f6();
+        break;
+    case 8: f6();
 }
 ````
 
 compiles down to the following code
 
 ````asm
-    cmpl    $6, %eax
+    cmpl    $8, %eax
     ja      AfterSwitch
     jmpq    * Table(,%rax,8)
 Case0:
@@ -180,6 +182,9 @@ Case5:
     callq   f5
 Case6:
     callq   f6
+    jmp     AfterSwitch
+Case8:
+    callq   f8
 AfterSwitch:
 ````
 
@@ -195,6 +200,8 @@ Table:
     .quad   Case5
     .quad   Case5
     .quad   Case6
+    .quad   AfterSwitch
+    .quad   Case8
 ````
 
 Exception tables are just one particular use of this array-of-code-addresses idea.
