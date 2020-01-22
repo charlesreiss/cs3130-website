@@ -155,7 +155,7 @@ switch(x) {
     case 3: f3();
     case 2: f2();
         break;
-    case 4: f4();
+    case 4:
     case 5: f5();
     case 6: f6();
 }
@@ -176,8 +176,6 @@ Case3:
 Case2:
     callq   f2
     jmp     AfterSwitch
-Case4:
-    callq   f4
 Case5:
     callq   f5
 Case6:
@@ -194,7 +192,7 @@ Table:
     .quad   Case1
     .quad   Case2
     .quad   Case3
-    .quad   Case4
+    .quad   Case5
     .quad   Case5
     .quad   Case6
 ````
