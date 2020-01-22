@@ -152,8 +152,8 @@ For example, the following C
 switch(x) {
     case 0: f0();
     case 1: f1();
-    case 2: f2();
     case 3: f3();
+    case 2: f2();
         break;
     case 4: f4();
     case 5: f5();
@@ -171,10 +171,10 @@ Case0:
     callq   f0
 Case1:
     callq   f1
-Case2:
-    callq   f2
 Case3:
     callq   f3
+Case2:
+    callq   f2
     jmp     AfterSwitch
 Case4:
     callq   f4
