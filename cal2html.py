@@ -138,6 +138,7 @@ def raw2cal(data, links=None):
                         for ent in det['when']:
                             if ((('dow' in ent and d.weekday() == dow(ent['dow']))
                                     or ('date' in ent and d == ent['date']))
+                                    or ('dates' in ent and d in ent['dates']))
                                 and d not in ent.get('except',[])
                             ):
                                 if 'where' in det:

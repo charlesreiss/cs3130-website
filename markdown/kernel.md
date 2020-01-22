@@ -538,7 +538,7 @@ a. an efficient mechanism for communicating with processes
 
 ## Processes
 
-A **process** is a software-only operating systems construct
+A **process** is a software-only operating system construct
 that roughly parallels the end-user idea of a running program.
 Each process has its own virtual address space.
 The hardware knows the difference between user and kernel mode,
@@ -580,7 +580,7 @@ A common operating system internal representation of memory regions
 is a list if **segements**,
 pairs of starting- and stopping-addresses and a set of permissions for the intermediate addresses.
 
-Segments are never directly visible to the hardware:
+Segments are never directly visible to the hardware^[Note, however, that keeping with the tradition of using the same English word to mean multiple unrelated technical concepts, x86-64 uses the word "segment" in a distinct hardware sense to mean "the high-order bits of addresses we don't want to express in full".]:
 instead, the operating system uses the segments
 to create initialize hardware-visible [pages table entries](Pages)
 and to react to hardware-generated page-related [faults](Faults)
