@@ -26,7 +26,7 @@ The operating system maintains information for all running processes.
 This information necessarily includes the processor state each had when it was last suspended by an exception and the base address of its page table.
 It also has a per-process list of open file descriptors
 and bookkeeping information
-such as the processes' name, how long it has been running,
+such as the process's name, how long it has been running,
 and its priority for getting scheduled to run again.
 And most operating systems maintain the user account under which it is running.
 
