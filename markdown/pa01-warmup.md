@@ -3,7 +3,7 @@ title: PA01 -- warmup
 ...
 
 This is mostly a reminder/refresher on C.
-It also makes use of the [introduction to makefiles](make.html).
+It also makes use of the [introduction to makefiles](lab01-make.html).
 
 # Three files
 
