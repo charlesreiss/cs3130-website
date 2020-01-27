@@ -227,6 +227,7 @@ reading:
         - {txt: accounts, lnk: accounts.html}
     privilege escalation:
         - {txt: wikipedia, lnk: 'https://en.wikipedia.org/wiki/Privilege_escalation'}
+        - {txt: mitre, lnk: 'https://attack.mitre.org/tactics/TA0004/'}
     buses:
         - {txt: bus and network, lnk: bus.html}
     IP:
