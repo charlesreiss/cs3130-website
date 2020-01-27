@@ -52,7 +52,18 @@ office hours:
           end: 12:00:00
         - dow: Friday
           start: 15:00:00
-          end: 17:30:00
+          end: 16:30:00
+    Will:
+      when:
+        - dow: Monday
+          start: 11:00:00
+          end: 12:00:00
+        - dow: Wednesday
+          start: 11:00:00
+          end: 12:00:00
+        - dow: Thursday
+          start: 13:00:00
+          end: 15:00:00
     Dylan:
       when:
         - dow: Monday
