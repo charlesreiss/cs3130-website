@@ -98,6 +98,9 @@ office hours:
           end: 11:00:00
     Alex:
       when:
+        - dow: Monday
+          start: 15:30:00
+          end: 17:00:00
         - dow: Wednesday
           start: 15:30:00
           end: 17:00:00
