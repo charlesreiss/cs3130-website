@@ -219,7 +219,6 @@ reading:
         - {txt: kernels §1, lnk: kernel.html}
     virtual memory: 
         - {txt: kernels §3, lnk: kernel.html#virtual-memory}
-        - {txt: worksheet, lnk: 'https://kytos.cs.virginia.edu/coa2/vmem/'}
     process issolation:
         - {txt: kernels, lnk: kernel.html}
     DMA:
