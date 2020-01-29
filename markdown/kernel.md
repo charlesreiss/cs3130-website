@@ -1063,7 +1063,7 @@ and a second time if the instruction contains a memory access,
 so making it fast is vital to keeping the computer efficient.
 
 Modern processors use a special cache
-called the **translation lookaside buffer** (or TBL)
+called the **translation lookaside buffer** (or TLB)
 to keep the most-used address translations in high-speed memory.
 
 Conceptually, the TLB is used as follows:
