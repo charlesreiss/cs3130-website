@@ -587,7 +587,7 @@ pairs of starting- and stopping-addresses and a set of permissions for the inter
 
 Segments are never directly visible to the hardware^[Note, however, that keeping with the tradition of using the same English word to mean multiple unrelated technical concepts, x86-64 uses the word "segment" in a distinct hardware sense to mean "the high-order bits of addresses we don't want to express in full".]:
 instead, the operating system uses the segments
-to create initialize hardware-visible [pages table entries](Pages)
+to create hardware-visible [pages table entries](Pages)
 and to react to hardware-generated page-related [faults](Faults)
 and potentially convert them into [signals](Signals)
 to convey to the user process.
