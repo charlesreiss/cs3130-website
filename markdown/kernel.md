@@ -98,7 +98,9 @@ It might result from the mouse moving, a network packet arriving, or the like.
 Interrupts are typically handled by the kernel in a way that is invisible to the user code.
 The user code is frozen, the interrupt handled, and then the user code resumed as if nothing had happened.
 
-{.aside} Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
+::aside
+Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
+:::
 
 ### Faults
 
@@ -142,7 +144,8 @@ To select which one to run, the hardware consults something called an **exceptio
 The exception table is just an array of code addresses; the index into that array is determined by the kind of exception generated (e.g., divide-by-zero uses index 0, invalid instructions use index 6, etc.)
 The index is called an **exception number** or **vector number** and the array of code addresses is called the **exception table**.
 
-{.aside ...} Switches
+:::aside
+Switches
 
 Having an array of code addresses is not unique to exception handlers; it is also present in C in the form of a `switch`{.c} statement.
 
@@ -205,7 +208,7 @@ Table:
 ````
 
 Exception tables are just one particular use of this array-of-code-addresses idea.
-{/}
+:::
 
 ### After the Handler
 
@@ -944,7 +947,8 @@ x86-64-compatible processors handle 64-bit addresses as follows:
     with 2^15^ PTE per node (15+15+18 = 48) fits perfectly,
     and at a slight loss of space efficiency other sizes can be used as well.
     
-{.aside ...} Page size selection is a trade-off.
+::aside
+Page size selection is a trade-off.
 The smaller the pages, the fewer bytes of memory are wasted because of partially-used pages,
 but the more time and space is devoted to the page table.
 
@@ -979,7 +983,7 @@ meaning some paths down the page table tree pass through one fewer node
 (9+9+9+21 = 48).
 This adds some complexity to the page table traversal process,
 but allows the operating system more control over how pages are distributed.
-{/}
+:::
 
 - Each address translation that the [TLB](#translation-lookaside-buffer) does not optimize runs a process similar to the following:
 
