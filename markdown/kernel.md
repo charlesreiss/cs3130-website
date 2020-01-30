@@ -1055,6 +1055,13 @@ An important thing to note about the above:
 software (the operating system) writes the page table
 in a format that the hardware understands and can read.
 
+:::example
+The following depicts all of the lookups used by x86-64's virtual memory system with 4K pages
+
+<img src="address-trans.svg" style="width:100%"/>
+:::
+
+
 ### Translation Lookaside Buffer
 
 Address translation needs to happen for every instruction,
