@@ -1056,7 +1056,8 @@ software (the operating system) writes the page table
 in a format that the hardware understands and can read.
 
 :::example
-The following depicts all of the lookups used by x86-64's virtual memory system with 4K pages
+The following depicts all of the lookups used by x86-64's virtual memory system with 4K pages.
+Virtual addresses are in yellow, physical addresses in cyan, and page table entries in white.
 
 <img src="address-trans.svg" style="width:100%"/>
 :::
