@@ -1060,6 +1060,8 @@ The following depicts all of the lookups used by x86-64's virtual memory system 
 Virtual addresses are in yellow, physical addresses in cyan, and page table entries in white.
 
 <img src="address-trans.svg" style="width:100%"/>
+
+The three zero bits at the end of the first four physical addresses accomplish the "index × 8" needed to compute the address of an 8-byte PTE by its index.
 :::
 
 
