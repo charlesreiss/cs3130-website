@@ -1066,7 +1066,7 @@ The three zero bits at the end of the first four physical addresses accomplish t
 Of the above
 
 - The user/compiler puts data in memory and picks the virtual address
-- The OS put the data into the PTBR and the PTEs into RAM
+- The OS puts the data into the PTBR and the PTEs into RAM
 - The hardware does everything else depicted
 :::
 
