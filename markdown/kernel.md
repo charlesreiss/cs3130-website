@@ -1062,6 +1062,12 @@ Virtual addresses are in yellow, physical addresses in cyan, and page table entr
 <img src="address-trans.svg" style="width:100%"/>
 
 The three zero bits at the end of the first four physical addresses accomplish the "index × 8" needed to compute the address of an 8-byte PTE by its index.
+
+Of the above
+
+- The user/compiler puts data in memory and picks the virtual address
+- The OS put the data into the PTBR and the PTEs into RAM
+- The hardware does everything else depicted
 :::
 
 
