@@ -158,6 +158,10 @@ You will likely find yourself casting between `size_t` and various pointer types
 Our TAs recommended that you write the following as a warm-up: 
 
 ```c
-/// Returns the kth virtual page number of the given virtual address
+/**
+ * Returns the kth virtual page number of the given virtual address
+ * requires: 0 <= k < LEVELS
+ * ensures: 0 <= result < (1<<(POBITS-3))
+ */
 size_t vpn_k(size_t va, int k);
 ```
