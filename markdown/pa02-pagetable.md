@@ -146,7 +146,7 @@ To test your code, you'll likely have to add extra code to let you measure thing
 
 A tip for good functional design: if you can describe what a non-trivial piece of code is doing, make it its own function with that action as its name. I'd encourage having names for all of the steps of address translation that we discussed in lectures.
 
-Since we haven't used `posix_memalign`{.c} before and it's manual page is a bit confusing, the code I used to use it was
+Since we haven't used `posix_memalign`{.c} before and its manual page is a bit confusing, the code I used to use it was
 
 ```c
 void *ans;
@@ -154,3 +154,10 @@ posix_memalign(&ans, 1<<POBITS, 1<<POBITS);
 ```
 
 You will likely find yourself casting between `size_t` and various pointer types multiple places in your code.
+
+Our TAs recommended that you write the following as a warm-up: 
+
+```c
+/// Returns the kth virtual page number of the given virtual address
+size_t vpn_n(size_t va, int k);
+```
