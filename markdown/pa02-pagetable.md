@@ -142,26 +142,28 @@ make sure it is not in a file required to build your code (i.e., keep `main` in 
 
 # Tips
 
-To test your code, you'll likely have to add extra code to let you measure things like the number of pages allocated.
+- To test your code, you'll likely have to add extra code to let you measure things like the number of pages allocated.
 
-A tip for good functional design: if you can describe what a non-trivial piece of code is doing, make it its own function with that action as its name. I'd encourage having names for all of the steps of address translation that we discussed in lectures.
+- A tip for good functional design: if you can describe what a non-trivial piece of code is doing, make it its own function with that action as its name. I'd encourage having names for all of the steps of address translation that we discussed in lectures.
 
-Since we haven't used `posix_memalign`{.c} before and its manual page is a bit confusing, the code I used to use it was
+- Since we haven't used `posix_memalign`{.c} before and its manual page is a bit confusing, the code I used to use it was
 
-```c
-void *ans;
-posix_memalign(&ans, 1<<POBITS, 1<<POBITS);
-```
+    ````c
+    void *ans;
+    posix_memalign(&ans, 1<<POBITS, 1<<POBITS);
+    ````
 
-You will likely find yourself casting between `size_t` and various pointer types multiple places in your code.
+- You will likely find yourself casting between `size_t` and various pointer types multiple places in your code.
 
-Our TAs recommended that you write the following as a warm-up: 
+- Our TAs recommended that you write the following as a warm-up: 
 
-```c
-/**
- * Returns the kth virtual page number of the given virtual address
- * requires: 0 <= k < LEVELS
- * ensures: 0 <= result < (1<<(POBITS-3))
- */
-size_t kth_vpn(size_t va, int k);
-```
+    ````c
+    /**
+     * Returns the kth virtual page number of the given virtual address
+     * requires: 0 <= k < LEVELS
+     * ensures: 0 <= result < (1<<(POBITS-3))
+     */
+    size_t kth_vpn(size_t va, int k);
+    ````
+
+    (it can also be written as a function-style macro if you wish, but few solutions worked without something like this function being defined in the code)
