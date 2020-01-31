@@ -163,5 +163,5 @@ Our TAs recommended that you write the following as a warm-up:
  * requires: 0 <= k < LEVELS
  * ensures: 0 <= result < (1<<(POBITS-3))
  */
-size_t vpn_k(size_t va, int k);
+size_t kth_vpn(size_t va, int k);
 ```
