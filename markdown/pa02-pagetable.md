@@ -168,3 +168,5 @@ make sure it is not in a file required to build your code (i.e., keep `main` in 
 
     It's not strictly necessary and can also be written as a function-style macro if you wish,
     but only a few past solutions worked without defining something like this function.
+    
+    You might find a refresher on [bit fiddling](../../COA1/F2019/bool.html#bit-fiddling) will help.
