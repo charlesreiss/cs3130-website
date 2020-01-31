@@ -159,5 +159,5 @@ Our TAs recommended that you write the following as a warm-up:
 
 ```c
 /// Returns the kth virtual page number of the given virtual address
-size_t vpn_n(size_t va, int k);
+size_t vpn_k(size_t va, int k);
 ```
