@@ -166,4 +166,5 @@ make sure it is not in a file required to build your code (i.e., keep `main` in 
     size_t kth_vpn(size_t va, int k);
     ````
 
-    (it can also be written as a function-style macro if you wish, but few solutions worked without something like this function being defined in the code)
+    It's not strictly necessary and can also be written as a function-style macro if you wish,
+    but only a few past solutions worked without defining something like this function.
