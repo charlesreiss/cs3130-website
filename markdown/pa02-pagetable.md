@@ -154,8 +154,8 @@ make sure it is not in a file required to build your code (i.e., keep `main` in 
     size_t kth_vpn(size_t va, int k);
     ````
 
-    It's not strictly necessary and can also be written as a function-style macro if you wish,
-    but only a few past solutions worked without defining something like this function.
+    Only a few past solutions worked without defining something like this function
+    (or an equivalent function-style macro).
     
     You might find a refresher on [bit fiddling](../../COA1/F2019/bool.html#bit-fiddling) will help.
 
