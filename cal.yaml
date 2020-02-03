@@ -235,7 +235,7 @@ reading:
     buses:
         - {txt: bus and network, lnk: bus.html}
     IP:
-        - {txt: protocols §1--2, lnk: protocols.html}
+        - {txt: protocols §1–2, lnk: protocols.html}
     UDP:
         - {txt: protocols §2.2, lnk: protocols.html#udp}
     TCP: 
@@ -251,7 +251,7 @@ reading:
     synchronization:
         - {txt: sync, lnk: sync.html}
     concurrency:
-        - {txt: thread and process §1--2, lnk: thread.html}
+        - {txt: thread and process §1–2, lnk: thread.html}
     pthreads: 
         - {txt: pthreads, lnk: pthreads.html}
     deadlock:

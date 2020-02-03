@@ -161,7 +161,7 @@ Frontside bus
     Commonly implemented as one or more bus-topology channels.
     
     The best known example is the PCI^[This stands for "peripheral component interconnect" but is almost universally called by its acronym, so much so that I'd expct using the full name to confuse people.],
-    which is used both for a deprecated standard and the family of subsequent standards
+    a name used both for a deprecated standard and the family of subsequent standards
     including the current^[as of 2019] PCI-e standards.
 
 Backside bus
@@ -186,7 +186,7 @@ Universal Serial Bus
     pair-wise links with multiple star-like hubs.
 
 SCSI
-:   Pronounced "scuzzie", the Small Computer System Interface (SCSI)
+:   Pronounced "skuzzy", the Small Computer System Interface (SCSI)
     typically is used to connect drives (hard drives, optical drives, etc)
     to the front-side bus.
     Topologically, this is a "linear bus", a type of variable-length bus.
