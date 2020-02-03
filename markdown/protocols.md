@@ -75,9 +75,10 @@ That last layer will be stripped off after traversing the WLAN, to be replaced b
 {/}
 
 Note that because of the header/footer design,
-every layer can splice the data provided by the other layers freely.
+every layer can slice the data provided by the other layers freely.
 Thus, a message could be split into 4 TCP segments;
 those each split into 2 IP packets to make 8 total packets.
+Multiple messages can also be placed into a single envelope, though that is less common in practice.
 
 # TCP/IP and friends
 
