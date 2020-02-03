@@ -287,8 +287,28 @@ assignments:
         link: pa01-warmup.html
         due: 2020-01-28 17:00:00
         files: [main.c, primes.c, primes.h, Makefile]
-        rubric: {"kind":"percentage"}
         weight: 0.5
+        rubric:
+            kind: hybrid
+            auto-late-days: 2
+            auto-weight: 0
+            late-penalty: 1
+            human:
+                - Submitted main.c
+                - Submitted primes.c
+                - Submitted primes.h
+                - Submitted Makefile
+                - 'only #include .h, not .c files'
+                - '#include "primes.h" in both .c files'
+                - {name: Makefile has target for primes, weight: 2}
+                - 'Makefile: primes does not depend on .c files'
+                - 'Makefile: primes depends on main.o and primes.o'
+                - 'Makefile: has .o from .c rule(s)'
+                - {name: 'Makefile: both .o files depend on primes.h', weight: 2}
+                - {name: running make creates executable named primes, weight: 4}
+                - {name: 'compiler accepts code without warnings (non-credit, will be required in
+                    future)', weight: 0}
+                - {name: code (mostly) works, weight: 3}
 
     PA02:
         title: 'page tables'
