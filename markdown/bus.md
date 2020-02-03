@@ -88,12 +88,12 @@ not the number of screen-to-eye simplex channels we could create.
 Duplexing, also known as full-duplex emulation, is the process of using a protocol
 over a half-duplex channel to simulate full-duplex communication.
 Duplexing always involves delays in message delivery,
-but can provide the illusion of messages are traveling simultaneously in both directions,
+but can provide the illusion of messages traveling simultaneously in both directions,
 though at a slower pace than the channel would be able to support in half-duplex mode.
 
 There are many methods of duplexing possible.
-Simply alternating bytes from each sender is simple to describe,
-but more complicated approaches can be more efficient in some situations.
+Alternating bytes from each sender is one of the simplest to describe,
+but more complicated approaches can be more efficient in most situations.
 
 # Network topology
 
@@ -128,7 +128,7 @@ For $n$ components, that means $n-1$ separate links.
 
 Start networks are simple to design, implement and extend.
 However, they are highly dependent on the hub,
-being limited by its capabilities and going down if it does down.
+being limited by its capabilities and going down if it does.
 
 ## Bus
 
