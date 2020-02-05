@@ -145,7 +145,7 @@ lectures:
     - virtual memory
     - virtual memory
     - [buses, DMA]
-    - IP
+    - [buses, IP]
     - [UDP, TCP, ports]
     - [DNS, DHCP]
     - TLS
