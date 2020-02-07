@@ -349,3 +349,43 @@ messages for registering new DNS entries and changing old ones,
 
 As DNS has grown in complexity, DNS servers have grown into ever more-complicated database engines.
 However, the core DNS lookup process has not changed since the first DNS specifications^[ [RFC 882](https://tools.ietf.org/html/rfc882) and [RFC 883](https://tools.ietf.org/html/rfc883)] were released in 1983.
+
+
+# DHCP
+
+Some IP addresses are specified statically, procured from the set of all possible IP addresses by a single computer and used only by that computer.
+Others are assigned dynamically as needed, picking an IP address when a computer is placed on the Internet and removing it when it disconnects.
+The dynamic process is governed by the Dynamic Host Control Protocol, or DHCP.
+
+DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but the most common model is as follows:
+
+1.  The computer sends
+    
+    a.  it's location on the connection (a MAC address)
+    a.  in a UDP packet from port 68 to port 67
+    a.  over IP from address 0.0.0.0 ("no one") to address 255.255.255.255 ("everyone")
+    a.  on the newly-connected connection, to everyone on that channel
+    
+    Most computers seeing this message ignore it.
+    
+2.  The server owning the connection sends
+    
+    a. an offered IP address
+    a. in a UDP packet from port 67 to port 68
+    a. over IP from the server's IP address to 255.255.255.255 ("everyone")
+    a. on the channel, directly to the computer^[How direct this is depends on the channel technology. Often it is actually sent to everyone on the channel, but with a MAC address that means "everyone but the target computer should ignore this message."]
+
+3.  The computer sends
+    
+    a.  "thanks, I'll take that IP address"
+    a.  in a UDP packet from port 68 to port 67
+    a.  over IP from 0.0.0.0 to the server's IP address
+    a.  on the channel, directly to the server
+
+4.  The server sends
+    
+    a.  "great, it's yours"
+    a. in a UDP packet from port 67 to port 68
+    a. over IP from the server's IP address to 255.255.255.255 ("everyone")
+    a. on the channel, directly to the computer
+
