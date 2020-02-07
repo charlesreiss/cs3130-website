@@ -209,7 +209,7 @@ segment 2
 
 receives (ACK, 4)
 
-sends (FIN) to close 
+sends (FIN) to 
 begin closing connection
 ------------------------------------------------------------------
 
