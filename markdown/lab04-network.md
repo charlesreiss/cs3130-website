@@ -105,7 +105,7 @@ You may assume that if a message has not arrived after a full second, it will no
 - `ACK`0 does not work; use `GET` instead.
 - Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
     
-    {.example ...}The following prints 3, then 1, then 4.
+    {.example ...}The following prints 3, then 1, then 4, ending two seconds after it started.
 
     ````c
     void pnum(void *num) {
