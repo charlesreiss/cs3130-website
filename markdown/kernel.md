@@ -810,7 +810,7 @@ struct height3 *root = /* ... */
 ```
 
 This tree has the ability to store 16^4^ = 2^16^ = 65,536 `PAYLOAD` values
-using a total of 16^3^ + 1 = 2^12^ + 1 = 4,097 pointers,
+using a total of 16^3^ + 16^2^ + 16^1^ + 1 = 4,369 pointers,
 including the `root` pointer.
 {/}
 
@@ -898,7 +898,7 @@ PAYLOAD *arr(struct height3 *root, unsigned short index) {
 
 While this code is even less time-efficient than the previous code,
 it is significantly more space-efficient if only a few values are in the "array".
-For example, if only indices 0--10 (0x0000--0x000A) and 60,000--60,050 (0xEA60--0zEA92) are used,
+For example, if only indices 0--10 (0x0000--0x000A) and 60,000--60,050 (0xEA60--0xEA92) are used,
 the only non-NULL pointers are to:
 
 - In the root, 0x0 and 0xE
