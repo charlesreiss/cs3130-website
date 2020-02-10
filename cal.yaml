@@ -64,6 +64,7 @@ office hours:
         - dow: Thursday
           start: 13:00:00
           end: 15:00:00
+          except: 2020-02-13
     Dylan:
       when:
         - dow: Monday
@@ -207,6 +208,8 @@ reading:
         - {txt: accounts lab, lnk: lab02-accounts.html}
     signal handling:
         - {txt: signals and shmem lab, lnk: lab03-signals.html}
+    networking:
+        - {txt: networking lab, lnk: lab04-network.html}
 
     building: 
         - {txt: ssh, lnk: remote.html}

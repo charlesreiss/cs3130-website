@@ -21,7 +21,9 @@ We've provided a simple network simulator for you.
     
     You should see a welcome message appear, ending with a `!`.
 4. Edit `netlab.c` so that you also see messages for `./netlab 1`, `./netlab 2`, etc.
-5. Show a TA your working code.
+5. Show a TA your code.
+    - We expect everyone to finish `./netlab 1` and to make good progress on `./netlab 2`
+    - `./netlab 3` is quite a bit harder and is recommended if you have time
 {/}
 
 # Our Driver
@@ -32,8 +34,9 @@ We provide a network simulation driver program. It has the following pieces:
     You'll invoke this to simulate sending unreliable packets over a network.
 - Function skeleton `void recvd(size_t len, void* data)`.
     You'll fill in details to describe what you would do on a packet receipt.
-- Function `int setTimeout(void (*callback)(void), unsigned long ms)`.
-    You may invoke this to ask to have `callback` invoked after `ms` milliseconds (`ms * 0.001` seconds).
+- Function `int setTimeout(void (*callback)(void*), unsigned long ms, void *arg)`.
+    You may invoke this to ask to have `callback` invoked after `ms` milliseconds (`ms * 0.001` seconds),
+    passing `arg` as the argument.
 
     On success, returns a positive identifier that may be used in `clearTimeout`.
     On failure, returns a special error code:
@@ -41,6 +44,8 @@ We provide a network simulation driver program. It has the following pieces:
     - `0` if `callback` is `NULL`
     - `-1` if `ms` is too far in the future (more than a minute)
     - `-2` if you have too many pending callbacks scheduled (based on an implementation-defined limit guaranteed to be at least 16)
+    
+    The callback is executed once per `setTimeout` call, assuming it is not cleared with `clearTimeout` first.
 - Function `void clearTimeout(int timeoutID)`.
     If `timeoutID` was returned by `setTimeout` and the callback has not yet been invoked,
     unschedules that callback.
@@ -84,7 +89,7 @@ You should wait at least a few seconds before deciding a message will not arrive
 Each `GET` will give a different message, and with a different level of errors you need to handle.
 
 0. sends the full message without errors
-1. sends the message without errors, a bit at a time, requiring you to `ACK` properly
+1. sends the message without errors, one a packet at a time, requiring you to `ACK` properly
 2. sends messages unreliably; some messages never arrive and need to be re-requested
 3. sends messages unreliably; some messages arrive in a corrupted state and need to be re-requested
 
@@ -92,3 +97,32 @@ You may assume that if a message has not arrived after a full second, it will no
 
 
 
+# Tips
+
+- Work with a partner.
+- Messages with bad checksums are ignored by the server.
+- You only have two kinds of messages you'll ever send. It's probably worth writing helper functions to send them (or just one helper to send both based on an argument).
+    
+    {.example ...}The following prints 3, then 1, then 4.
+
+    ````c
+    void pnum(void *num) {
+        printf("%d\n", (int)num);
+    }
+    int main() {
+        int one = setTimeout(pnum, 1000, (void *)1uL);
+        int two = setTimeout(pnum, 500, (void *)2uL);
+        int three = setTimeout(pnum, 100, (void *)3uL);
+        int four = setTimeout(pnum, 2000, (void *)4uL);
+        clearTimeout(two);
+        waitForAllTimeouts();
+    }
+    ````
+    {/}
+    
+    
+- `ACK` 0 does not work; use `GET` instead.
+- Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
+- The argument of your callbacks must be typed as a `void *`, but (via casting) can be any type of 8 or fewer bytes.
+    Feel free to use `NULL` if you don't need an argument.
+- My solution used a few global variables for the information I wanted in every callback. It was 58 lines of reasonably-formatted C code.

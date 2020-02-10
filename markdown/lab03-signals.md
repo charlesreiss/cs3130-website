@@ -118,6 +118,6 @@ while(outbox[0]) { usleep(10000); }
 When you handle `SIGUSR1`
 
 1. `fputs` the inbox so we can see what was sent;
-2. `fflush(stdin)`{.c} to ensure we see it now, not later;
+2. `fflush(stdout)`{.c} to ensure we see it now, not later;
 3. set the first character in the inbox to `'\0'`{.c} so the other process knows we're ready for it to send more
 
