@@ -372,7 +372,7 @@ DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but th
     
     a. an offered IP address
     a. in a UDP packet from port 67 to port 68
-    a. over IP from the server's IP address to 255.255.255.255 ("everyone")
+    a. over IP from the server's IP address to 255.255.255.255
     a. on the channel, directly to the computer^[How direct this is depends on the channel technology. Often it is actually sent to everyone on the channel, but with a MAC address that means "everyone but the target computer should ignore this message."]
 
 3.  The computer sends
@@ -386,6 +386,6 @@ DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but th
     
     a.  "great, it's yours"
     a. in a UDP packet from port 67 to port 68
-    a. over IP from the server's IP address to 255.255.255.255 ("everyone")
+    a. over IP from the server's IP address to 255.255.255.255
     a. on the channel, directly to the computer
 
