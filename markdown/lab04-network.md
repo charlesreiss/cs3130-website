@@ -102,6 +102,8 @@ You may assume that if a message has not arrived after a full second, it will no
 - Work with a partner.
 - Messages with bad checksums are ignored by the server.
 - You only have two kinds of messages you'll ever send. It's probably worth writing helper functions to send them (or just one helper to send both based on an argument).
+- `ACK`0 does not work; use `GET` instead.
+- Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
     
     {.example ...}The following prints 3, then 1, then 4.
 
@@ -121,8 +123,6 @@ You may assume that if a message has not arrived after a full second, it will no
     {/}
     
     
-- `ACK` 0 does not work; use `GET` instead.
-- Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
 - The argument of your callbacks must be typed as a `void *`, but (via casting) can be any type of 8 or fewer bytes.
     Feel free to use `NULL` if you don't need an argument.
 - My solution used a few global variables for the information I wanted in every callback. It was 58 lines of reasonably-formatted C code.
