@@ -211,6 +211,9 @@ reading:
     networking:
         - {txt: networking lab, lnk: lab04-network.html}
 
+    review Q&A:
+        - {txt: old exams, lnk: exams.html}
+
     building: 
         - {txt: ssh, lnk: remote.html}
     welcome: 
