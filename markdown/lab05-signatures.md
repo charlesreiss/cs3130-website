@@ -16,7 +16,7 @@ However, some decryption includes a modulus operation; if so, you need to compar
 
 # This lab
 
-We provide seven hash functions (none of them secure) and an (also insecure) public key decryption function in [signlab.c](files/signlab.c). We also provide the following signed messages. For most messages we provide two signatures, one valid and the other invalid, listed in numerical order.
+We provide seven hash functions (none of them secure) and an (also insecure) public key decryption function in [signlab.c](files/signlab.c)^[Using ssh? Try `wget http://www.cs.virginia.edu/luther/COA2/S2020/files/signlab.c`{.bash}]. We also provide the following signed messages. For most messages we provide two signatures, one valid and the other invalid, listed in numerical order.
 
  Hash   Message              Sig1         Sig2
 ------  ------------------  ------       ------

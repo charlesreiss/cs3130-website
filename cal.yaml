@@ -188,7 +188,7 @@ labs:
     - accounts
     - signal handling
     - networking
-    - encryption
+    - signatures
     - memoizing
     - parallel big-O
     - locks and races
@@ -210,6 +210,8 @@ reading:
         - {txt: signals and shmem lab, lnk: lab03-signals.html}
     networking:
         - {txt: networking lab, lnk: lab04-network.html}
+    signatures:
+        - {txt: signatures lab, lnk: lab05-signatures.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
