@@ -212,6 +212,8 @@ reading:
         - {txt: networking lab, lnk: lab04-network.html}
     signatures:
         - {txt: signatures lab, lnk: lab05-signatures.html}
+    memoizing:
+        - {txt: memoization lab, lnk: lab06-memoize.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
