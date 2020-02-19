@@ -1,0 +1,175 @@
+---
+title: Past Exams
+...
+
+# Summary
+
+Semester     Exam                        High    Median   Mean   Low     StdDev
+----------  ------                      ------  -------- ------ ------- --------
+Spring 2019 [1](files/s2019exam1.pdf)    91.1%   80.6%    78.6%  54.8%   9.6%  
+Spring 2019 [2](files/s2019exam2.pdf)    93.1%   77.8%    76.0%  52.2%   11.3% 
+Spring 2019 [3](files/s2019exam3.pdf)    98.2%   85.3%    85.0%  60.1%   8.7%  
+
+# Keys
+
+## Spring 2019
+
+### Exam 1
+
+
+Question    Key
+--------    -------------
+Q1          2
+Q2.1        False
+Q2.2        True
+Q2.3        True
+Q2.4        True
+Q2.5        True
+Q2.6        False
+Q2.7        False
+Q3          STHRN
+Q4          4
+Q5          3
+Q6          2
+Q7          1
+Q8          2
+Q9          APM
+Q10         1 or 2
+Q11.1       True
+Q11.2       True
+Q11.3       True
+Q11.4       False
+Q11.5       True
+Q11.6       True
+Q12.1       True
+Q12.2       True
+Q12.3       *(dropped)*
+Q12.4       False
+Q12.5       True
+Q13         2
+Q14         45
+Q15         2^66^
+Q16         0x22446400
+
+### Exam 2
+
+
++--------+---------------------------------------------------------------------+
+|Question|Key                                                                  |
++========+=====================================================================+
+|Q1      | (x>>(P+(P-3)*(L-1)))&((1<<(P-3))-1)                                 |
++--------+---------------------------------------------------------------------+
+|Q2      | 4                                                                   |
++--------+---------------------------------------------------------------------+
+|Q3      | 3                                                                   |
++--------+---------------------------------------------------------------------+
+|Q4      | 1                                                                   |
++--------+---------------------------------------------------------------------+
+|Q5      | 2                                                                   |
++--------+---------------------------------------------------------------------+
+|Q6      | 2                                                                   |
++--------+---------------------------------------------------------------------+
+|Q7      | 1                                                                   |
++--------+---------------------------------------------------------------------+
+|Q8      | 2                                                                   |
++--------+---------------------------------------------------------------------+
+|Q9      | 2                                                                   |
++--------+---------------------------------------------------------------------+
+|Q10     | 1                                                                   |
++--------+---------------------------------------------------------------------+
+|Q11     | lock `m1` between `if` and `while`;                                 |
+|        | unlock `m1` after `primes[num_primes++] = i;` and before next `}`   |
++--------+---------------------------------------------------------------------+
+|Q12     | 2                                                                   |
++--------+---------------------------------------------------------------------+
+|Q13     | 1 or 3 (can argue either way)                                       |
++--------+---------------------------------------------------------------------+
+|Q14     | `C(x, R(H(x)))`                                                     |
++--------+---------------------------------------------------------------------+
+|Q15     | 1                                                                   |
++--------+---------------------------------------------------------------------+
+|Q16     | 2                                                                   |
++--------+---------------------------------------------------------------------+
+|Q17     | True<br/>True<br/>False<br/>True<br/>True<br/>False                 |
++--------+---------------------------------------------------------------------+
+|Q18     | `0x1003F`                                                           |
++--------+---------------------------------------------------------------------+
+|Q19     | False<br/>False<br/>True<br/>True                                   |
++--------+---------------------------------------------------------------------+
+
+### Exam 3
+
+Question    Key
+----------  --------------------------------------------------------------------
+Q1          2
+Q2.1        True
+Q2.2        True
+Q3          1
+Q4          2
+Q5          3
+Q6          20,007
+Q7          5
+Q8          1
+Q9          3 (1 also accepted)
+Q10         5
+Q11         1
+Q12         Two deadlocks: a locked barrier (so either remove 1 and 3 or remove 2) and a barrier some threads run more often than others (so remove 4)
+Q13         1
+Q14         4
+Q15         (dropped)
+Q16.1       False
+Q16.2       True
+Q16.3       True
+Q16.4       True -- a non-signaling page-fault is handled by mapping a new page
+Q16.5       True -- new page access = new TLB entry
+Q16.6       True -- page faults are caused by memory accesses
+Q17.1       True
+Q17.2       True
+Q17.3       True
+Q17.4       True
+Q17.5       True
+Q17.6       False
+Q18         1 -- TLBs cache VA→PA mappings, not page tables, and only one new mapping here
+Q19.1       False
+Q19.2       True
+Q19.3       True
+Q19.4       True
+Q19.5       False -- this would work for Specter, but not Meltdown
+Q20         2^9^ = 512
+Q21         58 -- 2 more bits per VPN and 2 more for the PO too
+Q22         4
+Q23.1       True
+Q23.2       True
+Q23.3       False
+Q23.4       True
+Q24.1       False
+Q24.2       False
+Q24.3       True
+Q24.4       False
+Q25         512KB
+Q26         3 (5 also accepted)
+Q27.1       True
+Q27.2       False
+Q27.3       True
+Q27.4       False
+Q28.1       False
+Q28.2       True
+Q28.3       False
+Q28.4       True
+Q29.1       True
+Q29.2       True
+Q29.3       True
+Q29.4       True
+Q29.5       True -- cannot have cycles without this
+Q29.6       True -- cannot have cycles without this
+Q30.1       True
+Q30.2       True
+Q30.3       False
+Q30.4       False -- user account changes require kernel mode, meaning an exception
+Q30.5       False
+Q30.6       False
+Q31.1       False
+Q31.2       False
+Q31.3       False
+Q31.4       True
+Q32         3
