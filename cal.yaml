@@ -461,6 +461,11 @@ assignments:
         due: 2020-02-17 14:50:00
         late-days: 0
         rubric: {"kind": "percentage"}
+    Exam1 Wrapper:
+        due: 2020-02-28 17:00:00
+        weight: 0.25
+        late-days: 0
+        rubric: {"kind": "percentage"}
     Exam2:
         due: 2020-03-30 14:50:00
         late-days: 0
