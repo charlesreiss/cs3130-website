@@ -461,6 +461,7 @@ assignments:
         due: 2020-02-17 14:50:00
         late-days: 0
         rubric: {"kind": "percentage"}
+        link: 'files/s2020exam1.pdf'
     Exam1 Wrapper:
         due: 2020-02-28 17:00:00
         link: 'exam-wrapper.html'
