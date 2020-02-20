@@ -27,6 +27,12 @@ Note that if you submitted a file you don't want, there is currently no way to r
 
 Code reviews will occur after PA03 closes. To prepare for these
 
+- Make sure your Makefile follows conventions, including
+	- has CC, CFLAGS and LDFLAGS defined
+	- uses defined arguments in its work
+	- has correct dependencies for each target
+	- has `all` and `clean` targets
+
 - Ensure there are no warnings^[
 		...because you resolved the warnings,
 		not because you disabled them with warning-ignoring `#pragma`s or the like.
@@ -132,7 +138,7 @@ Your boss sent you an email:
 >
 > See if you can add some kind of de-allocate interface. If so, add it to 
 > `mlpt.h` and document how it is used. If, as I suspect, it is trickier
-> than it sounds, include some explanation of what complicates it to the 
+> than it sounds, include some explanation of what complicates it in the 
 > `README` instead of implementing it.
 >
 > Sorry about this.
