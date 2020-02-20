@@ -35,7 +35,7 @@ Code reviews will occur after PA03 closes. To prepare for these
 
 - Use the following style: 
 	- 4-space indentation
-	- `{`{.c} on the previous line and `}`{.c} on a line by itself
+	- `{`{.c} on the same line as `)` and `}`{.c} on a line by itself
 	- No empty statements
 	- Spaces around operators
 	- Space before `(` if and only if it is preceded by a control construct
@@ -53,7 +53,7 @@ Code reviews will occur after PA03 closes. To prepare for these
 
 - Have a readable code organization; as rough (not strict) guidelines,
 	- If a sequence of lines of code depend upon one another more than they depend on the code around them
-		an appear together in multiple places, they should be in their own function.
+		and appear together in multiple places, they should be in their own function.
 	- Functions should be small enough to look at on one screen
 		unless that have a very orderly structure such as a long `switch`{.c} with simple code in the `case`{.c}s.
 	- Comments should be present to describe any esoteric code decisions.

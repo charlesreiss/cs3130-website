@@ -116,7 +116,7 @@ The OS cannot handle anywhere near that many; it will generally crash,
 but might first start swapping out the pages of kernel memory that store the list of processes,
 resulting in many thousands of times slowdown on all operations.
 
-This is called a "fork bomb" and is a common rookie mistake that results in freezing or crashing an entire computer.
+This is called a "fork bomb" and is one of the few simple mistakes that can result in freezing or crashing an entire computer.
 {/}
 
 ## Replacing memory
