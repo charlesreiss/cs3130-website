@@ -157,9 +157,9 @@ lectures:
 
 
     - concurrency
-    - Q&A
-    - concurrency
     - Pilot town hall meeting
+    - concurrency
+    - Q&A
     - synchronization
     - synchronization
     - pthreads
