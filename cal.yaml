@@ -345,7 +345,7 @@ assignments:
     PA03:
         title: 'page tables part 2'
         link: pa03-pagetable2.html
-        due: 2020-03-10 17:00:00
+        due: 2020-03-04 17:00:00
         open: 2020-02-18 17:00:00
         files: ["*.c", "*.h", Makefile, README, LICENSE, ACKNOWLEDGEMENTS, "licenses.txt", '*']
         rubric: 
