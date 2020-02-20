@@ -127,7 +127,7 @@ etc.
 Your boss sent you an email:
 
 > I made the mistake of telling someone there was no de-allocate available
-> and now we're supposed to "see about adding it." I tried to say this was
+> and now we're supposed to \"see about adding it.\" I tried to say this was
 > harder than it sounded, but wasn't able to convince them on the spot...
 >
 > See if you can add some kind of de-allocate interface. If so, add it to 
