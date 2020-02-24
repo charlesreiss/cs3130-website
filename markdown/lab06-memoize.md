@@ -157,8 +157,8 @@ While Java has a datatype that can make efficient caches (the [LinkedHashMap](ht
 
 The following gives tips on how to turn empirical runtimes into rough big-O formulas. It uses $n$ to represent input size and $t$ to represent measured runtime.
 
-Assymptotic         This will be constant       And will approximate
------------         -----------------------     ---------------------
+Asymptotic          This will be constant...    ...and will approximate
+-----------         ------------------------    -----------------------
 $t\sim r\log(n)$    $2^{t} \div n$              $2^r$
 $t \sim r n$        $t \div n$                  $r$
 $t \sim n^r$        $\log(t) \div \log(n)$      $r$
