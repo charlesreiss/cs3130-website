@@ -336,9 +336,6 @@ assignments:
                 - '.c files use #defines, not hard-coding'
                 - invoke posix_memalign with good sizes
                 - get page offset from VA correctly
-                - get VPNs from VA correctly
-                - restore page offset to translated values correctly
-                - use VPNs as indices into page tables correctly
                 - handles the valid bit properly
                 - many test cases pass
     
