@@ -156,10 +156,10 @@ lectures:
     - caches
 
 
-    - concurrency
+    - no class
     - Pilot town hall meeting
     - concurrency
-    - Q&A
+    - concurrency
     - synchronization
     - synchronization
     - pthreads
