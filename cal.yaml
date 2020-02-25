@@ -34,12 +34,15 @@ office hours:
         - dow: Tuesday
           start: 10:00:00
           end: 11:00:00
+          except: 2020-02-25
         - dow: Wednesday
           start: 11:00:00
           end: 12:00:00
+          except: 2020-02-26
         - dow: Thursday
           start: 14:00:00
           end: 15:00:00
+          except: 2020-02-27
   TA:
     where: Stacks
     Gustavo:
