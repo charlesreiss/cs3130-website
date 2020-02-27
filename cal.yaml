@@ -217,7 +217,7 @@ reading:
         - {txt: signatures lab, lnk: lab05-signatures.html}
     memoizing:
         - {txt: memoization lab, lnk: lab06-memoize.html}
-    code review:
+    code reviews:
         - {txt: code review lab, lnk: lab07-code-review.html}
 
     review Q&A:
