@@ -31,9 +31,9 @@ Caching requires a more involved data structure which acts like both a linked li
 Start with this code:
 
 ```cpp
-typedef unsigned long long ulong;
+typedef unsigned long long ul;
 
-ulong fib(int i) {
+ul fib(int i) {
     if (i < 2) return 1;
     return fib(i-1) + fib(i-2);
 }
