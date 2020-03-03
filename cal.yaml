@@ -484,9 +484,6 @@ assignments:
                 - "plans seem likely to improve learning"
                 - "all wrong answers corrected"
                 - "most explanations are correct"
-
-                - "reflection is insightful"
-                - "some explanations are insightful"
                 
         files: ['exam1wrapper.txt']
     Exam2:
