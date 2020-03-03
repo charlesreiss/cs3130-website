@@ -468,7 +468,26 @@ assignments:
         link: 'exam-wrapper.html'
         weight: 0.25
         late-days: 0
-        rubric: {"kind": "percentage"}
+        rubric:
+            kind: hybrid
+            auto-weight: 0
+            auto-late-days: 2
+            late-penalty: 1
+            human:
+                - "attempted a wrapper"
+
+                - "has reflection on preparation"
+                - "has corrected answers"
+                - "has plans for future"
+
+                - "corrected answer have explanations"
+                - "plans seem likely to improve learning"
+                - "all wrong answers corrected"
+                - "most explanations are correct"
+
+                - "reflection is insightful"
+                - "some explanations are insightful"
+                
         files: ['exam1wrapper.txt']
     Exam2:
         due: 2020-03-30 14:50:00
