@@ -107,6 +107,8 @@ Prepare your code for delivery. In particular,
 	and must be one that requires attribution 
 	so that if some future student obtains your code
 	it is illegal for them to submit it, or a significant subset of it, as their own.
+	
+	Unless you have had formal training in commercial law, you should use an existing license, not try to create your own.
 
 - If anyone or any resource helped your implementation,
 	include an `ACKNOWLEDGEMENTS` file acknowledging those people and/or resources.
