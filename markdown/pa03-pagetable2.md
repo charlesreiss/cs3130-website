@@ -150,7 +150,7 @@ These are written in a language known as "roff";
 to see an example of what this looks like, try running
 
 ```sh
-cp /usr/share/man/man3/poll.3p.gz ./
+cp /usr/share/man/man3p/poll.3p.gz ./
 gunzip poll.3p.gz
 less poll.3p
 ```
