@@ -12,7 +12,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt2"
  ,"start":"2020-01-22T15:30:00"
@@ -44,7 +44,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt6"
  ,"start":"2020-01-23T17:00:00"
@@ -84,7 +84,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt11"
  ,"start":"2020-01-27T15:30:00"
@@ -108,7 +108,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt15"
  ,"start":"2020-01-29T10:00:00"
@@ -124,7 +124,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt16"
  ,"start":"2020-01-29T15:30:00"
@@ -156,7 +156,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt20"
  ,"start":"2020-01-30T17:00:00"
@@ -196,7 +196,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt25"
  ,"start":"2020-02-03T15:30:00"
@@ -220,7 +220,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt29"
  ,"start":"2020-02-05T10:00:00"
@@ -236,7 +236,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt30"
  ,"start":"2020-02-05T15:30:00"
@@ -268,7 +268,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt34"
  ,"start":"2020-02-06T17:00:00"
@@ -308,7 +308,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt39"
  ,"start":"2020-02-10T15:30:00"
@@ -332,7 +332,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt43"
  ,"start":"2020-02-12T10:00:00"
@@ -348,7 +348,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt44"
  ,"start":"2020-02-12T15:30:00"
@@ -380,7 +380,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt48"
  ,"start":"2020-02-13T17:00:00"
@@ -420,7 +420,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt53"
  ,"start":"2020-02-17T15:30:00"
@@ -444,7 +444,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt57"
  ,"start":"2020-02-19T10:00:00"
@@ -460,7 +460,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt58"
  ,"start":"2020-02-19T15:30:00"
@@ -492,7 +492,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt62"
  ,"start":"2020-02-20T17:00:00"
@@ -532,7 +532,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt67"
  ,"start":"2020-02-24T15:30:00"
@@ -556,7 +556,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt71"
  ,"start":"2020-02-26T10:00:00"
@@ -572,7 +572,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt72"
  ,"start":"2020-02-26T15:30:00"
@@ -604,7 +604,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt76"
  ,"start":"2020-02-27T17:00:00"
@@ -644,7 +644,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt81"
  ,"start":"2020-03-02T15:30:00"
@@ -668,7 +668,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt85"
  ,"start":"2020-03-04T10:00:00"
@@ -684,7 +684,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt86"
  ,"start":"2020-03-04T15:30:00"
@@ -716,7 +716,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt90"
  ,"start":"2020-03-05T17:00:00"
@@ -772,7 +772,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt97"
  ,"start":"2020-03-23T15:30:00"
@@ -796,7 +796,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt101"
  ,"start":"2020-03-25T10:00:00"
@@ -812,7 +812,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt102"
  ,"start":"2020-03-25T15:30:00"
@@ -844,7 +844,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt106"
  ,"start":"2020-03-26T17:00:00"
@@ -884,7 +884,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt111"
  ,"start":"2020-03-30T15:30:00"
@@ -908,7 +908,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt115"
  ,"start":"2020-04-01T10:00:00"
@@ -924,7 +924,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt116"
  ,"start":"2020-04-01T15:30:00"
@@ -956,7 +956,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt120"
  ,"start":"2020-04-02T17:00:00"
@@ -996,7 +996,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt125"
  ,"start":"2020-04-06T15:30:00"
@@ -1020,7 +1020,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt129"
  ,"start":"2020-04-08T10:00:00"
@@ -1036,7 +1036,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt130"
  ,"start":"2020-04-08T15:30:00"
@@ -1068,7 +1068,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt134"
  ,"start":"2020-04-09T17:00:00"
@@ -1108,7 +1108,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt139"
  ,"start":"2020-04-13T15:30:00"
@@ -1132,7 +1132,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt143"
  ,"start":"2020-04-15T10:00:00"
@@ -1148,7 +1148,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt144"
  ,"start":"2020-04-15T15:30:00"
@@ -1180,7 +1180,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt148"
  ,"start":"2020-04-16T17:00:00"
@@ -1220,7 +1220,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt153"
  ,"start":"2020-04-20T15:30:00"
@@ -1244,7 +1244,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt157"
  ,"start":"2020-04-22T10:00:00"
@@ -1260,7 +1260,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt158"
  ,"start":"2020-04-22T15:30:00"
@@ -1292,7 +1292,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt162"
  ,"start":"2020-04-23T17:00:00"
@@ -1332,7 +1332,7 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ,{"id":"evt167"
  ,"start":"2020-04-27T15:30:00"
@@ -1356,6 +1356,6 @@ oh_feed = [{"id":"evt1"
  ,"title":"Tychonievich OH"
  ,"classNames":["cal-oh"]
  ,"editable":false
- ,"location":"Rice 208"
+ ,"location":"https://virginia.zoom.us/j/847054967"
  }
 ]

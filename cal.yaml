@@ -26,7 +26,7 @@ office hours:
   .begin: 2020-01-22
   faculty:
     Tychonievich:
-      where: https://virginia.zoom.us/j/847054967
+      where: <https://virginia.zoom.us/j/847054967>
       when:
         - dow: Monday
           start: 15:00:00
@@ -44,7 +44,7 @@ office hours:
           end: 15:00:00
           except: 2020-02-27
   TA:
-    where: Stacks
+    where: zoom or meet
     Gustavo:
       when:
         - dow: Monday
