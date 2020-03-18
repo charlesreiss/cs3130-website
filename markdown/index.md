@@ -26,7 +26,7 @@ Online quizzes
 :   Unchanged
 
 Professor Office Hours
-:   Will occur via zoom. The link to join is <https://virginia.zoom.us/j/4575175567>. During scheduled office hours times, anyone who comes in will be in the same zoom room. If you have personal matters to discuss, email me about a different time to meet.
+:   Will occur via zoom. The link to join is <https://virginia.zoom.us/j/847054967>. During scheduled office hours times, anyone who comes in will be in the same zoom room. If you have personal matters to discuss, email me about a different time to meet.
 
 TA Office Hours
 :   We'll adapt the current queue system as follows:
