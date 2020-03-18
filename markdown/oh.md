@@ -2,26 +2,18 @@
 title: Office Hours
 ...
 
-Professor offices hours are in the professor's office.
-If I'm engaged with a student, don't just wait silently in the hall; ask me if you can come in and join the other student(s) there (often the answer will be yes, and even if no I'll know you are waiting).
+Professor offices hours are via Zoom: <https://virginia.zoom.us/j/847054967>.
+This is an open room multiple students can visit at once. If you need to interact privately, contact my via email to set up a time.
 
-{.example ...} How to get help from a professor
-
-1. Find when a professor is free
-2. Go to that professor's office
-3. Come inside, or if it is full make sure the professor knows you are there and are waiting
-{/}
-
-
-TA office hours are in Thornton Stacks (A-235), and are requested by using the [office hour queue](https://kytos.cs.virginia.edu/ohq/?c=coa2).
+TA office hours are in Zoom rooms <https://zoom.us> or Google meetings <https://meet.google.com>
+that students create and then enter into the [office hour queue](https://kytos.cs.virginia.edu/ohq/?c=coa2).
 The queue is open even when TAs are not present; see below for when to expect TAs in office hours.
 
 {.example ...} How to get help from a TA
 
-1. Find when TAs are holding office hours
-2. Go to Thorton Stacks and sit in a seat
-3. Go to the office hour queue and enter your seat number (see [a map](https://kytos.cs.virginia.edu/StacksStickers.png){target="_blank"} if your seat's sticker has been removed)
-4. Stay there until a TA comes to you
+1. Create an online meeting
+2. Go to the office hour queue and enter your meeting URL
+3. Stay there until a TA joins it
 {/}
 
 
