@@ -21,9 +21,9 @@ At the end of it, you will be able to
 ## Meetings
 
 Lecture is optional but strongly encouraged.
-Monday, Wednesday, and Friday, 2:00–2:50, in Thornton E316.
+Monday, Wednesday, and Friday, 2:00–2:50, online.
 
-There are two lab sections, both meeting in Olsson 001:
+There are two lab sections:
 one on Tuesday 5:00--6:15 pm
 and the other on Tuesday 6:30--7:45 pm.
 Please attend your assigned lab section.
@@ -53,7 +53,6 @@ However, we do know you will be asked to
 |        | Instructor | TAs |
 |--------|------------|-----|
 | Name | Luther Tychonievich | Dylan Cao, Anders Christoffersen, Rashid Lasker, William Mayes, Gustavo Moreira |
-| Location | Rice 208 | Thornton Stacks (A235) |
 | Office Hours | Mo 3-4; Tu 10-11; We 11-12; Th 2-3 | See the [OH page](oh.html)  |
 | Phone | 243-3789 | (none) |
 | Email | <a href="mailto:tychonievich@virginia.edu?subject=COA2">tychonievich@virginia.edu</a> | use [Piazza](https://piazza.com/class/k571ccotjhd55) |
