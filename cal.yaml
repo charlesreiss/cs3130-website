@@ -165,7 +165,7 @@ lectures:
     - concurrency
     - synchronization
     - synchronization
-    - pthreads
+    - [synchronization, pthreads]
     - pthreads
     - roll back
     - deadlock
