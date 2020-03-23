@@ -169,8 +169,8 @@ Every created thread is either detached or joinable.
 If a thread with `pthread_t id` is joinable,
 then invoking `pthread_join(id, &retval)`{.c}
 will cause the invoking thread to suspend operation
-until the thread with `pthread_t id` terminates
-and then set `retval` to store the results of the thread's computation.
+until thread `id` terminates;
+when thread `id` terminates, `retval` stores the results of the thread's computation.
 
 The results is one of
 
@@ -197,10 +197,8 @@ that the OS believes is the recipient of the signal.
 
 Debugging threaded programs can be tricky.
 Debuggers like `lldb` work fine on multithreaded programs,
-but with multiple threads there is more information to display
-and bugs that have a basis in race conditions or deadlock
-can result in a bug manifest when run normally
-not manifesting when run with the different scheduling of the debugger.
+but with multiple threads there is more information to display.
+Additionally, some bugs (e.g., race conditions and deadlock) can depend on exact instruction scheduling, which may be different in a debugger than when run normally.
 
 We will not have time in this course to dive into multithreaded debugging in any great detail.
 
