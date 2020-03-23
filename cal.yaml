@@ -194,7 +194,7 @@ labs:
     - signatures
     - memoizing
     - code reviews
-    - sync play
+    - sync games
     - pthread coding
     - openmp
     - optimization
@@ -218,7 +218,7 @@ reading:
         - {txt: memoization lab, lnk: lab06-memoize.html}
     code reviews:
         - {txt: code review lab, lnk: lab07-code-review.html}
-    sync play:
+    sync games:
         - {txt: synchronization lab, lnk: lab08-sync.html}
 
     review Q&A:
