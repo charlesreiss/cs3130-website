@@ -1,0 +1,45 @@
+---
+title: Code Reviews
+...
+
+A code review is a chance to get feedback from others on the design and implementation of code. In this lab, you'll perform peer code reviews of other students [PA03](pa03-pagetable2.html) submissions.
+
+{.exercise ...}
+1. Submit your current [PA03](pa03-pagetable2.html) material before lab on [the submission site](https://kytos.cs.virginia.edu/coa2/).
+    We will compare your before-and-after code and expect to see citations for any changes inspired by the code review.
+2. Get into a group of three students. None of the students should have collaborated on this assignment before this lab.
+3. Arrange and write down an order to review each members code and a schedule (⅓ of remaining lab time each, with 5 minutes breaks in between) at which you'll switch from one student's code to another.
+4. Understand both reviewer and reviewee roles.
+5. For each student,
+    a. That student pulls up their files in a way easy for the reviewers to see
+    b. Reviewers make suggestions while the code author takes notes
+    c. The code author suggest the review's focus, but make sure to address
+        - variable and function names
+        - functional decomposition and code organization
+        - README clarity
+    d. If time remains after the above are handled, go line-by-line, discussing if there could be an error on that line (e.g., an unchecked return type, integer overflow, etc).
+{/}
+
+# Tips for reviewers
+
+- You are idea generators trying to help the code author think of things they haven't thought of yet.
+
+- Creativity and variety of replies is desirable. Try to suggest several different ideas for each topic discussed.
+
+- Even the best-intended review can feel like a personal assault to authors not used to being reviewed; help minimize this by taking care to be polite.
+
+- Avoid phrases that suggest you are superior to the author, like "you should ..." or "I would have ..."; instead speak as a brainstormer, like "what about ..." or "maybe consider ...".
+
+- Understand before suggesting. Don't assume the way you coded is the only right way; understand what their function does first, then brainstorm ways they might consider improving that function.
+
+# Tips for reviewees
+
+- Set your font size and contrast to be clearly viewed by all reviewers at once (Ctrl+Plus is likely to do this, but it varied by editor/terminal).
+
+- You are the recipient of many ideas, some good and some less so, for future consideration.
+
+- Reviewers work for you: they give you ideas, you accept them, but it's up to you what to do. Don't waste time criticizing bad ideas or defending your work during the review: you can simply not implement them later.
+
+- Even the most confident reviewer can feel uncomfortable when called on to comment on code they do not know well; help minimize that by answering questions and accepting suggestions graciously
+
+- Take notes; trying to evaluate the ideas and remember the good ones in the moment is more more cognitive load than most can handle, and even if you can do that it can look dismissive or like a show-off to the reviewers.
