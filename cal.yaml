@@ -65,9 +65,8 @@ office hours:
           start: 11:00:00
           end: 12:00:00
         - dow: Thursday
-          start: 13:00:00
-          end: 15:00:00
-          except: 2020-02-13
+          start: 15:00:00
+          end: 17:00:00
     Dylan:
       when:
         - dow: Monday
@@ -478,7 +477,7 @@ assignments:
                 
         files: ['exam1wrapper.txt']
     Exam2:
-        due: 2020-03-30 14:50:00
+        due: 2020-04-06 14:50:00
         late-days: 0
         rubric: {"kind": "percentage"}
     Exam3:
