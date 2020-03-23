@@ -194,12 +194,11 @@ labs:
     - signatures
     - memoizing
     - code reviews
-    - locks and races
+    - sync play
     - pthread coding
     - openmp
     - optimization
     - optimization
-    - meltdown
     - review
 
 
@@ -219,6 +218,8 @@ reading:
         - {txt: memoization lab, lnk: lab06-memoize.html}
     code reviews:
         - {txt: code review lab, lnk: lab07-code-review.html}
+    sync play:
+        - {txt: synchronization lab, lnk: lab08-sync.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
@@ -379,7 +380,7 @@ assignments:
         title: 'TLB'
         link: pa04-tlb.html
         open: 2020-03-05 17:00:00
-        due: 2020-03-24 17:00:00
+        due: 2020-03-26 17:00:00
         late-days: 5
         files: ["*.c", "*.h", Makefile, '*']
 
