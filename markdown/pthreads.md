@@ -105,7 +105,7 @@ clang -lpthread -O3 -DTHREADCOUNT=1 thiscode.c && time ./a.out
 # Managing thread existance
 
 Every process has at least one thread, the one that invoked `main`.
-Each other thread is created by invoking a system call, wrapped by the various `pthreads` library functions.
+Each other thread is created by invoking a system call, wrapped by the various `pthread_` library functions.
 
 ## `pthread_create`
 
@@ -155,7 +155,7 @@ Every created thread is either detached or joinable.
 
 `pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE)`
 :   A joinable thread (the default if not otherwise set)
-    will, when it exists, continue to exist until `pthread_join`
+    will, when it exits, continue to exist until `pthread_join`
     is called to retrieve its exist status and reclaim its resources.
 
 `pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED)`

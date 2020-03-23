@@ -48,14 +48,8 @@ size_t tlb_translate(size_t va);
 
 Note that we do not have a `tlb_allocate`. This is by design: allocation is performed by software (a part of the operating system, accessed through a system call) and not by the hardware.
 
-You should submit `tlb.h`, and other `.h` and `.c` files you create,
-and a `Makefile` that depends on `mlpt.a` for its implementation of `translate` and produces, as its default target, `libtlb.a` with a definition of the three functions listed above.
-And example target might look like
-
-````makefile
-libtlb.a: config.h $(objects)
-	ar rcs libtlb.a $(objects)
-````
+You should submit `tlb.h`, and other `.h` and `.c` files you create.
+You may also submit a `Makefile` if you wish, but do not need to do so.
 
 # Separation of Concerns
 
