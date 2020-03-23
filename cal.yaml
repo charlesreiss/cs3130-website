@@ -371,42 +371,17 @@ assignments:
         title: 'TLB'
         link: pa04-tlb.html
         open: 2020-03-05 17:00:00
-        due: 2020-03-26 17:00:00
+        due: 2020-03-31 17:00:00
         late-days: 5
         files: ["*.c", "*.h", Makefile, '*']
 
     PA05:
-        title: 'DP'
-        link: pa05-dp.html
-        due: 2020-03-31 17:00:00
-        files: ["dp_arbitrator.c", "dp_hierarchy.c", "dp_message.c"]
-        
-        rubric: 
-            kind: hybrid
-            auto-weight: 0
-            auto-late-days: 0
-            late-penalty: 1
-            human:
-                - all – make argv[1] or 5 threads
-                - all – malloc threads and locks
-                - all – all threads get same set of locks (handle locks only by pointer, not value)
-                - all – free what you malloc
-                
-                - dp_arbitrator.c – one extra mutex shared by all threads
-                - dp_arbitrator.c – shared mutex locks acquiring both other mutexes
-                - dp_arbitrator.c – shared mutex does not lock eating or releasing
-
-                - dp_hierarchy.c – no extra synchronization primitives
-                - dp_hierarchy.c – case with n,0 locks 0 before n
-                - dp_hierarchy.c – other cases unchanged
-        
-    PA06:
         title: 'Fork'
         link: pa06-fork.html
         due: 2020-04-07 17:00:00
         files: ["fork_run.c"]
 
-    PA07:
+    PA06:
         title: 'Life'
         link: pa07-life.html
         due: 2020-04-21 17:00:00
@@ -420,7 +395,7 @@ assignments:
                 - code could work for any number of threads
                 - no race conditions
         
-    PA08:
+    PA07:
         title: 'Pipeline'
         link: pa08-pipeline.html
         due: 2020-04-28 17:00:00

@@ -43,16 +43,14 @@ Your goal is to reach your target dollar amount before anyone else you are playi
 Each variant allows arbitrary game names.
 Your group should
 
-1. make a google doc all group members can edit. All members should add their computing IDs and names to the document.
 1. for each variant
     a. repeat until you agree on how the variant feels in play
         i. pick a name
         i. all enter that game
         i. play until someone wins (we encourage conversation during play)
-    a. write a review for that variant in the doc
-1. create a synthesis review, including which game is "best"
-1. outline a fifth variant you think might be worth trying in the future
+1. agree on how to decribe how the different synchronization models changed how the game feels
+1. call a TA to come join your room and share what you found
 
 # Passing Off
 
-TAs will roam the breakout rooms and observe play. They will also look over your review document.
+Explain to a TA how the different games felt different. They will be looking for evidence that you understood how the synchronization tools impacted the game.
