@@ -34,8 +34,8 @@ Your goal is to reach your target dollar amount before anyone else you are playi
     uses locks to prevent plays if someone else has made a play between your looking and acting.
 
 1.  Variant 3 (<https://kytos.cs.virginia.edu/coa2/cashgame3.php>)
-    places players in a queue and only lets them play in order.
-    The order is selected without communicating it to the players.
+    places arriving players in a queue and only lets them play in order.
+    It is otherwise like Variant 1.
 
 1.  Variant 4 (<https://kytos.cs.virginia.edu/coa2/cashgame4.php>)
     uses voting to make plays; only if a majority of players agree to an action does it occur.
