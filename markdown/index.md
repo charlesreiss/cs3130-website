@@ -17,7 +17,7 @@ Lectures
     I am uncertain of the efficacy of this model. We may swap to having prerecorded lecture segments instead and use lecture time as additional professor office hours.
 
 Labs
-:   We do not have a consensus among course staff about the right way to do lab. We may try several approaches, such as small collaboration-encouraged assignments, group conversations with TAs, or online interactive tutorials. We'll post more with each lab writeup.
+:   Will use the same zoom room as lecture (<https://virginia.zoom.us/j/138570502>). Most will involve some breakout room discussions and activities; some may also involve paired programming or other collaborative coding exercises. We'll post more with each lab writeup.
 
 In-class exams
 :   Will be replaced with take-home exams. I don't believe in closed-note take-home exams, so these will be open-note. Which means they have to ask a somewhat different kind of question. More on this as the time of our next test approaches
@@ -32,7 +32,7 @@ TA Office Hours
 :   We'll adapt the current queue system as follows:
     
     - You will create a meeting room via google meetings (<https://meeet.google.com>) or zoom (<https://zoom.us>)
-    - You will add yourself to the queue in the usual way (<https://kytos.cs.virginia.edu/ohq/?c=coa2) but enter the URL of your meeting room as the location, not a seat in stacks.
+    - You will add yourself to the queue in the usual way (<https://kytos.cs.virginia.edu/ohq/?c=coa2>) but enter the URL of your meeting room as the location, not a seat in stacks.
     - A TA will join your room and offer help
     
     You are welcome to come in groups by inviting other students to your meeting room.
