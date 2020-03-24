@@ -6,7 +6,7 @@ The purpose of this lab is to provide you with some experiencing seeing how vari
 
 # Getting with a group
 
-Lab will open with you signing into zoom (link will be added here).
+Lab will open with you signing into zoom <https://virginia.zoom.us/j/138570502>.
 The TAs will then split you into zoom breakout rooms of 3--5 people each.
 Zoom's toolchain appears to limit us to making these assignments randomly.
 
@@ -46,11 +46,11 @@ Your group should
 1. for each variant
     a. repeat until you agree on how the variant feels in play
         i. pick a name
-        i. all enter that game
+        i. all enter that game (make sure no one plays before all are in the game)
         i. play until someone wins (we encourage conversation during play)
-1. agree on how to decribe how the different synchronization models changed how the game feels
+1. agree on how to describe how the different synchronization models changed how the game feels; you'll need to share this with a TA for check-off.
 1. call a TA to come join your room and share what you found
 
 # Passing Off
 
-Explain to a TA how the different games felt different. They will be looking for evidence that you understood how the synchronization tools impacted the game.
+Explain to a TA how the different games felt different. They will be looking for evidence that you understood how the synchronization model impacted the game.
