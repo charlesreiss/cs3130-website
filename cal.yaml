@@ -201,6 +201,8 @@ reading:
         - {txt: code review lab, lnk: lab07-code-review.html}
     sync games:
         - {txt: synchronization lab, lnk: lab08-sync.html}
+    pthread coding:
+        - {txt: dining philosophers, lnk: lab09-dp.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
