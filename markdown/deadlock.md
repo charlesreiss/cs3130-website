@@ -78,7 +78,7 @@ In general, it is preferred to prevent the possibility of deadlock entirely.
 ## Static approaches
 
 A *static* approach to deadlock prevention is to create code that cannot deadlock.
-Your solutions to PA05 are examples of static deadlock prevention.
+Your solutions to [Dining Philosophers](lab09-dp.html) are examples of static deadlock prevention.
 In generally it is assumed that if you write good concurrent code you have incorporated static deadlock prevention into your code.
 
 Many modern languages provide specialized syntax-level constructs like Java's `synchronized` keyword to make some kinds of deadlock (such as return without unlocking) impossible.
