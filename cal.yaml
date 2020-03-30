@@ -58,9 +58,6 @@ office hours:
           end: 16:30:00
     Will:
       when:
-        - dow: Monday
-          start: 11:00:00
-          end: 12:00:00
         - dow: Wednesday
           start: 11:00:00
           end: 12:00:00
@@ -70,7 +67,7 @@ office hours:
     Dylan:
       when:
         - dow: Monday
-          start: 10:00:00
+          start: 10:15:00
           end: 11:15:00
         - dow: Thursday
           start: 10:15:00
@@ -407,6 +404,8 @@ assignments:
         due: 2020-03-20 12:00:00
     Quiz06:
         due: 2020-03-30 12:00:00
+    Quiz on Labs:
+        due: 2020-04-03 23:59:00
     
     Quiz07:
         due: 2020-04-13 12:00:00
