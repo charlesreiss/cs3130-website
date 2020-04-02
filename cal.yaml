@@ -61,6 +61,7 @@ office hours:
         - dow: Wednesday
           start: 11:00:00
           end: 12:00:00
+          except: 2020-01-02
         - dow: Thursday
           start: 15:00:00
           end: 17:00:00
