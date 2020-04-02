@@ -10,7 +10,7 @@ but it should not contain `main`.
 
 # `int my_system(const char *command)`
 
-This is a simplified version of the `system` standard library function (see `man 3 system`{.bash} for details). You should handle all aspects of the function as described in the manual page **except**
+This is a simplified version of the `system` standard library function (see [`man 3 system`{.bash}](http://man7.org/linux/man-pages/man3/system.3.html) for details). You should handle all aspects of the function as described in the manual page **except**
 
 1. you do not need to ignore or block any signals
 1. you do not need to check "if a shell is available" for `NULL` commands
