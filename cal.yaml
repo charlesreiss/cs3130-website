@@ -199,6 +199,8 @@ reading:
         - {txt: synchronization lab, lnk: lab08-sync.html}
     pthread coding:
         - {txt: dining philosophers, lnk: lab09-dp.html}
+    openmp:
+        - {txt: openmp, lnk: lab10-openmp.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}

@@ -55,7 +55,7 @@ To run the code, compile with the `-lm` flag and give it file names as command-l
 
     $ gcc -lm -fopenmp lab10starter.c
     $ ./a.out /usr/bin/emacs-24.3
-    313710435 nanoseconds to process 14784560 characters: geometric mean is 6.46571
+    313710435 ns to process 14784560 characters: 6.46571
 
 
 To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
@@ -213,7 +213,74 @@ then atomically update the shared total
 
 ### Many-to-few reduction -- array version
 
-If our reduction operations is more complicated than a single atomic operation can support, we can store the threads' intermediate results in an array.
+If your reduction step is more than a single update operation, a more complicated solution is needed. See [the Appendix](#appendix-fancy-reduce) for more.
+
+
+# Starting code
+
+```c
+#include <stdio.h> // fopen, fread, fclose, printf, fseek, ftell
+#include <math.h> // log, exp
+#include <stdlib.h> // free, realloc
+#include <time.h> // struct timespec, clock_gettime, CLOCK_REALTIME
+#include <errno.h>
+
+
+// computes the geometric mean of a set of values.
+// You should use OpenMP to make faster versions of this.
+// Keep the underlying sum-of-logs approach.
+double geomean(unsigned char *s, size_t n) {
+    double answer = 0;
+    for(int i=0; i<n; i+=1) {
+        if (s[i] > 0) answer += log(s[i]) / n;
+    }
+    return exp(answer);
+}
+
+/// nanoseconds that have elapsed since 1970-01-01 00:00:00 UTC
+long long nsecs() {
+    struct timespec t;
+    clock_gettime(CLOCK_REALTIME, &t);
+    return t.tv_sec*1000000000 + t.tv_nsec;
+}
+
+
+/// reads arguments and invokes geomean; should not require editing
+int main(int argc, char *argv[]) {
+    // step 1: get the input array (the bytes in this file)
+    char *s = NULL;
+    size_t n = 0;
+    for(int i=1; i<argc; i+=1) {
+        // add argument i's file contents (or string value) to s
+        FILE *f = fopen(argv[i], "rb");
+        if (f) { // was a file; read it
+            fseek(f, 0, SEEK_END); // go to end of file
+            size_t size = ftell(f); // find out how many bytes in that was
+            fseek(f, 0, SEEK_SET); // go back to beginning
+            s = realloc(s, n+size); // make room
+            fread(s+n, 1, size, f); // append this file on end of others
+            fclose(f);
+            n += size; // not new size
+        } else { // not a file; treat as a string
+            errno = 0; // clear the read error
+        }
+    }
+
+    // step 2: invoke and time the geometric mean function
+    long long t0 = nsecs();
+    double answer = geomean(s,n);
+    long long t1 = nsecs();
+
+    free(s);
+
+    // step 3: report result
+    printf("%lld ns to process %zd characters: %g\n", t1-t0, n, answer);
+}
+```
+
+# Appendix: Fancy Reduce
+
+If the reduction operations is more complicated than a single atomic operation can support, we can store the threads' intermediate results in an array.
 
 Given reduction code
 
@@ -278,65 +345,3 @@ then have one thread update them all.
 - `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it." It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing.
     
     The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
-
-# Starting code
-
-```c
-#include <stdio.h> // fopen, fread, fclose, printf, fseek, ftell
-#include <math.h> // log, exp
-#include <stdlib.h> // free, realloc
-#include <time.h> // struct timespec, clock_gettime, CLOCK_REALTIME
-#include <errno.h>
-
-
-// computes the geometric mean of a set of values.
-// You should use OpenMP to make faster versions of this.
-// Keep the underlying sum-of-logs approach.
-double geomean(unsigned char *s, size_t n) {
-    double answer = 0;
-    for(int i=0; i<n; i+=1) {
-        if (s[i] > 0) answer += log(s[i]) / n;
-    }
-    return exp(answer);
-}
-
-/// returns the number of nanoseconds that have elapsed since 1970-01-01 00:00:00
-long long nsecs() {
-    struct timespec t;
-    clock_gettime(CLOCK_REALTIME, &t);
-    return t.tv_sec*1000000000 + t.tv_nsec;
-}
-
-
-/// reads arguments and invokes geomean; should not require editing unless you rename geomean
-int main(int argc, char *argv[]) {
-    // step 1: get the input array (the bytes in this file)
-    char *s = NULL;
-    size_t n = 0;
-    for(int i=1; i<argc; i+=1) {
-        // add argument i's file contents (or string value if no file found) to s
-        FILE *f = fopen(argv[i], "rb");
-        if (f) { // was a file; read it
-            fseek(f, 0, SEEK_END); // go to end of file
-            size_t size = ftell(f); // find out how many bytes in that was
-            fseek(f, 0, SEEK_SET); // go back to beginning
-            s = realloc(s, n+size); // make room
-            fread(s+n, 1, size, f); // append this file on end of others
-            fclose(f);
-            n += size; // not new size
-        } else { // not a file; treat as a string
-            errno = 0; // clear the read error
-        }
-    }
-
-    // step 2: invoke and time the geometric mean function
-    long long t0 = nsecs();
-    double answer = geomean(s,n);
-    long long t1 = nsecs();
-
-    free(s);
-
-    // step 3: report result
-    printf("%lld nanoseconds to process %zd characters: geometric mean is %g\n", t1-t0, n, answer);
-}
-```
