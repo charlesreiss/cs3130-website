@@ -159,6 +159,7 @@ for(int i=0; i<N; i+=1) {
 }
 ```
 
+(where `op=` is some kind of augmented assignment, like `+=` or `*=`)
 then the parallel code
 
 ```c
