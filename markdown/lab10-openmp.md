@@ -244,7 +244,7 @@ then have one thread update them all.
 
 **OpenMP pragmas, macros, and functions used**:
 
-- `#pragma omp master`{.c} means "only one thread (the "master" thread) gets to run this".
+- `#pragma omp master`{.c} means "only one thread (called the master thread) gets to run this".
 
 - `#ifdef OPENMP_ENABLE`{.c} means "only if `-fopenmp` was provided at compile time"
 
