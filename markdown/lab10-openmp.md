@@ -44,7 +44,8 @@ int main() {
         puts("Also a thread");
     }
     puts("but not this one");
-}```
+}
+```
 
 # Task
 
