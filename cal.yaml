@@ -442,7 +442,7 @@ assignments:
                 
         files: ['exam1wrapper.txt']
     Exam2:
-        due: 2020-04-06 14:50:00
+        due: 2020-04-06 23:59:00
         late-days: 0
         link: https://kytos.cs.virginia.edu/coa2/quizzes/
     Exam3:
