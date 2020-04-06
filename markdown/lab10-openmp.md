@@ -113,7 +113,7 @@ For example, if it uses 4 threads then they will get the following range of `i`:
 - `0`--`N/4`
 - `N/4`--`N/2`
 - `N/2`--`3*N/4`
-- and `3*N/4`--`N`
+- `3*N/4`--`N`
 
 **OpenMP pragmas used**:
 
