@@ -190,6 +190,13 @@ Note that since the bulk of the operation is atomic, it runs in a mostly serial 
 However, the array lookup and loop indexing can be done in parallel, so it might still have some value.
 That value can be increased if it is merged with the mapping loop into a single parallel for loop, reducing threading overhead.
 
+**OpenMP pragmas used**:
+
+- `#pragma omp parallel for`{.c} means "have each thread run the next statement (a `for`{.c} loop) with different bounds".
+
+- `#pragma omp atomic update`{.c} means "the next statement (`result op= local_result`{.c}) is an update-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
+
+
 ### Many-to-few reduction -- atomic version
 
 An alternative approach is to to reduce an array of *N* values into an array of *n* values, where *n* is the number of threads; then have one thread further reduce the *n* to 1.
@@ -233,7 +240,7 @@ then atomically update the shared total
     
     The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
 
-- `#pragma omp atomic capture`{.c} means "the next statement (`result op= local_result`{.c}) is an "update" type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
+- `#pragma omp atomic update`{.c} means "the next statement (`result op= local_result`{.c}) is an update-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
 
 ### Many-to-few reduction -- array version
