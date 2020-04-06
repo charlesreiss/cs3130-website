@@ -34,15 +34,12 @@ We won't use optimization flags in this lab because they can turn some of our te
 # Task
 
 {.exercise ...}
-Work with a partner to use OpenMP to parallelize the following code:
+Work with a partner to use OpenMP to parallelize the [Starter code](#starter-code).
+You should be able to understand all of the code provided, but will only need to work on the `geomean` function for this lab.
 
-```c
-/// computes the RMS ascii value of characters in this file
-#include <math.h>
+To run the code, compile with the `-lm` flag and give it file names as command-line arguments. It will return the number of bytes in those files and the geometric mean value of those bytes. You can provide multiple files on the command line if you wish; all will be combined before analysis. Parallelism give the biggest benefit when given large inputs, so you might want to try some larger files: for example, on portal `/usr/bin/emacs24.3` has more than 14 million characters.
 
-```
-
-Do this by separating out the Map and Reduce step of the code and trying out several OpenMP parallelizations of the result.
+To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
 
 Then explain to a TA which approach was fastest and your guess as to why.
 {/}
@@ -249,13 +246,13 @@ then have one thread update them all.
 
 - `#pragma omp master`{.c} means "only one thread (the "master" thread) gets to run this".
 
-- `#ifdef OPENMP_ENABLE` means "only if `-fopenmp` was provided at compile time"
+- `#ifdef OPENMP_ENABLE`{.c} means "only if `-fopenmp` was provided at compile time"
 
-- `omp_get_num_threads()` returns the number of threads OpenMP has running.
+- `omp_get_num_threads()`{.c} returns the number of threads OpenMP has running.
 
-- `omp_get_thread_num()` returns the index of this thread (between 0 and the number of threads)
+- `omp_get_thread_num()`{.c} returns the index of this thread (between 0 and the number of threads)
 
-- `#pragma omp parallel` means "run the next statement in multiple threads"
+- `#pragma omp parallel`{.c} means "run the next statement in multiple threads"
 
 - `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it. It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing. The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
 
@@ -269,13 +266,6 @@ then have one thread update them all.
 #include <errno.h>
 
 
-/// returns the number of nanoseconds that have elapsed since 1970-01-01 00:00:00
-long long nsecs() {
-    struct timespec t;
-    clock_gettime(CLOCK_REALTIME, &t);
-    return t.tv_sec*1000000000 + t.tv_nsec;
-}
-
 // computes the geometric mean of a set of values.
 // You should use OpenMP to make faster versions of this.
 // Keep the underlying sum-of-logs approach.
@@ -286,6 +276,14 @@ double geomean(unsigned char *s, size_t n) {
     }
     return exp(answer);
 }
+
+/// returns the number of nanoseconds that have elapsed since 1970-01-01 00:00:00
+long long nsecs() {
+    struct timespec t;
+    clock_gettime(CLOCK_REALTIME, &t);
+    return t.tv_sec*1000000000 + t.tv_nsec;
+}
+
 
 /// reads arguments and invokes geomean; should not require editing unless you rename geomean
 int main(int argc, char *argv[]) {
