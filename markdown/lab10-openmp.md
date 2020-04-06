@@ -162,8 +162,8 @@ or do partial reductions in each of several threads and then combine them all in
 
 ### Atomic reduction -- non-parallel
 
-The simplest way to reduce is to make the reduction step an `#pragma opm atomic`{.c} of some type (usually `update`; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>).
-This greatly limits the performance value of parallelism, so it's not recommended in general.
+The simplest way to reduce is to make the reduction step an `#pragma opm atomic`{.c} of some type (usually `update`).
+This limits the performance value of parallelism, so it's not recommended in general, but in some cases it is adequate to achieve a needed speedup.
 
 This is done by replacing 
 
