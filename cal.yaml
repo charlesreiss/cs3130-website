@@ -444,7 +444,7 @@ assignments:
     Exam2:
         due: 2020-04-06 14:50:00
         late-days: 0
-        rubric: {"kind": "percentage"}
+        link: https://kytos.cs.virginia.edu/coa2/quizzes/
     Exam3:
         due: 2020-05-07 17:00:00
         weight: 3
