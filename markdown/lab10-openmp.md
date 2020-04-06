@@ -216,7 +216,7 @@ then the parallel code
             int threads = omp_get_num_threads();
 #else
     int threads = 1;
-#fi
+#endif
 
 my_type *results = (my_type *)malloc(threads * sizeof(my_type));
 
@@ -226,7 +226,7 @@ my_type *results = (my_type *)malloc(threads * sizeof(my_type));
     int myid = omp_get_thread_num();
 #else
     int myid = 0;
-#fi
+#endif
     
     results[myid] = zero_for_my_type;
     #pragma omp for nowait
