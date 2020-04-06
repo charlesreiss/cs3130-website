@@ -1,5 +1,5 @@
 ---
-title: OpenMP -- simple parallelism made easy
+title: OpenMP -- parallelism made easy
 ...
 
 # Introduction
@@ -31,6 +31,23 @@ If you compile without the `-fopenmp` flag it will run on just one thread and pr
 
 We won't use optimization flags in this lab because they can turn some of our test cases into single-statement assembly.
 
+# Task
+
+{.exercise ...}
+Work with a partner to use OpenMP to parallelize the following code:
+
+```c
+/// computes the RMS ascii value of characters in this file
+#include <math.h>
+
+```
+
+Do this by separating out the Map and Reduce step of the code and trying out several OpenMP parallelizations of the result.
+
+Then explain to a TA which approach was fastest and your guess as to why.
+{/}
+
+
 # The Map-Reduce paradigm
 
 Data races are a major limiting factor on parallel computation.
@@ -41,7 +58,10 @@ one of the most popular is the map-reduce paradigm.
 Map-reduce works as follows
 
 1. Map: Turn an array of input values into an array of output values. Ensure that each output value is independent of the others.
+
 2. Reduce: combine an array of values into a single value.
+
+In both cases, the "array" might be implicitly defined; for example, the array of integers from 0 to 10000 could be implicit in the existence of a for loop.
 
 Many problems that take large amounts of data as input can be re-posed as a map, followed by a reduce.
 Both Map and Reduce can be efficiently parallelized
@@ -239,3 +259,63 @@ then have one thread update them all.
 
 - `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it. It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing. The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
 
+# Starting code
+
+```c
+#include <stdio.h> // fopen, fread, fclose, printf, fseek, ftell
+#include <math.h> // log, exp
+#include <stdlib.h> // free, realloc
+#include <time.h> // struct timespec, clock_gettime, CLOCK_REALTIME
+#include <errno.h>
+
+
+/// returns the number of nanoseconds that have elapsed since 1970-01-01 00:00:00
+long long nsecs() {
+    struct timespec t;
+    clock_gettime(CLOCK_REALTIME, &t);
+    return t.tv_sec*1000000000 + t.tv_nsec;
+}
+
+// computes the geometric mean of a set of values.
+// You should use OpenMP to make faster versions of this.
+// Keep the underlying sum-of-logs approach.
+double geomean(unsigned char *s, size_t n) {
+    double answer = 0;
+    for(int i=0; i<n; i+=1) {
+        if (s[i] > 0) answer += log(s[i]) / n;
+    }
+    return exp(answer);
+}
+
+/// reads arguments and invokes geomean; should not require editing unless you rename geomean
+int main(int argc, char *argv[]) {
+    // step 1: get the input array (the bytes in this file)
+    char *s = NULL;
+    size_t n = 0;
+    for(int i=1; i<argc; i+=1) {
+        // add argument i's file contents (or string value if no file found) to s
+        FILE *f = fopen(argv[i], "rb");
+        if (f) { // was a file; read it
+            fseek(f, 0, SEEK_END); // go to end of file
+            size_t size = ftell(f); // find out how many bytes in that was
+            fseek(f, 0, SEEK_SET); // go back to beginning
+            s = realloc(s, n+size); // make room
+            fread(s+n, 1, size, f); // append this file on end of others
+            fclose(f);
+            n += size; // not new size
+        } else { // not a file; treat as a string
+            errno = 0; // clear the read error
+        }
+    }
+
+    // step 2: invoke and time the geometric mean function
+    long long t0 = nsecs();
+    double answer = geomean(s,n);
+    long long t1 = nsecs();
+
+    free(s);
+
+    // step 3: report result
+    printf("%lld nanosecons to process %zd characters: geometric mean is %g\n", t1-t0, n, answer);
+}
+```
