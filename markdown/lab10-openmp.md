@@ -37,14 +37,12 @@ Thus in the above `puts("I'm a thread");` is threaded but `puts("non-threaded");
 If you want several statements to be parallelized, you'd put them in braces to combine them into one block statement, as e.g.
 
 ```c
-int main() {
-    #pragma omp parallel
-    {
-        puts("I'm a thread");
-        puts("Also a thread");
-    }
-    puts("but not this one");
+#pragma omp parallel
+{
+    puts("I'm a thread");
+    puts("Also a thread");
 }
+puts("but not this one");
 ```
 
 # Task
