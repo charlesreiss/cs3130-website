@@ -88,7 +88,7 @@ for(int i=0; i<N; i+=1) {
 }
 ```
 
-works my splitting up the 0--N range into a number of chunks equal to the number of threads.
+works my splitting up the `0`--`N` range into a number of chunks equal to the number of threads.
 For example, if it uses 4 threads then they will get the following range of `i`:
 
 - `0`--`N/4`
@@ -133,7 +133,7 @@ It has more overhead than the previous method, though, as atomic actions are slo
 
 - `#pragma omp parallel`{.c} means "have each thread run the next statement (the `while`{.c} loop)".
 
-- `#pragma omp atomic capture`{.c} means "the next statement (`i = j++`{.c}) is a "capture" type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
+- `#pragma omp atomic capture`{.c} means "the next statement (`i = j++`{.c}) is a capture-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
 ## Parallel Reduce
 
@@ -144,8 +144,7 @@ or do partial reductions in each of several threads and then combine them all in
 ### Atomic reduction -- non-parallel
 
 The simplest way to reduce is to make the reduction step an `#pragma opm atomic`{.c} of some type (usually `update`; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>).
-This limits you to operations that are atomic
-and greatly limits the value of parallelism, so it's not recommended in general.
+This greatly limits the performance value of parallelism, so it's not recommended in general.
 
 ### Many-to-few reduction -- atomic version
 
