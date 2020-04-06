@@ -165,6 +165,31 @@ or do partial reductions in each of several threads and then combine them all in
 The simplest way to reduce is to make the reduction step an `#pragma opm atomic`{.c} of some type (usually `update`; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>).
 This greatly limits the performance value of parallelism, so it's not recommended in general.
 
+This is done by replacing 
+
+```c
+my_type result = zero_for_my_type;
+for(int i=0; i<N; i+=1) {
+    result op= array[i];
+}
+```
+
+(where `op=` is some kind of augmented assignment, like `+=` or `*=`)
+with 
+
+```c
+my_type result = zero_for_my_type;
+# pragma omp parallel for
+for(int i=0; i<N; i+=1) {
+    #pragma omp atomic update
+    result op= array[i];
+}
+```
+
+Note that since the bulk of the operation is atomic, it runs in a mostly serial fashion.
+However, the array lookup and loop indexing can be done in parallel, so it might still have some value.
+That value can be increased if it is merged with the mapping loop into a single parallel for loop, reducing threading overhead.
+
 ### Many-to-few reduction -- atomic version
 
 An alternative approach is to to reduce an array of *N* values into an array of *n* values, where *n* is the number of threads; then have one thread further reduce the *n* to 1.
