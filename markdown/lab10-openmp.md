@@ -22,6 +22,7 @@ To verify your set-up works, try the following `test.c`:
 int main() {
     #pragma omp parallel
     puts("I'm a thread");
+    puts("non-threaded");
 }
 ```
 
@@ -30,6 +31,20 @@ Compile with `gcc -fopenmp test.c`{.sh} and run as `./a.out`{.sh}; if it worked,
 If you compile without the `-fopenmp` flag it will run on just one thread and print our `I'm a thread` just once.
 
 We won't use optimization flags in this lab because they can turn some of our test cases into single-statement assembly.
+
+Note that an OpenMP `#pragma` applies to the subsequent statement, only.
+Thus in the above `puts("I'm a thread");` is threaded but `puts("non-threaded");` is not.
+If you want several statements to be parallelized, you'd put them in braces to combine them into one block statement, as e.g.
+
+```c
+int main() {
+    #pragma omp parallel
+    {
+        puts("I'm a thread");
+        puts("Also a thread");
+    }
+    puts("but not this one");
+}```
 
 # Task
 
