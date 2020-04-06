@@ -51,7 +51,12 @@ puts("but not this one");
 Work with a partner to use OpenMP to parallelize the [Starter code](#starter-code).
 You should be able to understand all of the code provided, but will only need to work on the `geomean` function for this lab.
 
-To run the code, compile with the `-lm` flag and give it file names as command-line arguments. It will return the number of bytes in those files and the geometric mean value of those bytes. You can provide multiple files on the command line if you wish; all will be combined before analysis. Parallelism give the biggest benefit when given large inputs, so you might want to try some larger files: for example, on portal `/usr/bin/emacs24.3` has more than 14 million characters.
+To run the code, compile with the `-lm` flag and give it file names as command-line arguments. It will return the number of bytes in those files and the geometric mean value of those bytes. You can provide multiple files on the command line if you wish; all will be combined before analysis. Parallelism give the biggest benefit when given large inputs, so you might want to try some larger files: for example, on portal `/usr/bin/emacs-24.3` has more than 14 million characters.
+
+    $ gcc -lm -fopenmp lab10starter.c
+    $ ./a.out /usr/bin/emacs-24.3
+    313710435 nanoseconds to process 14784560 characters: geometric mean is 6.46571
+
 
 To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
 
@@ -332,6 +337,6 @@ int main(int argc, char *argv[]) {
     free(s);
 
     // step 3: report result
-    printf("%lld nanosecons to process %zd characters: geometric mean is %g\n", t1-t0, n, answer);
+    printf("%lld nanoseconds to process %zd characters: geometric mean is %g\n", t1-t0, n, answer);
 }
 ```
