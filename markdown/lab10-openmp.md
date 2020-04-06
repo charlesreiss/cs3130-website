@@ -185,7 +185,9 @@ then atomically update the shared total
 
 - `#pragma omp parallel`{.c} means "have each thread run the next statement (the block in `{ ... }`)".
 
-- `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it." It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing. The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
+- `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it." It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing.
+    
+    The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
 
 - `#pragma omp atomic capture`{.c} means "the next statement (`result op= local_result`{.c}) is an "update" type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
@@ -254,7 +256,9 @@ then have one thread update them all.
 
 - `#pragma omp parallel`{.c} means "run the next statement in multiple threads"
 
-- `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it." It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing. The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
+- `#pragma omp for nowait`{.c} means "the next statement (a `for` loop) should have its bounds adjusted depending on which thread is running it." It's like the `#pragma omp parallel for`{.c} discussed under the [Even split](#even-split) section above, but instead of creating new threads it uses those already existing.
+    
+    The `nowait` means if one thread finishes before another, it can move on to post-`for`-loop code without waiting for the others to finish.
 
 # Starting code
 
