@@ -2,14 +2,14 @@
 title: Processors
 ...
 
-# Pipelining
+> This writeup is incomplete and unlikely to make much sense out of context of the associated lectures.
 
-Real processors *pipeline* instructions:
-that is, they split up the work of a single instruction
-into several components and divide them up into multiple steps.
+# Organizing a processor
 
-{.example ...}
-The "standard 5-stage pipeline" is
+A processor has a lot of parts and pieces.
+It can help keep them orderly if we break them into named components,
+similar to naming functions in C.
+There are various names used, but one common model is to consider five steps:
 
 1. Fetch, reads an instruction from memory
 2. Decode, retrieves values from registers
@@ -17,7 +17,7 @@ The "standard 5-stage pipeline" is
 4. Memory, reads or writes to one address of memory
 5. Writeback, puts results into register
 
-<img src="files/pipeline.svg" style="width:100%"/>
+<img src="files/fivestage.svg" style="width:100%"/>
 
 For example, the instruction `pushq %r8`, would
 
@@ -26,10 +26,22 @@ For example, the instruction `pushq %r8`, would
 3. Compute the new value for `%rsp` by sending `%rsp`'s value and `$-8` into the ALU
 4. Send the value of `%r8` to memory to be written at the address `%rsp - $8`
 5. Send the new `%rsp` back to the register file
-{/}
 
-Pipelining adds "pipeline registers" between each stage
-which handle moving instructions one stage at a time.
+This organization does not change what transistors and wires we actually put on the chip, but it does help us think about what purpose they each serve.
+
+
+
+# Pipelining
+
+Real processors *pipeline* instructions:
+that is, they split up the work of a single instruction
+into several components and divide them up into multiple steps.
+And not just as an organizational aid; they add register banks between the steps.
+
+<img src="files/pipeline.svg" style="width:100%"/>
+
+These between-stages registers are called "pipeline registers";
+they handle moving instructions one stage at a time.
 Because registers require a clock signal to change values,
 this means that a single instruction moves from stage to stage across several clock cycles.
 
