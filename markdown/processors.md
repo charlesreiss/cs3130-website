@@ -82,44 +82,6 @@ the state of the processor would look like
 The last stage would presumably still be working on the code that called this function.
 {/}
 
-Because an instruction begins working before all previous instructions have finished,
-sometimes it is necessary to wait, staying in one stage until an earlier instruction finishes and provides needed data.
-
-{.example ...} Continuing the last example,
-the instruction after `je` cannot be loaded until the `cmpq` sets condition codes
-and the `je` checks them.
-Thus, the next several cycles will look like
-
-<table border="0" width="100%"><tbody>
-<tr><td colspan="5">
-<img src="files/pipeline.svg" style="width:100%"/>
-</td></tr>
-<tr><td width="20%" style="text-align:center"></td>
-<td width="20%" style="text-align:center">je</td>
-<td width="20%" style="text-align:center">cmpq</td>
-<td width="20%" style="text-align:center">xorl</td>
-<td width="20%" style="text-align:center">callq</td>
-</tr>
-<tr><td colspan="5"><hr/></td></tr>
-<tr><td width="20%" style="text-align:center"></td>
-<td width="20%" style="text-align:center"></td>
-<td width="20%" style="text-align:center">je</td>
-<td width="20%" style="text-align:center">cmpq</td>
-<td width="20%" style="text-align:center">xorl</td>
-</tr>
-<tr><td colspan="5"><hr/></td></tr>
-<tr><td width="20%" style="text-align:center">movl</td>
-<td width="20%" style="text-align:center"></td>
-<td width="20%" style="text-align:center"></td>
-<td width="20%" style="text-align:center">je</td>
-<td width="20%" style="text-align:center">cmpq</td>
-</tr>
-</tbody></table>
-
-The above diagram assumes that `je` can check condition codes 
-using the ALU before the preceding `cmpq` has fully finished being executed.
-{/}
-
 ## Dependencies
 
 A later instruction can depend on an earlier instruction in two ways
