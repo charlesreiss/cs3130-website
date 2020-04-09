@@ -116,7 +116,7 @@ The simplest solution to a dependency is to simply wait for the results to appea
     evaluate_end:
         retq
 
-Let's trace it through, starting with the `callq evaluate`, stalling anytime we need to.
+Let's trace it through, starting with the `callq evaluate`, stalling anytime we need to. Note that in practice we'd not stall this much, using [forwarding](#forwarding) to avoid most of these stalls.
 
 <img src="files/pipeline.svg" style="width:100%"/>
 
@@ -538,3 +538,16 @@ Will a conditional jump be taken? Where will a return jump to?
 These questions have spawned multiple research teams designing various branch and branch-target predictors, which have become quite good.
 By storing an array of the 32 most recent branches and applying some heuristics on that array, it is common to get > 90% accuracy on our guesses.
 
+## Optimal Pipeline Depth
+
+How many stages should you put in your pipeline?
+For a time the answer appeared to be "as many as possible," and in the 90s we got some 30+ stage pipelines in production.
+Having a very deep pipeline means you have very little work to do in each stage,
+meaning you can run your clock faster and get higher throughput.
+However, it also means that you have more dependencies to consider and when you do mispredict a speculation, you loose more cycles of mispredicted work.
+
+While there's no single formula for the perfect pipeline, CPU designs appear to have converged on the 10--15 stages range as a good compromise between the higher best-case throughput and higher misprediction penalty of a deeper pipeline.
+
+# Our-of-order processors
+
+*section to appear*
