@@ -143,46 +143,118 @@ Three basic tactics can be used to resolve these issues.
 
 The simplest solution to a dependency is to simply wait for the results to appear.
 
-{.example ...} Continuing the last example,
-the instruction after `je` cannot be loaded until the `cmpq` sets condition codes
-and the `je` checks them.
-Thus, the next several cycles will look like
+{.example ...} Let's look at the last example again.
+
+    evaluate:
+        xorl    %eax, %eax
+        cmpq    $1, %rdi
+        je      evaluate_end
+        movl    $1, %ecx
+        /*...*/
+    evaluate_end:
+        retq
+
+Let's trace it through, starting with the `callq evaluate`, stalling anytime we need to.
 
 <img src="files/pipeline.svg" style="width:100%"/>
 
-1. <table border="0" width="100%"><tbody><tr>
-<td width="20%" style="text-align:center">*stalled*</td>
+1.  First we callq.
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+    
+1.  Since `callq` has its destination right in its instruction as an immediate, Fetch was able to pick the next instruction: `xorl`, the first instruction of the new function.
+    `callq` still has work to do, though, pushing a return address, so it's still in the pipeline.
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+    
+1.  No dependency between `xorl` and `callq`, so we let them move on and lad the next instruction:
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  No dependency between `cmpq`, `xorl`, `callq`, so we let them move on and lad the next instruction:
+
+    <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">je</td>
 <td width="20%" style="text-align:center">cmpq</td>
 <td width="20%" style="text-align:center">xorl</td>
 <td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
 </tr></tbody></table>
-    
-    We move all current instructions one step down the pipline.
-    The first stage does nothing; that is, we set some kind of mux to swap out its usual behavior for a "do nothing" behavior instead.
-    That "do nothing" means it puts a `nop` instruction into the next pipleine register.
 
-2. <table border="0" width="100%"><tbody><tr>
-<td width="20%" style="text-align:center">*stalled*</td>
-<td width="20%" style="text-align:center">*nop*</td>
+1.  `je` has a data dependency on `cmpq`: it needs the condition codes. So we stall `je`, leaving it where it is. We do let the others move on. To handle the gap, the stalled `je` inserts a `nop` instruction after itself.
+
+    <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+</tr></tbody></table>
+
+1.  `je` is still waiting on `cmpq`; `cmpq` did compute the flags already, but they are not in the flags register yet, nor will be until `cmpq`'s writeback finishes.
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
 <td width="20%" style="text-align:center">cmpq</td>
 <td width="20%" style="text-align:center">xorl</td>
 </tr></tbody></table>
-    
-    Still not able to decide where to go next.
 
-3. <table border="0" width="100%"><tbody><tr>
-<td width="20%" style="text-align:center">*stalled*</td>
-<td width="20%" style="text-align:center">*nop*</td>
-<td width="20%" style="text-align:center">*nop*</td>
+1. <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
 <td width="20%" style="text-align:center">cmpq</td>
 </tr></tbody></table>
-    
-    Still waiting on the `je`.
 
-4. <table border="0" width="100%"><tbody><tr>
+1. `je` now has its data dependency resolved, but what we don't know what to load in after it, so we need to stall fetch.
+
+1. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+</tr></tbody></table>
+    
+1. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+</tr></tbody></table>
+    
+1. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">*nop*</td>
+</tr></tbody></table>
+    
+1. <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">*stalled*</td>
 <td width="20%" style="text-align:center">*nop*</td>
 <td width="20%" style="text-align:center">*nop*</td>
@@ -190,9 +262,10 @@ Thus, the next several cycles will look like
 <td width="20%" style="text-align:center">je</td>
 </tr></tbody></table>
     
-    Still waiting on the `je`.
-
-5. <table border="0" width="100%"><tbody><tr>
+1. The `je` has finally finished! We now know that we *don't* jump (the `cmpq` was comparing `$1` and `%rdi`, an argument we're assuming was not `1`),
+    so we fetch the next instruction: `movl $1,%ecx`.
+    
+    <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">movl</td>
 <td width="20%" style="text-align:center">*nop*</td>
 <td width="20%" style="text-align:center">*nop*</td>
@@ -200,11 +273,16 @@ Thus, the next several cycles will look like
 <td width="20%" style="text-align:center">*nop*</td>
 </tr></tbody></table>
 
-    The `je` has finally finished! We now know that we *don't* jump (the `cmpq` was comparing `$1` and `%rdi`, an argument we're assuming was not `1`),
-    so we fetch the next instruction: `movl $1,%ecx`.
+...    
 {/}
 
+While stalling removes and throughput benefits of pipelining, it is also easy to implement and always correct.
+
 ### Forwarding
+
+Sometimes we can shorten the length of a stall by looking for information in places other than its final destination.
+For example, if the ALU computes a value that will be placed in `%rcx` when it gets to the writeback stage, two cycles before it is `%rcx` it is sitting in the pipeline register between the execute and memory stages. It takes a bit more design complexity, but we can set up the pipeline to look for that kind of "computed but not yet stored" information in the pipeline registers and use it directly.
+
 
 
 ### Speculative execution
