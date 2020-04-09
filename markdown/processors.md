@@ -230,7 +230,7 @@ Let's trace it through, starting with the `callq evaluate`, stalling anytime we 
 
 1. `je` now has its data dependency resolved, but what we don't know what to load in after it, so we need to stall fetch.
 
-1. <table border="0" width="100%"><tbody><tr>
+    <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">*stalled*</td>
 <td width="20%" style="text-align:center">je</td>
 <td width="20%" style="text-align:center">*nop*</td>
