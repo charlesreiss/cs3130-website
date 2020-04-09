@@ -284,6 +284,100 @@ Sometimes we can shorten the length of a stall by looking for information in pla
 For example, if the ALU computes a value that will be placed in `%rcx` when it gets to the writeback stage, two cycles before it is `%rcx` it is sitting in the pipeline register between the execute and memory stages. It takes a bit more design complexity, but we can set up the pipeline to look for that kind of "computed but not yet stored" information in the pipeline registers and use it directly.
 
 
+{.example ...} Let's look at the last example again.
+
+    evaluate:
+        xorl    %eax, %eax
+        cmpq    $1, %rdi
+        je      evaluate_end
+        movl    $1, %ecx
+        /*...*/
+    evaluate_end:
+        retq
+
+Let's trace it through, starting with the `callq evaluate`, stalling anytime we need to.
+
+<img src="files/pipeline.svg" style="width:100%"/>
+
+1.  First we callq.
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+    
+1.  No dependency yet
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+    
+1.  No dependency yet
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  No dependency yet
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  `je` has a data dependency on `cmpq`, but doesn't need the data yet.
+    Let's assume `je` compares condition codes to its immediate `e` flag in the execute stage, so let's let it ride until it gets there.
+    
+    However, we don't know what to put in behind it yet, so we'll stall there.
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+</tr></tbody></table>
+
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+</tr></tbody></table>
+
+    We said we'd wait for `je` to get to execute, and it's there now; dowe have to wait?
+    No. It needs `cmpq`'s flgs, and those are sitting in the last pipeline register, so we'll forward the values from there.
+    
+1.  Since `je` just executed, we know which instuction to load next.
+    We forward that information from the pipeline register after the execute stage to load in the `movl` instruction.
+    
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">movl</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+</tr></tbody></table>
+
+...    
+{/}
+
 
 ### Speculative execution
 
