@@ -295,7 +295,7 @@ For example, if the ALU computes a value that will be placed in `%rcx` when it g
     evaluate_end:
         retq
 
-Let's trace it through, starting with the `callq evaluate`, stalling anytime we need to.
+Let's trace it through, starting with the `callq evaluate`, stalling as little as possible and forwarding where possible.
 
 <img src="files/pipeline.svg" style="width:100%"/>
 
@@ -379,6 +379,200 @@ Let's trace it through, starting with the `callq evaluate`, stalling anytime we 
 ...    
 {/}
 
+Setting up forwarding can be more work from a chip designer's perspective, it is basically just a lot of extra wires and muxes.
+Once those are correctly placed, we can dramatically reduce stalls
+at no cost to correctness.
 
 ### Speculative execution
+
+Even with forwarding, we still have some stalls.
+A command like `ret`, which depends on a register (`%rsp`) *and* the ALU (to increment `%rsp` by 8) *and* data memory (to read the return address off the stack) can effectively empty out the entire pipeline.
+Wouldn't it be nice to have some work for all those stalled stages to do?
+
+Solution: speculative execution. We *guess* what the result will be and start work based on that guess.
+If it turns out our guess was wrong, we remove the unfinished work at no loss compared to having not done it;
+if it turns out we were right, though, we save cycles of compute time.
+
+
+
+{.example ...} Let's look at the last example again.
+
+    evaluate:
+        xorl    %eax, %eax
+        cmpq    $1, %rdi
+        je      evaluate_end
+        movl    $1, %ecx
+        /*...*/
+    evaluate_end:
+        retq
+
+Let's trace it through, starting with the `callq evaluate`, speculatively executing when we would otherwise stall.
+
+<img src="files/pipeline.svg" style="width:100%"/>
+
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+    
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+    
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  We don't *know* what instruction follows `je`, but we know it is *either* `movl` (if the jump is not taken) or `retq` (if the jump is taken).
+    
+    Let's guess it is taken:
+    
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">retq<br/>(speculative)</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+</tr></tbody></table>
+
+1.  Still don't know if we guessed right.
+    What comes after `retq`?
+    We don't know, and don't know how to guess. ☹
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">retq<br/>(speculative)</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+</tr></tbody></table>
+
+    
+1.  We just learned we speculated wrong!
+    No problem: we replace the speculated instructions with `nop` and keep going.
+    
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">movl</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+</tr></tbody></table>
+
+...    
+{/}
+
+
+
+{.example ...} Let's try the other speculation:
+
+    evaluate:
+        xorl    %eax, %eax
+        cmpq    $1, %rdi
+        je      evaluate_end
+        movl    $1, %ecx
+    evaluate_loop:
+        incq    %rax
+        movq    %rdi, %rdx
+        /*...*/
+    evaluate_end:
+        retq
+
+<img src="files/pipeline.svg" style="width:100%"/>
+
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+    
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+    
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+<td width="20%" style="text-align:center"></td>
+</tr></tbody></table>
+
+1.  We don't *know* what instruction follows `je`, but we know it is *either* `movl` (if the jump is not taken) or `retq` (if the jump is taken).
+    
+    Let's guess it is *not* taken:
+    
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">movl<br/>(speculative)</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+</tr></tbody></table>
+
+1.  Still don't know if we guessed right.
+
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">incq<br/>(speculative)</td>
+<td width="20%" style="text-align:center">movl<br/>(speculative)</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+</tr></tbody></table>
+
+    
+1.  We just learned we speculated right!
+    Great: it's not longer speculative and we're two instructions ahead of the game.
+    
+    <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">movq</td>
+<td width="20%" style="text-align:center">incq</td>
+<td width="20%" style="text-align:center">movl</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+</tr></tbody></table>
+
+...    
+{/}
+
+This leads to an entire subfield of speculation and prediction.
+Will a conditional jump be taken? Where will a return jump to?
+These questions have spawned multiple research teams designing various branch and branch-target predictors, which have become quite good.
+By storing an array of the 32 most recent branches and applying some heuristics on that array, it is common to get > 90% accuracy on our guesses.
 
