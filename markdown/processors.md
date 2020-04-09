@@ -353,7 +353,10 @@ Let's trace it through, starting with the `callq evaluate`, stalling anytime we 
 <td width="20%" style="text-align:center">callq</td>
 </tr></tbody></table>
 
-1.  <table border="0" width="100%"><tbody><tr>
+1.  `je` gets to execute this stage; does it have what it needs to do its job?
+    It does: `cmpq` has already computed the flags and they are sitting in a pipeline register; we simply pull from there instead of from the register file and continue executing.
+
+    <table border="0" width="100%"><tbody><tr>
 <td width="20%" style="text-align:center">*stalled*</td>
 <td width="20%" style="text-align:center">*nop*</td>
 <td width="20%" style="text-align:center">je</td>
@@ -361,8 +364,6 @@ Let's trace it through, starting with the `callq evaluate`, stalling anytime we 
 <td width="20%" style="text-align:center">xorl</td>
 </tr></tbody></table>
 
-    We said we'd wait for `je` to get to execute, and it's there now; dowe have to wait?
-    No. It needs `cmpq`'s flgs, and those are sitting in the last pipeline register, so we'll forward the values from there.
     
 1.  Since `je` just executed, we know which instuction to load next.
     We forward that information from the pipeline register after the execute stage to load in the `movl` instruction.
