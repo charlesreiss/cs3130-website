@@ -119,3 +119,93 @@ Thus, the next several cycles will look like
 The above diagram assumes that `je` can check condition codes 
 using the ALU before the preceding `cmpq` has fully finished being executed.
 {/}
+
+## Dependencies
+
+A later instruction can depend on an earlier instruction in two ways
+
+1. A *data dependency* occurs when information needed to correctly execute the later instruction is computed by the earlier instruction.
+
+    - The instruction pair `addq %rax, %rcx; addq %rcx, %rdx` has a data dependency: the first computes the `%rcx` value needed by the second.
+    - The instruction pair `addq %rax, %rcx; cmovle %r8, %r9` has a data dependency: whether `cmovle` changes `%r9` or not depends on the condition codes set by `addq`.
+
+1. A *control dependency* occurs when the earlier instruction determined whether a later instruction should even be executed.
+
+    - The instruction pair `jle foo; addq %rcx, %rdx` has a control dependency: the second might not be run depending on the result of the first.
+    - The instruction `retq` has a control dependency with whatever instruction runs next: which one it is depends on what value `retq` pops off the stack.
+
+The existence of both kinds of dependencies can be determined by inspecting the assembly in a algorithmically-trivial way simply by comparing arguments and icodes.
+
+Dependencies can cause problems in a pipeline, causing naïve implementations to compute the wrong result because the earlier instruction will not have completed when the later instruction begins to execute.
+Three basic tactics can be used to resolve these issues.
+
+### Stalling
+
+The simplest solution to a dependency is to simply wait for the results to appear.
+
+{.example ...} Continuing the last example,
+the instruction after `je` cannot be loaded until the `cmpq` sets condition codes
+and the `je` checks them.
+Thus, the next several cycles will look like
+
+<img src="files/pipeline.svg" style="width:100%"/>
+
+1. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+<td width="20%" style="text-align:center">callq</td>
+</tr></tbody></table>
+    
+    We move all current instructions one step down the pipline.
+    The first stage does nothing; that is, we set some kind of mux to swap out its usual behavior for a "do nothing" behavior instead.
+    That "do nothing" means it puts a `nop` instruction into the next pipleine register.
+
+2. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+<td width="20%" style="text-align:center">xorl</td>
+</tr></tbody></table>
+    
+    Still not able to decide where to go next.
+
+3. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+<td width="20%" style="text-align:center">cmpq</td>
+</tr></tbody></table>
+    
+    Still waiting on the `je`.
+
+4. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">*stalled*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">je</td>
+</tr></tbody></table>
+    
+    Still waiting on the `je`.
+
+5. <table border="0" width="100%"><tbody><tr>
+<td width="20%" style="text-align:center">movl</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+<td width="20%" style="text-align:center">*nop*</td>
+</tr></tbody></table>
+
+    The `je` has finally finished! We now know that we *don't* jump (the `cmpq` was comparing `$1` and `%rdi`, an argument we're assuming was not `1`),
+    so we fetch the next instruction: `movl $1,%ecx`.
+{/}
+
+### Forwarding
+
+
+### Speculative execution
+
