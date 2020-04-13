@@ -71,7 +71,9 @@ You code should not contain any heap-allocated memory (no `new` or `malloc`)
 # Guides
 
 - Precede your `struct` with `template <typename N, int n>`{.cpp} so it will work with multiple types and lengths
+
 - Use a static array `N data[n]` (or the like) as the only field so avoid heap memory allocations
+
 - Constructors have no return type and the same name as the `struct`
     - your default constructor should sets the data to all `0`s
     - the other should accept an "initializer list", which is what the `{1,2,3}` turns into at compile time
@@ -88,4 +90,15 @@ You code should not contain any heap-allocated memory (no `new` or `malloc`)
             should work
         - you'll need to verify that the initializer list has the right number of values (it's `size()` method should help)
         - we recommend using a template to pick the initializer list contained type, e.g. with `template<typename R>`{.cpp} before the function
-- 
+
+- Operator overloading uses special function names
+    - `operator +` should accept only vectors of the same length
+    - `operator []` needs two variants
+        - `N& operator[] (int idx)`{.c} -- allows setting by index by returning a reference
+        - `N operator[] (int idx) const`{.c} -- allows reading when no reference exists
+    - Printing needs a special "friend" notation to let you access between the `ostream` and `vec` classes:
+        - `friend std::ostream& operator << (std::ostream& out, const vec<N,n>& x)`{.c}
+        - this function should use `out << thing` and then `return out`
+
+
+
