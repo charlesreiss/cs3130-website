@@ -73,15 +73,15 @@ You code should not contain any heap-allocated memory (no `new` or `malloc`)
 - Precede your `struct` with `template <typename N, int n>`{.cpp} so it will work with multiple types and lengths
 - Use a static array `N data[n]` (or the like) as the only field so avoid heap memory allocations
 - Constructors have no return type and the same name as the `struct`
-    - you'll need 2: a default constructor that sets the data to 0
-    - and an "initializer list" constructor for the `= {1,2,3}` usage:
+    - your default constructor should sets the data to all `0`s
+    - the other should accept an "initializer list", which is what the `{1,2,3}` turns into at compile time
         - `#include <initializer_list>`
-        - have the argument be a single `std::initializer_list<R>` where `R` is the type of value you expect to be passed in.
+        - 1 argument, a `std::initializer_list<R>` where `R` is the type of value you expect to be passed in.
         - inside the code, the argument is an iterator, so something like
             
             ````cpp
-            for(auto x=val.begin(), i=0; x!=val.end(); ++x, i+=1) {
-                // use *x and i here (* to look inside the iterator)
+            for(auto x=val.begin(); x!=val.end(); ++x) {
+                // use *x here (* looks inside the iterator)
             }
             ````
             
