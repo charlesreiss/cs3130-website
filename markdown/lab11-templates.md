@@ -47,14 +47,14 @@ int main() {
     std::cout << (a + c) << std::endl; // does not compile
     
     
-    b[2] = 2.5; // does not compile
-    c[2] = 2.5; // does not compile
+    b[2] = 2.5; // assigns off the end of b...
+    c[2] = 2.5; // implictly casts a double to an int...
     b[1] = 2.5;
     c[2] = 2;
 
     std::cout << b << std::endl; // prints (0, 2.5)
-    std::cout << c << std::endl; // prints (0, 0, 2, 0)
-
+    std::cout << c << std::endl; // prints (0, 1074003968, 2, 0)
+                                 // -- the 1074003968 is from overflow
     vd3 x = {1.5, 2.5, 3.5};
     std::cout << x << std::endl; // prints (1.5, 2.5, 3.5)
 
