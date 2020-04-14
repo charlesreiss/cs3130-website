@@ -103,7 +103,7 @@ You code should not contain any heap-allocated memory (no `new` or `malloc`)
         - `friend std::ostream& operator << (std::ostream& out, const vec<N,n>& x)`{.c}
         - this function should use `out << thing` and then `return out`
 
-- It is **best practice** (but not technically required) to
+- It is best practice (but not technically required) to
     
     - put `template` declarations on the line before the struct or function they modify
     
