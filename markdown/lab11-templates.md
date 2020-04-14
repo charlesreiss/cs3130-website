@@ -149,3 +149,6 @@ for(auto it = mycollection.begin(); // create an iterator
     std::cout << *it << std::endl;  // derreference to print
 }
 ```
+
+Note in the above that when you combine a declaration and initialization,
+you can declare the type to be `auto`{.cpp} meaning "use whatever type the initialization gives me".
