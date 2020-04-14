@@ -174,8 +174,8 @@ labs:
     - sync games
     - pthread coding
     - openmp
-    - optimization
-    - optimization
+    - templates
+    - c++11
     - review
 
 
@@ -201,6 +201,8 @@ reading:
         - {txt: dining philosophers, lnk: lab09-dp.html}
     openmp:
         - {txt: openmp, lnk: lab10-openmp.html}
+    templates:
+        - {txt: templates, lnk: lab11-templates.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
@@ -447,6 +449,12 @@ assignments:
         due: 2020-04-06 23:59:00
         late-days: 0
         link: https://kytos.cs.virginia.edu/coa2/quizzes/
+
+    Exam2 Adjustment:
+        due: 2020-04-07 00:00:00
+        weight: 0.25
+        late-days: 0
+
     Exam3:
         due: 2020-05-07 17:00:00
         weight: 3

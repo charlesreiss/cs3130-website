@@ -6,6 +6,8 @@ We showed you some basic C++ last semester, including using templates like Java 
 But that is far from all C++ templates can do...
 This lab will help you explore this topic in more detail.
 
+You'll work in pairs via discord for this lab, like those before it.
+
 # Caveat
 
 There exists a subset of programmers who believe that C++ templates beyond type generics are an abomination and should never be used.
@@ -54,7 +56,7 @@ int main() {
 
     std::cout << b << std::endl; // prints (0, 2.5)
     std::cout << c << std::endl; // prints (0, 1074003968, 2, 0)
-                                 // -- the 1074003968 is from overflow
+                                 // -- the 1074003968 is from b[2] overflow
     vd3 x = {1.5, 2.5, 3.5};
     std::cout << x << std::endl; // prints (1.5, 2.5, 3.5)
 
