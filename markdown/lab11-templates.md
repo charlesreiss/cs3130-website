@@ -13,6 +13,15 @@ You'll work in pairs via discord for this lab, like those before it.
 There exists a subset of programmers who believe that C++ templates beyond type generics are an abomination and should never be used.
 I hope this lab will help you make your own opinion, but be aware that if you work for a company that uses C++ and suggest some of these techniques, you might get some blow-back...
 
+# Review
+
+Begin by reviewing the C++ labs from COA1:
+
+- [name overloading, namespaces, references, methods](/luther/COA1/F2019/lab10-cpp.html)
+- [STL, references, templates, operator overloading, iostream](/luther/COA1/F2019/lab11-stl.html)
+
+We'll be picking up from where those left off in this lab.
+
 # A Mathematical Vector type
 
 In mathematics, a vector has fixed length and adding vectors of different length is meaningless.
@@ -50,7 +59,7 @@ int main() {
     
     
     b[2] = 2.5; // assigns off the end of b...
-    c[2] = 2.5; // implictly casts a double to an int...
+    c[2] = 2.5; // implicitly casts a double to an int...
     b[1] = 2.5;
     c[2] = 2;
 
@@ -81,15 +90,7 @@ You code should not contain any heap-allocated memory (no `new` or `malloc`)
     - the other should accept an "initializer list", which is what the `{1,2,3}` turns into at compile time
         - `#include <initializer_list>`
         - 1 argument, a `std::initializer_list<R>` where `R` is the type of value you expect to be passed in.
-        - inside the code, the argument is an iterator, so something like
-            
-            ````cpp
-            for(auto x=val.begin(); x!=val.end(); ++x) {
-                // use *x here (* looks inside the iterator)
-            }
-            ````
-            
-            should work
+        - a `std::initializer_list<R>` is a collection, meaning you access it by [iterator](#cpp-iterators)
         - you'll need to verify that the initializer list has the right number of values (it's `size()` method should help)
         - we recommend using a template to pick the initializer list contained type, e.g. with `template<typename R>`{.cpp} before the function
 
@@ -102,5 +103,49 @@ You code should not contain any heap-allocated memory (no `new` or `malloc`)
         - `friend std::ostream& operator << (std::ostream& out, const vec<N,n>& x)`{.c}
         - this function should use `out << thing` and then `return out`
 
+- It is **best practice** (but not technically required) to
+    
+    - put `template` declarations on the line before the struct or function they modify
+    
+        ````{.cpp}
+        template <typename R>
+        R dostuff(const R& t) { /*...*/ }
+        ````
+    
+    - use `const` for all arguments you will not modify
+    
+        `double sqrt(const double x)`{.cpp}
 
+    - use reference types `const mytype&` for `struct` arguments you don't want to copy
+    
+        `double length(const vec<double,3>& x)`{.cpp}
+    
+    - use `const` for any method that does not modify `this`'s fields
+    
+        `double length() const`{.cpp}
 
+# C++ Iterators {#cpp-iterators}
+
+Many STL structures in C++ use the iterator pattern to allow access.
+This has a somewhat different look than it does in Java or the like.
+
+The collection offers two functions of note:
+
+- `.begin()` returns an iterator pointing to the first element of the collection
+- `.end()` returns an iterator pointing to the "past the end" element of the collection
+
+The iterator overloads three operators of note:
+
+- `operator ==` tells if two iterators point to the same entry in the collection
+- `operator *` gets the item pointed to out of the iterator
+- `operator ++` moves the item to the next spot in the collection
+
+Thus, a loop that prints all items in a collection might look like
+
+```cpp
+for(auto it = mycollection.begin(); // create an iterator
+    it != mycollection.end();       // and while it's not off the end
+    ++it) {                         // move it forward
+    std::cout << *it << std::endl;  // derreference to print
+}
+```
