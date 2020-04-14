@@ -447,6 +447,12 @@ assignments:
         due: 2020-04-06 23:59:00
         late-days: 0
         link: https://kytos.cs.virginia.edu/coa2/quizzes/
+
+    Exam2 Adjustment:
+        due: 2020-04-28 17:00:00
+        weight: 0.25
+        late-days: 0
+
     Exam3:
         due: 2020-05-07 17:00:00
         weight: 3
