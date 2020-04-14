@@ -136,7 +136,7 @@ The collection offers two functions of note:
 
 The iterator overloads three operators of note:
 
-- `operator ==` tells if two iterators point to the same entry in the collection
+- `operator !=` tells if two iterators point to distinct entries in the collection
 - `operator *` gets the item pointed to out of the iterator
 - `operator ++` moves the item to the next spot in the collection
 
