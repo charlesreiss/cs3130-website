@@ -174,8 +174,8 @@ labs:
     - sync games
     - pthread coding
     - openmp
-    - optimization
-    - optimization
+    - templates
+    - c++11
     - review
 
 
@@ -201,6 +201,8 @@ reading:
         - {txt: dining philosophers, lnk: lab09-dp.html}
     openmp:
         - {txt: openmp, lnk: lab10-openmp.html}
+    templates
+        - {txt: templates, lnk: lab11-templates.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
