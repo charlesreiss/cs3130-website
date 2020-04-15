@@ -262,6 +262,9 @@ reading:
         - {txt: writeup (WIP), lnk: processors.html}
     // pipeline: [{txt: sequential diagram, lnk: files/seq.png}, {txt: pipelined diagram, lnk: files/pipe.png}]
     // ask me anything: {txt: 'ask here', lnk: 'http://www.tricider.com/brainstorming/2bnaQ7fhZZ3'}
+    
+    out-of-order:
+        - {txt: writeup (WIP), lnk: processors.html}
 
 
 assignments:
