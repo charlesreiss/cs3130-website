@@ -1,0 +1,126 @@
+---
+title: Dining Philosophers
+...
+
+# Logistics
+
+We'll again encourage group work via discord <https://discord.gg/BeEdNxK>. In particular, we ask you work in groups of 2 in a "buddy programming" model. You'll also use discord to contact TAs for help and/or pass-off.
+
+Buddy programming is when
+
+- You each create your own code
+- You share development, looking at one another's work and so on
+- You catch each other up if one is behind or stuck
+
+We recommend that each pair enter a voice channel and each "Go Live" with their editor window, joining one another's streams so you can each see your code in your editor and your partner's code in discord. There will probably be some tech issues along the way; hopefully the TAs will be able to help.
+
+# Task
+
+We provide a threaded implementation of the [Dining Philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
+This is a famous, if somewhat contrived, example of deadlock.
+You'll modify it to not have deadlock.
+We give three approaches to this; you'll need to do at least one, and we encourage doing a second if you still have time in the lab to do so.
+
+## Deadlocking code
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+pthread_t philosopher[5];
+pthread_mutex_t chopstick[5];
+
+void *eat(void *arg) {
+    int n = (int)arg;
+    // take two chopsticks
+    pthread_mutex_lock(&chopstick[n]);
+    printf("Philosopher %d got chopstick %d\n", n, n);
+    pthread_mutex_lock(&chopstick[(n+1)%5]);
+    printf("Philosopher %d got chopstick %d\n", n, (n+1)%5);
+    
+    printf ("Philosopher %d is eating\n",n);
+    sleep(1);
+    
+    // set them back down
+    printf("Philosopher %d set down chopstick %d\n", n, (n+1)%5);
+    pthread_mutex_unlock(&chopstick[(n+1)%5]);
+    printf("Philosopher %d set down chopstick %d\n", n, n);
+    pthread_mutex_unlock(&chopstick[n]);
+    return NULL;
+}
+
+int main(int argc, const char *argv[]) {
+    for(int i = 0; i < 5; i += 1)
+        pthread_mutex_init(&chopstick[i], NULL);
+
+    for(int i =0; i < 5; i += 1)
+        pthread_create(&philosopher[i], NULL, eat, (void *)(size_t)i);
+
+    for(int i=0; i < 5; i += 1)
+        pthread_join(philosopher[i], NULL);
+
+    for(int i=0; i < 5; i += 1)
+        pthread_mutex_destroy(&chopstick[i]);
+
+    return 0;
+}
+```
+
+This can be run as
+
+```bash
+clang -O2 -lpthread dp.c && ./a.out`
+```
+
+Because thread scheduling is somewhat random in practice, you may need to run the program several times in a row to see a deadlock.
+
+## Required approach: Arbitrator
+
+Ensure there is no deadlock
+by using the [Arbitrator solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Arbitrator_solution).
+A correct solution can be just four lines:
+
+1. declare a global arbitrator mutex
+2. initialize that mutex in `main`
+3. lock it and
+4. unlock it, both in `eat`, so that only one philosopher can reach for chopsticks at a time
+
+If correctly implemented,
+
+- There will be no deadlock; the program will always terminate
+- The output will never have two "Philosopher *i* got chopstick" lines with a different "Philosopher *j* got chopstick" line in between
+
+## Optional approach 1: Resource hierarchy
+
+This implementation should ensure there is no deadlock
+by using the [Resource hierarch solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Resource_hierarchy_solution).
+
+Require every philosopher to pick up their lower-numbered chopstick before their higher-numbered chopstick.
+
+If correctly implemented,
+
+- There will be no deadlock; the program will always terminate
+- The output will never have two "Philosopher *i* got chopstick *j*" line following a different "Philosopher *i* got chopstick *k*" line unless *j* < *k*.
+
+
+## Optional approach 2: Message passing
+
+This implementation should ensure there is no deadlock
+by using the [Chandy/Misra solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Chandy/Misra_solution).
+
+You'll probably need to add some kind of data structure to keep track of who owns which chopstick and which chopsticks are dirty,
+as well as functions to handle requesting chopsticks.
+
+This is definitely more involved than the other two files,
+but also will give you a better understanding of how to use pthreads' mutex objects to solve non-trivial problems.
+
+If correctly implemented,
+
+- There will be no deadlock; the program will always terminate
+- Philosopher 0 will always eat without waiting, starting with both chopstick 0 and chopstick *n* − 1 (where *n* is the number of philosophers).
+
+# Check off
+
+Have a TA see your program working.
+They may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.
