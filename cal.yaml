@@ -150,11 +150,10 @@ lectures:
     - review Q&A
     - processors revisited
     - pipeline
-    - pipeline
+    - [pipeline, speculation]
 
-    - power
-    - speculation
     - out-of-order
+    - power
     - [meltdown, spectre]
     - [meltdown, spectre]
     - ask me anything
