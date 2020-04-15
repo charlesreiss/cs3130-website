@@ -381,7 +381,7 @@ assignments:
         title: 'Life'
         link: pa07-life.html
         due: 2020-04-21 17:00:00
-        files: ["life-parallel.c"]
+        files: ["life-parallel.c", "life-parallel-omp.c"]
         rubric: 
             kind: hybrid
             auto-weight: 0.8

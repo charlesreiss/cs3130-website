@@ -64,7 +64,7 @@ Additional constraints:
 1. You must not use OpenMP in your solution: we are trying to measure your understanding of the lower-level tools OpenMP uses.
     
     That said, you may add a file `life_parallel_omp.c` that *does* use OpenMP for a small amount of extra credit.
-    If so, you should include a block comment at the top of `life_parallel_omp.c` that compares your raw-`pthreads` and OpenMP implementations in terms of both code simplicity and performance.
+    If so, you should include a block comment at the top of `life-parallel-omp.c` that compares your raw-`pthreads` and OpenMP implementations in terms of both code simplicity and performance.
 
 ## Test your code.
 
