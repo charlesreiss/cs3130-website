@@ -2,7 +2,7 @@
 title: Processors
 ...
 
-> This writeup is incomplete and unlikely to make much sense out of context of the associated lectures.
+> This writeup is not designed to stand-alone and is unlikely to make sense without the associated lectures.
 
 # Organizing a processor
 
@@ -641,10 +641,30 @@ and so on
 
 This process ensures that each hardware register has at most one pending instruction that is writing to it, while still maintaining the dependency graph of the original instructions.
 
-## Common data bus
-
-*section to appear*
-
 ## Reorder buffer
 
-*section to appear*
+Because we might encounter an exception or discard work due to a misprediction at any time, we want to make sure that we never see any externally-visible results of an instruction before an earlier instruction has completed.
+To solve this, we'll have a special queue of incomplete instructions called a **reorder buffer**.
+
+When an instruction is issued, it is also enqueued into the reorder buffer.
+
+When an instruction completes, we
+
+- put its result into its hardware register and mark it as ready in the remap file
+- mark it as done in the reorder buffer
+- if it was the oldest undone instruction in the reorder buffer before, move its results over into the externally-visible state (set flags, update the register file, perform memory writes, etc)
+
+## Common data bus
+
+When an instruction completes, we might need to do any or all of the following:
+
+- update the hardware register with the result
+- update the remap file to show the register is ready
+- update all pending instructions that used the destination as a source with the newly-available result, marking those operands as ready
+- update the reorder buffer to show the instruction is done, possibly also setting externally-visible state
+
+This is potentially a lot of work, and rather than trying to have one system do it all we have an internal [bus](bus.html) that we broadcast results on.
+These messages are simple: "hardware register 23 is now 0x123456";
+each functional unit, the remap file, and the reorder buffer listen to the bus and adjust things as needed.
+
+
