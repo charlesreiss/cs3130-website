@@ -380,7 +380,7 @@ assignments:
     PA06:
         title: 'Life'
         link: pa07-life.html
-        due: 2020-04-21 17:00:00
+        due: 2020-04-23 17:00:00
         files: ["life-parallel.c", "life-parallel-omp.c"]
         rubric: 
             kind: hybrid
@@ -415,7 +415,7 @@ assignments:
     Quiz07:
         due: 2020-04-13 12:00:00
     Quiz08:
-        due: 2020-04-20 12:00:00
+        due: 2020-04-24 12:00:00
     Quiz09:
         due: 2020-04-27 12:00:00
         
