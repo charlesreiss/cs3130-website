@@ -98,21 +98,21 @@ Exams  		| 40% |
 
 Your final grade is computed based on the percentage of points you have earned and is designed to match the GPA value of each letter. For reasons I do not understand, that is not a linear scale: for example, `A-` &minus; `B+` = 0.4 grade points while `B+` &minus; `B` = 0.3 grade points. For reasons even farther from my ken, the most common grading scale I have seen is also not linear but differently spaced than the grade points (using \_7 instead of \_6 below). Following is a scale spaced like the grade point scale:
 
-You get     if you score     Which is worth
-----------  ------------    ----------------
-A+          near the top           4.0
-A           &ge; 93%               4.0
-A&minus;    &ge; 90%               3.7
-B+          &ge; 86%               3.3
-B           &ge; 83%               3.0
-B&minus;    &ge; 80%               2.7
-C+          &ge; 76%               2.3
-C           &ge; 73%               2.0
-C&minus;    &ge; 70%               1.7
-D+          &ge; 66%               1.3
-D           &ge; 63%               1.0
-D&minus;    &ge; 60%               0.7
-F           otherwise              0.0
+You get     if you score     Which is worth     Notes
+----------  ------------    ----------------    ------------------
+A+          near the top           4.0          CR; meets prereqs as C&minus; or better in CS 3330
+A           &ge; 93%               4.0          CR; meets prereqs as C&minus; or better in CS 3330
+A&minus;    &ge; 90%               3.7          CR; meets prereqs as C&minus; or better in CS 3330
+B+          &ge; 86%               3.3          CR; meets prereqs as C&minus; or better in CS 3330
+B           &ge; 83%               3.0          CR; meets prereqs as C&minus; or better in CS 3330
+B&minus;    &ge; 80%               2.7          CR; meets prereqs as C&minus; or better in CS 3330
+C+          &ge; 76%               2.3          CR; meets prereqs as C&minus; or better in CS 3330
+C           &ge; 73%               2.0          CR; meets prereqs as C&minus; or better in CS 3330
+also C      &ge; 70%               2.0          (C&minus; removed this semester)
+D+          &ge; 66%               1.3          GC; meets degree req
+D           &ge; 63%               1.0          GC; meets degree req
+D&minus;    &ge; 60%               0.7          GC; meets degree req
+F           otherwise              0.0          NC; does not meet any req
 
 ## Submitting late
 
