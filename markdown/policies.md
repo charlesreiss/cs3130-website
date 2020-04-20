@@ -107,8 +107,8 @@ B+          &ge; 86%               3.3          CR; meets prereqs as C&minus; or
 B           &ge; 83%               3.0          CR; meets prereqs as C&minus; or better in CS 3330
 B&minus;    &ge; 80%               2.7          CR; meets prereqs as C&minus; or better in CS 3330
 C+          &ge; 76%               2.3          CR; meets prereqs as C&minus; or better in CS 3330
-C           &ge; 73%               2.0          CR; meets prereqs as C&minus; or better in CS 3330
-also C      &ge; 70%               2.0          (C&minus; removed this semester)
+C           &ge; 70%               2.0          CR; meets prereqs as C&minus; or better in CS 3330
+C&minus;    *removed*                           *C&minus; removed this semester* 
 D+          &ge; 66%               1.3          GC; meets degree req
 D           &ge; 63%               1.0          GC; meets degree req
 D&minus;    &ge; 60%               0.7          GC; meets degree req
