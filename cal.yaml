@@ -205,7 +205,7 @@ reading:
     pipelines:
         - {txt: pipelines, lnk: lab12-pipeline.html}
     review lab:
-        - {txt: ask questions, link: 'http://www.tricider.com/brainstorming/30MHdxF09cl'}
+        - {txt: ask questions, lnk: 'http://www.tricider.com/brainstorming/30MHdxF09cl'}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
