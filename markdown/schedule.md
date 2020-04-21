@@ -108,7 +108,6 @@ or
 readings can be <input type="button" value="shown" onclick="document.querySelectorAll('details').forEach(x => x.setAttribute('open','open'))"></input> or <input type="button" value="hidden" onclick="document.querySelectorAll('details').forEach(x => x.removeAttribute('open'))"></input> as a whole, or clicked on individually to toggle visibility.
 </p>
 
-As part of a server crash on 2020-04-16, all lecture recordings on the server were lost. I have placed those I had in external backups into [collab's resources page](https://collab.its.virginia.edu/portal/site/258b436a-ed48-4ce3-b5df-5f33318bbb3c/tool/78b47dba-88bb-4c85-bd6f-4f4e98d7959f).
 
 {#include schedule.html}
 
