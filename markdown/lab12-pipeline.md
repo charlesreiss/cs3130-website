@@ -27,10 +27,10 @@ addq $24, %rax
 
 as
 
-        |      | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-        |:-----|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-        |`movq`| F | D | E | M | W |   |   |
-        |`addq`|   | F | D | D | E | M | W |
+|      | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|:-----|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|`movq`| F | D | E | M | W |   |   |
+|`addq`|   | F | D | D | E | M | W |
 
 We can read a lot of information from this diagram; for example
 
