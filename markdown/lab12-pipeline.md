@@ -46,7 +46,7 @@ We can read a lot of information from this diagram; for example
     |:-:|:-:|:-:|:-:|:-:|
     |*next*|`addq`|*nop*|`movq`|*previous*|
     
-    Contrast that with cycle 3, when we would see
+    Contrast that with cycle 3, which looked like
     
     | F | D | E | M | W |
     |:-:|:-:|:-:|:-:|:-:|

@@ -175,7 +175,7 @@ labs:
     - openmp
     - templates
     - pipelines
-    - review
+    - review lab
 
 
 
@@ -204,6 +204,8 @@ reading:
         - {txt: templates, lnk: lab11-templates.html}
     pipelines:
         - {txt: pipelines, lnk: lab12-pipeline.html}
+    review lab:
+        - {txt: ask questions, link: 'http://www.tricider.com/brainstorming/30MHdxF09cl'}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
@@ -263,7 +265,7 @@ reading:
     pipeline:
         - {txt: writeup, lnk: processors.html}
     // pipeline: [{txt: sequential diagram, lnk: files/seq.png}, {txt: pipelined diagram, lnk: files/pipe.png}]
-    // ask me anything: {txt: 'ask here', lnk: 'http://www.tricider.com/brainstorming/2bnaQ7fhZZ3'}
+    ask me anything: {txt: 'ask here', lnk: 'http://www.tricider.com/brainstorming/3AKiSW0gLOt'}
     
     out-of-order:
         - {txt: writeup, lnk: processors.html}
