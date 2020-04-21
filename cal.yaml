@@ -174,7 +174,7 @@ labs:
     - pthread coding
     - openmp
     - templates
-    - c++11
+    - pipelines
     - review
 
 
@@ -202,6 +202,8 @@ reading:
         - {txt: openmp, lnk: lab10-openmp.html}
     templates:
         - {txt: templates, lnk: lab11-templates.html}
+    pipelines
+        - {txt: pipelines, lnk: lab12-pipeline.html}
 
     review Q&A:
         - {txt: old exams, lnk: exams.html}
