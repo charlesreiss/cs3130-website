@@ -45,6 +45,15 @@ We can read a lot of information from this diagram; for example
     | F | D | E | M | W |
     |:-:|:-:|:-:|:-:|:-:|
     |*next*|`addq`|*nop*|`movq`|*previous*|
+    
+    Contrast that with cycle 3, when we would see
+    
+        | F | D | E | M | W |
+    |:-:|:-:|:-:|:-:|:-:|
+    |*next*|`addq`|`movq`|*previous*|*instr before that*|
+    
+    This stage-style view can be created by taking a column and turning it sideways, then filling in missing stages with *nop*.
+    
 
 There are some things a pipeline diagram should never show:
 
