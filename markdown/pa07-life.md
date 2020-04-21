@@ -103,3 +103,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 1.
     If you find yourself tempted to use a global variable (such as a global mutex or barrier), you can usually get away with adding it as a field of a `struct` passed in by reference to your thread function's `void *` parameter instead.
+
+# Caveats
+
+- MacOS and OS X ship with only a subset of the pthreads library, notably excluding `pthread_barrier_t` and its associated functions.
+    You should probably use portal, a virtual machine, etc. See [our COA1 guide](/tychonievich/COA1/F2019/lab04-tools.html#how-to-on-portal) for more.
