@@ -39,7 +39,12 @@ We can read a lot of information from this diagram; for example
 - They had a joint latency of 7 cycles (7 columns)
 - The `addq` stalled while in the decode stage
     - meaning decode couldn't complete until some earlier instruction had done something
-- During cycle 4, nothing was in the execute stage (it had been given a `nop` as part of the stall)
+- During cycle 4, nothing was in the execute stage (it had been given a `nop` as part of the stall).
+    If we looked at the stages then, we'd see
+    
+    | F | D | E | M | W |
+    |:-:|:-:|:-:|:-:|:-:|
+    |*next*|`addq`|*nop*|`movq`|*previous*|
 
 There are some things a pipeline diagram should never show:
 
