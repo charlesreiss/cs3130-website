@@ -288,6 +288,7 @@ assignments:
             link: https://kytos.cs.virginia.edu/coa2/quizzes/
         Lab:
             portion: "10"
+            drop: 1
 
     PA01:
         title: 'warmup'
