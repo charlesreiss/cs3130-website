@@ -107,4 +107,4 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 # Caveats
 
 - MacOS and OS X ship with only a subset of the pthreads library, notably excluding `pthread_barrier_t` and its associated functions.
-    You should probably use portal, a virtual machine, etc. See [our COA1 guide](/tychonievich/COA1/F2019/lab04-tools.html#how-to-on-portal) for more.
+    You should probably use portal, a virtual machine, etc. See [our COA1 guide](../../COA1/F2019/lab04-tools.html#how-to-on-portal) for more.
