@@ -465,8 +465,9 @@ assignments:
         late-days: 0
 
     Exam3:
-        due: 2020-05-07 17:00:00
-        weight: 3
+        due: 2020-05-07 23:59:00
+        link: https://kytos.cs.virginia.edu/coa2/quizzes/
+        weight: 2.5
       
     Lab01:
         due: 2020-01-21 21:00:00
