@@ -387,6 +387,10 @@ assignments:
         link: pa07-life.html
         due: 2020-04-24 17:00:00
         files: ["life-parallel.c", "life-parallel-omp.c"]
+
+    pa06-human
+        hide: true
+        due: 1970-01-01 00:00:00
         rubric: 
             kind: hybrid
             auto-weight: 0.8
