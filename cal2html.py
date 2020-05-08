@@ -396,7 +396,7 @@ def coursegrade_json(data):
             v *= cnt
         drops[k] = int(round(v))
     return {'letters':[
-        {'A+':0.95},
+#        {'A+':0.95.5},
         {'A' :0.93},
         {'A-':0.90},
         {'B+':0.86},
