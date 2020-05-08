@@ -515,4 +515,4 @@ assignments:
     Lab13:
         due: 2020-04-28 21:00:00
         open: 2020-04-28 17:00:00
-        optional: true
+        extra-credit: true
