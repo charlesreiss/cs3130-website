@@ -1,0 +1,69 @@
+- name: make
+  lab: true
+  due: 2023-01-25
+
+- name: accounts
+  lab: true
+  due: 2023-02-01
+
+- name: warmup
+  due: 2022-02-01
+
+- name: signal handling
+  lab: true
+  due: 2023-02-08
+
+- name: networking
+  lab: true
+  due: 2023-02-15
+
+- name: signatures
+  lab: true
+  due: 2023-02-22
+
+- name: page tables 1
+  comment: no introducing lab
+  due: 2022-02-22
+
+- name: memoizing
+  lab: true
+  due: 2023-03-01
+
+- name: code reviews
+  lab: true
+  due: 2023-03-15
+
+- name: page tables 2
+  comment: no introducing lab
+  due: 2022-03-15
+
+- name: sync games
+  lab: true
+  due: 2023-03-22
+
+- name: pthreads
+  lab: true
+  due: 2023-03-29
+
+- name: TLB
+  comment: no introducing lab
+  due: 2022-03-29
+
+- name: openmp
+  lab: true
+  due: 2023-04-05
+
+- name: fork
+  comment: for pipelines? after covered in lecture?
+  due: 2022-04-05
+
+- name: templates
+  lab: true
+  due: 2023-04-12
+
+- name: pipelines
+  lab: true
+  due: 2023-04-19
+
+- name: pipeline HW
+  due: 2022-04-26

@@ -1,123 +1,186 @@
-﻿---
-title: Spring 2020 Schedule
-...
+---
+layout: default
+title: Schedule
+index_title: Schedule
+index_sort: 99
+---
 
-The following is the current best guess at course pacing and topics.
-It may be adjusted as the semester progresses to reflect actual pacing and uptake of material.
-
-<hr/>
-
-<style id="schedule-css">
-
-#schedule.calendar {
-    display: grid;
-    width: 100%; 
-    background: rgba(0,0,0,0.125); 
-    border: 0.5ex solid rgba(0,0,0,0);
-    border-radius: 1.5ex; 
-}
-.calendar .day.Sun { grid-column: 1}
-.calendar .day.Mon { grid-column: 2}
-.calendar .day.Tue { grid-column: 3}
-.calendar .day.Wed { grid-column: 4}
-.calendar .day.Thu { grid-column: 5}
-.calendar .day.Fri { grid-column: 6}
-.calendar .day.Sat { grid-column: 7}
-
-.calendar .day { 
-    background: white;
-    border-radius: 1ex;
-    padding: .25ex .5ex;
-    margin: .25ex;
-    box-sizing:border-box; 
-    overflow: hidden;
-}
-
-
-#schedule td, #schedule th { padding: 0ex; }
-
-.calendar span.date { 
-    font-size: 70.7%;
-    padding-left: 0.5ex;
-    float:right;
-    margin-top:-0.5ex;
-}
-.calendar div {
-    padding: 0 0.5ex 0 0.5ex;
-    margin: 0 -0.5ex 0 -0.5ex;
-}
-.calendar div.day div:first-child {
-    padding-top: 0.5ex;
-    margin-top: -0.5ex;
-}
-.calendar div.day div:last-child {
-    padding-bottom: 0.5ex;
-    margin-bottom: -0.5ex;
-}
-
-
-.agenda { display: block; }
-
-.agenda .day.newweek {
-    border-top: thick solid grey;
-    min-height: 2em;
-}
-.agenda .day:not(.empty) {
-    display: block; border-top: thin solid grey; width: 100%;
-    padding: 0;
-}
-.agenda span.date.w0:before { content: "Sun "; }
-.agenda span.date.w1:before { content: "Mon "; }
-.agenda span.date.w2:before { content: "Tue "; }
-.agenda span.date.w3:before { content: "Wed "; }
-.agenda span.date.w4:before { content: "Thu "; }
-.agenda span.date.w5:before { content: "Fri "; }
-.agenda span.date.w6:before { content: "Sat "; }
-.agenda span.date {
-    font-size: 70.7%; width:7em;
-    vertical-align: middle; 
-    display: table-cell;
-    padding: 0 0.5ex;
-}
-.agenda div.events { display: table-cell; vertical-align: middle; }
-
-.assignment:before { content: "due: "; font-size: 70.7%; }
-.lab:before { content: "lab: "; font-size: 70.7%; }
-.lab summary:before { content: "lab: "; font-size: 70.7%; }
-details.lab:before { content: ""; }
-small { opacity: 0.5; }
-.special, .exam, .assignment:before { background: rgba(255,127,0,0.25); opacity: 0.75; }
-span.date { font-family:monospace; }
-details { padding-left: 1em; }
-summary { margin-left: -1em; }
-
-.day.past { opacity: 0.707; }
-.day.today { box-shadow: 0 0 0.5ex 0.5ex grey; }
-.agenda .day.today .wrapper { margin: 0.5ex 0;}
-
-.calendar div.day.empty { background: rgba(0,0,0,0); padding: 0em; margin: 0em; border: none; border-radius: 0; min-height: 1.5em; }
-
-</style>
-
-
-<p>View as 
-<label><input type="radio" name="viewmode" onchange="viewmode(this)" checked value="calendar" id="viewmode=calendar"> calendar</label>
-or
-<label><input type="radio" name="viewmode" onchange="viewmode(this)" value="agenda" id="viewmode=agenda"> agenda</label>;
-<label><input type="checkbox" name="showpast" onclick="showPast(this)" checked id="showpast"> show past</label>;
-readings can be <input type="button" value="shown" onclick="document.querySelectorAll('details').forEach(x => x.setAttribute('open','open'))"></input> or <input type="button" value="hidden" onclick="document.querySelectorAll('details').forEach(x => x.removeAttribute('open'))"></input> as a whole, or clicked on individually to toggle visibility.
+<p>
+This schedule is an estimate. It may be updated based on the actual pacing of the course material.
 </p>
 
+<p id="weekJump" style="display: none"></p>
 
-{#include schedule.html}
+<table class="schedule" id="schedule" data-start="{{ site.data.schedule[0].date | date: "%Y-%m-%d" }}">
+<tr class="header"><td>Date</td><td>Topic</td><td>Assignment</td></tr>
+{%- assign last_week = 0 -%}
+{%- for day in site.data.schedule -%}
+{%- capture week_day -%}{{ day.date | date: "%a" }}{%- endcapture -%}
+{%- capture file_prefix -%}{{ day.date | date: "%Y%m%d" }}{%- endcapture -%}
+{%- assign due_assignments = site.data.assignments | where:"due",day.date | where: "hide_web",nil -%}
+{%- assign released_assignments = site.data.assignments | where:"released",day.date | where: "hide_web",nil -%}
+{%- assign open_quizzes = site.data.quizzes | where:"open_date",day.date -%}
+{%- assign due_quizzes = site.data.quizzes | where:"due_date",day.date -%}
+{%- capture file_prefix -%}{{ day.date | date: "%Y%m%d" }}{%- endcapture -%}
+{%- assign video_raw = site.data.recordings | where:"prefix",file_prefix-%}
+{%- if video_raw.size > 0 -%}
+    {%- assign video = true %}
+{%- else -%}
+    {%- assign video = false %}
+{%- endif -%}
+{%- if week_day == "Fri" or week_day == "Sat" or week_day == "Sun" -%}
+{%- assign non_lecture_day = true -%}
+{%- else -%}
+{%- assign non_lecture_day = false -%}
+{%- endif -%}
+{%- if day.week != nil and day.week != last_week -%} 
+{%- assign last_week = day.week -%}
+<tr class="week_num" id="week-{{ day.week }}" data-week-number="{{ day.week }}" data-iso-week="{{ day.date | date: "%Y-W%V" }}"><td colspan="3">Week {{ day.week }}</td></tr>
+{%- endif -%}
+<tr class="{%- if day.no_class -%} no_class {%- elsif day.no_lab -%} no_lab {%- elsif day.lab -%} lab {%- elsif day.exam -%} exam {%- elsif non_lecture_day -%} non_lecture_day {%- else -%} lecture {%- endif -%}">
+<td class="date">{{ day.date | date: "%a %d %b" }}</td>
+<td class="description">
+<div class="titlestuff">
+{%- if day.title -%}
+<h3>{{ day.title }}</h3>
+{%- endif -%}
+{%- if day.who or day.slides or day.video_webm or day.slides_see -%}
+&nbsp;[&nbsp;
+    {%- if day.who -%}{{ day.who }}:&nbsp;{%- endif -%}
+{%- endif -%}
+{%- if day.slides -%}
+<div class="slides">
+  {%- if day.slides_see -%}
+    end of
+    <a href="slides/{{ day.slides_see | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see | date: "%d %b"}}</a>
+    pdf plus
+  {%- endif -%}
+  {%- if day.slides_tentative or day.slides_prelim -%}&nbsp;(tentative)&nbsp;{%- else -%} <!-- --> {%- endif -%}
+  <a href="slides/{{ file_prefix }}-slides.pdf">slides</a>
+  {%- if day.slides_extra -%}&nbsp;<span class="slides-extra-note">(more than one day of slides)</span>{%- endif -%}
+  {%- if day.slides_pptx -%}&nbsp;(or <a href="slides/{{ file_prefix }}-slides.pptx">as pptx</a>){%- endif -%}
+  {%- if day.slides_see2 -%}
+      &nbsp;plus beginning of <a href="slides/{{ day.slides_see2 | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see2 | date: "%d %b"}}</a> {%- if day.slides_see2_note -%}{{day.slides_see2_note}}{%- endif -%}
+  {%- endif -%}
+</div>
+{%- else -%}
+  {%- if day.slides_see -%}
+  <div class="slides">
+    (tentative) slides: see <a href="slides/{{ day.slides_see | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see | date: "%d %b"}}</a> {%- if day.slides_see_note -%}{{day.slides_see_note}}{%- endif -%}
+    {%- if day.slides_see2 -%}
+        and <a href="slides/{{ day.slides_see2 | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see2 | date: "%d %b"}}</a> {%- if day.slides_see2_note -%}{{day.slides_see2_note}}{%- endif -%}
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+{%- endif -%}
+{%- if video -%}
+      | screencapture (<a href="/~cr4bd/videoplayer/?3130/S2023/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
+    )
+{%- endif -%} 
+{%- if day.slides or day.video_webm or day.who or day.slides_see -%}
+&nbsp;]
+{%- endif -%}
+</div>
+<!-- TODO: lecture/etc. links -->
+<div class="due_assignments">
+{%- for due_assignment in due_assignments -%}
+{%- if due_assignment.lab -%}
+<h3>Lab: {{due_assignment.name}}</h3>
+<br>
+{%- if due_assignment.page -%}
+    {%- if due_assignment.tentative -%}
+        <a href="{{due_assignment.page|relative_url}}">tentative lab writeup</a>
+    {%- else - %}
+        <a href="{{due_assignment.page|relative_url}}">lab writeup</a>
+    {%- endif -%}
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}
+</div>
+{%- if day.reading -%}
+<em class="readingLabel">Reading: </em> <span class="readingText">{{day.reading | markdownify}}</span>
+{%- endif -%}
+{%- if day.description -%}
+  {{ day.description | markdownify }}
+{%- elsif day.no_class -%}
+  (no class)
+{%- elsif non_lecture_day -%}
+  &mdash;
+{%- endif -%}
+</td>
+{%- if due_assignments or released_assignments or day.assignment or open_quizzes or due_quizzes -%}
+<td class="assignment">
+{%- for quiz in open_quizzes -%}
+Quiz {{quiz.name}} ({{quiz.title}}) released, due {{quiz.due_date}} {{quiz.due | date: "%H:%M"}}<br>
+{%- endfor -%}
+{%- for quiz in due_quizzes -%}
+Quiz {{quiz.name}} ({{quiz.title}}) due {{quiz.due | date: "%H:%M"}} (released {{quiz.open_date}})<br>
+{%- endfor -%}
+{%- if day.assignment -%}
+  {{day.assignment}}
+{%- endif -%}
+{%- for due_assignment in due_assignments -%}
+  {%- if due_assignment.due_message -%}
+    {%- if due_assignment.tentative -%}
+    <span class="duehw">{{due_assignment.due_message}} (<a href="{{due_assignment.page|relative_url}}">tentative writeup</a>)</span><br>
+    {%- else -%}
+    <span class="duehw"><a href="{{due_assignment.page|relative_url}}">{{due_assignment.due_message}}</a></span><br>
+    {%- endif -%}
+  {%- else -%}
+      {%- if due_assignment.lab -%}
+        Lab due by end of day<br>
+      {%- elsif due_assignment.page -%}
+        {%- if due_assignment.tentative -%}
+        <span class="duehw">{{due_assignment.name}} (<a href="{{due_assignment.page|relative_url}}">tentative writeup</a>) due by 9:30am</span><br>
+        {%- else -%}
+        <span class="duehw"><a href="{{due_assignment.page|relative_url}}">{{due_assignment.name}}</a> due by 9:30am</span><br>
+        {%- endif -%}
+      {%- elsif due_assignment.url -%}
+        <span class="duehw"><a href="{{due_assignment.url}}">{{due_assignment.name}}</a>due</span><br>
+      {%- else -%}
+        <span class="duehw">{{due_assignment.name}} due</span><br>
+      {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for released_assignment in released_assignments -%}
+  {%- if released_assignment.released_message -%}
+      {{released_assignment.release_message}}<br>
+  {%- else -%}
+      {%- if released_assignment.page -%}
+          {%- if released_assignment.tentative -%}
+          <a href="{{released_assignment.page|relative_url}}">{{released_assignment.name}}</a> released<br>
+          {%- else -%}
+          {{released_assignment.name}} (<a href="{{released_assignment.page|relative_url}}">tentative writeup</a>) released<br>
+          {%- endif -%}
+      {%- else -%}
+      {{released_assignment.name}} released<br>
+      {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if day.due_message -%}
+{{day.due_message}}
+{%- endif -%}
+</td>
+{%- else -%}
+<td class="noassignment"></td>
+{%- endif -%}
+</tr>
+{%- endfor -%}
+</table>
 
-
-<script src="schedule.js"></script>
-
-
-To subscribe to the above calendar, add <http://www.cs.virginia.edu/luther/COA2/S2020/cal.ics> to your calender application of choice.
-
-<hr/>
-
-The <a href="http://www.virginia.edu/registrar/exams.html#1202">final exam schedule</a> puts our final 	Thursday, May 7, 2020 2:00PM&ndash;5:00PM. The final is an in-person on-paper exam administered in the usual classroom.
-
+<script>
+week_1 = new Date(document.querySelector("#schedule").dataset.start);
+week_1.setDate(week_1.getDate() - week_1.getDay());
+now = Date.now();
+offset = (now - week_1) / (1000 * 60 * 60 * 24 * 7);
+offset_week = Math.floor(offset);
+current_week = offset_week + 1;
+result = ""
+if (document.querySelector("#week-" + current_week)) {
+    result = "Jump to <a href='#week-" + current_week + "'>the current week</a> (week " + current_week + ").";
+}
+if (result != "") {
+    document.querySelector("#weekJump").innerHTML = result;
+    document.querySelector("#weekJump").style.display = "block";
+}
+</script>

@@ -1,0 +1,139 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Our variables
+$base-font-family: serif;
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.25;
+
+$spacing-unit:     30px;
+
+$text-color:       #000;
+$background-color: #fefefe;
+$brand-color:      #2a7ae2;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Width of the content area
+$content-width:    90%;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+// Minima also includes a mixin for defining media queries.
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+
+// Import partials from the `minima` theme.
+@import "minima";
+
+.schedule { border-collapse: collapse; }
+table.schedule { width: 100%; }
+.schedule tr td { border-bottom: thin solid $grey-color; };
+.schedule td { vertical-align: top; }
+.schedule td.date { width: 10em; font-family: "Source Code Pro", "Courier", monospace; };
+.schedule td.assignment { width: 30%; };
+.schedule td.no_assignment { width: 30%; };
+.schedule td.description { min-width: 60%; };
+.schedule tr.header { background-color: #aadddd; font-weight: bold; }
+.schedule tr.week_num { background-color: #ddaadd; font-weight: bold; }
+.schedule tr.no_class td { background-color: #ccc; color: lighten($text-color, 30%); }
+.schedule tr.no_lab td { background-color: #ccc; color: lighten($text-color, 30%); }
+.schedule tr td.assignment { background-color: #fff }
+.schedule tr.no_class td.assignment { background-color: #fff }
+.schedule tr.no_lab td.assignment { background-color: #fff }
+
+.schedule h3 { font-size: $base-font-size; font-weight: bold; margin-bottom: .5ex; display: inline; }
+.schedule .titlestuff { display: block; }
+.schedule .titlestuff .slides { display: inline; }
+.schedule .titlestuff .video { display: inline; }
+
+.schedule td.description p { margin-bottom: 0; }
+.schedule td.description p + p { margin-top: 1ex; }
+.schedule td.description ul + p { margin-top: 1ex; }
+
+.schedule tr.non_lecture_day td.description { background-color: #eee; align: center; };
+.schedule tr.lab { background-color: #ddf; align: center; };
+
+.schedule .readingText p { display: inline }
+.schedule .duehw { font-weight: bold; }
+
+.schedule .slides-extra-note {font-size: smaller; }
+
+#toctitle { display: none }
+#toc > ul:before { margin-left: -1em; content: "Table of contents: "; font-size: 110%; }
+#toc > ul { margin-left: 0em; padding-left: 0em; }
+#toc {
+    background-color: darken($background-color, 5%);
+    margin-top: -1em;
+    margin-bottom: 1ex;
+    padding: 1ex;
+    padding-left: 2em;
+    padding-right: 1em;
+    margin-left: 3em;
+    float: right;
+    border: thin solid $grey-color;
+    @include media-query($on-palm) {
+        margin-left: 0em;
+        float: none;
+    }
+};
+h1 + #toc {
+    margin-top: -3em;
+    @include media-query($on-palm) {
+        margin-top: -1em;
+    }
+}
+
+.changelog {font-size: smaller; }
+.changelog + ul {font-size: smaller; }
+
+table.lookup, table:not([class]) { border-collapse:collapse; margin:auto; border: 1px solid #aaaaff; }
+.lookup thead th, table:not([class]) thead th { border-bottom: 1px solid black; padding:0ex 1ex; }
+.lookup td, table:not([class]) td { padding:0ex 1ex; }
+.lookup td + td, .lookup td + th, table:not([class]) td + td, table:not([class]) th + th { text-align:center; }
+.lookup tr:nth-child(2n+2), table:not([class]) tr:nth-child(2n+1) { background-color:#ffffff; }
+.lookup tr:nth-child(2n+3), table:not([class]) tr:nth-child(2n+2) { background-color:#eeeeff; }
+
+dd + dt { margin-top: 2em; }
+dt { font-weight:bold; }
+
+
+table { margin:auto; border-collapse:collapse;}
+thead tr { border-bottom: thin solid black; }
+th { text-align:left; }
+th, td { padding: 0ex 1ex; }
+
+div.highlight pre { white-space: inherit }
+div.highlight pre code { white-space: pre }
+
+code { padding: 1px 1px }
+
+h1 pre { background-color: #fff; border: 0 }
+h2 pre { background-color: #fff; border: 0 }
+h3 pre { background-color: #fff; border: 0 }
+h4 pre { background-color: #fff; border: 0 }
+h1 code { background-color: #fff; border: 0; font-size: 100% }
+h2 code { background-color: #fff; border: 0; font-size: 100% }
+h3 code { background-color: #fff; border: 0; font-size: 100% }
+h4 code { background-color: #fff; border: 0; font-size: 100% }
+
+blockquote {
+    color: inherit;
+}
+
+.oldsite { 
+    background-color: #fbb; font-size: 150%;
+    border:1px solid grey; padding:1ex; border-radius:1ex; margin:1em 4em;
+}

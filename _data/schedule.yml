@@ -1,0 +1,350 @@
+- date: 2023-01-18
+  week: 1
+  no_class: true
+  description: (no lab)
+
+- date: 2023-01-19
+  week: 1
+  title: introduction / building (pt 1)
+  description: |
+    * course outline
+
+    * ssh keypairs, workflow
+    * make (and lab walkthrough) <!-- interaction with SDE -->
+        * make rules
+        * .o, .a, .so
+
+- date: 2023-01-24
+  week: 2
+  title: privilege
+  description: |
+    *  protection rings
+    *  interrupts
+       *  events triggering
+       *  what the hardware must do
+       *  interrupt handlers
+
+- date: 2023-01-25
+  week: 2
+  lab: true
+
+- date: 2023-01-26
+  week: 2
+  title: interrupts + signals
+  description: |
+    *  interrupts (con't)
+       *  writing interrupt handlers
+    *  Unix signals
+       *  events triggering
+       *  signal handlers and implementation
+    *  setjmp + longjmp <!-- cover stack unwinding instead? -->
+
+- date: 2023-01-31
+  week: 3
+  title: accounts + escalation
+  description: |
+    *  problems in multi-user systems
+    *  user IDs/account abstraction
+    *  POSIX permissions
+    *  sudo is not kernel mode
+    *  vulnerabilities and privilege escalation <!-- XXX: CORS? web security model? -->
+
+- date: 2023-02-01
+  week: 3
+  lab: true
+
+- date: 2023-02-02
+  week: 3
+  title: virtual memory 1
+  description: |
+    *  virtual memory concept
+    *  page tables
+       *  concept
+       *  in memory
+
+- date: 2023-02-07
+  week: 4
+  title: virtual memory 2
+  description: |
+    *  page tables
+       *  as a tree
+       *  x86-64 structure
+    *  page faults
+       *  loading data on demand, swapping
+
+- date: 2023-02-08
+  lab: true
+  week: 4
+
+- date: 2023-02-09
+  week: 4
+  title: buses + DMA
+  description: |
+    *  processor buses
+       *  half-duplex versus full-duplex
+       *  I/O bridge idea <!-- FIXME: still accurate? -->
+    *  direct-memory accesses <!-- FIXME: what prereqs are covered in COA1 -->
+    *  connecting machines
+    *  network topologies
+
+- date: 2023-02-14
+  week: 5
+  title: IP + UDP
+  descripton: |
+    *  mailbox analogy
+       *  inboxes and outboxes
+       *  addresses
+       *  best-effort delivery
+       *  envelope versus contents
+    *  IP
+       *  addresses (v4, v6)
+       *  routers
+    *  port numbers and UDP
+
+- date: 2023-02-15
+  lab: true
+  week: 5
+
+- date: 2023-02-16
+  week: 5
+  title: connections + TCP
+  description: |
+    *  connection abstraction
+    *  TCP
+    *  firewalls
+
+- date: 2023-02-21
+  week: 6
+  title: DHCP + UDP
+  description: |
+    *  OSI model layers and real layers
+    *  the link layer
+       *  (topologies reprise)
+       *  MAC addresses
+    *  DHCP / v6 autoconfiguration?
+
+    *  addresses and names
+    *  DNS
+       *  is a distributed database
+       *  with caching
+
+
+- date: 2023-02-22
+  lab: true
+  week: 6
+
+- date: 2023-02-23
+  week: 6
+  title: network security / secure channels 1
+  description: |
+    *  DDoS
+    *  spoofing
+
+    *  cryptography (start)
+       *  cryptographic hashes
+       *  symmetric encryption
+       *  asymmetric encryption
+       *  key exchange
+
+- date: 2023-02-28
+  week: 7
+  title: secure channels 2
+  description: |
+    *  cryptography (con't)
+        *  digital signatures
+        *  public key infrastructure
+
+    *  TLS protocol outline
+
+- date: 2023-03-01
+  lab: true
+  week: 7
+
+- date: 2023-03-02
+  week: 7
+  title: caches 1
+  description: |
+    *  memory hierarchy
+    *  locality
+    *  fully-associative cache
+       *  valid bits
+       *  tags
+
+- date: 2023-03-07
+  no_class: true
+  week: 8
+
+- date: 2023-03-08
+  no_class: true
+  week: 8
+
+- date: 2023-03-09
+  no_class: true
+  week: 8
+
+- date: 2023-03-14
+  week: 9
+  title: caches 2
+  description: |
+    *  direct-mapped cache
+    *  set-associative cache
+    *  write policies
+
+    *  the TLB
+    *  memory lookup overall
+
+- date: 2023-03-15
+  lab: true
+  week: 9
+
+- date: 2023-03-16
+  week: 9
+  title: concurrency 1
+  description: |
+    *  processes, threads
+    *  creating new processes
+       *  fork, exec*
+       *  copy-on-write
+       *  [if time] alternatives to fork
+    *  proceses in the shell
+    *  waiting for processes
+
+- date: 2023-03-21
+  week: 10
+  title: concurrency 2 + synchronization 1
+  description: |
+    *  pthreads: creating threads
+    *  Amdahl's law <!-- demo? -->
+    *  atomicity, race conditions
+    *  locks and mutexes
+
+- date: 2023-03-22
+  lab: true
+  week: 10
+
+- date: 2023-03-23
+  week: 10
+  title: synchronization 2
+  description: |
+    *  atomic read-modify-write instructions
+    *  monitors (mutexes + condition variables)
+    *  semaphores
+    *  reader/writer locks
+
+
+- date: 2023-03-28
+  week: 11
+  title: roll back 
+  description: |
+    *  transactions
+    *  redo logging
+
+- date: 2023-03-29
+  lab: true
+  week: 11
+
+- date: 2023-03-30
+  week: 11
+  title: deadlock
+  description: |
+   *  deadlock definition + examples
+   *  recovering from deadlock
+   *  detecting deadlock, Banker's algorithm
+
+- date: 2023-04-04
+  week: 12
+  title: processors
+  description: |
+   *  review: single-cycle CPU
+   *  pipelining idea
+   *  pipleining for the CPU
+   *  dependencies and hazards
+      *  data flow graphs
+
+- date: 2023-04-05
+  lab: true
+  week: 12
+
+- date: 2023-04-06
+  week: 12
+  title: pipeline
+  description: |
+   *  hazard handling, part 1
+      *  stalling / waiting
+      *  forwarding and forwarding logic
+   *  pipeline timing
+
+- date: 2023-04-11
+  week: 13
+  title: speculation
+  description: |
+    *  speculation idea
+       *  guess and check later
+       *  undo when wrong
+    *  speculation for branch taken versus not
+       *  always taken
+       *  forward taken, backwards not taken
+       *  using history
+    *  speculation for branch targets
+    *  other speculation
+       *  for values?
+       *  that there won't be a segfault?
+
+
+- date: 2023-04-12
+  lab: true
+  week: 13
+
+- date: 2023-04-13
+  week: 13
+  title: out-of-order
+  description: |
+    *  dependency graph revisited
+    *  register renaming
+       *  (? need for multiple register versions)
+       *  simplifying to microinsturctions, maybe
+    *  functional units
+       *  and hookup via buses?
+    *  reorder buffer
+    *  throughput
+
+- date: 2023-04-18
+  week: 14
+  title: power
+  description: |
+    *  P = IV; V = IR
+    *  transitor speed+count versus power tradeoffs
+    *  overclocking and variable clock rates
+
+- date: 2023-04-19
+  lab: true
+  week: 14
+
+- date: 2023-04-20
+  week: 14
+  title: meltdown, spectre, etc. 1
+  description: |
+    *   meltdown:
+        *  speculation past a priv/protection fault
+    *   side-channels
+        *  in the cache
+
+- date: 2023-04-25
+  week: 15
+  title: meltdown, spectre, etc. 2
+    *   spectre
+        *   speculation past a bounds chcek
+        *   using cache side-channels
+    *   avoiding spectre+meltdown
+    *   briefly, more spectre variants
+
+- date: 2023-04-26
+  lab: true
+  week: 15
+
+- date: 2023-04-27
+  week: 15
+
+- date: 2023-05-02
+  week: 16
+
