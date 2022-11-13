@@ -1,5 +1,6 @@
 ---
 title: Computer Systems and Organization
+author: Charles Reiss
 ...
 
 

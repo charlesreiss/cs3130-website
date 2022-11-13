@@ -19,6 +19,7 @@ email: creiss@virginia.edu
 baseurl: "/~cr4bd/3130/S2023" # the subpath of your site, e.g. /blog
 url: "https://www.cs.virginia.edu" # the base hostname & protocol for your site, e.g. http://example.com
 
+
 # Build settings
 markdown: kramdown
 theme: minima
@@ -38,6 +39,8 @@ defaults:
       path: ""
     values:
       layout: withtoc
+      author: Luther Tychnoviech and Charles Reiss
+      license: <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /> CC-BY-NC-SA 4.0</a>
   - 
     scope:
       path: "slides"
