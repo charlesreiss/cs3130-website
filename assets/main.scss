@@ -43,8 +43,6 @@ $on-laptop:        800px;
 pre, code { background: rgba(0,0,0,0.04); }
 pre > code { border: none; background: none; }
 pre { display: table }
-pre:has(code) { white-space: inherit; }
-
 .schedule { border-collapse: collapse; }
 table.schedule { width: 100%; }
 .schedule tr td { border-bottom: thin solid $grey-color; };
@@ -78,7 +76,6 @@ table.schedule { width: 100%; }
 
 .schedule .slides-extra-note {font-size: smaller; }
 
-#toctitle { display: none }
 #toc > ul:before { margin-left: -1em; content: "Table of contents: "; font-size: 110%; }
 #toc > ul { margin-left: 0em; padding-left: 0em; }
 #toc {

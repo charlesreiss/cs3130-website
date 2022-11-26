@@ -149,7 +149,7 @@ Recall that each line of `bash` begins with a program and is followed by any num
 `bash` also has various control constructs and special syntax that can be used where programs are expected, like `for` and `x=`, which we will not cover in this class.
 It can also redirect input and output using `|`, `>`, `<`, `>>`, `2>`, and a few others.
 
-Because new-lines are important to `bash`, but sometimes line breaks help reading, you can end a `bash` line with `\` to say "I'm not really done with this line". Thus
+Because new-lines are important to `bash`, but sometimes line breaks help reading, you can end a `bash` line with ```\``` to say "I'm not really done with this line". Thus
 
 ```bash
 echo 1 echo 2 \

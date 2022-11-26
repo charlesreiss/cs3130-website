@@ -2,3 +2,5 @@
 vendor
 Gemfile.lock
 .bundle
+*.html
+readings/*.html

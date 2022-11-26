@@ -1,6 +1,4 @@
-<div id="toc">
-$table-of-contents$
-</div>
-<main>
+$yaml_stuff$
+...
+$if(toc)$<nav id="toc" aria-label="Table of Contents">$table-of-contents$</nav>$endif$
 $body$
-</main>

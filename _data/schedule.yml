@@ -332,6 +332,7 @@
 - date: 2023-04-25
   week: 15
   title: meltdown, spectre, etc. 2
+  description: |
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
