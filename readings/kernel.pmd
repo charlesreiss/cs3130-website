@@ -50,7 +50,7 @@ One reason to not run in kernel mode is to limit the impact a software bug can h
 Inside the computer is all of the code and data that handles drawing the screen and tracking the mouse and reacting to keys and so on; I'd rather not be able to make a mistake when writing my Hello World program and accidentally mess up those core functionalities.
 By running in user mode, if my code tries to touch any of that it will be blocked from doing so: my program will crash, but the computer will keep running.
 
-### Each Program Thinks it is In Control
+### Each Program Thinks it is in Control
 
 Physical computers have limited physical resources.
 One of the benefits of running in user mode is that the particular limitations are hidden from you by the kernel and hardware working together.
@@ -128,10 +128,8 @@ Interrupts are typically handled by the kernel in a way that is invisible to the
 The user code is frozen, the interrupt handled, and then the user code resumed as if nothing had happened.
 
 
-<div class="aside">
-Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
+{.aside} Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
 
-</div>
 
 
 ### Faults
@@ -177,7 +175,7 @@ The exception table is just an array of code addresses; the index into that arra
 The index is called an **exception number** or **vector number** and the array of code addresses is called the **exception table**.
 
 
-<div class="aside long">
+{.aside ...}
 Switches
 
 Having an array of code addresses is not unique to exception handlers; it is also present in C in the form of a `switch`{.c} statement.
@@ -242,7 +240,7 @@ Table:
 
 Exception tables are just one particular use of this array-of-code-addresses idea.
 
-</div>
+{/}
 
 
 ### After the Handler
@@ -259,7 +257,7 @@ and thus generally re-runs the faulting instruction.
 
 
 
-<div class="aside long">
+{.aside ...}
 Aborts
 
 We [classified exceptions by cause](#kinds), but some texts classify them by result instead.
@@ -282,7 +280,7 @@ if a memory access detects memory inconsistency we have an aborting fault;
 an exit system call is an aborting trap;
 and integral peripherals like RAM can send aborting interrupts if they notice unrecoverable problems.
 
-</div>
+{/}
 
 
 
@@ -297,7 +295,7 @@ To see a list of Linux system calls, see `man 2 syscall`{.bash}.
 Most of these are wrapped in their own library function, listed in `man 2 syscalls`{.bash}
 
 
-<div class="example long">
+{.example ...}
 Consider the C library function `socket`.
 The assembly for this function (as compiled into `libc.so`) begins
 
@@ -351,8 +349,7 @@ Let's walk through this a bit at a time:
 After that is some error checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
 The code in `system_call_handler[41]` of the kernel is considerably longer; many thousands of lines of C code, in fact (see <https://github.com/torvalds/linux/tree/master/net>).
 
-</div>
-
+{/}
 
 ## Exception-Like Constructs
 
@@ -378,8 +375,7 @@ Linux defines many different signals, listed in `man 7 signal`{.bash}.
 Each of them has a default action if no handler is registered,
 most commonly terminating the process.
 
-
-<div class="example long">
+{.example ...}
 Typing Ctrl+C on the command line causes the SIGINT signal to be generated.
 If we want Ctrl+C to do something else, we have to handle that signal:
 
@@ -409,11 +405,9 @@ int main() {
 }
 ````
 
-</div>
+{/}
 
-
-
-<div class="example long">
+{.example ...}
 Almost all signals can be overridden, but for many it is not wise to do so.
 For example, this code:
 
@@ -449,15 +443,14 @@ which generates another segfault.
 
 Obviously, you should not do something like this in real code.
 
-</div>
-
+{/}
 
 There is a system call named "kill" that asks the kernel to send a signal to a different process.
 While this can be used for inter-process communication,
 better systems (like sockets and pipes) exist for that if it is to be a major part of an application's design.
 
 
-<div class="aside long">
+{.aside ...}
 Command line and signals
 
 From a bash command line, you can send signals to running processes.
@@ -476,8 +469,7 @@ From a bash command line, you can send signals to running processes.
 
 There are other tools for sending signals, but the above are sufficient for most common use cases.
 
-</div>
-
+{/}
 
 ### `setjmp`{.c}, `longjmp`{.c}, and software exceptions
 
@@ -490,7 +482,7 @@ Thereafter `longjmp` can be called with that same `jmp_buf` as an argument;
 `longjmp` also provides an alternative return value for `setjmp`.
 
 
-<div class="example long">
+{.example ...}
 The following program
 
 ```c
@@ -555,8 +547,7 @@ prints
 
 See also a [step-by-step simulation](longjmp.html) of this same process without the `printf`s.
 
-</div>
-
+{/}
 
 There was a time when `setjmp`/`longjmp` were seen as effective ways of achieving
 `try`/`catch`-like error recovery,
@@ -654,7 +645,7 @@ and potentially convert them into [signals](Signals)
 to convey to the user process.
 
 
-<div class="example long">
+{.example ...}
 Because segments are a software-only construct,
 each operating system can store them in a different way.
 One simple example might be the following,
@@ -668,12 +659,10 @@ struct segment_node {
 }
 ```
 
-</div>
+{/}
 
 
-
-
-<div class="aside long">
+{.example ...}
 It is common to refer to the crashing of a program
 that tries to access an invalid address
 as a "segfault", short for "segmentation fault."
@@ -688,8 +677,7 @@ Many people and programs using the term "segfault"
 are aware it is technically incorrect;
 it is arguably an example of a computing colloquialism.
 
-</div>
-
+{/}
 
 
 
@@ -790,7 +778,7 @@ called the **page table base register** or PTBR,
 stores the address of this array.
 
 
-<div class="example long">
+{.example ...}
 Consider a system with 16-bit virtual addresses.
 If that memory was broken into 2^7^ pages of 2^9^ bytes each,
 and if each page table entry consists of 6 bits of flag bits
@@ -817,8 +805,7 @@ to 19-bit physical addresses:
 each *process* is limited to 64KB of addressable memory
 but the hardware can support 512KB physical RAM.
 
-</div>
-
+{/}
 
 Single-level page tables are inefficient for 32-bit addresses
 and basically untenable for 64-bit addresses.
@@ -855,7 +842,8 @@ with separate data design for the internal nodes
 and the leaf nodes.
 
 
-<div class="example long">
+
+{.example ...}
 The following code defines a tree
 with arity 16 and three levels of intermediate nodes.
 It has a fixed height of (depending on how you count) 3 or 4.
@@ -885,8 +873,7 @@ This tree has the ability to store 16^4^ = 2^16^ = 65,536 `PAYLOAD` values
 using a total of 16^3^ + 16^2^ + 16^1^ + 1 = 4,369 pointers,
 including the `root` pointer.
 
-</div>
-
+{/}
 
 Fixed-depth trees with power-of-two width in each node
 can be accessed with integer indexes, like an array,
@@ -896,7 +883,7 @@ using the high-order bits for the first tree node index
 and lower-order bits for subsequent nodes until a leaf is reached.
 
 
-<div class="example long">
+{.example ...}
 In the following figure,
 which uses width 8 instead of 16 to avoid over-cluttering the figure,
 the value 23 has index 100 111 011 100~2~.
@@ -936,11 +923,10 @@ the value 23 has index 100 111 011 100~2~.
 </g>
 </svg>
 
-</div>
+{/}
 
 
-
-<div class="example long">
+{.example ...}
 Continuing the previous code example,
 each tree can be treated as if it were an array of 65,536 entries:
 
@@ -953,7 +939,7 @@ PAYLOAD arr(struct height3 *root, unsigned short index) {
 }
 ```
 
-</div>
+{/}
 
 
 Such a structure is significantly less efficient than a simple array:
@@ -963,7 +949,7 @@ it requires more time because it requires multiple memory accesses per element a
 However, it can save significant space if the majority of the indexes have no value, as entire subtrees can be omitted.
 
 
-<div class="example long">
+{.example ...}
 By adding intermediate null checks,
 most of the tree can be omitted if only a few indices are needed:
 
@@ -999,7 +985,7 @@ the only non-NULL pointers are to:
 Thus, only ten intermediate nodes and 5 × 16 = 80 `PAYLAOD` values are allocated
 rather than the 65,535 `PAYLOAD` values that would have been allocated for a simple array.
 
-</div>
+{/}
 
 
 #### Multi-level page table implementation
@@ -1031,7 +1017,7 @@ x86-64-compatible processors handle 64-bit addresses as follows:
     and at a slight loss of space efficiency other sizes can be used as well.
     
 
-<div class="aside long">
+{.aside ...}
 Page size selection is a trade-off.
 The smaller the pages, the fewer bytes of memory are wasted because of partially-used pages,
 but the more time and space is devoted to the page table.
@@ -1068,8 +1054,7 @@ meaning some paths down the page table tree pass through one fewer node
 This adds some complexity to the page table traversal process,
 but allows the operating system more control over how pages are distributed.
 
-</div>
-
+{/}
 
 - Each address translation that the [TLB](#translation-lookaside-buffer) does not optimize runs a process similar to the following:
 

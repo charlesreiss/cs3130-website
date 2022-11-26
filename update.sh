@@ -15,16 +15,29 @@ if [ ! -e jekyll-dir ]; then
     popd
 fi
 
-for input in assets Gemfile *.md _* files slides; do
+for input in assets Gemfile _* files slides; do
     if [ ! -e jekyll-dir/$input ]; then
         ln -s ../$input jekyll-dir
     fi
 done
 
+find . \( -name _\* -prune -o -name .?\* -prune -o -name jekyll-dir -prune \
+          -o -name \*.pmd -prune \) -o -type f -print0 | \
+    while IFS= read -r -d '' input; do
+        if [ ! -e "jekyll-dir/$input" ] ; then
+            dest_dir=$(dirname jekyll-dir/$input)
+            mkdir -p "$dest_dir"
+            output="jekyll-dir/$input"
+            if [ "$input" -nt "$output" ]; then 
+                cp "$input" "jekyll-dir/$input"
+            fi
+        fi
+    done
+
 for input in *.pmd */*.pmd; do
     output="jekyll-dir/${input%.pmd}.html"
     mkdir -p $(dirname $output)
-#    if [ "$input" -nt "$output" ]; then 
+    if [ "$input" -nt "$output" ]; then 
         python3 env.py "$input" | \
         $pd --standalone \
             --to=html5 \
@@ -35,7 +48,7 @@ for input in *.pmd */*.pmd; do
             --template=_template.html5 \
             -o "$output"
         chmod a+r $output
-#    fi
+    fi
 done
 pushd jekyll-dir
 ~/bin/bundle exec jekyll b --trace
