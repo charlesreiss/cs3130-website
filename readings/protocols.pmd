@@ -62,8 +62,7 @@ but [the OSI model](https://en.wikipedia.org/wiki/OSI_model#Description_of_OSI_l
 even though [the Internet Protocol Suite](https://en.wikipedia.org/wiki/Internet_protocol_suite#Key_architectural_principles) is better known.
 Note that OSI numbers its layers, where containers have smaller numbers than their contents.
 
-
-<div class="example long">
+{.example ...}
 Consider using a `SOCK_STREAM` `socket`, as you did in [COA1](/luther/COA1/F2019/lab09-sockets.html).
 When you `write` a message, the result is
 
@@ -73,9 +72,7 @@ When you `write` a message, the result is
 - a IEEE 802.11 header and footer to get it over the Wireless LAN to the Internet
 
 That last layer will be stripped off after traversing the WLAN, to be replaced by a different outer "envelope" to guide it over the next link on its way to its destination.
-
-</div>
-
+{/}
 
 Note that because of the header/footer design,
 every layer can slice the data provided by the other layers freely.
@@ -151,8 +148,7 @@ a core idea in this is that each received message must be acknowledged by the re
 
 ![Simplified TCP state diagram for how to establish and terminate a connection (from [Wikimedia](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#/media/File:Tcp_state_diagram_fixed_new.svg))](https://upload.wikimedia.org/wikipedia/commons/f/f6/Tcp_state_diagram_fixed_new.svg)
 
-
-<div class="example long">
+{.example ...}
 Suppose two computers, $P$ and $Q$, have established a TCP connection with one another.
 $P$ might send $Q$ the message "This is a triumph!" as follows,
 using (contents, sequence number) to represent a TCP segment:
@@ -220,9 +216,7 @@ begin closing connection
 In general, either side may re-send a message if they have not received the expected response, and neither needs to wait for the other's message to send the next.
 This way if messages seem to be arriving well, more messages may be sent in groups;
 if acknowledgments are not arriving, transmission may be slowed down to wait for ACKs before the next sending.
-
-</div>
-
+{/}
 
 TCP is significantly slower than UDP,
 requiring overhead to establish and shut down a connection,
@@ -245,16 +239,13 @@ Note that the hostname here performs a similar function as an IP address, but di
 IP addresses are organized to help computers locate one another.
 Hostnames are organized to help humans locate computers.
 
-
-<div class="example long">
+{.example ...}
 In the URL <https://www.cs.virginia.edu/COA2>,
 
 - The *scheme* is `https`
 - The *hostname* is `www.cs.virginia.edu`
 - the *path* is `/COA2`
-
-</div>
-
+{/}
 
 ## The value of a mapping
 
@@ -297,8 +288,7 @@ with the last string (called the "top-level domain") being the most important.
 SRI decided that top-level domains would be allocated based to type of business,
 with `.com` for commercial entities, `.edu` for educational, `.gov` for government, etc.
 
-
-<div class="example long">
+{.example ...}
 In the hostname `www.cs.virginia.edu`,
 
 - `edu` is the top-level domain
@@ -307,9 +297,7 @@ In the hostname `www.cs.virginia.edu`,
 - `www.cs.virginia.edu` is a subdomain of `www.virginia.edu`
 - `edu`, `virginia`, `cs`, and `www` called *labels*
 
-
-</div>
-
+{/}
 
 As the Internet grew and a single file on a single server became unwieldy,
 various proposals were created for how to distribute the load.
@@ -329,8 +317,7 @@ DNS address resolution uses two basic ideas:
     
 1. Replies are cached (stored locally) so that each query may be sent just once.
 
-
-<div class="example long">
+{.example ...}
 Generally when I ask my browser to visit `www.cs.virginia.edu`,
 it just contacts `128.143.67.11` without any DNS queries because it has it in its cache.
 
@@ -353,9 +340,7 @@ Request                 To               Reply
 
 `www.cs.virginia.edu.`  `128.143.136.15` The IP address `128.143.67.11`
 --------------------------------------------------------------------------------
-
-</div>
-
+{/}
 
 There are many additional components to the DNS protocol,
 including digital signatures to validate that they are not spoofed,

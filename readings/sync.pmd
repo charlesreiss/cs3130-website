@@ -164,9 +164,7 @@ they are instead implemented "optimistically" using something liek the read-copy
 
 The principle behind read-copy-update is that a process checks to make sure none of the inputs of a computed value have changed before placing that value into memory.
 
-
-<div class="example long">
-Suppose you wanted to compute `x = a*x*x + b*x + c` as a transaction. You would
+{.example ...} Suppose you wanted to compute `x = a*x*x + b*x + c` as a transaction. You would
 
 1. make a copy of the current values of `a`, `b`, `c`, and `x` as `A`, `B`, `C`, and `X`.
 2. compute the new value of `x` as `x_new = A*X*X + B*X + C`.
@@ -174,7 +172,5 @@ Suppose you wanted to compute `x = a*x*x + b*x + c` as a transaction. You would
     a. verifying that the value now in `a` is still `A`, and similarly for `b` and `B`, `c` and `C`, and `x` and `X`.
     b. if so, writing `x = x_new` and release the mutex.
     c. if not, release the mutex and return to step 1 to try again.
-
-</div>
-
+{/}
 

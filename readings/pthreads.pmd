@@ -130,9 +130,7 @@ A `pthread_attr_t` must be initialized using `pthread_attr_init` before invoking
 `pthread_attr_init` is permitted to `malloc` fields inside the `pthread_t`
 and if it did, `pthread_attr_destroy` will `free` them.
 
-
-<div class="example long">
-The following is a skeleton of how to create a thread.
+{.example ...} The following is a skeleton of how to create a thread.
 
 ```c
 pthread_attr_t attr;
@@ -143,9 +141,7 @@ void *argument = /* ... initialize this here */
 pthread_create(&id, &attr, run_this, argument);
 pthread_attr_destroy(&attr);
 ```
-
-</div>
-
+{/}
 
 Many of the attributes that can be placed into a `pthread_attr_t`
 have to do with scheduling priority (how often the thread gets CPU time)

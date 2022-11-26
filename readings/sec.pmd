@@ -16,19 +16,12 @@ A **hash function** takes an input of any size (often generalized as a byte stre
 and returns an output of a fixed size (often generalized as a large binary number)
 such that changing any byte of the input would change the output too.
 
-
-<div class="aside">
-The word "hash" is used to refer to (a) the output of this function, (b) the function itself, and (c) the action of running this function. It is grammatically correct to say "I hashed it with my favorite hash to get the following hash: `f4ca408dc68ca2776e5d294e8f1166b56ee5af9b`."
-
-</div>
-
+{.aside} The word "hash" is used to refer to (a) the output of this function, (b) the function itself, and (c) the action of running this function. It is grammatically correct to say "I hashed it with my favorite hash to get the following hash: `f4ca408dc68ca2776e5d294e8f1166b56ee5af9b`."
 
 A **crytographically-secure hash function** is not feasibly invertible.
 That is, given the output of the hash function and the code of the function itself, finding an input that would generate that output requires work equivalent to guessing random inputs until one happens to have the desired output.
 
-
-<div class="example long">
-The following code implements a hash function, in that any sized input will provide a fixed-size output
+{.example ...} The following code implements a hash function, in that any sized input will provide a fixed-size output
 
 ```c
 uint hash(uint *arr, size_t len) {
@@ -42,9 +35,7 @@ uint hash(uint *arr, size_t len) {
 
 However, that code it not even close to being cryptographically secure;
 to get a desired output `x` all that is needed is to input an array containing only `x`.
-
-</div>
-
+{/}
 
 It is very difficult to prove that a hash function is crytographically secure, and we have a long history of compromising one hash function (e.g., by figuring out how to rule out 99% of all inputs so we only have to guess 1% as many) and adopting another.
 
@@ -58,9 +49,7 @@ They should have the following properties:
 - $d(e(m, k), k) = m$ --- that is, decryption undoes encryption
 - recovering $m$ from $e$ and $c$ without $k$ is no easier than trying every possible $k$ until one works
 
-
-<div class="example long">
-The following code implements a symmetric cipher, albeit not a secure one
+{.example ...} The following code implements a symmetric cipher, albeit not a secure one
 
 ```c
 void e(uint *arr, size_t len, size_t key) {
@@ -74,9 +63,7 @@ void d(uint *arr, size_t len, size_t key) {
 ```
 
 Describing why this is insecure stems from the fact that messages have internal patterns. If I know that you are sending a PDF document, for example, I know that the first four bytes are always 0x25, 0x50, 0x44, 0x46; I can simply subtract that from the first four bytes of the ciphertext and recover the key.
-
-</div>
-
+{/}
 
 Getting the first two properties is easy; getting the third is hard, contributing to a history of finding a weakness in one cipher and picking another to replace it.
 
@@ -98,9 +85,7 @@ In practice, only a limited set of asymmetric ciphers are known and they do not 
 - Certain generally-accepted but not-yet-proven theorems hold (notably "**P** ≠ **NP**" and "factorization ∉ **P**")
 - You only encrypt small data (generally not to exceed the size of the keys)
 
-
-<div class="example long">
-The following code implements an asymmetric cipher, albeit not a secure one
+{.example ...} The following code implements an asymmetric cipher, albeit not a secure one
 
 ```c
 int f(int msg, int key) {
@@ -128,9 +113,7 @@ displays
     <- message: deadbeef; ciphertext: ba965523; decrypted: deadbeef
 
 This cipher is not secure because the [extended Euclid's algorithm](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse#Extended_Euclidean_algorithm) can efficiently derive $k_1$ from $k_2$.
-
-</div>
-
+{/}
 
 Typically, keys are generated in pairs and one of them (chosen arbitrarily) is kept secret while the other one is shared publicly.
 If you have my public key, you can use it to encrypt messages only I can decrypt (you can't even decrypt them yourself)
@@ -148,9 +131,7 @@ The **Diffie-Hellman key exchange**^[There is some difference of opinion about t
 The process requires identifying a "cyclic group" -- that is, a set of values (integers are preferred) and an operator on elements of that set such that $op(op(x, y), z) = op(op(x, z), y)$.
 To be secure, the set should be large and the operation hard to undo (i.e., knowing both $x$ and $op(x,y)$ should not make it easy to determine $y$).
 
-
-<div class="example long">
-The following code implements a cyclic group (i.e., `f(f(x,y),z) == f(f(x,z),y)`{.c}, albeit not a secure one
+{.example ...} The following code implements a cyclic group (i.e., `f(f(x,y),z) == f(f(x,z),y)`{.c}, albeit not a secure one
 
 ```c
 int f(int generator, int key) {
@@ -159,9 +140,7 @@ int f(int generator, int key) {
 ```
 
 This is insecure for the same reason it was for asymmetric ciphers.
-
-</div>
-
+{/}
 
 If two people want to create a shared secret, they
 
@@ -177,8 +156,7 @@ $a$                                                        $b$
                     $f(g, a)$, $f(g, b)$
 $f(f(g,b), a)$                                  $f(f(g,a), b)$
 
-
-<div class="example long">
+{.example ...}
 Suppose you and I are communicating, using the (insecure) $f$ from the previous example.
 
 1. One of us picks `0x3308006d` as $g$ and we both agree to use it
@@ -190,9 +168,7 @@ Suppose you and I are communicating, using the (insecure) $f$ from the previous 
     
     Because we picked an insecure operator $f$, this public information does allow others to figure out our secret keys via the extended Euclid's algorithm and thus learn our shared secret.
     If we had picked a better $f$ (an elliptic curve, perhaps) this would not have been feasible.
-
-</div>
-
+{/}
 
 
 ## Cryptographically-secure random numbers
@@ -216,8 +192,7 @@ like the output of a pseudo-random generator seeded with the time of day.
 Modern operating systems typically harvest likely sources of entropy and maintain an entropy pool.
 Since entropy cannot be generated on demand, there is always risk that the entropy pool will not contain enough bytes for a needed cryptographic purpose.
 
-
-<div class="example long">
+{.example ...}
 As explained in `man 4 urandom`{.bash}, Linux maintains an entropy pool in `/dev/random`.
 It is designed to be read-once: if you read a byte from `/dev/random` there is one less byte there than there was before, and it is relatively easy to empty it entirely.
 
@@ -226,9 +201,7 @@ Linux also provides `/dev/urandom`, a pseudo-random number generator
 that uses harvested entropy to prevent itself becoming predictable.
 
 As noted on the manual page, "The `/dev/random` interface is considered a legacy interface, and `/dev/urandom` is preferred and sufficient in all use cases, with the exception of applications which require randomness during early boot time." Explaining how the cryptographic security of `/dev/urandom` was established is beyond the scope of this course.
-
-</div>
-
+{/}
 
 
 # Using the tools

@@ -12,12 +12,7 @@ A signature is a hash encrypted with a private key. It is checked by decrypting 
 
 However, some decryption includes a modulus operation; if so, you need to compare the hash modulo the same divisor.
 
-
-<div class="example">
-If `decrypt` ends with `result %= 0x1234567` then a signature matches if `hash(message) % 0x1234567 == decrypt(signature)`
-
-</div>
-
+{.example} If `decrypt` ends with `result %= 0x1234567` then a signature matches if `hash(message) % 0x1234567 == decrypt(signature)`
 
 # This lab
 
@@ -35,8 +30,7 @@ We provide seven hash functions (none of them secure) and an (also insecure) pub
 
 Your task (alone or with partners) is to forge signed messages containing your computing ID(s). The recommended process is
 
-
-<div class="exercise long">
+{.exercise ...}
 For each hash in ascending order (the first is the easiest...)
 
 a. check both signatures to find which is valid
@@ -49,9 +43,7 @@ d. use the provided `submitSolution` function to submit your answer
 e. check that it appeared on the [scoreboard](http://kytos.cs.virginia.edu:25012)
 
 When you have finished all seven, or when lab is coming to a close, show them your work.
-
-</div>
-
+{/}
 
 There are other processes that can work too, such as figuring out the private key from the insecure public key embedded in the `decrypt` function and writing your own encrypt function. Somewhere around hash 5 we expect that trying to find the private key might start being easier than finding a hash collision.
 

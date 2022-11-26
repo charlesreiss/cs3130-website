@@ -6,8 +6,7 @@ In this lab you'll write yet another chat application.
 It will only work on a **single machine**^[If you are using ssh, this means you need to ssh into the same back-end server twice. To do this first SSH into portal.cs.virginia.edu; then run `uname -n` to find out what server you are on (portal## for some two-digit number ##) and have your second SSH go directly into that portal##.cs.virginia.edu.], not over a network file system or the Internet,
 but it will also require significantly fewer system resources than our other chats.
 
-
-<div class="exercise long">
+{.exercise ...}
 Do the following. We recommend doing them in order. Each is described in more detail below.
 
 We strongly recommend working in pairs on this lab.
@@ -32,9 +31,7 @@ Also make a cleanup function which
 
 The cleanup function should execute no matter how the program exists:
 via end-of-input, SIGINT, or SIGTERM.
-
-</div>
-
+{/}
 
 # PID
 

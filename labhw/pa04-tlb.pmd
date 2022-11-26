@@ -59,16 +59,13 @@ and should append the page offset to the PPN it finds cached itself,
 but should not invoke any code or use any variables defined in your implementations of PA02 or PA03 besides `translate`, `LEVELS`, and `POBITS`.
 Each call to `translate` **must** be to a page-beginning address, and that only if it is not in the cache.
 
-
-<div class="example long">
+{.example ...}
 If `POBITS` is 12 and `tlb_translate` is invoke with addresses `0x12345`, `0x12468`, and `0x13579` in that order,
 
 - `tlb_translate(0x12345)` should invoke `translate(0x12000)`,
 - `tlb_translate(0x12468)` should not invoke `translate` at all (it's a cache hit), and
 - `tlb_translate(0x13579)` should invoke `translate(0x13000)`
-
-</div>
-
+{/}
 
 
 # Tips
