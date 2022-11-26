@@ -17,7 +17,9 @@ Make sure you look at `input/README.md`, as well as `life.h` and any other files
 The provided code will compile and run.
 We encourage experimenting with it before adding any code of your own.
 
-{.aside ...} Address sanitizer on department machines
+
+<div class="aside long">
+Address sanitizer on department machines
 
 Some students have reported that `clang` fails to build the `life-asan` version once they add threading.
 There are at least two known workarounds.
@@ -27,7 +29,9 @@ There are at least two known workarounds.
 - Use `make life`{.sh} instead of just `make`, so that `make` builds only the non-address-sanitizer version.
 
 I've asked the systems staff to add threaded asan for clang, but it is not yet clear when that will be done.
-{/}
+
+</div>
+
 
 Make sure you understand how `simulate_life_serial` works.
 You'll be making a (more complicated) parallel version of this, and are unlikely to be successful if you don't understand this starting point.

@@ -45,7 +45,8 @@ double phi(int i) {
 
 This is the classic recursive Fibbonacci sequence, a very inefficient way to compute it; and a function that uses it to compute the golden ratio $\phi$.
 
-{.exercise ...}
+
+<div class="exercise long">
 1. Write a main function and time the asymptotic complexity of `fib` and `phi`.
     Estimate the complexity class of each.
     
@@ -127,7 +128,9 @@ This is the classic recursive Fibbonacci sequence, a very inefficient way to com
         
         Try making a graph of runtimes for one or more of your functions.
         Note that you may need to scale the x and y axes to be roughly the same width and height for the graphs to be useful.
-{/}
+
+</div>
+
 
 The sections after this provide guidance on how to do some of the steps above.
 

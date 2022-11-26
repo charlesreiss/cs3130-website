@@ -4,7 +4,9 @@ title: Make lab
 
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
-{.exercise ...} Your task:
+
+<div class="exercise long">
+Your task:
 
 With a partner (unless you really want to work alone),
 
@@ -28,7 +30,9 @@ With a partner (unless you really want to work alone),
             but if you chose library format `libsay.so`, then `guesser` should not be rebuilt if `libsay.so` changes, only if `say.h` or `guesser.c` change.
 
 5. Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
-{/}
+
+</div>
+
 
 Refer to the [makefiles and C compilation](../readings/make.html) reading and/or
 the corresponding C material for information on how to achieve these goals.

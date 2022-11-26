@@ -30,7 +30,8 @@ that uses the type checker to ensure at compile time that no wrong-sized operati
 
 We'll also use a `struct`, not a `class`, to encourage passing small vectors by value instead of by pointer.
 
-{.exercise ...}
+
+<div class="exercise long">
 Implement a templated mathematical vector type in C++.
 When you are done, the following code should do as the comments suggest (you'll need to comment out the "does not compile" lines to get the others to work):
 
@@ -77,7 +78,9 @@ int main() {
 ```
 
 You code should not contain any heap-allocated memory (no `new` or `malloc`)
-{/}
+
+</div>
+
 
 # Guides
 

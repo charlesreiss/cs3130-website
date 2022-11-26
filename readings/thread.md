@@ -72,7 +72,9 @@ so each return has a different return value:
 - One process (traditionally called the **child**) has a return value of 0
 - The other process (traditionally called the **parent**) has as its return value the unique integer the OS uses to identify the child process.
 
-{.aside ...} **Fork bombing**
+
+<div class="aside long">
+**Fork bombing**
 
 Consider (but **never run!**) the following code:
 
@@ -117,7 +119,9 @@ but might first start swapping out the pages of kernel memory that store the lis
 resulting in many thousands of times slowdown on all operations.
 
 This is called a "fork bomb" and is one of the few simple mistakes that can result in freezing or crashing an entire computer.
-{/}
+
+</div>
+
 
 ## Replacing memory
 
@@ -171,7 +175,9 @@ If a parent process has a zombie child, it can **reap** that process by using th
 This can be run in several ways, as documented in `man waitpid`{.bash},
 but they all involve removing one zombie process from the list of processes in the OS and returning some information about how long it ran, what exit code it provided, etc.
 
-{.example ...} The following program
+
+<div class="example long">
+The following program
 ```c
 #include <sys/wait.h>
 #include <unistd.h>
@@ -207,7 +213,9 @@ or
 depending on if the parent or child gets to its first `printf` first.
 
 The `status` integer also has other information, such as if it was terminated with a signal and if so which signal, which can be accessed with other macros instead of `WEXITSTATUS`.
-{/}
+
+</div>
+
 
 # Using `pthreads`
 

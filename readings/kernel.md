@@ -127,7 +127,12 @@ It might result from the mouse moving, a network packet arriving, or the like.
 Interrupts are typically handled by the kernel in a way that is invisible to the user code.
 The user code is frozen, the interrupt handled, and then the user code resumed as if nothing had happened.
 
-{.aside} Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
+
+<div class="aside">
+Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
+
+</div>
+
 
 ### Faults
 
@@ -171,7 +176,9 @@ To select which one to run, the hardware consults something called an **exceptio
 The exception table is just an array of code addresses; the index into that array is determined by the kind of exception generated (e.g., divide-by-zero uses index 0, invalid instructions use index 6, etc.)
 The index is called an **exception number** or **vector number** and the array of code addresses is called the **exception table**.
 
-{.aside ...} Switches
+
+<div class="aside long">
+Switches
 
 Having an array of code addresses is not unique to exception handlers; it is also present in C in the form of a `switch`{.c} statement.
 
@@ -234,7 +241,9 @@ Table:
 ````
 
 Exception tables are just one particular use of this array-of-code-addresses idea.
-{/}
+
+</div>
+
 
 ### After the Handler
 
@@ -249,7 +258,9 @@ A fault handler, on the other hand, is supposed to remove the barrier to success
 and thus generally re-runs the faulting instruction.
 
 
-{.aside ...} Aborts
+
+<div class="aside long">
+Aborts
 
 We [classified exceptions by cause](#kinds), but some texts classify them by result instead.
 If classified by what happens after the handler, there is a fourth class: aborts, which never return.
@@ -270,7 +281,9 @@ The abort result may be triggered by any cause:
 if a memory access detects memory inconsistency we have an aborting fault;
 an exit system call is an aborting trap;
 and integral peripherals like RAM can send aborting interrupts if they notice unrecoverable problems.
-{/}
+
+</div>
+
 
 
 
@@ -283,7 +296,8 @@ this decision allows Linux to have space for billions of different system calls 
 To see a list of Linux system calls, see `man 2 syscall`{.bash}.
 Most of these are wrapped in their own library function, listed in `man 2 syscalls`{.bash}
 
-{.example ...}
+
+<div class="example long">
 Consider the C library function `socket`.
 The assembly for this function (as compiled into `libc.so`) begins
 
@@ -336,7 +350,9 @@ Let's walk through this a bit at a time:
     
 After that is some error checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
 The code in `system_call_handler[41]` of the kernel is considerably longer; many thousands of lines of C code, in fact (see <https://github.com/torvalds/linux/tree/master/net>).
-{/}
+
+</div>
+
 
 ## Exception-Like Constructs
 
@@ -362,7 +378,9 @@ Linux defines many different signals, listed in `man 7 signal`{.bash}.
 Each of them has a default action if no handler is registered,
 most commonly terminating the process.
 
-{.example ...} Typing Ctrl+C on the command line causes the SIGINT signal to be generated.
+
+<div class="example long">
+Typing Ctrl+C on the command line causes the SIGINT signal to be generated.
 If we want Ctrl+C to do something else, we have to handle that signal:
 
 ````c
@@ -390,9 +408,13 @@ int main() {
     }
 }
 ````
-{/}
 
-{.example ...} Almost all signals can be overridden, but for many it is not wise to do so.
+</div>
+
+
+
+<div class="example long">
+Almost all signals can be overridden, but for many it is not wise to do so.
 For example, this code:
 
 ````c
@@ -426,13 +448,17 @@ The handler returns normally, so the OS assumes the cause of the fault was fixed
 which generates another segfault.
 
 Obviously, you should not do something like this in real code.
-{/}
+
+</div>
+
 
 There is a system call named "kill" that asks the kernel to send a signal to a different process.
 While this can be used for inter-process communication,
 better systems (like sockets and pipes) exist for that if it is to be a major part of an application's design.
 
-{.aside ...} Command line and signals
+
+<div class="aside long">
+Command line and signals
 
 From a bash command line, you can send signals to running processes.
 
@@ -449,7 +475,9 @@ From a bash command line, you can send signals to running processes.
     or name (e.g., `kill -KILL <pid>`)
 
 There are other tools for sending signals, but the above are sufficient for most common use cases.
-{/}
+
+</div>
+
 
 ### `setjmp`{.c}, `longjmp`{.c}, and software exceptions
 
@@ -461,7 +489,9 @@ Thereafter `longjmp` can be called with that same `jmp_buf` as an argument;
 `longjmp` never returns, instead "returning" from `setjmp` for a second time.
 `longjmp` also provides an alternative return value for `setjmp`.
 
-{.example ...} The following program
+
+<div class="example long">
+The following program
 
 ```c
 #include <setjmp.h>
@@ -524,7 +554,9 @@ prints
     end of main
 
 See also a [step-by-step simulation](longjmp.html) of this same process without the `printf`s.
-{/}
+
+</div>
+
 
 There was a time when `setjmp`/`longjmp` were seen as effective ways of achieving
 `try`/`catch`-like error recovery,
@@ -621,7 +653,8 @@ and to react to hardware-generated page-related [faults](Faults)
 and potentially convert them into [signals](Signals)
 to convey to the user process.
 
-{.example ...}
+
+<div class="example long">
 Because segments are a software-only construct,
 each operating system can store them in a different way.
 One simple example might be the following,
@@ -634,10 +667,13 @@ struct segment_node {
     struct segment_node *next;
 }
 ```
-{/}
+
+</div>
 
 
-{.aside ...}
+
+
+<div class="aside long">
 It is common to refer to the crashing of a program
 that tries to access an invalid address
 as a "segfault", short for "segmentation fault."
@@ -651,7 +687,9 @@ often abbreviated as SEGV or SIGSEGV.
 Many people and programs using the term "segfault"
 are aware it is technically incorrect;
 it is arguably an example of a computing colloquialism.
-{/}
+
+</div>
+
 
 
 
@@ -751,7 +789,8 @@ A special kernel-access-only register,
 called the **page table base register** or PTBR,
 stores the address of this array.
 
-{.example ...}
+
+<div class="example long">
 Consider a system with 16-bit virtual addresses.
 If that memory was broken into 2^7^ pages of 2^9^ bytes each,
 and if each page table entry consists of 6 bits of flag bits
@@ -777,7 +816,9 @@ Note that this example maps 16-bit virtual addresses
 to 19-bit physical addresses:
 each *process* is limited to 64KB of addressable memory
 but the hardware can support 512KB physical RAM.
-{/}
+
+</div>
+
 
 Single-level page tables are inefficient for 32-bit addresses
 and basically untenable for 64-bit addresses.
@@ -813,7 +854,9 @@ Fixed-depth trees typically store all data in the leaves of the tree,
 with separate data design for the internal nodes
 and the leaf nodes.
 
-{.example ...} The following code defines a tree
+
+<div class="example long">
+The following code defines a tree
 with arity 16 and three levels of intermediate nodes.
 It has a fixed height of (depending on how you count) 3 or 4.
 
@@ -841,7 +884,9 @@ struct height3 *root = /* ... */
 This tree has the ability to store 16^4^ = 2^16^ = 65,536 `PAYLOAD` values
 using a total of 16^3^ + 16^2^ + 16^1^ + 1 = 4,369 pointers,
 including the `root` pointer.
-{/}
+
+</div>
+
 
 Fixed-depth trees with power-of-two width in each node
 can be accessed with integer indexes, like an array,
@@ -850,7 +895,9 @@ The bits of the index are split up,
 using the high-order bits for the first tree node index
 and lower-order bits for subsequent nodes until a leaf is reached.
 
-{.example ...} In the following figure,
+
+<div class="example long">
+In the following figure,
 which uses width 8 instead of 16 to avoid over-cluttering the figure,
 the value 23 has index 100 111 011 100~2~.
 
@@ -888,9 +935,13 @@ the value 23 has index 100 111 011 100~2~.
 <path d="m81.28 195.4c0 20.32-55.88 0-55.88 20.32" fill="none" marker-end="url(#Arrow2Mend)" marker-start="url(#DotM)" stroke="#000" stroke-width=".5"/>
 </g>
 </svg>
-{/}
 
-{.example ...} Continuing the previous code example,
+</div>
+
+
+
+<div class="example long">
+Continuing the previous code example,
 each tree can be treated as if it were an array of 65,536 entries:
 
 ```c
@@ -901,7 +952,9 @@ PAYLOAD arr(struct height3 *root, unsigned short index) {
     return child3[index&(WIDTH-1)];
 }
 ```
-{/}
+
+</div>
+
 
 Such a structure is significantly less efficient than a simple array:
 it requires more memory than a simple array
@@ -909,7 +962,9 @@ because of the additional pointers;
 it requires more time because it requires multiple memory accesses per element access.
 However, it can save significant space if the majority of the indexes have no value, as entire subtrees can be omitted.
 
-{.example ...} By adding intermediate null checks,
+
+<div class="example long">
+By adding intermediate null checks,
 most of the tree can be omitted if only a few indices are needed:
 
 ```c
@@ -943,7 +998,9 @@ the only non-NULL pointers are to:
 
 Thus, only ten intermediate nodes and 5 × 16 = 80 `PAYLAOD` values are allocated
 rather than the 65,535 `PAYLOAD` values that would have been allocated for a simple array.
-{/}
+
+</div>
+
 
 #### Multi-level page table implementation
 
@@ -973,7 +1030,9 @@ x86-64-compatible processors handle 64-bit addresses as follows:
     with 2^15^ PTE per node (15+15+18 = 48) fits perfectly,
     and at a slight loss of space efficiency other sizes can be used as well.
     
-{.aside ...} Page size selection is a trade-off.
+
+<div class="aside long">
+Page size selection is a trade-off.
 The smaller the pages, the fewer bytes of memory are wasted because of partially-used pages,
 but the more time and space is devoted to the page table.
 
@@ -1008,7 +1067,9 @@ meaning some paths down the page table tree pass through one fewer node
 (9+9+9+21 = 48).
 This adds some complexity to the page table traversal process,
 but allows the operating system more control over how pages are distributed.
-{/}
+
+</div>
+
 
 - Each address translation that the [TLB](#translation-lookaside-buffer) does not optimize runs a process similar to the following:
 
@@ -1031,7 +1092,7 @@ The programmable parts are the fault handlers.
 A page fault handler (written in the OS software)
 might do something like
 
-````c
+```c
 handle_page_fault(size_t va, int access_type) {
     int flags = permitted_actions(va, segment_list);
     if ((access_type & flags) != access_type))
@@ -1040,7 +1101,7 @@ handle_page_fault(size_t va, int access_type) {
     if (ppn < 0) ppn = swap_page();
     create_page_table_entry(va, ppn, flags);
 }
-````
+```
 
 The above pseudocode uses several function stubs:
 

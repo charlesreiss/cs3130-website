@@ -20,7 +20,9 @@ You should use `fork`; `wait` or `waitpid`; and either `execve` or one of its fr
 
 Because `my_system` needs to be thread-safe, do not use any global variables.
 
-{.example ...} The following main function
+
+<div class="example long">
+The following main function
 
 ```c
 int main(int argc, const char *argv[]) {
@@ -40,9 +42,13 @@ should print
     0 0 127
 
 (note: the details of the "not found" line will vary based on the version of `sh` installed on the computer)
-{/}
 
-{.example ...} The following main function
+</div>
+
+
+
+<div class="example long">
+The following main function
 
 ```c
 int main(int argc, const char *argv[]) {
@@ -56,7 +62,9 @@ should prompt for user input, wait until it is provided, and then repeat what th
 
     type something: this is a test
     Thanks for typing "this is a test"
-{/}
+
+</div>
+
 
 
 # `char *getoutput(const char *command)`
@@ -65,7 +73,9 @@ This should behave something like `system`, except that instead of letting the c
 
 I am not aware of a standard library function that does this, but if you find one do not use it; do this by forking, execing, and piping yourself.
 
-{.example ...} The following main function
+
+<div class="example long">
+The following main function
 
 ```c
 int main() {
@@ -88,7 +98,9 @@ then wait for 2 seconds before printing
     Bye!
 
 Note that this `main` also has a memory leak: `my_getoutput` invokes `malloc` and `main` is not invoking `free`.
-{/}
+
+</div>
+
 
 To do this, use the following outline.
 

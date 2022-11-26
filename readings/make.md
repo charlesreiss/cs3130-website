@@ -23,18 +23,24 @@ The *target* must begin a line (i.e., must not be indented) and end in a colon.
 Anything after that colon is a *dependency*.
 Indented lines that follow (which must be indented with a single tab character, not spaces) are *systems commands*.
 
-{.example ...} The following rule will build `hello.o` if either `hello.c` or `hello.h` is newer than `hello.o`.
+
+<div class="example long">
+The following rule will build `hello.o` if either `hello.c` or `hello.h` is newer than `hello.o`.
 Otherwise, it will do nothing
 ```makefile
 hello.o: hello.c hello.h
 	clang -c hello.c
 ```
-{/}
+
+</div>
+
 
 When you run `make` it reads `Makefile` and executes the *first* rule it finds.
 If you want to run a different rule, you can give its target as an argument to `make`.
 
-{.example ...} Consider the following `Makefile`:
+
+<div class="example long">
+Consider the following `Makefile`:
 ```makefile
 hello.o: hello.c hello.h
 	clang -c hello.c
@@ -45,11 +51,15 @@ bye.o: bye.c bye.h
 
 Running `make` will ensure `hello.o` is up to date.
 Running `make bye.o` will ensure `bye.o` is up to date.
-{/}
+
+</div>
+
 
 If a dependency of an executed rule is the target of another rule, that other rule will be executed first.
 
-{.example ...} Consider the following `Makefile`:
+
+<div class="example long">
+Consider the following `Makefile`:
 ```makefile
 runme: hello.o bye.o main.c main.h
 	clang main.c hello.o bye.o -o runme
@@ -63,7 +73,9 @@ bye.o: bye.c bye.h
 
 Running `make` will ensure `runme` is up to date;
 since `runme`'s dependencies include `hello.o` and `bye.o`, both of those rules will also be executed.
-{/}
+
+</div>
+
 
 
 ## Macros
@@ -104,7 +116,8 @@ You will often want a few "pattern rules" using a few "automatic variables". The
 - Use `$<` in the system commands as the name of the first dependency.
 - Use `$@` in the system commands as the name of the target.
 
-{.example ...}
+
+<div class="example long">
 Many makefiles will include a command like
 
 ```makefile
@@ -123,10 +136,13 @@ Part            Meaning
 `$(CFLAGS)`     with our compile-time flags
 `$<`            to build that .c file
 `-o $@`         and name the result the name of our target.
-{/}
+
+</div>
 
 
-{.aside ...}
+
+
+<div class="aside long">
 # A bit about `bash`
 
 Recall that each line of `bash` begins with a program and is followed by any number of arguments.
@@ -154,7 +170,9 @@ echo 7
 ```
 
 You can also combine lines; a `;` is (almost) the same as a new-line to `bash`.
-{/}
+
+</div>
+
 
 # Multi-file project design
 

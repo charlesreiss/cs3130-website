@@ -14,11 +14,13 @@ $spacing-unit:     30px;
 
 $text-color:       #000;
 $background-color: #fefefe;
-$brand-color:      #2a7ae2;
+// $brand-color:      #2a7ae2;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
+
+$code-background-color: $grey-color-light;
 
 // Width of the content area
 $content-width:    90%;
@@ -37,6 +39,11 @@ $on-laptop:        800px;
 
 // Import partials from the `minima` theme.
 @import "minima";
+
+pre, code { background: rgba(0,0,0,0.04); }
+pre > code { border: none; background: none; }
+pre { display: table }
+pre:has(code) { white-space: inherit; }
 
 .schedule { border-collapse: collapse; }
 table.schedule { width: 100%; }
@@ -99,12 +106,12 @@ h1 + #toc {
 .changelog {font-size: smaller; }
 .changelog + ul {font-size: smaller; }
 
-table.lookup, table:not([class]) { border-collapse:collapse; margin:auto; border: 1px solid #aaaaff; }
+table.lookup, table:not([class]) { border-collapse:collapse; margin:auto; border: 1px solid #ffffff; }
 .lookup thead th, table:not([class]) thead th { border-bottom: 1px solid black; padding:0ex 1ex; }
 .lookup td, table:not([class]) td { padding:0ex 1ex; }
 .lookup td + td, .lookup td + th, table:not([class]) td + td, table:not([class]) th + th { text-align:center; }
 .lookup tr:nth-child(2n+2), table:not([class]) tr:nth-child(2n+1) { background-color:#ffffff; }
-.lookup tr:nth-child(2n+3), table:not([class]) tr:nth-child(2n+2) { background-color:#eeeeff; }
+.lookup tr:nth-child(2n+3), table:not([class]) tr:nth-child(2n+2) { background-color:#ffffff; }
 
 dd + dt { margin-top: 2em; }
 dt { font-weight:bold; }
@@ -118,7 +125,7 @@ th, td { padding: 0ex 1ex; }
 div.highlight pre { white-space: inherit }
 div.highlight pre code { white-space: pre }
 
-code { padding: 1px 1px }
+code { padding: 1px 1px; }
 
 h1 pre { background-color: #fff; border: 0 }
 h2 pre { background-color: #fff; border: 0 }

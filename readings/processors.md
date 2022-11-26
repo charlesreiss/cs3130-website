@@ -46,7 +46,9 @@ Because registers require a clock signal to change values,
 this means that a single instruction moves from stage to stage across several clock cycles.
 
 
-{.example ...} Consider the following code
+
+<div class="example long">
+Consider the following code
 
     evaluate:
         xorl    %eax, %eax
@@ -80,7 +82,9 @@ the state of the processor would look like
 </tr></tbody></table>
 
 The last stage would presumably still be working on the code that called this function.
-{/}
+
+</div>
+
 
 ## Dependencies
 
@@ -105,7 +109,9 @@ Three basic tactics can be used to resolve these issues.
 
 The simplest solution to a dependency is to simply wait for the results to appear.
 
-{.example ...} Let's look at the last example again.
+
+<div class="example long">
+Let's look at the last example again.
 
     evaluate:
         xorl    %eax, %eax
@@ -236,7 +242,9 @@ Let's trace it through, starting with the `callq evaluate`, stalling anytime we 
 </tr></tbody></table>
 
 ...    
-{/}
+
+</div>
+
 
 While stalling removes and throughput benefits of pipelining, it is also easy to implement and always correct.
 
@@ -246,7 +254,9 @@ Sometimes we can shorten the length of a stall by looking for information in pla
 For example, if the ALU computes a value that will be placed in `%rcx` when it gets to the writeback stage, two cycles before it is `%rcx` it is sitting in the pipeline register between the execute and memory stages. It takes a bit more design complexity, but we can set up the pipeline to look for that kind of "computed but not yet stored" information in the pipeline registers and use it directly.
 
 
-{.example ...} Let's look at the last example again.
+
+<div class="example long">
+Let's look at the last example again.
 
     evaluate:
         xorl    %eax, %eax
@@ -339,7 +349,9 @@ Let's trace it through, starting with the `callq evaluate`, stalling as little a
 </tr></tbody></table>
 
 ...    
-{/}
+
+</div>
+
 
 Setting up forwarding can be more work from a chip designer's perspective, it is basically just a lot of extra wires and muxes.
 Once those are correctly placed, we can dramatically reduce stalls
@@ -357,7 +369,9 @@ if it turns out we were right, though, we save cycles of compute time.
 
 
 
-{.example ...} Let's look at the last example again.
+
+<div class="example long">
+Let's look at the last example again.
 
     evaluate:
         xorl    %eax, %eax
@@ -442,11 +456,15 @@ Let's trace it through, starting with the `callq evaluate`, speculatively execut
 </tr></tbody></table>
 
 ...    
-{/}
+
+</div>
 
 
 
-{.example ...} Let's try the other speculation:
+
+
+<div class="example long">
+Let's try the other speculation:
 
     evaluate:
         xorl    %eax, %eax
@@ -531,7 +549,9 @@ Let's trace it through, starting with the `callq evaluate`, speculatively execut
 </tr></tbody></table>
 
 ...    
-{/}
+
+</div>
+
 
 This leads to an entire subfield of speculation and prediction.
 Will a conditional jump be taken? Where will a return jump to?
@@ -589,7 +609,8 @@ So we'll do a special renaming process, changing program registers like `%rax` i
 
 The main hardware data structure we'll need for this is a **remap file**; this is an array of entries, one per program register, each entry of which contains two fields: a **tag** which is a hardware register number and a **ready bit** which tells us if some pending instruction will overwrite this (`0`, not ready) or not (`1`, ready).
 
-{.example ...}
+
+<div class="example long">
 The x86-64 registers RAX through R15 are internally register numbers 0 through 15, so we'll need a 16-entry remap file.
 If we have 64 hardware registers and no pending instructions, this file might look like
 
@@ -604,11 +625,15 @@ If we have 64 hardware registers and no pending instructions, this file might lo
 15 = R15    1       2
 
 This means that, e.g., the program register value for `%rcx` is currently stored in hardware register number 11.
-{/}
+
+</div>
+
 
 Every time we issue an instruction, we'll change its source operands into the tags from the file, then allocate a new unused tag for its destination operand and update the remap file to have that new tag and to be marked as not ready.
 
-{.example ...} Continuing the example from above,
+
+<div class="example long">
+Continuing the example from above,
 assume that hardware registers 18 and 19 are unused right now (not in the rename file)
 
 We'd change the instruction `addq %rax, %rcx`
@@ -637,7 +662,9 @@ into `h19 = h18 + h9*`
 ⋮           ⋮       ⋮
 
 and so on
-{/}
+
+</div>
+
 
 This process ensures that each hardware register has at most one pending instruction that is writing to it, while still maintaining the dependency graph of the original instructions.
 

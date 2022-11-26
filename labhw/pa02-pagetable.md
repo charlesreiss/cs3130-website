@@ -67,7 +67,12 @@ If `ptbr` is not `NULL`, it should point to an array of `size_t`s
 occupying 2^`POBITS`^ bytes.
 Each such `size_t` should be interpreted as a page table entry.
 
-{.note} Some texts refer to a PTBR containing a physical address; others to it containing a physical page number. The above definition asserts it contains a physical address, not page number. As such, it will always have 0 in its low-order `POBITS` bits.
+
+<div class="note">
+Some texts refer to a PTBR containing a physical address; others to it containing a physical page number. The above definition asserts it contains a physical address, not page number. As such, it will always have 0 in its low-order `POBITS` bits.
+
+</div>
+
 
 Each page table entry should be either
 
@@ -77,7 +82,12 @@ Each page table entry should be either
     The remaining bits have no defined meaning; you may use them
     however you wish.
 
-    {.example} PTE `0x1234567812345678` has a zero in the low-order bit, and thus indicates the absence of a physical page.
+
+    <div class="example">
+PTE `0x1234567812345678` has a zero in the low-order bit, and thus indicates the absence of a physical page.
+
+    </div>
+
 
 1 in the low-order bit
 :   The bits above the `POBITS` low-order bits are the physical page number of either
@@ -86,11 +96,18 @@ Each page table entry should be either
     have no defined meaning; you may use them
     however you wish.
 
-    {.example} PTE `0x1234567812345679` has a one in the low-order bit, and thus indicates the presence of a physical page or another level page table. If `POBITS` is 12, the physical page number (of the page or next page table level) is `0x1234567812345`.
+
+    <div class="example">
+PTE `0x1234567812345679` has a one in the low-order bit, and thus indicates the presence of a physical page or another level page table. If `POBITS` is 12, the physical page number (of the page or next page table level) is `0x1234567812345`.
+
+    </div>
+
 
 No pages should be allocated unless requested by a call to `page_allocate`.
 
-{.example ...} The comments in the following code correctly describe the number of pages that have ever been allocated
+
+<div class="example long">
+The comments in the following code correctly describe the number of pages that have ever been allocated
 assuming that `LEVELS` is 4 and `POBITS` is 12.
 
 ```c
@@ -127,7 +144,9 @@ int main() {
     // 2 new pages allocated (now 8; 5 page table, 3 data)
 }
 ```
-{/}
+
+</div>
+
 
 # Submission
 

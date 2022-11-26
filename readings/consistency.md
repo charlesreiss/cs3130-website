@@ -49,7 +49,8 @@ Some people even use the terms interchangeably.
 
 Sequential consistency, being about *the* result (instead of *each* result), requires [Eventual consistency](#eventual-consistency).
 
-{.example ...}
+
+<div class="example long">
 Suppose process 1 performed operations `A; B; C;` in parallel with process 2 performing `x; y;`.
 If the outcome is the same you'd see from one processor executing any one of the following:
 
@@ -65,7 +66,9 @@ If the outcome is the same you'd see from one processor executing any one of the
 - `x; y; A; B; C;`
 
 then it is sequentially consistent. If there is any other outcome, it is not.
-{/}
+
+</div>
+
 
 # Eventual consistency
 
@@ -73,13 +76,16 @@ then it is sequentially consistent. If there is any other outcome, it is not.
 
 Note that this does not make any guarantees about *what* will be seen in that address, only that every process will agree.
 
-{.example ...}
+
+<div class="example long">
 Suppose one processor executes `*x = 0x1234`{.c} and another executes `*x = 0x5678`{.c}
 Eventual consistency can be satisfied even if
 
 - there is a time when the two disagree about `*x`{.c}'s value
 - they eventually converge on the value being `0x1278`{.c} or some other value neither of them tried to create.
-{/}
+
+</div>
+
 
 Even providing eventual consistency requires some effort,
 but it is achievable enough that many distributed systems guarantee it.

@@ -6,7 +6,8 @@ Creating, renaming, removing, opening, reading from, writing to, and executing f
 As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
 Although not all OSs use the same system, the POSIX standard defines a set of file permissions that are commonly used.
 
-{.exercise ...}
+
+<div class="exercise long">
 Work with a partner to achieve the following:
 
 1. If the TA gives
@@ -28,7 +29,9 @@ Work with a partner to achieve the following:
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `echo hi >> xyxxy`{.bash} does not
-{/}
+
+</div>
+
 
 The information needed to achieve these goals is explained below.
 We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
@@ -88,25 +91,32 @@ o
 `ls -l`{.bash} includes the nine permission bits in letter form: a subset of rwxrwxrwx (e.g., `rw-rw----` means the owner and all in the owning group have r and w permission, but not x permission; and other users have no permissions).
 Commands that change these often use octal (base-8) representation of the number (e.g. 660 for `rw-rw----`).
 
-{.aside ...} Using `chmod`
+
+<div class="aside long">
+Using `chmod`
 
 The most commonly used permission tool is `chmod`, used as `chmod [permission] file`.
 As noted in `man chmod`{.bash}, the permission argument can be either letters or octal
 
 - `chmod 644 file` means "change the permission bits to exactly 644~8~ = 110100100~2~ = rw-r--r--
 - `chmod ug+rw file` means "add r and w permissions for the owning **u**sers and the owning **g**roup"
-{/}
+
+</div>
+
 
 ## Defaults: the `umask`
 
 When you make a new file, its gets all permissions except a few; the omitted few are specified by the `umask`.
 A special command, `umask`, can display (and change) these, either in octal or letter format.
 
-{.example ...}
+
+<div class="example long">
 On the department machines, if you run `umask` you'll see `0022`.
 That means that new files get permission `0755`: a nine-bit `~0022`.
 What that actually looks like can be see by adding the symbolic flag: `umask -S` shows `u=rwx,g=rx,o=rx`.
-{/}
+
+</div>
+
 
 
 ## setuid, setgid, and sticky
@@ -176,7 +186,8 @@ On POSIX, there are two main cases where this is sensible:
     One common shebang is `#!/bin/bash`.
     If a file `gloop.sh` begins `#!/bin/bash` and is executable, then running `./gloop.sh` is equivalent to running `/bin/bash ./gloop.sh`
 
-{.example ...}
+
+<div class="example long">
 A **quine** is a program that, when run, displays its own contents.
 The following file is a quine, provided it is executable:
 
@@ -189,4 +200,6 @@ So is the following:
     But if you use shebangs, they are trivial to create
     using the interpreter "cat".
 
-{/}
+
+</div>
+

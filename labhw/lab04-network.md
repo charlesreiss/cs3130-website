@@ -8,7 +8,8 @@ In this lab you'll learn how to add reliability on top of unreliable sockets lik
 You'll have enough to do in this lab, we'll not worry about doing it over an actual network.
 We've provided a simple network simulator for you.
 
-{.exercise ...}
+
+<div class="exercise long">
 1. Download <http://www.cs.virginia.edu/luther/COA2/S2020/files/netlab.tar> on a linux system
     (e.g., with `wget http://www.cs.virginia.edu/luther/COA2/S2020/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
@@ -24,7 +25,9 @@ We've provided a simple network simulator for you.
 5. Show a TA your code.
     - We expect everyone to finish `./netlab 1` and to make good progress on `./netlab 2`
     - `./netlab 3` is quite a bit harder and is recommended if you have time
-{/}
+
+</div>
+
 
 # Our Driver
 
@@ -61,9 +64,13 @@ We provide a network simulation driver program. It has the following pieces:
 Every message must have its first byte be a checksum.
 We'll use a very simple checksum for this lab: the xor of all other bytes.
 
-{.example ...} To send the array of bytes `[0, 1, 2, 5]`
+
+<div class="example long">
+To send the array of bytes `[0, 1, 2, 5]`
 you actually send a five-byte message: `[0^1^2^5, 0, 1, 2, 5]`.
-{/}
+
+</div>
+
 
 You should send the server a 4-byte message (plus a checksum) to initiate conversation.
 The first three bytes should be the ASCII characters for `GET`; the fourth should be an ASCII digit `0` through `9`.
@@ -72,13 +79,17 @@ The server will then start sending you messages in discrete packets.
 The first three bytes of each packet the server sends will be a checksum, a (1-based) sequence number, and the total sequence count.
 Both sequence number and sequence count will be encoded directly as a byte, not using ASCII.
 
-{.example ...} If the server plans to send two packets,
+
+<div class="example long">
+If the server plans to send two packets,
 one containing `[3, 1]` and the other `[4, 1, 5]`,
 they will actually arrive as
 `[1^2^3^1, 1, 2, 3, 1]`
 and
 `[2^2^4^1^5, 2, 2, 4, 1, 5]`.
-{/}
+
+</div>
+
 
 After receiving a message, you should reply with a four-byte message.
 The first three bytes should be the ASCII characters for `ACK`; the fourth should be the sequence number you received.
@@ -105,7 +116,9 @@ You may assume that if a message has not arrived after a full second, it will no
 - `ACK`0 does not work; use `GET` instead.
 - Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
     
-    {.example ...}The following prints 3, then 1, then 4, ending two seconds after it started.
+
+    <div class="example long">
+The following prints 3, then 1, then 4, ending two seconds after it started.
 
     ````c
     void pnum(void *num) {
@@ -120,7 +133,9 @@ You may assume that if a message has not arrived after a full second, it will no
         waitForAllTimeouts();
     }
     ````
-    {/}
+
+    </div>
+
     
     
 - The argument of your callbacks must be typed as a `void *`, but (via casting) can be any type of 8 or fewer bytes.

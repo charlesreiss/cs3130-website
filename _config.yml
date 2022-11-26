@@ -25,9 +25,12 @@ plugins:
 # Build settings
 markdown: Pandoc
 pandoc:
-  format: html5
-  extensions:
-    from: markdown+smart+inline_code_attributes
+  format: html
+  extensions: 
+    - from: markdown+smart+inline_code_attributes
+    - number-sections
+    - toc
+    - template: _template.html5
 
 kramdown:
   input: Kramdown
@@ -50,7 +53,6 @@ defaults:
     scope:
       path: ""
     values:
-      layout: withtoc
       author: Luther Tychnoviech and Charles Reiss
       license: <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /> CC-BY-NC-SA 4.0</a>
   - 

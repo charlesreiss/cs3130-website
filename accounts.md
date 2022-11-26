@@ -45,7 +45,9 @@ Notably absent from that list is any mention of permissions.
 Instead of permissions being listed per account,
 it is more typical to list, for each resource, which user accounts and groups may access it.
 
-{.example ...} Suppose as part of the results of an `ls -l`{.bash}
+
+<div class="example long">
+Suppose as part of the results of an `ls -l`{.bash}
 invocation you see the line
 
 	-rwxr-x--- 4 mst3k coa     371 Jan 18  2019 file.txt
@@ -81,7 +83,9 @@ It then compares the user account and groups of the running process
 to the user accounts and groups that the metadata asserts are allowed to access the file
 and only proceeds with the access if they match for the kind of activity
 the operating system is being asked to perform.
-{/}
+
+</div>
+
 
 Because user accounts are enforced only by the operating system,
 not the hardware itself,
@@ -99,7 +103,8 @@ is has that user listed in the operating system's bookkeeping for that process.
 Since a process typically opens up other processes using the same account,
 that means that all the processes you run from this session will be under that same user.
 
-{.aside ...}
+
+<div class="aside long">
 There are alternatives to having one account per user.
 For example, Android, which is based on the Linux kernel and thus has the same basic user account mechanisms as we describe here,
 creates [a different user account for each app](https://source.android.com/security/app-sandbox).
@@ -107,7 +112,9 @@ Thus the user interface user can become any app's user when launching the app,
 and different apps cannot (by default) access files created for one another.
 When an app is installed, Android not only installs its files
 but also creates a user account for it and provides a list of permissions for that account.
-{/}
+
+</div>
+
 
 # One account to rule them all
 
@@ -150,14 +157,17 @@ When it occurs the operating system gives them CPU time,
 but they often use only a few microseconds before they again go quiet,
 waiting for another event.
 
-{.exercise ...}
+
+<div class="exercise long">
 Try running `ps -A u` to list all current processes with their owning users,
 names, and various statistics about their running.
 
 How many processes are there?
 
 How many of them have been running for at least a day but used 0:00 minutes of CPU time?
-{/}
+
+</div>
+
 
 These processes are daemons, and can be thought of as the software parallel
 to an interrupt handler.
@@ -168,7 +178,8 @@ but rather an internal OS-moderated event like data appearing on a socket.
 There are various purposes to having a daemon,
 but one of them is to provide controlled, limited access to a different user account.
 
-{.example ...}
+
+<div class="example long">
 Most Linux systems use CUPS^[formerly "the Common UNIX Printing System" but officially changed to just CUPS due to trademark disputes about the use of the word UNIX] to manage printing;
 CUPS runs primarily^[see [the CUPS design overview](https://www.cups.org/doc/spec-design.html) for how `cupsd` this works with the other components of CUPS] as a daemon `cupsd`.
 Because printing can involve large amounts of data being fed slowly though a mechanical device^[among other reasons...],
@@ -183,7 +194,9 @@ and sends it the information about the print job in question.
 Because `cupsd` is running as `root`, it can spool that information to a file owned by `root`, and thus inaccessible to non-`root` users,
 and send it to a printer by accessing system calls
 that the OS restricts to the `root` account.
-{/}
+
+</div>
+
 
 # What is "the operating system"?
 

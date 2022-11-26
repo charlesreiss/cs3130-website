@@ -47,7 +47,8 @@ puts("but not this one");
 
 # Task
 
-{.exercise ...}
+
+<div class="exercise long">
 Work with a partner to use OpenMP to parallelize the [Starter code](#starter-code).
 You should be able to understand all of the code provided, but will only need to work on the `geomean` function for this lab.
 
@@ -61,7 +62,9 @@ To run the code, compile with the `-lm` flag and give it file names as command-l
 To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
 
 Then explain to a TA which approach was fastest and your guess as to why.
-{/}
+
+</div>
+
 
 
 # The Map-Reduce paradigm
