@@ -1,23 +1,52 @@
 ---
 title: Kernels -- Software for the Hardware
+author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
-
 
 # Kernel Mode vs. User Mode
 
 All multi-purposed chips today have (at least) two modes in which they can operate:
-user mode and kernel mode.
-Thus far you have probably only written user-mode software, and most of you will never write kernel-mode software during your entire software development careers.
+*user mode* and *kernel mode*[^modenames].
+Thus far you have probably only written user-mode software, and most of you will never
+write kernel-mode software during your entire software development careers.
+
+[^modenames]:
+    Sometimes, you'll see these modes be referred to by different names.
+    For example:
+
+    *  Exception Level 0 (user mode) and Exception Level 1 (kernel mode, roughly) in the [ARM manual](https://developer.arm.com/documentation/ddi0487/latest).
+    *  Privilege level 0 or ring 0 (kernel mode) and privilege level 3 and ring 3 (user mode) in the [Intel x86-64 manuals](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html);
+    *  User mode and supervisor mode in [RISC V](https://riscv.org/technical/specifications/);
+
+    As some of these names suggest, some systems support additional modes of this type. These additional modes
+    can allow for finer-grained restrictions on what operations are allowed.
+
+    Early proposals for these modes (e.g., Michael D. Schroeder and Jerome H. Saltzer,
+    "A Hardware Architecture for Implementing Protection Rings" from 1972) often proposed 
+    supporting around eight privilege levels which were called
+    "rings" (with the innermost rings being more privileged
+    than the outer one). Despite some hardware implementing these designs, most operating systems
+    only found uses for two modes, the lowest (kernel mode) and the highest (user mode).]
+
+## Definitions
+
+When running in *kernel mode*, the hardware allows the software to do all operations the hardware supports.
+In *user mode*, instead, some operations are not allowed.
+
+The code that runs in *kernel mode* is called the *kernel*.
+
+If the code running in user mode wants to perform one of the prohibited operations,
+it must instead ask the kernel to do so on its behalf.
 
 ## Motivation
 
-Some activities the computer does can only be done by kernel-mode software;
-if user-mode code wants to do them, it has to do so by asking the kernel.
-This restriction provides several advantages.
+Running software in *user mode* only restricts what that software can do; it does not provide
+access to any additional functionality.
+But this restriction provides several advantages.
 
 ### Limiting Bugs' Potential for Evil
 
-One reason to not run in kernel mode is to limit the scope of mistakes a software bug can have.
+One reason to not run in kernel mode is to limit the impact a software bug can have.
 Inside the computer is all of the code and data that handles drawing the screen and tracking the mouse and reacting to keys and so on; I'd rather not be able to make a mistake when writing my Hello World program and accidentally mess up those core functionalities.
 By running in user mode, if my code tries to touch any of that it will be blocked from doing so: my program will crash, but the computer will keep running.
 
@@ -1236,3 +1265,5 @@ Technically, DMA does not require virtual memory---disks
 could be given access to physical memory
 even if code access memory with physical addresses---but
 it is generally implemented as an extension of the virtual memory system.
+
+

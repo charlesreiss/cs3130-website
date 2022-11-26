@@ -137,3 +137,50 @@ blockquote {
     background-color: #fbb; font-size: 150%;
     border:1px solid grey; padding:1ex; border-radius:1ex; margin:1em 4em;
 }
+
+.aside, .note {
+    margin: 1em 0em 1em 0em;
+    background: rgba(0,0,0,0.0625);
+    border-left: rgba(0,0,0,0.1225) solid 0.5ex;
+    padding: 0.5em 1em;
+}
+
+.aside:not(.long):before, .aside.long > :first-child:before {
+    content: "Aside \2014  ";
+    font-style: italic;
+}
+
+
+.example {
+    margin: 1em 0em 1em 0em;
+    background: #e9fbe9;
+    border-left: #99f solid 0.5ex;
+    padding: 0.5em 1em;
+}
+
+.example blockquote {
+    border: none;
+    padding: none;
+    background: inherit;
+}
+
+.example:not(.long):before, .example.long > :first-child:before {
+    content: "Example \2014  ";
+    font-style: italic;
+    color: #005A9C;
+}
+
+.exercise, .ednote {
+    margin: 1em 0em 1em 0em;
+    background: rgba(255,127,0,0.13333333);
+    border-left: rgba(255,127,0,0.2666666) solid 0.5ex;
+    padding: 0.5em 1em;
+}
+
+.exercise:not(.long):before, .exercise.long > :first-child:before {
+    content: "Exercise \2014  ";
+    font-style: italic;
+    color: red;
+}
+
+

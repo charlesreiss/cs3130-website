@@ -4,4 +4,4 @@ umask 022
 #python3 recordings_to_data.py # XXX
 chmod -R a+r files
 #chmod -R a+r slides
-~/bin/jekyll b
+~/bin/bundle exec jekyll b --trace

@@ -1,9 +1,11 @@
 ---
-title: Accessing remote servers
+title: Using SSH
+author: Luther Tychnoviech and Charles Reiss
 ...
 
 If you are running a POSIX-compatible system, most of the coding you'll be asked to do this semester should work fine on your own machine.
-If not, consider the following options.
+If not, you should have a department account which will allow you to access remote servers either via SSH
+(as described in this document) or via [remote desktop](https://www.cs.virginia.edu/wiki/lib/exe/fetch.php?media=nx-setup_v3a.pdf) (via NoMachine).
 
 # Use SSH without passwords
 
@@ -90,7 +92,7 @@ To run commands remotely
             
             For example, you might do something like `"cd coa2/warmup; make"`
 
-You can even put all of this in a [makefile](lab01-make.html), as e.g.
+You can even put all of this in a makefile, as e.g.
 
 ```makefile
 .PHONY: remote

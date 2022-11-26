@@ -1,8 +1,9 @@
 ---
 title: COA2 overview
+author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-In [COA1](../../COA1/) you learned a simple version of how processors work, and used operating system provided functions as "black boxes": i.e., functions that do what they do, we know not how. In COA2, we'll explore a more realistic model of processors, and how they and the operating system work together to provide various functionality we depend on as application programmers.
+In CSO1 you learned a simple version of how processors work, and used operating system provided functions as "black boxes": i.e., functions that do what they do, we know not how. In CSO2, we'll explore a more realistic model of processors, and how they and the operating system work together to provide various functionality we depend on as application programmers.
 
 Each of the topics this term is intricate enough to require focused exploration, which may make it easy to loose sight of how they are all interrelated. The remainder of this section is designed to be an overview of each of those topics and how they fit together.
 
@@ -11,7 +12,7 @@ Each of the topics this term is intricate enough to require focused exploration,
 What happens when you press a key on the keyboard?
 Clearly some electrical signal is sent to some part of the computer,
 but how does the computer detect that it happened?
-While it is possible to set up a polling-based system, where the program pauses every few milliseconds and checks to see if some key is being pressed or mouse moved or network packed collected,
+While it is possible to set up a *polling*-based system, where the program pauses every few milliseconds and checks to see if some key is being pressed or mouse moved or network packed collected,
 it is more common to use interrupts.
 
 Interrupts allow a signal on a wire entering the processor

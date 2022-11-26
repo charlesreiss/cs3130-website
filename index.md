@@ -22,7 +22,6 @@ As a result of taking this course, you should learn
 We have created several writeups for this course:
 
 - [CSO2 overview](readings/intro.html)
-- [Minimal makefiles](readings/make.html)
 - [Kernels -- Software for the Hardware](readings/kernel.html)
 - [User Accounts](readings/accounts.html)
 - [Buses (and networks)](readings/bus.html)
@@ -38,3 +37,18 @@ We have created several writeups for this course:
 (The original version of these was written by Professor Tychonievich.)
 
 We will augment these with various examples, online articles, and other resources.
+
+# Environment for assignments
+
+The assignments in this class require using a POSIX-like environment
+(such as Linux).
+You could either setup a suitable environment yourself or use
+one of the department machines remotely.
+If you're using the department machines, you may find these
+writeups helpful:
+
+*  options for [using SSH](ssh.html)
+
+*  instructions for [remote desktop access (via NoMachine)](https://www.cs.virginia.edu/wiki/lib/exe/fetch.php?media=nx-setup_v3a.pdf)
+
+
