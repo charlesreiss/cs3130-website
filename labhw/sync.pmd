@@ -6,11 +6,7 @@ The purpose of this lab is to provide you with some experiencing seeing how vari
 
 # Getting with a group
 
-Lab will open with you signing into zoom <https://virginia.zoom.us/j/138570502>.
-The TAs will then split you into zoom breakout rooms of 3--5 people each.
-Zoom's toolchain appears to limit us to making these assignments randomly.
-
-Expecting that many of your are feeling somewhat isolated and in need of conversation, we encourage you to spend several minutes in small-talk with the other members of your group before other activities begin.
+In the lab, create groups of 3--5 people each. TAs should help you form appropriate groups.
 
 You will then go through the four game variants together.
 
@@ -26,18 +22,18 @@ Your goal is to reach your target dollar amount before anyone else you are playi
 
 # The Variants
 
-1.  Variant 1 (<https://kytos.cs.virginia.edu/coa2/cashgame1.php>) 
+1.  Variant 1 (<FIXME>)
     has atomic money moves and no other synchronization.
     It is possible (even likely) that other players' plays will occur between you looking at the table and your play being acted on.
 
-1.  Variant 2 (<https://kytos.cs.virginia.edu/coa2/cashgame2.php>)
+1.  Variant 2 (<FIXME>)
     uses locks to prevent plays if someone else has made a play between your looking and acting.
 
-1.  Variant 3 (<https://kytos.cs.virginia.edu/coa2/cashgame3.php>)
+1.  Variant 3 (<FIXME>)
     places arriving players in a queue and only lets them play in order.
     It is otherwise like Variant 1.
 
-1.  Variant 4 (<https://kytos.cs.virginia.edu/coa2/cashgame4.php>)
+1.  Variant 4 (<FIXME>)
     uses voting to make plays; only if a majority of players agree to an action does it occur.
 
 Each variant allows arbitrary game names.

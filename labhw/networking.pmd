@@ -2,15 +2,15 @@
 title: Networking lab
 ...
 
-You've already worked with TCP sockets in COA1.
+You've already worked with TCP sockets in CSO1.
 In this lab you'll learn how to add reliability on top of unreliable sockets like UDP.
 
 You'll have enough to do in this lab, we'll not worry about doing it over an actual network.
 We've provided a simple network simulator for you.
 
 {.exercise ...}
-1. Download <http://www.cs.virginia.edu/luther/COA2/S2020/files/netlab.tar> on a linux system
-    (e.g., with `wget http://www.cs.virginia.edu/luther/COA2/S2020/files/netlab.tar`{.bash}).
+1. Download [netlab.tar](../files/netlab.tar) on a linux system
+    (e.g., with `wget {{site.url}}/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
     

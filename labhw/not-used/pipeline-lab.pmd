@@ -2,14 +2,6 @@
 title: Pipeline Diagrams
 ...
 
-> For various reasons, the hoped-for C++11 lab never came to fruition. If you are interested, I recommend a slow and careful read of the [wikipedia article](https://en.wikipedia.org/wiki/C++11) on C++11, which explains many of the significant innovations of this release over previous C++ releases.
->
-> This replacement lab is likely to be a bit less content-laden than some before it.
->
-> — Luther Tychonievich
-
-Due to scheduling constraints, we are running low on time to offer PA07. However, because the process of doing that is a beneficial learning exercise, and because I expect it will boost many of your GPAs to have it included, this lab will have you work with a partner on that PA.
-
 # Pipeline diagrams
 
 When considering pipelined execution, there are two related but not identical notions of "time":

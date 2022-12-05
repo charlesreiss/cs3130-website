@@ -6,7 +6,7 @@ We showed you some basic C++ last semester, including using templates like Java 
 But that is far from all C++ templates can do...
 This lab will help you explore this topic in more detail.
 
-You'll work in pairs via discord for this lab, like those before it.
+You'll work in pairs for this lab, like those before it.
 
 # Caveat
 
@@ -15,7 +15,7 @@ I hope this lab will help you make your own opinion, but be aware that if you wo
 
 # Review
 
-Begin by reviewing the C++ labs from COA1:
+Begin by reviewing the C++ labs from CSO1:
 
 - [name overloading, namespaces, references, methods](/luther/COA1/F2019/lab10-cpp.html)
 - [STL, references, templates, operator overloading, iostream](/luther/COA1/F2019/lab11-stl.html)

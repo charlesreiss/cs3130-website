@@ -1,69 +1,137 @@
 - name: make
   lab: true
+  page: labhw/make.html
   due: 2023-01-25
+  possible_submit_file: Makefile
+  tentative: true
 
 - name: accounts
   lab: true
+  page: labhw/accounts.html
+  possible_submit_file: allfiles.tar or ls-output.txt + question answers.txt
+  possible_submit_note: would be created with tar option that preserves ACLs
+  tentative: true
   due: 2023-02-01
 
 - name: warmup
   due: 2022-02-01
+  page: labhw/warmup.html
+  tentative: true
+  submit_files:
+  - Makefile
+  - main.c
+  - primes.c
+  - primes.h
 
 - name: signal handling
   lab: true
+  page: labhw/signals.html
   due: 2023-02-08
+  possible_submit_file: signals.c
+  tentative: true
 
 - name: networking
   lab: true
+  page: labhw/networking.html
+  tentative: true
   due: 2023-02-15
 
 - name: signatures
   lab: true
+  page: labhw/signatures.html
+  tentative: true
   due: 2023-02-22
 
-- name: page tables 1
+- name: pagetable 1
   comment: no introducing lab
+  page: labhw/pagetable1.html
+  comment: instructions should be modified to specify what Makefile should build
+  comment: needs rewrite to have compact your task part
+  comment: this is done pagetable 2, but...
+  tentative: true
   due: 2022-02-22
 
-- name: memoizing
+- name: memoize
   lab: true
+  page: labhw/memoize.html
+  tentative: true
   due: 2023-03-01
 
 - name: code reviews
   lab: true
+  page: labhw/code-review.html
+  tentative: true
+  comments: needs submission site link correction
   due: 2023-03-15
 
-- name: page tables 2
+- name: pagetable 2
   comment: no introducing lab
+  comment: connected to code review lab
+  comment: manual page???
+  comment: license stuf fhere
+  comment: requires arbitrary multiple submission
+  page: labhw/pagetable2.html
+  tentative: true
   due: 2022-03-15
 
 - name: sync games
   lab: true
+  page: labhw/sync.html
+  tentative: true
+  comments: needs changes for in-person?
+  comments: need .php stuff
   due: 2023-03-22
 
-- name: pthreads
+- name: pthreads (dining philosophers) 
   lab: true
+  page: labhw/dp.html
+  comments: needs changes for in-person
+  tentative: true
   due: 2023-03-29
 
 - name: TLB
   comment: no introducing lab
+  page: labhw/tlb.html
+  comments: wrapper for pagetable 2
+  tentative: true
   due: 2022-03-29
 
 - name: openmp
   lab: true
+  tentative: true
+  page: labhw/openmp.html
   due: 2023-04-05
 
 - name: fork
+  comment: FIXUP: missing HW?
   comment: for pipelines? after covered in lecture?
+  page: labhw/fork.html
+  tentative: true
   due: 2022-04-05
 
 - name: templates
   lab: true
+  comment: needs CSO1 fixups
+  comment: C++ stuff
+  page: labhw/templates.html
+  tentative: true
   due: 2023-04-12
 
-- name: pipelines
+- name: life
+  page: labhw/life.html
+  due: 2022-04-19
+  tentative: true
+  comment: may need skeleton code to be modified
+  comment: adjust skeleton code to avoid workarounds
+  comment: figure out SLURM setup
+  comment: sanitize-examples.sh script
+  comment: ThreadSanitizer stuff
+
+- name: C++2x?
   lab: true
   due: 2023-04-19
 
-- name: pipeline HW
-  due: 2022-04-26
+- name: pipeline
+  page: labhw/pipeline.html
+  tentative: true
+  due: 2022-05-02

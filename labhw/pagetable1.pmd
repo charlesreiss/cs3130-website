@@ -1,5 +1,5 @@
 ---
-title: PA02 -- Page table
+title: page table 1
 ...
 
 Implement a page table structure in C, with associated access functions.
@@ -143,7 +143,7 @@ make sure it is not in a file required to build your code (i.e., keep `main` in 
 # Tips
 
 
-- Our TAs recommended that you write the following as a warm-up: 
+- We recommended that you write the following as a warm-up: 
 
     ````c
     /**

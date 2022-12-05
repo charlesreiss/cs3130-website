@@ -1,9 +1,9 @@
 ---
-title: PA03 -- Page table, continued
+title: Page table 2
 ...
 
 In the real world, it is uncommon to be able to write code and then walk away from it.
-This PA is a set of modifications to make to your finished product from [PA02](pa02-pagetable.html).
+This PA is a set of modifications to make to your finished product from [pagetable 1](pagetable1.html).
 
 # Changes
 
@@ -17,7 +17,7 @@ they will neither tell you their specific test cases
 nor promise not to add additional tests without warning.
 This withheld information should help you avoid over-fitting your code to their specific tests.
 
-Your code should pass every test they have^[We recognize this will be harder for some than for others based on how far you started from this goal; to avoid double-jeopardy, we'll award some of these points for improvement if your PA02 was not awarded full credit.].
+Your code should pass every test they have^[We recognize this will be harder for some than for others based on how far you started from this goal; to avoid double-jeopardy, we'll award some of these points for improvement if your pagetable1 was not awarded full credit.].
 If you cannot pass every test by the deadline,
 add a description of what your code cannot do to the `README`.
 
@@ -25,7 +25,7 @@ Note that if you submitted a file you don't want, there is currently no way to r
 
 ## Prepare for code review
 
-Code reviews will occur after PA03 closes. To prepare for these
+Code reviews will occur after pagetable 2 closes. To prepare for these
 
 - Make sure your Makefile follows conventions, including
 	- has CC, CFLAGS and LDFLAGS defined

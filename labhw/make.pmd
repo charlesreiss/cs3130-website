@@ -5,18 +5,18 @@ title: Make lab
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
 
-<div class="exercise long">
+{.exercise ...}
 Your task:
 
 With a partner (unless you really want to work alone),
 
-1. Download [`lab01-make.tar`](files/lab01-make.tar) (you can do this using the link on this page, or from a command line via `wget https://www.cs.virginia.edu/~cr4bd/3130/F2022/files/lab01-make.tar`{.bash})
+1. Download [`make-lab.tar`](files/make-lab.tar) (you can do this using the link on this page, or from a command line via `wget https://www.cs.virginia.edu/~cr4bd/3130/F2022/files/make-lab.tar`{.bash})
 
-2. Expand it using `tar xvf lab01-make.tar`{.bash}
+2. Expand it using `tar xvf make-lab.tar`{.bash}
 
 3. Read enough of the files to get an idea what they do. Then build them with `clang *.c` and run `./a.out` to verify your understanding. Ask a TA for help if you are not sure you fully understand.
 
-4. Add a `Makefile` in the resulting `lab01-make` directory, which
+4. Add a `Makefile` in the resulting `make-lab` directory, which
     - has targets for the following
         - build each `.c` file into a `.o` file
         - combine `cheer.o` and `grunt.o` into a library (either `libsay.a` or `libsay.so`)
@@ -31,8 +31,7 @@ With a partner (unless you really want to work alone),
 
 5. Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
 
-</div>
-
+{/}
 
 Refer to the [makefiles and C compilation](../readings/make.html) reading and/or
 the corresponding C material for information on how to achieve these goals.

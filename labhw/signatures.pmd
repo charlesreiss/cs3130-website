@@ -6,17 +6,59 @@ Your task in this lab is to submit signed strings stating that you have passed t
 
 # Signatures
 
-A signature is a hash encrypted with a private key. It is checked by decrypting with a public key and comparing to the hash. That is,
+A *digital signature* is a value produced using a message and a private key that
+can be verified using the public key that corresponds to the private key.
 
-> (message, signature) is valid iff hash(message) = decrypt(signature, publickey)
+That is, there will be a function `Sign` that produces a signature:
 
-However, some decryption includes a modulus operation; if so, you need to compare the hash modulo the same divisor.
+> Sign(privatekey, message) = signature
 
-{.example} If `decrypt` ends with `result %= 0x1234567` then a signature matches if `hash(message) % 0x1234567 == decrypt(signature)`
+and a corresponding function
+
+> Verify(publickey, signature, message) = 1 iff signature was produced using Sign(privatekey, message)
+
+One way to construct a signature is using a _trapdoor function_. Such a function will be easy to
+compute in one direction but very hard to compute in the inverse direction without some private information.
+To construct a trapdoor function, someone will generate a private key (the private information)
+and a corresponding public key which is related to the private key.
+will call the function that is easy to compute the "public" operation and
+the function that is hard to compute the "private" operation. The public operation
+is requires the public key and the private operation requires the private key
+
+One example of a trapdoor function are the RSA functions, which are also commonly used for 
+public-key encryption.
+
+{.aside} These trapdoor functions also underlie some public-key encryption schemes. In this case,
+the public RSA operation forms the core of the encryption operation and the private RSA
+operation forms the core of the decruption operation. But for digital signatures,
+the public RSA operation will form the core of the _verify_ operation and the
+private RSA operation the _sign_ operation.
+
+Given a trapdoor function with a public operation `PublicOp(publickey, data)` and `PrivateOp(privatekey, data)`,
+we can construct a signature scheme where we produce signatures using:
+
+>  signature = Sign(privatekey, message) = PrivateOp(privatekey, truncate(hash(message)))
+
+and verify signatures using
+
+>  Verify(publickey, signature, message) = 1 iff PublicOp(publickey, signature) = truncate(hash(message))
+
+where `hash` is a suitable hash function and `truncate` makes sure the message is in the
+range of value accepted by PrivateOp and PublicOp.
+
+The security of this mechanism depends on the `hash` being secure (so it's hard to construct
+other messages that have the same hash) and on the trapdoor function being secure
+(so it's hard to imitate the private operation without the private key).
 
 # This lab
 
-We provide seven hash functions (none of them secure) and an (also insecure) public key decryption function in [signlab.c](files/signlab.c)^[Using ssh? Try `wget http://www.cs.virginia.edu/luther/COA2/S2020/files/signlab.c`{.bash}]. We also provide the following signed messages. For most messages we provide two signatures, one valid and the other invalid, listed in numerical order.
+We provide seven hash functions (none of them secure) and an (also insecure) trapdoor function in [signlab.c](files/signlab.c)^[Using ssh? Try `wget {{site.url}}/signlab.c`{.bash}].
+
+The lab only incldues the public operation of the trapdoor function (called `decrypt`).
+The trapdoor operation only accepts or produces values between 0 (inclusive) and 0x694d12c5 (exclusive)
+so the truncate operation is `truncate(value) = value % 0x694d12c5`.
+
+We also provide the following signed messages. For most messages we provide two signatures, one valid and the other invalid, listed in numerical order.
 
  Hash   Message              Sig1         Sig2
 ------  ------------------  ------       ------
@@ -55,7 +97,7 @@ Our code uses integer datatype type names from `stdint.h` to ensure they have ex
 
 Our provided C file has 
 
-- A working public key decryption algorithm, `decrypt`. The keymod is the big hexadecimal constant in that function.
+- A working public key decryption algorithm, `decrypt`. The public key is the big hexadecimal constant hardcoded in that function.
 
 - A copy of each hash function.
     - 0 and 1 use only a substring of the message

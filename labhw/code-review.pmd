@@ -2,10 +2,10 @@
 title: Code Reviews
 ...
 
-A code review is a chance to get feedback from others on the design and implementation of code. In this lab, you'll perform peer code reviews of other students [PA03](pa03-pagetable2.html) submissions.
+A code review is a chance to get feedback from others on the design and implementation of code. In this lab, you'll perform peer code reviews of other students [pagetable 2](pagetable2.html) submissions.
 
 {.exercise ...}
-1. Submit your current [PA03](pa03-pagetable2.html) material before lab on [the submission site](https://kytos.cs.virginia.edu/coa2/).
+1. Submit your current [pagetable 2](pagetable2.html) material before lab on the submission site.
     We will compare your before-and-after code and expect to see citations for any changes inspired by the code review.
 2. Get into a group of three students. None of the students should have collaborated on this assignment before this lab.
 3. Arrange and write down an order to review each members code and a schedule (⅓ of remaining lab time each, with 5 minutes breaks in between) at which you'll switch from one student's code to another.

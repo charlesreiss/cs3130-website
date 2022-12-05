@@ -23,14 +23,14 @@ We strongly recommend working in pairs on this lab.
     - Read a typed line into the outbox (without overflow)
     - wait until the outbox is emptied
 4. After the user stops typing (i.e., EOF), send SIGTERM to the other process
+5. Make a cleanup function which
 
-Also make a cleanup function which
+    1. detaches both inbox and outbox
+    1. destroys both inbox and outbox
 
-1. detaches both inbox and outbox
-1. destroys both inbox and outbox
-
-The cleanup function should execute no matter how the program exists:
-via end-of-input, SIGINT, or SIGTERM.
+    The cleanup function should execute no matter how the program exists:
+    via end-of-input, SIGINT, or SIGTERM.
+6.  Show a TA your code for checkoff.
 {/}
 
 # PID

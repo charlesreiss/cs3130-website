@@ -4,15 +4,13 @@ title: Dining Philosophers
 
 # Logistics
 
-We'll again encourage group work via discord <https://discord.gg/BeEdNxK>. In particular, we ask you work in groups of 2 in a "buddy programming" model. You'll also use discord to contact TAs for help and/or pass-off.
+We encourage group work with "buddy programming"..
 
 Buddy programming is when
 
 - You each create your own code
 - You share development, looking at one another's work and so on
 - You catch each other up if one is behind or stuck
-
-We recommend that each pair enter a voice channel and each "Go Live" with their editor window, joining one another's streams so you can each see your code in your editor and your partner's code in discord. There will probably be some tech issues along the way; hopefully the TAs will be able to help.
 
 # Task
 
@@ -25,7 +23,7 @@ We give three approaches to this; you'll need to do at least one, and we encoura
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include <pthread.h>
 
 pthread_t philosopher[5];
