@@ -14,7 +14,7 @@
   due: 2023-02-01
 
 - name: warmup
-  due: 2022-02-01
+  due: 2023-02-01
   page: labhw/warmup.html
   tentative: true
   submit_files:
@@ -49,7 +49,7 @@
   comment: needs rewrite to have compact your task part
   comment: this is done pagetable 2, but...
   tentative: true
-  due: 2022-02-22
+  due: 2023-02-22
 
 - name: memoize
   lab: true
@@ -72,7 +72,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable2.html
   tentative: true
-  due: 2022-03-15
+  due: 2023-03-15
 
 - name: sync games
   lab: true
@@ -94,7 +94,7 @@
   page: labhw/tlb.html
   comments: wrapper for pagetable 2
   tentative: true
-  due: 2022-03-29
+  due: 2023-03-29
 
 - name: openmp
   lab: true
@@ -103,11 +103,11 @@
   due: 2023-04-05
 
 - name: fork
-  comment: FIXUP: missing HW?
+  comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
   tentative: true
-  due: 2022-04-05
+  due: 2023-04-05
 
 - name: templates
   lab: true
@@ -119,7 +119,7 @@
 
 - name: life
   page: labhw/life.html
-  due: 2022-04-19
+  due: 2023-04-19
   tentative: true
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
@@ -134,4 +134,4 @@
 - name: pipeline
   page: labhw/pipeline.html
   tentative: true
-  due: 2022-05-02
+  due: 2023-05-02
