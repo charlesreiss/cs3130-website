@@ -3,3 +3,4 @@ vendor
 Gemfile.lock
 .bundle
 jekyll-dir
+_data/quizzes.yaml
