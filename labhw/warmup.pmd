@@ -1,9 +1,6 @@
 ---
-title: PA01 -- warmup
+title: warmup
 ...
-
-This is mostly a reminder/refresher on C.
-It also makes use of the [introduction to makefiles](../readings/make.html).
 
 # Your task
 
@@ -55,6 +52,10 @@ It also makes use of the [introduction to makefiles](../readings/make.html).
 
     will rebuild (if necessary) `primes.o` and `main.o` and link them together into an executable `primes`.
 
+3.  Make sure your `.c` and `.h` file will not produce any warnings when compiled with the options
+    `-std=c11 -Wall -pedantic` (assuming GCC or Clang) (though it is okay if your Makefile uses different
+    options).
+
 3.  Submit your files to the submission site (linked above).
 
 # Hints
@@ -65,7 +66,12 @@ detailed examples of how Make works. You my also refer to our `make`'s
 including [this example](https://www.gnu.org/software/make/manual/make.html#Rule-Example) from
 that docuemntation.
 
-If your code uses any function in `math.h` (such as `sqrt`, `pow`, `log`, etc.), make sure you add `-lm` to the `LDFLAGS` of your `Makefile` or it will not compile on the department servers.
+You can find a reference on the C standard library and language [here](https://en.cppreference.com/w/c);
+in particular the [string functions](https://en.cppreference.com/w/c/string/byte) and
+[math functions](https://en.cppreference.com/w/c/numeric/math) might be useful.
+
+If your code uses any function in `math.h` (such as `sqrt`, `pow`, `log`, etc.),
+make sure you add `-lm` to the `LDFLAGS` of your `Makefile` or it will not compile on the department servers.
 
 # Collaboration
 

@@ -70,31 +70,62 @@ To send a signal, use `kill(pid_to_send_to, SIGTERM)` or the like.
 One of the advantages of virtual memory is the OS can map the same physical page to different virtual pages in different processes.
 The processes can then directly communicate by loading what the other stored in that shared memory.
 
-Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is. You need a key, an identifier, and a pointer, as follows:
+Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is. There are multiple ways to create shared memory; in this assignment, we'll recommend
+using `shm_open` and `mmap`. `shm_open` will give you access to special files that are kept
+in memory instead of on persistent storage. Then `mmap` takes a file and gives you access to it as a
+region of memory. (`mmap` also works for files that are stored normally on disk even though we don't recommend
+that for this lab.)
 
-1. A key (type `key_t`) is generated via `ftok(path, num)` (from `sys/ipc.h`);
-    we'll use `argv[0]` as the path and `1` and `2` as the `num`s:
-    i.e., `ftok(argv[0], 1)`{.c} and `ftok(argv[0], 2)`{.c}.
-    Box 1 will be the inbox of the smaller-PID program and the outbox of the larger-PID program;
-    box 2 will be the inbox of the larger-PID program and the outbox of the smaller-PID program.
+1. Choose a name (similar to a filename; on Linux's implementation of shared memory, this will become a file in 
+   the special directory /dev/shm).
+   To avoid interference with other students, I recommend chosing a name like /<USERNAME>-<PID>-mm-inbox
+   or /<USERNAME>-<PID>-mm-outbox
+   which you can generate using code like:
 
-2. An identifier. The OS allocated a physical page and gives us an integer to identify it.
-    
-    To allocate, `inbox_id = shmget(inbox_key, box_size, 0666 | IPC_CREAT);`{.c}
-    
-    To deallocate, `shmctl(inbox_id, IPC_RMID, NULL);`{.c}
-    
-    Shared memory regions can persist even after the creating program terminates, so **always deallocate what you allocate**!
-    Even if your program stops early (e.g., by SIGINT) you still need to deallocate.
-    It does not hurt (though does set `errno`) to deallocate multiple times
-    or from the wrong process.
+        char inbox_name[NAME_MAX];
+        snprintf(sizeof inbox_name, "/%s-%d-mm-inbox", getenv("USER"), pid);
 
-3. A pointer. You attach a pointer to shared memory using `shmat` and detach it with `shmdt`:
+   (This assumes that the login process or shell has set the environment variable "USER", which is almost always
+   the case.)
+
+   Note that the name must start with a `/`
+   
+2. The shared memory regions we will access are a special kind of file opened with `shm_open`
+   and deleted with `shm_unlink`.
+
+   To allocate and get a handle for a shared memory region, open it using shm_open with the `O_CREAT` flag:
+
+        int inbox_fd = shm_open(inbox_name, O_CREAT | ORDWR, 0666);
+
+   The handle, `inbox_fd` in the code above, is an integer that you will pass to the `mmap` ("memory map")
+   call later. I use `fd` in the name because it is a *file descriptor*.
+
+   Initially created shared memory regions will be empty, but you can allocate space for them with 
+   `ftruncate`:
+        
+        ftruncate(inbox_fd, size);
+
+   (where `size` is a size in bytes).
+
+   To deallocate, use `shm_unlink`:
+
+        shm_unlink(inbox_name);
+    
+   Shared memory regions can persist even after the creating program terminates, so **always deallocate what you allocate**!
+   Even if your program stops early (e.g., by SIGINT) you still need to deallocate.
+   It does not hurt (though does set `errno`) to deallocate multiple times
+   or from the wrong process.
+
+3. A pointer. You attach a pointer to shared memory using `mmap` and detach it with `munmap`:
 
     ````c
-    inbox = (char*)shmat(in_seg, NULL, 0);
+    inbox = (char*) mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
+    if (inbox == (char*) MAP_FAILED) {
+        /* something went wrong */
+        /* note that MAP_FAILED is _NOT_ the same thing as NULL */
+    }
     // ...
-    shmdt(inbox);
+    munmap(inbox, size);
     ````
 
 # Repeating and waiting
