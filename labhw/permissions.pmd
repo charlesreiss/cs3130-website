@@ -9,9 +9,8 @@ Although not all OSs use the same system, the POSIX standard defines a set of fi
 {.exercise ...}
 Work with a partner to achieve the following:
 
-1. If the TA gives
-    - a numeric permission, convert to letters
-    - a letter permission, convert to a number
+1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
+   on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet):.
 1. Create a directory in your home directory for this lab. Do each of the following steps in that directory.
 1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
     a. `ls dir`{.bash} refuses to run
@@ -24,14 +23,16 @@ Work with a partner to achieve the following:
 1. Make a file `simple.sh` which can be run both by `bash simple.sh`{.bash} and `./simple.sh`{.bash} containing bash commands that
     a. appends a line containing the current day and time to file `simple_runs`
     a. reports how many lines `simple_runs` contains
-1. Determine which of the following are possible to achieve and write your answers in answers.txt:
+1. Determine which of the following are possible to achieve and write your answers
+   (with a brief explanation) on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet):.
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `echo hi >> xyxxy`{.bash} does not
+1. Either:
+    a. check off your lab completion with a TA, or
+    a. from your home directory, run `tar -cvf permissions-lab.tar BASE-DIRECTORY` where `BASE-DIRECTORY` is the directory you created for everything in the lab. Then upload `permissions-lab.tar` to the submission site.
 {/}
 
-The information needed to achieve these goals is explained in the
-[reading on POSIX permissions](readings/permissions.pmd)
+The information needed to achieve these goals is explained in the [reading on permissions](readings/permissions.pmd).
 We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
-
