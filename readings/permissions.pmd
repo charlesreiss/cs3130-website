@@ -1,55 +1,29 @@
 ---
-title: Permissions
+title: POSIX permissions
 ...
 
-Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
-As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
-Although not all OSs use the same system, the POSIX standard defines a set of file permissions that are commonly used.
-
-{.exercise ...}
-Work with a partner to achieve the following:
-
-1. If the TA gives
-    - a numeric permission, convert to letters
-    - a letter permission, convert to a number
-1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
-    a. `ls dir`{.bash} refuses to run
-    a. `cat dir/foo`{.bash} works
-    a. `cat dir/baz`{.bash} refuses to run
-1. Create a file and set its access control list so that
-    a. you can read and write it
-    a. your partner can read it
-    a. other users (including TAs) cannot do either one
-1. Make a file `simple.sh` which can be run both by `bash simple.sh`{.bash} and `./simple.sh`{.bash} containing bash commands that
-    a. appends a line containing the current day and time to file `simple_runs`
-    a. reports how many lines `simple_runs` contains
-1. Determine which of the following are possible to achieve:
-    a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
-    a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
-    a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
-    a. `./xyxxy`{.bash} works but `echo hi >> xyxxy`{.bash} does not
-{/}
-
-The information needed to achieve these goals is explained below.
-We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
-
-# Accounts
+# "Users" and "Groups"
 
 Every program runs as some **user**.
 This is true even of the user interface, a program that allows you to run other programs.
-When one program runs another, the new program runs as the same user as the old except in a few special circumstances.
-Any example special circumstance is the "log in" program, which itself runs as `root` but after you log in runs your user interface as your user account.
+When one program runs another,
+the new program runs as the same user as the old except in a few special circumstances.
+An example special circumstance is the "log in" program,
+which itself runs as `root` but after you log in runs your user interface as your user account.
 
 You can find out what user you are running as via the command `whoami`{.bash}.
 
+Each user generally has a name and also a numerical ID. Typically, the numerical ID is what is used
+internally by the kernel to identify user.
+
 Every user can belong to any number of **groups**.
 You can find out what groups a user belongs to by running the command `groups mst3k`{.bash};
-if you omit the user ID, it will list your own group memberships.
+if you omit the username, it will list your own group memberships.
 
 Every file and directory also has a user and a group---but just one group, not a whole set.
 The user of a file does not need to belong to the group of the file.
 
-# File permissions
+# POSIX file permissions
 
 Permissions are split into three kinds, with different meanings for :
 
@@ -150,7 +124,10 @@ Sticky may sometimes be worth setting; we recommend never using the other two.
 # Access Control Lists
 
 Sometimes we need more fine-grained control than the three-way user-group-other distinction.
-This is provided using access control lists, or ACLs; they are a list of user+permission pairs associated each file.
+This is provided using more general *access control lists*, or ACLs;
+they are a list of user+permission pairs associated each file.
+Unlike the simpler POSIX permission bits, they can include settings for much more than a single
+user or group.
 Every OS I've ever used has ACL support, though actual use of them is relatively uncommon; the standard system works in most cases.
 
 The command `getfacl file`{.bash} shows the full permission information for a file.

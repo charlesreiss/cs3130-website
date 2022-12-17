@@ -44,6 +44,8 @@ They typically include
 Notably absent from that list is any mention of permissions.
 Instead of permissions being listed per account,
 it is more typical to list, for each resource, which user accounts and groups may access it.
+For details on how this is implemented
+POSIX systems, see the [reading on permissions](permissions.html). <!-- FIXME: keep? -->
 
 {.example ...} Suppose as part of the results of an `ls -l`{.bash}
 invocation you see the line

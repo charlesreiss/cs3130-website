@@ -5,11 +5,12 @@
   possible_submit_file: Makefile
   tentative: true
 
-- name: accounts
+- name: permissions
   lab: true
-  page: labhw/accounts.html
+  page: labhw/permissions.html
   possible_submit_file: allfiles.tar or ls-output.txt + question answers.txt
   possible_submit_note: would be created with tar option that preserves ACLs
+  comment: "should have random permission conversion problem generator"
   tentative: true
   due: 2023-02-01
 

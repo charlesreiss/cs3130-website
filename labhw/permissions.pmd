@@ -1,0 +1,37 @@
+---
+title: Permissions
+...
+
+Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
+As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
+Although not all OSs use the same system, the POSIX standard defines a set of file permissions that are commonly used.
+
+{.exercise ...}
+Work with a partner to achieve the following:
+
+1. If the TA gives
+    - a numeric permission, convert to letters
+    - a letter permission, convert to a number
+1. Create a directory in your home directory for this lab. Do each of the following steps in that directory.
+1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
+    a. `ls dir`{.bash} refuses to run
+    a. `cat dir/foo`{.bash} works
+    a. `cat dir/baz`{.bash} refuses to run
+1. Create a file 'shared.txt' and set its access control list so that
+    a. you can read and write it
+    a. your partner can read it
+    a. other users (including TAs) cannot do either one
+1. Make a file `simple.sh` which can be run both by `bash simple.sh`{.bash} and `./simple.sh`{.bash} containing bash commands that
+    a. appends a line containing the current day and time to file `simple_runs`
+    a. reports how many lines `simple_runs` contains
+1. Determine which of the following are possible to achieve and write your answers in answers.txt:
+    a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
+    a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
+    a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
+    a. `./xyxxy`{.bash} works but `echo hi >> xyxxy`{.bash} does not
+{/}
+
+The information needed to achieve these goals is explained in the
+[reading on POSIX permissions](readings/permissions.pmd)
+We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
+

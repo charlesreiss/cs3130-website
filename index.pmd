@@ -29,6 +29,7 @@ We have created several writeups for this course:
 - [Makefiles](readings/make.html)
 - [Kernels -- Software for the Hardware](readings/kernel.html)
 - [User Accounts](readings/accounts.html)
+  *  [File Permissions](readings/permissions.html)
 - [Buses (and networks)](readings/bus.html)
 - [Networking Protocols](readings/protocols.html)
 - [Security protocols with less math](readings/sec.html)
