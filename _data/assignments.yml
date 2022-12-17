@@ -2,15 +2,15 @@
   lab: true
   page: labhw/make.html
   due: 2023-01-25
-  possible_submit_file: Makefile
+  submit_file: Makefile
   tentative: true
 
 - name: permissions
   lab: true
   page: labhw/permissions.html
-  possible_submit_file: allfiles.tar or ls-output.txt + question answers.txt
-  possible_submit_note: would be created with tar option that preserves ACLs
+  comment: "also answer sheet on quiz system"
   comment: "should have random permission conversion problem generator"
+  submit_file: permissions-lab.tar
   tentative: true
   due: 2023-02-01
 
