@@ -30,7 +30,7 @@ We strongly recommend working in pairs on this lab.
 
     The cleanup function should execute no matter how the program exists:
     via end-of-input, SIGINT, or SIGTERM.
-6.  Show a TA your code for checkoff.
+6.  Upload your solution to the submission site or show a TA your code for checkoff.
 {/}
 
 # PID
@@ -78,24 +78,21 @@ that for this lab.)
 
 1. Choose a name (similar to a filename; on Linux's implementation of shared memory, this will become a file in 
    the special directory /dev/shm).
-   To avoid interference with other students, I recommend chosing a name like /<USERNAME>-<PID>-mm-inbox
-   or /<USERNAME>-<PID>-mm-outbox
+   To avoid interference with other students, I recommend chosing a name like /<PID>-mmchat
    which you can generate using code like:
 
-        char inbox_name[NAME_MAX];
-        snprintf(sizeof inbox_name, "/%s-%d-mm-inbox", getenv("USER"), pid);
+        char inbox_name[512];
+        snprintf(inbox_name, sizeof inbox_name, "/%d-mmchat", pid);
 
-   (This assumes that the login process or shell has set the environment variable "USER", which is almost always
-   the case.)
+   Note that the name must start with a `/`.
 
-   Note that the name must start with a `/`
-   
 2. The shared memory regions we will access are a special kind of file opened with `shm_open`
    and deleted with `shm_unlink`.
 
    To allocate and get a handle for a shared memory region, open it using shm_open with the `O_CREAT` flag:
 
-        int inbox_fd = shm_open(inbox_name, O_CREAT | ORDWR, 0666);
+        int inbox_fd = shm_open(inbox_name, O_CREAT | O_RDWR, 0666);
+        if (inbox_fd < 0) { /* something went wrong */ }
 
    The handle, `inbox_fd` in the code above, is an integer that you will pass to the `mmap` ("memory map")
    call later. I use `fd` in the name because it is a *file descriptor*.
@@ -105,7 +102,7 @@ that for this lab.)
         
         ftruncate(inbox_fd, size);
 
-   (where `size` is a size in bytes).
+   (where `size` is a size in bytes; I recommend 4096.). 
 
    To deallocate, use `shm_unlink`:
 
@@ -116,14 +113,19 @@ that for this lab.)
    It does not hurt (though does set `errno`) to deallocate multiple times
    or from the wrong process.
 
+   You will need to include `<unistd.h>, `<sys/mman.h>`, and `<fcntl.h>` to use these functions
+   as well as `#define _XOPEN_SOURCE 600` (or similar) before including anything. On Linux, you will
+   also need to link with `-lrt`.
+
 3. A pointer. You attach a pointer to shared memory using `mmap` and detach it with `munmap`:
 
     ````c
-    inbox = (char*) mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
+    inbox = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
     if (inbox == (char*) MAP_FAILED) {
         /* something went wrong */
         /* note that MAP_FAILED is _NOT_ the same thing as NULL */
     }
+    close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
     // ...
     munmap(inbox, size);
     ````
@@ -137,6 +139,8 @@ You've got two things to do: keyboard ↦ outbox and inbox ↦ screen.
 A loop in `main` is the way to go: `while(!feof(stdin))`{.c} you want to `fgets` directly into the outbox.
 After data is in the outbox, send SIGUSR1 (using `kill`) to the other process then wait for `outbox[0]`{.c} to stop being `'\0'`{.c}
 Don't just busy-wait though: check, then go to sleep for a bit, then check again.
+(A better strategy you could also try might be to wait for SIGUSR2 using sigprocmask() and sigwait()
+and have the receiving process send SIGUSR2 when it is done reading the input.)
 
 ```c
 // wait for '\0' by checking 100 times a second
