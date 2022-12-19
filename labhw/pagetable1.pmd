@@ -147,11 +147,11 @@ make sure it is not in a file required to build your code (i.e., keep `main` in 
 
     ````c
     /**
-     * Returns the kth virtual page number of the given virtual address
+     * Returns the kth virtual page number part of the given virtual address
      * requires: 0 <= k < LEVELS
      * ensures: 0 <= result < (1<<(POBITS-3))
      */
-    size_t kth_vpn(size_t va, int k);
+    size_t kth_vpn_part(size_t va, int k);
     ````
 
     Only a few past solutions worked without defining something like this function
