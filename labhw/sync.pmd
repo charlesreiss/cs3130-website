@@ -22,18 +22,18 @@ Your goal is to reach your target dollar amount before anyone else you are playi
 
 # The Variants
 
-1.  Variant 1 (<FIXME>)
+1.  Variant 1 ([link]({{site.submit_site}cashgame1.php))
     has atomic money moves and no other synchronization.
     It is possible (even likely) that other players' plays will occur between you looking at the table and your play being acted on.
 
-1.  Variant 2 (<FIXME>)
+1.  Variant 2 ([link]({{site.submit_site}cashgame2.php))
     uses locks to prevent plays if someone else has made a play between your looking and acting.
 
-1.  Variant 3 (<FIXME>)
+1.  Variant 3 ([link]({{site.submit_site}cashgame3.php))
     places arriving players in a queue and only lets them play in order.
     It is otherwise like Variant 1.
 
-1.  Variant 4 (<FIXME>)
+1.  Variant 4 ([link]({{site.submit_site}cashgame4.php))
     uses voting to make plays; only if a majority of players agree to an action does it occur.
 
 Each variant allows arbitrary game names.
