@@ -61,7 +61,7 @@ should prompt for user input, wait until it is provided, and then repeat what th
 
 # `char *getoutput(const char *command)`
 
-This should behave something like `system`, except that instead of letting the child print to stdout, it should collect what the child prints and return it as a `malloc`-allocated `char *`.
+This should behave something like `system`, except that instead of letting the child print to stdout, it should collect what the child prints and return it as a `\0`-terminated `malloc`-allocated `char *`. If the command's output includes a `\0` itself, it should return your choice of the output up to the first `\0` or the entire output (with an additional terminating `\0`).
 
 I am not aware of a standard library function that does this, but if you find one do not use it; do this by forking, execing, and piping yourself.
 

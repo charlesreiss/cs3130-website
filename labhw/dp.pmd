@@ -25,12 +25,13 @@ We give three approaches to this; you'll need to do at least one, and we encoura
 #include <stdio.h>
 #include <stdlib.h> 
 #include <pthread.h>
+#include <unistd.h>
 
 pthread_t philosopher[5];
 pthread_mutex_t chopstick[5];
 
 void *eat(void *arg) {
-    int n = (int)arg;
+    int n = (int) (long)arg;
     // take two chopsticks
     pthread_mutex_lock(&chopstick[n]);
     printf("Philosopher %d got chopstick %d\n", n, n);
@@ -72,6 +73,17 @@ clang -O2 -lpthread dp.c && ./a.out`
 ```
 
 Because thread scheduling is somewhat random in practice, you may need to run the program several times in a row to see a deadlock.
+
+To help idenitfy deadlocks and other synchronization problems more reliably,
+we strongly recommend using ThreadSanitizer:
+
+```bash
+clang -O2 -lpthread -fsanitize=thread dp.c && ./a.out`
+```
+
+This will run slower (though not noticably so for this program), but tries to idenitfy cases where
+the program does not implement a resource hierarchy strategy. It also will (with varying
+reliablity) detect several other kinds of thread usage errors (like race conditions).
 
 ## Required approach: Arbitrator
 
@@ -120,5 +132,7 @@ If correctly implemented,
 
 # Check off
 
-Have a TA see your program working.
-They may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.
+Either:
+*  submit solutions including both optional approaches to the submission site, OR
+*  have a TA see your program working.
+   They may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.

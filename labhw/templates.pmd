@@ -6,7 +6,7 @@ We showed you some basic C++ last semester, including using templates like Java 
 But that is far from all C++ templates can do...
 This lab will help you explore this topic in more detail.
 
-You'll work in pairs for this lab, like those before it.
+We recommend that you work in pairs for this lab, like those before it.
 
 # Caveat
 
@@ -15,7 +15,7 @@ I hope this lab will help you make your own opinion, but be aware that if you wo
 
 # Review
 
-Begin by reviewing the C++ labs from CSO1:
+Begin by reviewing the C++ labs from CSO1: <!-- FIXME: links -->
 
 - [name overloading, namespaces, references, methods](/luther/COA1/F2019/lab10-cpp.html)
 - [STL, references, templates, operator overloading, iostream](/luther/COA1/F2019/lab11-stl.html)
@@ -27,8 +27,6 @@ We'll be picking up from where those left off in this lab.
 In mathematics, a vector has fixed length and adding vectors of different length is meaningless.
 In this lab you'll use C++ templates to make a mathematical vector class
 that uses the type checker to ensure at compile time that no wrong-sized operations occur.
-
-We'll also use a `struct`, not a `class`, to encourage passing small vectors by value instead of by pointer.
 
 {.exercise ...}
 Implement a templated mathematical vector type in C++.
@@ -58,14 +56,12 @@ int main() {
     std::cout << (a + c) << std::endl; // does not compile
     
     
-    b[2] = 2.5; // assigns off the end of b...
     c[2] = 2.5; // implicitly casts a double to an int...
     b[1] = 2.5;
     c[2] = 2;
 
     std::cout << b << std::endl; // prints (0, 2.5)
-    std::cout << c << std::endl; // prints (0, 1074003968, 2, 0)
-                                 // -- the 1074003968 is from b[2] overflow
+    std::cout << c << std::endl; // prints (0, 0, 2, 0)
     vd3 x = {1.5, 2.5, 3.5};
     std::cout << x << std::endl; // prints (1.5, 2.5, 3.5)
 
@@ -77,11 +73,14 @@ int main() {
 ```
 
 You code should not contain any heap-allocated memory (no `new` or `malloc`)
+
+When you're done submit your C++ files to the submission site along with some testing, OR
+show your TA what you've done for check-off.
 {/}
 
 # Guides
 
-- Precede your `struct` with `template <typename N, int n>`{.cpp} so it will work with multiple types and lengths
+- Precede your `struct` (or `class`) with `template <typename N, int n>`{.cpp} so it will work with multiple types and lengths. (The only difference between `struct` and `class` in C++ is whether it defaults to `public` or `private`.)
 
 - Use a static array `N data[n]` (or the like) as the only field so avoid heap memory allocations
 
@@ -152,3 +151,5 @@ for(auto it = mycollection.begin(); // create an iterator
 
 Note in the above that when you combine a declaration and initialization,
 you can declare the type to be `auto`{.cpp} meaning "use whatever type the initialization gives me".
+
+# Submission

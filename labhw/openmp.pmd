@@ -2,6 +2,27 @@
 title: OpenMP -- parallelism made easy
 ...
 
+# Task
+
+{.exercise ...}
+Work, ideally with a paterner, to use OpenMP to parallelize the [Starter code](#starter-code).
+You should be able to understand all of the code provided, but will only need to work on the `geomean` function for this lab.
+
+To run the code, compile with the `-lm` flag and give it file names as command-line arguments. It will return the number of bytes in those files and the geometric mean value of those bytes. You can provide multiple files on the command line if you wish; all will be combined before analysis. Parallelism give the biggest benefit when given large inputs, so you might want to try some larger files: for example, on portal `/usr/bin/emacs-24.3` has more than 14 million characters.
+
+    $ gcc -lm -fopenmp -O2 openmpstarter.c
+    $ ./a.out /usr/bin/emacs-24.3
+    313710435 ns to process 14784560 characters: 6.46571
+
+
+To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
+
+Then either:
+*  submit (preferably as one file with multiple copies of the geomean function) and a text file "performance.txt" explaining which was fastest and your guess as to why; or
+*  check-off with a TA, being prepared to explain which approach was fastest and your guess as to why
+{/}
+
+
 # Introduction
 
 OpenMP is designed to make common kinds of speed-oriented parallelism simple and painless to write.
@@ -26,7 +47,7 @@ int main() {
 }
 ```
 
-Compile with `gcc -fopenmp test.c`{.sh} and run as `./a.out`{.sh}; if it worked, you'll see multiple `I'm a thread` lines printed out.
+Compile with `gcc -fopenmp -O2 test.c`{.sh} and run as `./a.out`{.sh}; if it worked, you'll see multiple `I'm a thread` lines printed out.
 
 If you compile without the `-fopenmp` flag it will run on just one thread and print our `I'm a thread` just once.
 
@@ -45,26 +66,8 @@ If you want several statements to be parallelized, you'd put them in braces to c
 puts("but not this one");
 ```
 
-# Task
 
-{.exercise ...}
-Work with a partner to use OpenMP to parallelize the [Starter code](#starter-code).
-You should be able to understand all of the code provided, but will only need to work on the `geomean` function for this lab.
-
-To run the code, compile with the `-lm` flag and give it file names as command-line arguments. It will return the number of bytes in those files and the geometric mean value of those bytes. You can provide multiple files on the command line if you wish; all will be combined before analysis. Parallelism give the biggest benefit when given large inputs, so you might want to try some larger files: for example, on portal `/usr/bin/emacs-24.3` has more than 14 million characters.
-
-    $ gcc -lm -fopenmp lab10starter.c
-    $ ./a.out /usr/bin/emacs-24.3
-    313710435 ns to process 14784560 characters: 6.46571
-
-
-To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
-
-Then explain to a TA which approach was fastest and your guess as to why.
-{/}
-
-
-# The Map-Reduce paradigm
+# The Map-Reduce pattern
 
 Data races are a major limiting factor on parallel computation.
 Synchronization can remove races, but at the cost of reduced parallelism.
@@ -80,7 +83,9 @@ Map-reduce works as follows
 In both cases, the "array" might be implicitly defined; for example, the array of integers from 0 to 10000 could be implicit in the existence of a for loop.
 
 Many problems that take large amounts of data as input can be re-posed as a map, followed by a reduce.
-Both Map and Reduce can be efficiently parallelized
+Both Map and Reduce can be efficiently parallelized. Parallelizing the map operation is relatively simple.
+Parallelizing the reduce operation efficiently is more complex, but efficient implementations of the
+reduction operation can be reused.
 
 ## Parallel Map
 
@@ -162,7 +167,7 @@ or do partial reductions in each of several threads and then combine them all in
 
 ### Atomic reduction -- non-parallel
 
-The simplest way to reduce is to make the reduction step an `#pragma opm atomic`{.c} of some type (usually `update`).
+The simplest way to reduce is to make the reduction step an `#pragma omp atomic`{.c} of some type (usually `update`).
 This limits the performance value of parallelism, so it's not recommended in general, but in some cases it is adequate to achieve a needed speedup.
 
 This is done by replacing 

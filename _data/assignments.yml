@@ -96,6 +96,11 @@
   page: labhw/dp.html
   comments: needs changes for in-person
   tentative: true
+  comments: "FIXME: HAS TA CHECK OFF"
+  comments: "FIXME: ThreadSanitizer"
+  comments: "FIXME: needs more infrastructure for second optional approach"
+  comments: "SHOULD HAVE ADDTL REQUIRED APPROACH"
+  comments: "Non-DP example?"
   due: 2023-03-29
 
 - name: TLB
