@@ -6,6 +6,7 @@
 - date: 2023-01-19
   week: 1
   title: introduction / building (pt 1)
+  reading: [overview](readings/intro.html), [makefiles](readings/make.html)
   description: |
     * course outline
 
@@ -17,6 +18,7 @@
 - date: 2023-01-24
   week: 2
   title: privilege
+  reading: [kernel](readings/kernel.html) §1-2.2
   description: |
     *  protection rings
     *  exceptions
@@ -31,6 +33,7 @@
 - date: 2023-01-26
   week: 2
   title: exceptions + signals
+  reading: [kernel](readings/kernel.html) §2, 3.1
   description: |
     *  exceptions (con't)
        *  writing exceptions handlers
@@ -43,6 +46,7 @@
 - date: 2023-01-31
   week: 3
   title: accounts + escalation
+  reading: [accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)
   description: |
     *  problems in multi-user systems
     *  user IDs/account abstraction
@@ -57,6 +61,7 @@
 - date: 2023-02-02
   week: 3
   title: virtual memory 1
+  reading: [kernel](readings/kernel.html) §3
   description: |
     *  virtual memory concept
     *  page tables
@@ -66,6 +71,7 @@
 - date: 2023-02-07
   week: 4
   title: virtual memory 2
+  reading: [kernel](readings/kernel.html) §3
   description: |
     *  page tables
        *  as a tree
@@ -80,6 +86,7 @@
 - date: 2023-02-09
   week: 4
   title: buses + DMA
+  reading: [buses](readings/buses.html)
   description: |
     *  processor buses
        *  half-duplex versus full-duplex
@@ -91,16 +98,21 @@
 - date: 2023-02-14
   week: 5
   title: IP + UDP
+  reading: [protocols](readings/protocol.html) §1-2.2
   descripton: |
     *  mailbox analogy
        *  inboxes and outboxes
        *  addresses
        *  best-effort delivery
        *  envelope versus contents
+    *  names and addresses
+    *  running example: a frame
+       *  layers (link, network, transport)
+    *  addresses and names
+       *  layers preview
     *  IP
        *  addresses (v4, v6)
        *  routers
-    *  port numbers and UDP
 
 - date: 2023-02-15
   lab: true
@@ -108,23 +120,23 @@
 
 - date: 2023-02-16
   week: 5
-  title: connections + TCP
+  title: UDP + connections + TCP
+  reading: [protocols](readings/protocol.html) §2
   description: |
+    *  port numbers and UDP
     *  connection abstraction
     *  TCP
-    *  firewalls
+       *  acknowledgements
+       *  state machine
+    *  firewalls <!-- FIXME: not in reading! -->
 
 - date: 2023-02-21
   week: 6
-  title: DHCP + UDP
+  title: URLs + DHCP + DNS
+  reading: [protocols](readings/protocol.html) §3-4
   description: |
-    *  OSI model layers and real layers
-    *  the link layer
-       *  (topologies reprise)
-       *  MAC addresses
+    *  URLs
     *  DHCP / v6 autoconfiguration?
-
-    *  addresses and names
     *  DNS
        *  is a distributed database
        *  with caching
@@ -137,6 +149,7 @@
 - date: 2023-02-23
   week: 6
   title: network security / secure channels 1
+  reading: [security](readings/sec.html) §1
   description: |
     *  DDoS
     *  spoofing
@@ -150,12 +163,15 @@
 - date: 2023-02-28
   week: 7
   title: secure channels 2
+  reading: [security](readings/sec.html) §2
   description: |
     *  cryptography (con't)
         *  digital signatures
         *  public key infrastructure
 
     *  TLS protocol outline
+
+    *  side channels <!-- FIXME -->
 
 - date: 2023-03-01
   lab: true
