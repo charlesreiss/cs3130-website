@@ -119,6 +119,8 @@ They also tend to appear in exceptional (that is, unusual) situations.
 
 There are several kinds of hardware exceptions.
 
+{.aside} Confusingly, terms for exceptions and particular kinds of exceptions vary across sources. In the convention we have followed, we use `exception' as the generic term and use the terms `interrupt' or `trap' for particular kinds of exceptions. Some sources use `interrupt' or `trap' for the generic term instead and use `exception' to refer as a more specific term (probably roughly equivalent to what we call `faults'). There is also some other variation in the definitions of the more specific terms. So, when reading a processor manual or similar reference, be careful to look for context to see exactly how they define each of the terms below.
+
 ### Interrupts
 
 An interrupt occurs independently from the code being executed when it occurs.
@@ -126,10 +128,6 @@ It might result from the mouse moving, a network packet arriving, or the like.
 
 Interrupts are typically handled by the kernel in a way that is invisible to the user code.
 The user code is frozen, the interrupt handled, and then the user code resumed as if nothing had happened.
-
-
-{.aside} Some sources call all exceptions "interrupts," calling the interrupting-type of exception an "asynchronous interrupt" instead.
-
 
 
 ### Faults

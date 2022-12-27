@@ -19,10 +19,10 @@
   title: privilege
   description: |
     *  protection rings
-    *  interrupts
+    *  exceptions
        *  events triggering
        *  what the hardware must do
-       *  interrupt handlers
+       *  exception handlers
 
 - date: 2023-01-25
   week: 2
@@ -30,10 +30,11 @@
 
 - date: 2023-01-26
   week: 2
-  title: interrupts + signals
+  title: exceptions + signals
   description: |
-    *  interrupts (con't)
-       *  writing interrupt handlers
+    *  exceptions (con't)
+       *  writing exceptions handlers
+    *  processes
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation

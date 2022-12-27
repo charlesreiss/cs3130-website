@@ -5,14 +5,12 @@
   submit_file: Makefile
   tentative: true
 
-- name: permissions
+- name: signal handling
   lab: true
-  page: labhw/permissions.html
-  comment: "also answer sheet on quiz system"
-  comment: "should have random permission conversion problem generator"
-  submit_file: permissions-lab.tar
-  tentative: true
+  page: labhw/signals.html
   due: 2023-02-01
+  possible_submit_file: signals.c
+  tentative: true
 
 - name: warmup
   due: 2023-02-01
@@ -24,12 +22,14 @@
   - primes.c
   - primes.h
 
-- name: signal handling
+- name: permissions
   lab: true
-  page: labhw/signals.html
-  due: 2023-02-08
-  possible_submit_file: signals.c
+  page: labhw/permissions.html
+  comment: "also answer sheet on quiz system"
+  comment: "should have random permission conversion problem generator"
+  submit_file: permissions-lab.tar
   tentative: true
+  due: 2023-02-08
 
 - name: networking
   lab: true
