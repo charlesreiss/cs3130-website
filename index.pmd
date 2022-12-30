@@ -39,6 +39,7 @@ We have created several writeups for this course:
 - [Using POSIX Threads](readings/pthreads.html)
 - [Deadlock](readings/deadlock.html)
 - [Consistency](readings/consistency.html)
+- [Processors](readings/processors.html)
 
 (The original version of these was written by Professor Tychonievich.)
 

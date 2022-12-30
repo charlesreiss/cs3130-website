@@ -6,7 +6,7 @@
 - date: 2023-01-19
   week: 1
   title: introduction / building (pt 1)
-  reading: [overview](readings/intro.html), [makefiles](readings/make.html)
+  reading: "[overview](readings/intro.html), [makefiles](readings/make.html)"
   description: |
     * course outline
 
@@ -18,7 +18,7 @@
 - date: 2023-01-24
   week: 2
   title: privilege
-  reading: [kernel](readings/kernel.html) §1-2.2
+  reading: "[kernel](readings/kernel.html) §1-2.2"
   description: |
     *  protection rings
     *  exceptions
@@ -33,7 +33,7 @@
 - date: 2023-01-26
   week: 2
   title: exceptions + signals
-  reading: [kernel](readings/kernel.html) §2, 3.1
+  reading: "[kernel](readings/kernel.html) §2, 3.1"
   description: |
     *  exceptions (con't)
        *  writing exceptions handlers
@@ -46,7 +46,7 @@
 - date: 2023-01-31
   week: 3
   title: accounts + escalation
-  reading: [accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   description: |
     *  problems in multi-user systems
     *  user IDs/account abstraction
@@ -61,7 +61,7 @@
 - date: 2023-02-02
   week: 3
   title: virtual memory 1
-  reading: [kernel](readings/kernel.html) §3
+  reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  virtual memory concept
     *  page tables
@@ -71,7 +71,7 @@
 - date: 2023-02-07
   week: 4
   title: virtual memory 2
-  reading: [kernel](readings/kernel.html) §3
+  reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
        *  as a tree
@@ -86,7 +86,7 @@
 - date: 2023-02-09
   week: 4
   title: buses + DMA
-  reading: [buses](readings/buses.html)
+  reading: "[buses](readings/bus.html)"
   description: |
     *  processor buses
        *  half-duplex versus full-duplex
@@ -98,7 +98,7 @@
 - date: 2023-02-14
   week: 5
   title: IP + UDP
-  reading: [protocols](readings/protocol.html) §1-2.2
+  reading: "[protocols](readings/protocol.html) §1-2.2"
   descripton: |
     *  mailbox analogy
        *  inboxes and outboxes
@@ -121,7 +121,7 @@
 - date: 2023-02-16
   week: 5
   title: UDP + connections + TCP
-  reading: [protocols](readings/protocol.html) §2
+  reading: "[protocols](readings/protocol.html) §2"
   description: |
     *  port numbers and UDP
     *  connection abstraction
@@ -133,7 +133,7 @@
 - date: 2023-02-21
   week: 6
   title: URLs + DHCP + DNS
-  reading: [protocols](readings/protocol.html) §3-4
+  reading: "[protocols](readings/protocol.html) §3-4"
   description: |
     *  URLs
     *  DHCP / v6 autoconfiguration?
@@ -149,7 +149,7 @@
 - date: 2023-02-23
   week: 6
   title: network security / secure channels 1
-  reading: [security](readings/sec.html) §1
+  reading: "[security](readings/sec.html) §1"
   description: |
     *  DDoS
     *  spoofing
@@ -163,7 +163,7 @@
 - date: 2023-02-28
   week: 7
   title: secure channels 2
-  reading: [security](readings/sec.html) §2
+  reading: "[security](readings/sec.html) §2"
   description: |
     *  cryptography (con't)
         *  digital signatures
@@ -180,9 +180,11 @@
 - date: 2023-03-02
   week: 7
   title: caches 1
+  reading: "[cache](readings/cache.html) §4, 1-3, 5"
   description: |
     *  memory hierarchy
     *  locality
+    *  direct-mapped cache
     *  fully-associative cache
        *  valid bits
        *  tags
@@ -202,13 +204,14 @@
 - date: 2023-03-14
   week: 9
   title: caches 2
+  reading: "[cache](readings/cache.html) §4, 1-3, 5"
   description: |
-    *  direct-mapped cache
     *  set-associative cache
     *  write policies
 
     *  the TLB
     *  memory lookup overall
+    *  cache efficient code generally
 
 - date: 2023-03-15
   lab: true
@@ -217,6 +220,7 @@
 - date: 2023-03-16
   week: 9
   title: concurrency 1
+  reading: "[processes and threads](readings/thread.html)"
   description: |
     *  processes, threads
     *  creating new processes
@@ -229,10 +233,12 @@
 - date: 2023-03-21
   week: 10
   title: concurrency 2 + synchronization 1
+  reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2, 4; skim [consistency](readings/consistency.html)"
   description: |
     *  pthreads: creating threads
     *  Amdahl's law <!-- demo? -->
     *  atomicity, race conditions
+       *   consistency preview
     *  locks and mutexes
 
 - date: 2023-03-22
@@ -242,9 +248,11 @@
 - date: 2023-03-23
   week: 10
   title: synchronization 2
+  reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §8, 2-7"
   description: |
     *  atomic read-modify-write instructions
     *  monitors (mutexes + condition variables)
+    *  barriers
     *  semaphores
     *  reader/writer locks
 
@@ -252,6 +260,7 @@
 - date: 2023-03-28
   week: 11
   title: roll back 
+  reading: "[sync](readings/sync.html) §9"
   description: |
     *  transactions
     *  redo logging
@@ -263,6 +272,7 @@
 - date: 2023-03-30
   week: 11
   title: deadlock
+  reading: "[deadlock](readings/deadlock.html)"
   description: |
    *  deadlock definition + examples
    *  recovering from deadlock
@@ -271,6 +281,7 @@
 - date: 2023-04-04
   week: 12
   title: processors
+  reading: "[processors](readings/processors.html) §1-2"
   description: |
    *  review: single-cycle CPU
    *  pipelining idea
@@ -285,6 +296,7 @@
 - date: 2023-04-06
   week: 12
   title: pipeline
+  reading: "[processors](readings/processors.html) §2"
   description: |
    *  hazard handling, part 1
       *  stalling / waiting
@@ -294,6 +306,7 @@
 - date: 2023-04-11
   week: 13
   title: speculation
+  reading: "[processors](readings/processors.html) §2.1.3"
   description: |
     *  speculation idea
        *  guess and check later
@@ -315,6 +328,7 @@
 - date: 2023-04-13
   week: 13
   title: out-of-order
+  reading: "[processors](readings/procesors.html) §3"
   description: |
     *  dependency graph revisited
     *  register renaming

@@ -44,7 +44,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
 {%- if day.title -%}
 <h3>{{ day.title }}</h3>
 {%- endif -%}
-{%- if day.who or day.slides or day.video_webm or day.slides_see -%}
+{%- if day.who or day.slides or day.video_webm or day.slides_see or day.slides_base -%}
 &nbsp;[&nbsp;
     {%- if day.who -%}{{ day.who }}:&nbsp;{%- endif -%}
 {%- endif -%}
