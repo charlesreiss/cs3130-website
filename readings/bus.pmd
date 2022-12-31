@@ -146,6 +146,12 @@ Buses can be very efficient if each component desires to communicate rarely
 but to have the message travel at speed,
 or when many receivers want access to the same message.
 
+Buses are also roughly the topology that a wireless network naturally takes --- radio signals
+are received by all within range of the transmitter and two simultaneous transmitters will likely
+collide. In practice, wireless networks are not quite modeled by the bus topology because,
+for example, two transmitters can be in range of one receiver but not of each other (called
+the "hidden terminal problem").
+
 # "The Bus"
 
 Inside a computer's casing it is common to have several special-purpose networks
@@ -153,48 +159,70 @@ to connect various components of the system.
 Because early implementations had a bus topology, these are all commonly called buses,
 and in many cases referred to simply as "the bus."
 
-The following are all often called simply "the bus":
 
-Frontside bus
-:   Connects the CPU, RAM, drives, GPUs, input devices, etc.
-    
-    Commonly implemented as one or more bus-topology channels.
-    
-    The best known example is the PCI^[This stands for "peripheral component interconnect" but is almost universally called by its acronym, so much so that I'd expct using the full name to confuse people.],
-    a name used both for a deprecated standard and the family of subsequent standards
-    including the current^[as of 2019] PCI-e standards.
+## The system bus
 
-Backside bus
-:   Connects the CPU and the L2 caches.
+In historical processor designs, the "system bus" also known as the "front-side bus" connects the processor with
+both memory and I/O devices and other processors.
+In a typical implementation, though this bus is a single channel, it is not a
+single wire connecting components but a collection of wires, some dedicated to the addresses
+and some dedicated to the data. There will be enough address wires so that an
+entire address can be specified all at once (for example, on the Intel 486, using 24 binary
+wires to specify a 24-bit address) and usually enough data wires to transfer at least a byte of
+data at a time (on the Intel 486, 16 bits at a time).
 
-    In a multicore setting, topologies vary;
-    the number of links may be constrained by space and heat dissipation as well as connectivity.
+In addition to wires for data and addresses, there will be wires dedicated to controlling
+which device uses the shared bus and preventing conflicts.
 
-Memory bus
-:   Connects the CPU and RAM (or one of the caches and RAM).
-    Often also has a third connection,
-    a special bus-connecting component called a "bridge"
-    that allows the memory bus and frontside bus to communicate.
-    
-    Commonly implemented as a single bus-topology channel.
+Components like memory, graphics cards, I/O devices, etc. were generally not
+connected directly to the system bus.
+Instead, intermediate chips would translate from the processor bus to other types of buses.
+In the Intel design, originally there were two of these chips called the _Memory Controller Hub_
+or _Northbrige_ (for memory and higher-speed devices) and the _I/O Controller Hub_ or _Southbridge_
+(for lower-speed devices). These chips would often use a bus-topology to communicate with
+their devices.
 
-The following are sometimes called buses, but not generally just "the bus":
+## Modern processors and buses
 
-Universal Serial Bus    
-:   A technology for connecting removable peripheral components to computers.
-    Despite the "bus" name, this is a pure [tree-topology network](https://en.wikipedia.org/wiki/Tree_network):
-    pair-wise links with multiple star-like hubs.
+More recent processors have tended to move some of the functionality that was typically on these
+intermediate chips to the main processor package. In addition, processor manufacturers prioritized
+making multi-core systems more efficient and the bus topology does not work well to
+connect many cores.
 
-SCSI
-:   Pronounced "skuzzy", the Small Computer System Interface (SCSI)
-    typically is used to connect drives (hard drives, optical drives, etc)
-    to the front-side bus.
-    Topologically, this is a "linear bus", a type of variable-length bus.
+The design that AMD and Intel seem to have settled on in the current
+generation^[as of 2022] generally has the processor package have separate
+"buses" for communicating with memory than for communicating with I/O devices
+or other processor packages. Within a processor package, there are generally internal networks
+that connect cores, caches, memory bus controllers, and other components.
+Since the design of these internal networks can change without the involvement of
+motherboard manufacturers and the like, processor manufacturers have more flexibility
+to change the design of these networks.
 
-SATA
-:   The Serial ATA^[ATA stands for "AT Attachment". AT is short for "IBM Personal Computer AT," the product which popularized this attachment technology. In that computer's name, AT stood for "advanced technology".]
-    is typically used to connect drives (hard drives, optical drives, etc)
-    to the front-side bus.
-    Topologically, this is a point-to-point network with port multipliers;
-    basically this means the maximal number of connections (or "ports") has to be decided in advance,
-    but devices can be added that connect several other devices to a single port.
+## Memory and I/O buses
+
+Connecting the processor to memory and I/O devices is often done by various other buses:
+
+*  "memory buses" for memory devices. In many current^[as of 2022] desktop or laptop machines,
+   this bus would follow a standard called DDR4 SDRAM.
+
+*  various types of specialized buses for I/O devices:
+
+   PCI^[This stands for "peripheral component interconnect" but is almost universally called by its acronym, so much so that I'd expct using the full name to confuse people.]
+   :    a name used both for a deprecated standard and the family of subsequent standards
+        including the current^[as of 2019] PCI-e standards.
+
+
+   SATA
+   :    The Serial ATA^[ATA stands for "AT Attachment". AT is short for "IBM Personal Computer AT," the product which popularized this attachment technology. In that computer's name, AT stood for "advanced technology".]
+        is typically used to connect drives (hard drives, optical drives, etc)
+        to the system bus.
+        Topologically, this is a point-to-point network with port multipliers;
+        basically this means the maximal number of connections (or "ports") has to be decided in advance,
+        but devices can be added that connect several other devices to a single port.
+
+   Universal Serial Bus    
+   :    A technology for connecting removable peripheral components to computers.
+        Despite the "bus" name, this is a pure [tree-topology network](https://en.wikipedia.org/wiki/Tree_network):
+        pair-wise links with multiple star-like hubs.
+
+
