@@ -97,22 +97,17 @@
 
 - date: 2023-02-14
   week: 5
-  title: IP + UDP
-  reading: "[protocols](readings/protocol.html) §1-2.2"
-  descripton: |
+  title: IP + connection abstraction
+  reading: "[protocols](readings/protocol.html) §1-2"
+  description: 
     *  mailbox analogy
        *  inboxes and outboxes
        *  addresses
        *  best-effort delivery
        *  envelope versus contents
-    *  names and addresses
-    *  running example: a frame
-       *  layers (link, network, transport)
-    *  addresses and names
-       *  layers preview
-    *  IP
-       *  addresses (v4, v6)
-       *  routers
+    *  TCP / connections
+       *  acknowledgements
+       *  state machine
 
 - date: 2023-02-15
   lab: true
@@ -121,13 +116,18 @@
 - date: 2023-02-16
   week: 5
   title: UDP + connections + TCP
-  reading: "[protocols](readings/protocol.html) §2"
+  reading: "[protocols](readings/protocol.html) §1-2"
   description: |
+    *  names and addresses
+    *  running example: a frame
+       *  layers (link, network, transport)
+    *  addresses and names
+       *  layers preview
+    *  IP
+       *  addresses (v4, v6)
+       *  routers
     *  port numbers and UDP
     *  connection abstraction
-    *  TCP
-       *  acknowledgements
-       *  state machine
     *  firewalls <!-- FIXME: not in reading! -->
 
 - date: 2023-02-21

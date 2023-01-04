@@ -89,12 +89,12 @@ These sit in the middle of the network layer stack:
 they transmit higher-level protocols like HTTP, SMTP, SSH, etc;
 and they are transmitted by lower-level protocols like wi-fi, ethernet, etc.
 
-|Layer|Protocols|Use|Notes|
+|Layer|Protocols|Use|Message Name|Notes|
 |-----|---------|---|-----|
-|Application|HTTP, SSH, SMTP, [etc.](https://en.wikipedia.org/wiki/Category:Application_layer_protocols)|programmer-visible messages||
-|Transport|**TCP**, **UDP**|reach correct program|there are [other transport layer protocols](https://en.wikipedia.org/wiki/Category:Transport_layer_protocols) too|
-|Internet|**IP**, which has two versions: IPv4 and IPv6|reach correct computer|there are [other internet layer protocols](https://en.wikipedia.org/wiki/Category:Transport_layer_protocols) too|
-|Link|MAC, Wi-Fi, [etc.](https://en.wikipedia.org/wiki/Category:Link_protocols)|traveling over wires and the air||
+|Application|HTTP, SSH, SMTP, [etc.](https://en.wikipedia.org/wiki/Category:Application_layer_protocols)|programmer-visible messages|||
+|Transport|**TCP**, **UDP**|reach correct program|datagram (UDP), segment (TCP)|there are [other transport layer protocols](https://en.wikipedia.org/wiki/Category:Transport_layer_protocols) too|
+|Internet|**IP**, which has two versions: IPv4 and IPv6|reach correct computer||packet|there are [other internet layer protocols](https://en.wikipedia.org/wiki/Category:Transport_layer_protocols) too|
+|Link|MAC, Wi-Fi, [etc.](https://en.wikipedia.org/wiki/Category:Link_protocols)|frame|traveling over wires and the air||
 
 
 ## IP

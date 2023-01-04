@@ -9,7 +9,7 @@
   lab: true
   page: labhw/signals.html
   due: 2023-02-01
-  possible_submit_file: signals.c
+  submit_file: signals.c
   tentative: true
 
 - name: warmup
@@ -79,7 +79,6 @@
   due: 2023-03-15
 
 - name: TBA caching HW
-  lab: true
   tentative: true
   due: 2023-03-22
 
