@@ -99,7 +99,7 @@
   week: 5
   title: IP + connection abstraction
   reading: "[protocols](readings/protocol.html) §1-2"
-  description: 
+  description: |
     *  mailbox analogy
        *  inboxes and outboxes
        *  addresses
