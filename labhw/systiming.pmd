@@ -1,0 +1,114 @@
+---
+title: timing homework
+...
+
+# Your task
+
+<!--
+## Measuring idle time
+
+1.  Write a program in C and/or assembly to produce the data needed to reproduce a graph, like shown in lecture, 
+    that shows of the amount of time spent between iterations of an empty loop. This should reveal when the program
+    is interrupted for context switches.
+
+2.  Produce the above graph as `empty-loop.png`.
+
+## Measuring system events
+-->
+
+1.  Write a program or program(s) in C and/or assembly to take measurements needed to estimate the time required for:
+
+    *  a C function call
+    *  each of the following Linux system calls:
+       *  `gettimeofday`
+       *  `getpid`
+       *  `open` that fails due to a permissions problem
+    *  running a signal handler
+    *  running a trivial program with `system`
+
+2.  Record in a file `README.txt` how to run each of your program(s).
+
+3.  In a file called `timings.txt`:
+
+    *  record the measurements output by your program,
+    
+    *  if necessary, convert the measurements from your programs to the time estimates listed above
+    
+    *  describe what calculations were necessary to convert the measurements from your program to time estimates.
+
+    When producing the time estimates, you must:
+
+    *  make an attempt to account for measurement overhead (that is, the time required to obtain the clock measurements
+       themselves. One strategy might be to measure the time required for "nothing" and subtract this time from other
+       measurements.)
+
+    *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
+
+4.  Produce a `Makefile` whose default target will compile and link all of your programs.
+
+5.  Submit all your files (`README.txt`, `timings.txt`, `Makefile`, and all the C and assembly source files) to the submission site.
+
+# Hints
+
+## Timing APIs
+
+Since we are timing very short events, you want some function that can obtain high precision time measurements.
+
+### `clock_gettime`
+
+One way to do this on Linux is using `clock_gettime`:
+
+    struct timespec t;
+    returnvalue = clock_gettime(CLOCK_MONOTONIC, &t);
+
+will, when successful, set `returnvalue` to 0 and `t.tv_sec` to a number of seconds and `t.tv_nsec` to a number of nanoseconds. When unsuccessful, it will
+set `returnvalue` to `-1` and `errno` (or utility functions like `perror`) can be used to obtain information about the error.
+
+`CLOCK_MONOTONIC` specifies to use a timer that starts around system boot. There are also other clock options like `CLOCK_REALTIME` (measures seconds
+since 1 Jan 1970 midnight UTC).
+
+### the cycle counter
+
+x86-64 has a per-core "Time Stamp Counter" which can be accessed with the assembly instructions `rdtsc` (read time stamp counter)
+or `rdtscp` (read time stamp counter and processor ID).
+
+`rdtscp` sets `%edx` to the upper 32 bits of the 64-bit time stamp counter, `%eax` to the lower 32 bits of time stamp counter, and `%ecx`
+to a ID number that should be unique to the core. The timestamp counter starts counting roughly when each core starts, but it may count
+at slightly different rates on each core, so you should not attempt to subtract numbers from two different cores.
+
+Without writing assembly, GCC and Clang expose these using some built-in wrapper functions declared in `<immintrin.h>`:
+
+    __int64 rdtsc();
+    __int64 rdtscp(int *pointer_to_core_id);
+
+where `__int64` is most likely the same as a `long` on 64-bit Linux. The cycle counter is in units of clock cycles (not seconds or similar).
+On systems with variable clock rates used for running instructions, often the time stamp counter will be based on clock cycles
+of a special constant rate clock rather than the clock used by each core to run instructions.
+
+## Obtaining and consolidating multiple measurements
+
+There are several reasons why measurements will not be consistent:
+
+*  code or data may be loaded into memory and caches the first time it is run;
+*  processors may vary the clock rate they used for executing instructions (based on, e.g., temperature or power saving goals);
+*  other things on the system may interfere (for example, the operating system handling exceptions or moving the timing program to another core)
+
+To mitigate this, usually one would:
+
+*  take many timings and then compute an average and/or minimum and/or standard deviation and/or other statistics of your raw measurements;
+*  time a loop with many iterations of the event and divide the time
+
+## Avoiding measurement overhead
+
+Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. To compensate for this,
+I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings.
+
+## Compiler optimization and function calls
+
+I recommend turning on compiler optimizations to avoid measuring slow code for setting up system calls and the like. But you may have problems
+with the compiler's optimizer replacing a function call with the body of that function. Some possibilities to avoid this:
+
+*  write the function in a separately compiled file, so the compiler will not have the information to do this optimization
+*  write the function call itself in assembly file, so it won't be subject to the compiler's optimizations at all
+*  make a C function marked with the `__attribute__((noinline))` before its reutrn type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
+

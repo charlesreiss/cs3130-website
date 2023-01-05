@@ -31,6 +31,13 @@
   tentative: true
   due: 2023-02-08
 
+- name: timing
+  due: 2023-02-08
+  tentative: true
+  page: labhw/systiming.html
+  comment: "running loop with clock_gettime + graphing and/or other performance monitoring"
+  comment: "timing system call"
+
 - name: networking
   lab: true
   page: labhw/networking.html
