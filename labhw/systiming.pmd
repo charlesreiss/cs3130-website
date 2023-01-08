@@ -19,12 +19,10 @@ title: timing homework
 1.  Write a program or program(s) in C and/or assembly to take measurements needed to estimate the time required for:
 
     *  a C function call
-    *  each of the following Linux system calls:
-       *  `gettimeofday`
-       *  `getpid`
-       *  `open` that fails due to a permissions problem
-    *  running a signal handler
+    *  the `getpid` system (run using its system call wrapper)
     *  running a trivial program with `system`
+    *  sending a signal to the current process and starting a signal handler
+    *  sending a signal to another process and then having that process's signal handler send a signal back
 
 2.  Record in a file `README.txt` how to run each of your program(s).
 
@@ -67,6 +65,8 @@ set `returnvalue` to `-1` and `errno` (or utility functions like `perror`) can b
 `CLOCK_MONOTONIC` specifies to use a timer that starts around system boot. There are also other clock options like `CLOCK_REALTIME` (measures seconds
 since 1 Jan 1970 midnight UTC).
 
+In order to use `clock_gettime`, use something like `#define _XOPEN_SOURCE 700` *before `#include`ing any files* then `#include <time.h>`. (The `#define` requests that header files make features from the X/Open Single Unix Specification available to you.)
+
 ### the cycle counter
 
 x86-64 has a per-core "Time Stamp Counter" which can be accessed with the assembly instructions `rdtsc` (read time stamp counter)
@@ -95,8 +95,11 @@ There are several reasons why measurements will not be consistent:
 
 To mitigate this, usually one would:
 
-*  take many timings and then compute an average and/or minimum and/or standard deviation and/or other statistics of your raw measurements;
+*  take **many** timings and then compute an average and/or minimum and/or standard deviation and/or other statistics of your raw measurements
 *  time a loop with many iterations of the event and divide the time
+*  take timings after a significant number of "warmup" runs to allow the processor to load data into caches and decide on a hopefully stable clock speed
+
+(For how many timings, a possible rule of thumb is to take at least enough timings to take half a second of real time.)
 
 ## Avoiding measurement overhead
 
@@ -112,3 +115,26 @@ with the compiler's optimizer replacing a function call with the body of that fu
 *  write the function call itself in assembly file, so it won't be subject to the compiler's optimizations at all
 *  make a C function marked with the `__attribute__((noinline))` before its reutrn type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
 
+## Timing the signal handler
+
+When sending a signal to the current thread, `kill()` is guaranteed to return only after the signal is delivered. If you want to avoid specifying the process ID, you can also use the function `raise()` [which can only send a signal to the current process] instead of `kill()` [which can send to any process].
+
+It would be more interesting to measure the time needed to send a signal to _another_ process, but that is not a requirement of this assignment. One idea for doing this might be to have a pair of processes A and B, then have
+A send a signal to B and B's signal handler send a signal back to A.
+
+## Timing receiving a signal back
+
+The last timing task requires waiting for a signal to be received by your current process. The naive approach of:
+
+    send_signal_to_other_program();
+    /* MIDDLE */
+    wait_for_signal();
+
+has the problem that the signal can be received at "MIDDLE" and "lost".
+To avoid this problem, some approaches for doing this:
+
+*  "block" the signal temporarily with `sigprocmask`, then use `sigwait` to wait for the signal _instead of_ installing a signal handler
+*  install a signal handler, "block" the signal temporarily with `sigprocmask`, then use `sigsuspend` to wait for the signal handler to run
+*  install a signal handler that uses a function like `siglongjmp` to continue execution of the post-timing code and call `sigsetjmp` before running the signal handler. Have the code that waits for the signal handler to run call a function like `pause()` to avoid wasting CPU time before `siglongjmp` runs. (You can also use the plain version of `setjmp` and `longjmp` provided that you restore the signal mask afterwards with a call to `sigprocmask` or register the signal handler with the SA_NODEFER flag.)
+
+"Blocking" a signal ensures that the operating system will not deliver it (that is, will not run its signal handler), but blocked signals will still be recored as "pending" (that is, needing to be handled at some point).

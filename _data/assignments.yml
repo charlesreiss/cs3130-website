@@ -55,6 +55,11 @@
   tentative: true
   due: 2023-02-15
 
+- name: pagetable 2 (pre code review)
+  page: labhw/pagetable2.html
+  tentative: true
+  due: 2023-02-22
+
 - name: code reviews
   lab: true
   page: labhw/code-review.html
@@ -85,8 +90,9 @@
   tentative: true
   due: 2023-03-15
 
-- name: TBA caching HW
+- name: cache programs
   tentative: true
+  page: labhw/cache-programs.html
   due: 2023-03-22
 
 - name: sync games
@@ -139,7 +145,7 @@
 
 - name: life
   page: labhw/life.html
-  due: 2023-04-19
+  due: 2023-04-12
   tentative: true
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
@@ -154,4 +160,8 @@
 - name: pipeline
   page: labhw/pipeline.html
   tentative: true
-  due: 2023-05-02
+  due: 2023-04-19
+
+- name: TBA OOO assignment
+  tentative: true
+  due: 2023-04-26
