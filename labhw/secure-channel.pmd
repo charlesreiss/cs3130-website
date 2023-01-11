@@ -22,7 +22,7 @@ title: Secure channels lab
 
     to see the first scenario. (It is also listed below in this
     document.) You'll see a transcript
-    showing an exchange where A asks B to pay E $1000,
+    showing an exchange where A asks B to pay M $1000,
     then asks B to pay $384 dollars.
 
     At the end of the simulation, we report how much M is paid by B.
