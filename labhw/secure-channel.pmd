@@ -8,6 +8,9 @@ title: Secure channels lab
 
 2.  In this lab, you will act as a network attacker on
     several examples of attempts to communicate securely.
+    Since this a new lab, I'm not sure how many are easily
+    doable in the lab time. *Do as many as you can within
+    the lab time.* I recommend working with a partner.
 
     Run
         
@@ -17,7 +20,8 @@ title: Secure channels lab
 
         ./lab 0 normal
 
-    to see the first scenario. You'll see a transcript
+    to see the first scenario. (It is also listed below in this
+    document.) You'll see a transcript
     showing an exchange where A asks B to pay E $1000,
     then asks B to pay $384 dollars.
 
@@ -44,17 +48,16 @@ title: Secure channels lab
 
         ./lab 1 attack
 
-5.  Now do the same for scenario "2", but have M (you) be paid $5000.
+5.  Now do the same for scenario "2".
 
-6.  Look at protocol versions "3" and "4".
-
-8.  (Optional) If you still have time,
-    do the same for scenario "3". Hint:
+8.  Do the same for scenario "3". Hint:
     B will also accept messages from you (M), but will refuse to
     make payments based on messages from you. You can use this to run a
     MITM attack on B and A; see also 
     the famous flaws of the
     [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol)
+
+8.  Look at protocol version "4". (You do not need to attack this version.)
 
 7.  Submit your `lab.c` to kytos or show your code to a TA for checkoff.
 
