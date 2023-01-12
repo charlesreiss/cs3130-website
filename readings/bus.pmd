@@ -15,7 +15,7 @@ organized from simplest to most flexible.
 Some general terminology:
 
 Channel
-:   A medium capable to transmitting information.
+:   A medium capable of transmitting information.
     Wires, fiber optic cables, and radio frequency bands are examples of channels.
 
 Signal
@@ -48,15 +48,15 @@ a **collision** occurs.
 This is almost always bad, varying from confusion (as when two radio stations overlap)
 to destruction (as when two transistors connect to the same output wire, creating a short and burning the chip).
 Because simplex systems have no way to send back-and-forth data,
-collision is difficult to avoid if multiple sources exit.
+collision is difficult to avoid if multiple sources exist.
 
 
 ## Half-duplex
 
 In a half-duplex system,
-every sender is also a receiver, but only one may place signal on the channel at a time.
+every sender is also a receiver, but only one may place a signal on the channel at a time.
 Conversations can be seen as such a system: sound travels though shared air,
-but if both speak at once neither understand the other.
+but if both speak at once neither can understand the other.
 
 Half-duplex systems typically require some type of protocol
 for resolving who gets to use the channel when and for how long.
@@ -109,9 +109,9 @@ The channels used to connect components in a network are traditionally called **
 
 If every pair of components has a link between then,
 the network is said to be *fully connected*.
-For $n$ components, that means $\sum_{i=1}^n i = n(n-1)/2$ separate links.
+For $n$ components, that means $\sum_{i=1}^ni=\frac{n(n-1)}{2}$ separate links.
 
-While full-connected networks provided arbitrary communication,
+While fully-connected networks provide arbitrary communication,
 they are expensive to construct at scale.
 Adding an additional component to a fully-connected network
 requires adding another link to each existing component,
@@ -126,7 +126,7 @@ the network is said to be a *star*
 and the component all others connect to is called the *hub*.
 For $n$ components, that means $n-1$ separate links.
 
-Start networks are simple to design, implement and extend.
+Star networks are simple to design, implement, and extend.
 However, they are highly dependent on the hub,
 being limited by its capabilities and going down if it does.
 
@@ -134,42 +134,42 @@ being limited by its capabilities and going down if it does.
 
 If every component is attached to the same half-duplex channel,
 the network is said to have a "bus topology"
-and that single channel is called "the bus".
+and that single channel is called the "bus."
 For $n$ components, that means $1$ link.
 
-Buses are relatively simple to construct,
+Buses are relatively simple to construct
 but need to handle the potential for collision in some way.
 Adding new components to a bus is straightforward,
 but the likelihood of collision increases as more components are attached to the channel,
 so buses are good for situations when a small-but-variable number of components are to be connected.
 Buses can be very efficient if each component desires to communicate rarely
-but to have the message travel at speed,
+but to have messages travel at speed,
 or when many receivers want access to the same message.
 
 Buses are also roughly the topology that a wireless network naturally takes --- radio signals
-are received by all within range of the transmitter and two simultaneous transmitters will likely
+are received by all receivers within range of the transmitter, and two simultaneous transmitters will likely
 collide. In practice, wireless networks are not quite modeled by the bus topology because,
 for example, two transmitters can be in range of one receiver but not of each other (called
 the "hidden terminal problem").
 
 # "The Bus"
 
-Inside a computer's casing it is common to have several special-purpose networks
+Inside a computer's casing, it is common to have several special-purpose networks
 to connect various components of the system.
 Because early implementations had a bus topology, these are all commonly called buses,
-and in many cases referred to simply as "the bus."
+and in many cases referred to simply as the "bus."
 
 
 ## The system bus
 
-In historical processor designs, the "system bus" also known as the "front-side bus" connects the processor with
-both memory and I/O devices and other processors.
+In historical processor designs, the "system bus," also known as the "front-side bus," connects the processor with
+memory, I/O devices, and other processors.
 In a typical implementation, though this bus is a single channel, it is not a
 single wire connecting components but a collection of wires, some dedicated to the addresses
 and some dedicated to the data. There will be enough address wires so that an
 entire address can be specified all at once (for example, on the Intel 80386, using 30 binary
 wires to specify a 30-bit address) and usually enough data wires to transfer at least a byte of
-data at a time (on the Intel 30836, up to 32-bits at a time using 32 binary wires).
+data at a time (on the Intel 80386, up to 32 bits at a time using 32 binary wires).
 
 In addition to wires for data and addresses, there will be wires dedicated to controlling
 which device uses the shared bus and preventing conflicts.
@@ -177,21 +177,21 @@ which device uses the shared bus and preventing conflicts.
 Components like memory, graphics cards, I/O devices, etc. were generally not
 connected directly to the system bus.
 Instead, intermediate chips would translate from the processor bus to other types of buses.
-In the Intel design, originally there were two of these chips called the _Memory Controller Hub_
+In the Intel design, there were originally two of these chips called the _Memory Controller Hub_
 or _Northbrige_ (for memory and higher-speed devices) and the _I/O Controller Hub_ or _Southbridge_
-(for lower-speed devices). These chips would often use a bus-topology to communicate with
+(for lower-speed devices). These chips would often use a bus topology to communicate with
 their devices.
 
 ## Modern processors and buses
 
 More recent processors have tended to move some of the functionality that was typically on these
 intermediate chips to the main processor package. In addition, processor manufacturers prioritized
-making multi-core systems more efficient and the bus topology does not work well to
+making multi-core systems more efficient, and the bus topology does not work well to
 connect many cores.
 
 The design that AMD and Intel seem to have settled on in the current
-generation^[as of 2022] generally has the processor package have separate
-"buses" for communicating with memory than for communicating with I/O devices
+generation^[as of 2022] generally has the processor package feature separate
+"buses" for communicating with memory and for communicating with I/O devices
 or other processor packages. Within a processor package, there are generally internal networks
 that connect cores, caches, memory bus controllers, and other components.
 Since the design of these internal networks can change without the involvement of
@@ -200,21 +200,21 @@ to change the design of these networks.
 
 ## Memory and I/O buses
 
-Connecting the processor to memory and I/O devices is often done by various other buses:
+Connecting the processor to memory and I/O devices is often done through various other buses:
 
-*  "memory buses" for memory devices. In many current^[as of 2022] desktop or laptop machines,
+*  "memory buses" for memory devices. In many current^[as of 2022] desktop and laptop machines,
    this bus would follow a standard called DDR4 SDRAM.
 
 *  various types of specialized buses for I/O devices:
 
-   PCI^[This stands for "peripheral component interconnect" but is almost universally called by its acronym, so much so that I'd expct using the full name to confuse people.]
+   PCI^[This stands for "peripheral component interconnect" but is almost universally called by its acronym, so much so that I'd expect that using the full name would confuse people.]
    :    a name used both for a deprecated standard and the family of subsequent standards
         including the current^[as of 2019] PCI-e standards.
 
 
    SATA
-   :    The Serial ATA^[ATA stands for "AT Attachment". AT is short for "IBM Personal Computer AT," the product which popularized this attachment technology. In that computer's name, AT stood for "advanced technology".]
-        is typically used to connect drives (hard drives, optical drives, etc)
+   :    The Serial ATA^[ATA stands for "AT Attachment." AT is short for "IBM Personal Computer AT," the product which popularized this attachment technology. In that computer's name, AT stood for "advanced technology".]
+        is typically used to connect drives (hard drives, optical drives, etc.)
         to the system bus.
         Topologically, this is a point-to-point network with port multipliers;
         basically this means the maximal number of connections (or "ports") has to be decided in advance,
