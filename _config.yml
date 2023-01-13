@@ -79,3 +79,4 @@ keep_files:
     - "*.webm"
     - "*.mp3"
     - "*.m4a"
+    - "*.svg"
