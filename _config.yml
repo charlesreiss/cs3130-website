@@ -53,6 +53,7 @@ submit_site: "https://kytos02.cs.virginia.edu/cs3130-spring2023/"
 quiz_site: "https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/"
 ohq_site: "https://kytos02.cs.virginia.edu/cs3130-spring2023/ohq/"
 kytos: "kytos02.cs.virginia.edu"
+katex: "https://www.cs.virginia.edu/~cr4bd/katex"
 
 defaults:
   -

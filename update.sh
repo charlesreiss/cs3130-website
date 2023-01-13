@@ -45,6 +45,7 @@ for input in *.pmd */*.pmd; do
             --number-sections \
             --table-of-contents --toc-depth=3 \
             --html-q-tags \
+            --katex=/~cr4bd/katex \
             --template=_template.html5 \
             -o "$output"
         chmod a+r $output
