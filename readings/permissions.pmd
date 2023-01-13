@@ -7,17 +7,17 @@ title: POSIX permissions
 Every program runs as some **user**.
 This is true even of the user interface, a program that allows you to run other programs.
 When one program runs another,
-the new program runs as the same user as the old except in a few special circumstances.
+the new program runs as the same user as the old one except in a few special circumstances.
 An example special circumstance is the "log in" program,
-which itself runs as `root` but after you log in runs your user interface as your user account.
+which itself runs as `root`, but after you log in, runs your user interface as your user account.
 
 You can find out what user you are running as via the command `whoami`{.bash}.
 
 Each user generally has a name and also a numerical ID. Typically, the numerical ID is what is used
-internally by the kernel to identify user.
+internally by the kernel to identify a user.
 
 Every user can belong to any number of **groups**.
-You can find out what groups a user belongs to by running the command `groups mst3k`{.bash};
+You can find out which groups a user belongs to by running the command `groups <username>`{.bash};
 if you omit the username, it will list your own group memberships.
 
 Every file and directory also has a user and a group---but just one group, not a whole set.
@@ -25,30 +25,30 @@ The user of a file does not need to belong to the group of the file.
 
 # POSIX file permissions
 
-Permissions are split into three kinds, with different meanings for :
+Permissions are split into three kinds, with different meanings for:
 
 r
 :   for files
-    :   permission to read its contents (e.g., `cat file` works)
+    :   permission to read its contents (e.g. `cat file` works)
     
     for directories
-    :   permission to list its contents (e.g., `ls directory/` works)
+    :   permission to list its contents (e.g. `ls directory/` works)
 
 w
 :   for files
-    :   permission to write its contents (e.g., `echo whatnot >> file` works)
+    :   permission to write its contents (e.g. `echo whatnot >> file` works)
     
     for directories
-    :   permission to add and remove its contents (e.g., `rm directory/whatever` works)
+    :   permission to add and remove its contents (e.g. `rm directory/whatever` works)
 
 x
 :   for files
-    :   permission to execute its contents (e.g., `./file` works)
+    :   permission to execute its contents (e.g. `./file` works)
     
     for directories
-    :   permission to access its contents (e.g., `directory/whatever` works)
+    :   permission to access its contents (e.g. `directory/whatever` works)
 
-Every file has these permissions for 3 classes of users, stored as a nine-bit number; from high- to low-order, those bits are
+Every file has these permissions for 3 classes of users, stored as a nine-bit number; from high to low order, those bits are
 
 u
 :   owning user may read/write/execute
@@ -59,7 +59,7 @@ g
 o
 :   others may read/write/execute
 
-`ls -l`{.bash} includes the nine permission bits in letter form: a subset of rwxrwxrwx (e.g., `rw-rw----` means the owner and all in the owning group have r and w permission, but not x permission; and other users have no permissions).
+`ls -l`{.bash} includes the nine permission bits in letter form: a subset of rwxrwxrwx (e.g. `rw-rw----` means the owner and all users in the owning group have r and w permissions, but not x permission; and other users have no permissions).
 Commands that change these often use octal (base-8) representation of the number (e.g. 660 for `rw-rw----`).
 
 {.aside ...} Using `chmod`
@@ -89,7 +89,7 @@ File permissions in POSIX-compatible systems also have three more permission bit
 
 setuid
 :   executable file
-    :   If executable `xyxxy` is owned `mst3k` and has `setuid` permissions,
+    :   If executable `xyxxy` is owned by `mst3k` and has `setuid` permissions,
         then when `tj1a` runs `./xyxxy`, the program runs as `mst3k`, not as `tj1a`.
         This can be a security vulnerability and **should not be used** except when absolutely necessary.
     
@@ -125,7 +125,7 @@ Sticky may sometimes be worth setting; we recommend never using the other two.
 
 Sometimes we need more fine-grained control than the three-way user-group-other distinction.
 This is provided using more general *access control lists*, or ACLs;
-they are a list of user+permission pairs associated each file.
+they are a list of user+permission pairs associated with each file.
 Unlike the simpler POSIX permission bits, they can include settings for much more than a single
 user or group.
 Every OS I've ever used has ACL support, though actual use of them is relatively uncommon; the standard system works in most cases.
@@ -134,9 +134,9 @@ The command `getfacl file`{.bash} shows the full permission information for a fi
 The command `setfacl` creates and modifies entries in the permissions list.
 There are many ways of doing this, as `man setfacl` shows, but three examples will suffice for most common cases:
 
-- `setfacl -m u:mst3k:rx` this `m`odifies `u`ser `mst3k`'s permissions to be `r` and `x`
-- `setfacl -m g:lab_fall2019:r` this `m`odifies `g`roup `lab_fall2019`'s permissions to be `r` only (no `x` or `w` permission)
-- `setfacl -x u:mst3k` this removes the `u`ser `mst3k`'s entry from the permission list, so `mst3k` will be handled like any other user.
+- `setfacl -m u:mst3k:rx`: this `m`odifies `u`ser `mst3k`'s permissions to be `r` and `x`
+- `setfacl -m g:lab_fall2019:r`: this `m`odifies `g`roup `lab_fall2019`'s permissions to be `r` only (no `w` or `x` permission)
+- `setfacl -x u:mst3k`: this removes the `u`ser `mst3k`'s entry from the permission list, so `mst3k` will be handled like any other user.
 
 While ACLs are not commonly needed, they are a safe way of handling cases where they are needed.
 
@@ -147,7 +147,7 @@ On POSIX, there are two main cases where this is sensible:
 
 - If the file is an executable binary (typically an ELF executable), then being executable means the loader will agree to give it memory and jump to its starting code.
 
-- If the file is a plain text file, then being executable means that "check for a shebang^["shebang" comes from the colloqial name of the first two characters: `#` is "hash" and `!` is "bang". "Hashbang" was shortened to "shbang", with a vowel added for readability. You can still sometimes hear "hashbang" used to mean the `#!` itself, as in "a shebang begins with a hashbang, then path to the interpreter".] line"
+- If the file is a plain text file, then being executable means "check for a shebang^["shebang" comes from the colloqial name of the first two characters: `#` is "hash" and `!` is "bang". "Hashbang" was shortened to "shbang," with a vowel added for readability. You can still sometimes hear "hashbang" used to mean the `#!` itself, as in "a shebang begins with a hashbang, then path to the interpreter."] line."
     
     A "shebang" is a line of the form `#!/path/to/program` (or sometimes `#!/usr/bin/env program`).
     One common shebang is `#!/bin/bash`.
@@ -164,6 +164,6 @@ So is the following:
     #!/bin/cat
     Quines are interesting to create in many languages.
     But if you use shebangs, they are trivial to create
-    using the interpreter "cat".
+    using the interpreter "cat."
 
 {/}

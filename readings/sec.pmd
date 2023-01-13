@@ -14,7 +14,7 @@ without the algorithmic and mathematical complexity of current implementations.
 
 A **hash function** takes an input of any size (often generalized as a byte stream)
 and returns an output of a fixed size (often generalized as a large binary number)
-such that changing any byte of the input would change the output too.
+such that changing any byte of the input would also change the output.
 
 {.aside} The word "hash" is used to refer to (a) the output of this function, (b) the function itself, and (c) the action of running this function. It is grammatically correct to say "I hashed it with my favorite hash to get the following hash: `f4ca408dc68ca2776e5d294e8f1166b56ee5af9b`."
 
@@ -194,7 +194,7 @@ Since entropy cannot be generated on demand, there is always risk that the entro
 
 {.example ...}
 As explained in `man 4 urandom`{.bash}, Linux maintains an entropy pool in `/dev/random`.
-It is designed to be read-once: if you read a byte from `/dev/random` there is one less byte there than there was before, and it is relatively easy to empty it entirely.
+It is designed to be read-once: if you read a byte from `/dev/random`, there is one fewer byte there than there was before, and it is relatively easy to empty it entirely.
 
 To avoid having cryptographic tools wait for more entropy to be generated,
 Linux also provides `/dev/urandom`, a pseudo-random number generator
@@ -229,10 +229,10 @@ Task
 :   Convince someone you don't know that you are who you say you are.
 
 Solution
-:   1. Have someone who knows you both [sign](#signatures) a document saying "this person's public key is $x$".
+:   1. Have someone who knows both of you [sign](#signatures) a document saying "this person's public key is $x$."
     2. Give that document, called a *certificate*, to the skeptic who doubts your identity.
-    3. The skeptic then generates a random number $y$, encrypts it with your [public key](#asymmetric-ciphers), and tells you the encrypted result $z$
-    4. You decrypt $z$ with your [private key](#asymmetric-ciphers) and tell the skeptic "it's really me: your number was $y$"
+    3. The skeptic then generates a random number $y$, encrypts it with your [public key](#asymmetric-ciphers), and tells you the encrypted result $z$.
+    4. You decrypt $z$ with your [private key](#asymmetric-ciphers) and tell the skeptic "it's really me: your number was $y$."
     
     The internet today uses a few well-known *certificate authorities*
     who build entire businesses on validating website identity and signing certificates.
@@ -252,24 +252,24 @@ but the approach described here is dominant at the time of writing^[2019].
 ## Storing passwords
 
 Task
-:   I want the computer to recognize my password, but even the root account not to be able to learn what my password is.
+:   I want the computer to recognize my password, but even the root account is not to be able to learn what my password is.
 
 Solution
 :   Store only a [hash](#hashes) of the password.
     
-    Note that a simple implementation of this makes possible exploits like [rainbow tables](https://en.wikipedia.org/wiki/Rainbow_table) where the hashes of a large number of plausible passwords are precomputed to compare against the hashes stored on a computer.
+    Note that a simple implementation of this makes possible exploits like [rainbow tables](https://en.wikipedia.org/wiki/Rainbow_table), where the hashes of a large number of plausible passwords are precomputed to compare against the hashes stored on a computer.
     One partial solution to this is to *salt* the password before hashing:
     we generate a random value, store it with the password, and include it and the password in the hash.
 
 Passwords on the internet are much less secure than this.
 We hope servers store only hashes (though verifying this is hard),
-but we still have to get the password to them to hash
-so they typically are transmitted in their raw form.
+but we still have to get the password to them to hash,
+so they typically are transmitted in their raw forms.
 Thus, if your browser is remembering your passwords,
 it *cannot* be remembering only the hashes
 because it needs to enter the actual passwords into web forms for you.
 However, if you are good about using a different password for each site,
-browser storage of them can be more secure than typing them manually
+browser storage of them can be more secure than typing them manually,
 as it prevents you accidentally providing one site with another site's password.
 
 A better approach to web passwords is to use a password manager.
@@ -277,7 +277,7 @@ This still has to store your passwords,
 but it can encrypt them using a symmetric key derived from your "master" password,
 which it stores only as a hash,
 so that compromise of the password manager has limited loss.
-It can also generate random virtually-unguessable passwords for each site
+It can also generate random, virtually-unguessable passwords for each site
 and continue to provide access to your passwords even if you are not on your usual browser.
 
 
@@ -291,8 +291,8 @@ Solution
     Such a key is generally little more than a random number,
     so we can use [Diffie-Hellman](#diffie-hellman) to generate it.
     
-    Of course, first we need to agree on which symmetric cipher to use,
-    and possibly share [certificates](#should-i-trust-you) to make sure we are who we say we are;
+    Of course, we first need to agree on which symmetric cipher to use
+    and possibly share [certificates](#should-i-trust-you) to make sure we are who we say we are,
     and Diffie-Hellman involves several communication steps itself,
     so establishing this communication requires a multi-step back-and-forth protocol.
     One popular protocol for this is called [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security).
@@ -304,15 +304,15 @@ Having a secure protocol and entropy source is not sufficient to have a secure s
 Humans are often a weak point, picking bad passwords and sharing them too freely.
 However, side channels are also a major possible weakness.
 
-A **side channel** is something that can carry information, but was not the communication channel the designer of the system had in mind.
-There are many side channels and may side channel attacks, but one example will suffice to show the complexity involved in anticipating and preventing them.
+A **side channel** is something that can carry information but was not the communication channel the designer of the system had in mind.
+There are many side channels and many side channel attacks, but one example will suffice to show the complexity involved in anticipating and preventing them.
 
 Suppose I want to learn the randomly-generated private key you used in [Diffie-Hellman](#diffie-hellman).
 I look through your code and consult the specs of your processor
 and notice that it takes your code 2 microseconds to process each 0-bit and 3 microseconds to process each 1-bit.
 There are a few other aspects that are hard for me to time perfectly,
 like how long it takes me to see your messages,
-but after watching a few hundred DH key exchanges I get a reasonable estimate on those too.
+but after watching a few hundred DH key exchanges I get a reasonable estimate on those as well.
 
 Now suppose for a particular 32-bit DH session I time your code and determine you have 13 1-bits in your key.
-To brute-force guess your key, I only need to check the 347,373,600 32-bit numbers that have 13 1-bits, not all 4,294,967,296; a savings of approximately 12×.
+To brute-force guess your key, I only need to check the 347,373,600 32-bit numbers that have 13 1-bits, not all 4,294,967,296, a savings of approximately 12×.

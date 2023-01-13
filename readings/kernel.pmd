@@ -70,9 +70,9 @@ If you try to talk to the disk, the kernel likewise moderates that communication
 
 ### Multiple Users
 
-Because the kernel is an unavoidable intermediary for talking to hardware, it can chose to forbid some interactions.
+Because the kernel is an unavoidable intermediary for talking to hardware, it can choose to forbid some interactions.
 One common use of this is to allow multiple user accounts.
-Since the kernel is the one that controls access to the disk, for example, it can chose not to allow my processes to access the part of the disk it has assigned to you, not me.
+Since the kernel is the one that controls access to the disk, for example, it can choose to prohibit my processeses from accessing the part of the disk it has assigned to you and not me.
 
 
 ## Implementation
@@ -83,9 +83,9 @@ When in user mode, there are a set of instructions that cannot be executed
 and segments of memory that cannot be accessed.
 Examples of things you cannot directly access in user mode include
 
-- the part of memory that stores information about which user account you have logged into
-- instructions that send signals out of the chip to communicate with disks, networks, etc
-- instructions that let user-mode code execute in kernel-mode
+- the part of memory that stores information about which user account you are logged into
+- instructions that send signals out of the chip to communicate with disks, networks, etc.
+- instructions that let user-mode code execute in kernel mode
 
 ### Mode Bit
 
@@ -93,7 +93,7 @@ The simplest way to create two modes is to have a single-bit register somewhere 
 that indicates if the chip is currently executing in user mode or in kernel mode.
 Each protected instruction then checks the contents of that register and, if it indicates user mode, causes an exception instead of executing the instruction.
 A special protected instruction is added to change the contents of this mode register,
-meaning kernel-mode code can become user-mode, but no vice versa.
+meaning kernel-mode code can become user-mode, but not vice versa.
 
 Modern processors often have more than one operating mode with more than one level of privilege,
 which (among other benefits) can help make virtualization efficient;
@@ -101,12 +101,12 @@ the details of these additional modes are beyond the scope of this course.
 
 ### Mode-switch via Exceptions
 
-The core mechanic for becoming the kernel is a hardware exception.
+The core mechanic for switching to the kernel is a hardware exception.
 An exception results in several functionally-simultaneous changes to processor state,
 notably including both (a) changing to kernel mode and (b) jumping to code in kernel-only memory.
-Thus, the only mechanisms that exist for entering kernel mode will running kernel code for the next instruction, preventing user code from running itself in kernel mode.
+Thus, the only mechanisms that exist for entering kernel mode will run kernel code for the next instruction, preventing user code from running itself in kernel mode.
 
-The nature of these hardware exceptions and the jump to kernel code that is associated with them is a large enough topic to deserve [it's own section](#exceptions).
+The nature of these hardware exceptions and the jump to kernel code that is associated with them is a large enough topic to deserve [its own section](#exceptions).
 
 # Exceptions
 
@@ -121,7 +121,7 @@ There are several kinds of hardware exceptions.
 
 {.aside ...} Confusingly, terms for exceptions and particular kinds of exceptions vary across sources. Here, we care that you know that hardware exceptions have many uses rather than knowing specific terms.
 
-In the convention we have followed, we use 'exception' as the generic term and use the terms 'interrupt' or 'trap' for particular kinds of exceptions. Some sources use 'interrupt' or `trap' for the generic term instead and use 'exception' to refer as a more specific term (probably roughly equivalent to what we call 'faults'). There is also some other variation in the definitions of the more specific terms. So, when reading a processor manual or similar reference, be careful to look for context to see exactly how they define each of the terms below.
+In the convention we have followed, we use 'exception' as the generic term and use the terms 'interrupt' or 'trap' for particular kinds of exceptions. Some sources use 'interrupt' or `trap' for the generic term instead and use 'exception' to refer to a more specific term (probably roughly equivalent to what we call 'faults'). There is also some other variation in the definitions of the more specific terms. So, when reading a processor manual or similar reference, be careful to look for context to see exactly how they define each of the terms below.
 {/}
 
 ### Interrupts
@@ -130,7 +130,7 @@ An interrupt occurs independently from the code being executed when it occurs.
 It might result from the mouse moving, a network packet arriving, or the like.
 
 Interrupts are typically handled by the kernel in a way that is invisible to the user code.
-The user code is frozen, the interrupt handled, and then the user code resumed as if nothing had happened.
+The user code is frozen, the interrupt is handled, and then the user code is resumed as if nothing had happened.
 
 
 ### Faults
@@ -139,10 +139,10 @@ A fault is the result of an instruction failing to succeed in its execution.
 Examples include dividing by zero, dereferencing a null pointer, or attempting to execute a protected instruction while in user mode.
 
 There are two basic families of responses to faults:
-either the kernel can fix the problem, then re-run the user code that generated the fault;
-or it cannot fix the problem and kills the process that cause the fault instead.
+either the kernel fixes the problem and reruns the user code that generated the fault,
+or it cannot fix the problem and kills the process that caused the fault.
 In practice, fixable faults happen quite often, notably the [page fault](#pages) discussed later.
-Even faults the kernel can't fix on its own are often handled by asking the user code if it knows how to fix them using a mechanism called [signals](#signals), though many programs do not chose to handle the signals so the end result is often still termination of the fault-generating process.
+Even faults the kernel cannot fix on its own are often handled by asking the user code if it knows how to fix them through mechanisms called [signals](#signals). However, many programs do not choose to handle the signals, so the end result is often still termination of the fault-generating process.
 
 ### Traps
 
@@ -154,17 +154,17 @@ System calls are used to interact with the file system, spawn and wait on thread
 
 When an exception occurs, the processor switches to kernel mode and jumps to a special function in kernel code called an "exception handler."
 Because interrupts exist, this can happen without any particular instruction causing the jump,
-and thus might happen at any point during the code running.
-In order for the handler to later resume user code, the exception handling process must also save the processor state before executing the handler.
+and thus might happen at any point during code execution.
+In order for the handler to later resume user code, the exception-handling process must also save the processor state before executing the handler.
 
 ### Save-Handle-Restore
 
 The basic mechanism for any exception to be handled is
 
-1. Save the current state of the processor (register contents, PC location, etc)
+1. Save the current state of the processor (register contents, PC location, etc.)
 2. Enter kernel mode
 3. Jump to code designed to react to the exception in question, called an **exception handler**
-4. When the handler finishes, enter user mode and restore processor state (including register contents, PC location, etc)
+4. When the handler finishes, enter user mode and restore processor state (register contents, PC location, etc.)
 
 These steps (except for the actual execution of the exception handler) are all done atomically by the hardware.
 
@@ -172,7 +172,7 @@ These steps (except for the actual execution of the exception handler) are all d
 
 In general, there can be as many different exception handlers as there are exception causes.
 To select which one to run, the hardware consults something called an **exception table**.
-The exception table is just an array of code addresses; the index into that array is determined by the kind of exception generated (e.g., divide-by-zero uses index 0, invalid instructions use index 6, etc.)
+The exception table is just an array of code addresses; the index into that array is determined by the kind of exception generated (e.g., divide-by-zero uses index 0, invalid instructions use index 6, etc.).
 The index is called an **exception number** or **vector number** and the array of code addresses is called the **exception table**.
 
 
@@ -181,7 +181,7 @@ Switches
 
 Having an array of code addresses is not unique to exception handlers; it is also present in C in the form of a `switch`{.c} statement.
 
-For example, the following C
+For example, the following C code
 
 ````c
 switch(x) {
@@ -198,7 +198,7 @@ switch(x) {
 }
 ````
 
-compiles down to the following code
+compiles down to the following assembly code
 
 ````asm
     cmpl    $8, %eax
@@ -277,8 +277,8 @@ Abort
 :   stops running instructions
 
 The abort result may be triggered by any cause:
-if a memory access detects memory inconsistency we have an aborting fault;
-an exit system call is an aborting trap;
+if a memory access detects memory inconsistency we have an aborting fault,
+an exit system call is an aborting trap,
 and integral peripherals like RAM can send aborting interrupts if they notice unrecoverable problems.
 
 {/}
@@ -289,11 +289,11 @@ and integral peripherals like RAM can send aborting interrupts if they notice un
 ### Example: Linux system calls
 
 In Linux, almost all communications from user- to kernel-code are handled by a trap with exception number 128.
-Instead of using exception number to select the particular action the user is requesting of the kernel, that action is put in a number in `%rax`;
+Instead of using the exception number to select the particular action the user is requesting of the kernel, that action is put in a number in `%rax`;
 this decision allows Linux to have space for billions of different system calls instead of just the 200 or so that would fit in an exception number and are not reserved by the hardware.
 
 To see a list of Linux system calls, see `man 2 syscall`{.bash}.
-Most of these are wrapped in their own library function, listed in `man 2 syscalls`{.bash}
+Most of these are wrapped in their own library function, listed in `man 2 syscalls`{.bash}.
 
 
 {.example ...}
@@ -325,11 +325,11 @@ Let's walk through this a bit at a time:
 
 `mov $0x29,%eax`{.asm}
 :   Places 29~16~ (41~10~) into `%rax`. 
-    Per `/usr/include/sys/syscal.h`, 41 is the number of the "socket" syscall.
+    Per `/usr/include/sys/syscall.h`, 41 is the number of the "socket" syscall.
 
 `syscall`{.asm}
 :   A trap, generating exception number 128.
-    This means the hardware saves processor state,
+    This means the hardware saves the processor state,
     then jumps to the address stored in the kernel's `exception_handler[128]`.
     
     The exception handler at index 128 checks that `%rax` contains a valid system call number (which 41 is),
@@ -343,11 +343,11 @@ Let's walk through this a bit at a time:
     The handler ends by executing a protected return-from-handler instruction
     that 
     
-    - restores processor state (but leaves `%rax` alone as a return value),
+    - restores the processor state (but leaves `%rax` alone as a return value),
     - returns to user mode, and
     - jumps back to user code
     
-After that is some error checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
+After that is some error-checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
 The code in `system_call_handler[41]` of the kernel is considerably longer; many thousands of lines of C code, in fact (see <https://github.com/torvalds/linux/tree/master/net>).
 
 {/}
@@ -377,7 +377,7 @@ Each of them has a default action if no handler is registered,
 most commonly terminating the process.
 
 {.example ...}
-Typing Ctrl+C on the command line causes the SIGINT signal to be generated.
+Typing Ctrl+C in the command line causes the SIGINT signal to be generated.
 If we want Ctrl+C to do something else, we have to handle that signal:
 
 ````c
@@ -437,7 +437,7 @@ int main() {
 }
 ````
 
-... will print "Ignoring segfault" repeatedly until you kill it with something like Ctrl+C.
+... will print "Ignoring segfault." repeatedly until you kill it with something like Ctrl+C.
 The last line creates a segfault, which causes the OS to run the handler.
 The handler returns normally, so the OS assumes the cause of the fault was fixed and re-runs the triggering code,
 which generates another segfault.
@@ -461,12 +461,12 @@ From a bash command line, you can send signals to running processes.
 - `bg` causes a suspended process to resume running, but in the background so you can use the terminal for other purposes.
 - `fg` causes a suspended or background process to resume running in the foreground, re-attaching the keyboard to `stdin`.
 - `kill <pid>` sends SIGTERM, the "terminate" signal, to the process with process ID `<pid>`.
-    The "terminate" signal means "I want you to shut down now" but can be handled to, e.g. save unsaved work or the like.
+    The "terminate" signal means "I want you to shut down now" but can be handled to save unsaved work or the like.
 - `kill -9 <pid>` sends SIGKILL, the "kill" signal, to the process with process ID `<pid>`.
     The "kill" signal cannot be handled; it always causes the OS to terminate the program.
     
     Any other signal can be provided in similar fashion, either by number (SIGKILL is signal number 9)
-    or name (e.g., `kill -KILL <pid>`)
+    or name (e.g., `kill -KILL <pid>`).
 
 There are other tools for sending signals, but the above are sufficient for most common use cases.
 
@@ -477,8 +477,8 @@ There are other tools for sending signals, but the above are sufficient for most
 Portions of the save- and restore-state functionality used by exception handlers
 is exposed by the C library functions `setjmp` and `longjmp`.
 
-`setjump`, given a `jmp_buf` as an argument, fills that structure with information needed to resume execution at that location and then returns 0.
-Thereafter `longjmp` can be called with that same `jmp_buf` as an argument;
+`setjmp`, given a `jmp_buf` as an argument, fills that structure with information needed to resume execution at that location and then returns 0.
+Thereafter, `longjmp` can be called with that same `jmp_buf` as an argument;
 `longjmp` never returns, instead "returning" from `setjmp` for a second time.
 `longjmp` also provides an alternative return value for `setjmp`.
 
@@ -592,7 +592,7 @@ Virtual memory provides
 a. each process with the illusion that it is the only process running.
 a. each process with the illusion that all possible addresses exist, no matter how much physical memory is available.
 a. memory protection such that user-mode code cannot access kernel memory.
-a. an efficient mechanism for communicating with processes
+a. an efficient mechanism for communicating with processes.
 
 ## Processes
 
@@ -612,7 +612,7 @@ and other state.
 Changing which process's state is currently loaded is called a **context switch**.
 All major user operating systems (but not all embedded-system operating systems)
 use a hardware timer to create an exception every few dozen milliseconds
-to enabled automated context switching and facilitate the illusion that
+to enable automated context switching and facilitate the illusion that
 more processes are running at a time than there are processors in the computer.
 
 ## Regions of Memory
@@ -621,27 +621,27 @@ To provide process separation,
 each memory access needs to be checked to ensure it is permitted.
 Specific sets of permissions may vary by system, but a common set includes
 
-- Read-only vs. read-write memory (e.g., is `mov %rax, address`{.asm} allowed?) 
-- Kernel-only vs. user-mode memory (e.g., is `mov  address, %rax`{.asm} allowed if not in kernel mode?) 
-- Executable vs. data-only memory (e.g., is `jmp address` allowed?)
-- Valid vs. invalid addresses (e.g., no code can use address 0)
+- Read-only vs. read-write memory (e.g. is `mov %rax, address`{.asm} allowed?) 
+- Kernel-only vs. user-mode memory (e.g. is `mov  address, %rax`{.asm} allowed if not in kernel mode?) 
+- Executable vs. data-only memory (e.g. is `jmp address` allowed?)
+- Valid vs. invalid addresses (e.g. no code can use address 0)
 
 Because most instructions would need to check at least one of these constraints,
 there is reason to encode them very efficiently.
 Because each process may access a very large number of memory addresses,
 they also need to be efficient in space,
-in practice meaning that permissions are applied to large contiguous regions of memory.
+meaning that in practice, permissions are applied to large contiguous regions of memory.
 
 ### Segments revisited
 
-A common operating system internal representation of memory regions
-is a list if **segements**,
-pairs of starting- and stopping-addresses and a set of permissions for the intermediate addresses.
+A common internal representation of memory regions used by operating systems
+is a list of **segments**,
+pairs of starting and stopping addresses and a set of permissions for the intermediate addresses.
 
-Segments are never directly visible to the hardware^[Note, however, that keeping with the tradition of using the same English word to mean multiple unrelated technical concepts, x86-64 uses the word "segment" in a distinct hardware sense to mean "the high-order bits of addresses we don't want to express in full".]:
+Segments are never directly visible to the hardware^[Note, however, that keeping with the tradition of using the same English word to mean multiple unrelated technical concepts, x86-64 uses the word "segment" in a distinct hardware sense to mean "the high-order bits of addresses we don't want to express in full."]:
 instead, the operating system uses the segments
-to create hardware-visible [pages table entries](Pages)
-and to react to hardware-generated page-related [faults](Faults)
+to create hardware-visible [page table entries](Pages)
+and to react to hardware-generated, page-related [faults](Faults)
 and potentially convert them into [signals](Signals)
 to convey to the user process.
 
@@ -649,7 +649,7 @@ to convey to the user process.
 {.example ...}
 Because segments are a software-only construct,
 each operating system can store them in a different way.
-One simple example might be the following,
+One simple example might be the following:
 
 ```c
 struct segment_node {
@@ -666,16 +666,16 @@ struct segment_node {
 {.example ...}
 It is common to refer to the crashing of a program
 that tries to access an invalid address
-as a "segfault", short for "segmentation fault."
-This is technically a misnomer;
+as a "segfault," short for "segmentation fault."
+This is technically a misnomer, as
 the fault is generated by hardware, which does not even know about segments;
 the generating fault is either a page fault or a protection fault.
 The operating system may react to that fault by generating
-a "segmentation violation signal",
+a "segmentation violation signal,"
 often abbreviated as SEGV or SIGSEGV.
 
 Many people and programs using the term "segfault"
-are aware it is technically incorrect;
+are aware that it is technically incorrect;
 it is arguably an example of a computing colloquialism.
 
 {/}
@@ -683,8 +683,8 @@ it is arguably an example of a computing colloquialism.
 
 
 POSIX-compatible operating systems
-provide library functions `mmap` and `munmap`
-for requesting the operating system adjust its segments.
+provide the library functions `mmap` and `munmap`
+for requesting the operating system to adjust its segments.
 Typical user applications use higher-level wrappers such as `malloc` instead.
 
 ### Pages
@@ -695,7 +695,7 @@ Each address is split into two parts:
 a **page number** made up of the high-order bits
 and a **page offset** made up of the low-order bits.
 
-Each time memory is accessed in any way---including in fetching the instruction itself,
+Each time memory is accessed in any way---including fetching the instruction itself,
 meaning at least once per instruction---the address is **translated**.
 Translation converts an address as it appears in code
 (called a **virtual address**)
@@ -709,10 +709,10 @@ This translation involves the following steps:
     (see [Page Tables]).
     Conceptually this is what Java would call a `Map<VirtualPageNumber, PageTableEntry>`{.java}.
     It is stored in memory,
-    using physical not virtual addresses
+    using physical, not virtual, addresses,
     and its location is stored in a register
     that is changed on each context switch
-    so that the operating system maintain a different page table for each process.
+    so that the operating system can maintain a different page table for each process.
 
 2. The **page table entry**
     contains a variety of protection or flag bits.
@@ -747,9 +747,9 @@ so that no two programs can see the contents of the other's memory
 unless they have both asked the operating system to enable that.
 
 Since 2017, it has become known that these protections
-are not quite a complete as they were once thought.
+are not quite as complete as they were once thought to be.
 Although these protections do ensure that one process cannot directly access another's memory,
-they does not guarantee the absence of side-effects of memory access
+they do not guarantee the absence of side-effects of memory access
 that another process can detect.
 For example, many hardware accelerations are based on the principle
 that what happens once is likely to happen again,
@@ -782,19 +782,19 @@ stores the address of this array.
 {.example ...}
 Consider a system with 16-bit virtual addresses.
 If that memory was broken into 2^7^ pages of 2^9^ bytes each,
-and if each page table entry consists of 6 bits of flag bits
+and if each page table entry consists of 6 flag bits
 and a 10-bit physical page number,
 then the single-level page table
-is an array or 2^7^ 2-byte values (i.e., 2^8^ bytes in total).
+is an array containing 2^7^ 2-byte integers (i.e., 2^8^ bytes in total).
 
-If the virtual address is 1010 1111 0000 0101~2~
-then the page offset is 1 0000 0101~2~
+If the virtual address is 1010 1111 0000 0101~2~,
+then the page offset is 1 0000 0101~2~,
 and the virtual page number is 101 0111~2~.
 Thus, the hardware accesses page table entry 101 0111~2~---that is,
 physical address PTBR + 1010 1110~2~---to find
 a page table entry.
 If that page table entry's flags allow access
-and it has the physical page number
+and it has the physical page number, say,
 11 0011 0011~2~,
 then the resulting physical address is
 the physical page number (11 0011 0011~2~)
@@ -816,7 +816,7 @@ and basically untenable for 64-bit addresses.
 Multi-level page tables are a particular instance
 of a linked data structure known as a high-arity (or wide node)
 fixed-depth tree,
-which is an efficient way for storing large, sparse arrays
+which is an efficient way for storing large, sparse arrays,
 particularly when entries are clustered.
 Since this is not a data structure that is generally taught in data structure courses,
 this section provides a full overview of the data structure itself
@@ -934,8 +934,8 @@ each tree can be treated as if it were an array of 65,536 entries:
 ```c
 PAYLOAD arr(struct height3 *root, unsigned short index) {
     struct height2 *child1 = root  [(index>>12)&(WIDTH-1)];
-    struct height1 *child2 = child1[(index>> 8)&(WIDTH-1)];
-    struct leaf    *child3 = child2[(index>> 4)&(WIDTH-1)];
+    struct height1 *child2 = child1[(index>>8)&(WIDTH-1)];
+    struct leaf    *child3 = child2[(index>>4)&(WIDTH-1)];
     return child3[index&(WIDTH-1)];
 }
 ```
@@ -968,7 +968,7 @@ PAYLOAD *arr(struct height3 *root, unsigned short index) {
 ```
 
 While this code is even less time-efficient than the previous code,
-it is significantly more space-efficient if only a few values are in the "array".
+it is significantly more space-efficient if only a few values are in the "array."
 For example, if only indices 0--10 (0x0000--0x000A) and 60,000--60,050 (0xEA60--0xEA92) are used,
 the only non-NULL pointers are to:
 
@@ -983,8 +983,8 @@ the only non-NULL pointers are to:
             - in child3 0x8: 0x0 through 0xF
             - in child3 0x9: 0x0 through 0x2
 
-Thus, only ten intermediate nodes and 5 × 16 = 80 `PAYLAOD` values are allocated
-rather than the 65,535 `PAYLOAD` values that would have been allocated for a simple array.
+Thus, only ten intermediate nodes and 5 × 16 = 80 `PAYLOAD` values are allocated
+rather than the 65,536 `PAYLOAD` values that would have been allocated for a simple array.
 
 {/}
 
@@ -993,14 +993,14 @@ rather than the 65,535 `PAYLOAD` values that would have been allocated for a sim
 
 Most programs access only a few megabytes of memory,
 allocated in a few contiguous chunks,
-out of an address space of 2^64^ = 18,446,744,073,709,551,616 possible addresses.
-This is, in many ways, and ideal scenario for using fixed-depth high-arity trees
+out of a 64-bit address space with 2^64^ = 18,446,744,073,709,551,616 possible addresses.
+This is, in many ways, an ideal scenario for using fixed-depth high-arity trees
 to store a very sparse array of page table entries.
 
 x86-64-compatible processors handle 64-bit addresses as follows:
 
 - They completely ignore the top 16 bits of each virtual address.
-    2^48^ = 281,474,976,710,656 is seen as more than a large enough address space for the current generation of software applications.
+    2^48^ = 281,474,976,710,656 is seen as more than large enough an address space for the current generation of software applications.
 
 - They use 64-bit page table entries, with larger physical page numbers than virtual page numbers.
     This does not mean that all physical page numbers are used:
@@ -1011,10 +1011,10 @@ x86-64-compatible processors handle 64-bit addresses as follows:
 - They pick a page size
     such that every page table node exactly fits in one page.
     
-    The most common such page size is 4KB pages
-    with 2^9^ PTE per node (9+9+9+9+12 = 48).
-    Other page sizes also work; for example 256KB pages
-    with 2^15^ PTE per node (15+15+18 = 48) fits perfectly,
+    The most common such page size is 4KB
+    with 2^9^ PTEs per node, using a four-level page table (9+9+9+9+12 = 48).
+    Other page sizes also work: for example, 256KB pages
+    with 2^15^ PTEs per node, using a two-level page table (15+15+18 = 48), fits perfectly,
     and at a slight loss of space efficiency other sizes can be used as well.
     
 
@@ -1047,7 +1047,7 @@ as the address space increases.
 Trying to mitigate this trade-off is part of the reason why
 x86-64 only actually uses 48 bits of its 64-bit addresses.
 
-x86-64 also allows mixed-size-pages,
+x86-64 also allows mixed-size pages,
 where most pages are 4KB but a few are 2MB.
 These "big pages" are only used for data, not page table nodes,
 meaning some paths down the page table tree pass through one fewer node
@@ -1072,7 +1072,7 @@ but allows the operating system more control over how pages are distributed.
     ````
     
 All of the above is performed by hardware, having been compiled down to
-actual physical transistors. It is not programmable.
+physical transistors. It is not programmable.
 
 The programmable parts are the fault handlers.
 A page fault handler (written in the OS software)
@@ -1081,7 +1081,7 @@ might do something like
 ```c
 handle_page_fault(size_t va, int access_type) {
     int flags = permitted_actions(va, segment_list);
-    if ((access_type & flags) != access_type))
+    if ((access_type & flags) != access_type)
         send_signal(SIGSEGV);
     ssize_t ppn = get_unused_physical_page();
     if (ppn < 0) ppn = swap_page();
@@ -1094,7 +1094,7 @@ The above pseudocode uses several function stubs:
 `permitted_actions`
 :   Check the OS list of [segments](#segments-revisited)
     to see what kinds of access (reading, writing, executing, etc) 
-    the segment that contains this address allows.
+    the segment containing this address allows.
     If this address is not in a segment, returns that no actions are allowed.
 
 `get_unused_physical_page`
@@ -1105,15 +1105,15 @@ The above pseudocode uses several function stubs:
 
 `swap_page`
 :   In the event that `get_unused_physical_page` fails to find an unused page,
-    the OS pick a page currently being used by some process
+    the OS picks a page currently being used by some process
     and "swaps it out":
-    that is,
+    that is, it
     
     1. Picks a physical page
     2. Writes its contents onto a region of disk known as the "swap space"
     3. Changes the PTE for that page such that
         a. the unmapped bit is set
-        b. the rest of the bits tell where on disk the contents are located
+        b. the rest of the bits tell where the contents are located on disk
     4. Change that page to be owned by the current process
     5. Return the newly-freed physical page number
     
@@ -1124,8 +1124,8 @@ The above pseudocode uses several function stubs:
     (possibly creating intermediate nodes in the tree)
     and sets the appropriate permissions and physical page number
     in the PTE.
-    If the PTE already existed and noted where in the swap space the old
-    contents of this page were located, loads the swapped-out contents back from disk into memory too.
+    If the PTE already exists and notes where in the swap space the old
+    contents of this page are located, loads the swapped-out contents back from disk into memory as well.
 
 An important thing to note about the above:
 software (the operating system) writes the page table
@@ -1191,12 +1191,12 @@ this section focuses on those uses.
 
 ### Page Swapping
 
-Because addresses in code can be mapped to other addresses,
-with operating system intervention if needed,
+Because addresses in code can be mapped to other addresses
+(with operating system intervention if needed),
 virtual memory lets code act beyond the constraints of available memory.
 This is traditionally handled by the operating system
 storing some pages on the disk instead of in memory.
-moving these pages between disk and memory is called "swapping".
+moving these pages between disk and memory is called "swapping."
 
 Because disks are *vastly* slower than memory,
 there is a desire to make this happen rarely,
@@ -1226,19 +1226,19 @@ swap is arguably[^arguably] less important than it once was,
 but it is still a part of every major end-user OS.
 
 [^arguably]: Arguably as in, I have heard friendly arguments
-    between people who know about this than I on this topic.
+    between people who know more about this than I do on this topic.
 
 ### Shared Memory
 
 One of the goals of virtual memory is to allow each process to have its own address space,
 but because this is done by having a mapping between virtual and physical pages,
 it is quite possible to map the same physical page
-into multiple different processes' virtual address space---potentially
+into multiple different processes' virtual address spaces---potentially
 even to have the same physical page mapped to different virtual pages
 in each process.
 
 Shared memory, as this is called, is used for several purposes,
-notably including the following.
+notably including the following:
 
 Shared libraries.
 :   If several programs are going to load in the same shared library code,
@@ -1246,7 +1246,7 @@ Shared libraries.
     shared in each process's virtual address space.
     
     Not all libraries are linked in as shared memory.
-    because shared memory must come in in full page chunks,
+    Since shared memory must come in in full page chunks,
     shared memory library linkage can be inefficient if library code is small
     or not shared by several running processes.
     Additionally, sharing library code requires all processes that use it
@@ -1263,12 +1263,12 @@ Kernel memory.
     that changes the PTBR.
     For the next instruction to be fetched properly,
     that instruction's virtual page needs to map to the same physical page
-    in both the old and new page table.
+    in both the old and new page tables.
     
     Different operating systems handle this differently;
     in Linux, for example, half of the entire address space
     (all with addresses 0x800000000000 or above)
-    is reserved for the OS,
+    is reserved for the OS
     and is mapped to the same set of physical pages
     in every process's page table.
 
@@ -1282,12 +1282,12 @@ Shared-memory communication.
 ### Process Switching
 
 Switching between processes happens in the operating system's code.
-When the OS was invoked (in an [Exception Handler](#handling))
+When the OS was invoked (in an [Exception Handler](#handling)),
 the state of the original process was stored somewhere;
-when changing processes 
+when changing processes,
 
 - the saved user state is moved into an OS data structure to track the not-currently-running processes.
-- the PTBR is changed to the page table of the new process and the user page table entries in the translation lookaside buffer are marked as invalid.
+- the PTBR is changed to point to the page table of the new process, and the user page table entries in the translation lookaside buffer are marked as invalid.
 - the saved state from the OS data structure is moved back into the saved user state location to be restored when the exception handler returns.
 
 As this happens in operating system software,
@@ -1303,14 +1303,14 @@ It is common for various input/output operations
 to be performed by allocating a page (or more) of memory
 to be accessed directly by the I/O systems.
 This direct memory access model allows I/O to happen at the slower pace of I/O systems
-concurrently with the processor doing other work,
-and then once the transfer into or out of memory is completed
-the processor to access it at the higher speed of memory access.
+concurrently with the processor doing other work
+as well as the processor to access it at the higher speed of memory access
+once the transfer into or out of memory is completed.
 This model is called **direct memory access** (DMA).
 
 Technically, DMA does not require virtual memory---disks
 could be given access to physical memory
-even if code access memory with physical addresses---but
+even if code accesses memory with physical addresses---but
 it is generally implemented as an extension of the virtual memory system.
 
 

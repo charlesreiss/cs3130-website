@@ -15,7 +15,7 @@ and the routing information needed to reach the intended destination.
 ## Paper
 
 For paper communication, these would be the letter and the envelope,
-each made of paper and each with information written on them
+each made of paper and each with information written on them,
 but one (the letter) containing the contents
 and the other (the envelope) containing the routing information.
 We know which one is which by how they are arranged:
@@ -36,7 +36,7 @@ Data
 :   The contents you want to send is the message or data.
 
 Packet / Segment / Frame
-:   Many protocols split the message into packets of some maximum (or in a few cases fixed) size,
+:   Many protocols split the message into packets of some maximum (or in a few cases, fixed) size,
     sending each separately with some sort of reassembly packet order numbers.
     
     The name for the chopped-up data depends on the [layer](#layers).
@@ -49,16 +49,16 @@ Header / Footer
 ## Layers
 
 Paper post is typically transmitted part of the way
-by a letter inside an envelope inside a crate inside a truck;
-and another part by a letter inside an envelope inside a mail pouch;
+by a letter inside an envelope inside a crate inside a truck,
+another part by a letter inside an envelope inside a mail pouch,
 etc.
 Each of these outer containers has routing information, like the envelope does:
 the carrier route of the pouch, the post office destination of the crate, etc.
 
 Digital communication also puts containers inside containers
-and the set of containers used are called "layers"
+and the set of containers used are called "layers."
 There are different numbers of layers possible,
-but [the OSI model](https://en.wikipedia.org/wiki/OSI_model#Description_of_OSI_layers) is often seen as the default set
+but [the OSI model](https://en.wikipedia.org/wiki/OSI_model#Description_of_OSI_layers) is often seen as the default set,
 even though [the Internet Protocol Suite](https://en.wikipedia.org/wiki/Internet_protocol_suite#Key_architectural_principles) is better known.
 Note that OSI numbers its layers, where containers have smaller numbers than their contents.
 
@@ -69,9 +69,9 @@ When you `write` a message, the result is
 - The message you sent over the socket, wrapped in
 - a TCP header with the port number to get it to the right program, wrapped in
 - an IP header with the IP address to get it to the right computer, wrapped in
-- a IEEE 802.11 header and footer to get it over the Wireless LAN to the Internet
+- an IEEE 802.11 header and footer to get it over the Wireless LAN to the Internet
 
-That last layer will be stripped off after traversing the WLAN, to be replaced by a different outer "envelope" to guide it over the next link on its way to its destination.
+That last layer will be stripped off after traversing the WLAN to be replaced by a different outer "envelope" to guide it over the next link on the way to its destination.
 {/}
 
 Note that because of the header/footer design,
@@ -86,8 +86,8 @@ While there are many, many protocols out there,
 three are pervasive enough to be worth ensuring every CS major has at least some understanding of them:
 TCP, IP, and UDP.
 These sit in the middle of the network layer stack:
-they transmit higher-level protocols like HTTP, SMTP, SSH, etc;
-and they are transmitted by lower-level protocols like wi-fi, ethernet, etc.
+they transmit higher-level protocols like HTTP, SMTP, SSH, etc.;
+and they are transmitted by lower-level protocols like Wi-Fi, ethernet, etc.
 
 |Layer|Protocols|Use|Message Name|Notes|
 |-----|---------|---|-----|
@@ -105,7 +105,7 @@ and several other nuanced ideas this write-up ignores.
 
 IP (both versions) works on the following principles:
 
-- Every computer has a unique numeric "IP Address".
+- Every computer has a unique numeric "IP Address."
 
     IPv4 typically writes its 32-bit addresses as 4 8-bit decimal values with periods in between them, as in `255.127.63.31` for `0xFF7F3F1F`.
 
@@ -115,22 +115,22 @@ IP (both versions) works on the following principles:
 
 - IP headers contain the IP address of both the originating and end-destination computer.
 
-- Messages are delivered via "best-effort delivery".
+- Messages are delivered via "best-effort delivery."
     Each computer involved in delivering a packet
-    sends it to the computer it has a link to
-    that it believes is most likely to get the message where it is going,
-    but there is no guarantee that it will arrive at all
+    sends the packet to the computer that it has a link to
+    and that it believes is most likely to get the message where it is going,
+    but there is no guarantee that the packet will arrive at all
     or that the sender will know if it arrived.
 
 ## UDP
 
-UDP, or User Datagram Protocol, is a light-weight transport protocol.
+UDP, or User Datagram Protocol, is a lightweight transport protocol.
 It adds 16-bit source and destination port numbers
 that the OS of the involved computers can use
-to ensure it gets to the correct program;
+to ensure it gets to the correct program
 and a checksum to detect errors that might arise during transmission.
 
-UDP adds no other features on top of the underling IP:
+UDP adds no other features on top of the underlying IP:
 messages are not guaranteed to arrive at all, nor in any particular order;
 cannot be dynamically split into different sizes;
 etc.
@@ -149,7 +149,7 @@ a core idea in this is that each received message must be acknowledged by the re
 ![Simplified TCP state diagram for how to establish and terminate a connection (from [Wikimedia](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#/media/File:Tcp_state_diagram_fixed_new.svg))](https://upload.wikimedia.org/wikipedia/commons/f/f6/Tcp_state_diagram_fixed_new.svg)
 
 {.example ...}
-Suppose two computers, $P$ and $Q$, have established a TCP connection with one another.
+Suppose two computers $P$ and $Q$ have established a TCP connection with one another.
 $P$ might send $Q$ the message "This is a triumph!" as follows,
 using (contents, sequence number) to represent a TCP segment:
 
@@ -172,11 +172,11 @@ sends (" is a ", 2)
 
                             (dropped)
 
-sends ("triumph", 3)
+sends ("triumph!", 3)
 
                             →
 
-                                        receives ("triumph", 3)
+                                        receives ("triumph!", 3)
 
                                         expected message number 2, 
                                         not received
@@ -193,13 +193,13 @@ resends (" is a ", 2)
 
                             →
 
-resends ("triumph", 3)
+resends ("triumph!", 3)
 as it came after
 segment 2
 
                             →
 
-                                        receives ("triumph", 3)
+                                        receives ("triumph!", 3)
 
                                         receives (" is a ", 2)
 
@@ -214,7 +214,7 @@ begin closing connection
 ------------------------------------------------------------------
 
 In general, either side may re-send a message if they have not received the expected response, and neither needs to wait for the other's message to send the next.
-This way if messages seem to be arriving well, more messages may be sent in groups;
+This way, if messages seem to be arriving well, more messages may be sent in groups;
 if acknowledgments are not arriving, transmission may be slowed down to wait for ACKs before the next sending.
 {/}
 
@@ -227,7 +227,7 @@ is sometimes used as a term for the entire Internet protocol suite.
 # URLs
 
 We are accustomed to navigating the web with Universal Resource Locators (URLs).
-URL are a special type of URI, and have [many components](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Generic_syntax), but three will suffice for this introduction.
+A URL is a special type of URI and has [many components](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Generic_syntax), but three will suffice for this introduction.
 
 - A *scheme* like HTTP or HTTPS; this identifies the protocol used at the application layer.
 
@@ -235,7 +235,7 @@ URL are a special type of URI, and have [many components](https://en.wikipedia.o
 
 - A *path*, which is given to the computer to identify a specific resource.
 
-Note that the hostname here performs a similar function as an IP address, but different audiences.
+Note that the hostname here performs a similar function as an IP address, but for different audiences.
 IP addresses are organized to help computers locate one another.
 Hostnames are organized to help humans locate computers.
 
@@ -272,7 +272,7 @@ meaning it costs money to register a hostname.
 
 In the earliest days of the ARPANET, the mapping between hostnames and IP addresses was a single file, `HOSTS.TXT`.
 Each line contained a hostname and an IP address^[More than this, really; it also had several line types (`NET`, `HOST`, and `GATEWAY`) and some information about the type of computer it described].
-Initially this was stored on one computer
+This was initially stored on one computer,
 and users learned its contents by calling up an operator via telephone
 and asking the operator for the IP address of a given host.
 Later these telephone calls were moved to a digital protocol,
@@ -281,11 +281,11 @@ owned by one company, SRI.
 
 As this directory grew in importance, SRI needed to decide who could have which hostnames.
 [Elizabeth Feinler](https://en.wikipedia.org/wiki/Elizabeth_J._Feinler)
-and her team managed WHOIS and created the idea of "domain names"
+and her team managed `WHOIS` and created the idea of "domain names"
 to help organize requests.
 A domain name is a hierarchical sequence of strings separated with periods,
 with the last string (called the "top-level domain") being the most important.
-SRI decided that top-level domains would be allocated based to type of business,
+SRI decided that top-level domains would be allocated based on the type of business,
 with `.com` for commercial entities, `.edu` for educational, `.gov` for government, etc.
 
 {.example ...}
@@ -295,7 +295,7 @@ In the hostname `www.cs.virginia.edu`,
 - `virginia.edu` is a subdomain of `edu`
 - `cs.virginia.edu` is a subdomain of `virginia.edu`
 - `www.cs.virginia.edu` is a subdomain of `www.virginia.edu`
-- `edu`, `virginia`, `cs`, and `www` called *labels*
+- `edu`, `virginia`, `cs`, and `www` are called *labels*
 
 {/}
 
@@ -311,7 +311,7 @@ but the iconic and most important core is the address resolution mechanism.
 DNS address resolution uses two basic ideas:
 
 1. Requests start at a top-level DNS server,
-    who replies with the DNS server of the top-level domain;
+    which replies with the DNS server of the top-level domain;
     that DNS server is then asked about the next part of the domain,
     and so on until the full domain is handled.
     
@@ -361,7 +361,7 @@ DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but th
 
 1.  The computer sends
     
-    a.  it's location on the connection (a MAC address)
+    a.  its location on the connection (a MAC address)
     a.  in a UDP packet from port 68 to port 67
     a.  over IP from address 0.0.0.0 ("no one") to address 255.255.255.255 ("everyone")
     a.  on the newly-connected connection, to everyone on that channel
@@ -384,7 +384,7 @@ DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but th
 
 4.  The server sends
     
-    a.  "great, it's yours"
+    a. "great, it's yours"
     a. in a UDP packet from port 67 to port 68
     a. over IP from the server's IP address to 255.255.255.255
     a. on the channel, directly to the computer
