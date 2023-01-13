@@ -3,7 +3,7 @@ title: Using POSIX Threads
 ...
 
 This document is intended to give a practical overview of using pthreads.
-It is leaving out a lot of details.
+It leaves out a lot of details.
 
 For brevity, code in this document does not check error codes.
 This is **bad coding practice**!
@@ -102,7 +102,7 @@ clang -lpthread -O3 -DTHREADCOUNT=1 thiscode.c && time ./a.out
 ```
 
 
-# Managing thread existance
+# Managing thread existence
 
 Every process has at least one thread, the one that invoked `main`.
 Each other thread is created by invoking a system call, wrapped by the various `pthread_` library functions.
@@ -117,7 +117,7 @@ Type                        Kind    Purpose
 `pthread_t *`               output  Set to the ID of the created thread
 `const pthread_attr_t *`    input   Rules about how the new thread will behave
 `void *(*)(void *)`         input   Pointer to a function the new thread runs
-`void *`                    input   Value passed as argument to new thread
+`void *`                    input   Value passed as argument to the new thread
 
 ### `pthreads_attr_t`
 
@@ -127,7 +127,7 @@ Much of this is fairly specialized, and passing `NULL` will work in many cases.
 If you want more control, though, you need to use a few extra functions to gain such.
 
 A `pthread_attr_t` must be initialized using `pthread_attr_init` before invoking `pthread_create` and cleaned up using `pthread_attr_destroy` afterwards.
-`pthread_attr_init` is permitted to `malloc` fields inside the `pthread_t`
+`pthread_attr_init` is permitted to `malloc` fields inside the `pthread_t`,
 and if it did, `pthread_attr_destroy` will `free` them.
 
 {.example ...} The following is a skeleton of how to create a thread.
@@ -145,7 +145,7 @@ pthread_attr_destroy(&attr);
 
 Many of the attributes that can be placed into a `pthread_attr_t`
 have to do with scheduling priority (how often the thread gets CPU time)
-and stack organization (how large, etc, the thread's stack is)
+and stack organization (how large, etc. the thread's stack is)
 and can be ignored by the casual thread user.
 However, one (the detached or joinable state of the thread) is important enough to deserve its own section.
 
@@ -156,7 +156,7 @@ Every created thread is either detached or joinable.
 `pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE)`
 :   A joinable thread (the default if not otherwise set)
     will, when it exits, continue to exist until `pthread_join`
-    is called to retrieve its exist status and reclaim its resources.
+    is called to retrieve its exit status and reclaim its resources.
 
 `pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED)`
 :   A detached thread will, when it exists,
@@ -172,7 +172,7 @@ will cause the invoking thread to suspend operation
 until thread `id` terminates;
 when thread `id` terminates, `retval` stores the results of the thread's computation.
 
-The results is one of
+The result is one of
 
 - The return value of the start function of the terminated thread.
 - The argument passed into `pthread_exit` to terminate the thread early.
@@ -190,7 +190,7 @@ and since the behavior of an unhandled signal is to terminate the process,
 the whole program crashes.
 
 However, signals are delivered to specific threads,
-so if you add a signal handler it will be run by the thread
+so if you add a signal handler, it will be run by the thread
 that the OS believes is the recipient of the signal.
 
 ## Debugging
@@ -207,7 +207,7 @@ We will not have time in this course to dive into multithreaded debugging in any
 ## Mutex
 
 Recall that a mutex only lets one thread have it locked at a time,
-excluding others until it it unlocked.
+excluding others until it is unlocked.
 
 ```c
 pthread_mutex_t mutex;
@@ -265,14 +265,14 @@ int main(int argc, const char *argv[]) {
 
 Recall that a reader-writer lock has two modes:
 either it can be used by exactly one writer (like a mutex)
-or by any number of readers (like unsynchronized data)
+or by any number of readers (like unsynchronized data),
 but not both at once.
 
 The relevant functions are documented in the following manual pages:
 
 - `pthread_rwlock_init` -- this is complicated because they have multiple attributes to handle how they handle if a writer is waiting for the readers to finish and a new reader arrives.
 - `pthread_rwlock_rdlock` and `pthread_rwlock_wrlock` -- acquire the lock in two different ways.
-- `pthread_rwlock_timedrdlock` and `pthread_rwlock_timedwrlock` -- try to acquire the lock, but if a specified time passes without success return an error code instead.
+- `pthread_rwlock_timedrdlock` and `pthread_rwlock_timedwrlock` -- try to acquire the lock, but if a specified time passes without success, return an error code instead.
 - `pthread_rwlock_unlock` -- release the lock (no matter how it was acquired).
 
-However, these details aside the overall usage looks similar to how [mutexes](#mutex) are used with pthreads.
+However, these details, aside from the overall usage, looks similar to how [mutexes](#mutex) are used with pthreads.
