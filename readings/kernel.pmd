@@ -119,7 +119,10 @@ They also tend to appear in exceptional (that is, unusual) situations.
 
 There are several kinds of hardware exceptions.
 
-{.aside} Confusingly, terms for exceptions and particular kinds of exceptions vary across sources. In the convention we have followed, we use `exception` as the generic term and use the terms `interrupt' or `trap` for particular kinds of exceptions. Some sources use `interrupt` or `trap` for the generic term instead and use `exception` to refer as a more specific term (probably roughly equivalent to what we call `faults`). There is also some other variation in the definitions of the more specific terms. So, when reading a processor manual or similar reference, be careful to look for context to see exactly how they define each of the terms below.
+{.aside ...} Confusingly, terms for exceptions and particular kinds of exceptions vary across sources. Here, we care that you know that hardware exceptions have many uses rather than knowing specific terms.
+
+In the convention we have followed, we use 'exception' as the generic term and use the terms 'interrupt' or 'trap' for particular kinds of exceptions. Some sources use 'interrupt' or `trap' for the generic term instead and use 'exception' to refer to a more specific term (probably roughly equivalent to what we call 'faults'). There is also some other variation in the definitions of the more specific terms. So, when reading a processor manual or similar reference, be careful to look for context to see exactly how they define each of the terms below.
+{/}
 
 ### Interrupts
 

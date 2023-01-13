@@ -7,6 +7,8 @@
   week: 1
   title: introduction / building (pt 1)
   reading: "[overview](readings/intro.html), [makefiles](readings/make.html)"
+  slides: yes
+  slides_prelim: yes
   description: |
     * course outline
 
@@ -18,13 +20,17 @@
 - date: 2023-01-24
   week: 2
   title: privilege
-  reading: "[kernel](readings/kernel.html) §1-2.2"
+  reading: "[kernel](readings/kernel.html) §1-2.2, 3.1"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
-    *  protection rings
+    *  kernel mode
     *  exceptions
        *  events triggering
        *  what the hardware must do
        *  exception handlers
+    *  threads and context switches
 
 - date: 2023-01-25
   week: 2
@@ -35,13 +41,12 @@
   title: exceptions + signals
   reading: "[kernel](readings/kernel.html) §2, 3.1"
   description: |
-    *  exceptions (con't)
-       *  writing exceptions handlers
-    *  processes
+    *  process = threads + address space
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation
-    *  setjmp + longjmp <!-- cover stack unwinding instead? -->
+    *  setjmp + longjmp
+    *  (briefly) stack unwinding
 
 - date: 2023-01-31
   week: 3

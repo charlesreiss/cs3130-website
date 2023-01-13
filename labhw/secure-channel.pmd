@@ -1,0 +1,177 @@
+---
+title: Secure channels lab
+...
+
+{.exercise ...}
+
+1.  Download securelab.tar (link TBA) and extract it.
+
+2.  In this lab, you will act as a network attacker on
+    several examples of attempts to communicate securely.
+    Since this a new lab, I'm not sure how many are easily
+    doable in the lab time. *Do as many as you can within
+    the lab time.* I recommend working with a partner.
+
+    Run
+        
+        make
+
+    to build the testing program and then run
+
+        ./lab 0 normal
+
+    to see the first scenario. (It is also listed below in this
+    document.) You'll see a transcript
+    showing an exchange where A asks B to pay M $1000,
+    then asks B to pay $384 dollars.
+
+    At the end of the simulation, we report how much M is paid by B.
+
+    You are playing the role of the network attacker M and will
+    demostrate how you get B to pay you more by having control
+    over the network.
+
+3.  The "normal" testing program runs the function 
+    `simulate_normal()`. This function can process the messages
+    between A and B, including sending new messages, if desired.
+    If you run the testing program like `./lab 0 attack`, it will
+    instead run `simulate_attack_0()` for this.
+
+    Modify this function so B thinks A asked them to
+    pay M (you) $5000 instead of $1384.
+
+4.  Do the same for scenario "1", which you can run with
+
+        ./lab 1 normal
+
+    (non-attacked version) or
+
+        ./lab 1 attack
+
+5.  Now do the same for scenario "2".
+
+8.  Do the same for scenario "3". Hint:
+    B will also accept messages from you (M), but will refuse to
+    make payments based on messages from you. You can use this to run a
+    MITM attack on B and A; see also 
+    the famous flaws of the
+    [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol)
+
+8.  Look at protocol version "4". (You do not need to attack this version.)
+
+7.  Submit your `lab.c` to kytos or show your code to a TA for checkoff.
+
+{/}
+
+# Our simulation API
+
+`simulate_normal()` looks like this:
+
+    void simulate_normal() {
+        while (1) {
+            struct message *current = dequeue_next_message();
+            if (current == NULL) {
+                break;
+            }
+            printf("Forwarding message: ");
+            display_message(current);
+            printf("\n");
+            send_message(current);
+            free_message(current);
+        }
+    }
+
+The simulation maintains a queue of messages waiting to be sent. You get to process
+them, if you like, before sending them to their destination.
+
+The code we supply displays the message using the utility function `display_message` and then
+sends it unconditionally.
+
+You could instead:
+
+*  change the message before passing it to `send_mesage`
+*  decline to send a message that was dequeue
+*  make up new messages and send them
+
+## Manipulating and creating messages
+
+The `struct message` is defined as follows:
+
+    struct message {
+        char from, to;
+        char data[4096];
+        size_t size;
+        char signature[32];
+        char signed_by;     // '!' if not signed
+        char encrypted_to;  // '!' if not encrypted
+    };
+
+`to` indicates where the network will attempt to deliver the message when you can `send_message()`.
+
+Unencrypted messages will have readable text in `data` and `encrypted_to` set to `!`.
+Encrypted messages will be encrypted using a public key.
+In this case `encrypted_to` will specify the owner of the corresponding
+private key, and `data` will be ciphertext.
+
+Signed messages will have `signature` set to some meaningful data.
+
+You can construct messages using the following utility functions:
+
+    struct message create_message(
+        char from, char to,
+        const char *data, // NUL-terminated string
+        bool encrypt,
+        bool sign
+    );
+
+Encrypting a message will encrypt it to its destination, the `create_message` function has
+a list of all the public keys to do this.
+
+Signing a message will only work if it is `from` M.
+
+You can also try manipulate the fields of messages directly.
+
+# The scenarios
+
+## Scenario 0
+
+    A->B [not encrypted]: PAY $1000 TO M
+    B->A [not encrypted]: PAID
+    A->B [not encrypted]: PAY $0384 TO M
+    B->A [not encrypted]: PAID
+
+## Scenario 1
+
+    A->B [encrypted to B's public key]: PAY $1000 TO M
+    B->A [encrypted to A's public key]: PAID
+    A->B [encrypted to B's public key]: PAY $0384 TO M
+    B->A [encrypted to A's public key]: PAID
+
+## Scenario 2
+
+    A->B [encrypted to B's public key, then signed by A's private key]: PAY $1000 TO M
+    B->A [encrypted to A's public key, then signed by B's private key]: PAID
+    A->B [encrypted to B's public key, then signed by A's private key]: PAY $0384 TO M
+    B->A [encrypted to A's public key, then signed by B's private key]: PAID
+
+## Scenario 3
+
+    A->B [encrypted to B's public key]: GIVE ME A NUMBER.
+    B->A [encrypted to A's public key]: THE NUMBER IS [random number 1].
+    A->B [encrypted to B's public key]: PAY $1000 TO M. THE NUMBER IS [random number 1].
+    B->A [encrypted to A's public key]: PAID FOR [random number 1].
+    A->B [encrypted to B's public key]: GIVE ME A NUMBER.
+    B->A [encrypted to A's public key]: THE NUMBER IS [random number 2].
+    A->B [encrypted to B's public key]: PAY $0384 TO M. THE NUMBER IS [random number 2].
+    B->A [encrypted to A's public key]: PAID FOR [random number 2].
+
+## Scenario 4
+
+    A->B [encrypted to B's public key, then signed by A's private key]: GIVE ME A NUMBER.
+    B->A [encrypted to A's public key, then signed by B's private key]: THE NUMBER IS [random number 1].
+    A->B [encrypted to B's public key, then signed by A's private key]: PAY $1000 TO M. THE NUMBER IS [random number 1].
+    B->A [encrypted to B's public key, then signed by A's private key]: PAID FOR [random number 1].
+    A->B [encrypted to B's public key, then signed by A's private key]: GIVE ME A NUMBER.
+    B->A [encrypted to A's public key, then signed by B's private key]: THE NUMBER IS [random number 2].
+    A->B [encrypted to B's public key, then signed by A's private key]: PAY $0384 TO M. THE NUMBER IS [random number 2].
+    B->A [encrypted to B's public key, then signed by A's private key]: PAID FOR [random number 2].
