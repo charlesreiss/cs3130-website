@@ -35,7 +35,7 @@ you also have to remember the address (book, page, and word) at which it was fou
 In caching terminology, that "where we found it" data
 is known as the **tag**;
 the thing being remembered is the **block**;
-and the tag + block pair is known as a **cache line**.
+and the tag + block pair is known as the **cache line**.
 
 # Locality
 
@@ -59,9 +59,9 @@ when either form of locality is present.
 
 ## Cache line
 
-When caching memory, it is typical to remember not just the exact memory accesses,
+When caching memory, it is typical to remember not just the exact memory accesses
 but also the memory nearby, on the assumption (based on spatial locality)
-that if one address is accessed nearby addresses will soon be accessed as well.
+that if one address is accessed, nearby addresses will soon be accessed as well.
 
 The most common way to do this is that when an address $x$ is accessed,
 all addresses with the same high-order bits as $x$ are loaded into the cache;
@@ -74,7 +74,7 @@ When accessing address `0x12345678`,
 all bytes with addresses between `0x12345640`
 and `0x1234567F`
 (i.e., between `0x12345678 & ~0x3F`{.c} and `0x12345678 | 0x3F`{.c})
-are loaded into the block
+are loaded into the block,
 and the tag is `0x48d159` (i.e., `0x12345678 >> 6`{.c})
 {/}
 
@@ -90,11 +90,11 @@ we'll see later that most caches also break the high-order bits into something u
 like virtual memory's virtual page numbers and unused bits.
 
 Virtual memory uses these tools to *translate* an address;
-if there is no translation, there is no data at that address and a fault occurs.
-Caching uses it to *accelerate* an access;
+if there is no translation, there is no data at that address, and a fault occurs.
+Caching uses them to *accelerate* an access;
 if the cache doesn't find it, RAM will, and there is no true failure possible.
 
-Virtual memory provides new capability to a system via the cooperation of the hardware and OS.
+Virtual memory provides new capabilities to a system via the cooperation of the hardware and OS.
 Caching is managed entirely by the hardware and is only designed to increase speed, not add features.
 {/}
 
@@ -114,7 +114,7 @@ to make room for a new cache line.
 
 A **fully-associative cache** stores a set of cache lines.
 Using an unordered set instead of an array gives maximal ability to pick and choose
-which line is removed to make room for the next line;
+which line is removed to make room for the next line,
 but that freedom comes at a cost.
 
 First, on each cache access,
@@ -163,13 +163,13 @@ this is illustrated in [Fig 1](#fig1).
 </g>
 </svg>
 <figcaption id="fig1"><strong>Fig 1</strong>: Breakdown of direct-mapped address.
-The $\log_2($bytes per block$)$ low-order bits are the block offset;
-the next $\log_2($lines in cache$)$ are the index;
+The $\log_2($bytes per block$)$ low-order bits are the block offset,
+the next $\log_2($lines in cache$)$ are the index,
 and the remaining bits are the tag.</figcaption>
 </figure>
 
-Direct mapped caches are very efficient, and can be made far larger than fully-associative caches can.
-However, they are far less flexible and often have a higher miss-rate per unit capacity.
+Direct-mapped caches are very efficient and can be made far larger than fully-associative caches can.
+However, they are far less flexible and often have a higher miss rate per unit capacity.
 
 ### Conflict miss
 
@@ -178,12 +178,12 @@ A direct-mapped cache can suffer from a **conflict miss**
 A conflict miss occurs when a different line has been loaded into the same index
 since a requested line was last accessed.
 While conflict misses are more likely when a cache is small than when it is large,
-in a direct mapped cache of any size a conflict miss can occur with as few as three memory accesses.
+a conflict miss can occur in a direct-mapped cache of any size with as few as three memory accesses.
 
 {.example ...}
 Suppose a direct-mapped cache has 16-byte blocks
 and 256 lines.
-Then the addresses `0xbf1234`, `0xbf1238` and `0xbf9230`
+Then, the addresses `0xbf1234`, `0xbf1238` and `0xbf9230`
 all have the same index (`0x23`).
 The first two also have the same tag (`0xbf1`)
 and hence are not in conflict with one another;
@@ -202,21 +202,21 @@ the following notes if it is a hit or miss and if a miss, what type.
 
 A set-associative cache
 is a compromise
-between the flexibility at cost of a fully-associative cache
+between the flexibility and cost of a fully-associative cache
 and the scale and efficiency of a direct-mapped cache.
 Structurally, it is an array of sets of lines.
 Set associative caches dominate hardware,
-and if a cache with more than a few dozen lines is mentioned without specifying type
+and if a cache with more than a few dozen lines is mentioned without specifying the type,
 it is generally safe to assume it is set-associative.
 
 Addresses are processed by set-associative caches
 exactly the same way they are for direct-mapped caches:
 a tag, index, and block offset (see [Fig 1](#fig1)).
-The index, however, instead of identifying a single line
+The index, however, instead of identifying a single line,
 identifies an entire set of lines.
 As such, it is traditionally called a **set index** instead of simply an index.
 The size of the sets are referred to using the term
-"$n$-way set-associative cache" meaning each set contains $n$ lines.
+"$n$-way set-associative cache," meaning each set contains $n$ lines.
 
 Neither capacity nor conflict misses are a perfect match for a set-associative cache,
 though the terms are sometimes used loosely to distinguish between
@@ -231,7 +231,7 @@ L1
 :   The L1 cache is the smallest and fastest cache.
     It is virtually always placed directly on the processor chip itself
     and sized so that an access to L1 takes only a single cycle^[At least in a [pipelined](processors.html) sense. The goal is that an L1 hit does not slow down processing at all.].
-    It is often designed to work on virtual addresses rather than physical,
+    It is often designed to work on virtual addresses rather than physical
     or to have the set index be entirely within the page offset so that TLB lookup
     can be performed concurrently with L1 lookup.
 
@@ -247,7 +247,7 @@ TLB
     requiring full page table lookups upon next access.
 
 L2--L*n*
-:   The L2 cache is larger than the L1
+:   The L2 cache is larger than the L1,
     which means both that it is more likely that any given access will hit in the L2
     and that each access takes a bit longer.
     The L3 is bigger (and thus slower) than the L2, and so on.
@@ -263,21 +263,21 @@ The two most common such policies are
 Write back
 :   An edit is placed only in the cache itself
     and not sent to the larger layer beyond it until the cache line is going to be evicted.
-    Write back policies typically use a "dirty bit" in each cache line
+    Write-back policies typically use a "dirty bit" in each cache line
     to mark which lines have been edited (are "dirty") and need to be written upon eviction
     and which were read without being modified.
     
-    Write back caches make sense when lines are edited many times before being evicted,
+    Write-back caches make sense when lines are edited many times before being evicted,
     as they minimize the number of writes that go to the larger caches.
 
 Write through
-:   Each edit is immediately sent to the next larger layer of the cache hierarchy.
-    Typically this means there is some kind of finite-size write queue
-    between the cache layers and that if it is full
+:   Each edit is immediately sent to the next-larger layer of the cache hierarchy.
+    Typically, this means that there is some kind of finite-size write queue
+    between the cache layers and that if it is full,
     the write happens at the speed of the slower cache instead of the faster,
     but it also means that evicting a cache line does not itself slow down processing.
 
-    Write through caches make sense when lines are rarely edited before being evicted,
+    Write-through caches make sense when lines are rarely edited before being evicted,
     as they minimize the delay of the eviction action.
 
 There is no need for all of the cache layers to use the same write policy;
@@ -290,12 +290,12 @@ As guiding principles, code is more cache-efficient if
 - It performs all accesses to one region of memory at the same time
 - It uses memory efficiently
 - Addresses are aligned so no single access spans cache lines
-- When multiple different regions of memory are being accessed, they differ in set index not just tag
+- When multiple different regions of memory are being accessed, they differ in set index, not just tag
 
-Writing cache efficient code is a fairly involved topic,
+Writing cache-efficient code is a fairly involved topic,
 well beyond the scope of this course.
 It often involves counter-intuitive decisions such as adding more loops to code
 and using data structures with worse asymptotic behavior but better cache locality.
 As with other forms of performance optimization,
-cache efficient code tends to be harder for humans to read, understand, and adjust,
+cache-efficient code tends to be harder for humans to read, understand, and adjust,
 so it should be used only when the resulting speed increases are actually needed.
