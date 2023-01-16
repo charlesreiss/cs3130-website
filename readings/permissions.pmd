@@ -23,6 +23,7 @@ if you omit the username, it will list your own group memberships.
 Every file and directory also has a user and a group---but just one group, not a whole set.
 The user of a file does not need to belong to the group of the file.
 
+
 # POSIX file permissions
 
 Permissions are split into three kinds, with different meanings for:
@@ -91,7 +92,16 @@ setuid
 :   executable file
     :   If executable `xyxxy` is owned by `mst3k` and has `setuid` permissions,
         then when `tj1a` runs `./xyxxy`, the program runs as `mst3k`, not as `tj1a`.
-        This can be a security vulnerability and **should not be used** except when absolutely necessary.
+        This is often used by OS-supplied programs like `sudo` that require more permissions than
+        the user running them would normally have.
+
+        There are many ways in which naively setting an executable program setuid is likely
+        to create a major security vulnerability.
+        Code that would be perfectly safe in other sensitive programs can be dangerous
+        in setuid programs because of the extraordinary control an attacker has
+        over the setuid program's environment.
+        Even the expertly-maintained programs
+        like sudo have made [subtle but very serious mistakes](https://www.kb.cert.org/vuls/id/794544).
     
     non-executable file
     :   does nothing
@@ -167,3 +177,4 @@ So is the following:
     using the interpreter "cat."
 
 {/}
+

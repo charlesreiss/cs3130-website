@@ -143,6 +143,25 @@ Major OS vendors have worked steadily to disincentive this behavior,
 but these efforts have been limited by users' lack of understanding
 about what protections non-admin accounts provide.
 
+# Authentication outside the Kernel
+
+In a typical UNIX-based OS, the kernel needs to track user and group ID information
+in order to implement system calls correctly. The kernel's system call handlers
+implement what are called _authorization_ decisions &mdash; deciding what programs
+can do what.
+
+But typically on Unix-like systems,
+the kernel does not track other information about user accounts, like account names
+and passwords.
+Instead, libraries and utilities that come with the OS manage a database of
+user names and password (or password-equivalent).
+Utilities that _authenticate_ users, such as by checking passwords,
+run as the special user `root`, either
+because they are run by the kernel at boot or because their executable files
+are marked to let the kernel know they should run as root (with a "set-user-ID" bit).
+Since these utilities run as root, the kernel permits them change the user IDs of programs
+they run.
+
 # Daemons
 
 It is common for a running computer to have well over a hundred processes running
