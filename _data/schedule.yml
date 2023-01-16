@@ -52,6 +52,8 @@
   week: 3
   title: accounts + escalation
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  slides: yes
+  slides_prelim: yes
   description: |
     *  problems in multi-user systems
     *  user IDs/account abstraction
@@ -67,6 +69,9 @@
   week: 3
   title: virtual memory 1
   reading: "[kernel](readings/kernel.html) §3"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  virtual memory concept
     *  page tables
