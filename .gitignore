@@ -4,3 +4,4 @@ Gemfile.lock
 .bundle
 jekyll-dir
 _data/quizzes.yaml
+_data/recordings.yaml
