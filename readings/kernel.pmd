@@ -1313,4 +1313,24 @@ could be given access to physical memory
 even if code accesses memory with physical addresses---but
 it is generally implemented as an extension of the virtual memory system.
 
+# Further resources
+
+## General resources
+
+*  Arpaci-Dusseau and Arpaci-Dusseau, [_Operating Systems: Three Easy Pieces_](https://pages.cs.wisc.edu/~remzi/OSTEP/) chapters 4, 6, 13, 18, 36. More detailed textbook on all these topics, intended in the context of a more dedicated operating systems course.
+
+## Virtual memory examples
+
+*  Levy and Lipman (1982), "[Virtual Memory Management in the VAX/VMS Operating System](https://doi.org/10.1109/MC.1982.1653971)" in IEEE Computer. An old virtual memory design that looks very similar to those of today.
+
+<!-- FIXME Linux, FreeBSD O'Reilly -->
+
+*  x86-64 paging hardware
+    *  Volume 3, Chapters 3-4 of [Intel's x86 manuals](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html) or Volume 2, Chapters 4-5 of [AMD's x86 manuals](https://www.amd.com/system/files/TechDocs/24593.pdf). Describes the virtual memory system actually implemented by x86-64. This is made much more complicated because 32-bit x86 supports _segmentation_ and _paging_ simultaneously. In segmentation, rather than dividing up memory into many fixed-sized pieces, it is divided up into fewer, variable-sized pieces. Most operating systems on x86-64 mostly avoid using segmentation but use paging extensively.
+
+   *  OSdev wiki's (hobbiest OS developer resource) [description](https://wiki.osdev.org/Paging)
+
+*
+
+
 
