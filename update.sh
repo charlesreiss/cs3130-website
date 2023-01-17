@@ -25,13 +25,11 @@ done
 find . \( -name _\* -prune -o -name .?\* -prune -o -name jekyll-dir -prune \
           -o -name \*.pmd -prune \) -o -type f -print0 | \
     while IFS= read -r -d '' input; do
-        if [ ! -e "jekyll-dir/$input" ] ; then
-            dest_dir=$(dirname jekyll-dir/$input)
-            mkdir -p "$dest_dir"
-            output="jekyll-dir/$input"
-            if [ "$input" -nt "$output" ]; then 
-                cp "$input" "jekyll-dir/$input"
-            fi
+        dest_dir=$(dirname jekyll-dir/$input)
+        mkdir -p "$dest_dir"
+        output="jekyll-dir/$input"
+        if [ "$input" -nt "$output" ]; then 
+            cp -p "$input" "jekyll-dir/$input"
         fi
     done
 

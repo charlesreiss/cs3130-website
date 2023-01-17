@@ -147,8 +147,19 @@ Even faults the kernel cannot fix on its own are often handled by asking the use
 ### Traps
 
 A trap is an exception caused by a special instruction whose sole job is to generate exceptions.
-Traps are the main mechanism for intentionally switching from user mode to kernel mode and are the core of all system calls.
+Traps are the main mechanism for intentionally switching from user mode to kernel mode and are the core of all 
+*system calls*.
+System calls are typically function-call like interfaces provided by kernels to allow programs to access
+protected functionality.
 System calls are used to interact with the file system, spawn and wait on threads, listen for key presses, and anything else that you cannot do with simple code alone.
+
+{.aside ...} The "system call interface".
+
+<img src="kernel-layers1.svg" style="width: 20em">
+
+We can view the combination of the limited user-mode hardware interface and system calls
+as collectively defining the interface user mode code sees.
+{/}
 
 ## Handling
 
@@ -349,6 +360,23 @@ Let's walk through this a bit at a time:
     
 After that is some error-checking code, and then the function returns. The whole function is only 11 instructions (24 bytes) long.
 The code in `system_call_handler[41]` of the kernel is considerably longer; many thousands of lines of C code, in fact (see <https://github.com/torvalds/linux/tree/master/net>).
+
+{/}
+
+{.aside ...} System libraries and system call wrappers.
+
+<img src="kernel-layers2.svg" style="width: 20em">
+
+Very little application code directly makes system calls. Sometimes application use functions
+like `socket` above, which we can call *system call wrappers*. Since
+C does not support making system calls directly, these functions serve to 
+allow applications to make system calls indirectly by calling the simple wrapper function.
+The system provides libraries that, among other things, include these wrapper functions.
+
+Often the system call interface is too low-level for typical applications to use,
+so the system libraries provide a higher-level interface that's implemented using system calls.
+For example, on Linux (and all other multiuser OSes I am aware of), `malloc` and `printf` are implemented
+by library code that runs in user mode that makes simpler system calls.
 
 {/}
 
@@ -1319,7 +1347,16 @@ it is generally implemented as an extension of the virtual memory system.
 
 *  Arpaci-Dusseau and Arpaci-Dusseau, [_Operating Systems: Three Easy Pieces_](https://pages.cs.wisc.edu/~remzi/OSTEP/) chapters 4, 6, 13, 18, 36. More detailed textbook on all these topics, intended in the context of a more dedicated operating systems course.
 
-## Virtual memory examples
+## Operating system organization examples
+
+*  Sections 1.3--1.6 of Bovet and Cesati, _Understanding the Linux Kernel, Third Edition_, available through [O'Reilly](https://www.oreilly.com/library/view/temporary-access/) (click institution not listed and enter your UVa email)
+
+*  Chapter 2 of McKusick and Neville-Neil, _The Design and Implementation of the FreeBSD Operating System_ (also available through O'Reilly)
+
+*  Chapter 2 of Yosifovich, Ionescu, . Russinovich, and Solomon, _Windows Internals Seventh Edition Part 1_ (Also available through O'Reilly)
+
+
+## Virtual memory system examples
 
 *  Levy and Lipman (1982), "[Virtual Memory Management in the VAX/VMS Operating System](https://doi.org/10.1109/MC.1982.1653971)" in IEEE Computer. An old virtual memory design that looks very similar to those of today.
 
