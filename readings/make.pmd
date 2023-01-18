@@ -3,6 +3,12 @@ title: Makefiles and compilation
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+{:.changelog}
+Changelog:
+
+{:.changelog}
+*  18 Jan 2023: add description of setting runtime search paths
+
 # The `make` tool
 
 `make` is a tool that reads a file (called a makefile, named `Makefile` by default) and decides what commands it need to run to update your project.
@@ -235,7 +241,7 @@ A project
     This lab is an exception, having both a library and a program using it in one project to keep the lab short enough to be manageable.
 
 Creating a shared library
-:   1. Compile each `.c` file into a `.o` file; use the `-fPIC` compiler flag so the resulting code can be shared by multiple applications.
+:   1. Compile each `.c` file into a `.o` file; use the `-fPIC` compiler flag ("position independent code") so the resulting code can be shared by multiple applications.
     2. Use the `ld` tool to combine the `.o` files. Since this is tricky to get right, your compiler (`gcc` or `clang`) will have a simpler interface that calls `ld` under the hood, generally like
         
         ````bash
@@ -294,7 +300,18 @@ Creating a program
         `libflux.so` or `libflux.a` (whichever it can find), and
         `libflibber.so` or `libflibber.a` (whichever it can find),
         looking for each library in the directories `../mylib/` and `./`
-        as well as the system-wide library path (usually `/usr/lib/` and `/usr/local/lib/`).
+        as well as the system-wide library path (on Linux, usually 
+        `/lib`, `/usr/lib/` and additional directories specified by `/etc/ld.so.conf`).
+
+    3. Make sure any needed `.so` files can be found at runtime (if they aren't in
+       a standard location).
+
+        The `-L` option only affects where the shared libraries are found while building
+        the executable. So, for shared libraries, some additional steps may be needed
+        the library will also be found when the program is done. On Linux, some ways
+        of doing this include setting the `LD_LIBRARY_PATH` environment variable or
+        including a runtime library search path in the executable using a link-time option
+        like `-Wl,-rpath=/path/to/mylib`.
 
 # Some additional references
 
