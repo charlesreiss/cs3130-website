@@ -10,7 +10,7 @@ Although not all OSs use the same system, the POSIX standard defines a set of fi
 Work with a partner to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
-   on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet):.
+   on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet).
 1. Create a directory in your home directory for this lab. Do each of the following steps in that directory.
 1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
     a. `ls dir`{.bash} refuses to run
