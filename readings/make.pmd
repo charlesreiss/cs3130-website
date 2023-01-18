@@ -3,11 +3,11 @@ title: Makefiles and compilation
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-{:.changelog}
+<div class="changelog">
 Changelog:
 
-{:.changelog}
 *  18 Jan 2023: add description of setting runtime search paths
+</div>
 
 # The `make` tool
 
