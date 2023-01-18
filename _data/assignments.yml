@@ -6,6 +6,7 @@
   tentative: true
 
 - name: signal handling
+  short_name: signal
   lab: true
   page: labhw/signals.html
   due: 2023-02-01
@@ -44,7 +45,8 @@
   tentative: true
   due: 2023-02-15
 
-- name: pagetable 1
+- name: pagetable part 1
+  short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable1.html
   comment: instructions should be modified to specify what Makefile should build
@@ -56,18 +58,21 @@
   due: 2023-02-15
 
 - name: pagetable 2 (pre code review)
+  short_name: pagetable2a
   page: labhw/pagetable2.html
   tentative: true
   due: 2023-02-22
 
 - name: code reviews
   lab: true
+  short_name: codereview
   page: labhw/code-review.html
   tentative: true
   comments: needs submission site link correction
   due: 2023-02-22
 
-- name: pagetable 2
+- name: pagetable 2 (post code review)
+  short_name: pagetable2b
   comment: no introducing lab
   comment: connected to code review lab
   comment: manual page???
@@ -79,6 +84,7 @@
 
 - name: TBA secure channels lab
   lab: true
+  short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
   tentative: true
@@ -92,12 +98,14 @@
   due: 2023-03-15
 
 - name: cache programs
+  short_name: cache-programs
   tentative: true
   page: labhw/cache-programs.html
   due: 2023-03-22
 
 - name: sync games
   lab: true
+  short_name: sync
   page: labhw/sync.html
   tentative: true
   comments: needs changes for in-person?
@@ -106,6 +114,7 @@
 
 - name: pthreads (dining philosophers) 
   lab: true
+  short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
   tentative: true
@@ -117,6 +126,7 @@
   due: 2023-03-29
 
 - name: TLB
+  short_name: tlb
   comment: no introducing lab
   page: labhw/tlb.html
   comments: wrapper for pagetable 2
@@ -124,12 +134,14 @@
   due: 2023-03-29
 
 - name: openmp
+  short_name: openmp
   lab: true
   tentative: true
   page: labhw/openmp.html
   due: 2023-04-05
 
 - name: fork
+  short_name: fork
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
@@ -145,6 +157,7 @@
   due: 2023-04-12
 
 - name: life
+  short_name: life
   page: labhw/life.html
   due: 2023-04-12
   tentative: true
@@ -155,14 +168,17 @@
   comment: ThreadSanitizer stuff
 
 - name: C++2x?
+  short_name: cpp
   lab: true
   due: 2023-04-19
 
 - name: pipeline
+  short_name: pipeline
   page: labhw/pipeline.html
   tentative: true
   due: 2023-04-19
 
 - name: TBA OOO assignment
+  short_name: OOO
   tentative: true
   due: 2023-04-26
