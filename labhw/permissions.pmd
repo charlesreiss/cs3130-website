@@ -7,7 +7,7 @@ As such, the OS gets to decide when to approve a request to do one of these thin
 Although not all OSs use the same system, the POSIX standard defines a set of file permissions that are commonly used.
 
 {.exercise ...}
-Work with a partner to achieve the following:
+Work, ideally with a partner, to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
    on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet).
