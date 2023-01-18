@@ -7,6 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  18 Jan 2023: add description of setting runtime search paths
+*  18 Jan 2023: avoid indicating that most Makefiles must define particular common variables
 </div>
 
 # The `make` tool
@@ -90,7 +91,7 @@ Makefiles routinely use variables (which they call macros) to separate out the l
 Variables are defined with `NAME := meaning`{.makefile} syntax. Traditionally, variable names are in all-caps.
 Variables are used by placing them in parentheses, preceded by a dollar sign: `$(NAME)`.
 
-Most makefiles define at least the following variables:
+Some variables names that are very common to find in Makefiles include:
 
 Name        example     notes
 --------    ----------  ----------------------------------

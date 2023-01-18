@@ -3,6 +3,12 @@ title: Policies
 index_title: Policies
 ...
 
+<div class="changelog">
+Changelog:
+
+*  18 Jan 2023: make percentages add up to 100%
+</div>
+
 # Logistics
 
 ## Meetings
@@ -58,7 +64,7 @@ Any such adjustment will be discussed in class before being implemented.
 Task | Weight | Comments
 -----|--------|-----------------------------------------------------------------
 Quizzes | 30% | Drop lowest score
-Labs    | 10% | 
+Labs    | 15% | 
 Homeworks | 40% | 
 Final | 15% |
 
