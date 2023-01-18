@@ -10,7 +10,7 @@ There are also [quizzes]({{site.quiz_site}}){:target="_top"} before and after ea
 
 Labs are due by the end of the day (11:59pm Eastern Time) unless otherwise noted.
 
-Homeworks are due at 4:59pm Eastern Time (before the first lab) unless otherwise noted.
+Homeworks are due at 1:59pm Eastern Time (before the first lab) unless otherwise noted.
 
 If an assignment is linked but tentative, there may be some changes, perhaps very substantial changes,
 to the assignment before it is officially released.
