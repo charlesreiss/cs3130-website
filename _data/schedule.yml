@@ -6,30 +6,28 @@
 - date: 2023-01-19
   week: 1
   title: introduction / building (pt 1)
-  reading: "[overview](readings/intro.html), [makefiles](readings/make.html)"
+  reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
   slides: yes
   description: |
     * course outline
-
-    * ssh keypairs, workflow
-    * make (and lab walkthrough) <!-- interaction with SDE -->
-        * make rules
-        * .o, .a, .so
+    * .o, .a, .so
+    * building
 
 - date: 2023-01-24
   week: 2
-  title: privilege
-  reading: "[kernel](readings/kernel.html) §1-2.2, 3.1"
+  title: building (pt 2) /  privilege
+  reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3.1"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  make
+ 
     *  kernel mode
     *  exceptions
        *  events triggering
        *  what the hardware must do
        *  exception handlers
-    *  threads and context switches
 
 - date: 2023-01-25
   week: 2
@@ -40,6 +38,7 @@
   title: exceptions + signals
   reading: "[kernel](readings/kernel.html) §2, 3.1"
   description: |
+    *  threads and context switches
     *  process = threads + address space
     *  Unix signals
        *  events triggering
