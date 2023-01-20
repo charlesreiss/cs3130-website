@@ -15,10 +15,10 @@ We strongly recommend working in pairs on this lab.
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
     - SIGTERM should invoke a cleanup function
     - SIGINT should  invoke a cleanup function and then sent SIGTERM to the other user
-    - SIGUSR1 should display the contents of the inbox and then set its first character to be `'\0'`
-3. Allocate some shared memory
-    - An inbox, which this process will deallocate when it exits
-    - An outbox, which it will not
+    - SIGUSR1 should display the contents of the inbox (eventually in shared memory, make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
+3. Access some shared memory
+    - An inbox which this process will use to read values from the other process
+    - An outbox which will be the inbox of the other process.
 3. Repeat until the end of file:
     - Read a typed line into the outbox (without overflow)
     - wait until the outbox is emptied
@@ -78,7 +78,7 @@ that for this lab.)
 
 1. Choose a name (similar to a filename; on Linux's implementation of shared memory, this will become a file in 
    the special directory /dev/shm).
-   To avoid interference with other students, I recommend chosing a name like /<PID>-mmchat
+   To avoid interference with other students, I recommend chosing a name like /*PID*-mmchat
    which you can generate using code like:
 
         char inbox_name[512];
@@ -113,7 +113,7 @@ that for this lab.)
    It does not hurt (though does set `errno`) to deallocate multiple times
    or from the wrong process.
 
-   You will need to include `<unistd.h>, `<sys/mman.h>`, and `<fcntl.h>` to use these functions
+   You will need to include `<unistd.h>`, `<sys/mman.h>`, and `<fcntl.h>` to use these functions
    as well as `#define _XOPEN_SOURCE 600` (or similar) before including anything. On Linux, you will
    also need to link with `-lrt`.
 
