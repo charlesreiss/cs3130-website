@@ -3,6 +3,13 @@ title: Kernels -- Software for the Hardware
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  22 Jan 2023: correct description of Save-Handle-Restore to accurate reflect that the whole state of the processor is generally not saved and that the exception handler is often responsible for saving some of it
+*  22 Jan 2023: add aside on nested exceptions and disabling interrupts
+</div>
+
 # Kernel Mode vs. User Mode
 
 All multi-purposed chips today have (at least) two modes in which they can operate:
@@ -172,12 +179,20 @@ In order for the handler to later resume user code, the exception-handling proce
 
 The basic mechanism for any exception to be handled is
 
-1. Save the current state of the processor (register contents, PC location, etc.)
+1. Save (some of) the current state of the processor (program counter, kernel mode bit, etc.)
 2. Enter kernel mode
 3. Jump to code designed to react to the exception in question, called an **exception handler**
-4. When the handler finishes, enter user mode and restore processor state (register contents, PC location, etc.)
+4. When the handler finishes, enter user mode and restore processor state (program counter, kernel mode bit, etc.)
 
 These steps (except for the actual execution of the exception handler) are all done atomically by the hardware.
+
+Processors vary in how much of the processor state they save and restore in hardware.
+The PC has to be saved and restored since jumping to the exception handler overwrites
+the old PC value.
+The processor may also save and restore the values of all or some of the other registers.
+If the processor itself does not, then the operating system's exception handler code
+can do this instead.
+
 
 ### Which Handler?
 
@@ -294,8 +309,19 @@ and integral peripherals like RAM can send aborting interrupts if they notice un
 
 {/}
 
+{.aside ...} Nested exceptions and disabling interrupts
 
+It is possible for an exception to occur while another exception is being handled.
+For example, the processor may receive a keypress while a system call is being handled.
+It is, however, very difficult to write exception handlers that will
+behave correctly when interrupted in this way. So, processors usually provide
+a way for processors to *disable interrupts*,
+temporarily preventing exceptions from being handled.
+Usually, interrupts are automatically disabled while an exception handler runs,
+an operating system will not reenable them unless it has made sure that its data structures
+are in a state where a new exception can safely be handled.
 
+{/}
 
 ### Example: Linux system calls
 
@@ -380,6 +406,7 @@ For example, on Linux (and all other multiuser OSes I am aware of), `malloc` and
 by library code that runs in user mode that makes simpler system calls.
 
 {/}
+
 
 ## Exception-Like Constructs
 
