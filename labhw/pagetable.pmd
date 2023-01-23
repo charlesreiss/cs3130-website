@@ -11,7 +11,8 @@ Your task:
     *  item 2 below with `LEVELS` only set to 1 and `POBITS` only set to 12.
 
     and two of:
-    *  item 2 with `LEVELS` being set to numbers larger than 1 (in addition to 1)
+    *  item 2 with `LEVELS` being set to 2 (in addition to 1) and `POBITS` having any valid value
+    *  item 2 with `LEVELS` and `POBITS` having any valid value
     *  item 3 below
     *  item 4 below
     *  item 5 below
@@ -43,7 +44,7 @@ Your task:
 
     *  `extern size_t ptbr` --- page table base register; must be initially 0.
         Later, will contain the address of a page table your code
-        allocates as a result of clals to `page_allocate`.
+        allocates as a result of calls to `page_allocate`.
    
     *  `size_t translate(size_t va)` --- translate the virtual address `va`
         using the currently setup page table. If the address is not allocated,
@@ -78,10 +79,11 @@ Your task:
 
 5.   Include a `LICENSE` and `licenses.txt` files as described below.
 
-6.   See if you can add some kind of de-allocate interface. If so, add it to 
-     `mlpt.h` and document how it is used. If, as I suspect, it is trickier
-     than it sounds, include some explanation of what complicates it in the 
-     `README` instead of implementing it.
+6.   See if you can add some kind of de-allocate interface without substantially
+     reworking your prior implementation. If so, add it to 
+     your implementation (including `mlpt.h`) and document how it is used.
+     If it seems to tricky to add easily, include some explanation of what
+     complicates it in the `README` instead of implementing it.
 
 {/}
 
