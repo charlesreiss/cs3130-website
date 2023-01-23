@@ -48,18 +48,13 @@
 - name: pagetable part 1
   short_name: pagetable1
   comment: no introducing lab
-  page: labhw/pagetable1.html
-  comment: instructions should be modified to specify what Makefile should build
-  comment: needs rewrite to have compact your task part
-  comment: this is done pagetable 2, but...
-  comment: bitfiddling reference update
-  comment: size_t --> intptr_t
+  page: labhw/pagetable.html
   tentative: true
   due: 2023-02-15
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2a
-  page: labhw/pagetable2.html
+  page: labhw/pagetable.html
   tentative: true
   due: 2023-02-22
 
@@ -78,7 +73,7 @@
   comment: manual page???
   comment: license stuf fhere
   comment: requires arbitrary multiple submission
-  page: labhw/pagetable2.html
+  page: labhw/pagetable.html
   tentative: true
   due: 2023-03-01
 

@@ -1,0 +1,298 @@
+---
+title: page table 1
+...
+
+{.exercise ...}
+Your task:
+
+1.  This assignment has multiple submissions.
+
+    For the first submission, you must complete:
+    *  item 2 below with `LEVELS` only set to 1 and `POBITS` only set to 12.
+
+    and two of:
+    *  item 2 with `LEVELS` being set to numbers larger than 1 (in addition to 1)
+    *  item 3 below
+    *  item 4 below
+    *  item 5 below
+
+    For all parts of this assignment, follow the coding style described below
+    and make sure your code does not
+    give warnings when compiled with `-Wall`^[ ...because you resolved the warnings,
+		not because you disabled them with warning-ignoring `#pragma`s or the like.
+	].
+
+    For the second submission, which is in preparation for a code review,
+    you must complete all parts except part 5 and 6 below.
+
+    For the final submission, you must complete all parts below.
+
+2.  Implement a simulation of multi-level page table lookup and allocation.
+    For the purposes of this simulation "physical" addresses are the ones your simulation program
+    can access via pointers.
+
+    The layout of this page table must be configurable via `config.h`, which will `#define` the constants:
+
+    *  `LEVELS` -- number of levels in the page table
+    *  `POBITS` -- the size of page table offsets
+
+    Page table entries will take up 8 bytes, with the least significant bit being the "present" bit.
+
+    Your code must implement API provided by a header file called `mlpt.h`, an version of
+    which is supplied [here](files/mlpt.h). It includes:
+
+    *  `extern size_t ptbr` --- page table base register; must be initially 0.
+        Later, will contain the address of a page table your code
+        allocates as a result of clals to `page_allocate`.
+   
+    *  `size_t translate(size_t va)` --- translate the virtual address `va`
+        using the currently setup page table. If the address is not allocated,
+        return a value with all bits set to 1.
+
+    *  `void page_allocate(size_t va)` --- use posix_memalign to create page tables sufficient to have a mapping
+        between the given virtual address and some physical address. If there
+        already is such a page, does nothing.
+
+3.  Prepare a `Makefile` for your code that: 
+        - produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
+	- has CC, CFLAGS and LDFLAGS defined
+	- uses defined arguments in its work
+	- has correct dependencies for each target
+	- has `all` and `clean` targets
+
+
+4.   Write a `README` explaining (at a minimum)
+	- How to customize `config.h`, with some guidance on how to pick values for that file.
+	- An example use case for this code. Note that this cannot be "to implement virtual memory" since this code relies on `posix_memalign`, which cannot work without virtual memory already being in place.
+	- Any known bugs (if you know of none, there is no need to say so).
+	
+	You are encouraged to add additional detail, such as
+	
+	- Any limitations, aspects you think are incomplete, or suggestions for future expansion.
+	- Big-O analysis (time, space, or both).
+	- Description of any testing hooks you added.
+	- Code samples for how to use this library.
+
+     If anyone or any resource helped your implementation, also include an
+     `ACKNOWLEDGEMENTS` file acknowledging those people and/or resources.
+
+5.   Include a `LICENSE` and `licenses.txt` files as described below.
+
+6.   See if you can add some kind of de-allocate interface. If so, add it to 
+     `mlpt.h` and document how it is used. If, as I suspect, it is trickier
+     than it sounds, include some explanation of what complicates it in the 
+     `README` instead of implementing it.
+
+{/}
+
+# Specification
+
+We supply two header files.
+
+## `config.h`
+
+`config.h` does nothing other than `#define`ing two constants.
+
+```c
+/** LEVELS = number of PTEs used to translate one address. */
+#define LEVELS  4
+
+/** POBITS = number of bits used for the page offset. */
+#define POBITS  12
+```
+
+Your code must use these constants, must not redefine them,
+and must continue to work even if we change their values.
+For example, if we compile with a different `config.h` that `#define`s `LEVELS` as `3` instead of `4`,
+your code should create a 3-level page table instead of a 4-level page table.
+Your code should work for all integer values of `LEVELS` between `1` and `6` inclusive
+and all integer values of `POBITS` between `4` and `18` inclusive.
+As an exception, it does not need to (but may) support cases where 
+(`POBITS` − 3) × (`LEVELS` + 1) > 60.
+
+## `mlpt.h`
+
+`mlpt.h` defines the public API your code will use.
+You are welcome to edit it, provided such edits will not cause testing code to fail to compile.
+
+```c
+/**
+ * Page table base register.
+ * Declared here so tester code can look at it; because it is extern
+ * you'll need to define it (without extern) in exactly one .c file.
+ */
+extern size_t ptbr;
+
+/**
+ * Given a virtual address, return the physical address.
+ * Return a value consisting of all 1 bits
+ * if this virtual address does not have a physical address.
+ */
+size_t translate(size_t va);
+
+/**
+ * Use posix_memalign to create page tables sufficient to have a mapping
+ * between the given virtual address and some physical address. If there
+ * already is such a page, does nothing.
+ */
+void page_allocate(size_t va);
+```
+
+## Behavior
+
+Prior to the first invocation of `page_allocate`, `ptbr` should be `NULL`;
+thereafter it should be a pointer to a heap-allocated array, cast as a `size_t`.
+It should not change after the first `page_allocate` invocation.
+
+If `ptbr` is not `NULL`, it should point to an array of `size_t`s
+occupying 2^`POBITS`^ bytes.
+Each such `size_t` should be interpreted as a page table entry.
+
+{.note} Some texts refer to a PTBR containing a physical address; others to it containing a physical page number. The above definition asserts it contains a physical address, not page number. As such, it will always have 0 in its low-order `POBITS` bits.
+
+Each page table entry should be either
+
+0 in the low-order bit
+:   There is no physical page.
+    
+    The remaining bits have no defined meaning; you may use them
+    however you wish.
+
+    {.example} PTE `0x1234567812345678` has a zero in the low-order bit, and thus indicates the absence of a physical page.
+
+1 in the low-order bit
+:   The bits above the `POBITS` low-order bits are the physical page number of either
+    the next level page table or the physical page of memory.
+    The `POBITS` − 1 low-order bits (excluding the 1 in the lowest-order bit)
+    have no defined meaning; you may use them
+    however you wish.
+
+    {.example} PTE `0x1234567812345679` has a one in the low-order bit, and thus indicates the presence of a physical page or another level page table. If `POBITS` is 12, the physical page number (of the page or next page table level) is `0x1234567812345`.
+
+No pages should be allocated unless requested by a call to `page_allocate`.
+
+{.example ...} The comments in the following code correctly describe the number of pages that have ever been allocated
+assuming that `LEVELS` is 4 and `POBITS` is 12.
+
+```c
+
+#include <stdio.h>
+#include <assert.h>
+#include "mlpt.h"
+#include "config.h"
+
+int main() {
+    // 0 pages have been allocated
+    assert(ptbr == 0);
+
+    page_allocate(0x123456789abcdef);
+    // 5 pages have been allocated: 4 page tables and 1 data
+    assert(ptbr != 0);
+
+    page_allocate(0x123456789abcd00);
+    // no new pages allocated (still 5)
+    
+    int *p1 = (int *)translate(0x123456789abcd00);
+    *p1 = 0xaabbccdd;
+    short *p2 = (short *)translate(0x123456789abcd02);
+    printf("%04hx\n", *p2); // prints "aabb\n"
+
+    assert(translate(0x123456789ab0000) == 0xFFFFFFFFFFFFFFFF);
+    
+    page_allocate(0x123456789ab0000);
+    // 1 new page allocated (now 6; 4 page table, 2 data)
+
+    assert(translate(0x123456789ab0000) != 0xFFFFFFFFFFFFFFFF);
+    
+    page_allocate(0x123456780000000);
+    // 2 new pages allocated (now 8; 5 page table, 3 data)
+}
+```
+{/}
+
+# Coding Style
+
+- 4-space indentation
+- `{`{.c} on the same line as `)` and `}`{.c} on a line by itself
+- No empty statements
+- Spaces around operators
+- Space before `(` if and only if it is preceded by a control construct
+        (e.g., `if (` but `translate(`)
+- No postfix `++`{.c} or `--`{.c} unless part of an expression that uses the return value (such as `a[i++]`).
+        Replacing with either prefix `++`{.c} or `+= 1`{.c} is OK.
+- Lower-case identifiers with underscores separating words
+- Upper-case `#define`{.c} constants
+- `typedef`{.c} such that each type name uses a single identifier
+        (e.g., no `unsigned char`{.c} except as part of a `typedef`).
+
+- Use variable names that indicate the meaning of the contents of the variable;
+	function names that indicate the purpose of the function;
+	etc.
+
+- Have a readable code organization; as rough (not strict) guidelines,
+	- If a sequence of lines of code depend upon one another more than they depend on the code around them
+		and appear together in multiple places, they should be in their own function.
+	- Functions should be small enough to look at on one screen
+		unless that have a very orderly structure such as a long `switch`{.c} with simple code in the `case`{.c}s.
+	- Comments should be present to describe any esoteric code decisions.
+	- All code should have a clear purpose.
+
+# `LICENSE` and `licenses.txt`
+
+You need to choose a license for the code you supply. Include the chosen license as
+`LICENSE` and a file `licenses.txt` indicating your exploration of licenses.
+
+This should be based on an existing family of license agreements,
+and must be one that requires attribution 
+so that if some future student obtains your code
+it is not permitted for them to submit it, or a significant subset of it, as their own.
+
+Unless you have had formal training in commercial law,
+you should use an existing license, not try to create your own.
+
+## `licenses.txt`
+
+In `licenses.txt`, list at least three licenses you considered;
+include a short (sentence or two) summary of what they seemed to say;
+and why you chose to or not to use each as your license.
+
+Your review should include at least three licenses, including
+
+- at least one of GPL or LGPL
+- at least one of MIT, BSD, Boost, Apache, SQLite
+
+All should be *software* licenses; this excludes licenses
+such as the various CC licenses for creative works,
+the SIL Open Font License,
+operating system licenses,
+etc.
+
+## `LICENSE`
+
+Include a `LICENSE` file with the license agreement under which you provide your code to us.
+
+# Not required: create a manual page
+
+If you want to understand the real world a bit better, you might also try writing a manual page.
+These are written in a language known as "roff";
+to see an example of what this looks like, try running
+
+```sh
+cp /usr/share/man/man3p/poll.3p.gz ./
+gunzip poll.3p.gz
+less poll.3p
+```
+
+to see the roff source of the manual page `man 3p poll`.
+I don't personally know anyone who writes roff by hand;
+generally it is output from a source-code processing tool like `doxygen`^[which is installed on department machines; see `man doxygen`{.bash} for more.]
+or a converter like `pandoc`^[a very old version (1.3) is installed on the department servers without man support; visit <https://pandoc.org/> to get a copy yourself.] from an easier-to-write format like markdown or reStrucuredText.
+
+Including man page `page_allocate.3.gz` and `translate.3.gz` in your submission will earn you kudos.
+To test that these work properly,
+
+1. create a directory `man3` (i.e., `mkdir man3`{.sh})
+
+2. gzip the `roff` file and move it to `man3/term_to_look_up.3.gz` (e.g., `gzip translate.roff; mv translate.roff.gz man3/translate.3.gz`{.sh}) -- note that some authoring tools may do some of this for you
+
+3. use the `-M` flag with `man` pointing to the parent directory of `man3` (i.e., `man -M. 3 translate`{.sh})
