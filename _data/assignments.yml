@@ -3,7 +3,6 @@
   page: labhw/make.html
   due: 2023-01-25
   submit_file: Makefile
-  tentative: true
 
 - name: signal handling
   short_name: signal
