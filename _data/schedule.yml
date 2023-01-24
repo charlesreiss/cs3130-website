@@ -18,16 +18,11 @@
   title: building (pt 2) /  privilege
   reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3.1"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  make
  
     *  kernel mode
-    *  exceptions
-       *  events triggering
-       *  what the hardware must do
-       *  exception handlers
+    *  system calls
 
 - date: 2023-01-25
   week: 2
@@ -37,14 +32,22 @@
   week: 2
   title: exceptions + signals
   reading: "[kernel](readings/kernel.html) §2, 3.1"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
+    *  exceptions
+       *  events triggering
+       *  what the hardware must do
+       *  exception handlers
     *  threads and context switches
     *  process = threads + address space
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation
     *  setjmp + longjmp
-    *  (briefly) stack unwinding
+    *  (if time) stack unwinding
+
 
 - date: 2023-01-31
   week: 3
