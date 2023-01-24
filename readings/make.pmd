@@ -328,6 +328,7 @@ On build systems:
 *  Some selected other build systems for C/C++ (when make isn't enough, maybe):
    *  [GNU autotools](https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html)
    *  [CMake](https://cmake.org/)
+   *  [ninja](https://ninja-build.org/)
    *  [scons](https://scons.org/)
 
 On linking and libraries:
