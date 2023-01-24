@@ -8,7 +8,7 @@ Changelog:
 
 *  18 Jan 2023: add description of setting runtime search paths
 *  18 Jan 2023: avoid indicating that most Makefiles must define particular common variables
-*  24 Jan 2023: talk about LDLIBS/LIBS in addition to LDFLAGS
+*  24 Jan 2023: talk about LDLIBS/LIBS in addition to LDFLAGS; link to ninja build system
 </div>
 
 # The `make` tool
