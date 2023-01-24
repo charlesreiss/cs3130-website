@@ -8,7 +8,8 @@ index_sort: 2
 This page lists all lab and homework assignments.
 There are also [quizzes]({{site.quiz_site}}){:target="_top"} before and after each week of lecture.
 
-Labs are due by the end of the day (11:59pm Eastern Time) unless otherwise noted.
+Labs which allow submission are due by 8:59am the following morning unless otherwise noted. Labs which do not allow submission must be completed in the lab time
+(or some special arrangement made with the instructors) unless otherwise noted.
 
 Homeworks are due at 1:59pm Eastern Time (before the first lab) unless otherwise noted.
 

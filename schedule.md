@@ -128,7 +128,7 @@ Quiz {{quiz.name}} ({{quiz.title}}) due {{quiz.due | date: "%H:%M"}} (released {
     {%- endif -%}
   {%- else -%}
       {%- if due_assignment.lab -%}
-        Lab due by end of day<br>
+        Lab assigned<br>
       {%- elsif due_assignment.page -%}
         {%- if due_assignment.tentative -%}
         <span class="duehw">{{due_assignment.name}} (<a href="{{due_assignment.page|relative_url}}">tentative writeup</a>) due by 1:59pm</span><br>
