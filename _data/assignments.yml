@@ -50,14 +50,14 @@
   comment: no introducing lab
   page: labhw/pagetable.html
   tentative: true
-  weight: 0.2
+  portion: 0.2
   due: 2023-02-15
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2a
   page: labhw/pagetable.html
   tentative: true
-  weight: 0.2
+  portion: 0.2
   due: 2023-02-22
 
 - name: code reviews
@@ -76,7 +76,7 @@
   comment: license stuf fhere
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
-  weight: 1.8
+  portion: 1.8
   tentative: true
   due: 2023-03-01
 
