@@ -30,7 +30,7 @@ We would recommend working with a partner, but it is also fine if you do this al
             but if you chose library format `libsay.so`, then `guesser` should not be rebuilt if `libsay.so` changes, only if `say.h` or `guesser.c` change.
 
 5. Either:
-    *  Place a comment (line starting with `#`) at the top of your Makefile indicating  who you worked with and submit your Makefile to the [submission site]({{site.submit_site}}/task.php?task=make). (If working with a partner, both must submit.) *and/or*
+    *  Place a comment (line starting with `#`) at the top of your Makefile indicating  who you worked with and submit your Makefile to the [submission site](https://kytos02.cs.virginia.edu/cs3130-spring2023/task.php?task=make). (If working with a partner, both must submit.) *and/or*
     *  Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
 
 {/}
