@@ -15,7 +15,6 @@
 - name: warmup
   due: 2023-02-01
   page: labhw/warmup.html
-  tentative: true
   submit_files:
   - Makefile
   - main.c
