@@ -45,7 +45,7 @@
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation
-    *  setjmp + longjmp
+    *  (if time) setjmp + longjmp
     *  (if time) stack unwinding
 
 
