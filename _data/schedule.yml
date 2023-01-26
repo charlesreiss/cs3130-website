@@ -30,7 +30,7 @@
 
 - date: 2023-01-26
   week: 2
-  title: exceptions + signals
+  title: exceptions
   reading: "[kernel](readings/kernel.html) §2, 3.1"
   slides: yes
   slides_prelim: yes
@@ -42,20 +42,18 @@
        *  exception handlers
     *  threads and context switches
     *  process = threads + address space
-    *  Unix signals
-       *  events triggering
-       *  signal handlers and implementation
-    *  (if time) setjmp + longjmp
-    *  (if time) stack unwinding
 
 
 - date: 2023-01-31
   week: 3
-  title: accounts + escalation
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  title: signals + accounts + escalation
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §2, 3.1"
   slides: yes
   slides_prelim: yes
   description: |
+    *  Unix signals
+       *  events triggering
+       *  signal handlers and implementation
     *  problems in multi-user systems
     *  user IDs/account abstraction
     *  POSIX permissions
