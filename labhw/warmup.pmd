@@ -2,6 +2,12 @@
 title: warmup
 ...
 
+<div class="changelog">
+Changelog:
+
+*  26 Jan 2023: rephrase to allow invoking pprime as integers are read in
+</div>
+
 # Your task
 
 1.  Write the following C files:
@@ -12,8 +18,8 @@ title: warmup
         convert each to an integer and invoke `pprime` with each.
         If there are no command line arguments,
         read integers from standard input (provided in base-10, one number per line)
-        until the end of standard input is reached
-        and invoke `pprime` with each integer.
+        until the end of standard input is reached.
+        After reading each integer, invoke `pprime` with it.
         `main` should not print anything itself.
 
     `primes.c`
