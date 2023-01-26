@@ -7,7 +7,7 @@ index_title: Policies
 Changelog:
 
 *  18 Jan 2023: make percentages add up to 100%
-*  26 Jan 2023: explain more clearly how late policy applies to labs (late submission allowed, late checkoff not allowed except in special circumstances), matching what was explained in lecture.
+*  26 Jan 2023: explain more clearly how late policy applies to labs (late submission allowed, late checkoff not allowed without extenuating circumstances), matching what was explained in lecture.
 </div>
 
 # Logistics
@@ -77,7 +77,7 @@ Quiz solutions are released the moment the quiz closes, and thus quizzes cannot 
 Your lowest quiz score is dropped.
 
 Homeworks and labs that allow submission may be submitted up to 72 hours late.
-(Labs may not be checked off late without special permission.)
+(Labs may not be checked off late without special-case permission.)
 They are given 90% credit between 0 and 48 hours late;
 at 80% credit between 48 and 72 hours late.
 If extensions beyond that time are needed, please see the professor to discuss why and if other accommodations are also needed.
