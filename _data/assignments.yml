@@ -9,7 +9,7 @@
   lab: true
   page: labhw/signals.html
   due: 2023-02-01
-  submit_file: signals.c
+  submit_file: "*.c"
   tentative: true
 
 - name: warmup
