@@ -4,29 +4,22 @@ title: timing homework
 
 # Your task
 
-<!--
-## Measuring idle time
+1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
 
-1.  Write a program in C and/or assembly to produce the data needed to reproduce a graph, like shown in lecture, 
-    that shows of the amount of time spent between iterations of an empty loop. This should reveal when the program
-    is interrupted for context switches.
+    1.  a C function call
+    2.  the `getpid` system (run using its system call wrapper)
+    3.  running a trivial program with `system`
+    4.  sending a signal to the current process and starting a signal handler
+    5.  sending a signal to another process and then having that process's signal handler send a signal back
 
-2.  Produce the above graph as `empty-loop.png`.
+    Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
+    above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
 
-## Measuring system events
--->
+    For scenario 5 above, we need to run two copies of your program, similar to the signals lab:
+    *  The "other process" (the one not outputting timings), should be run as `./gettimings -1`
+    *  We will supply the PID of the other process as an additional argument to your program (`./gettimings 5 1234` if the other process's PID is 1234.)
 
-1.  Write a program or program(s) in C and/or assembly to take measurements needed to estimate the time required for:
-
-    *  a C function call
-    *  the `getpid` system (run using its system call wrapper)
-    *  running a trivial program with `system`
-    *  sending a signal to the current process and starting a signal handler
-    *  sending a signal to another process and then having that process's signal handler send a signal back
-
-2.  Record in a file `README.txt` how to run each of your program(s).
-
-3.  In a file called `timings.txt`:
+2.  In a file called `timings.txt`:
 
     *  record the measurements output by your program,
     
@@ -42,9 +35,9 @@ title: timing homework
 
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
 
-4.  Produce a `Makefile` whose default target will compile and link all of your programs.
+3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link all of your programs.
 
-5.  Submit all your files (`README.txt`, `timings.txt`, `Makefile`, and all the C and assembly source files) to the submission site.
+4.  Submit all your files (`timings.txt`, `Makefile`, and all the C and assembly source files) to the submission site.
 
 # Hints
 
@@ -66,6 +59,22 @@ set `returnvalue` to `-1` and `errno` (or utility functions like `perror`) can b
 since 1 Jan 1970 midnight UTC).
 
 In order to use `clock_gettime`, use something like `#define _XOPEN_SOURCE 700` *before `#include`ing any files* then `#include <time.h>`. (The `#define` requests that header files make features from the X/Open Single Unix Specification available to you.)
+
+An example utility function for using this is:
+
+```c
+#define _XOPEN_SOURCE 700
+#include <time.h>
+
+...
+
+/// returns the number of nanoseconds that have elapsed since an arbitrary time
+long long nsecs() {
+    struct timespec t;
+    clock_gettime(CLOCK_MONOTONIC, &t);
+    return t.tv_sec*1000000000.0 + t.tv_nsec;
+}
+```
 
 ### the cycle counter
 
