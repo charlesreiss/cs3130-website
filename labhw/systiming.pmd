@@ -35,7 +35,7 @@ title: timing homework
 
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
 
-3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link all of your programs.
+3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
 4.  Submit all your files (`timings.txt`, `Makefile`, and all the C and assembly source files) to the submission site.
 

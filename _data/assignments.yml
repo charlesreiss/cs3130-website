@@ -36,6 +36,14 @@
   page: labhw/systiming.html
   comment: "running loop with clock_gettime + graphing and/or other performance monitoring"
   comment: "timing system call"
+  submit_files:
+  - timing.txt
+  - "*.c"
+  - "*.h"
+  - "*.s"
+  - "*.S"
+  - "*.asm"
+  - "Makefile"
 
 - name: networking
   lab: true
