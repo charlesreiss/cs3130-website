@@ -47,7 +47,7 @@
 - date: 2023-01-31
   week: 3
   title: signals + accounts + escalation
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §2, 3.1"
+  reading: "[kernel](readings/kernel.html) §2.3.1, [accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html),
   slides: yes
   slides_prelim: yes
   description: |
