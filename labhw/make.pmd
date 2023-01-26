@@ -2,6 +2,12 @@
 title: Make lab
 ...
 
+<div class="changelog">
+Changelog:
+
+*  26 Jan 2023: make link to `make-lab.tar` match `wget` command
+</div>
+
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
 
