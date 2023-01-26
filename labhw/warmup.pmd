@@ -19,7 +19,8 @@ Changelog:
         If there are no command line arguments,
         read integers from standard input (provided in base-10, one number per line)
         until the end of standard input is reached.
-        After reading each integer, invoke `pprime` with it.
+        Invoke `pprime` with each of the integers you read
+        (either immediately after reading each line or after reading all the integers).
         `main` should not print anything itself.
 
     `primes.c`
