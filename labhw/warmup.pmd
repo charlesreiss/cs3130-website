@@ -6,6 +6,7 @@ title: warmup
 Changelog:
 
 *  26 Jan 2023: rephrase to allow invoking pprime as integers are read in
+*  26 Jan 2023: note that collaboration is exception to normal policy
 </div>
 
 # Your task
@@ -83,6 +84,7 @@ make sure you add `-lm` to the `LDFLAGS` of your `Makefile` or it will not compi
 # Collaboration
 
 This assignment is intended to be exploratory and get your feet wet;
+as an exception to the normal policy,
 you are welcome to help one another with it as much as you wish.
 However, you are responsible for both (a) citing help and (b) understanding what you submit.
 

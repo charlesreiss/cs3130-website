@@ -8,6 +8,8 @@ Changelog:
 
 *  22 Jan 2023: correct description of Save-Handle-Restore to accurate reflect that the whole state of the processor is generally not saved and that the exception handler is often responsible for saving some of it
 *  22 Jan 2023: add aside on nested exceptions and disabling interrupts
+*  27 Jan 2023: correct description of what Ctrl+Z does (it sends TSTP not STOP)
+*  27 Jan 2023: add description of blocking signals and signal safety
 </div>
 
 # Kernel Mode vs. User Mode
@@ -439,9 +441,14 @@ If we want Ctrl+C to do something else, we have to handle that signal:
 ````c
 #include <stdio.h>
 #include <signal.h>
+#include <unistd.h>
 
 static void handler(int signum) {
-    printf("Provide end-of-file to end program.\n");
+    // send string to stdout (1) without <stdio.h>
+    // not using printf() here in case the signal handler runs
+    // while printf() is running
+    write(1, "Provide end-of-file to end program.\n",
+          strlen("Provide end-of-file to end program.\n"));
 }
 
 int main() {
@@ -513,7 +520,7 @@ Command line and signals
 From a bash command line, you can send signals to running processes.
 
 - Ctrl+C sends SIGINT, the "interrupt" signal that means "I want you to stop doing what you are doing."
-- Ctrl+Z sends SIGSTOP, a signal that cannot be handled. It always causes the OS to suspend the process, freezing it in place until you ask for it to resume.
+- Ctrl+Z sends SIGTSTP, a signal whose default action is to suspend the process, freezing it in place until you ask for it to resume.
 - `bg` causes a suspended process to resume running, but in the background so you can use the terminal for other purposes.
 - `fg` causes a suspended or background process to resume running in the foreground, re-attaching the keyboard to `stdin`.
 - `kill <pid>` sends SIGTERM, the "terminate" signal, to the process with process ID `<pid>`.
@@ -527,6 +534,51 @@ From a bash command line, you can send signals to running processes.
 There are other tools for sending signals, but the above are sufficient for most common use cases.
 
 {/}
+
+#### Signal safety
+
+When a signal handlers runs in the middle of another function, this might severely limit
+what operations the signal handler can use. For example, if a signal handler runs
+in the middle of a call to `malloc()` (because of when you pressed Ctrl+C), then
+you probably cannot call `malloc()` from that signal handler. If you did so, probably
+malloc's internal data structures would be corrupted.
+
+To let programmers avoid this issue,
+The Unix-like operating system standard POSIX
+documents a list of functions that are "async-signal-safe".
+Linux reproduces this list in `man 7 signal-safety`.
+These functions are gaurenteed to behave correctly even if they signal handler calls them
+while they are already running. `write` is on this list, which is why I used
+it in the signal handler in the example above.
+Another way to avoid this problem is to temporarily block signal
+handlers from running in the middle of "unsafe" operations or
+explicitly tell the OS when to handle them, as described in the
+next section.
+
+#### Blocking signals and handling signals without signal handlers
+
+Sometimes we may not want a signal to be handled right away. For example, a program with a handler
+for Ctrl+C that handles saving before exiting may not want the handler to run while it's loading
+a new file. To do this, you can functions like [`sigprocmask`](https://pubs.opengroup.org/onlinepubs/9699919799/functions/sigprocmask.html)
+to *block* signals, temporarily disabling signals handlers from running:
+
+    sigset_t sigint_as_set;
+    sigemptyset(&sigint_as_set);
+    sigaddset(&sigint_as_set, SIGINT);
+    sigprocmask(SIG_BLOCK, &sigint_as_set, NULL);
+    ... /* do stuff without signal handler running yet */
+    sigprocmask(SIG_UNBLOCK, &sigint_as_set, NULL);
+
+If a signal is sent to a process while it is blocked, then the OS will track that is *pending*. 
+When the pending signal is unblocked, its signal handler will be run.
+Processors typically provide an analagous mechanism for operating systems to "disable interrupts".
+
+Unix-like systems also provide functions that work with blocked signals to allow processing
+signals without having a signal handler interrupt normale execution.
+For example, [`sigsuspend`](https://pubs.opengroup.org/onlinepubs/9699919799/functions/sigsuspend.html) will temporarily unblock a
+blocked signal just long enough to run its signal handler.
+Alternately, [`sigwait`](https://pubs.opengroup.org/onlinepubs/9699919799/functions/sigwait.html) will wait until one of a specific set of signals
+are sent and "handle" them by returning instead of running any signal handler.
 
 ### `setjmp`{.c}, `longjmp`{.c}, and software exceptions
 
@@ -1374,6 +1426,10 @@ it is generally implemented as an extension of the virtual memory system.
 ## General
 
 *  Arpaci-Dusseau and Arpaci-Dusseau, [_Operating Systems: Three Easy Pieces_](https://pages.cs.wisc.edu/~remzi/OSTEP/) chapters 4, 6, 13, 18, 36. More detailed textbook on all these topics, intended in the context of a more dedicated operating systems course.
+
+## For signal handling
+
+*  The POSIX documentation for [sigaction](https://pubs.opengroup.org/onlinepubs/9699919799/functions/sigaction.html); the POSIX documentation for [signal handling generally](https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_04)
 
 ## Operating system organization examples
 
