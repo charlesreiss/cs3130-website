@@ -8,7 +8,7 @@ title: timing homework
 
     1.  a C function call
     2.  the `getpid` system (run using its system call wrapper)
-    3.  running a trivial program with `system`
+    3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
     4.  sending a signal to the current process and starting a signal handler
     5.  sending a signal to another process and then having that process's signal handler send a signal back
 
@@ -16,8 +16,10 @@ title: timing homework
     above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
 
     For scenario 5 above, we need to run two copies of your program, similar to the signals lab:
-    *  The "other process" (the one not outputting timings), should be run as `./gettimings -1`
-    *  We will supply the PID of the other process as an additional argument to your program (`./gettimings 5 1234` if the other process's PID is 1234.)
+    *  The "other process" (the one not outputting timings), should be run as `./gettimings -1`. It should print its PID and read a pid from stdin.
+    *  When we run `./gettimings 5` it should print its PID and read a pid from stdin.
+    *  We will test by entering the PID of the `./gettimings 5` process into the `./gettimings -1` process first, then entering the PID of the `./gettimings -1` process into the `./gettimings 5` process.
+    *  (It's okay if we need to use control-C or similar to terminate `./gettimings -1` process.)
 
 2.  In a file called `timings.txt`:
 
