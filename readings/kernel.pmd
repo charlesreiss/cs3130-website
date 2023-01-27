@@ -10,6 +10,7 @@ Changelog:
 *  22 Jan 2023: add aside on nested exceptions and disabling interrupts
 *  27 Jan 2023: correct description of what Ctrl+Z does (it sends TSTP not STOP)
 *  27 Jan 2023: add description of blocking signals and signal safety
+*  27 Jan 2023: expand comment about sa_mask; remove that mention of signal()
 </div>
 
 # Kernel Mode vs. User Mode
@@ -454,7 +455,7 @@ static void handler(int signum) {
 int main() {
     struct sigaction sa;       // how we tell the OS what we want to handle
     sa.sa_handler = handler;   // the function pointer to invoke
-    sigemptyset(&sa.sa_mask);  // we'll use sigaction, not signal, so set not needed
+    sigemptyset(&sa.sa_mask);  // do not "block" additional signals while signal handler is running
     sa.sa_flags = SA_RESTART;  // restart functions that can recognize they were interrupted
 
     if (sigaction(SIGINT, &sa, NULL) == -1) {
@@ -486,7 +487,7 @@ static void handler(int signum) {
 int main() {
     struct sigaction sa;       // how we tell the OS what we want to handle
     sa.sa_handler = handler;   // the function pointer to invoke
-    sigemptyset(&sa.sa_mask);  // we'll use sigaction, not signal, so set not needed
+    sigemptyset(&sa.sa_mask);  // do not "block" additional signals while signal handler is running
     sa.sa_flags = SA_RESTART;  // restart functions that can recognize they were interrupted
 
     if (sigaction(SIGSEGV, &sa, NULL) == -1) {

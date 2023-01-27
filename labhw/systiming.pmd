@@ -6,8 +6,8 @@ title: timing homework
 
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
 
-    1.  a C function call
-    2.  the `getpid` system (run using its system call wrapper)
+    1.  calling an empty function and having it return
+    2.  the `getpid` system call (run using its system call wrapper)
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
     4.  sending a signal to the current process and starting a signal handler
     5.  sending a signal to another process and then having that process's signal handler send a signal back
@@ -24,17 +24,14 @@ title: timing homework
 2.  In a file called `timings.txt`:
 
     *  record the measurements output by your program,
-    
-    *  if necessary, convert the measurements from your programs to the time estimates listed above
-    
-    *  describe what calculations were necessary to convert the measurements from your program to time estimates.
+    *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
+    *  describe what calculations were necessary to convert the measurements from your program to time estimates
 
     When producing the time estimates, you must:
 
     *  make an attempt to account for measurement overhead (that is, the time required to obtain the clock measurements
        themselves. One strategy might be to measure the time required for "nothing" and subtract this time from other
        measurements.)
-
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
@@ -74,7 +71,7 @@ An example utility function for using this is:
 long long nsecs() {
     struct timespec t;
     clock_gettime(CLOCK_MONOTONIC, &t);
-    return t.tv_sec*1000000000.0 + t.tv_nsec;
+    return t.tv_sec*1000000000 + t.tv_nsec;
 }
 ```
 
