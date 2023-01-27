@@ -33,8 +33,6 @@
   title: exceptions
   reading: "[kernel](readings/kernel.html) §2, 3.1"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  exceptions
        *  events triggering
