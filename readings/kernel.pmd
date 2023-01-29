@@ -11,6 +11,7 @@ Changelog:
 *  27 Jan 2023: correct description of what Ctrl+Z does (it sends TSTP not STOP)
 *  27 Jan 2023: add description of blocking signals and signal safety
 *  27 Jan 2023: expand comment about sa_mask; remove that mention of signal()
+*  28 Jan 2023: add section on memory-mapped files and lazy allocation to applications of virtual memory
 </div>
 
 # Kernel Mode vs. User Mode
@@ -1298,6 +1299,15 @@ Various uses of virtual memory are alluded to above
 to motivate the various features of virtual memory;
 this section focuses on those uses.
 
+### Lazy allocation
+
+When a program requests memory or is initially loaded, rather than having the program wait
+until all the requested space is actually setup, the operating system can let
+the program proceed right away. Then, if the program tries to access
+part of that newly allocated space too early, the operating system can finish setting it up
+in the page table handler. This "lazy" allocation idea might, for example,
+help programs start faster.
+
 ### Page Swapping
 
 Because addresses in code can be mapped to other addresses
@@ -1306,6 +1316,9 @@ virtual memory lets code act beyond the constraints of available memory.
 This is traditionally handled by the operating system
 storing some pages on the disk instead of in memory.
 moving these pages between disk and memory is called "swapping."
+(If the program tries to access pages that are not in memory,
+the operating system can trigger swapping from the page fault
+handler.)
 
 Because disks are *vastly* slower than memory,
 there is a desire to make this happen rarely,
@@ -1388,6 +1401,19 @@ Shared-memory communication.
     but does not, by itself, provide mechanisms for efficiently
     awaiting a response.
 
+Memory-mapped files
+:   As an alternative to reading and writing a file with system calls,
+    many operating systems allow a process to "map" a file into their memory.
+    The bytes of the file then appear as bytes in that process's memory.
+    The operating system can ensure that all processes share a single
+    in-memory copy of the file's data, so the bytes always reflect
+    the current version of the file.
+    
+    Also, the operating system does not
+    need to load the file's data all at once. It can wait until the program
+    tries to access part of the "mapped" file and a page fault occurs
+    to actually load it.
+
 ### Process Switching
 
 Switching between processes happens in the operating system's code.
@@ -1421,6 +1447,7 @@ Technically, DMA does not require virtual memory---disks
 could be given access to physical memory
 even if code accesses memory with physical addresses---but
 it is generally implemented as an extension of the virtual memory system.
+
 
 # Further resources
 
