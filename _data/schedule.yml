@@ -31,7 +31,7 @@
 - date: 2023-01-26
   week: 2
   title: exceptions
-  reading: "[kernel](readings/kernel.html) §2, 3.1"
+  reading: "[kernel](readings/kernel.html) §2-2.2, 3.1"
   slides: yes
   description: |
     *  exceptions
