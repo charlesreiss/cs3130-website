@@ -1409,11 +1409,6 @@ Memory-mapped files
     in-memory copy of the file's data, so the bytes always reflect
     the current version of the file.
     
-    Also, the operating system does not
-    need to load the file's data all at once. It can wait until the program
-    tries to access part of the "mapped" file and a page fault occurs
-    to actually load it.
-
 ### Process Switching
 
 Switching between processes happens in the operating system's code.
@@ -1466,7 +1461,6 @@ it is generally implemented as an extension of the virtual memory system.
 *  Chapter 2 of McKusick and Neville-Neil, _The Design and Implementation of the FreeBSD Operating System_ (also available through O'Reilly)
 
 *  Chapter 2 of Yosifovich, Ionescu, Russinovich, and Solomon, _Windows Internals Seventh Edition Part 1_ (Also available through O'Reilly)
-
 
 ## Virtual memory system examples
 
