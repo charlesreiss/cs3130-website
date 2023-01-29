@@ -1406,7 +1406,7 @@ Memory-mapped files
     many operating systems allow a process to "map" a file into their memory.
     The bytes of the file then appear as bytes in that process's memory.
     The operating system can ensure that all processes share a single
-    in-memory copy of the file's data, so the bytes always reflect
+    copy of the file's data, so the bytes always reflect
     the current version of the file.
     
 ### Process Switching
