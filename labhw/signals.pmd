@@ -15,7 +15,7 @@ Do the following. We recommend doing them in order. Each is described in more de
 Note the above instructions regarding testing on portal.
 
 I would recommend working in pairs on this lab,
-but note that both instances of the chat program need to run as the user. (You can't send signals to another
+but note that both instances of the chat program need to run as the same user. (You can't send signals to another
 user's programs.)
 
 1. Make a program that prints its own PID and reads another PID from the user (store it in a global variable)
