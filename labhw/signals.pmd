@@ -3,13 +3,17 @@ title: Signals Lab
 ...
 
 In this lab you'll write yet another chat application.
-It will only work on a **single machine**^[If you are using ssh, this means you need to ssh into the same back-end server twice. To do this first SSH into portal.cs.virginia.edu; then run `uname -n` to find out what server you are on (portal## for some two-digit number ##) and have your second SSH go directly into that portal##.cs.virginia.edu.], not over a network file system or the Internet,
+
+It will only work on a **single machine**, not over a network file system or the Internet,
 but it will also require significantly fewer system resources than our other chats.
+If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this first SSH into portal.cs.virginia.edu; then run `uname -n` to find out what server you are on (portal## for some two-digit number ##) and have your second SSH go directly into that portal##.cs.virginia.edu.
 
 {.exercise ...}
 Do the following. We recommend doing them in order. Each is described in more detail below.
 
-We strongly recommend working in pairs on this lab.
+Note the above instructions regarding testing on portal. I would recommend working in pairs on this lab,
+but note that both instances of the chat program need to run as the user. (You can't send signals to another
+user's programs.)
 
 1. Make a program that prints its own PID and reads another PID from the user (store it in a global variable)
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
@@ -17,20 +21,17 @@ We strongly recommend working in pairs on this lab.
     - SIGINT should  invoke a cleanup function and then sent SIGTERM to the other user
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory, make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
 3. Access some shared memory
-    - An inbox which this process will use to read values from the other process
-    - An outbox which will be the inbox of the other process.
+    - An "inbox" which this process will use to read values from the other process
+    - The inbox of the other process, which we'll call the "outbox".
 3. Repeat until the end of file:
     - Read a typed line into the outbox (without overflow)
-    - wait until the outbox is emptied
+    - Wait until the outbox is emptied
 4. After the user stops typing (i.e., EOF), send SIGTERM to the other process
-5. Make a cleanup function which
-
-    1. detaches both inbox and outbox
-    1. destroys both inbox and outbox
+5. Make a cleanup function which destroys both inbox and outbox
 
     The cleanup function should execute no matter how the program exists:
     via end-of-input, SIGINT, or SIGTERM.
-6.  Upload your solution to the submission site or show a TA your code for checkoff.
+6.  Upload your solution to the submission site or show a TA your program for checkoff.
 {/}
 
 # PID
@@ -76,9 +77,9 @@ in memory instead of on persistent storage. Then `mmap` takes a file and gives y
 region of memory. (`mmap` also works for files that are stored normally on disk even though we don't recommend
 that for this lab.)
 
-1. Choose a name (similar to a filename; on Linux's implementation of shared memory, this will become a file in 
-   the special directory /dev/shm).
-   To avoid interference with other students, I recommend chosing a name like /*PID*-mmchat
+1. Choose a name for each process's inbox
+   (similar to a filename; on Linux's implementation of shared memory, this will become a file in the special directory /dev/shm).
+   To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like /*PID*-mmchat
    which you can generate using code like:
 
         char inbox_name[512];
