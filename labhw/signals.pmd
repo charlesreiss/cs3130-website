@@ -6,12 +6,15 @@ In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
 but it will also require significantly fewer system resources than our other chats.
-If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this first SSH into portal.cs.virginia.edu; then run `uname -n` to find out what server you are on (portal## for some two-digit number ##) and have your second SSH go directly into that portal##.cs.virginia.edu.
+
+> If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this first SSH into portal.cs.virginia.edu; then run `uname -n` to find out what server you are on (portal## for some two-digit number ##) and have your second SSH go directly into that portal##.cs.virginia.edu.
 
 {.exercise ...}
 Do the following. We recommend doing them in order. Each is described in more detail below.
 
-Note the above instructions regarding testing on portal. I would recommend working in pairs on this lab,
+Note the above instructions regarding testing on portal.
+
+I would recommend working in pairs on this lab,
 but note that both instances of the chat program need to run as the user. (You can't send signals to another
 user's programs.)
 
