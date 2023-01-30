@@ -23,6 +23,8 @@ user's programs.)
     - SIGTERM should invoke a cleanup function
     - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
+    - (Although normally one should take care to only use [signal-safe](../readings/kernel.html#signal-safety) functions in your signal handlers, for this lab, we do not
+       care if you follow this rule.)
 3. Access some shared memory
     - An "inbox" which this process will use to read values from the other process
     - The inbox of the other process, which we'll call the "outbox."
