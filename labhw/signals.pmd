@@ -7,7 +7,7 @@ In this lab you'll write yet another chat application.
 It will only work on a **single machine**, not over a network file system or the Internet,
 but it will also require significantly fewer system resources than our other chats.
 
-> If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this first SSH into portal.cs.virginia.edu; then run `uname -n` to find out what server you are on (portal## for some two-digit number ##) and have your second SSH go directly into that portal##.cs.virginia.edu.
+> If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your second SSH go directly into that portal##.cs.virginia.edu.
 
 {.exercise ...}
 Do the following. We recommend doing them in order. Each is described in more detail below.
@@ -21,18 +21,18 @@ user's programs.)
 1. Make a program that prints its own PID and reads another PID from the user (store it in a global variable)
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
     - SIGTERM should invoke a cleanup function
-    - SIGINT should  invoke a cleanup function and then sent SIGTERM to the other user
-    - SIGUSR1 should display the contents of the inbox (eventually in shared memory, make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
+    - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
+    - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
 3. Access some shared memory
     - An "inbox" which this process will use to read values from the other process
-    - The inbox of the other process, which we'll call the "outbox".
+    - The inbox of the other process, which we'll call the "outbox."
 3. Repeat until the end of file:
     - Read a typed line into the outbox (without overflow)
     - Wait until the outbox is emptied
 4. After the user stops typing (i.e., EOF), send SIGTERM to the other process
 5. Make a cleanup function which destroys both inbox and outbox
 
-    The cleanup function should execute no matter how the program exists:
+    The cleanup function should execute no matter how the program exits:
     via end-of-input, SIGINT, or SIGTERM.
 6.  Upload your solution to the submission site or show a TA your program for checkoff.
 {/}
@@ -44,7 +44,7 @@ This can be printed (e.g., with `printf`) by one process and input to the other 
 
 # Signals
 
-As shown in class, the key parts of signal handling are defining a handler function
+As shown in class, the key parts of signal handling are defining a handler function:
 
 ```c
 #include <signal.h>
@@ -74,15 +74,15 @@ To send a signal, use `kill(pid_to_send_to, SIGTERM)` or the like.
 One of the advantages of virtual memory is the OS can map the same physical page to different virtual pages in different processes.
 The processes can then directly communicate by loading what the other stored in that shared memory.
 
-Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is. There are multiple ways to create shared memory; in this assignment, we'll recommend
-using `shm_open` and `mmap`. `shm_open` will give you access to special files that are kept
-in memory instead of on persistent storage. Then `mmap` takes a file and gives you access to it as a
-region of memory. (`mmap` also works for files that are stored normally on disk even though we don't recommend
+Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is. There are multiple ways to create shared memory; in this assignment, it is recommended
+to use `shm_open` and `mmap`. `shm_open` will give you access to special files that are kept
+in memory instead of persistent storage. Then, `mmap` takes a file and gives you access to it as a
+region of memory. (`mmap` also works for files that are stored normally on disk, though we don't recommend
 that for this lab.)
 
 1. Choose a name for each process's inbox
-   (similar to a filename; on Linux's implementation of shared memory, this will become a file in the special directory /dev/shm).
-   To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like /*PID*-mmchat
+   (similar to a filename; in Linux's implementation of shared memory, this will become a file in the special directory /dev/shm).
+   To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like `/*PID*-mmchat`,
    which you can generate using code like:
 
         char inbox_name[512];
@@ -101,12 +101,12 @@ that for this lab.)
    The handle, `inbox_fd` in the code above, is an integer that you will pass to the `mmap` ("memory map")
    call later. I use `fd` in the name because it is a *file descriptor*.
 
-   Initially created shared memory regions will be empty, but you can allocate space for them with 
+   Initially, created shared memory regions will be empty, but you can allocate space for them with 
    `ftruncate`:
         
         ftruncate(inbox_fd, size);
 
-   (where `size` is a size in bytes; I recommend 4096.). 
+   (where `size` is a size in bytes; I recommend 4096). 
 
    To deallocate, use `shm_unlink`:
 
@@ -114,7 +114,7 @@ that for this lab.)
     
    Shared memory regions can persist even after the creating program terminates, so **always deallocate what you allocate**!
    Even if your program stops early (e.g., by SIGINT) you still need to deallocate.
-   It does not hurt (though does set `errno`) to deallocate multiple times
+   It does not hurt (though it does set `errno`) to deallocate multiple times
    or from the wrong process.
 
    You will need to include `<unistd.h>`, `<sys/mman.h>`, and `<fcntl.h>` to use these functions
@@ -127,7 +127,7 @@ that for this lab.)
     inbox = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
     if (inbox == (char*) MAP_FAILED) {
         /* something went wrong */
-        /* note that MAP_FAILED is _NOT_ the same thing as NULL */
+        /* note that MAP_FAILED is *NOT* the same thing as NULL */
     }
     close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
     // ...
@@ -141,7 +141,7 @@ You've got two things to do: keyboard ↦ outbox and inbox ↦ screen.
 ## keyboard ↦ outbox
 
 A loop in `main` is the way to go: `while(!feof(stdin))`{.c} you want to `fgets` directly into the outbox.
-After data is in the outbox, send SIGUSR1 (using `kill`) to the other process then wait for `outbox[0]`{.c} to stop being `'\0'`{.c}
+After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox[0]`{.c} to stop being `'\0'`{.c}.
 Don't just busy-wait though: check, then go to sleep for a bit, then check again.
 (A better strategy you could also try might be to wait for SIGUSR2 using sigprocmask() and sigwait()
 and have the receiving process send SIGUSR2 when it is done reading the input.)
