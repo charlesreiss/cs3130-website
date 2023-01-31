@@ -17,6 +17,7 @@
   page: labhw/warmup.html
   submit_files:
   - Makefile
+  - makefile
   - main.c
   - primes.c
   - primes.h
