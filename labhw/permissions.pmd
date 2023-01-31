@@ -10,7 +10,7 @@ Although not all OSs use the same system, the POSIX standard defines a set of fi
 Work, ideally with a partner, to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
-   on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet).
+   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet).
 1. Create a directory in your home directory for this lab. Do each of the following steps in that directory.
 1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
     a. `ls dir`{.bash} refuses to run
@@ -24,7 +24,7 @@ Work, ideally with a partner, to achieve the following:
     a. appends a line containing the current day and time to file `simple_runs`
     a. reports how many lines `simple_runs` contains
 1. Determine which of the following are possible to achieve and write your answers
-   (with a brief explanation) on the [answer sheet]({{site.quiz_site}}/quizzes.php?qid=permissions-answer-sheet):.
+   (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet):.
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
