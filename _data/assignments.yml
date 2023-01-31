@@ -10,7 +10,6 @@
   page: labhw/signals.html
   due: 2023-02-01
   submit_file: "*.c"
-  tentative: true
 
 - name: warmup
   due: 2023-02-01
@@ -33,7 +32,6 @@
 
 - name: timing
   due: 2023-02-08
-  tentative: true
   page: labhw/systiming.html
   comment: "running loop with clock_gettime + graphing and/or other performance monitoring"
   comment: "timing system call"
