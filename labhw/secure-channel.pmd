@@ -50,9 +50,9 @@ title: Secure channels lab
 
 5.  Now do the same for scenario "2".
 
-8.  Do the same for scenario "3". Hint:
-    B will also accept messages from you (M), but will refuse to
-    make payments based on messages from you. You can use this to run a
+8.  Do the same for scenario "3".
+    It will help that A will also accept messages from you (M), but will always indicate
+    that there are no more payments. You can use this to run a
     MITM attack on B and A; see also 
     the famous flaws of the
     [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol)
@@ -156,22 +156,22 @@ You can also try manipulate the fields of messages directly.
 
 ## Scenario 3
 
-    A->B [encrypted to B's public key]: GIVE ME A NUMBER.
     B->A [encrypted to A's public key]: THE NUMBER IS [random number 1].
     A->B [encrypted to B's public key]: PAY $1000 TO M. THE NUMBER IS [random number 1].
     B->A [encrypted to A's public key]: PAID FOR [random number 1].
-    A->B [encrypted to B's public key]: GIVE ME A NUMBER.
     B->A [encrypted to A's public key]: THE NUMBER IS [random number 2].
     A->B [encrypted to B's public key]: PAY $0384 TO M. THE NUMBER IS [random number 2].
     B->A [encrypted to A's public key]: PAID FOR [random number 2].
+    B->A [encrypted to A's public key]: THE NUMBER IS [random number 3].
+    A->B [encrypted to B's public key]: NO MORE PAYMENTS FOR YOU. THE NUMBER IS [random number 3].
 
 ## Scenario 4
 
-    A->B [encrypted to B's public key, then signed by A's private key]: GIVE ME A NUMBER.
     B->A [encrypted to A's public key, then signed by B's private key]: THE NUMBER IS [random number 1].
     A->B [encrypted to B's public key, then signed by A's private key]: PAY $1000 TO M. THE NUMBER IS [random number 1].
     B->A [encrypted to B's public key, then signed by A's private key]: PAID FOR [random number 1].
-    A->B [encrypted to B's public key, then signed by A's private key]: GIVE ME A NUMBER.
     B->A [encrypted to A's public key, then signed by B's private key]: THE NUMBER IS [random number 2].
     A->B [encrypted to B's public key, then signed by A's private key]: PAY $0384 TO M. THE NUMBER IS [random number 2].
     B->A [encrypted to B's public key, then signed by A's private key]: PAID FOR [random number 2].
+    B->A [encrypted to A's public key, then signed by A's private key]: THE NUMBER IS [random number 3].
+    A->B [encrypted to B's public key, then signed by A's private key]: NO MORE PAYMENTS FOR YOU. THE NUMBER IS [random number 3].
