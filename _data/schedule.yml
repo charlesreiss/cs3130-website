@@ -44,19 +44,14 @@
 
 - date: 2023-01-31
   week: 3
-  title: signals + accounts + escalation
-  reading: "[kernel](readings/kernel.html) §2.3.1, [accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  title: signals 
+  reading: "[kernel](readings/kernel.html) §2.3.1"
   slides: yes
   slides_prelim: yes
   description: |
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation
-    *  problems in multi-user systems
-    *  user IDs/account abstraction
-    *  POSIX permissions
-    *  sudo is not kernel mode
-    *  vulnerabilities and privilege escalation <!-- XXX: CORS? web security model? -->
 
 - date: 2023-02-01
   week: 3
@@ -64,16 +59,20 @@
 
 - date: 2023-02-02
   week: 3
-  title: virtual memory 1
-  reading: "[kernel](readings/kernel.html) §3"
+  title: accounts + virtual memory 1
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §3"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  user IDs/account abstraction
+    *  POSIX permissions
+    *  sudo is not kernel mode
+    *  vulnerabilities and privilege escalation 
+
     *  virtual memory concept
     *  page tables
        *  concept
-       *  in memory
 
 - date: 2023-02-07
   week: 4
@@ -83,8 +82,6 @@
     *  page tables
        *  as a tree
        *  x86-64 structure
-    *  page faults
-       *  loading data on demand, swapping
 
 - date: 2023-02-08
   lab: true
@@ -92,9 +89,11 @@
 
 - date: 2023-02-09
   week: 4
-  title: buses + DMA
-  reading: "[buses](readings/bus.html)"
+  title: virtual memory 3 / buses + DMA
+  reading: "[kernel](readings/kernel.html) §3, [buses](readings/bus.html)"
   description: |
+    *  page faults
+       *  loading data on demand, swapping
     *  processor buses
        *  half-duplex versus full-duplex
        *  I/O bridge idea <!-- FIXME: still accurate? -->
