@@ -2,6 +2,12 @@
 title: Signals Lab
 ...
 
+<div class="changelog">
+Changelog:
+
+*  1 Feb 2023: adjust recommended shared memory region name from /*PID*-mmchat to /*PID*-chat
+</div>
+
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
@@ -84,11 +90,11 @@ that for this lab.)
 
 1. Choose a name for each process's inbox
    (similar to a filename; in Linux's implementation of shared memory, this will become a file in the special directory /dev/shm).
-   To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like `/*PID*-mmchat`,
+   To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like `/*PID*-chat`,
    which you can generate using code like:
 
         char inbox_name[512];
-        snprintf(inbox_name, sizeof inbox_name, "/%d-mmchat", pid);
+        snprintf(inbox_name, sizeof inbox_name, "/%d-chat", pid);
 
    Note that the name must start with a `/`.
 
