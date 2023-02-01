@@ -6,6 +6,7 @@ title: Signals Lab
 Changelog:
 
 *  1 Feb 2023: adjust recommended shared memory region name from /*PID*-mmchat to /*PID*-chat
+*  1 Feb 2023: replaced "wait for `outbox[0]` to stop being `\0`" with "wait for `outbox[0]` to become `\0`" to match the given code and rest of description
 </div>
 
 In this lab you'll write yet another chat application.
@@ -149,7 +150,7 @@ You've got two things to do: keyboard ↦ outbox and inbox ↦ screen.
 ## keyboard ↦ outbox
 
 A loop in `main` is the way to go: `while(!feof(stdin))`{.c} you want to `fgets` directly into the outbox.
-After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox[0]`{.c} to stop being `'\0'`{.c}.
+After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox[0]`{.c} to become `'\0'`{.c}.
 Don't just busy-wait though: check, then go to sleep for a bit, then check again.
 (A better strategy you could also try might be to wait for SIGUSR2 using sigprocmask() and sigwait()
 and have the receiving process send SIGUSR2 when it is done reading the input.)
