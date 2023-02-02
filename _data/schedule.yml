@@ -62,8 +62,6 @@
   title: accounts + virtual memory 1
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §3"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions
@@ -77,6 +75,8 @@
 - date: 2023-02-07
   week: 4
   title: virtual memory 2
+  slides: yes
+  slides_extra: yes
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
