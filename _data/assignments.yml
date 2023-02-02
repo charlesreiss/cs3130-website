@@ -37,6 +37,7 @@
   comment: "timing system call"
   submit_files:
   - timing.txt
+  - timings.txt
   - "*.c"
   - "*.h"
   - "*.s"
