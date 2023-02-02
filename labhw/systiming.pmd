@@ -7,6 +7,7 @@ title: timing homework
 Changelog:
 
 *  1 Feb 2023: adjust description of tming `getpid` to be clearer that the wrapper is the `getpid` function in the standard library and that the time can include how long the wrapper's code takes
+*  2 Feb 2023: clarify that executables/object files should not be submitted.
 </div>
 
 # Your task
@@ -43,7 +44,7 @@ Changelog:
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
-4.  Submit all your files (`timings.txt`, `Makefile`, and all the C and assembly source files) to the submission site.
+4.  Submit all your `timings.txt` and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
 
 # Hints
 
