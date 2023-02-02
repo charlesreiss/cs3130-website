@@ -9,6 +9,7 @@ Changelog:
 *  1 Feb 2023: adjust description of tming `getpid` to be clearer that the wrapper is the `getpid` function in the standard library and that the time can include how long the wrapper's code takes
 *  2 Feb 2023: clarify that executables/object files should not be submitted.
 *  2 Feb 2023: allow students to split out the measurements recorded by their program into separate files to keep timings.txt from getting too big
+*  2 Feb 2023: clarify that advice re: using separate files or other strategies to avoid an optimizing compiler eliding a function call is for the issue of timing a function call, not the other items
 </div>
 
 # Your task
@@ -127,7 +128,7 @@ I would recommend timing "nothing" (just running your timing code timing an empt
 
 ## Compiler optimization and function calls
 
-I recommend turning on compiler optimizations to avoid measuring slow code for setting up system calls and the like. But you may have problems
+I recommend turning on compiler optimizations to avoid measuring slow code for setting up system calls and the like. But, when timing a function call, you may have problems
 with the compiler's optimizer replacing a function call with the body of that function. Some possibilities to avoid this:
 
 *  write the function in a separately compiled file, so the compiler will not have the information to do this optimization
