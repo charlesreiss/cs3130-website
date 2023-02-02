@@ -2,12 +2,19 @@
 title: timing homework
 ...
 
+
+<div class="changelog">
+Changelog:
+
+*  1 Feb 2023: adjust description of tming `getpid` to be clearer that the wrapper is the `getpid` function in the standard library and that the time can include how long the wrapper's code takes
+</div>
+
 # Your task
 
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
 
     1.  calling an empty function and having it return
-    2.  the `getpid` system call (run using its system call wrapper)
+    2.  running the `getpid` system call by calling its system call wrapper (that is, the `getpid` funtion declared by `<unistd.h>`)
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
     4.  sending a signal to the current process and starting a signal handler
     5.  sending a signal to another process and then having that process's signal handler send a signal back
