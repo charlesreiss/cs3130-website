@@ -10,6 +10,7 @@ Changelog:
 *  2 Feb 2023: clarify that executables/object files should not be submitted.
 *  2 Feb 2023: allow students to split out the measurements recorded by their program into separate files to keep timings.txt from getting too big
 *  2 Feb 2023: clarify that advice re: using separate files or other strategies to avoid an optimizing compiler eliding a function call is for the issue of timing a function call, not the other items
+*  2 Feb 2023: clarify that item 5 should time until the signal sent back is received, but also allow the alternate interpretation
 </div>
 
 # Your task
@@ -20,7 +21,7 @@ Changelog:
     2.  running the `getpid` system call by calling its system call wrapper (that is, the `getpid` funtion declared by `<unistd.h>`)
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
     4.  sending a signal to the current process and starting a signal handler
-    5.  sending a signal to another process and then having that process's signal handler send a signal back
+    5.  sending a signal to another process, then having that process's signal handler send a signal back, then having the signal sent back received by the original process <small>(because we originally didn't specify this clearly, we'll also accept timing the time to just have the signal sent back and not necessairily received, but that seems like more work to time)</small>
 
     Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
     above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
