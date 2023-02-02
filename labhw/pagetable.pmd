@@ -8,10 +8,12 @@ Your task:
 1.  This assignment has multiple submissions.
 
     For the first submission, you must complete:
+
     *  item 2 below with `LEVELS` only set to 1 and `POBITS` only set to 12.
 
     and two of:
-    *  item 2 with `LEVELS` being set to 2 (in addition to 1) and `POBITS` having any valid value
+
+    *  item 2 with `LEVELS` being set to 2 (in addition to 1) and `POBITS` only set to 12
     *  item 2 with `LEVELS` and `POBITS` having any valid value
     *  item 3 below
     *  item 4 below
@@ -26,7 +28,8 @@ Your task:
     For the second submission, which is in preparation for a code review,
     you must complete all parts except part 5 and 6 below.
 
-    For the final submission, you must complete all parts below.
+    For the final submission, you must complete all parts below (and should fix
+    any problems identified in the code review).
 
 2.  Implement a simulation of multi-level page table lookup and allocation.
     For the purposes of this simulation "physical" addresses are the ones your simulation program
@@ -65,9 +68,9 @@ Your task:
 4.   Write a `README` explaining (at a minimum)
 	- How to customize `config.h`, with some guidance on how to pick values for that file.
 	- An example use case for this code. Note that this cannot be "to implement virtual memory" since this code relies on `posix_memalign`, which cannot work without virtual memory already being in place.
-	- Any known bugs (if you know of none, there is no need to say so).
+	- Any known bugs or limitations (if you know of none, there is no need to say so).
 	
-	You are encouraged to add additional detail, such as
+     You are encouraged to add additional detail, such as
 	
 	- Any limitations, aspects you think are incomplete, or suggestions for future expansion.
 	- Big-O analysis (time, space, or both).
@@ -244,11 +247,7 @@ int main() {
 You need to choose a license for the code you supply. Include the chosen license as
 `LICENSE` and a file `licenses.txt` indicating your exploration of licenses.
 
-This should be based on an existing family of license agreements,
-and must be one that requires attribution 
-so that if some future student obtains your code
-it is not permitted for them to submit it, or a significant subset of it, as their own.
-
+This should be based on an existing family of license agreements.
 Unless you have had formal training in commercial law,
 you should use an existing license, not try to create your own.
 
