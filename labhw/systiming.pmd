@@ -12,6 +12,7 @@ Changelog:
 *  2 Feb 2023: clarify that advice re: using separate files or other strategies to avoid an optimizing compiler eliding a function call is for the issue of timing a function call, not the other items
 *  2 Feb 2023: clarify that item 5 should time until the signal sent back is received, but also allow the alternate interpretation
 *  2 Feb 2023: add option of setting flag in signal handler as an idea in hints for implementing the wait-for-signal in item 5, following what was done in the lab
+*  2 Feb 2023: remove sentence from hint for timing signal handler that contradicted item 5 being in the assignment
 </div>
 
 # Your task
@@ -140,9 +141,6 @@ with the compiler's optimizer replacing a function call with the body of that fu
 ## Timing the signal handler
 
 When sending a signal to the current thread, `kill()` is guaranteed to return only after the signal is delivered. If you want to avoid specifying the process ID, you can also use the function `raise()` [which can only send a signal to the current process] instead of `kill()` [which can send to any process].
-
-It would be more interesting to measure the time needed to send a signal to _another_ process, but that is not a requirement of this assignment. One idea for doing this might be to have a pair of processes A and B, then have
-A send a signal to B and B's signal handler send a signal back to A.
 
 ## Timing receiving a signal back
 
