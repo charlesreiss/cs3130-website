@@ -36,8 +36,9 @@
   comment: "running loop with clock_gettime + graphing and/or other performance monitoring"
   comment: "timing system call"
   submit_files:
-  - timing.txt
   - timings.txt
+  - "*.txt"
+  - "*.csv"
   - "*.c"
   - "*.h"
   - "*.s"
