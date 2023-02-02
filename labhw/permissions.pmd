@@ -23,6 +23,7 @@ Work, ideally with a partner, to achieve the following:
 1. Make a file `simple.sh` which can be run both by `bash simple.sh`{.bash} and `./simple.sh`{.bash} containing bash commands that
     a. appends a line containing the current day and time to file `simple_runs`
     a. reports how many lines `simple_runs` contains
+  (See the section of the reading on executable text files.)
 1. Determine which of the following are possible to achieve and write your answers
    (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet):.
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
@@ -34,5 +35,5 @@ Work, ideally with a partner, to achieve the following:
     a. from your home directory, run `tar --acls -cvf permissions-lab.tar BASE-DIRECTORY` where `BASE-DIRECTORY` is the directory you created for everything in the lab. Then upload `permissions-lab.tar` to the submission site.
 {/}
 
-The information needed to achieve these goals is explained in the [reading on permissions](readings/permissions.pmd).
+The information needed to achieve these goals is explained in the [reading on permissions](readings/permissions.html).
 We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
