@@ -31,7 +31,7 @@ Work, ideally with a partner, to achieve the following:
     a. `./xyxxy`{.bash} works but `echo hi >> xyxxy`{.bash} does not
 1. Either:
     a. check off your lab completion with a TA, or
-    a. from your home directory, run `tar -cvf permissions-lab.tar BASE-DIRECTORY` where `BASE-DIRECTORY` is the directory you created for everything in the lab. Then upload `permissions-lab.tar` to the submission site.
+    a. from your home directory, run `tar --acls -cvf permissions-lab.tar BASE-DIRECTORY` where `BASE-DIRECTORY` is the directory you created for everything in the lab. Then upload `permissions-lab.tar` to the submission site.
 {/}
 
 The information needed to achieve these goals is explained in the [reading on permissions](readings/permissions.pmd).
