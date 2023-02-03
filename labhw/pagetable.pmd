@@ -1,5 +1,5 @@
 ---
-title: page table 1
+title: page table
 ...
 
 {.exercise ...}
@@ -19,7 +19,8 @@ Your task:
     *  item 4 below
     *  item 5 below
 
-    For all parts of this assignment, follow the coding style described below
+
+    For **all** parts of this assignment, follow the coding style described below
     and make sure your code does not
     give warnings when compiled with `-Wall`^[ ...because you resolved the warnings,
 		not because you disabled them with warning-ignoring `#pragma`s or the like.
