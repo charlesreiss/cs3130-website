@@ -5,7 +5,7 @@ title: Permissions
 <div class="changelog">
 Changelog:
 
-*  3 Feb 2023: describe how to make directory accessible to another user on portal
+*  3 Feb 2023: describe how to make directory accessible to another user on portal; correct link to permissions reading
 </div>
 
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
@@ -53,5 +53,5 @@ Work, ideally with a partner, to achieve the following:
     a. from your home directory, run `tar --acls -cvf permissions-lab.tar BASE-DIRECTORY` where `BASE-DIRECTORY` is the directory you created for everything in the lab. Then upload `permissions-lab.tar` to the submission site.
 {/}
 
-The information needed to achieve these goals is explained in the [reading on permissions](readings/permissions.html).
+The information needed to achieve these goals is explained in the [reading on permissions](../readings/permissions.html).
 We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
