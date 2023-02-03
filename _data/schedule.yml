@@ -71,7 +71,7 @@
 
     *  virtual memory concept
     *  page tables
-       *  concept
+       *  concept, small example
 
 - date: 2023-02-07
   week: 4
@@ -81,8 +81,10 @@
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
+       *  storing in memory
        *  as a tree
-       *  x86-64 structure
+       *  permission bits
+       *  page table tricks
 
 - date: 2023-02-08
   lab: true

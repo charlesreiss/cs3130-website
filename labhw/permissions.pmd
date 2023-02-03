@@ -2,6 +2,12 @@
 title: Permissions
 ...
 
+<div class="changelog">
+Changelog:
+
+*  3 Feb 2023: describe how to make directory accessible to another user on portal
+</div>
+
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
 As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
 Although not all OSs use the same system, the POSIX standard defines a set of file permissions that are commonly used.
@@ -11,7 +17,19 @@ Work, ideally with a partner, to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
    on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet).
-1. Create a directory in your home directory for this lab. Do each of the following steps in that directory.
+1. Create a directory either:
+    *  in your home directory, or
+    *  in `/localtemp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
+   Do each of the following steps in that directory.
+1. Make sure the directory is accessible to your partner. Use `chmod` or `setfacl` to set permissions on the directory.
+
+   *  If it is in your home directory, then by default the permissions on your home directory disallow access to
+      anything inside it, even if those files or directories are themselves set to allow access. You can change
+      this with something like `chmod og+x /u/COMPUTING-ID` (On directories,
+      `x` is "search" permission; which allows accessing files within the direcgtory if you know their names).
+
+   *  If it is in `/localtemp`, make sure you are on the same portal backend machine, like you did for the signals lab.
+
 1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
     a. `ls dir`{.bash} refuses to run
     a. `cat dir/foo`{.bash} works
