@@ -62,6 +62,7 @@
   title: accounts + virtual memory 1
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §3"
   slides: yes
+  video_mp4: yes
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions

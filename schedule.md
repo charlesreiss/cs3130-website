@@ -76,6 +76,10 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
 {%- if video -%}
       | screencapture (<a href="/~cr4bd/videoplayer/?3130/S2023/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
     )
+{%- else -%}
+    {%- if day.video_mp4 -%}
+      | screencapture (download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>)
+    {%- endif %-}
 {%- endif -%} 
 {%- if day.slides or day.video_webm or day.who or day.slides_see -%}
 &nbsp;]
