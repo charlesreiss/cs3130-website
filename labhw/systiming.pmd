@@ -21,7 +21,7 @@ Changelog:
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
 
     1.  calling an empty function and having it return
-    2.  running the `getpid` function from `<unistd.h>`^[When writing this assignment originally, I thought that this was just a system call wrapper. But, it seems that sometimes it's something more complicated, depending on the version of the system libraries.]
+    2.  running the `getpid` function from `<unistd.h>`^[When writing this assignment originally, I thought that this was just a system call wrapper. But, it seems that sometimes it's something more complicated (caching the result to avoid making additional system calls), depending on the version of the system libraries.]
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
     4.  sending a signal to the current process and starting a signal handler
     5.  sending a signal to another process, then having that process's signal handler send a signal back, then having the signal sent back received by the original process <small>(because we originally didn't specify this clearly, we'll also accept timing the time to just have the signal sent back and not necessairily received, but that seems like more work to time)</small>
