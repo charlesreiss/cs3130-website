@@ -79,7 +79,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
 {%- else -%}
     {%- if day.video_mp4 -%}
       | screencapture (download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>)
-    {%- endif %-}
+    {%- endif -%}
 {%- endif -%} 
 {%- if day.slides or day.video_webm or day.who or day.slides_see -%}
 &nbsp;]
