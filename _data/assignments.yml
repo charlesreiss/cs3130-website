@@ -27,7 +27,6 @@
   comment: "also answer sheet on quiz system"
   comment: "should have random permission conversion problem generator"
   submit_file: permissions-lab.tar
-  tentative: true
   due: 2023-02-08
 
 - name: timing
