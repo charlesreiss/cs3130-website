@@ -92,17 +92,13 @@
 
 - date: 2023-02-09
   week: 4
-  title: virtual memory 3 / buses + DMA
-  reading: "[kernel](readings/kernel.html) §3, [buses](readings/bus.html)"
+  title: virtual memory 3 / connections
+  reading: "[kernel](readings/kernel.html) §3, [protocols](readings/protocol.html) §1-2"
   description: |
     *  page faults
        *  loading data on demand, swapping
-    *  processor buses
-       *  half-duplex versus full-duplex
-       *  I/O bridge idea <!-- FIXME: still accurate? -->
-    *  direct-memory accesses <!-- FIXME: what prereqs are covered in COA1 -->
-    *  connecting machines
-    *  network topologies
+
+    *  networking / mailbox analogy (start)
 
 - date: 2023-02-14
   week: 5
@@ -117,6 +113,8 @@
     *  TCP / connections
        *  acknowledgements
        *  state machine
+    *  names and addresses
+       *  layers preview
 
 - date: 2023-02-15
   lab: true
@@ -124,31 +122,32 @@
 
 - date: 2023-02-16
   week: 5
-  title: UDP + connections + TCP
+  title: IP +  routing
   reading: "[protocols](readings/protocol.html) §1-2"
   description: |
-    *  names and addresses
     *  running example: a frame
        *  layers (link, network, transport)
-    *  addresses and names
-       *  layers preview
     *  IP
        *  addresses (v4, v6)
        *  routers
     *  port numbers and UDP
-    *  connection abstraction
     *  firewalls <!-- FIXME: not in reading! -->
 
 - date: 2023-02-21
   week: 6
-  title: URLs + DHCP + DNS
-  reading: "[protocols](readings/protocol.html) §3-4"
+  title: URLs + DHCP + DNS / buses
+  reading: "[protocols](readings/protocol.html) §3-4, [buses](readings/bus.html)"
   description: |
     *  URLs
     *  DHCP / v6 autoconfiguration?
     *  DNS
        *  is a distributed database
        *  with caching
+
+    *  processor buses
+       *  half-duplex versus full-duplex
+       *  I/O bridge idea <!-- FIXME: still accurate? -->
+    *  direct-memory accesses <!-- FIXME: what prereqs are covered in COA1 -->
 
 
 - date: 2023-02-22

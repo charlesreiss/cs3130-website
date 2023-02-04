@@ -15,7 +15,7 @@ Changelog:
 *  2 Feb 2023: remove sentence from hint for timing signal handler that contradicted item 5 being in the assignment
 *  3 Feb 2023: don't describe gettpid as a system call wrapper, since it's not always one
 *  3 Feb 2023: clarify that the "describe what calculations" step only needs to cover any calculations converting the program's output to time estimates
-*  3 Feb 2023: emphasize that `kill()` does not wait for another process's signal handler to run in hints
+*  4 Feb 2023: emphasize that `kill()` does not wait for another process's signal handler to run in hints
 </div>
 
 # Your task
