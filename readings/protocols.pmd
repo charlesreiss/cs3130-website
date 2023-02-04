@@ -387,7 +387,7 @@ The most common model for DHCP is as follows:
     a. an offered IP address
     a. in a UDP packet from port 67 to port 68
     a. over IP from the server's IP address to 255.255.255.255
-    a. on the channel, directly to the computer^[How direct this is depends on the channel technology. Often it is actually sent to everyone on the channel, but with a MAC address that means "everyone but the target computer should ignore this message."]
+    a. on the channel, directly to the computer^[ How direct this is depends on the channel technology. Often it is actually sent to everyone on the channel, but with a MAC address that means "everyone but the target computer should ignore this message."]
 
 3.  The computer sends
     

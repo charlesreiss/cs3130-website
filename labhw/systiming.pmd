@@ -15,7 +15,7 @@ Changelog:
 *  2 Feb 2023: remove sentence from hint for timing signal handler that contradicted item 5 being in the assignment
 *  3 Feb 2023: don't describe gettpid as a system call wrapper, since it's not always one
 *  3 Feb 2023: clarify that the "describe what calculations" step only needs to cover any calculations converting the program's output to time estimates
-*  4 Feb 2023: emphasize that `kill()` does not wait for another process's signal handler to run in hints
+*  4 Feb 2023: emphasize that `kill()` does not wait for another process's signal handler to run in hints; correct formatting of footnote
 </div>
 
 # Your task
@@ -164,11 +164,14 @@ has the problem that the signal can be received at "MIDDLE" and "lost".
 To avoid this problem, some approaches for doing this:
 
 *  "[block](../readings/kernel.html#blocking)" the signal temporarily with `sigprocmask`, then use `sigwait` to wait for the signal _instead of_ installing a signal handler
-*  install a signal handler that finishes timing and have it set a flag in a global variable that is checked in a loop that calls something like `usleep`, similar to checking for `outbox[0]` to be 0 in the lab.^[To be most reliable/portable, the flag should be declared as a `volatile sig_atomic_t` to tell the compiler to expect the value to be modified by signal handlers, but as long as the loop calls something like `usleep`, probably other types will work. 
+*  install a signal handler that finishes timing and have it set a flag in a global variable that is checked in a loop that calls something like `usleep`, similar to checking for `outbox[0]` to be 0 in the lab.[^atomic]
 *  install a signal handler, "block" the signal temporarily with `sigprocmask`, then use `sigsuspend` to wait for the signal handler to run
 *  install a signal handler that uses a function like `siglongjmp` to continue execution of the post-timing code and call `sigsetjmp` before running the signal handler. `sigsetjmp` and `siglongjmp` work very similar to `setjmp` and `longjmp` with are dscribed in the "[setjmp, longjmp, and software exceptions](kernel.html#setjmp-longjmp-and-software-exceptions) section of the kernel reading. Have the code that waits for the signal handler to run call a function like `pause()` to avoid wasting CPU time before `siglongjmp` runs. (You can also use the plain version of `setjmp` and `longjmp` provided that you restore the signal mask afterwards with a call to `sigprocmask` or register the signal handler with the SA_NODEFER flag.)
 
 "Blocking" a signal ensures that the operating system will not deliver it (that is, will not run its signal handler), but blocked signals will still be recorded as "pending" (that is, needing to be handled at some point).
+
+[^atomic]: To be most reliable/portable, the flag should be declared as a `volatile sig_atomic_t` to tell the compiler to expect the value to be modified by signal handlers, but as long as the loop calls something like `usleep`, probably other types will work. 
+
 
 # Collaboration
 
