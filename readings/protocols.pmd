@@ -1,11 +1,12 @@
 ---
 title: Networking Protocols
+author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
 <div class="changelog">
 Changelog:
 
-*  4 Feb 2023: give expansion for acronym URI
+*  4 Feb 2023: give expansion for acronym URI; describe what a "router" is in IP; add section on network address translation and selected special IP addresses
 </div>
 
 
@@ -116,9 +117,13 @@ IP (both versions) works on the following principles:
 
     IPv4 typically writes its 32-bit addresses as 4 8-bit decimal values with periods in between them, as in `255.127.63.31` for `0xFF7F3F1F`.
 
-    IPv6 typically writes its 128-bit addresses as 8 16-bit hexadecimal values separated with colons in square brackets, with a run of all-zero values omitted, as in `[c0a:2::2020]` for `0x0c0a0002000000000000000000002020`.
+    IPv6 typically writes its 128-bit addresses as 8 16-bit hexadecimal values separated with colons in square brackets, with a run of all-zero values omitted, as in `[c0a:2::2020]` for `0x0c0a0002000000000000000000002020`. Sometimes the square brackets are omitted, as in `coa:2::2020`.
 
     The fact that there are more than 2^32^ computers is part of the motivation to switch from IPv4 to IPv6.
+
+    Typically, all the machines on a local network will have IP addresses from the same range. Machines
+    repsonsible for forwarding messages from one network to another, called *routers*, can take of
+    advantage of this to track what messages go to which links.
 
 - IP headers contain the IP address of both the originating and end-destination computer.
 
@@ -128,6 +133,7 @@ IP (both versions) works on the following principles:
     and that it believes is most likely to get the message where it is going,
     but there is no guarantee that the packet will arrive at all
     or that the sender will know if it arrived.
+
 
 ## UDP
 
@@ -363,9 +369,9 @@ However, the core DNS lookup process has not changed since the first DNS specifi
 
 Some IP addresses are specified statically, procured from the set of all possible IP addresses by a single computer and used only by that computer.
 Others are assigned dynamically as needed, picking an IP address when a computer is placed on the Internet and removing it when it disconnects.
-The dynamic process is governed by the Dynamic Host Control Protocol, or DHCP.
+The most common way of obtaining an IPv4 address is governed by the Dynamic Host Control Protocol, or DHCP.
 
-DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but the most common model is as follows:
+The most common model for DHCP is as follows:
 
 1.  The computer sends
     
@@ -396,4 +402,31 @@ DHCP is differs in its details for IPv4 and IPv6 and has several nuances, but th
     a. in a UDP packet from port 67 to port 68
     a. over IP from the server's IP address to 255.255.255.255
     a. on the channel, directly to the computer
+
+For IPv6, similar protocols exist. Since IPv6 has much larger addresses, often the server on the local network
+will only choose the first part of the IPv6 address and each host will select the rest of the address
+(in some way that ensures that there are no duplicate addresses).
+
+# Network address translation
+
+Because IPv4 addresses are scarce, often organizations and households and even some ISPs (Internet Service
+Providers) will have IP addresses on their internal networks that are not valid elsewhere.
+Several ranges of IP addresses^[See [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918) (ranges for general use) and [RFC 6598](https://www.rfc-editor.org/rfc/rfc6598) (range for "carrier-grade NAT")] are reserved for
+this purpose. Probably the most well known are addresses starting with "192.168." or with "10.".
+
+When machines with these private addresses access the public Internet, these private addresses
+need to be translated to a publicly-accessible address. This process is called [network address translation](https://en.wikipedia.org/wiki/Network_address_translation) and results in several machines sharing
+a single public address. This type of configuration is, by far, the most common for home networks
+when using IPv4.
+
+# Selected special IP addresses
+
+Some IP addresses have special uses, here is a partial list:
+
+*  Anything starting with `127.` (IPv4) and the IPv6 address `::1` always represent the current machine. (They won't use the network.)
+
+*  Anything starting with `169.254.` (IPv4) or `fe80:` (IPv6) is a [*link-local* address](https://en.wikipedia.org/wiki/Link-local_address), which is only valid on a local network and assigned automatically.
+
+*  Anything starting with `192.168.` or `10.` or `172.16.` are reserved from private networks, typically used with network address translation (described above).
+
 
