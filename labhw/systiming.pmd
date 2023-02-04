@@ -41,7 +41,7 @@ Changelog:
     *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
     *  describe what calculations were necessary to convert the measurements from your program to time estimates
 
-    If you place measuremnets output by your program in separate data files, make them `.txt` or `.csv` files.
+    If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files.
 
     When producing the time estimates, you must:
 
