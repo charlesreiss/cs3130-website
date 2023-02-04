@@ -14,6 +14,7 @@ Changelog:
 *  2 Feb 2023: add option of setting flag in signal handler as an idea in hints for implementing the wait-for-signal in item 5, following what was done in the lab
 *  2 Feb 2023: remove sentence from hint for timing signal handler that contradicted item 5 being in the assignment
 *  3 Feb 2023: don't describe gettpid as a system call wrapper, since it's not always one
+*  3 Fev 2023: clarify that the "describe what calculations" step only needs to be concerning any calculations converting the program's output to time estimates
 </div>
 
 # Your task
@@ -39,7 +40,7 @@ Changelog:
 
     *  record the measurements output by your program or mention what separate data files these measurements are supplied in;
     *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
-    *  describe what calculations were necessary to convert the measurements from your program to time estimates
+    *  describe what calculations (if any) were necessary to convert the measurements output from your program to time estimates
 
     If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files.
 
