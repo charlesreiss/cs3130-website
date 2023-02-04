@@ -2,6 +2,13 @@
 title: Networking Protocols
 ...
 
+<div class="changelog">
+Changelog:
+
+*  4 Feb 2023: give expansion for acronym URI
+</div>
+
+
 This document is designed to be a brief overview of several common network communication protocols, suitable for a day or two overview of a set of topics that we also teach entire courses about.
 As such it glosses over or completely ignores many important topics.
 
@@ -227,7 +234,8 @@ is sometimes used as a term for the entire Internet protocol suite.
 # URLs
 
 We are accustomed to navigating the web with Universal Resource Locators (URLs).
-A URL is a special type of URI and has [many components](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Generic_syntax), but three will suffice for this introduction.
+A URL is a special type of Uniform Resource Indicator (URI)^[URIs do not necessairily provide information about how to retrieve a resource over the network, but URLs do.]
+and has [many components](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Generic_syntax), but three will suffice for this introduction.
 
 - A *scheme* like HTTP or HTTPS; this identifies the protocol used at the application layer.
 
