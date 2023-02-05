@@ -1,6 +1,14 @@
 ---
 title: Security protocols with less math
+author: Luther Tychnoviech and Charles Reiss
 ...
+
+<div class="changelog">
+Changelog:
+
+*  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; add section on pitfalls with cryptographic protocols
+</div>
+
 
 Three basic primitives provide a great deal of modern security:
 hashes, symmetric (or shared-key) ciphers, and asymmetric (or public-key) ciphers.
@@ -8,7 +16,7 @@ This writeup is designed to explain the concepts behind these tools
 and how they are used to achieve common security objectives
 without the algorithmic and mathematical complexity of current implementations.
 
-# Three useful tools
+# Four useful tools
 
 ## Hashes
 
@@ -67,28 +75,44 @@ Describing why this is insecure stems from the fact that messages have internal 
 
 Getting the first two properties is easy; getting the third is hard, contributing to a history of finding a weakness in one cipher and picking another to replace it.
 
+## Message authentication codes and authenticated encryption
+
+A **message authentication code** are functions similar to a hash function except it takes a
+limited-size secret key $k$. These functions have the following properties:
+
+-  $f(m, k) = t$ --- applying the message authentication code $f$ produces a *tag* $t$
+-  given $m$ and $t$, recoverying $k$ is no easier than trying every possible $k$
+-  given $m$ and $t$, finding another message $m'$ and corresponding tag $t'$ such that $f(m',k)=t'$ is no easier than finding $k$
+
+By sending the "tag" along with our message, we can ensure that the message was sent by someone
+who had the secret key $k$.
+
+Frequently, this is used in conjunction with symmetric ciphers. The symmetric cipher itself only ensures that
+the message contents is secret, but it doesn't ensure that it is not maliciously corrupted.
+Combining asymmetric encryption and a message authentication code is often called **authentication encryption**.
+
 ## Asymmetric ciphers
 
-An **asymmetric cipher** or **public-key cipher**^[Note that "public-key" is an overloaded term; for example, [Diffie-Hellman] does not use the type of asymmetric cipher described here, but is asymmetric in a different way and is also sometimes called a "public-key" protocol.] is a function that can both encrypt and decrypt.
-However, keys come in pairs. If $f$ is an asymmetric cipher and $(k_1, k_2)$ is a key pair then
+An **asymmetric cipher** or **public-key cipher**^[Note that "public-key" is an overloaded term; for example, [Diffie-Hellman] does not use the type of asymmetric cipher described here, but is asymmetric in a different way and is also sometimes called a "public-key" protocol.] is pair of functions that can both encrypt and decrypt.
+However, unlike symmetric ciphers, keys come in pairs. If $(e,d)$ is an asymmetric cipher and $(k_1, k_2)$ is a key pair then
 
-- $f(f(m, k_1), k_2) = m$ --- $k_2$ decrypts what $k_1$ encrypts
-- $f(f(m, k_2), k_1) = m$ --- $k_1$ decrypts what $k_2$ encrypts
-- $f(f(m, k_i), k_i) \ne m$ --- neither key decrypts what it encrypts
+- $d(e(m, k_1), k_2) = m$ --- $k_2$ decrypts what $k_1$ encrypts, and
+- knowing $d$, $c$, and $k_1$ should not make determining $k_2$ or $m$ too easy
 
-The cipher should also follow the security property:
-
-- knowing $f$, $c$, and $k_1$ should not make determining $k_2$ or $m$ easier than brute-force guessing all possible $k_2$s.
+Generally, $k_1$ is called the *public key* and $k_2$ is called the *private key*.
 
 In practice, only a limited set of asymmetric ciphers are known and they do not offer quite as good security as "no better than brute force," but they do have (near) proofs of difficulty to break *if*
 
 - Certain generally-accepted but not-yet-proven theorems hold (notably "**P** ≠ **NP**" and "factorization ∉ **P**")
-- You only encrypt small data (generally not to exceed the size of the keys)
+- You only encrypt small data
 
 {.example ...} The following code implements an asymmetric cipher, albeit not a secure one
 
 ```c
-int f(int msg, int key) {
+int e(int msg, int key) {
+    return msg * key;
+}
+int d(int msg, int key) {
     return msg * key;
 }
 ```
@@ -102,9 +126,9 @@ which truncated to 32 bits is just 1; thus (2501, 3221654797) is a key pair for 
 int message = 0xdeadbeef;
 int k1 = 2501, k2 = 3221654797;
 printf("-> message: %x; ciphertext: %x; decrypted: %x\n",
-    message, f(message, k1), f(f(message, k1), k2));
+    message, e(message, k1), d(e(message, k1), k2));
 printf("<- message: %x; ciphertext: %x; decrypted: %x\n",
-    message, f(message, k2), f(f(message, k2), k1));
+    message, e(message, k2), d(e(message, k2), k1));
 ```
 
 displays
@@ -120,16 +144,75 @@ If you have my public key, you can use it to encrypt messages only I can decrypt
 and to decrypt messages only I can encrypt.
 
 Unlike [symmetric ciphers](#symmetric-ciphers), of which there are many,
-only a few asymmetric ciphers have ever been popular.
-RSA^[RSA is short for Rivest-Shamir-Adleman, named after Ron Rivest, Adi Shamir, and Len Adleman, its inventors. It was previously invented by Clifford Cocks, but Cocks' document describing it was given a top-secret classification by the British government and not made public until 1997.]  is the most common by far,
-so much so that "RSA" is sometimes used as a generic noun for all asymmetric ciphers.
+only a few asymmetric ciphers have ever been popular:
+*  RSA^[RSA is short for Rivest-Shamir-Adleman, named after Ron Rivest, Adi Shamir, and Len Adleman, its inventors. It was previously invented by Clifford Cocks, but Cocks' document describing it was given a top-secret classification by the British government and not made public until 1997.] encryption is the most well known by far.
+*  ElGamal encryption and ECIES and some similar schemes, which are all based on Diffie-Hellman key exchange (see below)
+
+## Digital Signatures
+
+A **digital signature scheme** (sometimes just called a **signature** or **public-key signature**)
+is pair of functions `s` (sign) and `v` (verify). Like asymmetric encryption,
+digital signature schemes use keypairs.
+If $(s,v)$ is a digital signature scheme and $(k_1,k_2)$, then
+
+- $s(k_2,m)=S$ is called a **signature**,
+- $v(k_1,S,m) = 1$ but $v(k_1,X,m)=0$ for almost all $X \not= S$
+- knowing $s$, $v$, $m$, $S$ and $k_1$ should not make determining $k_2$ easy, and
+- knowing $s$, $v$, $m$, $S$ and $k_1$ should not make finding other values $S'$, $m'$ such $v(k_1,S',m')=1$ too easy
+
+Like with asymmetric encryption, $k_1$ is called the *public key* and $k_2$ is called the private key.
+
+Less formally, we can describe that last security porperty as disallowing the "forging" of a signature
+on any new message.
+
+Like with asymmetric ciphers, only a few digital signature schemes have ever been popular:
+*  RSA signatures. RSA signatures and RSA encryption are based on the same underlying functions, so
+   the decrypt function in RSA encryption is similar to the sign function for RSA signatures.
+*  DSA and ECDSA and EdDSA and some similar schemes, which are all mathematically related to Diffie-Hellman key exchange.
+
+{.aside ...} Trapdoor functions and relating signatures and public-key encryption
+
+Most of the popular digital signature schemes have mathematically related asymmetric encryption algorithms.
+Typically, both the signature scheme and the asymmetric encryption scheme are based on the
+same *trapdoor* function. 
+
+A trapdoor function will be easy to
+compute in one direction but very hard to compute in the inverse direction without some private information.
+To construct a trapdoor function, someone will generate a private key (the private information)
+and a corresponding public key which is related to the private key.
+will call the function that is easy to compute the "public" operation and
+the function that is hard to compute the "private" operation. The public operation
+is requires the public key and the private operation requires the private key.
+
+Given a trapdoor function, asymmetric encryption can be implemented by something similar to
+using the public operation as the encryption function and the private operation as decryption operation.
+Digital sigantures can be implemented by using something similar to:
+*  using the private operation as the sign function, and
+*  applying the public operation to a signature and comparing to the original message for the verify function
+In practice, there are often some extra details required to make a secure asymmetric encryption
+or signature scheme secure, depending on the details of the trapdoor function.
+
+There are some digital signature schemes which are not based on a trapdoor function, like
+the [Lamport signatures](https://en.wikipedia.org/wiki/Lamport_signaturs).
+There are some asymmetric encryption schemes where a related digital signature scheme is
+far less straightforward than for the popular RSA or ECDSA,
+such as [McEliece](https://en.wikipedia.org/wiki/McEliece_cryptosystem).
+
+{/}
 
 ## Diffie-Hellman
 
 The **Diffie-Hellman key exchange**^[There is some difference of opinion about the justice of this name. Whitfield Diffie and Martin Hellman published a paper describing it in 1976, but Hellman later stated the idea in the paper was that of their graduate student Ralph Merkle.] is a method of causing two (or more) parties to agree on a single shared random integer without anyone else listening in being able to know what number they agreed upon.
 
-The process requires identifying a "cyclic group" -- that is, a set of values (integers are preferred) and an operator on elements of that set such that $op(op(x, y), z) = op(op(x, z), y)$.
-To be secure, the set should be large and the operation hard to undo (i.e., knowing both $x$ and $op(x,y)$ should not make it easy to determine $y$).
+Without going into mathematical details, when performing Diffie-Hellamn key exchange:
+*  each party generates a random private key
+*  each party generates a public value from their private key and sends it to the other party
+*  each party can then combine the other's public value with their private key to obtain the same number
+
+### Mathematical details
+
+To make this possible mathematically, the process requires identifying a "cyclic group" -- that is, a set of values (integers are preferred) and an operator on elements of that set such that $op(op(x, y), z) = op(op(x, z), y)$.
+For this scheme to be secure, the set of values $f$ works on should be large and the $f$ operation hard to undo (i.e., knowing both $x$ and $op(x,y)$ should not make it easy to determine $y$).
 
 {.example ...} The following code implements a cyclic group (i.e., `f(f(x,y),z) == f(f(x,z),y)`{.c}, albeit not a secure one
 
@@ -155,6 +238,7 @@ person A knows       shared publicly            person B knows
 $a$                                                        $b$
                     $f(g, a)$, $f(g, b)$
 $f(f(g,b), a)$                                  $f(f(g,a), b)$
+
 
 {.example ...}
 Suppose you and I are communicating, using the (insecure) $f$ from the previous example.
@@ -212,18 +296,14 @@ Task
 :   Verify that a document has been approved in its current form by a particular individual.
 
 Solution
-:   Have them encrypt a [hash](#hashes) of the document with their [private key](#asymmetric-ciphers);
-    the encrypted hash is called their *signature*.
-    
-    To check the signature, 
-    
-    1. get their public key (possibly with a [certificate](#should-i-trust-you) if their key is not one you already know) 
-    2. use it to decrypt the signature to get some value $x$
-    3. hash the document yourself to get another value $y$
-    4. if $x = y$, you have confidence that they signed the document
+:   Have them sign the document --- or, more commonly, a hash of the document,
+    with their [private key](#digital-signature) using a digital signature scheme.
+
+    To check the signature, see if the digital signature scheme's verify function returns
+    true.
 
 
-## Should I trust you?
+## Should I trust you? {#CA}
 
 Task
 :   Convince someone you don't know that you are who you say you are.
@@ -234,8 +314,17 @@ Solution
     3. The skeptic then generates a random number $y$, encrypts it with your [public key](#asymmetric-ciphers), and tells you the encrypted result $z$.
     4. You decrypt $z$ with your [private key](#asymmetric-ciphers) and tell the skeptic "it's really me: your number was $y$."
     
-    The internet today uses a few well-known *certificate authorities*
-    who build entire businesses on validating website identity and signing certificates.
+The internet today uses a few well-known *certificate authorities*
+who validating website identity and signing certificates.^[
+Since you are connecting to a website, the "identity" that most certificate authorities
+are verifying is control over a particular domain name.
+You might think that this would be done by looking up who has the domain registered
+and contacting them in some secure way.
+The reality is maybe less satisfying.
+As of this writing, the [CA/Browser forum](https://cabforum.org/)
+sets the criteria for verifying domain control and primarily it's based on what
+machine(s) the certificate finds when they lookup that name on their
+internet connection(s) when they create the certificate.]
 
 A key insight about digital certificates
 is that presenting the certificate is just half of the authentication process;
@@ -247,7 +336,7 @@ you have to have your card (which others could steal)
 to use it.
 
 There are alternative ways of establishing trust without a centralized set of certificate authorities,
-but the approach described here is dominant at the time of writing^[2019].
+but the approach described here is dominant at the time of writing^[2023].
 
 ## Storing passwords
 
@@ -297,6 +386,92 @@ Solution
     so establishing this communication requires a multi-step back-and-forth protocol.
     One popular protocol for this is called [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security).
 
+# Secure channels
+
+One of the most common uses of cryptography today is establishing a *secure channel* with another
+party. The most popular protocol for this is
+[Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security) (TLS)
+which provides an interface similar to (TCP) sockets, but guarnetees that:
+
+*  your messages are encrypted to prevent interception
+*  your messages cannot be corrupted maliciously by a third-party without you knowing
+*  your messages come from a live connection, they aren't something out-of-date being replayed
+*  your messages come from the server you intended to connect to (based on a certificate from a [certificate authority](#ca))
+
+The TLS protocol has a lot of ways it can work, but the basic flow of one
+of the more common configurations
+today when your browser connects to a web server:
+
+*  your browser generates a private key for using Diffie-Hellman key exchange and sends the corresponding public value to the server
+*  the server generates a temporary private key for using Diffie-Hellamn key exchange and sends the coresponding public value to the server
+*  the browser and server combine the public values with private keys to obtain new keys for symmetric encryption and message authentication codes.
+*  the server sends its [certificate(s)](#CA). The certificate contains a copy of the server's long-term public key, signed by a certificate authority that the browser is already aware of.
+*  the server hashes all the messages it sent so far, then signs this hash with its long-term public signature key. This lets the client make sure the server is the one identified by the certificate.
+*  the server sends a message authentication code over everything sent so far. This lets the client make sure that the server is the same one who sent the public Diffie-Hellman value the client used.
+*  the browser verifies the signature and message authentication code
+*  the client and server communicate using the authenticated symmetric encryption using keys generated via Diffie-Hellman
+
+# Pitfalls of cryptographic protocols
+
+Non-careful use of encryption and authentication has often resulted in suprising security flaws
+despite using otherwise secure cryptopgraphic functions.
+
+As an example, let's say A is trying to tell B what payments to make for company.
+
+A naive approach to do this would be for A to simply encrypt their messages
+to B, either using shared secret key and symmetric encryption or
+using a keypair and asymmetric encryption. These ideas are likely to run into a lot of problems.
+
+## Symmetric cencryption but not authentication
+
+Just because messages are encrypted does not mean they cannot be tampered with.
+
+With symmetric encryption, often it is possible for a malicious party to manipulate the encrypted
+message despite not being able to encrypt it. For example, let's say A sending a message like:
+
+>  pay $   1000.00 to Mallroy
+
+and encrypts this message.  An attacker might not be able to decrypt this message,
+but may be able to guess the contents
+of the message from other sources. With many encryption algorithms this would let them change
+the contents of the message in a targeted way. For example, they would know where
+in the cipertext the data for "1000.00" would be and could try flipping some bits to change the
+number there. A countermeasure to this type of attack is to authenticate messages
+(such as with a message authentication code).
+
+## Public key encryption but not authentication
+
+With public-key encryption, the public keys are public. This means that anyone can encrypt
+a message to a public key. So if A is sending a message to B by encrypting to B's public key
+that says:
+
+>   pay $    1000.00 to Mallroy
+
+then an attacker M can do exactly what A did: send their own message to B by encrypting with B's
+public key. And when M does this process, they could change the number.
+To prevent M from pretending to be B, B could, for example, require messages to also
+be signed using a public key that corresponds to a private key only A has.
+
+## Replay attacks
+
+Let's go back to the example of the message:
+
+>  pay $   1000.00 to Mallroy
+
+If this message is signed and encrypted, an attacker might still have access to the signature
+and ciphertext. Using this, they can send the message as many times as they like.
+If A is willing to make multiple payments for B, then A will end up paying Mallroy too much.
+
+A common countermeasure for replay attacks are *nonces*, numbers used only once. For example,
+instead the message could be:
+
+>  payment #15: pay $    1000.00 to Mallroy
+
+and B could verify that the payment number is larger than any that has been used before.
+
+If we wanted to avoid having B remember the highest payment number, an alternate scheme would be
+to have B choose a large random number to use a *nonce*,
+remember it and send it to A, and require that A's next message uses a number it just sent A.
 
 # Side channels
 
