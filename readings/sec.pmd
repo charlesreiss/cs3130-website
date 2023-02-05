@@ -6,7 +6,7 @@ author: Luther Tychnoviech and Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; add section on pitfalls with cryptographic protocols
+*  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; reorganize asymmetric encyrption section to not assume that encryption function and decryption are the same function with different parameters; add section on pitfalls with cryptographic protocols; reorganize Diffie-Hellman key exchange to separate out of the more mathematical parts
 </div>
 
 
@@ -145,6 +145,7 @@ and to decrypt messages only I can encrypt.
 
 Unlike [symmetric ciphers](#symmetric-ciphers), of which there are many,
 only a few asymmetric ciphers have ever been popular:
+
 *  RSA^[RSA is short for Rivest-Shamir-Adleman, named after Ron Rivest, Adi Shamir, and Len Adleman, its inventors. It was previously invented by Clifford Cocks, but Cocks' document describing it was given a top-secret classification by the British government and not made public until 1997.] encryption is the most well known by far.
 *  ElGamal encryption and ECIES and some similar schemes, which are all based on Diffie-Hellman key exchange (see below)
 
