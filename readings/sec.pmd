@@ -392,7 +392,7 @@ Solution
     which provides an interface similar to TCP sockets that gaurentees privacy
     and prevents tampering by malicious networks.
 
-### TLS key exchange
+{.aside ...} TLS key exchange
 
 The TLS protocol has a lot of ways it can work, depending on the server and
 browser configuraiton, but the basic flow of one of the more common configurations
@@ -400,12 +400,14 @@ today when your browser connects to a web server:
 
 *  your browser generates a private key for using Diffie-Hellman key exchange and sends the corresponding public value to the server
 *  the server generates a temporary private key for using Diffie-Hellamn key exchange and sends the coresponding public value to the server
-*  the browser and server combine the public values with private keys to obtain new keys for symmetric encryption and message authentication codes.
+*  the browser and server combine the public values with private keys to obtain several new keys for symmetric encryption and message authentication codes.
 *  the server sends its [certificate(s)](#CA). The certificate contains a copy of the server's long-term public key, signed by a certificate authority that the browser is already aware of.
 *  the server hashes all the messages it sent so far, then signs this hash with its long-term public signature key. This lets the client make sure the server is the one identified by the certificate.
 *  the server sends a message authentication code over everything sent so far. This lets the client make sure that the server is the same one who sent the public Diffie-Hellman value the client used.
 *  the browser verifies the signature on the certificate. Then, using the information in the certificate, it verifies and message authentication code
 *  the client and server communicate using the authenticated symmetric encryption using keys generated via Diffie-Hellman
+
+{/}
 
 # Pitfalls of cryptographic protocols
 
