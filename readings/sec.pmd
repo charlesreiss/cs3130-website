@@ -310,7 +310,7 @@ Task
 :   Convince someone you don't know that you are who you say you are.
 
 Solution
-:   1. Have someone who knows both of you [sign](#signatures) a document saying "this person's public key is $x$."
+:   1. Have someone who knows both of you [sign](#signatures) a document saying "this person's public key for asymmetric encryption is $x$."
     2. Give that document, called a *certificate*, to the skeptic who doubts your identity.
     3. The skeptic then generates a random number $y$, encrypts it with your [public key](#asymmetric-ciphers), and tells you the encrypted result $z$.
     4. You decrypt $z$ with your [private key](#asymmetric-ciphers) and tell the skeptic "it's really me: your number was $y$."
@@ -335,6 +335,9 @@ It's a bit like (but much more secure than) an ID card with a picture of you on 
 you have to have your card (which others could steal)
 *and* your face (which you never intentionally give to anyone)
 to use it.
+
+In this example, the certificate contained a public key for encryption. Something similar can be done if
+the certificate instead contains a public key for a digital signature.
 
 There are alternative ways of establishing trust without a centralized set of certificate authorities,
 but the approach described here is dominant at the time of writing^[2023].
