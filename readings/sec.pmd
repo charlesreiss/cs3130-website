@@ -89,7 +89,7 @@ who had the secret key $k$.
 
 Frequently, this is used in conjunction with symmetric ciphers. The symmetric cipher itself only ensures that
 the message contents is secret, but it doesn't ensure that it is not maliciously corrupted.
-Combining asymmetric encryption and a message authentication code is often called **authentication encryption**.
+Combining asymmetric encryption and a message authentication code is called **authenticated encryption**.
 
 ## Asymmetric ciphers
 
@@ -388,22 +388,14 @@ Solution
     and possibly share [certificates](#should-i-trust-you) to make sure we are who we say we are,
     and Diffie-Hellman involves several communication steps itself,
     so establishing this communication requires a multi-step back-and-forth protocol.
-    One popular protocol for this is called [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security).
+    One popular protocol for this is called [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security),
+    which provides an interface similar to TCP sockets that gaurentees privacy
+    and prevents tampering by malicious networks.
 
-# Secure channels
+### TLS key exchange
 
-One of the most common uses of cryptography today is establishing a *secure channel* with another
-party. The most popular protocol for this is
-[Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security) (TLS)
-which provides an interface similar to (TCP) sockets, but guarnetees that:
-
-*  your messages are encrypted to prevent interception
-*  your messages cannot be corrupted maliciously by a third-party without you knowing
-*  your messages come from a live connection, they aren't something out-of-date being replayed
-*  your messages come from the server you intended to connect to (based on a certificate from a [certificate authority](#ca))
-
-The TLS protocol has a lot of ways it can work, but the basic flow of one
-of the more common configurations
+The TLS protocol has a lot of ways it can work, depending on the server and
+browser configuraiton, but the basic flow of one of the more common configurations
 today when your browser connects to a web server:
 
 *  your browser generates a private key for using Diffie-Hellman key exchange and sends the corresponding public value to the server
@@ -412,7 +404,7 @@ today when your browser connects to a web server:
 *  the server sends its [certificate(s)](#CA). The certificate contains a copy of the server's long-term public key, signed by a certificate authority that the browser is already aware of.
 *  the server hashes all the messages it sent so far, then signs this hash with its long-term public signature key. This lets the client make sure the server is the one identified by the certificate.
 *  the server sends a message authentication code over everything sent so far. This lets the client make sure that the server is the same one who sent the public Diffie-Hellman value the client used.
-*  the browser verifies the signature and message authentication code
+*  the browser verifies the signature on the certificate. Then, using the information in the certificate, it verifies and message authentication code
 *  the client and server communicate using the authenticated symmetric encryption using keys generated via Diffie-Hellman
 
 # Pitfalls of cryptographic protocols
