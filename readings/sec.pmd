@@ -81,8 +81,8 @@ A **message authentication code** are functions similar to a hash function excep
 limited-size secret key $k$. These functions have the following properties:
 
 -  $f(m, k) = t$ --- applying the message authentication code $f$ produces a *tag* $t$
--  given $m$ and $t$, recoverying $k$ is no easier than trying every possible $k$
--  given $m$ and $t$, finding another message $m'$ and corresponding tag $t'$ such that $f(m',k)=t'$ is no easier than finding $k$
+-  given $f$ and $m$ and $t$, recoverying $k$ is no easier than trying every possible $k$
+-  given $f$ and $m$ and $t$, finding another message $m'$ and corresponding tag $t'$ such that $f(m',k)=t'$ is no easier than finding $k$
 
 By sending the "tag" along with our message, we can ensure that the message was sent by someone
 who had the secret key $k$.

@@ -78,6 +78,7 @@
   title: virtual memory 2
   slides: yes
   slides_extra: yes
+  slides_prelim: yes
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
@@ -93,6 +94,10 @@
 - date: 2023-02-09
   week: 4
   title: virtual memory 3 / connections
+  slides_see: 2023-02-07
+  slides: yes
+  slides_extra: yes
+  slides_prelim: yes
   reading: "[kernel](readings/kernel.html) §3, [protocols](readings/protocol.html) §1-2"
   description: |
     *  page faults
