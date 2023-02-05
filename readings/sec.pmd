@@ -7,7 +7,7 @@ author: Luther Tychnoviech and Charles Reiss
 Changelog:
 
 *  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; reorganize asymmetric encyrption section to not assume that encryption function and decryption are the same function with different parameters; add section on pitfalls with cryptographic protocols; reorganize Diffie-Hellman key exchange to separate out of the more mathematical parts
-*  5 Feb 2023: adjust security property phrasing for MACs to mirror symmetric ciphers more
+*  5 Feb 2023: adjust security property phrasing for MACs to mirror symmetric ciphers more; add further resourecs; expand on the existence of other protocol attacks
 </div>
 
 
@@ -472,6 +472,18 @@ If we wanted to avoid having B remember the highest payment number, an alternate
 to have B choose a large random number to use a *nonce*,
 remember it and send it to A, and require that A's next message uses a number it just sent A.
 
+## Other attacks, prevention
+
+Besides failing to authenticate or replay attacks, there are other issues that
+have plagued implementations of cryptographic protocols, despite use of otherwise
+secure building blocks. Some examples:
+
+*  trying to have A prove that they are talking to B by decrypting a message asymmetrically encrypted from B to A, but not realizing [that this allows B decrypt messages others sent to A](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol#An_attack_on_the_protocol)
+*  implementing verification of the server on the other end of the connection, but skipping it [when the server sends a message that would normally only be used after the verification completed](https://mitls.org/pages/attacks/SMACK)
+
+Because of the difficulty of verifying protocol correctness by hand, the state of the
+art is to use machine-checked proofs that protocols have certain security properties.
+
 # Side channels
 
 Having a secure protocol and entropy source is not sufficient to have a secure system.
@@ -490,3 +502,15 @@ but after watching a few hundred DH key exchanges I get a reasonable estimate on
 
 Now suppose for a particular 32-bit DH session I time your code and determine you have 13 1-bits in your key.
 To brute-force guess your key, I only need to check the 347,373,600 32-bit numbers that have 13 1-bits, not all 4,294,967,296, a savings of approximately 12×.
+
+# Further resources
+
+## Textbooks 
+
+*  Anderson, _[Security Engineering](https://www.cl.cam.ac.uk/~rja14/book.html)_ (e.g. the Protocols chapter of any edition; note that PDFs of the second edition are on that website)
+
+*  Ferguson, Schneier, and Kohno, _Cryptography Engineering_
+
+*  Menezes, Oorschot, and Vanstone, _[Handbook of Applied Cryptography](https://cacr.uwaterloo.ca/hac/)_ (particularly chapter 1) (This book takes a very mathematical approach, unlike the prior two books, which more oriented towards cryptography implementators.
+
+
