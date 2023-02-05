@@ -7,6 +7,7 @@ author: Luther Tychnoviech and Charles Reiss
 Changelog:
 
 *  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; reorganize asymmetric encyrption section to not assume that encryption function and decryption are the same function with different parameters; add section on pitfalls with cryptographic protocols; reorganize Diffie-Hellman key exchange to separate out of the more mathematical parts
+*  5 Feb 2023: adjust security property phrasing for MACs to mirror symmetric ciphers more
 </div>
 
 
