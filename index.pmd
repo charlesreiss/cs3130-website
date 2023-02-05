@@ -32,7 +32,7 @@ We have created several writeups for this course:
   *  [File Permissions](readings/permissions.html)
 - [Buses (and networks)](readings/bus.html)
 - [Networking Protocols](readings/protocols.html)
-- [Security protocols with less math](readings/sec.html)
+- [Cryptographic protocols](readings/sec.html)
 - [Caches -- Keep a finger in it](readings/cache.html)
 - [Processes and threads](readings/thread.html)
 - [Synchronization primitives](readings/sync.html)
