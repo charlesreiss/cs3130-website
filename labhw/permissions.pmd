@@ -6,6 +6,7 @@ title: Permissions
 Changelog:
 
 *  3 Feb 2023: describe how to make directory accessible to another user on portal; correct link to permissions reading
+*  7 Feb 2023: fix typo of `/localtemp` for `/localtmp`
 </div>
 
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
@@ -19,7 +20,7 @@ Work, ideally with a partner, to achieve the following:
    on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet).
 1. Create a directory either:
     *  in your home directory, or
-    *  in `/localtemp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
+    *  in `/localtmp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
    Do each of the following steps in that directory.
 1. Make sure the directory is accessible to your partner. Use `chmod` or `setfacl` to set permissions on the directory.
 

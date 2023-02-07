@@ -83,9 +83,7 @@
   description: |
     *  page tables
        *  storing in memory
-       *  as a tree
-       *  permission bits
-       *  page table tricks
+       *  as a tree (start)
 
 - date: 2023-02-08
   lab: true
@@ -100,8 +98,11 @@
   slides_prelim: yes
   reading: "[kernel](readings/kernel.html) §3, [protocols](readings/protocols.html) §1-2"
   description: |
-    *  page faults
-       *  loading data on demand, swapping
+    *  review: in-memory page table lookup
+    *  page tables
+       *  as a tree (finish)
+       *  permission bits
+       *  page table tricks, loading data on demand, swapping
 
     *  networking / mailbox analogy (start)
 
