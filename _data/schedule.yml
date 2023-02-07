@@ -98,7 +98,7 @@
   slides: yes
   slides_extra: yes
   slides_prelim: yes
-  reading: "[kernel](readings/kernel.html) §3, [protocols](readings/protocol.html) §1-2"
+  reading: "[kernel](readings/kernel.html) §3, [protocols](readings/protocols.html) §1-2"
   description: |
     *  page faults
        *  loading data on demand, swapping
@@ -108,7 +108,7 @@
 - date: 2023-02-14
   week: 5
   title: IP + connection abstraction
-  reading: "[protocols](readings/protocol.html) §1-2"
+  reading: "[protocols](readings/protocols.html) §1-2"
   description: |
     *  mailbox analogy
        *  inboxes and outboxes
@@ -128,7 +128,7 @@
 - date: 2023-02-16
   week: 5
   title: IP +  routing
-  reading: "[protocols](readings/protocol.html) §1-2"
+  reading: "[protocols](readings/protocols.html) §1-2"
   description: |
     *  running example: a frame
        *  layers (link, network, transport)
@@ -141,7 +141,7 @@
 - date: 2023-02-21
   week: 6
   title: URLs + DHCP + DNS / buses
-  reading: "[protocols](readings/protocol.html) §3-4, [buses](readings/bus.html)"
+  reading: "[protocols](readings/protocols.html) §3-4, [buses](readings/bus.html)"
   description: |
     *  URLs
     *  DHCP / v6 autoconfiguration?
