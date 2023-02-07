@@ -58,6 +58,13 @@
   tentative: true
   portion: 0.2
   due: 2023-02-15
+  submit_files:
+  - "*.c"
+  - "*.h"
+  - "README"
+  - "Makefile"
+  - "makefile"
+  - "*.txt"
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2a
@@ -65,6 +72,13 @@
   tentative: true
   portion: 0.2
   due: 2023-02-22
+  submit_files:
+  - "*.c"
+  - "*.h"
+  - "README"
+  - "Makefile"
+  - "makefile"
+  - "*.txt"
 
 - name: code reviews
   lab: true
@@ -74,7 +88,7 @@
   comments: needs submission site link correction
   due: 2023-02-22
 
-- name: pagetable 2 (post code review)
+- name: pagetable 3 (post code review)
   short_name: pagetable2b
   comment: no introducing lab
   comment: connected to code review lab
@@ -85,6 +99,13 @@
   portion: 1.8
   tentative: true
   due: 2023-03-01
+  submit_files:
+  - "*.c"
+  - "*.h"
+  - "README"
+  - "Makefile"
+  - "makefile"
+  - "*.txt"
 
 - name: TBA secure channels lab
   lab: true
