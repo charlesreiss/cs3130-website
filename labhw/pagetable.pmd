@@ -15,9 +15,9 @@ Your task:
 
     *  item 2 with `LEVELS` being set to 2 (in addition to 1) and `POBITS` only set to 12
     *  item 2 with `LEVELS` and `POBITS` having any valid value
-    *  item 3 below
-    *  item 4 below
-    *  item 5 below
+    *  item 3 below (a Makefile)
+    *  item 4 below (a README)
+    *  item 5 below (a LICENSE and licenses.txt file)
 
 
     For **all** parts of this assignment, follow the coding style described below
@@ -66,17 +66,18 @@ Your task:
 	- has `all` and `clean` targets
 
 
-4.   Write a `README` explaining (at a minimum)
-	- How to customize `config.h`, with some guidance on how to pick values for that file.
-	- An example use case for this code. Note that this cannot be "to implement virtual memory" since this code relies on `posix_memalign`, which cannot work without virtual memory already being in place.
-	- Any known bugs or limitations (if you know of none, there is no need to say so).
+4.   Write a `README` explaining (at a minimum):
+
+     *  How to customize `config.h`, with some guidance on how to pick values for that file.
+     *  An example use case for this code. Note that this cannot be "to implement virtual memory" since this code relies on `posix_memalign`, which cannot work without virtual memory already being in place.
+     *   Any known bugs or limitations (if you know of none, there is no need to say so).
 	
      You are encouraged to add additional detail, such as
 	
-	- Any limitations, aspects you think are incomplete, or suggestions for future expansion.
-	- Big-O analysis (time, space, or both).
-	- Description of any testing hooks you added.
-	- Code samples for how to use this library.
+     *  Any limitations, aspects you think are incomplete, or suggestions for future expansion.
+     *  Big-O analysis (time, space, or both).
+     *  Description of any testing hooks you added.
+     *  Code samples for how to use this library.
 
      If anyone or any resource helped your implementation, also include an
      `ACKNOWLEDGEMENTS` file acknowledging those people and/or resources.
