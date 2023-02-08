@@ -18,6 +18,7 @@ Changelog:
 *  4 Feb 2023: emphasize that `kill()` does not wait for another process's signal handler to run in hints; correct formatting of footnote
 *  7 Feb 2023: adjust phrasing about `sigsuspend` to emphasize that it changes what signals are blocked
 *  8 Feb 2023: specify that measurements not used to compute time estimates do not need to be supplied and that large data files can be placed in some external file
+*  8 Feb 2023: add footnote about usleep and `_XOPEN_SOURCE`
 </div>
 
 # Your task
@@ -166,7 +167,7 @@ has the problem that the signal can be received at "MIDDLE" and "lost".
 To avoid this problem, some approaches for doing this:
 
 *  "[block](../readings/kernel.html#blocking)" the signal temporarily with `sigprocmask`, then use `sigwait` to wait for the signal _instead of_ installing a signal handler
-*  install a signal handler that finishes timing and have it set a flag in a global variable that is checked in a loop that calls something like `usleep`, similar to checking for `outbox[0]` to be 0 in the lab.[^atomic]
+*  install a signal handler that finishes timing and have it set a flag in a global variable that is checked in a loop that calls something like `usleep`^[If you use `usleep`, you can't also use `#define _XOPEN_SOURCE 700`. Workarounds include changing the `700` to `600` or using more modern function like `nanosleep`.], similar to checking for `outbox[0]` to be 0 in the lab.[^atomic]
 *  install a signal handler, "block" the signal temporarily with `sigprocmask`, then use `sigsuspend` to briefly unblock the signal and wait for the signal handler to run
 *  install a signal handler that uses a function like `siglongjmp` to continue execution of the post-timing code and call `sigsetjmp` before running the signal handler. `sigsetjmp` and `siglongjmp` work very similar to `setjmp` and `longjmp` with are dscribed in the "[setjmp, longjmp, and software exceptions](kernel.html#setjmp-longjmp-and-software-exceptions)" section of the kernel reading. Have the code that waits for the signal handler to run call a function like `pause()` to avoid wasting CPU time before `siglongjmp` runs. (You can also use the plain version of `setjmp` and `longjmp` provided that you restore the signal mask afterwards with a call to `sigprocmask` or register the signal handler with the SA_NODEFER flag.)
 
