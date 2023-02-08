@@ -41,7 +41,7 @@ Changelog:
 
 2.  In a file called `timings.txt`:
 
-    *  record the measurements output by your program (used to compute the time estimates) or mention what separate data files these measurements are supplied in;
+    *  record the measurements output by your program (that you used to compute the time estimates) or mention what separate data files these measurements are supplied in;
     *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
     *  describe what calculations (if any) were necessary to convert the measurements output from your program to time estimates
 
