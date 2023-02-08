@@ -32,7 +32,7 @@ I would very strongly recommend having a partner.], to achieve the following:
       this with something like `chmod og+x /u/COMPUTING-ID` (On directories,
       `x` is "search" permission; which allows accessing files within the direcgtory if you know their names).
 
-   *  If it is in `/localtemp`, make sure you are on the same portal backend machine, like you did for the signals lab.
+   *  If it is in `/localtmp`, make sure you are on the same portal backend machine, like you did for the signals lab.
 
 1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
     a. `ls dir`{.bash} refuses to run
