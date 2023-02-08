@@ -32,6 +32,9 @@ Your task:
     For the final submission, you must complete all parts below (and should fix
     any problems identified in the code review).
 
+    (A vast majority of the grade for the assignment will be based on what you submit
+    on the final submission.)
+
 2.  Implement a simulation of multi-level page table lookup and allocation.
     For the purposes of this simulation "physical" addresses are the ones your simulation program
     can access via pointers.

@@ -55,8 +55,7 @@
   short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable.html
-  tentative: true
-  portion: 0.2
+  portion: 0.225
   due: 2023-02-15
   submit_files:
   - "*.c"
@@ -69,8 +68,7 @@
 - name: pagetable 2 (pre code review)
   short_name: pagetable2a
   page: labhw/pagetable.html
-  tentative: true
-  portion: 0.2
+  portion: 0.225
   due: 2023-02-22
   submit_files:
   - "*.c"
