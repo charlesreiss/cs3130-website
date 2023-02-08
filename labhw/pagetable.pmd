@@ -70,7 +70,7 @@ Your task:
 
      *  How to customize `config.h`, with some guidance on how to pick values for that file.
      *  An example use case for this code. Note that this cannot be "to implement virtual memory" since this code relies on `posix_memalign`, which cannot work without virtual memory already being in place.
-     *   Any known bugs or limitations (if you know of none, there is no need to say so).
+     *   Any known bugs or limitations (if you know of none, there is no need to say so; if you have an incomplete implementation so far, you'll probably have some to document).
 	
      You are encouraged to add additional detail, such as
 	
