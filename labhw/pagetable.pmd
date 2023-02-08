@@ -32,8 +32,10 @@ Your task:
     For the final submission, you must complete all parts below (and should fix
     any problems identified in the code review).
 
-    (A vast majority of the grade for the assignment will be based on what you submit
-    on the final submission.)
+    (This assignment will be worth considerably more than a normal one-week assignment.
+    A vast majority of the grade for the assignment will be based on what you submit
+    on the final submission. For the final submission, we will grade (again) tasks which
+    should have been completed on earlier submissions.)
 
 2.  Implement a simulation of multi-level page table lookup and allocation.
     For the purposes of this simulation "physical" addresses are the ones your simulation program
