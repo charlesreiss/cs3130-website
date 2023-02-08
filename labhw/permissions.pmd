@@ -7,6 +7,7 @@ Changelog:
 
 *  3 Feb 2023: describe how to make directory accessible to another user on portal; correct link to permissions reading
 *  7 Feb 2023: fix typo of `/localtemp` for `/localtmp`
+*  7 Feb 2023: add footnote regarding not working with a partner
 </div>
 
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
@@ -14,7 +15,9 @@ As such, the OS gets to decide when to approve a request to do one of these thin
 Although not all OSs use the same system, the POSIX standard defines a set of file permissions that are commonly used.
 
 {.exercise ...}
-Work, ideally with a partner, to achieve the following:
+Work, ideally with a partner^[If you don't work with a partner, you may use the username "nobody" in place of what would
+be your partner's username. But you won't be able to verify that some of your permissions settings work, which is why
+I would very strongly recommend having a partner.], to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
    on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet).
@@ -53,6 +56,8 @@ Work, ideally with a partner, to achieve the following:
     a. check off your lab completion with a TA, or
     a. from your home directory, run `tar --acls -cvf permissions-lab.tar BASE-DIRECTORY` where `BASE-DIRECTORY` is the directory you created for everything in the lab. Then upload `permissions-lab.tar` to the submission site.
 {/}
+
+
 
 The information needed to achieve these goals is explained in the [reading on permissions](../readings/permissions.html).
 We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
