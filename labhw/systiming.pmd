@@ -19,7 +19,7 @@ Changelog:
 *  7 Feb 2023: adjust phrasing about `sigsuspend` to emphasize that it changes what signals are blocked
 *  8 Feb 2023: specify that measurements not used to compute time estimates do not need to be supplied and that large data files can be placed in some external file
 *  8 Feb 2023: add footnote about usleep and `_XOPEN_SOURCE`
-*  8 Feb 2023: make footnote re: links to large data files more obvious
+*  8 Feb 2023: move footnote re: links to data files into body of "your task"
 </div>
 
 # Your task
@@ -58,7 +58,7 @@ Changelog:
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
-4.  Submit all your `timings.txt`, any data files (if your data files are quite large and would be hard to upload, see footnote^[If one or more of your data files would be quite large, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da)) and give a link in timings.txt], and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
+4.  Submit all your `timings.txt`, any data files , and all your source files (`Makefile`, and all the C and assembly source files) to the submission site. (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt)
 
 # Hints
 
