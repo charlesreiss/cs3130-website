@@ -98,7 +98,7 @@
   description: |
     *  page tables
        *  as a tree (finish)
-       *  in-memory page table lookup examples
+       *  in-memory page table lookup
        *  permission bits
        *  page table tricks, loading data on demand, swapping
 
