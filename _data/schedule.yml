@@ -77,12 +77,11 @@
   week: 4
   title: virtual memory 2
   slides: yes
-  slides_extra: yes
-  slides_prelim: yes
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
        *  storing in memory
+       *  in-memory lookup example
        *  as a tree (start)
 
 - date: 2023-02-08
@@ -91,20 +90,17 @@
 
 - date: 2023-02-09
   week: 4
-  title: virtual memory 3 / connections
+  title: virtual memory 3
   slides_see: 2023-02-07
   slides: yes
   slides_extra: yes
-  slides_prelim: yes
-  reading: "[kernel](readings/kernel.html) §3, [protocols](readings/protocols.html) §1-2"
+  reading: "[kernel](readings/kernel.html) §3"
   description: |
-    *  review: in-memory page table lookup
     *  page tables
        *  as a tree (finish)
+       *  in-memory page table lookup examples
        *  permission bits
        *  page table tricks, loading data on demand, swapping
-
-    *  networking / mailbox analogy (start)
 
 - date: 2023-02-14
   week: 5
