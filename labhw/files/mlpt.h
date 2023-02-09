@@ -1,3 +1,5 @@
+#ifndef MLPT_H_
+#define MLPT_H_
 /**
  * Page table base register.
  * Declared here so tester code can look at it; because it is extern
@@ -18,3 +20,4 @@ size_t translate(size_t va);
  * already is such a page, does nothing.
  */
 void page_allocate(size_t va);
+#endif
