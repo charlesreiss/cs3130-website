@@ -53,4 +53,6 @@ for input in *.pmd */*.pmd; do
 done
 pushd jekyll-dir
 chmod -R a+r readings/*
+chmod -R a+r labhw/*
+chmod -R a+r labhw/files/*
 ~/bin/bundle exec jekyll b --trace
