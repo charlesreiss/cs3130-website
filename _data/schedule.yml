@@ -91,9 +91,7 @@
 - date: 2023-02-09
   week: 4
   title: virtual memory 3
-  slides_see: 2023-02-07
   slides: yes
-  slides_extra: yes
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
@@ -106,6 +104,8 @@
   week: 5
   title: IP + connection abstraction
   reading: "[protocols](readings/protocols.html) §1-2"
+  slides: yes
+  slides_prelim: yes
   description: |
     *  mailbox analogy
        *  inboxes and outboxes
