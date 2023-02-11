@@ -66,7 +66,7 @@
   - "*.txt"
 
 - name: pagetable 2 (pre code review)
-  short_name: pagetable2a
+  short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
   due: 2023-02-22
@@ -87,7 +87,7 @@
   due: 2023-02-22
 
 - name: pagetable 3 (post code review)
-  short_name: pagetable2b
+  short_name: pagetable3
   comment: no introducing lab
   comment: connected to code review lab
   comment: manual page???
@@ -95,7 +95,6 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  tentative: true
   due: 2023-03-01
   submit_files:
   - "*.c"

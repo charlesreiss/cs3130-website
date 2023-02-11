@@ -106,6 +106,7 @@
   reading: "[protocols](readings/protocols.html) §1-2"
   slides: yes
   slides_prelim: yes
+  slides_extra: yes
   description: |
     *  mailbox analogy
        *  inboxes and outboxes
