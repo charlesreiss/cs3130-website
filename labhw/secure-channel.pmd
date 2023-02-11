@@ -4,7 +4,7 @@ title: Secure channels lab
 
 {.exercise ...}
 
-1.  Download securelab.tar and extract it.
+1.  Download [securelab.tar](files/securelab.tar) and extract it.
 
 2.  In this lab, you will act as a network attacker on
     several examples of attempts to communicate securely.
@@ -32,15 +32,15 @@ title: Secure channels lab
     over the network.
 
 3.  When sending messages over the network, our testing program
-    calls one of the `forward_...()` functions in `attack.c`.
+    can call one of the `forward_...()` functions in `attack.c`.
     In this function, you can process the messages sent between A and B,
     including changing messages, adding new messages, or discarding messages.
     
-    When you run `./lab N normal`, we'll use the `forward_normal`
-    function for scenario N (where N is 0, 1, 2, 3, or 4).
+    When you run `./lab N normal`, we'll forward messages wihtout
+    changes function for scenario N (where N is 0, 1, 2, 3, or 4).
 
     When you run `./lab N attack`, we'll use the `forward_attack_N`
-    function.
+    function to decide what to do with sent messages.
 
 4.  For scenario 0, 
     Modify the `forward_attack_0` function so B thinks A asked them to
@@ -85,38 +85,38 @@ You can modify this to change the messages in various ways, for example:
 
 *  change the contents of certain message
 
-    void forward_change_to_B(struct message *message) {
-        if (message->to == 'B') {
-            strcpy(message->data, "This replaces the original message.");
-            message->data_size = strlen("This replaces the original message.");
+        void forward_change_to_B(struct message *message) {
+            if (message->to == 'B') {
+                strcpy(message->data, "This replaces the original message.");
+                message->data_size = strlen("This replaces the original message.");
+            }
+            send_message(message);
         }
-        send_message(message);
-    }
     
 *  change the recipient or sender of certain message:
 
-    void forward_send_A_back_to_B(struct message *message) {
-        if (message->to == 'B' && message->from == 'A') {
-            message->to = 'A';
-            message->from = 'B';
+        void forward_send_A_back_to_B(struct message *message) {
+            if (message->to == 'B' && message->from == 'A') {
+                message->to = 'A';
+                message->from = 'B';
+            }
+            send_message(message);
         }
-        send_message(message);
-    }
 
 *  add a brand new message before the first message:
 
-    int counter = 0;
-    void forward_with_additional(struct message *message) {
-        if (counter == 0) {
-            send_message(new_message(
-                'A', 'B',
-                "This is an additional message."
-                false, false
-            )
-            counter += 1;
+        static int counter = 0;
+        void forward_with_additional(struct message *message) {
+            if (counter == 0) {
+                send_message(new_message(
+                    'A', 'B',
+                    "This is an additional message."
+                    false, false
+                )
+                counter += 1;
+            }
+            send_message(message);
         }
-        send_message(message);
-    }
 
 ## Manipulating and creating messages
 
