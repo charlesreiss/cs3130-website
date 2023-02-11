@@ -7,6 +7,7 @@ title: page table
 Changelog:
 
 *  9 Feb 2023: edit example code to use `0x456789abcdef` instead of `0x123456789abcdef` to avoid virtual addresses having unused bits.
+*  11 Feb 2023: fix "page table offsets" to "page offsets"; explicitly indicate that page tables are all the same size and start at the beginning of a page
 </div>
 
 {.exercise ...}
@@ -51,7 +52,7 @@ Your task:
     The layout of this page table must be configurable via `config.h`, which will `#define` the constants:
 
     *  `LEVELS` -- number of levels in the page table
-    *  `POBITS` -- the size of page table offsets
+    *  `POBITS` -- the size of page offsets
 
     Page table entries will take up 8 bytes, with the least significant bit being the "present" bit.
 
@@ -167,7 +168,10 @@ If `ptbr` is not `NULL`, it should point to an array of `size_t`s
 occupying 2^`POBITS`^ bytes.
 Each such `size_t` should be interpreted as a page table entry.
 
+Each other page table should be the same size. All page tables should start at the beginning of a page.
+
 {.note} Some texts refer to a PTBR containing a physical address; others to it containing a physical page number. The above definition asserts it contains a physical address, not page number. As such, it will always have 0 in its low-order `POBITS` bits.
+
 
 Each page table entry should be either
 
