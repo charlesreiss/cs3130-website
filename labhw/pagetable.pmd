@@ -8,6 +8,7 @@ Changelog:
 
 *  9 Feb 2023: edit example code to use `0x456789abcdef` instead of `0x123456789abcdef` to avoid virtual addresses having unused bits.
 *  11 Feb 2023: fix "page table offsets" to "page offsets"; explicitly indicate that page tables are all the same size and start at the beginning of a page
+*  11 Feb 2023: mention that page tables are one page in the "Your task" section in addition to the sections below.
 </div>
 
 {.exercise ...}
@@ -55,6 +56,7 @@ Your task:
     *  `POBITS` -- the size of page offsets
 
     Page table entries will take up 8 bytes, with the least significant bit being the "present" bit.
+    Each page table (at each level) will take up one page.
 
     Your code must implement API provided by a header file called `mlpt.h`, an version of
     which is supplied [here](files/mlpt.h). It includes:
