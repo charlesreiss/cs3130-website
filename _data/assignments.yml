@@ -48,7 +48,6 @@
 - name: networking
   lab: true
   page: labhw/networking.html
-  tentative: true
   due: 2023-02-15
 
 - name: pagetable part 1
