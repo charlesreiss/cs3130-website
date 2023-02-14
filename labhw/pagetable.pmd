@@ -11,6 +11,7 @@ Changelog:
 *  11 Feb 2023: mention that page tables are one page in the "Your task" section in addition to the sections below.
 *  13 Feb 2023: replace "present" with "valid" in "Your task" to be consistent with rest of writeup
 *  13 Feb 2023: explicitly indicate that page_allocate also allocates pages which don't hold page tables in order to make the mapping work
+*  13 Feb 2023: explicitly note that not all of `size_t va` is used for the address translation because of the page table sizes
 </div>
 
 {.exercise ...}
@@ -71,8 +72,8 @@ Your task:
         using the currently setup page table. If the address is not allocated,
         return a value with all bits set to 1.
 
-    *  `void page_allocate(size_t va)` --- use posix_memalign to create page tables and other pages
-        sufficient to have a mapping
+    *  `void page_allocate(size_t va)` --- use posix_memalign to create page tables
+        and other pages sufficient to have a mapping
         between the given virtual address and some physical address. If there
         already is such a page, does nothing.
 
@@ -174,6 +175,8 @@ occupying 2^`POBITS`^ bytes.
 Each such `size_t` should be interpreted as a page table entry.
 
 Each other page table should be the same size. All page tables should start at the beginning of a page.
+Since page tables are limited in size, probably not all bits of the `size_t va` passed to `translate`
+and `page_allocate` will be used in the address translation process.
 
 {.note} Some texts refer to a PTBR containing a physical address; others to it containing a physical page number. The above definition asserts it contains a physical address, not page number. As such, it will always have 0 in its low-order `POBITS` bits.
 
