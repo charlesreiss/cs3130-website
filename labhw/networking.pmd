@@ -3,7 +3,7 @@ title: Networking lab
 ...
 
 You've already worked with TCP sockets in CSO1.
-In this lab you'll learn how to add reliability on top of unreliable sockets like UDP.
+In this lab you'll learn how to add reliability on top of unreliable "mailbox" type protocol.
 
 You'll have enough to do in this lab, we'll not worry about doing it over an actual network.
 We've provided a simple network simulator for you.
@@ -21,6 +21,9 @@ We've provided a simple network simulator for you.
     
     You should see a welcome message appear, ending with a `!`.
 4. Edit `netlab.c` so that you also see messages for `./netlab 1`, `./netlab 2`, etc.
+   See below for a description of the messages the (simulated) server you are
+   communicating with expects, including when you need to send acknowledgment
+   or resend requests if you don't receive a response.
 5. Show a TA your code.
     - We expect everyone to finish `./netlab 1` and to make good progress on `./netlab 2`
     - `./netlab 3` is quite a bit harder and is recommended if you have time
