@@ -339,5 +339,7 @@ To test that these work properly,
 ## Page table format and page numbers
 
 1.  Our testing code will expect you to follow the page table format specified above. We specify the format in terms of
-    *page numbers* rather than full addresses (which would have a page number and page offset).
+    *page numbers* rather than full addresses (which would have a page number and page offset). If our testing code
+    seems to think that page table entries don't contain the addresses you think they do, using a different format
+    might be why.
 
