@@ -12,6 +12,7 @@ Changelog:
 *  13 Feb 2023: replace "present" with "valid" in "Your task" to be consistent with rest of writeup
 *  13 Feb 2023: explicitly indicate that page_allocate also allocates pages which don't hold page tables in order to make the mapping work
 *  13 Feb 2023: explicitly note that not all of `size_t va` is used for the address translation because of the page table sizes
+*  14 Feb 2023: add hints section with some common issues
 </div>
 
 {.exercise ...}
@@ -323,3 +324,20 @@ To test that these work properly,
 2. gzip the `roff` file and move it to `man3/term_to_look_up.3.gz` (e.g., `gzip translate.roff; mv translate.roff.gz man3/translate.3.gz`{.sh}) -- note that some authoring tools may do some of this for you
 
 3. use the `-M` flag with `man` pointing to the parent directory of `man3` (i.e., `man -M. 3 translate`{.sh})
+
+# Hints
+
+## Common C issues
+
+1.  `posix_memalign(&x, ...)` is similar to `x = malloc(...)` except that the memory is guarenteed at a multiple of a particular value.
+    The pointer to pointer passed into `posix_memalign` is used in lieu of returning a pointer to the memory allocated. 
+    (The return value of `posix_memalign` indicates success (`0`) or failure (non-zero error code).)
+
+1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it uses `ptbr` as a pointer. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr`.
+
+
+## Page table format and page numbers
+
+1.  Our testing code will expect you to follow the page table format specified above. We specify the format in terms of
+    *page numbers* rather than full addresses (which would have a page number and page offset).
+

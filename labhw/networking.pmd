@@ -2,8 +2,17 @@
 title: Networking lab
 ...
 
+{.changelog}
+Changelog:
+
+{:.changelog}
+*  14 Feb 2023: refer more clearly to protocol section from exercise part; note about
+   submitting to the submission site and requirements for that; adjust intro
+   to refer to "mailbox" model.
+
+
 You've already worked with TCP sockets in CSO1.
-In this lab you'll learn how to add reliability on top of unreliable "mailbox" type protocol.
+In this lab you'll learn how to add reliability on top of unreliable "mailbox" type model of a network.
 
 You'll have enough to do in this lab, we'll not worry about doing it over an actual network.
 We've provided a simple network simulator for you.
@@ -24,9 +33,10 @@ We've provided a simple network simulator for you.
    See below for a description of the messages the (simulated) server you are
    communicating with expects, including when you need to send acknowledgment
    or resend requests if you don't receive a response.
-5. Show a TA your code.
+5. Show a TA your code or submit it to the submissoin site.
     - We expect everyone to finish `./netlab 1` and to make good progress on `./netlab 2`
     - `./netlab 3` is quite a bit harder and is recommended if you have time
+    - If you are submitting instead of checking off, we require `./netlab 1` and `./netlab 2` to be complete
 {/}
 
 # Our Driver
