@@ -9,6 +9,7 @@ Changelog:
    submitting to the submission site and requirements for that; adjust intro
    to refer to "mailbox" model.
 *  15 Feb 2023: add the parenthetical "(plus a checksum)" an additional tim in the protocol description
+*  15 Feb 2023: note explicitly that recvd is called when packets are received.
 </div>
 
 
@@ -47,6 +48,7 @@ We provide a network simulation driver program. It has the following pieces:
 - Function `void send(size_t len, void* data)`.
     You'll invoke this to simulate sending unreliable packets over a network.
 - Function skeleton `void recvd(size_t len, void* data)`.
+    This function is called by our simulation code when packets are received.
     You'll fill in details to describe what you would do on a packet receipt.
 - Function `int setTimeout(void (*callback)(void*), unsigned long ms, void *arg)`.
     You may invoke this to ask to have `callback` invoked after `ms` milliseconds (`ms * 0.001` seconds),
