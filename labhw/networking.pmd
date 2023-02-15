@@ -10,8 +10,12 @@ Changelog:
    to refer to "mailbox" model.
 *  15 Feb 2023: add the parenthetical "(plus a checksum)" an additional tim in the protocol description
 *  15 Feb 2023: note explicitly that recvd is called when packets are received.
+*  15 Feb 2023: add note about wrong len for `fwrite` in some versions of the template code.
 </div>
 
+> In some versions of the lab template code before approx 4pm 15 Feb, the `fwrite` uses
+> `len` instead of `len-3`. If note corrected this may be the cause of some extra junk in the output
+> on `./netlab 2`.
 
 You've already worked with TCP sockets in CSO1.
 In this lab you'll learn how to add reliability on top of unreliable "mailbox" type model of a network.
