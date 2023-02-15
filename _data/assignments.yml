@@ -48,6 +48,7 @@
 - name: networking
   lab: true
   page: labhw/networking.html
+  submit_file: "*.c"
   due: 2023-02-15
 
 - name: pagetable part 1
