@@ -9,6 +9,8 @@ Changelog:
 *  14 Feb 2023: refer more clearly to protocol section from exercise part; note about
    submitting to the submission site and requirements for that; adjust intro
    to refer to "mailbox" model.
+*  15 Feb 2023: add the parenthetical "(plus a checksum)" a few more places in the protocol description
+   for extra clarity
 
 
 You've already worked with TCP sockets in CSO1.
@@ -93,7 +95,7 @@ and
 `[2^2^4^1^5, 2, 2, 4, 1, 5]`.
 {/}
 
-After receiving a message, you should reply with a four-byte message.
+After receiving a message, you should reply with a four-byte message (plus a checksum).
 The first three bytes should be the ASCII characters for `ACK`; the fourth should be the sequence number you received.
 If a message is not delivered, you should reply with the `ACK` of the last message you got in order (or re-send the `GET` if the very first message is not delivered).
 However, messages may be delayed in transit and may arrive out of order.
