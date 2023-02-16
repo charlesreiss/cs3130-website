@@ -125,7 +125,7 @@
   week: 5
   title: IP +  routing
   slides: yes
-  reading: "[protocols](readings/protocols.html) §1-2"
+  eading: "[protocols](readings/protocols.html) §1-2"
   description: |
     *  running example: a frame
        *  layers (link, network, transport)
@@ -190,7 +190,7 @@
 - date: 2023-03-02
   week: 7
   title: buses / caches 1
-  reading: "[buses]9eadings/bus.html),  [cache](readings/cache.html) §4, 1-3, 5"
+  reading: " [cache](readings/cache.html) §4, 1-3, 5"
   description: |
     *  processor buses
        *  full-duplex v half-duplex
@@ -294,14 +294,17 @@
 
 - date: 2023-04-04
   week: 12
-  title: processors
-  reading: "[processors](readings/processors.html) §1-2"
+  title: buses / processors
+  reading: "[buses](readings/bus.html), [processors](readings/processors.html) §1-2"
   description: |
+   *  buses, full/half-duplex
+      *  relationship to networking
+   *  connecting to I/O devices
+   *  DMA
+
    *  review: single-cycle CPU
    *  pipelining idea
    *  pipleining for the CPU
-   *  dependencies and hazards
-      *  data flow graphs
 
 - date: 2023-04-05
   lab: true
@@ -312,16 +315,18 @@
   title: pipeline
   reading: "[processors](readings/processors.html) §2"
   description: |
+   *  dependencies and hazards
+      *  data flow graphs
    *  hazard handling, part 1
       *  stalling / waiting
       *  forwarding and forwarding logic
-   *  pipeline timing
 
 - date: 2023-04-11
   week: 13
   title: speculation
   reading: "[processors](readings/processors.html) §2.1.3"
   description: |
+    *  pipeline timing
     *  speculation idea
        *  guess and check later
        *  undo when wrong
