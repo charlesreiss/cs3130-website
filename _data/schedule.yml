@@ -125,7 +125,6 @@
   week: 5
   title: IP +  routing
   slides: yes
-  slides_prelim: yes
   reading: "[protocols](readings/protocols.html) §1-2"
   description: |
     *  running example: a frame
