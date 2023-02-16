@@ -165,10 +165,10 @@
   reading: "[security](readings/sec.html) §1"
   description: |
     *  cryptography (start)
-       *  cryptographic hashes
        *  symmetric encryption
        *  asymmetric encryption
-       *  key exchange
+       *  digital signature
+    *  replay attacks
 
 - date: 2023-02-28
   week: 7
@@ -176,9 +176,9 @@
   reading: "[security](readings/sec.html) §2"
   description: |
     *  cryptography (con't)
-        *  digital signatures
-        *  public key infrastructure
-
+        *  cryptographic hashes
+        *  key exchange
+    *  public key infrastructure
     *  TLS protocol outline
 
     *  side channels <!-- FIXME -->
@@ -189,13 +189,10 @@
 
 - date: 2023-03-02
   week: 7
-  title: buses / caches 1
+  title: caches 1
   reading: " [cache](readings/cache.html) §4, 1-3, 5"
   description: |
-    *  processor buses
-       *  full-duplex v half-duplex
-       *  DMA and devices
-
+    *  connecting processors to memory
     *  memory hierarchy
     *  locality
     *  direct-mapped cache
@@ -320,13 +317,13 @@
    *  hazard handling, part 1
       *  stalling / waiting
       *  forwarding and forwarding logic
+   *  pipeline timing
 
 - date: 2023-04-11
   week: 13
   title: speculation
   reading: "[processors](readings/processors.html) §2.1.3"
   description: |
-    *  pipeline timing
     *  speculation idea
        *  guess and check later
        *  undo when wrong
