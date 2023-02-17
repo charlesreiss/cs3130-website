@@ -64,7 +64,7 @@
     <li>tests that count how many pages are allocated are counting calls to posix_memalign</li>
     <li>when looking for "allocated page table entries" or "non-allocated page table entries", the tests are looking at the indices it thinks should be allocated based on its calls to page_allocate(). So you could fail these tests both because of computing the indices wrong or because the page table entry content is not what we expect</li>
     <li>tests that check that allocations are "page sized" check both the total bytes allocated and that the allocation starts at the beginning of a page rather than spanning multiple pages</li>
-    <li>some tests check that prior allocations still work (with translate()) after calling page_allocate() again (for other pages)</li>
+    <li>some tests check that prior allocations still work (with translate()) after more calls to page_allocate() (for other pages)</li>
     <li>if the tests fail to completely run, this may be because the tests tried to dereference a value returned by translate() which was an invalid pointer, or because your code segfaulted. If you're worried that your code might segfault, I'd suggest using <a href="https://www.cs.virginia.edu/~jh2jf/courses/cs2130/fall2022/readings/memory.html#detecting-and-avoiding-bugs">AddressSanitizer</a> (along with your own tests) to try to find memory errors in your code. (AddressSanitizer can detect many errors consistently when they may only sometimes cause segfaults.)</li>
     </ul>
   submit_files:
@@ -89,7 +89,7 @@
     <li>tests that count how many pages are allocated are counting calls to posix_memalign</li>
     <li>when looking for "allocated page table entries" or "non-allocated page table entries", the tests are looking at the indices it thinks should be allocated based on its calls to page_allocate(). So you could fail these tests both because of computing the indices wrong or because the page table entry content is not what we expect</li>
     <li>tests that check that allocations are "page sized" check both the total bytes allocated and that the allocation starts at the beginning of a page rather than spanning multiple pages</li>
-    <li>some tests check that prior allocations still work (with translate()) after calling page_allocate() again (for other pages)</li>
+    <li>some tests check that prior allocations still work (with translate()) after more calls to page_allocate() (for other pages)</li>
     <li>if the tests fail to completely run, this may be because the tests tried to dereference a value returned by translate() which was an invalid pointer, or because your code segfaulted. If you're worried that your code might segfault, I'd suggest using <a href="https://www.cs.virginia.edu/~jh2jf/courses/cs2130/fall2022/readings/memory.html#detecting-and-avoiding-bugs">AddressSanitizer</a> (along with your own tests) to try to find memory errors in your code. (AddressSanitizer can detect many errors consistently when they may only sometimes cause segfaults.)</li>
     </ul>
   submit_files:
@@ -127,7 +127,7 @@
     <li>tests that count how many pages are allocated are counting calls to posix_memalign</li>
     <li>when looking for "allocated page table entries" or "non-allocated page table entries", the tests are looking at the indices it thinks should be allocated based on its calls to page_allocate(). So you could fail these tests both because of computing the indices wrong or because the page table entry content is not what we expect</li>
     <li>tests that check that allocations are "page sized" check both the total bytes allocated and that the allocation starts at the beginning of a page rather than spanning multiple pages</li>
-    <li>some tests check that prior allocations still work (with translate()) after calling page_allocate() again (for other pages)</li>
+    <li>some tests check that prior allocations still work (with translate()) after more calls to page_allocate() (for other pages)</li>
     <li>if the tests fail to completely run, this may be because the tests tried to dereference a value returned by translate() which was an invalid pointer, or because your code segfaulted. If you're worried that your code might segfault, I'd suggest using <a href="https://www.cs.virginia.edu/~jh2jf/courses/cs2130/fall2022/readings/memory.html#detecting-and-avoiding-bugs">AddressSanitizer</a> (along with your own tests) to try to find memory errors in your code. (AddressSanitizer can detect many errors consistently when they may only sometimes cause segfaults.)</li>
     </ul>
   submit_files:
