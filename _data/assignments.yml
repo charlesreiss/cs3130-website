@@ -57,6 +57,15 @@
   page: labhw/pagetable.html
   portion: 0.25
   due: 2023-02-15
+  submit_describe: |
+    Selected notes on interpreting our testing output below:
+    <ul>
+    <li>the "reallocation" test calls page_allocate twice for the same address</li>
+    <li>tests that count how many pages are allocated are counting calls to posix_memalign</li>
+    <li>when looking for "allocated page table entries" or "non-allocated page table entries", the tests are looking at the indices it thinks should be allocated based on its calls to page_allocate(). So you could fail these tests both because of computing the indices wrong or because the page table entry content is not what we expect</li>
+    <li>tests that check that allocations are "page sized" check both the total bytes allocated and that the allocation starts at the beginning of a page rather than spanning multiple pages</li>
+    <li>some tests check that prior allocations still work (with translate()) after calling page_allocate() again</li>
+    </ul>
   submit_files:
   - "*.c"
   - "*.h"
@@ -72,6 +81,15 @@
   page: labhw/pagetable.html
   portion: 0.25
   due: 2023-02-22
+  submit_describe: |
+    Selected notes on interpreting our testing output below:
+    <ul>
+    <li>the "reallocation" test calls page_allocate twice for the same address</li>
+    <li>tests that count how many pages are allocated are counting calls to posix_memalign</li>
+    <li>when looking for "allocated page table entries" or "non-allocated page table entries", the tests are looking at the indices it thinks should be allocated based on its calls to page_allocate(). So you could fail these tests both because of computing the indices wrong or because the page table entry content is not what we expect</li>
+    <li>tests that check that allocations are "page sized" check both the total bytes allocated and that the allocation starts at the beginning of a page rather than spanning multiple pages</li>
+    <li>some tests check that prior allocations still work (with translate()) after calling page_allocate() again</li>
+    </ul>
   submit_files:
   - "*.c"
   - "*.h"
@@ -100,6 +118,15 @@
   page: labhw/pagetable.html
   portion: 2.0
   due: 2023-03-01
+  submit_describe: |
+    Selected notes on interpreting our testing output below:
+    <ul>
+    <li>the "reallocation" test calls page_allocate twice for the same address</li>
+    <li>tests that count how many pages are allocated are counting calls to posix_memalign</li>
+    <li>when looking for "allocated page table entries" or "non-allocated page table entries", the tests are looking at the indices it thinks should be allocated based on its calls to page_allocate(). So you could fail these tests both because of computing the indices wrong or because the page table entry content is not what we expect</li>
+    <li>tests that check that allocations are "page sized" check both the total bytes allocated and that the allocation starts at the beginning of a page rather than spanning multiple pages</li>
+    <li>some tests check that prior allocations still work (with translate()) after calling page_allocate() again</li>
+    </ul>
   submit_files:
   - "*.c"
   - "*.h"
