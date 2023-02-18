@@ -363,5 +363,5 @@ as well as some other value stored in the page tables found.
 
 ## reading
 
-Our reading on [multi-level page tables work generally](readings/kernel.html#multi-level-page-tables] also include some relevant diagrams and pseudocode.
+In addition to materials from slides, our reading on [multi-level page tables work generally](readings/kernel.html#multi-level-page-tables] also include some relevant diagrams and pseudocode.
 
