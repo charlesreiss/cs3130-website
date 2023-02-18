@@ -351,13 +351,13 @@ as well as some other value stored in the page tables found.
 
 ### 1-level translate
 
-<img src="files/pagetable/translate-1level.svg" width="90%">
+<img src="files/pagetable/translate-1level.svg" width="50%">
 
 ### 1-level page_allocate
 
-<img src="files/pagetable/allocate-1level.svg" width="90%">
+<img src="files/pagetable/allocate-1level.svg" width="50%">
 
 ### 2-level translate
 
-<img src="files/pagetable/translate-2level.svg" width="90%">
+<img src="files/pagetable/translate-2level.svg" width="50%">
 
