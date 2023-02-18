@@ -13,7 +13,7 @@ Changelog:
 *  13 Feb 2023: explicitly indicate that page_allocate also allocates pages which don't hold page tables in order to make the mapping work
 *  13 Feb 2023: explicitly note that not all of `size_t va` is used for the address translation because of the page table sizes
 *  14 Feb 2023: add hints section with some common issues
-*  18 Feb 2023: copy diagrams from lecture into hints section; along with new diagram for 2-level lookup
+*  18 Feb 2023: copy diagrams from lecture into hints section; along with new diagram for 2-level lookup; more prominenantly point to reading.
 </div>
 
 {.exercise ...}
@@ -360,4 +360,8 @@ as well as some other value stored in the page tables found.
 ### 2-level translate
 
 <img src="files/pagetable/translate-2level.svg" width="50%">
+
+## reading
+
+Our reading on [multi-level page tables work generally](readings/kernel.html#multi-level-page-tables] also include some relevant diagrams and pseudocode.
 
