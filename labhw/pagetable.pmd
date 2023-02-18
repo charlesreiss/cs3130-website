@@ -344,7 +344,7 @@ To test that these work properly,
     seems to think that page table entries don't contain the addresses you think they do, using a different format
     might be why.
 
-## Diagrams of translate and lookup
+## Slide diagrams of translate and lookup
 
 All these assuming `ptbr` variable stored at address `0x5898`, containing `0x10000`,
 as well as some other value stored in the page tables found.
