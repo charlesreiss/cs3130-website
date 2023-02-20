@@ -14,6 +14,7 @@ Changelog:
 *  13 Feb 2023: explicitly note that not all of `size_t va` is used for the address translation because of the page table sizes
 *  14 Feb 2023: add hints section with some common issues
 *  18 Feb 2023: copy diagrams from lecture into hints section; along with new diagram for 2-level lookup; more prominenantly point to reading.
+*  20 Feb 2023: note more prominently that example code assumes LEVELS = 4
 </div>
 
 {.exercise ...}
@@ -205,7 +206,7 @@ Each page table entry should be either
 No pages should be allocated unless requested by a call to `page_allocate`.
 
 {.example ...} The comments in the following code correctly describe the number of pages that have ever been allocated
-assuming that `LEVELS` is 4 and `POBITS` is 12.
+**assuming that `LEVELS` is 4 and `POBITS` is 12**. (With smaller LEVELS values, either you would not use all the non-zero bits of the virtual addresses being tested or the virtual page numbers would be out of range.)
 
 ```c
 
