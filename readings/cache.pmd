@@ -223,6 +223,37 @@ though the terms are sometimes used loosely to distinguish between
 misses that could have been avoided with a different cache design (conflict)
 and misses that could only have been avoided by having a larger cache (capacity).
 
+{.example ...}
+Suppose a 2-way set associative set has 16-byte blocks
+and 256 lines and uses a least-recently used policy
+to decide which block to replace within a set.
+
+Since there are 2 lines per set, the cache
+has 128 sets. Then, the cache uses 4 offset bits, and 7 index bits.
+
+The addresses `0xbf1234`, `0xbf1238`, `0xbf9230`, `0xbfaa32`
+all have the same set index (`0x23`).
+The first two also have the same tag (`0xbf1`)
+and hence are not in conflict with one another;
+the third has a different tag (`0xbf9`).
+
+If the following memory addresses are accessed in order,
+the following notes if it is a hit or miss and if a miss, what type.
+
+1. address `0xbf1234` -- cold miss
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`
+2. address `0xbf1238` -- hit
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`
+3. address `0xbf9230` -- cold miss
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`; `0xbf9230` through `0bf923f`
+5. address `0xbfaa32` -- cold miss
+   *  since set only has 2 lines in it, the least recently used `0xbf1230` through `0xbf123f` is replaced
+   *  afterwards: set with index `0x23`: `0xbfaa30` through `0xbfaa3f`; `0xbf9230` through `0bf923f`
+4. address `0xbf1234` -- conflict miss
+   *  since set only has 2 lines in it, the least recently used `0xbf9230` through `0xb9123f` is replaced
+   *  afterwards: set with index `0x23`: `0xbfaa30` through `0xbfaa3f`; `0xbf1230` through `0bf123f`
+{/}
+
 # Common memory caches
 
 As of 2019, it is common for end-user computers to have a variety of caches.

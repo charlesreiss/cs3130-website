@@ -27,13 +27,13 @@ title: Cache program problems
 
     1.  For `prog2.c`: Write a program that performs at least 10 million cache references and achieves a <10% miss rate with 32KB, 4-way data cache with 64B blocks but a >90% miss rate with a 32KB, 2-way data cache with 64B blocks. Submit your program as `prog2.c`
 
-        Hint: you want to create conflict misses by accessing values that are spaced apart in a particular manner. Try working out what you would need to do with a very small cache first.
-        
+        Hint: Try to store 3 things in a single set in the two-way cache and in the four-way cache.
+
+        Hint: The 4-way cache has 6 cache offset bits and 7 cache index bits. The 2-way cache has 6 cache offset bits and 8 cache index bits. This means that if we have several  addresses which are the same in bits 6 through 14, they will all have the same set index in *each cache*.
 
     1.  For `prog3.c`: Write a program that performs at least 10 million cache references and achieves a <60% miss rate with 32KB, 2-way data cache with 128B blocks but a >90% miss rate with a 32KB, 2-way data cache with 64B blocks. Submit your program as `prog3.c`
 
         Hint: take advantage of spatial locality
-
 
 3.  Test your programs using the instructions below.
 
