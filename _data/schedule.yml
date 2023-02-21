@@ -215,7 +215,7 @@
     *  replacement policies
 
     *  write policies
-    *  average memory access time
+    *  cache design tradeoffs, briefly
     
 
 
@@ -225,10 +225,10 @@
 
 - date: 2023-03-16
   week: 9
-  title: caches 3 / concurrency 1
+  title: [KS] caches 3 / concurrency 1
   reading: "[processes and threads](readings/thread.html)"
   description: |
-    *  briefly, relating cache misses to C code
+    *  caches review
     *  the TLB
 
     *  processes, threads
