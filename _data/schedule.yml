@@ -127,7 +127,7 @@
   slides: yes
   eading: "[protocols](readings/protocols.html) §1-2"
   description: |
-    *  running example: a frame
+    *  example: a frame
        *  layers (link, network, transport)
     *  IP
        *  addresses (v4, v6)
@@ -150,10 +150,6 @@
     *  (if time) link-layer to network-layer mapping
     *  DHCP
     *  NAT
-
-    *  firewalls, briefly <!-- FIXME: not in reading! -->
-    *  DDoS
-    *  spoofing
 
 - date: 2023-02-22
   lab: true
@@ -180,8 +176,6 @@
         *  key exchange
     *  public key infrastructure
     *  TLS protocol outline
-
-    *  side channels <!-- FIXME -->
 
 - date: 2023-03-01
   lab: true
@@ -218,11 +212,12 @@
   reading: "[cache](readings/cache.html) §4, 1-3, 5"
   description: |
     *  set-associative cache
-    *  write policies
+    *  replacement policies
 
-    *  the TLB
-    *  memory lookup overall
-    *  cache efficient code generally
+    *  write policies
+    *  average memory access time
+    
+
 
 - date: 2023-03-15
   lab: true
@@ -230,27 +225,30 @@
 
 - date: 2023-03-16
   week: 9
-  title: concurrency 1
+  title: caches 3 / concurrency 1
   reading: "[processes and threads](readings/thread.html)"
   description: |
+    *  briefly, relating cache misses to C code
+    *  the TLB
+
     *  processes, threads
     *  creating new processes
        *  fork, exec*
-       *  copy-on-write
-       *  [if time] alternatives to fork
-    *  proceses in the shell
-    *  waiting for processes
+       *  [review-ish] copy-on-write
 
 - date: 2023-03-21
   week: 10
   title: concurrency 2 + synchronization 1
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2, 4; skim [consistency](readings/consistency.html)"
   description: |
+    *  alternatives to fork
+    *  proceses in the shell
+    *  waiting for processes
+
     *  pthreads: creating threads
     *  Amdahl's law <!-- demo? -->
     *  atomicity, race conditions
        *   consistency preview
-    *  locks and mutexes
 
 - date: 2023-03-22
   lab: true
@@ -261,18 +259,20 @@
   title: synchronization 2
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §8, 2-7"
   description: |
+    *  locks and mutexes
     *  atomic read-modify-write instructions
     *  monitors (mutexes + condition variables)
     *  barriers
-    *  semaphores
-    *  reader/writer locks
 
 
 - date: 2023-03-28
   week: 11
-  title: roll back 
+  title: synchronization 3 / roll back 
   reading: "[sync](readings/sync.html) §9"
   description: |
+    *  semaphores
+    *  reader/writer locks
+
     *  transactions
     *  redo logging
 
@@ -369,22 +369,20 @@
 
 - date: 2023-04-20
   week: 14
+  title: side channels
+  description: |
+    *  time and equality testing
+    *  in the cache
+
+- date: 2023-04-25
+  week: 15
   title: meltdown, spectre, etc. 1
   description: |
     *   meltdown:
         *  speculation past a priv/protection fault
-    *   side-channels
-        *  in the cache
-
-- date: 2023-04-25
-  week: 15
-  title: meltdown, spectre, etc. 2
-  description: |
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
-    *   avoiding spectre+meltdown
-    *   briefly, more spectre variants
 
 - date: 2023-04-26
   lab: true
@@ -392,9 +390,14 @@
 
 - date: 2023-04-27
   week: 15
+  title: meltdown, spectre, etc. 1
+  description:
+    *   avoiding spectre+meltdown
+    *   briefly, more spectre variants
 
 - date: 2023-05-02
   week: 16
+  title: Exam Review
 
 - date: 2023-05-08
   week: 17

@@ -152,10 +152,9 @@
   submit_file: attack.c
   due: 2023-03-01
 
-
-- name: memoize
+- name: cachelab
   lab: true
-  page: labhw/memoize.html
+  old_page: labhw/memoize.html
   tentative: true
   due: 2023-03-15
 
