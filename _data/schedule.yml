@@ -158,7 +158,7 @@
 - date: 2023-02-23
   week: 6
   title: network security / secure channels 1
-  reading: "[security](readings/sec.html) §1"
+  reading: "[security](readings/sec.html) §1-1.5, 3"
   description: |
     *  cryptography (start)
        *  symmetric encryption
@@ -215,8 +215,7 @@
     *  replacement policies
 
     *  write policies
-    *  cache design tradeoffs, briefly
-    
+    *  briefly, cache misses and C code
 
 
 - date: 2023-03-15
