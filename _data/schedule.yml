@@ -169,7 +169,7 @@
 - date: 2023-02-28
   week: 7
   title: secure channels 2
-  reading: "[security](readings/sec.html) §2"
+  reading: "[security](readings/sec.html) §1.5-2"
   description: |
     *  cryptography (con't)
         *  cryptographic hashes
