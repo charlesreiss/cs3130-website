@@ -223,7 +223,7 @@
 
 - date: 2023-03-16
   week: 9
-  title: [KS] caches 3 / concurrency 1
+  title: caches 3 / concurrency 1
   reading: "[processes and threads](readings/thread.html)"
   description: |
     *  caches review
