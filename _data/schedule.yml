@@ -190,7 +190,6 @@
     *  memory hierarchy
     *  locality
     *  direct-mapped cache
-    *  fully-associative cache
        *  valid bits
        *  tags
 
@@ -213,9 +212,9 @@
   description: |
     *  set-associative cache
     *  replacement policies
+    *  examples: cache misses and C code
 
-    *  write policies
-    *  briefly, cache misses and C code
+    *  briefly, write policies
 
 
 - date: 2023-03-15
