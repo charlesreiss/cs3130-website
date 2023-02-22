@@ -159,15 +159,15 @@
   due: 2023-03-15
 
 - name: cache exercises
-  lab: true
   tentative: true
   due: 2023-03-22
 
 - name: cache programs
   short_name: cache-programs
   tentative: true
+  lab: true
   page: labhw/cache-programs.html
-  due: 2023-03-29
+  due: 2023-03-22
 
 - name: TLB
   short_name: tlb
