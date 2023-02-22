@@ -389,7 +389,7 @@
 - date: 2023-04-27
   week: 15
   title: meltdown, spectre, etc. 1
-  description:
+  description: |
     *   avoiding spectre+meltdown
     *   briefly, more spectre variants
 
