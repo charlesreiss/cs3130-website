@@ -152,21 +152,25 @@
   submit_file: attack.c
   due: 2023-03-01
 
-- name: memoize
+- name: cache exercises
+  old_page: labhw/memoize.html
   lab: true
-  page: labhw/memoize.html
   tentative: true
   due: 2023-03-15
-
-- name: cache exercises
-  tentative: true
-  due: 2023-03-22
 
 - name: cache programs
   short_name: cache-programs
   tentative: true
-  lab: true
   page: labhw/cache-programs.html
+  due: 2023-03-22
+
+- name: sync games
+  lab: true
+  short_name: sync
+  page: labhw/sync.html
+  tentative: true
+  comments: needs changes for in-person?
+  comments: need .php stuff
   due: 2023-03-22
 
 - name: TLB
@@ -177,14 +181,19 @@
   tentative: true
   due: 2023-03-29
 
-- name: sync games
+- name: fork lab
+  short_name: fork-lab
   lab: true
-  short_name: sync
-  page: labhw/sync.html
   tentative: true
-  comments: needs changes for in-person?
-  comments: need .php stuff
   due: 2023-03-29
+
+- name: fork HW
+  short_name: fork
+  comment: "FIXUP: missing HW?"
+  comment: for pipelines? after covered in lecture?
+  page: labhw/fork.html
+  tentative: true
+  due: 2023-04-05
 
 - name: pthreads (dining philosophers) 
   lab: true
@@ -199,21 +208,6 @@
   comments: "Non-DP example?"
   due: 2023-04-05
 
-- name: fork
-  short_name: fork
-  comment: "FIXUP: missing HW?"
-  comment: for pipelines? after covered in lecture?
-  page: labhw/fork.html
-  tentative: true
-  due: 2023-04-05
-
-- name: openmp
-  short_name: openmp
-  lab: true
-  tentative: true
-  page: labhw/openmp.html
-  due: 2023-04-12
-
 - name: life
   short_name: life
   page: labhw/life.html
@@ -225,6 +219,19 @@
   comment: sanitize-examples.sh script
   comment: ThreadSanitizer stuff
 
+- name: openmp
+  short_name: openmp
+  lab: true
+  tentative: true
+  page: labhw/openmp.html
+  due: 2023-04-12
+
+- name: pipeline
+  short_name: pipeline
+  page: labhw/pipeline.html
+  tentative: true
+  due: 2023-04-19
+
 - name: templates
   lab: true
   comment: needs CSO1 fixups
@@ -233,18 +240,13 @@
   tentative: true
   due: 2023-04-19
 
-- name: pipeline
-  short_name: pipeline
-  page: labhw/pipeline.html
+- name: TBA OOO assignment
+  short_name: OOO
   tentative: true
-  due: 2023-04-19
+  due: 2023-04-26
 
 - name: C++2x?
   short_name: cpp
   lab: true
   due: 2023-04-26
 
-- name: TBA OOO assignment
-  short_name: OOO
-  tentative: true
-  due: 2023-04-26
