@@ -164,14 +164,11 @@
   page: labhw/cache-programs.html
   due: 2023-03-22
 
-- name: sync games
+- name: fork lab
+  short_name: fork-lab
   lab: true
-  short_name: sync
-  page: labhw/sync.html
   tentative: true
-  comments: needs changes for in-person?
-  comments: need .php stuff
-  due: 2023-03-22
+  due: 2023-03-29
 
 - name: TLB
   short_name: tlb
@@ -181,10 +178,13 @@
   tentative: true
   due: 2023-03-29
 
-- name: fork lab
-  short_name: fork-lab
+- name: sync games
   lab: true
+  short_name: sync
+  page: labhw/sync.html
   tentative: true
+  comments: needs changes for in-person?
+  comments: need .php stuff
   due: 2023-03-29
 
 - name: fork HW
