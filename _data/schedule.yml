@@ -213,7 +213,6 @@
   description: |
     *  set-associative cache
     *  replacement policies
-    *  examples: cache misses and C code
 
     *  briefly, write policies
 
@@ -227,13 +226,14 @@
   title: caches 3 / concurrency 1
   reading: "[processes and threads](readings/thread.html)"
   description: |
-    *  caches review
+    > (Guest lecture; Prof Reiss will be out of town.)
+    *  examples: cache misses and C code
+
     *  the TLB
 
     *  processes, threads
     *  creating new processes
        *  fork, exec*
-       *  [review-ish] copy-on-write
 
 - date: 2023-03-21
   week: 10
