@@ -227,7 +227,9 @@
   reading: "[processes and threads](readings/thread.html)"
   description: |
     > (Guest lecture; Prof Reiss will be out of town.)
+
     *  review: caches
+    *  (possibly) cache misses and C code
     *  the TLB
 
     *  processes, threads

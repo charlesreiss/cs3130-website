@@ -2,6 +2,11 @@
 title: Secure channels lab
 ...
 
+<div class="changelog">
+Changelog:
+
+*  23 February 2023: mark scenario 3 as optional.
+
 {.exercise ...}
 
 1.  Download [securelab.tar](files/securelab.tar) and extract it.
@@ -57,7 +62,8 @@ title: Secure channels lab
 
 5.  Scenario 2 is trickier. Get B to pay at least $2000 (we don't care about the exact amount) instead of $1438.
 
-8.  Do the same as scenario "2" for scenario "3". In this scenario, B initiates the communication with A
+8.  (optional) If you have time,
+    do the same as scenario "2" for scenario "3". In this scenario, B initiates the communication with A
     and tries to use a nonce to prevent
     It will help that A will also accept messages from you (M), but will always indicate
     that there are no more payments. You can use this to run a
@@ -65,7 +71,7 @@ title: Secure channels lab
     the famous flaws of the
     [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol)
 
-8.  Look at protocol scenario "4". (You do not need to attack this version.)
+8.  (optional) Look at protocol scenario "4". (You do not need to attack this version.)
 
 7.  Submit your `attack.c` to the submission site or show your code to a TA for checkoff.
 
