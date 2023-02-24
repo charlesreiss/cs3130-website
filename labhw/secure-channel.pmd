@@ -5,7 +5,7 @@ title: Secure channels lab
 <div class="changelog">
 Changelog:
 
-*  23 February 2023: mark scenario 3 as something we don't expect students to complete.
+*  23 February 2023: mark scenario 3 as "if you have time" and as tentatively won't be required
 
 {.exercise ...}
 
@@ -62,7 +62,7 @@ Changelog:
 
 5.  Scenario 2 is trickier. Get B to pay at least $2000 (we don't care about the exact amount) instead of $1438.
 
-8.  If you have time (we don't expect students to complete this scenario),
+8.  (probably [to be updated to be more definite before this marked no tentative] optional) If you have time:
     do the same as scenario "2" for scenario "3". In this scenario, B initiates the communication with A
     and tries to use a nonce to prevent
     It will help that A will also accept messages from you (M), but will always indicate
