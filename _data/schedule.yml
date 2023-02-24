@@ -157,8 +157,6 @@
   week: 6
   title: network security / secure channels 1
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[security](readings/sec.html) §1-1.5, 3"
   description: |
     *  cryptography (start)
@@ -170,6 +168,9 @@
 - date: 2023-02-28
   week: 7
   title: secure channels 2
+  slides: yes
+  slides_prelim: yes
+  slides_see2: 2023-03-02
   reading: "[security](readings/sec.html) §1.5-2"
   description: |
     *  cryptography (con't)
