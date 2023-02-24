@@ -62,16 +62,22 @@ Changelog:
 
 5.  Scenario 2 is trickier. Get B to pay at least $2000 (we don't care about the exact amount) instead of $1438.
 
-8.  (probably [to be updated to be more definite before this marked no tentative] optional) If you have time:
+8.  (optional) If you have time,
     do the same as scenario "2" for scenario "3". In this scenario, B initiates the communication with A
     and tries to use a nonce to prevent
     It will help that A will also accept messages from you (M), but will always indicate
     that there are no more payments. You can use this to run a
-    MITM attack on B and A; see also 
+    man-in-the-middle attack on B and A; see also 
     the famous flaws of the
-    [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol)
+    [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol).
+    The basic idea is that because B will communicate with you (M), you can get them to decrypt
+    A's message to B for you.
 
 7.  Submit your `attack.c` to the submission site or show your code to a TA for checkoff.
+
+    (This is a new lab, so I'm not sure how much typical students will complete. But I'm expecting that
+     most students will *not* complete scenario "3" within the lab time, and so it will not be expected
+     to be complete for submission to the submission site.)
 
 {/}
 
