@@ -5,7 +5,7 @@ title: Secure channels lab
 <div class="changelog">
 Changelog:
 
-*  23 February 2023: mark scenario 3 as optional.
+*  23 February 2023: mark scenario 3 as something we don't expect students to complete.
 
 {.exercise ...}
 
@@ -62,7 +62,7 @@ Changelog:
 
 5.  Scenario 2 is trickier. Get B to pay at least $2000 (we don't care about the exact amount) instead of $1438.
 
-8.  (optional) If you have time,
+8.  If you have time (we don't expect students to complete this scenario),
     do the same as scenario "2" for scenario "3". In this scenario, B initiates the communication with A
     and tries to use a nonce to prevent
     It will help that A will also accept messages from you (M), but will always indicate
@@ -70,8 +70,6 @@ Changelog:
     MITM attack on B and A; see also 
     the famous flaws of the
     [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol)
-
-8.  (optional) Look at protocol scenario "4". (You do not need to attack this version.)
 
 7.  Submit your `attack.c` to the submission site or show your code to a TA for checkoff.
 
