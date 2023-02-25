@@ -148,7 +148,6 @@
   short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
-  tentative: true
   submit_file: attack.c
   due: 2023-03-01
 
