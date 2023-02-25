@@ -7,6 +7,7 @@ Changelog:
 
 *  23 February 2023: mark scenario 3 as "if you have time" and as tentatively won't be required
 *  24 February 2023: complete "tries to use a nonce" as "tries to use a nonce to prevent replay attacks"
+</div>
 
 {.exercise ...}
 
