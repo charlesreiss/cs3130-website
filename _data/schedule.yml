@@ -169,8 +169,6 @@
   week: 7
   title: secure channels 2
   slides: yes
-  slides_prelim: yes
-  slides_see2: 2023-03-02
   reading: "[security](readings/sec.html) §1.5-2"
   description: |
     *  cryptography (con't)
@@ -187,6 +185,9 @@
   week: 7
   title: caches 1
   reading: " [cache](readings/cache.html) §4, 1-3, 5"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  connecting processors to memory
     *  memory hierarchy
