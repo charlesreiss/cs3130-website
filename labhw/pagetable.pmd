@@ -15,6 +15,7 @@ Changelog:
 *  14 Feb 2023: add hints section with some common issues
 *  18 Feb 2023: copy diagrams from lecture into hints section; along with new diagram for 2-level lookup; more prominenantly point to reading.
 *  20 Feb 2023: note more prominently that example code assumes LEVELS = 4
+*  27 Feb 2023: correct URL for reading link at bottom of hints
 </div>
 
 {.exercise ...}
@@ -364,5 +365,5 @@ as well as some other value stored in the page tables found.
 
 ## reading
 
-In addition to materials from slides, our reading on [multi-level page tables work generally](readings/kernel.html#multi-level-page-tables) also include some relevant diagrams and pseudocode.
+In addition to materials from slides, our reading on [multi-level page tables work generally](../readings/kernel.html#multi-level-page-tables) also include some relevant diagrams and pseudocode.
 
