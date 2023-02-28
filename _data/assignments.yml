@@ -152,7 +152,9 @@
   due: 2023-03-01
 
 - name: cache exercises
+  short_name: cachelab
   old_page: labhw/memoize.html
+  page: labhw/cache-lab.html
   lab: true
   tentative: true
   due: 2023-03-15
