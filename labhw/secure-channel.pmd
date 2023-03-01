@@ -9,6 +9,7 @@ Changelog:
 *  24 February 2023: complete "tries to use a nonce" as "tries to use a nonce to prevent replay attacks"
 *  28 February 2023 11:50p: update `securelab.tar` to improve error messages (by removing text about internals of the lab; no functionality changes)
 *  1 March 2023: correct description of what signature is in `struct message` (in lab writeup and comments in lab.h; no functionality changes): "using from's public key" -> "using from's private key"
+*  1 March 2023: correct scenario 3 hint to state that you should use A to decrypt messages from B (since A will talk to you and not B) rather than the other way around
 </div>
 
 {.exercise ...}
@@ -74,8 +75,8 @@ Changelog:
     man-in-the-middle attack on B and A; see also 
     the famous flaws of the
     [Needham-Schroeder protocol](https://en.wikipedia.org/wiki/Needham%E2%80%93Schroeder_protocol).
-    The basic idea is that because B will communicate with you (M), you can get them to decrypt
-    A's message to B for you.
+    The basic idea is that because A will communicate with you (M), you can get them to decrypt
+    B's message to A for you.
 
 7.  Submit your `attack.c` to the submission site or show your code to a TA for checkoff.
 
