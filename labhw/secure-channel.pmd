@@ -89,11 +89,11 @@ Changelog:
 
 {/}
 
+# Our simulation API
+
 > [Note added 1 March:] If your simulation crashes with an error like "thread '<unnamed>' panicked at 'range start index 18446744073709551594 out of range for slice of length 10'", then
 > this is from sending a message that is marked as encrypted but whose data is too short. Versions of `securelab.tar` after 2023-03-01 3:45pm
 > give a better error message in this case.
-
-# Our simulation API
 
 The code for forward_normal looks like:
 
