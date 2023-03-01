@@ -11,7 +11,8 @@ Changelog:
 *  1 March 2023: correct description of what signature is in `struct message` (in lab writeup and comments in lab.h; no functionality changes): "using from's public key" -> "using from's private key"
 *  1 March 2023: correct scenario 3 hint to state that you should use A to decrypt messages from B (since A will talk to you and not B) rather than the other way around
 *  1 March 2023: make it clearer that `new_message` can encrypt messages
-*  1 March 2023: update securelab.tar to not give cryptic error when encrypted messages are much shorter than expected; add note about problems with manipulating encrypted messages
+*  1 March 2023: update securelab.tar to not give cryptic error when encrypted messages are much shorter than expected; add note about problems with manipulating encrypted messages; add missing ) in example code
+*  1 March 2023: note possible crash from earlier securelab.tar
 </div>
 
 {.exercise ...}
@@ -88,6 +89,10 @@ Changelog:
 
 {/}
 
+> [Note added 1 March:] If your simulation crashes with an error like "thread '<unnamed>' panicked at 'range start index 18446744073709551594 out of range for slice of length 10'", then
+> this is from sending a message that is marked as encrypted but whose data is too short. Versions of `securelab.tar` after 2023-03-01 3:45pm
+> give a better error message in this case.
+
 # Our simulation API
 
 The code for forward_normal looks like:
@@ -129,7 +134,7 @@ You can modify this to change the messages in various ways, for example:
                     'A', 'B',
                     "This is an additional message."
                     false, false
-                )
+                ))
                 counter += 1;
             }
             send_message(message);
