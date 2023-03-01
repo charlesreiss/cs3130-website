@@ -2,60 +2,16 @@
 title: Fork and run
 ...
 
-Write and submit a single file `fork_run.c`
-that defines the following two functions.
-You should not submit any other files (i.e., no `.h` files, `Makefile`, etc).
-You may include helper functions in the file,
-but it should not contain `main`.
+{.exercise ... }
 
-# `int my_system(const char *command)`
+1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
 
-This is a simplified version of the `system` standard library function (see [`man 3 system`{.bash}](http://man7.org/linux/man-pages/man3/system.3.html) for details). You should handle all aspects of the function as described in the manual page **except**
+    *  `char *getoutput(const char *command)`
+    *  `char *parallelgetoutput(int count, const char *executable)`
 
-1. you do not need to ignore or block any signals
-1. you do not need to check "if a shell is available" for `NULL` commands
+    You should not submit any other files (i.e., no `.h` files, `Makefile`, etc).
+    You may include helper functions in the file, but it should not contain `main`.
 
-You must not use `system` in your implementation.
-You should use `fork`; `wait` or `waitpid`; and either `execve` or one of its front-ends (`execl`, `execlp`, `execle`, `execv`, `execvp`, or `execvpe`).
-
-Because `my_system` needs to be thread-safe, do not use any global variables.
-
-{.example ...} The following main function
-
-```c
-int main(int argc, const char *argv[]) {
-    int a1 = my_system("sleep 1; echo hi");
-    int a2 = my_system("echo bye");
-    int a3 = my_system("flibbertigibbet 23");
-    printf("%d %d %d\n", 
-        WEXITSTATUS(a1), WEXITSTATUS(a2), WEXITSTATUS(a3));
-}
-```
-
-should print
-
-    hi
-    bye
-    sh: 1: flibbertigibbet: not found
-    0 0 127
-
-(note: the details of the "not found" line will vary based on the version of `sh` installed on the computer)
-{/}
-
-{.example ...} The following main function
-
-```c
-int main(int argc, const char *argv[]) {
-    my_system("echo -n 'type something: ';"
-        " read got;"
-        " echo Thanks for typing \\\"\"$got\"\\\"");
-}
-```
-
-should prompt for user input, wait until it is provided, and then repeat what they typed, as e.g.
-
-    type something: this is a test
-    Thanks for typing "this is a test"
 {/}
 
 
@@ -64,6 +20,8 @@ should prompt for user input, wait until it is provided, and then repeat what th
 This should behave something like `system`, except that instead of letting the child print to stdout, it should collect what the child prints and return it as a `\0`-terminated `malloc`-allocated `char *`. If the command's output includes a `\0` itself, it should return your choice of the output up to the first `\0` or the entire output (with an additional terminating `\0`).
 
 I am not aware of a standard library function that does this, but if you find one do not use it; do this by forking, execing, and piping yourself.
+
+We will supply an example implementation of `my_system` from the prior fork lab as a potential starting point sometime after the late deadline for that lab.
 
 {.example ...} The following main function
 
@@ -129,3 +87,65 @@ As a tip, one of the easiest ways to read everything there is to read
 is to use `getdelim`{.c} with the delimiter `'\0'`{.c}.
 `getdelim`{.c} wants a `FILE *`{.c}, not a file descriptor;
 see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
+
+# `char *parallelgetoutput(int count, const char **argv_base)`
+
+Run `count` child processes simulatenously and collect their output into a single string,
+returning only after all the child processes have finished. 
+Each of the child processes
+should run a command specified by the NULL-pointer-terminated array `argv_base` 
+as follows:
+
+*  the executable run shall be `argv_base[0]`
+*  the arguments (`argv` value) for the program run shall be the elements of `argv_base` followed by the 0-based index of
+   the child process converted to a string
+
+The output collected may interleave the output from each of the child processes.
+
+You may assume the executable `argv_base[0]` exists and executes normally and that we supply
+the full path of the executable.
+
+{.example ...}
+For example, a `main()` like:
+
+    int main() {
+        const char *argv_base[] = {
+            "/bin/echo", "running", NULL
+        };
+        const char *output = parallelgetoutput(2, argv_base);
+
+        printf("Text: [%s]\n", output);
+    }
+
+would start two child processes. One of them would run something equivalent to:
+
+    const char *argv[] = {"/bin/echo", "running", "0"};
+    execv("/bin/echo", argv);
+
+And another would run something equivalent to:
+
+    const char *argv[] = {"/bin/echo", "running", "1"};
+    execv("/bin/echo", argv);
+
+Then, it would wait for both child processes to finish and collect their combined output
+into a single string `output`. On a system with a `/bin/echo` program like exists in portal,
+the output would probably be either:
+
+    Text: [running 0
+    running 1]
+
+or:
+
+    Text: [running 1
+    running 0]
+
+(but on som esystems, maybe other interleaved outputs would be possible like:
+
+    Text: [running running 1
+    0]
+
+)
+
+Like with the `getoutput` example, the program above has a memory leak; `output` is dynamically
+allocated and never `free`d.
+{/}

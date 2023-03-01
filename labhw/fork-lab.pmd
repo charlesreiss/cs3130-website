@@ -1,0 +1,67 @@
+---
+title: Fork and run
+...
+
+{.exercise ...}
+
+1. Possibly working with a partner, write a single file `my_system.c`
+   that defines the `my_system` function specified below.
+   You may include helper functions in the file, but it should not contain `main`.
+
+2. In a separate file, write a `main` to test your `my_system` function
+   and make sure it works as intended.
+
+2. Show your working function to a TA *or*
+   submit your `.c` files to the submission site.
+
+{/}
+
+# `int my_system(const char *command)`
+
+This is a simplified version of the `system` standard library function (see [`man 3 system`{.bash}](http://man7.org/linux/man-pages/man3/system.3.html) for details). You should handle all aspects of the function as described in the manual page **except**
+
+1. you do not need to ignore or block any signals
+1. you do not need to check "if a shell is available" for `NULL` commands
+
+You must not use `system` in your implementation.
+You should use `fork`; `wait` or `waitpid`; and either `execve` or one of its front-ends (`execl`, `execlp`, `execle`, `execv`, `execvp`, or `execvpe`).
+
+Because `my_system` needs to be thread-safe, do not use any global variables.
+
+{.example ...} The following main function
+
+```c
+int main(int argc, const char *argv[]) {
+    int a1 = my_system("sleep 1; echo hi");
+    int a2 = my_system("echo bye");
+    int a3 = my_system("flibbertigibbet 23");
+    printf("%d %d %d\n", 
+        WEXITSTATUS(a1), WEXITSTATUS(a2), WEXITSTATUS(a3));
+}
+```
+
+should print
+
+    hi
+    bye
+    sh: 1: flibbertigibbet: not found
+    0 0 127
+
+(note: the details of the "not found" line will vary based on the version of `sh` installed on the computer)
+{/}
+
+{.example ...} The following main function
+
+```c
+int main(int argc, const char *argv[]) {
+    my_system("echo -n 'type something: ';"
+        " read got;"
+        " echo Thanks for typing \\\"\"$got\"\\\"");
+}
+```
+
+should prompt for user input, wait until it is provided, and then repeat what they typed, as e.g.
+
+    type something: this is a test
+    Thanks for typing "this is a test"
+{/}
