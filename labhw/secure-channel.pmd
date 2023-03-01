@@ -8,6 +8,7 @@ Changelog:
 *  23 February 2023: mark scenario 3 as "if you have time" and as tentatively won't be required
 *  24 February 2023: complete "tries to use a nonce" as "tries to use a nonce to prevent replay attacks"
 *  28 February 2023 11:50p: update `securelab.tar` to improve error messages (by removing text about internals of the lab; no functionality changes)
+*  1 March 2023: correct description of what signature is in `struct message`: "using from's public key" -> "using from's private key"
 </div>
 
 {.exercise ...}
@@ -139,7 +140,7 @@ The `struct message` is defined as follows:
         char from;              // message sender
         char to;                // message recipient
         bool is_encrypted;      
-        bool is_signed;         // if true, 'data' is signed using from's public key
+        bool is_signed;         // if true, 'data' is signed using from's private key
         char data[1024];        
         size_t data_size;
         char signature[64];     // only used if is_signed is true
