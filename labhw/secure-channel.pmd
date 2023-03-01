@@ -11,11 +11,12 @@ Changelog:
 *  1 March 2023: correct description of what signature is in `struct message` (in lab writeup and comments in lab.h; no functionality changes): "using from's public key" -> "using from's private key"
 *  1 March 2023: correct scenario 3 hint to state that you should use A to decrypt messages from B (since A will talk to you and not B) rather than the other way around
 *  1 March 2023: make it clearer that `new_message` can encrypt messages
+*  1 March 2023: update securelab.tar to not give cryptic error when encrypted messages are much shorter than expected; add note about problems with manipulating encrypted messages
 </div>
 
 {.exercise ...}
 
-1.  Download [securelab.tar](files/securelab.tar) *[last updated 2023-03-01 10a]* and extract it.
+1.  Download [securelab.tar](files/securelab.tar) *[last updated 2023-03-01 3:45p]* and extract it.
 
 2.  In this lab, you will act as a network attacker on
     several examples of attempts to communicate securely.
@@ -175,6 +176,10 @@ contents if the buffer_size is too small).
 
 Encrypting a message will public-key encrypt it to `to`'s public key.
 `new_message` has a list of all the public keys to do this.
+
+If you manipulate the `data` or `data_size` of an encrypted message directly 
+or unset the `is_encrypted` field of an existing message (instead of encrypting
+a new message to the public key), then most likely the resulting message will be considered malformed.
 
 Signing a message will only work if `from` is M; `new_message` does not have any other
 private keys.
