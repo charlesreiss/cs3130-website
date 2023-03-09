@@ -166,7 +166,7 @@
   short_name: cache-programs
   tentative: true
   page: labhw/cache-programs.html
-  submit_file: "*.tar"
+  submit_file: "*submit*.tar"
   due: 2023-03-22
 
 - name: fork lab
