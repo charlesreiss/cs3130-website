@@ -166,6 +166,7 @@
   short_name: cache-programs
   tentative: true
   page: labhw/cache-programs.html
+  submit_file: "*.tar"
   due: 2023-03-22
 
 - name: fork lab
@@ -173,6 +174,7 @@
   lab: true
   page: labhw/fork-lab.html
   tentative: true
+  submit_file: "*.c"
   due: 2023-03-22
 
 - name: TLB
