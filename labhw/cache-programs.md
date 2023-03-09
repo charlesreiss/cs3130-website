@@ -2,6 +2,14 @@
 title: Cache program problems
 ...
 
+<div class="changelog">
+Changelog: 
+
+*  9 Mar 2023: update skeleton code Makefile to rename target to `make submit` and have it not look
+   for prog4.c, prog5.c
+</div>
+
+
 # Your Task
 
 > Compatability note: 
@@ -37,7 +45,7 @@ title: Cache program problems
 
 3.  Test your programs using the instructions below.
 
-3.  Use `make submit-hw` to create a .tar file, and upload that file to the submission site.
+3.  Use `make submit` to create a .tar file, and upload that file to the submission site.
 
 <!-- FIXME: thing with template code -->
 # Valgrind cachegrind
