@@ -1,6 +1,13 @@
 ---
 title: Caches -- Keep a finger in it
+author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
+
+<div class="changelog">
+Changelog:
+
+*  8 March 2023: add section on write-allocate versus write-no-allocate policies; label write-through v write-back section more clearly.
+</div>
 
 # A thought experiment
 
@@ -288,6 +295,10 @@ L2--L*n*
 
     If a block of data is stored in the L$i$ cache, it is also stored in the L$i+1$ cache and so on back up to RAM.
 
+# Handling writes
+
+## Write-through versus write-back
+
 Each cache also has a policy for how memory writes are sent to larger components of the cache hierarchy.
 The two most common such policies are
 
@@ -313,6 +324,22 @@ Write through
 
 There is no need for all of the cache layers to use the same write policy;
 a write-back L1 coupled with a write-though L2 is a perfectly doable configuration.
+
+## Write-allocate versus write-no-allocate
+
+Another decision cache designers need to make about writes is whether to add values
+to the cache when they are written. Adding values being written to the cache
+is called **write-allocate**. Write-allocate plicies give the most opportuntity
+to take advantage of locality (assuming there is locality in the writes made by
+programs).
+But adding the value may also require reading from the next level of the cache
+hierarchy when that would not otherwise be needed: for example, writing an 8-byte
+value to a 64-byte cache block might require first reading in the remaining 56 bytes
+of that cache block.
+
+Alternatively, caches might avoid such complicated by using
+a **write-no-allocate** policy, where
+writes to values not yet cached will simply be forwarded to the next level of cache.
 
 # Cache-efficient code
 
