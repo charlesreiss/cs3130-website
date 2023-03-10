@@ -7,7 +7,7 @@ title: Fork and run
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
 
     *  `char *getoutput(const char *command)`
-    *  `char *parallelgetoutput(int count, const char *executable)`
+    *  `char *parallelgetoutput(int count, const char **argv_base)`
 
     You should not submit any other files (i.e., no `.h` files, `Makefile`, etc).
     You may include helper functions in the file, but it should not contain `main`.
@@ -76,10 +76,13 @@ To do this, use the following outline.
         `malloc`ing enough space to store it all.
     c. close the read end of the pipe when you are done reading.
     d. `waitpid` on the child *after* reading everything.
-        This is not strictly necessary (you can wait first and it should work),
-        but waiting after reading lets the OS
-        send information to the parent as it arrives
-        instead of buffering it all in kernel memory first.
+       If you wait before reading everything, then you are relying
+       on the OS buffering the program's output for you. This will
+       work when the program's output is not too long, but when
+       the program has a lot of output, the program will wait
+       for more buffer space to be available. Since if you 
+       waited first, you wouldn't be reading to help free up
+       some buffer space, the program will hang.
 
 You may assume that the command exists and executes normally; no need to add any error-handling logic.
 
@@ -104,6 +107,8 @@ The output collected may interleave the output from each of the child processes.
 
 You may assume the executable `argv_base[0]` exists and executes normally and that we supply
 the full path of the executable.
+
+Before returning, `parallelgetoutput` must `waitpid` for *each* child process.
 
 {.example ...}
 For example, a `main()` like:
@@ -149,3 +154,22 @@ or:
 Like with the `getoutput` example, the program above has a memory leak; `output` is dynamically
 allocated and never `free`d.
 {/}
+
+# Hints
+
+## Testing that you `waitpid`
+
+If your `getoutput` and `parallelgetoutput` call `waitpid` properly, then after they return running 
+
+    waitpid(-1, NULL, 0)
+
+should return `-1` and set `errno` to ECHILD (indicating that there are no child processes to wait for).
+
+## Some corner cases to test
+
+I would recommend testing:
+
+*  programs that output a lot (tens of kilobytes) at least.
+*  programs that output something, then wait, then output another thing, then wait, etc. If you're writing programs to simulate this, I recommend using `fflush()` or similar to make sure the output is sent when you expect it.
+
+
