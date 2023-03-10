@@ -181,8 +181,13 @@
   short_name: tlb
   comment: no introducing lab
   page: labhw/tlb.html
-  comments: wrapper for pagetable 2
   tentative: true
+  submit_files:
+  - "*.c"
+  - "*.h"
+  - "Makefile"
+  - "makefile"
+  - "*.txt"
   due: 2023-03-29
 
 - name: sync games
@@ -200,6 +205,7 @@
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
   tentative: true
+  submit_file: "fork_run.c"
   due: 2023-04-05
 
 - name: pthreads (dining philosophers) 
