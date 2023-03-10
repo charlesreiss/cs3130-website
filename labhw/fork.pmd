@@ -2,7 +2,7 @@
 title: Fork and run
 ...
 
-{.exercise ... }
+{.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
 

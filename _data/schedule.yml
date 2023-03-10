@@ -212,7 +212,6 @@
   week: 9
   slides: yes
   slides_prelim: yes
-  slides_extra: yes
   title: caches 2
   reading: "[cache](readings/cache.html) §4, 1-3, 5"
   description: |
@@ -228,17 +227,18 @@
 
 - date: 2023-03-16
   week: 9
-  title: caches 3 / concurrency 1
+  title: caches 3 
   reading: "[processes and threads](readings/thread.html)"
   slides_see: 20230314
   slides: yes
   slides_prelim: yes
-  slides_extra: yes
+  slides_see2: 20230321
   description: |
     > (Guest lecture; Prof Reiss will be out of town.)
 
     *  review: caches
     *  write policies
+    *  cache tradeoffs
 
     *  the TLB
 
@@ -248,17 +248,22 @@
 
 - date: 2023-03-21
   week: 10
-  title: concurrency 2 + synchronization 1
+  title: concurrency 1
+  slides: yes
+  slides_prelim: yes
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2, 4; skim [consistency](readings/consistency.html)"
   description: |
-    *  alternatives to fork
-    *  proceses in the shell
+    *  processes, threads
+    *  creating new processes
+       *  fork, exec*
+    *  processes versus threads
     *  waiting for processes
+
+    *  (briefly) creating new threads
+    *  problem of synchronization
+
     *  file descriptors
     *  pipe and dup2
-
-    *  pthreads: creating threads
-    *  Amdahl's law <!-- demo? -->
 
 - date: 2023-03-22
   lab: true
