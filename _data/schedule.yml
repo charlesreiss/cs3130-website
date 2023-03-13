@@ -229,7 +229,7 @@
   week: 9
   title: caches 3 
   reading: "[processes and threads](readings/thread.html)"
-  slides_see: 20230314
+  slides_see: 2023-03-14
   slides: yes
   slides_prelim: yes
   slides_see2: 20230321
@@ -251,7 +251,7 @@
   title: concurrency 1
   slides: yes
   slides_prelim: yes
-  slides_see2: 20230323
+  slides_see2: 2023-03-23
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2, 4; skim [consistency](readings/consistency.html)"
   description: |
     *  processes, threads
@@ -273,7 +273,7 @@
   title: synchronization 1
   slides: yes
   slides_prelim: yes
-  slides_see2:  20230328
+  slides_see2:  2023-03-28
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §8, 2-7"
   description: |
     *  creating new threads
