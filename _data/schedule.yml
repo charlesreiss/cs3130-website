@@ -291,7 +291,7 @@
   reading: "[sync](readings/sync.html) §9"
   slides: yes
   slides_prelim: yes
-  slides-extra: yes
+  slides_extra: yes
   description: |
     *  atomic read-modify-write instructions
     *  barriers
