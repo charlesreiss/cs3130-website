@@ -251,6 +251,7 @@
   title: concurrency 1
   slides: yes
   slides_prelim: yes
+  slides_see2: 20230323
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2, 4; skim [consistency](readings/consistency.html)"
   description: |
     *  processes, threads
@@ -259,11 +260,9 @@
     *  processes versus threads
     *  waiting for processes
 
-    *  (briefly) creating new threads
-    *  problem of synchronization
-
     *  file descriptors
     *  pipe and dup2
+    
 
 - date: 2023-03-22
   lab: true
@@ -271,24 +270,32 @@
 
 - date: 2023-03-23
   week: 10
-  title: synchronization 2
+  title: synchronization 1
+  slides: yes
+  slides_prelim: yes
+  slides_see2:  20230328
   reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §8, 2-7"
   description: |
+    *  creating new threads
+    *  thread use examples
+
+    *  problem of synchronization
     *  atomicity, race conditions
        *   consistency preview
     *  locks and mutexes
-    *  atomic read-modify-write instructions
-    *  barriers
 
 
 - date: 2023-03-28
   week: 11
-  title: synchronization 3 / roll back 
+  title: synchronization 2
   reading: "[sync](readings/sync.html) §9"
+  slides: yes
+  slides_prelim: yes
+  slides-extra: yes
   description: |
+    *  atomic read-modify-write instructions
+    *  barriers
     *  monitors (mutexes + condition variables)
-    *  semaphores
-    *  reader/writer locks
 
 - date: 2023-03-29
   lab: true
@@ -296,9 +303,11 @@
 
 - date: 2023-03-30
   week: 11
-  title: deadlock
+  title: synchronization 3 / deadlock
   reading: "[deadlock](readings/deadlock.html)"
   description: |
+   *  semaphores
+   *  reader/writer locks
    *  deadlock definition + examples
    *  recovering from deadlock
    *  detecting deadlock, Banker's algorithm
