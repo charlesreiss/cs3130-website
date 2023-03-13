@@ -341,7 +341,7 @@
 
 - date: 2023-04-11
   week: 13
-  title: speculation
+  title: pipeline 2
   reading: "[processors](readings/processors.html) §2"
   description: |
     *  dependencies and hazards
