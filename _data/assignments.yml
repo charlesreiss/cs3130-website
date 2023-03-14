@@ -159,12 +159,10 @@
   old_page: labhw/memoize.html
   page: labhw/cache-lab.html
   lab: true
-  tentative: true
   due: 2023-03-15
 
 - name: cache programs
   short_name: cache-programs
-  tentative: true
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
   due: 2023-03-22
