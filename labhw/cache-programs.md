@@ -7,6 +7,7 @@ Changelog:
 
 *  9 Mar 2023: update skeleton code Makefile to rename target to `make submit` and have it not look
    for prog4.c, prog5.c
+*  14 Mar 2023: add some more detailt to section on the template code re: the main loop
 </div>
 
 
@@ -122,11 +123,24 @@ To do this we supply:
 ## Template programs
 
 The supplied template program which sets up a global array, and then accesses that global array
-in a loop. When accessing the array, the program reads an element of array to determine what element
-to access next. (You can think of the array as a big cyclic linked list.)
+in a loop:
+    
+    for (int i = 0; i < ITERS; ++i) {
+        j = global_array[j];
+    }
 
-The way in which it accesses this global array can be changed by changing how the array is initialized;
-our supplied code performs a regular pattern explained in a comment in the template file. You can adjust
+When accessing the array, the program starts at `global_array[0]`, then 
+reads an element of array to determine what element
+to access next (the index stored in `j`).
+So, for example, if global_array[0] = 4 and global_array[4] = 8 and global_array[8] = 0, then the program would access global_array[0], then global_array[4], global_array[8], then global_array[0], then global_array[4], and so on until ITERS accesses are made.
+
+(You can think of the array as a big cyclic singly-linked list starting at global_array[0];
+each array element is a "list node" containing just a next pointer.)
+
+The way in which it accesses this global array can be changed by changing how the array is
+initialized;
+our supplied code performs a regular pattern explained in a comment in the template file.
+You can adjust
 this pattern in by changing some settings in the program. If those settings are insufficient for
 the type of access pattern you want, you could also write new code to initialize the array.
 
