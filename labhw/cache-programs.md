@@ -8,6 +8,7 @@ Changelog:
 *  9 Mar 2023: update skeleton code Makefile to rename target to `make submit` and have it not look
    for prog4.c, prog5.c
 *  14 Mar 2023: add some more detailt to section on the template code re: the main loop
+*  16 Mar 2023: be explicit that for this assignment KB = 1024 bytes
 </div>
 
 
@@ -28,19 +29,21 @@ Changelog:
 
     (The skeleton code we supply has a structure that should be useful and comments suggesting particular modifications that might be useful, but you can perform whatever modifications you think would be helpful, including completely replacing the programs.)
 
-    1.  For `prog1.c`: Write a program that (when compiled with the Makefile) performs at least 10 million cache references and achieves a <10% miss rate with 32KB, 2-way data cache with 64B blocks but a >90% miss rate with a 16KB, 2-way data cache with 64B blocks.
+    > Note: in the sizes below 1KB = 1024 bytes, so all cache sizes are a power of two number of bytes.
+
+    1.  For `prog1.c`: Write a program that (when compiled with the Makefile) performs at least 10 million cache references and achieves a <10% miss rate with 32KB (2<sup>15</sup> bytes), 2-way data cache with 64B blocks but a >90% miss rate with a 16KB (2<sup>14</sup> bytes), 2-way data cache with 64B blocks.
         
         Hint: a program that would perform best with between 16KB and 32KB of data cached would be likely to achieve this.
 
         Hint: try thinking about how to solve this with a 8B direct-mapped cache with 8B blocks versus a 16B direct-mapped cache with 8B blocks instead, and then work on generalizing your solution to larger caches.
 
-    1.  For `prog2.c`: Write a program that performs at least 10 million cache references and achieves a <10% miss rate with 32KB, 4-way data cache with 64B blocks but a >90% miss rate with a 32KB, 2-way data cache with 64B blocks. Submit your program as `prog2.c`
+    1.  For `prog2.c`: Write a program that performs at least 10 million cache references and achieves a <10% miss rate with 32KB (2<sup>15</sup> bytes), 4-way data cache with 64B blocks but a >90% miss rate with a 32KB, 2-way data cache with 64B blocks. Submit your program as `prog2.c`
 
         Hint: Try to store 3 things in a single set in the two-way cache and in the four-way cache.
 
         Hint: The 4-way cache has 6 cache offset bits and 7 cache index bits. The 2-way cache has 6 cache offset bits and 8 cache index bits. This means that if we have several  addresses which are the same in bits 6 through 14, they will all have the same set index in *each cache*.
 
-    1.  For `prog3.c`: Write a program that performs at least 10 million cache references and achieves a <60% miss rate with 32KB, 2-way data cache with 128B blocks but a >90% miss rate with a 32KB, 2-way data cache with 64B blocks. Submit your program as `prog3.c`
+    1.  For `prog3.c`: Write a program that performs at least 10 million cache references and achieves a <60% miss rate with 32KB (2<sup>15</sup> bytes), 2-way data cache with 128B blocks but a >90% miss rate with a 32KB, 2-way data cache with 64B blocks. Submit your program as `prog3.c`
 
         Hint: take advantage of spatial locality
 
