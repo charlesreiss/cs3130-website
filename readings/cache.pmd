@@ -7,6 +7,7 @@ author: Luther Tychnoviech, with modifications by Charles Reiss
 Changelog:
 
 *  8 March 2023: add section on write-allocate versus write-no-allocate policies; label write-through v write-back section more clearly.
+*  16 March 2023: mention that compulsory miss = cold miss
 </div>
 
 # A thought experiment
@@ -138,7 +139,8 @@ needing both more storage and more computation.
 
 A **cache miss** is when a cache is accessed but the line desired is not located in it.
 Some misses are inevitable, no matter the cache design,
-such as the **cold miss** when the address is accessed for the very first time.
+such as the **cold miss** (also known as a **compulsory miss**)
+when the address is accessed for the very first time.
 Other misses are caused by the specific design of the cache.
 
 A fully-associative cache can suffer from a **capacity miss**.

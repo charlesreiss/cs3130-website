@@ -235,15 +235,9 @@
   description: |
     > (Guest lecture; Prof Reiss will be out of town.)
 
-    *  review: caches
+    *  review of set-associative caches
     *  write policies
-    *  cache tradeoffs
-
-    *  the TLB
-
-    *  (if time) processes, threads
-    *  (if time) creating new processes
-       *  fork, exec*
+    *  three Cs, cache tradeoffs (start)
 
 - date: 2023-03-21
   week: 10
@@ -251,16 +245,17 @@
   slides: yes
   slides_prelim: yes
   slides_see2: 2023-03-23
-  reading: "[pthreads](readings/pthreads.html); [sync](readings/sync.html) §1, 2, 4; skim [consistency](readings/consistency.html)"
+  reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
   description: |
+    *  cache tradeoffs, very briefly
+
+    *  the TLB
+
     *  processes, threads
     *  creating new processes
        *  fork, exec*
-    *  processes versus threads
     *  waiting for processes
 
-    *  file descriptors
-    *  pipe and dup2
     
 
 - date: 2023-03-22
@@ -273,8 +268,10 @@
   slides: yes
   slides_prelim: yes
   slides_see2:  2023-03-28
-  reading: "[pthreads](readings/pthread.html); [sync](readings/sync.html) §8, 2-7"
+  reading: "skim [consistency](readings/consistency.html); [pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2-7, 8"
   description: |
+    *  file descriptors
+    *  pipe and dup2
     *  creating new threads
     *  thread use examples
 
