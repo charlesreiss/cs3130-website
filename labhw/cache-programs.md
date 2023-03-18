@@ -9,6 +9,7 @@ Changelog:
    for prog4.c, prog5.c
 *  14 Mar 2023: add some more detailt to section on the template code re: the main loop
 *  16 Mar 2023: be explicit that for this assignment KB = 1024 bytes
+*  18 Mar 2023: fix valgrind cachegrind section not showing up in table of contents
 </div>
 
 
@@ -51,7 +52,6 @@ Changelog:
 
 3.  Use `make submit` to create a .tar file, and upload that file to the submission site.
 
-<!-- FIXME: thing with template code -->
 # Valgrind cachegrind
 
 `valgrind`, which is installed on the department machines, includes a cache simulator
