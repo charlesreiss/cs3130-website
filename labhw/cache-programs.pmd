@@ -9,7 +9,7 @@ Changelog:
    for prog4.c, prog5.c
 *  14 Mar 2023: add some more detailt to section on the template code re: the main loop
 *  16 Mar 2023: be explicit that for this assignment KB = 1024 bytes
-*  18 Mar 2023: fix valgrind cachegrind section not showing up in table of contents
+*  18 Mar 2023: fix valgrind cachegrind section header not being formatted correctly
 </div>
 
 
