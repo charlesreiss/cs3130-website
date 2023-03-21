@@ -8,6 +8,7 @@ Changelog:
 
 *  8 March 2023: add section on write-allocate versus write-no-allocate policies; label write-through v write-back section more clearly.
 *  16 March 2023: mention that compulsory miss = cold miss
+*  21 March 2023: add some pointers to some alternate writeups under "Additional resources"
 </div>
 
 # A thought experiment
@@ -359,3 +360,9 @@ and using data structures with worse asymptotic behavior but better cache locali
 As with other forms of performance optimization,
 cache-efficient code tends to be harder for humans to read, understand, and adjust,
 so it should be used only when the resulting speed increases are actually needed.
+
+# Additional references
+
+*  _Dive into Systems_'s [section on caching](https://diveintosystems.org/book/C11-MemHierarchy/caching.html)
+
+*  Smith, "[Cache Memories](https://dl.acm.org/doi/10.1145/356887.356892)" (ACM Computing Surveys, 1982)
