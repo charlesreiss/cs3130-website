@@ -178,7 +178,6 @@
   short_name: tlb
   comment: no introducing lab
   page: labhw/tlb.html
-  tentative: true
   submit_files:
   - "*.c"
   - "*.h"
