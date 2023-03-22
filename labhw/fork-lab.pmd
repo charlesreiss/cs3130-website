@@ -2,6 +2,12 @@
 title: Fork and run
 ...
 
+<div class="changelog">
+Changelog:
+
+*  22 March 2023: add pointer to readings
+</div>
+
 {.exercise ...}
 
 1. Possibly working with a partner, write a single file `my_system.c`
@@ -26,7 +32,10 @@ This is a simplified version of the `system` standard library function (see [`ma
 You must not use `system` in your implementation.
 You should use `fork`; `wait` or `waitpid`; and either `execve` or one of its front-ends (`execl`, `execlp`, `execle`, `execv`, `execvp`, or `execvpe`).
 
+In addition to manpages for the above functions, you may find it useful to refer to the lecture slides and/or the [threads reading](../reading/threads.html).
+
 Note that the "wait status" that `my_system` should return can be retrieved using `wait` or `waitpid`.
+
 
 Because `my_system` needs to be thread-safe, do not use any global variables.
 
