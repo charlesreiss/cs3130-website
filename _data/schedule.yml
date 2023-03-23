@@ -261,34 +261,33 @@
 
 - date: 2023-03-23
   week: 10
-  title: synchronization 1
+  title: threads 1
   slides: yes
   slides_prelim: yes
   slides_see2:  2023-03-28
-  reading: "skim [consistency](readings/consistency.html); [pthreads](readings/pthread.html); [sync](readings/sync.html) §1, 2-7, 8"
+  reading: "skim [consistency](readings/consistency.html); [pthreads](readings/pthread.html)" 
   description: |
     *  file descriptors
     *  pipe and dup2
     *  creating new threads
     *  thread use examples
 
-    *  problem of synchronization
-    *  atomicity, race conditions
-       *   consistency preview
-    *  locks and mutexes
 
 
 - date: 2023-03-28
   week: 11
-  title: synchronization 2
-  reading: "[sync](readings/sync.html) §9"
+  title: synchronization 1
+  reading: "[sync](readings/sync.html) §1, 2-7, 8-9"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
-    *  atomic read-modify-write instructions
+    *  problem of synchronization
+    *  atomicity, race conditions
+       *   consistency preview
+    *  locks and mutexes
     *  barriers
-    *  monitors (mutexes + condition variables)
+    *  atomic read-modify-write instructions
 
 - date: 2023-03-29
   lab: true
@@ -296,27 +295,22 @@
 
 - date: 2023-03-30
   week: 11
-  title: synchronization 3 / deadlock
-  reading: "[deadlock](readings/deadlock.html)"
+  title: synchronization 2 
   description: |
+   *  monitors (mutexes + condition variables)
    *  semaphores
    *  reader/writer locks
-   *  deadlock definition + examples
-   *  recovering from deadlock
-   *  detecting deadlock, Banker's algorithm
 
 - date: 2023-04-04
   week: 12
-  title: roll back / buses 
-  reading: "[sync](readings/sync.html) §9, [buses](readings/bus.html)"
+  title: deadlock / roll back
+  reading: "[deadlock](readings/deadlock.html), [sync](readings/sync.html) §9"
   description: |
+   *  deadlock definition + examples
+   *  recovering from deadlock
+   *  detecting deadlock, Banker's algorithm
    *  transactions
    *  redo logging
-
-   *  buses, full/half-duplex
-      *  relationship to networking
-   *  connecting to I/O devices
-   *  DMA
 
 
 - date: 2023-04-05
@@ -325,9 +319,14 @@
 
 - date: 2023-04-06
   week: 12
-  title: pipeline 1
-  reading: "[processors](readings/processors.html) §1-2"
+  title: buses / pipeline 1
+  reading: "[buses](readings/bus.html), [processors](readings/processors.html) §1-2"
   description: |
+   *  buses, full/half-duplex
+      *  relationship to networking
+   *  connecting to I/O devices
+   *  DMA
+
    *  review: single-cycle CPU
    *  pipelining idea
    *  pipleining for the CPU
