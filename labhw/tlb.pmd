@@ -2,6 +2,12 @@
 title: PA04 -- Translation lookaside buffer
 ...
 
+<div class="changelog">
+Changelog:
+
+*  23 March 2023: add missing `size_t` in the translate stub in tips
+</div>
+
 Implement a TLB wrapper around the page table interface from previous assignments.
 Note you will *not* need to implement a page table for this assignment;
 you'll merely use its API, as defined in `mlpt.h`
@@ -77,7 +83,7 @@ a special implementation of `translate` that returns specific values designed to
 
 ```c
 /** stub for the purpose of testing tlb_* functions */
-size_t translate(va) { return va; }
+size_t translate(size_t va) { return va; }
 ```
 
 gives enough behavior to test most TLB behaviors; adding some logging code to the stub can help make sure that `translate` is only called as needed.
