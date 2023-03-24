@@ -240,8 +240,6 @@
   week: 10
   title: concurrency 1
   slides: yes
-  slides_prelim: yes
-  slides_see2: 2023-03-23
   reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
   description: |
     *  cache tradeoffs, very briefly
