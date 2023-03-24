@@ -6,6 +6,7 @@ title: PA04 -- Translation lookaside buffer
 Changelog:
 
 *  23 March 2023: add missing `size_t` in the translate stub in tips
+*  24 March 2023: note that example assumes a POBITS of 12
 </div>
 
 Implement a TLB wrapper around the page table interface from previous assignments.
@@ -92,7 +93,7 @@ TLBs typically do not have a CPU-write-to-TLB functionality, so they do not need
 
 # Examples
 
-If you stub `translate(va)`{.c} as `return va < 0x1234000 ? va + 0x20000 : -1;`{.c}
+With a POBITS of 12, if you stub `translate(va)`{.c} as `return va < 0x1234000 ? va + 0x20000 : -1;`{.c}
 then the following code should work
 
 ````c
