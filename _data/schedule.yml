@@ -259,7 +259,7 @@
 
 - date: 2023-03-23
   week: 10
-  title: threads 1
+  title: concurrency 2
   slides: yes
   slides_prelim: yes
   slides_see2:  2023-03-28
@@ -267,25 +267,22 @@
   description: |
     *  file descriptors
     *  pipe and dup2
-    *  creating new threads
-    *  thread use examples
 
 
 
 - date: 2023-03-28
   week: 11
-  title: synchronization 1
+  title: threads 1 / synchronization 1
   reading: "[sync](readings/sync.html) §1, 2-7, 8-9"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  creating new threads
+    *  thread use examples
     *  problem of synchronization
     *  atomicity, race conditions
        *   consistency preview
-    *  locks and mutexes
-    *  barriers
-    *  atomic read-modify-write instructions
 
 - date: 2023-03-29
   lab: true
@@ -295,6 +292,9 @@
   week: 11
   title: synchronization 2 
   description: |
+   *  locks and mutexes
+   *  barriers
+   *  atomic read-modify-write instructions
    *  monitors (mutexes + condition variables)
    *  semaphores
    *  reader/writer locks
