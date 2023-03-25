@@ -8,6 +8,7 @@ Changelog:
 *  23 March 2023: add missing `size_t` in the translate stub in tips
 *  24 March 2023: note that example assumes a POBITS of 12
 *  24 March 2023: note that we don't want `main()` or `translate()` implementations submitted since that makes testing hard
+*  24 March 2023: update defunct references to PA02/PA03 to reference pagetable instead
 </div>
 
 Implement a TLB wrapper around the page table interface from previous assignments.
@@ -27,8 +28,8 @@ You should design your own data structures, etc, to make this work properly.
 The public API should be the following `tlb.h`
 
 ```c
-#include "config.h" /* see PA02 for guidance on this file */
-#include "mlpt.h"   /* see PA02 this file */
+#include "config.h" /* see pagtable guidance on this file */
+#include "mlpt.h"   /* see pagetable this file */
 
 /** invalidate all cache lines in the TLB */
 void tlb_clear();
@@ -66,7 +67,7 @@ You may also submit a `Makefile` if you wish, but do not need to do so.
 Your TLB code **must not** depend on any implementation detail of your page tables.
 It may use `translate`, plus the `#define`s in `config.h`,
 and should append the page offset to the PPN it finds cached itself,
-but should not invoke any code or use any variables defined in your implementations of PA02 or PA03 besides `translate`, `LEVELS`, and `POBITS`.
+but should not invoke any code or use any variables defined in your implementations of pagetlabe or pagetable besides `translate`, `LEVELS`, and `POBITS`.
 Each call to `translate` **must** be to a page-beginning address, and that only if it is not in the cache.
 
 {.example ...}
