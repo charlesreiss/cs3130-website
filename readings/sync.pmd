@@ -1,6 +1,14 @@
 ---
 title: Synchronization primitives
+author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
+
+<div class="changelog">
+Changelog:
+
+*  25 March 2023: add aside describing what are atomic operations
+*  25 March 2023: add section on reordering/optimizations
+</div>
 
 # Day-to-day life
 
@@ -23,6 +31,67 @@ Either way, atomic operations are generally slower than their non-atomic counter
 and only a limited number of them are provided on any given system.
 
 Atomic operations are used to implement all of the other synchronization tools on this page.
+
+{.aside ...}
+read/modify/write atomic operations
+
+Typically, processors guarantee that loading and storing pointer-sized values from memory into a register
+is atomic.
+Technically, along with disabling interrupts,
+this is sufficient to implement the synchronization constructs described
+below on a multi-core system
+(see, for example, [Peterson's algorithm](https://en.wikipedia.org/wiki/Peterson%27s_algorithm) to
+find out how).
+But to make such implementations more practical, processors usually provide atomic instructions
+that load, modify, and write-back a value to make implementing these constructs more practical.
+
+Which operations are supported varies between processors.
+One example is an atomic swap operation (`lock xchg` on x86-64), which swaps a register with a value in memory. Unlike a normal swap, no other processor can write the memory value in between when it is copied into the register and when the register value overwrites the value in memory. This can be achieved in hardware by ensuring that the value is stored in a cache during the swap and that no other processor's cache obtains the value until the swap completes.
+
+{/}
+
+{.aside reordering and other optimizations 
+
+When compiling or running programs, it's common for compilers
+and processors to perform memory accesses in a different order than is written.
+
+For example, given code like:
+
+    global_variable = 0;
+    for (int i = 0; i < 1000; ++i) {
+        global_variable += array[i];
+    }
+
+it is much better if this ends up writing `global_variable` just once after the loop rather
+than reading and writing `global_variable` multiple times. A compiler might do this by
+keeping `global_variable` temporarily in a register. Processors can do this kind of optimization, too.
+
+A result of this is that the reads and writes to `global_variable` effectively occur later
+than the reads of the `array`, even though that's not what the code specifies.
+
+When `global_variable` isn't shared between cores, this change is invisible. But when other cores
+are acting on the value, this can change the result of the program. In an example like the
+above, this is not a problem, but many naive ways of achieving sychronization end up not working
+because of this, even if they use atomic operations. For example, one common idea
+is to use global `flag` variable set by one thread to stop another thread from doing something:
+
+    counter = 0;
+    while (!flag && counter > 100000) {
+        counter += array[counter];
+    }
+
+A problem here is that the compiler is allowed to read the value of `flag` just once and
+keep it in a register. Or, alternately, an advanced processor will often do the same thing
+itself. It is not sufficient that the operation of reading the `flag` is atomic. It is still
+being done atomically, just not at the time the code appeared to specify.
+
+To avoid these kinds of optimizations, we need to tell compiler and processor that
+some operations cannot be reordered like this. Implementations of the synchronization
+constructs described below will almost always do this, so you can use them without worrying
+about these problems.
+
+{/}
+
 
 # Semaphore
 
@@ -83,6 +152,8 @@ Because condition variables are so often used in monitors, I have sometimes seen
 
 # Monitor
 
+> See also: [pthreads API for condition variables](pthreads.html#monitor)
+
 A **monitor** is a paired [mutex](#mutex) and [condition variable](#condition-variable) with the following operations defined upon the pair:
 
 wait
@@ -107,6 +178,8 @@ broadcast or notifyAll
 Monitors are sometimes implemented at a programming language level as the most user-friendly technique for achieving mutual exclusion. Java, for example, decided that every object would be a monitor and includes the `synchronized`{.java} keyword and associated control constructs for automatically waiting on and signaling that monitor.
 
 # Reader-writer lock
+
+> See also: [pthreads API for reader/writer locks](pthreads.html#rwlock)
 
 A reader-writer lock is used in two modes.
 If used by a writer, it is a [mutex](#mutex);
@@ -136,6 +209,8 @@ Several designs exist in part because of the multiple possible answers to the fo
 Both read-preferring and write-preferring reader-writer locks have pros and cons, and both are commonly implemented.
 
 # Barrier
+
+> See also: [pthreads API for barriers](pthreads.html#barrier)
 
 A **barrier** is somewhat similar to a counting semaphore,
 in that it can be thought of as a simple integer.
@@ -174,3 +249,8 @@ The principle behind read-copy-update is that a process checks to make sure none
     c. if not, release the mutex and return to step 1 to try again.
 {/}
 
+
+# Further resources
+
+*  [OS:TEP](https://pages.cs.wisc.edu/~remzi/OSTEP/)'s cahpters 26--32
+*  [Dive Into Systems, chapter 14](https://diveintosystems.org/singlepage/#_leveraging_shared_memory_in_the_multicore_era)
