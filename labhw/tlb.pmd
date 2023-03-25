@@ -57,7 +57,7 @@ size_t tlb_translate(size_t va);
 
 Note that we do not have a `tlb_allocate`. This is by design: allocation is performed by software (a part of the operating system, accessed through a system call) and not by the hardware.
 
-You should submit `tlb.h`, and other `.h` and `.c` files you create.
+You should submit `tlb.h`, and other `.h` and `.c` files you create for your implementation.
 You may also submit a `Makefile` if you wish, but do not need to do so.
 (Please, however, do not submit `.c` files that include `main()` or `translate()` functions
 (not disabled via an `#ifdef` or similar) since that will interfere with us testing your code.)
@@ -67,7 +67,7 @@ You may also submit a `Makefile` if you wish, but do not need to do so.
 Your TLB code **must not** depend on any implementation detail of your page tables.
 It may use `translate`, plus the `#define`s in `config.h`,
 and should append the page offset to the PPN it finds cached itself,
-but should not invoke any code or use any variables defined in your implementations of pagetlabe or pagetable besides `translate`, `LEVELS`, and `POBITS`.
+but should not invoke any code or use any variables defined in your implementations of pagetable besides `translate`, `LEVELS`, and `POBITS`.
 Each call to `translate` **must** be to a page-beginning address, and that only if it is not in the cache.
 
 {.example ...}
