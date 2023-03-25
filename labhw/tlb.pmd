@@ -7,6 +7,7 @@ Changelog:
 
 *  23 March 2023: add missing `size_t` in the translate stub in tips
 *  24 March 2023: note that example assumes a POBITS of 12
+*  24 March 2023: note that we don't want `main()` or `translate()` implementations submitted since that makes testing hard
 </div>
 
 Implement a TLB wrapper around the page table interface from previous assignments.
@@ -57,6 +58,8 @@ Note that we do not have a `tlb_allocate`. This is by design: allocation is perf
 
 You should submit `tlb.h`, and other `.h` and `.c` files you create.
 You may also submit a `Makefile` if you wish, but do not need to do so.
+(Please, however, do not submit `.c` files that include `main()` or `translate()` functions
+(not disabled via an `#ifdef` or similar) since that will interfere with us testing your code.)
 
 # Separation of Concerns
 
