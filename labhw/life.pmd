@@ -17,18 +17,6 @@ Make sure you look at `input/README.md`, as well as `life.h` and any other files
 The provided code will compile and run.
 We encourage experimenting with it before adding any code of your own.
 
-{.aside ...} Address sanitizer on department machines
-
-Some students have reported that `clang` fails to build the `life-asan` version once they add threading.
-There are at least two known workarounds.
-
-- Change the makefile to use `gcc` instead of `clang`, and `module load gcc`{.sh} instead of `module load clang-llvm`{.sh}.
-
-- Use `make life`{.sh} instead of just `make`, so that `make` builds only the non-address-sanitizer version.
-
-I've asked the systems staff to add threaded asan for clang, but it is not yet clear when that will be done.
-{/}
-
 Make sure you understand how `simulate_life_serial` works.
 You'll be making a (more complicated) parallel version of this, and are unlikely to be successful if you don't understand this starting point.
 
@@ -63,9 +51,6 @@ Additional constraints:
 
 1. You must not use OpenMP in your solution: we are trying to measure your understanding of the lower-level tools OpenMP uses.
     
-    That said, you may add a file `life_parallel_omp.c` that *does* use OpenMP for a small amount of extra credit.
-    If so, you should include a block comment at the top of `life-parallel-omp.c` that compares your raw-`pthreads` and OpenMP implementations in terms of both code simplicity and performance.
-
 ## Test your code.
 
 Uncomment the lines of `main.c` that are marked as appropriate to uncomment after `simulate_life_parallel` is written. Then test your code, as e.g. by running
@@ -109,4 +94,4 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 # Caveats
 
 - MacOS and OS X ship with only a subset of the pthreads library, notably excluding `pthread_barrier_t` and its associated functions.
-    You should probably use portal, a virtual machine, etc. See [our COA1 guide](../../COA1/F2019/lab04-tools.html#how-to-on-portal) for more.
+    You should probably use portal, a virtual machine, etc.
