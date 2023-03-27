@@ -157,6 +157,11 @@ allocated and never `free`d.
 
 # Hints
 
+## fork lab code
+
+You may find it useful to consult your code for the fork lab. If you did not complete it,
+an example solution is available on Collab, under the resources tab.
+
 ## Testing that you `waitpid`
 
 If your `getoutput` and `parallelgetoutput` call `waitpid` properly, then after they return running 

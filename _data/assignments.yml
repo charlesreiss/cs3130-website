@@ -200,7 +200,6 @@
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
-  tentative: true
   submit_file: "fork_run.c"
   due: 2023-04-05
 
