@@ -9,6 +9,7 @@ Changelog:
 *  24 March 2023: note that example assumes a POBITS of 12
 *  24 March 2023: note that we don't want `main()` or `translate()` implementations submitted since that makes testing hard
 *  24 March 2023: update defunct references to PA02/PA03 to reference pagetable instead
+*  28 March 2023: add note that we don't care about unused most significant virtual address bits
 </div>
 
 Implement a TLB wrapper around the page table interface from previous assignments.
@@ -78,6 +79,11 @@ If `POBITS` is 12 and `tlb_translate` is invoke with addresses `0x12345`, `0x124
 - `tlb_translate(0x13579)` should invoke `translate(0x13000)`
 {/}
 
+## On unused virtual address bits
+
+Depending on the value of `LEVELS` and `POBITS`, some of the most significant bits of a virtual address
+may be unused. We do not care how your TLB implementation deals with these bits being set, so it permissible
+for you to not use the value of `LEVELS`.
 
 # Tips
 
