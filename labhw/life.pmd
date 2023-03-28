@@ -65,9 +65,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 - `life-asan 10 input/make-a time`{.bash} to check for memory leaks and other memory errors (but do not trust its timing, the address sanitizer slows things down a lot).
 
-- `life-tsan 10 input/make-a time`{.bash} to check for race conditions (but do not trust its timing, the address sanitizer slows things down a lot).
-
-- `life-asan 10 input/make-a time`{.bash} to check for some types of synchronization errors (but do not trust its timing, the thread sanitizer slows things down a lot).
+- `life-tsan 10 input/make-a time`{.bash} to check for race conditions and some other types of synchornization errors (but do not trust its timing, the address sanitizer slows things down a lot).
 
 - `./life 0 input/o0075 serial-result`{.bash} to ensure you can load an example file.
 
@@ -77,7 +75,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 - `./time-examples.sh`{.bash} to get a sense of how you are doing on parallel performance.
 
-- `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer ThreadSanitizer
+- `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer, ThreadSanitizer
 
 # Tips
 
