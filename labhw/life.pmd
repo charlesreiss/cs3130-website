@@ -39,13 +39,19 @@ Additional constraints:
 
 1. You must call `pthread_create` exactly `threads` times. Do not create more or fewer threads, nor create new threads for each iteration of the simulation.
 
+1. You should arbitrary numbers of threads (subject to the available resources on our testing machine).
+
 1. We must be able to call `simulate_life_parallel` from multiple threads concurrently. Do not use global variables or other thread-unsafe practices.
 
 1. You must have no memory leaks or other memory errors. The provided `Makefile` builds a version with the address sanitizer enabled automatically as `life-asan`; this must run without errors.
 
+1. ThreadSanitizer should not detect likely race conditions or other thread API errors in your code. The provided `Makefile` builds a version with the thread sanitizer enabled automatically as `life-tsan`.
+
 1. You must call the appropriate `pthread_***_destroy` for each `pthread_***_init` you call to reclaim any pthreads-allocated memory.
 
 1. On a multi-core machine, your parallel code must be noticeably faster than the serial code when run on sufficiently large boards for sufficiently many iterations.
+
+1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
 
 1. And, of course, you are still bound by all the usual [course policies](policies.html#write-your-own-code).
 
@@ -61,6 +67,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 - `life-tsan 10 input/make-a time`{.bash} to check for race conditions (but do not trust its timing, the address sanitizer slows things down a lot).
 
+- `life-asan 10 input/make-a time`{.bash} to check for some types of synchronization errors (but do not trust its timing, the thread sanitizer slows things down a lot).
+
 - `./life 0 input/o0075 serial-result`{.bash} to ensure you can load an example file.
 
 - `./life 110 input/o0075 serial-result`{.bash} to ensure you can simulate an example file.
@@ -68,6 +76,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 - `./life 10 input/make-a time`{.bash} to time the `make-a` file with 10 steps.
 
 - `./time-examples.sh`{.bash} to get a sense of how you are doing on parallel performance.
+
+- `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer ThreadSanitizer
 
 # Tips
 
