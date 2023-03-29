@@ -281,8 +281,6 @@
     *  creating new threads
     *  thread use examples
     *  problem of synchronization
-    *  atomicity, race conditions
-       *   consistency preview
 
 - date: 2023-03-29
   lab: true
@@ -295,23 +293,22 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
+   *  atomicity, race conditions
    *  locks and mutexes
    *  barriers
    *  atomic read-modify-write instructions
-   *  monitors (mutexes + condition variables)
-   *  semaphores
-   *  reader/writer locks
+   *  monitors (start)
 
 - date: 2023-04-04
   week: 12
-  title: deadlock / roll back
+  title: synchronization 3
   reading: "[deadlock](readings/deadlock.html), [sync](readings/sync.html) §9"
   description: |
+   *  monitors (mutexes + condition variables)
    *  deadlock definition + examples
-   *  recovering from deadlock
-   *  detecting deadlock, Banker's algorithm
-   *  transactions
-   *  redo logging
+
+   *  semaphores
+   *  reader/writer locks
 
 
 - date: 2023-04-05
@@ -320,23 +317,26 @@
 
 - date: 2023-04-06
   week: 12
-  title: buses / pipeline 1
-  reading: "[buses](readings/bus.html), [processors](readings/processors.html) §1-2"
+  title: deadlock / roll back
+  reading: "[buses](readings/bus.html)"
   description: |
+   *  recovering from deadlock
+   *  detecting deadlock, Banker's algorithm
+   *  transactions
+   *  redo logging
    *  buses, full/half-duplex
       *  relationship to networking
    *  connecting to I/O devices
    *  DMA
 
-   *  review: single-cycle CPU
-   *  pipelining idea
-   *  pipleining for the CPU
-
 - date: 2023-04-11
   week: 13
   title: pipeline 2
-  reading: "[processors](readings/processors.html) §2"
+  reading: "[processors](readings/processors.html) §1-2"
   description: |
+   *  review: single-cycle CPU
+   *  pipelining idea
+   *  pipleining for the CPU
     *  dependencies and hazards
       *  data flow graphs
     *  hazard handling, part 1
