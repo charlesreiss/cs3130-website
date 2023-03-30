@@ -50,7 +50,7 @@ One example is an atomic swap operation (`lock xchg` on x86-64), which swaps a r
 
 {/}
 
-{.aside reordering and other optimizations 
+{.aside reordering and other optimizations}
 
 When compiling or running programs, it's common for compilers
 and processors to perform memory accesses in a different order than is written.

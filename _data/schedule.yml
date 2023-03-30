@@ -273,7 +273,7 @@
 - date: 2023-03-28
   week: 11
   title: threads 1 / synchronization 1
-  reading: "[sync](readings/sync.html) §1, 2-7, 8-9"
+  reading: "[sync](readings/sync.html) §1, 2-7, "
   slides: yes
   slides_prelim: yes
   slides_see2: 20230330
@@ -288,28 +288,33 @@
 
 - date: 2023-03-30
   week: 11
-  title: synchronization 2 
+  title: synchronization 2 / deadlock
   slides: yes
   slides_prelim: yes
   slides_see2: 2023-04-04
+  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
   description: |
    *  atomicity, race conditions
+      *  atomic read-modify-write instructions
    *  locks and mutexes
    *  barriers
-   *  atomic read-modify-write instructions
-   *  monitors (start)
+
+   *  interlude: reordering
+   
+   *  deadlock definition + examples
+   *  recovering from deadlock
 
 - date: 2023-04-04
   week: 12
-  title: synchronization 3
+  title: deadlock / synchronization 3
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[deadlock](readings/deadlock.html), [sync](readings/sync.html) §9"
+  reading: "[sync](readings/sync.html)"
   description: |
-   *  monitors (mutexes + condition variables)
-   *  deadlock definition + examples
+   *  deadlock con't
 
+   *  monitors (mutexes + condition variables)
    *  semaphores
    *  reader/writer locks
 
@@ -320,13 +325,12 @@
 
 - date: 2023-04-06
   week: 12
-  title: deadlock / roll back
-  reading: "[buses](readings/bus.html)"
+  title: synchronization / roll back / buses
+  reading: "[[buses](readings/bus.html)"
   description: |
-   *  recovering from deadlock
-   *  detecting deadlock, Banker's algorithm
    *  transactions
    *  redo logging
+
    *  buses, full/half-duplex
       *  relationship to networking
    *  connecting to I/O devices
