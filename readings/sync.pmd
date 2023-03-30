@@ -8,6 +8,7 @@ Changelog:
 
 *  25 March 2023: add aside describing what are atomic operations
 *  25 March 2023: add section on reordering/optimizations
+*  30 March 2023: undo syntax error that truncated a lot of the text here (sorry!)
 </div>
 
 # Day-to-day life
