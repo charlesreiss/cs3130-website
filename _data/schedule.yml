@@ -291,7 +291,7 @@
   title: synchronization 2 
   slides: yes
   slides_prelim: yes
-  slides_extra: yes
+  slides_see2: 2023-04-04
   description: |
    *  atomicity, race conditions
    *  locks and mutexes
@@ -302,6 +302,9 @@
 - date: 2023-04-04
   week: 12
   title: synchronization 3
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[deadlock](readings/deadlock.html), [sync](readings/sync.html) §9"
   description: |
    *  monitors (mutexes + condition variables)
