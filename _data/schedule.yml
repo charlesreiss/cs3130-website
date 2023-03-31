@@ -325,34 +325,29 @@
 
 - date: 2023-04-06
   week: 12
-  title: synchronization / roll back / buses
-  reading: "[[buses](readings/bus.html)"
+  title: synchornization 4 / buses
+  reading: "[sync](readings/sync.html), [buses](readings/buses.html)"
   description: |
+   *  semaphores (finish)
+   *  reader/writer locks
    *  transactions
-   *  redo logging
+   
+   *  preview: OpenMP
 
-   *  buses, full/half-duplex
-      *  relationship to networking
-   *  connecting to I/O devices
-   *  DMA
+   *  briefly: processors and memory and I/O devices
+      *  keeping caches in sync
+      *  DMA
 
 - date: 2023-04-11
   week: 13
-  title: pipeline 2
+  title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
   description: |
-   *  review: single-cycle CPU
    *  pipelining idea
-   *  pipleining for the CPU
-    *  dependencies and hazards
-      *  data flow graphs
-    *  hazard handling, part 1
-      *  stalling / waiting
-      *  forwarding and forwarding logic
-    *  pipeline timing
-    *  speculation idea
-       *  guess and check later
-       *  undo when wrong
+   *  pipelining for the CPU
+   *  dependencies and hazards
+     *  stalling / waiting
+     *  forwarding
 
 
 - date: 2023-04-12
@@ -361,9 +356,20 @@
 
 - date: 2023-04-13
   week: 13
-  title: out-of-order 1
+  title: pipeline 2
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
+   *  data flow graphs
+   *  pipeline timing
+
+- date: 2023-04-18
+  week: 14
+  reading: "[processors](readings/procesors.html) §3"
+  title: out-of-order 1
+  description: |
+   *  speculation idea
+      *  guess and check later
+      *  undo when wrong
     *  speculation for branch taken versus not
        *  always taken
        *  forward taken, backwards not taken
@@ -374,10 +380,13 @@
        *  that there won't be a segfault?
     *  dependency graph revisited
 
-- date: 2023-04-18
+- date: 2023-04-19
+  lab: true
   week: 14
-  reading: "[processors](readings/procesors.html) §3"
-  title: out-of-order 2
+
+- date: 2023-04-20
+  week: 14
+  title: out-of-order 2 
   description: |
     *  register renaming
        *  (? need for multiple register versions)
@@ -387,26 +396,14 @@
     *  reorder buffer
     *  throughput
 
-- date: 2023-04-19
-  lab: true
-  week: 14
-
-- date: 2023-04-20
-  week: 14
-  title: side channels
+- date: 2023-04-25
+  week: 15
+  title: side channels  / meltdown
   description: |
     *  time and equality testing
     *  in the cache
-
-- date: 2023-04-25
-  week: 15
-  title: meltdown, spectre, etc. 1
-  description: |
     *   meltdown:
         *  speculation past a priv/protection fault
-    *   spectre
-        *   speculation past a bounds chcek
-        *   using cache side-channels
 
 - date: 2023-04-26
   lab: true
@@ -414,8 +411,11 @@
 
 - date: 2023-04-27
   week: 15
-  title: meltdown, spectre, etc. 1
+  title: meltdown, spectre, etc.
   description: |
+    *   spectre
+        *   speculation past a bounds chcek
+        *   using cache side-channels
     *   avoiding spectre+meltdown
     *   briefly, more spectre variants
 
