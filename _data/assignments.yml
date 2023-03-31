@@ -214,7 +214,10 @@
   comments: "FIXME: needs more infrastructure for second optional approach"
   comments: "SHOULD HAVE ADDTL REQUIRED APPROACH"
   comments: "Non-DP example?"
-  submit_file: dp.c
+  submit_files:
+  - dp-arb.c
+  - dp-rh.c
+  - dp-mp.c
   due: 2023-04-05
 
 - name: life
