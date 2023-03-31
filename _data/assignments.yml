@@ -221,6 +221,7 @@
   page: labhw/life.html
   due: 2023-04-12
   tentative: true
+  submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
   comment: figure out SLURM setup
