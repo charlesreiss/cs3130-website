@@ -290,8 +290,6 @@
   week: 11
   title: synchronization 2 / deadlock
   slides: yes
-  slides_prelim: yes
-  slides_see2: 2023-04-04
   reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
   description: |
    *  atomicity, race conditions
@@ -301,8 +299,7 @@
 
    *  interlude: reordering
    
-   *  deadlock definition + examples
-   *  recovering from deadlock
+   *  deadlock examples
 
 - date: 2023-04-04
   week: 12
