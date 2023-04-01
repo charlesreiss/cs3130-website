@@ -2,6 +2,12 @@
 title: Fork and run
 ...
 
+<div class="changelog">
+Changelog:
+
+*  31 Mar 2023: add some hints regarding reading all data from a pipe
+</div>
+
 {.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
@@ -144,7 +150,7 @@ or:
     Text: [running 1
     running 0]
 
-(but on som esystems, maybe other interleaved outputs would be possible like:
+(but on some systems, maybe other interleaved outputs would be possible like:
 
     Text: [running running 1
     0]
@@ -169,6 +175,12 @@ If your `getoutput` and `parallelgetoutput` call `waitpid` properly, then after 
     waitpid(-1, NULL, 0)
 
 should return `-1` and set `errno` to ECHILD (indicating that there are no child processes to wait for).
+
+## On reading all data from a pipe
+
+1.  The operating system maintains a limited amount of space to hold values which have been written to a pipe but not read yet. When it runs out of space, writes to the pipe will hang (until space is freed up by reading from the pipe). For this reason, you should not wait for one of the child processes to terminate before reading their output --- otherwise, they might never terminate.
+
+2.  Reading from a pipe will result indicate end-of-file if the all the file descriptors referencing the write end of the pipe are closed. If the child processes have exited, then exiting will, as a side effect, close all their file descriptors. So, if you setup the pipes so the write end is only open in the child processes, then you can read the pipe until it indicates end-of-file.
 
 ## Some corner cases to test
 
