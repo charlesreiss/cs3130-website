@@ -6,6 +6,7 @@ title: Fork and run
 Changelog:
 
 *  31 Mar 2023: add some hints regarding reading all data from a pipe
+*  2 Apr 2023: clarify that `parallelgetoutput` is expected to include output in the order it is read
 </div>
 
 {.exercise ...}
@@ -109,7 +110,9 @@ as follows:
 *  the arguments (`argv` value) for the program run shall be the elements of `argv_base` followed by the 0-based index of
    the child process converted to a string
 
-The output collected may interleave the output from each of the child processes.
+The output collected should interleave the output from each of the child processes, with the output
+being interleaved based on when the programs wrote their output (similar to the output you'd see
+in a terminal from running them simulatenously).
 
 You may assume the executable `argv_base[0]` exists and executes normally and that we supply
 the full path of the executable.
@@ -181,6 +184,8 @@ should return `-1` and set `errno` to ECHILD (indicating that there are no child
 1.  The operating system maintains a limited amount of space to hold values which have been written to a pipe but not read yet. When it runs out of space, writes to the pipe will hang (until space is freed up by reading from the pipe). For this reason, you should not wait for one of the child processes to terminate before reading their output --- otherwise, they might never terminate.
 
 2.  Reading from a pipe will result indicate end-of-file if the all the file descriptors referencing the write end of the pipe are closed. If the child processes have exited, then exiting will, as a side effect, close all their file descriptors. So, if you setup the pipes so the write end is only open in the child processes, then you can read the pipe until it indicates end-of-file.
+
+3.  For `parallelgetoutput`, I would recommend using one pipe.
 
 ## Some corner cases to test
 
