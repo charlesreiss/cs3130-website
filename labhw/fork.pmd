@@ -6,7 +6,7 @@ title: Fork and run
 Changelog:
 
 *  31 Mar 2023: add some hints regarding reading all data from a pipe
-*  2 Apr 2023: clarify that `parallelgetoutput` is expected to include output in the order it is read
+*  2 Apr 2023: be more explicit that `parallelgetoutput` requires reading from all processes at once and that therefore most likely the output will be interleaved
 </div>
 
 {.exercise ...}
@@ -110,9 +110,11 @@ as follows:
 *  the arguments (`argv` value) for the program run shall be the elements of `argv_base` followed by the 0-based index of
    the child process converted to a string
 
-The output collected should interleave the output from each of the child processes, with the output
-being interleaved based on when the programs wrote their output (similar to the output you'd see
-in a terminal from running them simulatenously).
+The output collected may interleave the output from each of the child processes. *[Added 2 April:]*
+In order to ensure that the processes run in parallel, if they are writing to a pipe, you need
+to be reading from that pipe to prevent them from hanging (if they write too much).
+With multiple processes, the easiest way of doing this would be to use a single pipe for all the programs,
+which will result in their output being interleaved as if you ran them simulatenously in a terminal.
 
 You may assume the executable `argv_base[0]` exists and executes normally and that we supply
 the full path of the executable.
@@ -185,7 +187,7 @@ should return `-1` and set `errno` to ECHILD (indicating that there are no child
 
 2.  Reading from a pipe will result indicate end-of-file if the all the file descriptors referencing the write end of the pipe are closed. If the child processes have exited, then exiting will, as a side effect, close all their file descriptors. So, if you setup the pipes so the write end is only open in the child processes, then you can read the pipe until it indicates end-of-file.
 
-3.  For `parallelgetoutput`, I would recommend using one pipe.
+3.  For `parallelgetoutput`, I would strongly recommend using just one pipe. Since you need to read from a pipe to preevent processes producing a lot of output from hanging, if you have multiple pipes and read from then one at a time, it is very unlikely you'll actually run them in parallel in general.
 
 ## Some corner cases to test
 
