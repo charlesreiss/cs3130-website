@@ -8,6 +8,7 @@ Changelog:
 *  31 Mar 2023: add some hints regarding reading all data from a pipe
 *  2 Apr 2023: be more explicit that `parallelgetoutput` requires reading from all processes at once and that therefore most likely the output will be interleaved
 *  2 Apr 2023: specify that `my_system` implementation is on resources tab on collab
+*  3 Apr 2023: include required NULL on execv's in examples
 </div>
 
 {.exercise ...}
@@ -136,12 +137,12 @@ For example, a `main()` like:
 
 would start two child processes. One of them would run something equivalent to:
 
-    const char *argv[] = {"/bin/echo", "running", "0"};
+    const char *argv[] = {"/bin/echo", "running", "0", NULL};
     execv("/bin/echo", argv);
 
 And another would run something equivalent to:
 
-    const char *argv[] = {"/bin/echo", "running", "1"};
+    const char *argv[] = {"/bin/echo", "running", "1", NULL};
     execv("/bin/echo", argv);
 
 Then, it would wait for both child processes to finish and collect their combined output
