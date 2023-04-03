@@ -322,8 +322,11 @@
 
 - date: 2023-04-06
   week: 12
-  title: synchornization 4 / buses
   title: synchronization / roll back / pipelining
+  slides: yes
+  slides_see: 2023-04-04
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
    *  semaphores (finish)
