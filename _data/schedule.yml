@@ -323,29 +323,35 @@
 - date: 2023-04-06
   week: 12
   title: synchornization 4 / buses
-  reading: "[sync](readings/sync.html), [buses](readings/buses.html)"
+  title: synchronization / roll back / pipelining
+  reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
    *  semaphores (finish)
    *  reader/writer locks
    *  transactions
-   
-   *  preview: OpenMP
+   *  redo logging
 
-   *  briefly: processors and memory and I/O devices
-      *  keeping caches in sync
-      *  DMA
+   *  preview: OpenMP
+   
+   *  pipelining idea
+   *  review: single-cycle CPU
+   *  pipelining for the CPU (start)
 
 - date: 2023-04-11
   week: 13
   title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
   description: |
-   *  pipelining idea
-   *  pipelining for the CPU
-   *  dependencies and hazards
-     *  stalling / waiting
-     *  forwarding
-
+    *  pipelining for the CPU (finish)
+    *  data hazards
+    *  hazard handling, part 1
+      *  stalling / waiting
+      *  forwarding and forwarding logic
+    *  control hazards
+    *  speculation idea
+       *  guess and check later
+       *  undo when wrong
+    *  branch prediction ideas
 
 - date: 2023-04-12
   lab: true
@@ -393,6 +399,26 @@
     *  reorder buffer
     *  throughput
 
+<<<<<<< HEAD
+=======
+- date: 2023-04-19
+  lab: true
+  week: 14
+
+- date: 2023-04-20
+  week: 14
+  title: buses / side channels
+  reading: "[[buses](readings/bus.html)"
+  description: |
+    *  buses, full/half-duplex
+      *  relationship to networking
+    *  connecting to I/O devices
+    *  DMA
+
+    *  time and equality testing
+    *  in the cache
+
+>>>>>>> schedule tweaks
 - date: 2023-04-25
   week: 15
   title: side channels  / meltdown
