@@ -5,7 +5,8 @@ title: Dining Philosophers
 <div class="changelog">
 Changelog:
 
-*  4 April 2023: relate arbitrator solution to lecture discusison
+*  4 April 2023: relate arbitrator solution to lecture discussion; be explicit that for in-person we expect to see substantial progress on at least one of the extra approaches; note expected filenames with approach descriptions
+*  4 April 2023: for message passing solution, add note on ideas for waiting for messages for message passing solution
 </div>
 
 # Logistics
@@ -93,6 +94,8 @@ reliablity) detect several other kinds of thread usage errors (like race conditi
 
 ## Required approach: Arbitrator
 
+> Submission filename: `dp-arb.c`
+
 Ensure there is no deadlock
 by using the [Arbitrator solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Arbitrator_solution).
 A correct solution can be just four lines:
@@ -112,6 +115,8 @@ If correctly implemented,
 
 ## Extra approach 1: Resource hierarchy
 
+> Submission filename: `dp-rh.c`
+
 This implementation should ensure there is no deadlock
 by using the [Resource hierarch solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Resource_hierarchy_solution).
 
@@ -125,14 +130,19 @@ If correctly implemented,
 
 ## Extra approach 2: Message passing
 
+> Submission filename: `dp-mp.c`
+
 This implementation should ensure there is no deadlock
 by using the [Chandy/Misra solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Chandy/Misra_solution).
 
 You'll probably need to add some kind of data structure to keep track of who owns which chopstick and which chopsticks are dirty,
 as well as functions to handle requesting chopsticks.
 
+(The functions that handle requesting chopsticks probably need data structures to track pending requests. Depending on your implementation strategy, you might also want some way to wait for a message. My personal preference would be using something like condition variables for this operation. But perhaps more simply you could do this with only mutexes by ensuring that some other thread has a lock and waiting for a lock to be released. Or, alternately, you use a very inefficient solution of a loop that locks, checking a flag, and unlocks until the flag is finally set.)
+
 This is definitely more involved than the other two files,
-but also will give you a better understanding of how to use pthreads' mutex objects to solve non-trivial problems.
+but also will give you a better understanding of how to use pthreads' mutex objects 
+(and other synchronization primitives, like condition variables) to solve non-trivial problems.
 
 If correctly implemented,
 
@@ -145,5 +155,8 @@ Either:
 *  submit solutions including at least one of the extra approaches to the submission site
    * submit separate files for each approach.
    * use the filenames `dp-arb.c`, `dp-rh.c`, and/or `dp-mp.c`.
-*  OR have a TA see your program working.
+*  OR have a TA see your program working:
+   * the required approach should be completed;
+   * _at least_ one of the extra approaches should be complete or have substantial progress by the end of the lab time. (If you have extra time in the lab, we would prefer you attempt both extra approaches, but we will not require this.)
+
    They may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.
