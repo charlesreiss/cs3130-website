@@ -312,8 +312,6 @@
    *  deadlock con't
 
    *  monitors (mutexes + condition variables)
-   *  semaphores
-   *  reader/writer locks
 
 
 - date: 2023-04-05
@@ -330,11 +328,10 @@
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
    *  semaphores (finish)
-   *  reader/writer locks
+   *  (if time) reader/writer locks
    *  transactions
-   *  redo logging
 
-   *  preview: OpenMP
+   *  (if time) preview: OpenMP
    
    *  pipelining idea
    *  review: single-cycle CPU
