@@ -312,8 +312,6 @@
    *  deadlock con't
 
    *  monitors (mutexes + condition variables)
-   *  semaphores
-   *  reader/writer locks
 
 
 - date: 2023-04-05
@@ -330,11 +328,10 @@
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
    *  semaphores (finish)
-   *  reader/writer locks
+   *  (if time) reader/writer locks
    *  transactions
-   *  redo logging
 
-   *  preview: OpenMP
+   *  (if time) preview: OpenMP
    
    *  pipelining idea
    *  review: single-cycle CPU
@@ -402,14 +399,8 @@
     *  reorder buffer
     *  throughput
 
-<<<<<<< HEAD
-=======
-- date: 2023-04-19
-  lab: true
-  week: 14
-
-- date: 2023-04-20
-  week: 14
+- date: 2023-04-25
+  week: 15
   title: buses / side channels
   reading: "[[buses](readings/bus.html)"
   description: |
@@ -418,14 +409,6 @@
     *  connecting to I/O devices
     *  DMA
 
-    *  time and equality testing
-    *  in the cache
-
->>>>>>> schedule tweaks
-- date: 2023-04-25
-  week: 15
-  title: side channels  / meltdown
-  description: |
     *  time and equality testing
     *  in the cache
     *   meltdown:
