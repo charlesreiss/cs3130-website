@@ -2,6 +2,12 @@
 title: Dining Philosophers
 ...
 
+<div class="changelog">
+Changelog:
+
+*  4 April 2023: relate arbitrator solution to lecture discusison
+</div>
+
 # Logistics
 
 We encourage group work with "buddy programming"..
@@ -96,10 +102,13 @@ A correct solution can be just four lines:
 3. lock it and
 4. unlock it, both in `eat`, so that only one philosopher can reach for chopsticks at a time
 
+(This is not one of the deadlock prevention strategies we discussed in lecture, but it makes the thread take turns waiting for resources (the chopsticks), so only one thread can wait at a time. With only one thread waiting at a time, we can't have a cyclic dependency.)
+
 If correctly implemented,
 
 - There will be no deadlock; the program will always terminate
 - The output will never have two "Philosopher *i* got chopstick" lines with a different "Philosopher *j* got chopstick" line in between
+
 
 ## Extra approach 1: Resource hierarchy
 
