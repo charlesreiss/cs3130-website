@@ -211,7 +211,6 @@
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
-  tentative: true
   comments: "FIXME: HAS TA CHECK OFF"
   comments: "FIXME: ThreadSanitizer"
   comments: "FIXME: needs more infrastructure for second optional approach"
@@ -227,7 +226,6 @@
   short_name: life
   page: labhw/life.html
   due: 2023-04-12
-  tentative: true
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds

@@ -305,13 +305,11 @@
   week: 12
   title: deadlock / synchronization 3
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[sync](readings/sync.html)"
   description: |
    *  deadlock con't
 
-   *  monitors (mutexes + condition variables)
+   *  monitors (mutexes + condition variables) (start)
 
 
 - date: 2023-04-05
@@ -327,9 +325,10 @@
   slides_extra: yes
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
-   *  semaphores (finish)
+   *  monitors (finish)
+   *  (briefly) counting semaphores
    *  (if time) reader/writer locks
-   *  transactions
+   *  transactions (briefly)
 
    *  (if time) preview: OpenMP
    
