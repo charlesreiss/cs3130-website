@@ -138,7 +138,7 @@ by using the [Chandy/Misra solution](https://en.wikipedia.org/wiki/Dining_philos
 You'll probably need to add some kind of data structure to keep track of who owns which chopstick and which chopsticks are dirty,
 as well as functions to handle requesting chopsticks.
 
-(The functions that handle requesting chopsticks probably need data structures to track pending requests. Depending on your implementation strategy, you might also want some way to wait for a message. My personal preference would be using something like condition variables for this operation. But perhaps more simply you could do this with only mutexes by ensuring that some other thread has a lock and waiting for a lock to be released. Or, alternately, you use a very inefficient solution of a loop that locks, checking a flag, and unlocks until the flag is finally set.)
+(The functions that handle requesting chopsticks probably need data structures to track pending requests. Depending on your implementation strategy, you might also want some way to wait for a message. My personal preference would be using something like condition variables for this operation. But perhaps(?) more simply you could do this with only mutexes by ensuring that some other thread has a lock and waiting for a lock to be released. Or, alternately, you use a very inefficient solution of a loop that locks, checking a flag variable, and unlocks until the flag is finally set.)
 
 This is definitely more involved than the other two files,
 but also will give you a better understanding of how to use pthreads' mutex objects 
