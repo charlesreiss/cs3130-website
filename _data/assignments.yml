@@ -200,6 +200,9 @@
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
+  grade_describe: |
+    If all tests fail, it may be because you included a `main()` function that interferes with our testing code,
+    or because you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully.
   submit_file: "fork_run.c"
   due: 2023-04-05
 
