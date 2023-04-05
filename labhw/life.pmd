@@ -5,6 +5,12 @@ author:
     - Luther Tychonievich. 
 ...
 
+<div class="changelog">
+Changelog:
+
+*  5 Apr 2023: correct wrong URL for readings link in tips
+</div>
+
 # Your Task
 
 ## Before you code
@@ -78,7 +84,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 # Tips
 
 1.
-    This assignment was designed to be a natural fit for [barriers](pthreads.html#barrier). You are strongly encourage to get a barrier-based solution working first before attempting any other approaches.
+    This assignment was designed to be a natural fit for [barriers](../readings/pthreads.html#barrier). You are strongly encourage to get a barrier-based solution working first before attempting any other approaches.
 
 1.
     You should choose some way to split up the grid between threads. You will get best performance if each thread works on a part of the grid that is contiguous in memory, so you get better locality within a thread. This also will avoid performance problems associated with two processors trying to modify data in different parts of the same cache block.
