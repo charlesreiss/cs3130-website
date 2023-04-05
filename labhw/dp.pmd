@@ -89,7 +89,8 @@ clang -O2 -lpthread -fsanitize=thread dp.c && ./a.out`
 ```
 
 This will run slower (though not noticably so for this program), but tries to idenitfy cases where
-the program does not implement a resource hierarchy strategy. It also will (with varying
+the program *does not implement a resource hierarchy strategy* (that is, does not use consitent order
+for acquiring locks). It also will (with varying
 reliablity) detect several other kinds of thread usage errors (like race conditions).
 
 ## Required approach: Arbitrator
@@ -112,6 +113,9 @@ If correctly implemented,
 - There will be no deadlock; the program will always terminate
 - The output will never have two "Philosopher *i* got chopstick" lines with a different "Philosopher *j* got chopstick" line in between
 
+(When this strategy is run under ThreadSanitizer, it may report that there is a "lock order inversion" representing a potential deadlock,
+because thread sanitizer is checking for the constistent lock
+order solution for preventing deadlock; it's not programmed to identify this strategy.)
 
 ## Extra approach 1: Resource hierarchy
 
