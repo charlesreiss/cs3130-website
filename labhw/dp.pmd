@@ -152,6 +152,7 @@ If correctly implemented,
 # Check off
 
 Either:
+
 *  submit solutions including at least one of the extra approaches to the submission site
    * submit separate files for each approach.
    * use the filenames `dp-arb.c`, `dp-rh.c`, and/or `dp-mp.c`.
@@ -159,4 +160,4 @@ Either:
    * the required approach should be completed;
    * _at least_ one of the extra approaches should be complete or have substantial progress by the end of the lab time. (If you have extra time in the lab, we would prefer you attempt both extra approaches, but we will not require this.)
 
-   They may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.
+For an in-person checkoff, TAs may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.
