@@ -8,6 +8,7 @@ Changelog:
 *  4 April 2023: relate arbitrator solution to lecture discussion; be explicit that for in-person we expect to see substantial progress on at least one of the extra approaches; note expected filenames with approach descriptions
 *  4 April 2023: for message passing solution, add note on ideas for waiting for messages for message passing solution
 *  4 April 2023: note explicitly that ThreadSanitizer doesn't recognize the arbitrator solution
+*  4 April 2023: make statement about output folow same ordering as rest of recommendation for resource hierarchy
 </div>
 
 # Logistics
@@ -130,7 +131,7 @@ Require every philosopher to pick up their lower-numbered chopstick before their
 If correctly implemented,
 
 - There will be no deadlock; the program will always terminate
-- The output will never have two "Philosopher *i* got chopstick *j*" line following a different "Philosopher *i* got chopstick *k*" line unless *j* < *k*.
+- After a "Philosopher *i* got chopstick *j*" line, any following "Philosopher *i* got chopstick *k*" line will have a *k* > *j*.
 
 
 ## Extra approach 2: Message passing
