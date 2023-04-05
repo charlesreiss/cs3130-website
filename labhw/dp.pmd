@@ -9,6 +9,7 @@ Changelog:
 *  4 April 2023: for message passing solution, add note on ideas for waiting for messages for message passing solution
 *  4 April 2023: note explicitly that ThreadSanitizer doesn't recognize the arbitrator solution
 *  4 April 2023: make statement about output folow same ordering as rest of recommendation for resource hierarchy
+*  4 April 2023: clarify that we expect substantial progress on an additional approach
 </div>
 
 # Logistics
@@ -26,7 +27,7 @@ Buddy programming is when
 We provide a threaded implementation of the [Dining Philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 This is a famous, if somewhat contrived, example of deadlock.
 You'll modify it to not have deadlock.
-We give three approaches to this; you'll need to do at least one, and we encourage doing a second if you still have time in the lab to do so.
+We give three approaches to this; you'll need to do at least one, and we expect you to make substantial progress on an additional one.
 
 ## Deadlocking code
 
