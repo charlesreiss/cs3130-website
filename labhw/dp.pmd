@@ -90,7 +90,7 @@ clang -O2 -lpthread -fsanitize=thread dp.c && ./a.out`
 ```
 
 This will run slower (though not noticably so for this program), but tries to idenitfy cases where
-the program does not implement a resource hierarchy strategy (that is, does not use consitent order
+the program does not implement a resource hierarchy strategy (that is, does not use consistent order
 for acquiring locks). It also will (with varying
 reliablity) detect several other kinds of thread usage errors (like race conditions).
 
