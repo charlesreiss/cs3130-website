@@ -15,7 +15,7 @@ Changelog:
 
 ## Before you code
 
-Examine the supplied [skeleton code](../files/life-c-skeleton.tar.gz) *[last updated 2023-04-01]* which implements [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
+Examine the supplied [skeleton code](../files/life-c-skeleton.tar) *[last updated 2023-04-06]* which implements [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
 You should only edit `life-parallel.c`, but that interacts with many other files in the package.
 
 Make sure you look at `input/README.md`, as well as `life.h` and any other files you wish.
@@ -70,6 +70,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 - `life-asan 10 input/make-a time`{.bash} to check for memory leaks and other memory errors (but do not trust its timing, the address sanitizer slows things down a lot).
 
 - `life-tsan 10 input/make-a time`{.bash} to check for race conditions and some other types of synchornization errors (but do not trust its timing, the address sanitizer slows things down a lot).
+
+   >  If you downloaded the skeleton code before 6 April, your Makefile may not properly build life-tsan; you can download an [updated Makefile here](../files/life/Makefile).
 
 - `./life 0 input/o0075 serial-result`{.bash} to ensure you can load an example file.
 
