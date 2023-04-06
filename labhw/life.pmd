@@ -10,6 +10,7 @@ Changelog:
 
 *  5 Apr 2023: correct wrong URL for readings link in tips
 *  6 Apr 2023: update Makefile to actually build life-tsan and have a `main.cc` that properly processes its arguments
+*  6 Apr 2023 5pm: correct link to main.c to not be broken link
 </div>
 
 >  If you downloaded the skeleton code before 6 April around 4pm, then there are two issues minorissues with that skeletonc ode:
@@ -17,7 +18,7 @@ Changelog:
 >  *  the Makefile does not build the ThreadSanitizer-version of the testing program `life-tsan`. You can
 >     download an [updated Makefile](../files/life/Makefile) to correct this.
 >  *  the `main.c` doesn't properly distinguish between the `time` and `time-and-result` arguments; you can
->     download an [updated main.c](files/life/main.c) to correct this.
+>     download an [updated main.c](../files/life/main.c) to correct this.
 
 # Your Task
 
