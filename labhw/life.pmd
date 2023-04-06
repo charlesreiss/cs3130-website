@@ -9,13 +9,20 @@ author:
 Changelog:
 
 *  5 Apr 2023: correct wrong URL for readings link in tips
+*  6 Apr 2023: update Makefile to actually build life-tsan and have a `main.cc` that properly processes its arguments
 </div>
+
+>  If you downloaded the skeleton code before 6 April around 4pm, then there are two issues with code:
+>  *  the Makefile does not build the ThreadSanitizer-version of the testing program `life-tsan`. You can
+>     download an [updated Makefile](../files/life/Makefile) to correct this.
+>  *  the `main.c` doesn't distinguish between the `time` and `time-and-result` arguments; you can
+>     download an [updated main.c](files/life/main.c) to correct this.
 
 # Your Task
 
 ## Before you code
 
-Examine the supplied [skeleton code](../files/life-c-skeleton.tar) *[last updated 2023-04-06]* which implements [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
+Examine the supplied [skeleton code](../files/life-c-skeleton.tar) *[last updated 2023-04-06 3:50pm]* which implements [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
 You should only edit `life-parallel.c`, but that interacts with many other files in the package.
 
 Make sure you look at `input/README.md`, as well as `life.h` and any other files you wish.
@@ -82,6 +89,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 - `./time-examples.sh`{.bash} to get a sense of how you are doing on parallel performance.
 
 - `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer, ThreadSanitizer
+
+   >  If you downloaded the skeleton code before 6 April, your Makefile may not properly build life-tsan, needed for these tests; you can download an [updated Makefile here](../files/life/Makefile).
 
 # Tips
 
