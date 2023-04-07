@@ -6,6 +6,7 @@ title: Using POSIX Threads
 Changelog:
 
 *  25 March 2023: add description of monitors API
+*  7 Apr 2023: correct `pthread_barrier_init` call having wrong number of arguments; mention most pthread_..._destroy functions
 </div>
 
 This document is intended to give a practical overview of using pthreads.
@@ -237,7 +238,10 @@ int main(int argc, const char *argv[]) {
 }
 ```
 
-See also `pthread_mutex_trylock` for the "acquire if possible" behavior.
+See also:
+
+-  `pthread_mutex_trylock` for the "acquire if possible" behavior
+-  `pthread_mutex_destroy` for destroying mutexes (freeing any resources allocated by init).
 
 
 ## Barrier {#barrier}
@@ -258,7 +262,7 @@ void *thread_function(void *) {
 
 int main(int argc, const char *argv[]) {
     /* ... */
-    pthread_barrier_init(&barrier, THREADCOUNT);
+    pthread_barrier_init(&barrier, NULL, THREADCOUNT);
     for(int i=0; i<THREADCOUNT; i+=1) {
         /* ... */
         pthread_create(&id[i], NULL, thread_function, &arg[i]);
@@ -266,6 +270,10 @@ int main(int argc, const char *argv[]) {
     /* ... */
 }
 ```
+
+See also `pthread_barrier_destroy` for destroying barriers (freeing any resources allocated by `pthread_barrier_init`).
+Note that less recent versions of `pthread_barrier_destroy` (such as on portal/our testing machines as of 2023) require
+that all calls to `pthread_barrier_wait` have completed (returned).
 
 ## Reader-writer lock {#rwlock}
 
@@ -280,6 +288,7 @@ The relevant functions are documented in the following manual pages:
 - `pthread_rwlock_rdlock` and `pthread_rwlock_wrlock` -- acquire the lock in two different ways.
 - `pthread_rwlock_timedrdlock` and `pthread_rwlock_timedwrlock` -- try to acquire the lock, but if a specified time passes without success, return an error code instead.
 - `pthread_rwlock_unlock` -- release the lock (no matter how it was acquired).
+- `pthread_rwlock_destroy` -- free any resources allocated by `pthread_rwlock_init`
 
 However, these details, aside from the overall usage, looks similar to how [mutexes](#mutex) are used with pthreads.
 
@@ -292,3 +301,4 @@ The relevant functions are documented in the following manpages:
 - `pthread_cond_init` -- create a condition variable
 - `pthread_cond_wait` -- atomically unlock a mutex and add the current thread to the condition monitor's wait queue. When the thread is woken up from the wait queue, lock the mutex again before returning.
 - `pthread_cond_timedwait` --- like `pthread_cond_wait`, but stop waiting on the wait queue if a specified time passes and return an error
+- `pthread_cond_destory` -- free any resources allocated by `pthread_cond_init`
