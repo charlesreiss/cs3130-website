@@ -11,6 +11,7 @@ Changelog:
 *  5 Apr 2023: correct wrong URL for readings link in tips
 *  6 Apr 2023: update Makefile to actually build life-tsan and have a `main.cc` that properly processes its arguments
 *  6 Apr 2023 5pm: correct link to main.c to not be broken link
+*  6 Apr 2023: allow creating one fewer thread if the main thread is doing its share of the computations
 </div>
 
 >  If you downloaded the skeleton code before 6 April around 4pm, then there are two issues minorissues with that skeletonc ode:
@@ -52,7 +53,8 @@ Additional constraints:
 
 1. Your implementation must be correct (result in the expected final board configuration) for all boards and iteration counts.
 
-1. You must call `pthread_create` exactly `threads` times. Do not create more or fewer threads, nor create new threads for each iteration of the simulation.
+1. You must call `pthread_create` exactly `threads` times (assuming you are computing cell values only in new threads you create; if you also compute cell values in the main (initial) thread, call it `threads-1` times instead).
+   Do not create more or fewer threads, nor create new threads for each iteration of the simulation.
 
 1. We must be able to call `simulate_life_parallel` from multiple threads concurrently. Do not use global variables or other thread-unsafe practices.
 
@@ -64,7 +66,7 @@ Additional constraints:
 
 1. On a multi-core machine, your parallel code must be noticeably faster than the serial code when run on sufficiently large boards for sufficiently many iterations.
 
-1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between the `threads` threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
+1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between the threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
 
 1. And, of course, you are still bound by all the usual [course policies](policies.html#write-your-own-code).
 
