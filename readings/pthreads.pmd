@@ -283,7 +283,7 @@ The relevant functions are documented in the following manual pages:
 
 However, these details, aside from the overall usage, looks similar to how [mutexes](#mutex) are used with pthreads.
 
-## Monitors {#monitors{
+## Monitors {#monitors}
 
 Pthreads supplies separate condition variables that can be used with a mutex to construct a monitor.
 

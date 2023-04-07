@@ -13,6 +13,7 @@ Changelog:
 *  6 Apr 2023 5pm: correct link to main.c to not be broken link
 *  6 Apr 2023: specify to create one fewer thread if the main thread is doing its share of the computations
 *  6 Apr 2023 11pm: add links to copies of sanitizer-test.sh, which was also missing from the skeleton code
+*  7 Apr 2023: add note about restrictions on timing of pthread_barrier_destroy
 </div>
 
 >  If you downloaded the skeleton code before 6 April around 4pm, then there are some minor issues with that skeleton code:
@@ -84,6 +85,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 - `life-tsan 10 input/make-a time`{.bash} to check for race conditions and some other types of synchornization errors (but do not trust its timing, the address sanitizer slows things down a lot).
 
+    - if you get an error about a race condition with pthread_barrier_destroy and pthread_barrier_wait, see the first caveat below.
+
    >  If you downloaded the skeleton code before 6 April, your Makefile may not properly build life-tsan; you can download an [updated Makefile here](../files/life/Makefile).
 
 - `./life 0 input/o0075 serial-result`{.bash} to ensure you can load an example file.
@@ -121,7 +124,10 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 1.
     If you find yourself tempted to use a global variable (such as a global mutex or barrier), you can usually get away with adding it as a field of a `struct` passed in by reference to your thread function's `void *` parameter instead.
 
+
 # Caveats
+
+-  The version of `pthread_barrier_destroy` on portal and our testing machines requires that you do not call pthread_barrier_destroy until you are sure that _all_ threads have first returned from `ptherad_barrier_wait`. This is a bug in the those machine's version of the `libc`, see [this mailing list post](https://sourceware.org/legacy-ml/libc-alpha/2015-07/msg00585.html).
 
 - MacOS and OS X ship with only a subset of the pthreads library, notably excluding `pthread_barrier_t` and its associated functions.
     You should probably use portal, a virtual machine, etc.
