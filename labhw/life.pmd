@@ -13,7 +13,8 @@ Changelog:
 *  6 Apr 2023 5pm: correct link to main.c to not be broken link
 *  6 Apr 2023: specify to create one fewer thread if the main thread is doing its share of the computations
 *  6 Apr 2023 11pm: add links to copies of sanitizer-test.sh, which was also missing from the skeleton code
-*  7 Apr 2023: add note about restrictions on timing of pthread_barrier_destroy
+*  7 Apr 2023: add note about restrictions on timing of pthread_barrier_destroy due to libc issue
+*  7 Apr 2023: be more explicit that paralle version needs to match serial one
 </div>
 
 >  If you downloaded the skeleton code before 6 April around 4pm, then there are some minor issues with that skeleton code:
@@ -54,7 +55,7 @@ You should write helper functions as appropriate to keep your code well-organize
 
 Additional constraints:
 
-1. Your implementation must be correct (result in the expected final board configuration) for all boards and iteration counts.
+1. Your implementation must be correct (result in the expected final board configuration, matching the serial version) for all boards and iteration counts.
 
 1. You must call `pthread_create` exactly `threads` times (assuming you are computing cell values only in new threads you create; if you also compute cell values in the main (initial) thread, call it `threads-1` times instead).
    Do not create more or fewer threads, nor create new threads for each iteration of the simulation.
