@@ -66,6 +66,8 @@ Additional constraints:
 1. ThreadSanitizer should not detect likely race conditions or other thread API errors in your code. The provided `Makefile` builds a version with the thread sanitizer enabled automatically as `life-tsan`.
 
 1. You must call the appropriate `pthread_***_destroy` for each `pthread_***_init` you call to reclaim any pthreads-allocated memory.
+    
+    1. On portal/our testing machines, `pthread_barrier_destroy` won't work properly unless be called after _all_ `pthread_barrier_wait` calls have _returned_. (This is a bug in the pthread_barrier implementation on those machines.)
 
 1. On a multi-core machine, your parallel code must be noticeably faster than the serial code when run on sufficiently large boards for sufficiently many iterations.
 
