@@ -11,7 +11,7 @@ Changelog:
 *  5 Apr 2023: correct wrong URL for readings link in tips
 *  6 Apr 2023: update Makefile to actually build life-tsan and have a `main.cc` that properly processes its arguments
 *  6 Apr 2023 5pm: correct link to main.c to not be broken link
-*  6 Apr 2023: allow creating one fewer thread if the main thread is doing its share of the computations
+*  6 Apr 2023: specify to create one fewer thread if the main thread is doing its share of the computations
 </div>
 
 >  If you downloaded the skeleton code before 6 April around 4pm, then there are two issues minorissues with that skeletonc ode:
