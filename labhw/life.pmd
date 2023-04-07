@@ -64,7 +64,7 @@ Additional constraints:
 
 1. On a multi-core machine, your parallel code must be noticeably faster than the serial code when run on sufficiently large boards for sufficiently many iterations.
 
-1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
+1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between the `threads` threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
 
 1. And, of course, you are still bound by all the usual [course policies](policies.html#write-your-own-code).
 
