@@ -320,9 +320,6 @@
   week: 12
   title: synchronization / roll back / pipelining
   slides: yes
-  slides_see: 2023-04-04
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
    *  monitors (finish)
@@ -340,6 +337,9 @@
   week: 13
   title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  pipelining for the CPU (finish)
     *  data hazards
@@ -350,7 +350,6 @@
     *  speculation idea
        *  guess and check later
        *  undo when wrong
-    *  branch prediction ideas
 
 - date: 2023-04-12
   lab: true
