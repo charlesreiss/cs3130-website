@@ -236,8 +236,10 @@
 - name: openmp
   short_name: openmp
   lab: true
-  tentative: true
   page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
   due: 2023-04-12
 
 - name: pipeline
