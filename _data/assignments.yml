@@ -256,8 +256,9 @@
   tentative: true
   due: 2023-04-19
 
-- name: TBA OOO assignment
+- name: OOO
   short_name: OOO
+  page: labhw/ooo-exericse.html
   tentative: true
   due: 2023-04-26
 

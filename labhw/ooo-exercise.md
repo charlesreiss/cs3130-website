@@ -2,14 +2,14 @@
 title: OOO Exercise
 ...
 
-> This assignment is subject to change.
+> This assignment is incomplete and likely to change.
 
 # Hypothetical OOO processor
 
 For this assignment, we will consider an out-of-order processor which has two execution units for
 arithmetic instructions, and one execution unit for memory instructions.
 
-### This Processor's PIpeline 
+### This Processor's Pipeline 
 Instructions in this processor are executed as follows:
 
 *  first, they go through a set of in-order pipeline stages, two a time:
