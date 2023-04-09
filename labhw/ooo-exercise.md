@@ -122,15 +122,18 @@ Complete a pipeline diagram for the processor running the following instructions
 
 Identify the stages as:
 *  F for when the instruction is feteched
-*  D for when an instruction is decoded (including register renaming)
+*  D for when an instruction is decoded
+*  R for when an instruction is renamed and dispatched into an instruction queue
+*  I for when an instruction is issued from an instruction queue and its registers are read
 *  E for when an instruction is being executed (after it is issued)
+*  W for when an instruction's results are written back
 *  C for when an instruction is committed
 
 The first three rows are:
 
-    1 F D E C
-    2 F D E C
-    3   F D E C
+    1 F D R I E C
+    2 F D R I E C
+    3   F D R I E C
 
 complete the table at TBD.
 
