@@ -9,15 +9,48 @@ title: OOO Exercise
 For this assignment, we will consider an out-of-order processor which has two execution units for
 arithmetic instructions, and one execution unit for memory instructions.
 
-When instructions execute in this processor they are:
+### This Processor's PIpeline 
+Instructions in this processor are executed as follows:
 
-*  fetched, in one cycle up to two instructions at a time, in the order they appear in the program. For this exercise, we will assume that branch prediction is perfect.
-*  decoded (including processing icodes and renaming registers, but not including reading registers) and placed in an instruction queue, in one cycle for up to two instructions at a time, in the order they appear in the program
-*  issued from the instruction queue when their operands are available. If multiple instructions all have their operands available, then the instructions that appeared earlier in the program are issued first. For simplicity, do not need to worry about the order in which memory instructions are issued. When an instruction is issued, they will be
-    *  if a non-memory instruction, executed on one of two arithmetic execution units in one cycle
-    *  if a memory instruction, executed on the data cache in three cycles in a pipelined manner (multiple memory instructions can be pending at once, but only one can be started each cycle. To keep this exercise simpler, we will assume no cache misses happen.)
-*  writes the results of instructions once they finish executing in the same cycle as when they finish executing. Instructions that depend on the values computed can be issued in the following cycle.
-*  commits (completes) instrutions, up to two at a time, starting with the first instruction that was fetched. Instructions are only commits if all the instructions before them have already completed having their results written.
+*  first, they go through a set of in-order pipeline stages, two a time:
+
+    *  fetch, where instructions are read from the pipeline stage. For this exercise, assume branch prediction is perfect so two new instructions
+       are fetched every cycle
+    *  decode, where the machine is interpreted
+    *  rename, where register renaming takes place and instructions are placed into an instruction queue, available ot be issued as early
+       as the next cycle
+
+*  then, each cycle instructions are issued from the instruction queue:
+    
+    *  each cycle, the instruction queue is scanned for instructions whose operands are ready. (For this exercise, we'll only account for their register operands
+        being ready and assume that we do not need to worry about data memory-related dependencies.)
+        *  operands for an instruction are considered ready during the cycle in which they finish execution
+    *  the first memory instruction available and first two non-memory instructions available are selected to be issued.
+    *  during the cycle an instruction is issued, its register values are read or forwarded
+
+*  when an instruction is issued, in the following cycles it is executed on an execution unit
+    *  for memory instructions, this execution unit is a pipelined data cache. It receives one instruction per cycle
+        and produces the result after three cycles. To simplfy this exercise, we will assume no cache misses.
+    *  for non-memory instructoins, this execution unit is one of two arithmetic logic unit. It receives one instructoin per
+        cycle and produces the result in the next cycle.
+    *  the first available memory instruction (if any) is sent to a data cache, which is pipelined. The data cache accepts one instruction per cycle
+        and takes three cycles to produce the result of the read or write
+    *  the first two available non-memory instructions are sent to one of two arithmetic execution units. These execution units each take one cycle
+        to compute their result
+
+*  in the cycle after an instruction is executed it is written back to the register file in one cycle
+*  finally, up to two instructions are *committed* each cycle using information placed in a reorder buffer during the issue stage.
+    An instruction is only committed if all instructions fetched before have also committed.
+
+Given these stages, an non-memory instruction will take 7 cycles to go through the pipeline if it does not need to wait for it operands
+or wait for earlier instructions to commit (fetch, decode, rename, issue/register read, execute, writeback, commit).
+A memory instruction will take 9 cycles (two extra cycles of `execution' because of the speed of the data cache).
+
+When operands are not available, an instruction will spend extra cycles waiting in the instruction queue between its rename
+and issue stage. When an instruction is written back but some prior instructions have not done so,
+then the instruction will spend extra cycles waiting in the reorder buffer before it is committed.
+
+### This processor's registers
 
 The processor has 15 logical registers `%r01` through `%r15`, but these are implemented using 64 physical registers and register renaming. We call the physical registers `%x01` through `%x63`.
 
