@@ -60,6 +60,8 @@ We will show instructions in a three-argument form like:
 
 this indicates to add %r01 and %r02 and put the result into %r03.
 
+Answer the questions on [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/ooo.php).
+
 ## Part 1: register renaming
 
 Assume initially that `%r01` is assigned to `%x01`, `%r02` to `%x02`, and so on.
@@ -78,7 +80,7 @@ at once:
     movq 0x1234(%r06) -> %r03
     imul %r02, %r04 -> %r04
 
-Record your answer at TBD.
+Record your answer at the answer sheet linked above.
 
 ## Part 2: instruction dispatch
 
@@ -108,7 +110,7 @@ Complete the timeline to show how all the instructions can be issued and execute
     memory stage 2             C
     memory stage 3                  C
     
-Record your answer at TBD.
+Record your answer at the answer sheet linked above.
 
 ## Part 3: pipeline diagram
 
@@ -135,6 +137,6 @@ The first three rows are:
     2 F D R I E C
     3   F D R I E C
 
-complete the table at TBD.
+complete the table at the answer sheet linked above.
 
 
