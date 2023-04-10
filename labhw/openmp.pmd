@@ -6,6 +6,7 @@ title: OpenMP -- parallelism made easy
 Changelog:
 
 *  10 Apr 2023: add task queue with larger tasks option for map part; remove statement about not using optimization statements
+*  10 Apr 2023: remove coment about disabling optimizations
 </div>
 
 
