@@ -7,6 +7,7 @@ Changelog:
 
 *  10 Apr 2023: add task queue with larger tasks option for map part; remove statement about not using optimization statements
 *  10 Apr 2023: remove coment about disabling optimizations
+*  10 Apr 2023: add reference to OpenMP schedule options
 </div>
 
 
@@ -161,6 +162,9 @@ has each thread atomically update a shared counter until it gets too big.
 This ensures that if some threads take a long time in the `// work on item i`{.c} of the other threads can still progress.
 It has more overhead than the previous method, though, as atomic actions are slower than non-atomic actions.
 
+(As mentioned below this can also be done with the `schedule` option to the `parallel for` construct, but we would
+like you to try first with the lower-level tools to better understand what is going on.)
+
 **OpenMP pragmas used**:
 
 - `#pragma omp parallel`{.c} means "have each thread run the next statement (the `while`{.c} loop)".
@@ -183,6 +187,38 @@ while (1) {
     // work on item i through item min(i + K, N)
 }
 ```
+
+### (optional) OpenMP's parallel for schedules
+
+OpenMP's `parallel for` construct supports a "schedule" option where rather than dividing up the threads statically,
+it will use another strategy.
+
+With the "dynamic" schedule, it uses the task queue. It will do something like the "Task queue"
+code above with:
+```
+#pragma omp parallel for schedule(dynamic)
+for(int i=0; i<N; i+=1) {
+    // ...
+}
+```
+and something like "the task queue with larger tasks" with:
+```
+#pragma omp parallel for schedule(dynamic, K)
+for(int i=0; i<N; i+=1) {
+    // ...
+}
+```
+(where `K` is some integer constant)
+
+It also supports a "guided" schedule, which is like dynamic, except it varies
+the size of the tasks automatically:
+
+```
+#pragma omp parallel for schedule(guided)
+for(int i=0; i<N; i+=1) {
+    // ...
+}
+
 
 ## Parallel Reduce
 
