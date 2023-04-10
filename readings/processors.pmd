@@ -1,6 +1,14 @@
 ---
 title: Processors
+author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
+
+<div class="changelog">
+Changelog:
+
+*  10 Apr 2023: add section on OOO pipelines, and handling misspeculation
+</div>
+
 
 > This writeup is not designed to stand alone and is unlikely to make sense without the associated lectures.
 
@@ -586,6 +594,9 @@ before finally broadcasting a result and removing it from the queue.
 Our functional units will be much simpler if we have a simplified version of data dependencies.
 We don't want to ever have a case where several pending instructions are trying to write to the same register and we get the results our of order.
 So we'll do a special renaming process, changing program registers like `%rax` into secret hardware registers we actually use.
+(In the text below, we'll call these "program registers" and "hardware registers", but other common terms
+are "architectural registers" (for program registers, because they are specified by the instruction set architecture)
+and "physical registers".)
 
 The main hardware data structure we'll need for this is a **remap file**; this is an array of entries, one per program register, each entry of which contains two fields: a **tag** which is a hardware register number and a **ready bit** which tells us if some pending instruction will overwrite this (`0`, not ready) or not (`1`, ready).
 
@@ -652,7 +663,44 @@ When an instruction completes, we
 
 - put its result into its hardware register and mark it as ready in the remap file
 - mark it as done in the reorder buffer
-- if it was the oldest undone instruction in the reorder buffer before, move its results over into the externally-visible state (set flags, update the register file, perform memory writes, etc.)
+
+Once an instruction is the oldest undone instruction in the reorder buffer, we'll finalize the instruction
+often called *committing* or *retiring* it:
+
+-  move its results over into the externally-visible state (set flags, update the register file, perform memory writes, etc.)
+   -  for register file updates, rather than having a separate register file for the "externally-visible" value of registers,
+      a processor might track the tags of the "externally-visible" register values
+-  finally remove it from the reorder buffer
+
+### Handling misspeculation
+
+In an out-of-order processor, often we will have computed the results of speculatively executed instructions
+that we later find out need to be discarded. This could be because of a branch misprediction, or because
+an earlier instruction triggered an exception (like a page fault).
+
+The reorder buffer can help handle this:
+by discarding all later updates in the reorder buffer, the externally-visible state that remains
+will allow the processor resume execution where the misspeculation occurred.
+
+## Out-of-order processor as a pipeline
+
+An out-of-order processor will still usually make extensive use of a pipelined design, but it's pipeline
+will be divided into three parts:
+
+*  an in-order part, where one or more pipeline stages will:
+   *  fetching instructions, decoding instructions, performing register renaming, and "dispatch" instructions to an instruction queue
+
+*  an out-of-order part, where instructions will be extracted from the instruction queue, then run through one or more pipeline
+    stages including register value reading and forwarding, the actual instruction computations (or data cache operations),
+    and writing back the results (to a register file and/or reorder buffer)
+
+   (As mentioned above, not all execution units will use a pipelined design.)
+
+*  an final in-order part where the work of committing instructions will be performed
+
+Unlike a "traditional" pipelined processor, the in-order parts of the pipeline are typically
+designed to handle several instructions in each cycle, so the processor can complete
+several instructions per cycle on average.
 
 ## Common data bus
 
@@ -663,7 +711,7 @@ When an instruction completes, we might need to do any or all of the following:
 - update all pending instructions that used the destination as a source with the newly-available result, marking those operands as ready
 - update the reorder buffer to show the instruction is done, possibly also setting externally-visible state
 
-This is potentially a lot of work, and rather than trying to have one system do it all, we have an internal [bus](bus.html) that we broadcast results on.
+This is potentially a lot of work, and rather than trying to have one system do it all, often we have an internal [bus](bus.html) that we broadcast results on.
 These messages are simple: "hardware register 23 is now 0x123456";
 each functional unit, the remap file, and the reorder buffer listen to the bus and adjust things as needed.
 
