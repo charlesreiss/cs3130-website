@@ -327,11 +327,6 @@
    *  (if time) reader/writer locks
    *  transactions (briefly)
 
-   *  (if time) preview: OpenMP
-   
-   *  pipelining idea
-   *  review: single-cycle CPU
-   *  pipelining for the CPU (start)
 
 - date: 2023-04-11
   week: 13
@@ -341,15 +336,14 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
-    *  pipelining for the CPU (finish)
-    *  data hazards
-    *  hazard handling, part 1
-      *  stalling / waiting
-      *  forwarding and forwarding logic
-    *  control hazards
-    *  speculation idea
-       *  guess and check later
-       *  undo when wrong
+   *  pipelining idea
+   *  review: single-cycle CPU
+   *  pipelining for the CPU (
+   *  data hazards
+   *  hazard handling, part 1
+     *  stalling / waiting
+     *  forwarding and forwarding logic
+   *  control hazards
 
 - date: 2023-04-12
   lab: true
@@ -360,26 +354,23 @@
   title: pipeline 2
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
-   *  data flow graphs
-   *  pipeline timing
+   *  speculation idea
+       *  guess and check later
+       *  undo when wrong
+   *  branch prediction ideas
+       *  forward-taken, backwards-not-taken
+       *  using history
+
 
 - date: 2023-04-18
   week: 14
   reading: "[processors](readings/procesors.html) §3"
   title: out-of-order 1
   description: |
-   *  speculation idea
-      *  guess and check later
-      *  undo when wrong
-    *  speculation for branch taken versus not
-       *  always taken
-       *  forward taken, backwards not taken
-       *  using history
-    *  speculation for branch targets
-    *  other speculation
-       *  for values?
-       *  that there won't be a segfault?
-    *  dependency graph revisited
+    *  multiple issue + out-of-order
+    *  out-of-order pipeline
+    *  register renaming
+    *  instruction queues
 
 - date: 2023-04-19
   lab: true
@@ -389,13 +380,7 @@
   week: 14
   title: out-of-order 2 
   description: |
-    *  register renaming
-       *  (? need for multiple register versions)
-       *  simplifying to microinsturctions, maybe
-    *  functional units
-       *  and hookup via buses?
-    *  reorder buffer
-    *  throughput
+    *  reorder buffer and exceptions
 
 - date: 2023-04-25
   week: 15
