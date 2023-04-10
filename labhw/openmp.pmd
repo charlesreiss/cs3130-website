@@ -5,7 +5,7 @@ title: OpenMP -- parallelism made easy
 <div class="changelog">
 Changelog:
 
-*  10 Apr 2023: add task queue with larger tasks option for map part
+*  10 Apr 2023: add task queue with larger tasks option for map part; remove statement about not using optimization statements
 </div>
 
 
@@ -59,8 +59,6 @@ int main() {
 Compile with `gcc -fopenmp -O2 test.c`{.sh} and run as `./a.out`{.sh}; if it worked, you'll see multiple `I'm a thread` lines printed out.
 
 If you compile without the `-fopenmp` flag it will run on just one thread and print our `I'm a thread` just once.
-
-We won't use optimization flags in this lab because they can turn some of our test cases into single-statement assembly.
 
 Note that an OpenMP `#pragma` applies to the subsequent statement, only.
 Thus in the above `puts("I'm a thread");` is threaded but `puts("non-threaded");` is not.
