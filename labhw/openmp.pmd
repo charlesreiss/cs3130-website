@@ -2,6 +2,13 @@
 title: OpenMP -- parallelism made easy
 ...
 
+<div class="changelog">
+Changelog:
+
+*  10 Apr 2023: add task queue with larger tasks option for map part
+</div>
+
+
 # Task
 
 {.exercise ...}
@@ -160,6 +167,23 @@ It has more overhead than the previous method, though, as atomic actions are slo
 - `#pragma omp parallel`{.c} means "have each thread run the next statement (the `while`{.c} loop)".
 
 - `#pragma omp atomic capture`{.c} means "the next statement (`i = j++`{.c}) is a capture-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
+
+### (Optional) Task queue with larger tasks
+
+A variant of the task queue method to reduce the impact of the performance the atomic operation might be to have threads increment the shared counter
+by some value `K` (instead of `1`) and do work for `K` items instead of 1:
+
+```c
+int j = 0;
+#pragma omp parallel
+while (1) {
+    int i;
+    #pragma omp atomic capture
+    i = j += K;
+    if (i >= N) break;
+    // work on item i through item min(i + K, N)
+}
+```
 
 ## Parallel Reduce
 
