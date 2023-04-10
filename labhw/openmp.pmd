@@ -166,7 +166,7 @@ It has more overhead than the previous method, though, as atomic actions are slo
 
 - `#pragma omp atomic capture`{.c} means "the next statement (`i = j++`{.c}) is a capture-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
-### (optional) Task queue with larger tasks
+### Task queue with larger tasks
 
 A variant of the task queue method to reduce the impact of the performance the atomic operation might be to have threads increment the shared counter
 by some value `K` (instead of `1`) and do work for `K` items instead of 1:
