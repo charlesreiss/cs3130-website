@@ -15,6 +15,7 @@ Changelog:
 *  6 Apr 2023 11pm: add links to copies of sanitizer-test.sh, which was also missing from the skeleton code
 *  7 Apr 2023: add note about restrictions on timing of pthread_barrier_destroy due to libc issue
 *  7 Apr 2023: be more explicit that paralle version needs to match serial one
+*  10 Apr 2023: add information re: using debugger to diagnose hangs to hints
 </div>
 
 >  If you downloaded the skeleton code before 6 April around 4pm, then there are some minor issues with that skeleton code:
@@ -127,6 +128,11 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 1.
     If you find yourself tempted to use a global variable (such as a global mutex or barrier), you can usually get away with adding it as a field of a `struct` passed in by reference to your thread function's `void *` parameter instead.
 
+1.  If your code hangs, you can run it in a debugger until it hangs, and then interrupt it (like with control-C) and examine where each thread is.
+
+    For doing this in LLDB, see [their tutorial on examining thread state](https://lldb.llvm.org/use/tutorial.html#examining-thread-state).
+
+    In GDB, you can use a command like `thread apply all backtrace` to get a backtrace from all threads, and `thread THREAD-ID` to switch to debugging the thread with a particular ID; see also [the manual for debugging with threads in GDB](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
 
 # Caveats
 
