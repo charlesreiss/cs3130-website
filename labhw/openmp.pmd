@@ -218,7 +218,7 @@ the size of the tasks automatically:
 for(int i=0; i<N; i+=1) {
     // ...
 }
-
+```
 
 ## Parallel Reduce
 
