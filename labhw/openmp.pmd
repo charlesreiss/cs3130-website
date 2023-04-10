@@ -18,8 +18,10 @@ To run the code, compile with the `-lm` flag and give it file names as command-l
 To parallelize, separate the code into Map and Reduce steps and trying several OpenMP parallelizations; keep track of which was best.
 
 Then either:
+
 *  submit (preferably as one file with multiple copies of the geomean function) and a text file "performance.txt" explaining which was fastest and your guess as to why; or
 *  check-off with a TA, being prepared to explain which approach was fastest and your guess as to why
+
 {/}
 
 
