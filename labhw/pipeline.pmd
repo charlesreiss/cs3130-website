@@ -2,11 +2,17 @@
 title: Pipeline Diagrams
 ...
 
+<div id="changelog">
+Changelog:
+
+*  11 Apr 2023: correct link to online tool
+</div>
+
 # Your Task
 
 Fill in a pipeline diagram for a small function's full execution.
 
-Place you answer in the online tool <https://kytos.cs.virginia.edu/cs3130-spring2023/pld.php>.
+Place you answer in the online tool <https://kytos02.cs.virginia.edu/cs3130-spring2023/pld.php>.
 
 # Guidelines
 
