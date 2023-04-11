@@ -266,4 +266,5 @@
   page: labhw/ooo-exericse.html
   tentative: true
   due: 2023-05-02
+  no-late: true
   due_message: OOO due **before lecture**, late submissions **not normally accepted**
