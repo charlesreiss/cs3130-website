@@ -254,7 +254,6 @@
 - name: pipeline
   short_name: pipeline
   page: labhw/pipeline.html
-  tentative: true
   due: 2023-04-26
 
 - name: C++2x?
