@@ -242,12 +242,6 @@
   - "performance.txt"
   due: 2023-04-12
 
-- name: pipeline
-  short_name: pipeline
-  page: labhw/pipeline.html
-  tentative: true
-  due: 2023-04-19
-
 - name: templates
   lab: true
   comment: needs CSO1 fixups
@@ -256,9 +250,10 @@
   tentative: true
   due: 2023-04-19
 
-- name: OOO
-  short_name: OOO
-  page: labhw/ooo-exericse.html
+
+- name: pipeline
+  short_name: pipeline
+  page: labhw/pipeline.html
   tentative: true
   due: 2023-04-26
 
@@ -267,3 +262,9 @@
   lab: true
   due: 2023-04-26
 
+- name: OOO
+  short_name: OOO
+  page: labhw/ooo-exericse.html
+  tentative: true
+  due: 2023-05-02
+  due_message: OOO due **before lecture**, late submissions **not normally accepted**
