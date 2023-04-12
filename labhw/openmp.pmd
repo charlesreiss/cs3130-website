@@ -439,14 +439,18 @@ for(int i=0; i<threads; i+=1) {
 will have each thread to its share of reductions on its own local copy of the result,
 then have one thread update them all.
 
->  The code above above can have problems with *false sharing*.
->  Although each thread accesses an independent `results[i]` value,
->  those values will often be in the same cache block. With mulitple cores,
->  each core's cache will need to take turns holding the cache blocks value,
->  and so will not be able to work in parallel as much one might expect.
-> 
->  This problem can be avoided by making the results[i] `my_type` take up a whole cache block
->  or otherwise spacing out the `results` array more.
+{.aside ...} false sharing
+
+The code above above can have problems with *false sharing*.
+Although each thread accesses an independent `results[i]` value,
+those values will often be in the same cache block. With mulitple cores,
+each core's cache will need to take turns holding the cache blocks value,
+and so will not be able to work in parallel as much one might expect.
+
+This problem can be avoided by making the results[i] `my_type` take up a whole cache block
+or otherwise spacing out the `results` array more.
+
+{/}
 
 
 **OpenMP pragmas, macros, and functions used**:
