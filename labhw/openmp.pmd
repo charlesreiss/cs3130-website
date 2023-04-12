@@ -12,6 +12,7 @@ Changelog:
 *  11 Apr 2023: change command `gcc -lm ...` to more portable `gcc ... -lm`
 *  12 Apr 2023: correct internal link to starting code section
 *  12 Apr 2023: be more explicit that the reduce examples show a particular choice for the mapping step; add more explicit statement that you need to combine a way to parallelize the map and the reduce step
+*  12 Apr 2023: add note about false sharing with fancy reduce strateguy
 </div>
 
 
@@ -437,6 +438,15 @@ for(int i=0; i<threads; i+=1) {
 
 will have each thread to its share of reductions on its own local copy of the result,
 then have one thread update them all.
+
+>  The code above above can have problems with *false sharing*.
+>  Although each thread accesses an independent `results[i]` value,
+>  those values will often be in the same cache block. With mulitple cores,
+>  each core's cache will need to take turns holding the cache blocks value,
+>  and so will not be able to work in parallel as much one might expect.
+> 
+>  This problem can be avoided by making the results[i] `my_type` take up a whole cache block
+>  or otherwise spacing out the `results` array more.
 
 
 **OpenMP pragmas, macros, and functions used**:
