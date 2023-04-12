@@ -11,6 +11,7 @@ Changelog:
 *  10 Apr 2023: add reference to OpenMP schedule options
 *  11 Apr 2023: change command `gcc -lm ...` to more portable `gcc ... -lm`
 *  12 Apr 2023: correct internal link to starting code section
+*  12 Apr 2023: be more explicit that the reduce examples show a particular choice for the mapping step; add more explicit statement that you need to combine a way to parallelize the map and the reduce step
 </div>
 
 
@@ -98,6 +99,8 @@ Many problems that take large amounts of data as input can be re-posed as a map,
 Both Map and Reduce can be efficiently parallelized. Parallelizing the map operation is relatively simple.
 Parallelizing the reduce operation efficiently is more complex, but efficient implementations of the
 reduction operation can be reused.
+
+In your implementations, you will **combine a way of parallelizing map with a way of parallelizing reduce.**
 
 ## Parallel Map
 
@@ -244,7 +247,7 @@ for(int i=0; i<N; i+=1) {
 ```
 
 (where `op=` is some kind of augmented assignment, like `+=` or `*=`)
-with 
+with  (assuming the mapping step uses the "even split" strategy):
 
 ```c
 my_type result = zero_for_my_type;
@@ -254,6 +257,8 @@ for(int i=0; i<N; i+=1) {
     result op= array[i];
 }
 ```
+
+(If the mapping step did not use the even split strategy, we would adjust the for loop accordingly.)
 
 Note that since the bulk of the operation is atomic, it runs in a mostly serial fashion.
 However, the array lookup and loop indexing can be done in parallel, so it might still have some value.
@@ -280,7 +285,8 @@ for(int i=0; i<N; i+=1) {
 ```
 
 (where `op=` is some kind of augmented assignment, like `+=` or `*=`)
-then the parallel code
+then the parallel code (assuming this reduction strategy is combined with
+an "even split" mapping strategy)
 
 ```c
 my_type result = zero_for_my_type;
@@ -299,6 +305,8 @@ my_type result = zero_for_my_type;
 
 will have each thread to its share of reductions on its own local copy of the result,
 then atomically update the shared total
+
+(If this was combined with a different mapping strategy, then we would replace the for loop above with a different loop structure.)
 
 
 **OpenMP pragmas used**:
