@@ -74,7 +74,7 @@ int main() {
 
 You code should not contain any heap-allocated memory (no `new` or `malloc`)
 
-When you're done submit your C++ files to the submission site along with some testing, OR
+When you're done submit your C++ files to the submission site, OR
 show your TA what you've done for check-off.
 {/}
 
@@ -151,5 +151,3 @@ for(auto it = mycollection.begin(); // create an iterator
 
 Note in the above that when you combine a declaration and initialization,
 you can declare the type to be `auto`{.cpp} meaning "use whatever type the initialization gives me".
-
-# Submission

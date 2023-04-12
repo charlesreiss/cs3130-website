@@ -1,0 +1,63 @@
+---
+title: Side channel lab
+author: Charles Reiss
+...
+
+>  This lab writeup is incomplete.
+
+# Overview
+
+In this lab, we will give you a `check_passphrase` function
+that compares a phassphrase with a stored passphrase one
+character at a time.
+
+Your task is to write a function that will figure out 
+the passphrase by calling `check_passphrase` and timing how
+long it takes. Rather than trying all possible passphrases,
+you should be able to tell whether you have the first few
+characters correct by examining how long it takes
+the function to run.
+
+# Your Task
+
+1.  Download the supplied skeleton code at TBA.
+
+2.  In `lab.c` fill in the `find_passphrase(buffer, size)` function with a function
+    which will figure out which passphrase `check_passphrase` accepts. To do so,
+    you function must *only* use information obtained by running and timing
+    `check_passphrase`.
+
+    To aid you in this task, we've supplied a wrapper function `check_passphrase_and_time`
+    which calls `check_passphrase` and records the amount of time it took.
+
+    Your function may assume that passphrases consist of
+    only of the letter `a` through `z` and are exactly `size` characters long.
+
+    A good solution should use substantially fewer guesses overall than trying
+    all possible paswords of the specified length.
+
+3.  Test your code with the supplied `main.c` file. After running `make`, the `./lab`
+    program can be run like:
+
+        ./lab password
+
+    in which case it will set the passphrase to "password", invoke your `find_passphrase`
+    function and report the results like:
+
+        find_passphrase found passphrase "password" after 702 queries
+
+
+# Hints
+
+>  This section is very incomplete right now.
+
+1.  When more characters of your password are correct, the `check_passphrase` code
+    will run for longer trying to compare those characters to the actual passphrase.
+
+1.  To reduce variation in timings, I would recommend:
+
+    *  taking multiple measurements of which character is slowest, and trying again
+       when a majority of those measurements don't agree.
+
+    *  obtaining timings for possible each character right after each other,
+       to reduce the effects of chagnes in the machine performance or "training" a branch predictor

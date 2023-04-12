@@ -242,12 +242,11 @@
   - "performance.txt"
   due: 2023-04-12
 
-- name: templates
+- name: side channel
+  short_name: side-channel
   lab: true
-  comment: needs CSO1 fixups
-  comment: C++ stuff
-  page: labhw/templates.html
   tentative: true
+  page: labhw/side-channel.html
   due: 2023-04-19
 
 
@@ -256,9 +255,11 @@
   page: labhw/pipeline.html
   due: 2023-04-26
 
-- name: C++2x?
+- name: C++ OR templates
   short_name: cpp
   lab: true
+  tentative: true
+  page: labhw/cpp-choice.html
   due: 2023-04-26
 
 - name: OOO
