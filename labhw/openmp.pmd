@@ -8,18 +8,20 @@ Changelog:
 *  10 Apr 2023: add task queue with larger tasks option for map part; remove statement about not using optimization statements
 *  10 Apr 2023: remove coment about disabling optimizations
 *  10 Apr 2023: add reference to OpenMP schedule options
+*  11 Apr 2023: change command `gcc -lm ...` to more portable `gcc ... -lm`
+*  12 Apr 2023: correct internal link to starting code section
 </div>
 
 
 # Task
 
 {.exercise ...}
-Work, ideally with a paterner, to use OpenMP to parallelize the [Starter code](#starter-code).
+Work, ideally with a paterner, to use OpenMP to parallelize the [Starter code](#starting-code).
 You should be able to understand all of the code provided, but will only need to work on the `geomean` function for this lab.
 
 To run the code, compile with the `-lm` flag and give it file names as command-line arguments. It will return the number of bytes in those files and the geometric mean value of those bytes. You can provide multiple files on the command line if you wish; all will be combined before analysis. Parallelism give the biggest benefit when given large inputs, so you might want to try some larger files: for example, on portal `/usr/bin/emacs-24.3` has more than 14 million characters.
 
-    $ gcc -lm -fopenmp -O2 openmpstarter.c
+    $ gcc -fopenmp -O2 openmpstarter.c -lm
     $ ./a.out /usr/bin/emacs-24.3
     313710435 ns to process 14784560 characters: 6.46571
 
