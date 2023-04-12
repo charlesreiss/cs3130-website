@@ -1,5 +1,6 @@
 ---
 title: Cache lab
+author: Charles Reiss
 ...
 
 # Your Task
