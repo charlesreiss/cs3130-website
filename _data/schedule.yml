@@ -342,8 +342,6 @@
    *  data hazards
    *  hazard handling, part 1
      *  stalling / waiting
-     *  forwarding and forwarding logic
-   *  control hazards
 
 - date: 2023-04-12
   lab: true
@@ -354,6 +352,9 @@
   title: pipeline 2
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
+   * hazard handling, part 2
+     *  forwarding and forwarding logic
+   *  control hazards
    *  speculation idea
        *  guess and check later
        *  undo when wrong

@@ -247,6 +247,7 @@
   lab: true
   tentative: true
   page: labhw/side-channel.html
+  submit_file: "lab.c"
   due: 2023-04-19
 
 
@@ -260,6 +261,11 @@
   lab: true
   tentative: true
   page: labhw/cpp-choice.html
+  submit_files:
+  - "*.cpp"
+  - "*.cc"
+  - "*.h"
+  - "*.hh"
   due: 2023-04-26
 
 - name: OOO
