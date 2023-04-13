@@ -333,8 +333,6 @@
   title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
    *  pipelining idea
    *  review: single-cycle CPU
@@ -351,27 +349,32 @@
   week: 13
   title: pipeline 2
   reading: "[processors](readings/procesors.html) §2-3"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
-   * hazard handling, part 2
+   *  hazard handling, part 2
      *  forwarding and forwarding logic
-   *  control hazards
-   *  speculation idea
+   *  control hazards + speculation idea (start)
        *  guess and check later
-       *  undo when wrong
-   *  branch prediction ideas
-       *  forward-taken, backwards-not-taken
-       *  using history
 
 
 - date: 2023-04-18
   week: 14
   reading: "[processors](readings/procesors.html) §3"
   title: out-of-order 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
+    * speculation idea (finish)
+       *  guess and check later
+       *  undo when wrong
+    *  branch prediction ideas
+       *  forward-taken, backwards-not-taken
+       *  using history
     *  multiple issue + out-of-order
     *  out-of-order pipeline
-    *  register renaming
-    *  instruction queues
 
 - date: 2023-04-19
   lab: true
@@ -381,10 +384,11 @@
   week: 14
   title: out-of-order 2  / buses
   description: |
+    *  register renaming
+    *  instruction queues
     *  reorder buffer and exceptions
 
     *  buses, full/half-duplex
-      *  relationship   to networking
     *  connecting to I/O devices
     *  DMA
 
