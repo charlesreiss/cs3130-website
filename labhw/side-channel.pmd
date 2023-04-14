@@ -3,7 +3,7 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
->  This lab writeup is incomplete and likely to change substantially.
+>  This lab writeup is incomplete.
 
 # Overview
 
@@ -27,18 +27,17 @@ the function to run.
     you function must *only* use information obtained by running and timing
     `check_passphrase`.
 
-    We have given a suggested approach for doing this below.
-
     Your function may assume that passphrases consist of
     only of the letter `a` through `z` and are exactly `size` characters long.
-
+    
     We've supplied a version of `find_passphrase` which times how long it take to
-    execute with `a` and `b` and `c` and prints out how long each takes.
+    execute with `a` through `z` and prints out the timings. It
+    uses a supplied `measure_once` function to perform the timing.
 
     A good solution should use substantially fewer guesses overall than trying
     all possible paswords of the specified length.
 
-3.  Test your code with the supplied `main.c` file. After running `make`, the `./lab`
+3.  After running `make`, the `./lab`
     program can be run like:
 
         ./lab password
@@ -53,34 +52,93 @@ the function to run.
         found [z], but that was not the passphrase
 
 
-# Suggested approach/Hints
+# Hints
 
-1.  Modify the supplied code to try all single-letter passwords and print out the timings for each.
-    To get consistent measurements, I recommend obtaining all measurements in one loop.
-    This should ensure that everything stays in caches and reduce variation from other things
-    running on the system and/or variable clock rates.
+## Understanding the supplied code
 
-2.  After you do that modification, look at the timings for
+1.  Run `make` to build a `./lab` program from:
 
-        ./lab foo
+    *  `lab.c`: the file with the implementation of `find_passphrase` you are going to modify
+    *  `timing.c`: high-precision timing code that you can use from `lab.c`
+    *  `main.c`: our supplied testing code
+    *  `check_passphrase.s`: the check_passphrase() function written in assembly
 
-    versus, for example,
+1.  With unmodified code, it will try the passphrases `a`, `b`, and `c`,
+    in that order.
+    If any of them work, it will return that answer, then the code
+    in `main.c` will print out the answer. So for example, running
 
-        ./lab zoo
+        ./lab b
 
-    When I tried this, I found that
+    will print out
 
-    *  the first thing timed is probably slow every time, probably because caches are not loaded yet
-    *  the actual first letter is consistently substantially slower than most of the other letters
+        found passphrase [b] after 2 queries
 
-1.  I would recommend structuring your code like:
+    and 
+        
+        ./lab c
+
+    will print out
+
+        found passphrase [c] after 3 queries
+
+    .
+
+    If you select a passphrase that is not one of the ones it checks, it
+    will print out the timings for checking `a`, `b`, and `c` and
+    return the answer `c`, which will not be correct.
+
+2.  On my system running `./lab bx` prints out something like:
+
+        'a' took 426 cycles
+        'b' took 418 cycles
+        'c' took 146 cycles
+        found [c], but that was not the passphrase
+
+    and `./lab cx` prints out something like:
+
+        'a' took 710 cycles
+        'b' took 134 cycles
+        'c' took 328 cycles
+        found [c], but that was not the passphrase
+
+1.  In both cases, running the test for `a`, the first thing timed, took a while.
+    This is probably because
+    values were not loaded into caches yet. We would probably get more consistent timings
+    for `a` if we called `check_passphrase` earlier to make sure values were loaded into caches.
+
+1.  Notice that the time the function took to test `b` or `c` varied depending on whether
+    the passphrase started with `c` or `b`. You'll take advantage of that to
+    modify `find_passphrase`.
+
+## Suggested approach
+
+1.  I would recommend starting by modifying the code to time all the letters `a` through `z`
+    and printing out all those timings.
+
+2.  To deal with the problem of the first thing timed being slow everytime, I would
+    recommend taking multiple measurements for each letter.
+    
+3.  When you've done this, you should be able to see that when you run, for example
+
+        ./lab fxxxx
+
+    you'll get significantly longer timings for testing `f` compared to other items
+    and when you run, for example
+
+        ./lab axxxx
+
+    you'll get significnatly longer timings for testing `a`.
+
+1.  Next, expand your code from testing the first letter to guessing multiple letters.
+    I would recommend structuring your code like:
 
     *  Fill in the string with all \0s to start with an empty string.
 
     *  In a loop for each index *i* up to length:
 
         *  Try each possiblity for the *i*'th letter and see which seems most likely
-           based on the timings
+           based on the timings you've measured. 
 
         *  Fill in the best guess of the *i*th letter for future iterations
 
@@ -88,11 +146,3 @@ the function to run.
        repeat the process. Hopefully, this was just caused by something interfering
        with the timings that won't happen over and over again.
 
-2.  To deal with the problem of the first thing timed being slow everytime, I would
-    recommend taking multiple measurements for each letter
-    and somehow discarding likely outliers.
-
-    Taking multiple measurements will also help deal with other inconsistencies in timing.
-
-    This does increase the number of check_passphrase calls, but should still be a lot
-    better than guessing all possibilities.
