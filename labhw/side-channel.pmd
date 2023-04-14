@@ -20,37 +20,32 @@ the function to run.
 
 # Your Task
 
-1.  Download the supplied skeleton code at TBA.
+1.  As usual for labs, you may work with other students.
 
-2.  In `lab.c` fill in the `find_passphrase(buffer, size)` function with a function
-    which will figure out which passphrase `check_passphrase` accepts. To do so,
-    you function must *only* use information obtained by running and timing
+1.  Download the supplied skeleton code at [here](files/side-channel.tar)
+    (or via something like 
+    `wget https://www.cs.virginia.edu/~cr4bd/3130/S2023/labhw/files/side-channel.tar`).
+
+    Build the supplied code by running `make`. 
+    We provide an explanation of how to run the supplied code below.
+
+2.  In `lab.c`, modify the `find_passphrase(buffer, size)` function 
+    so it will figure out which passphrase `check_passphrase` accepts. 
+    Your function must *only* use information obtained by running and timing
     `check_passphrase`.
-
+    
     Your function may assume that passphrases consist of
     only of the letter `a` through `z` and are exactly `size` characters long.
     
-    We've supplied a version of `find_passphrase` which times how long it take to
-    execute with `a` through `z` and prints out the timings. It
-    uses a supplied `measure_once` function to perform the timing.
-
     A good solution should use substantially fewer guesses overall than trying
     all possible paswords of the specified length.
 
-3.  After running `make`, the `./lab`
-    program can be run like:
+    We provide a suggested strategy how to complete this task below.
 
-        ./lab password
+3.  Either:
 
-    in which case it will set the passphrase to "password", invoke your `find_passphrase`
-    function and report the results like:
-
-        found passphrase [password] after 702 queries
-
-    or, if your function fails, like
-
-        found [z], but that was not the passphrase
-
+    *  Submit your modified `lab.c` to the submission site, or
+    *  Show a TA your code working for checkoff.
 
 # Hints
 
@@ -63,7 +58,22 @@ the function to run.
     *  `main.c`: our supplied testing code
     *  `check_passphrase.s`: the check_passphrase() function written in assembly
 
-1.  With unmodified code, it will try the passphrases `a`, `b`, and `c`,
+3.  The `./lab`
+    program can be run like:
+
+        ./lab password
+
+    in which case it will set the passphrase to "password", invoke the `find_passphrase`
+    function and report the results like:
+
+        found passphrase [password] after 702 queries
+
+    or, if the function fails to fill in `buffer` with the correct passphrase,
+    it will report results like
+
+        found [z], but that was not the passphrase
+
+1.  With unmodified code, `find_passphrase` (in lab.c) will try the passphrases `a`, `b`, and `c`,
     in that order.
     If any of them work, it will return that answer, then the code
     in `main.c` will print out the answer. So for example, running
