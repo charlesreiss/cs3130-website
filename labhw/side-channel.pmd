@@ -3,7 +3,7 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
->  This lab writeup is incomplete.
+>  This lab writeup is subject to change.
 
 # Overview
 
@@ -97,6 +97,22 @@ the function to run.
     If you select a passphrase that is not one of the ones it checks, it
     will print out the timings for checking `a`, `b`, and `c` and
     return the answer `c`, which will not be correct.
+
+3.  To run and time `check_passphrase`, the supplied `find_passphrase` uses a utility function we supplied
+    called `measure_once`, which it calls using code like:
+
+        long time = measure_once(&result, buffer, check_passphrase);
+
+    This does something similar to the pseudocode:
+
+        long start = GetTime();
+        result = check_passphrase(buffer);
+        long end = GetTime();
+        long time = end - start;
+
+    The `measure_once` function attempts to follow advice in Intel's documentation
+    for obtaining high-precision timings of code. (It also includes some x86-64
+    assembly, so it will not work on non-x86-64 systems.)
 
 2.  On my system running `./lab bx` prints out something like:
 
