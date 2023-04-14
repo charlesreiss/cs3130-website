@@ -3,7 +3,7 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
->  This lab writeup is incomplete.
+>  This lab writeup is incomplete and likely to change substantially.
 
 # Overview
 
@@ -31,8 +31,7 @@ the function to run.
     only of the letter `a` through `z` and are exactly `size` characters long.
     
     We've supplied a version of `find_passphrase` which times how long it take to
-    execute with `a` through `z` and prints out the timings. It
-    uses a supplied `measure_once` function to perform the timing.
+    execute with `a` and `b` and `c` and prints out how long each takes.
 
     A good solution should use substantially fewer guesses overall than trying
     all possible paswords of the specified length.
@@ -52,19 +51,24 @@ the function to run.
         found [z], but that was not the passphrase
 
 
-# Hints
+# Suggested approach/Hints
 
-1.  Observe what the supplied code does when you try:
+1.  Modify the code to try all single-letter passwords and print out the timings for each.
+    To get consistent measurements, I recommend obtaining all measurements in one loop.
+    This should ensure that everything stays in caches and reduce variation from other things
+    running on the system and/or variable clock rates.
+
+2.  After you do that modification, look at the timings for
 
         ./lab foo
 
     versus, for example,
-        
+
         ./lab zoo
 
-    You'll observe that:
-    
-    *  the first thing timed "`a`" is slow every time, probably because caches are not loaded yet
+    When I tried this, I found that
+
+    *  the first thing timed is probably slow every time, probably because caches are not loaded yet
     *  the actual first letter is consistently substantially slower than most of the other letters
 
 1.  I would recommend structuring your code like:
