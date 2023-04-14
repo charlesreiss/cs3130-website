@@ -27,9 +27,11 @@ the function to run.
     you function must *only* use information obtained by running and timing
     `check_passphrase`.
 
+    We have given a suggested approach for doing this below.
+
     Your function may assume that passphrases consist of
     only of the letter `a` through `z` and are exactly `size` characters long.
-    
+
     We've supplied a version of `find_passphrase` which times how long it take to
     execute with `a` and `b` and `c` and prints out how long each takes.
 
@@ -53,7 +55,7 @@ the function to run.
 
 # Suggested approach/Hints
 
-1.  Modify the code to try all single-letter passwords and print out the timings for each.
+1.  Modify the supplied code to try all single-letter passwords and print out the timings for each.
     To get consistent measurements, I recommend obtaining all measurements in one loop.
     This should ensure that everything stays in caches and reduce variation from other things
     running on the system and/or variable clock rates.
