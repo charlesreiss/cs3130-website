@@ -8,7 +8,7 @@ author: Charles Reiss
 # Overview
 
 In this lab, we will give you a `check_passphrase` function
-that compares a phassphrase with a stored passphrase one
+that compares a passphrase with a stored passphrase one
 character at a time.
 
 Your task is to write a function that will figure out 
@@ -26,21 +26,34 @@ the function to run.
     (or via something like 
     `wget https://www.cs.virginia.edu/~cr4bd/3130/S2023/labhw/files/side-channel.tar`).
 
-    Build the supplied code by running `make`. 
-    We provide an explanation of how to run the supplied code below.
+    Build the supplied code using `make`.
+
+2.  Examine the `find_passphrase` function in `lab.c`.
+
+    Try running our test hardness with a target passphrase of "foo" with
+
+        ./lab foo
+
+    or with a target passphrase of "b" with
+
+        ./lab b
 
 2.  In `lab.c`, modify the `find_passphrase(buffer, size)` function 
-    so it will figure out which passphrase `check_passphrase` accepts. 
-    Your function must *only* use information obtained by running and timing
-    `check_passphrase`.
-    
+    so it will figure out which passphrase `check_passphrase` accepts.
     Your function may assume that passphrases consist of
     only of the letter `a` through `z` and are exactly `size` characters long.
+
+    Your function must *only* use information obtained by running and timing
+    `check_passphrase`.
+
+    We provide advice on how to understand the supplied code and utility functions
+    and to write your `find_passphrase` function in the hints below.
     
     A good solution should use substantially fewer guesses overall than trying
-    all possible paswords of the specified length.
+    all possible passwords of the specified length.
 
-    We provide a suggested strategy how to complete this task below.
+
+3.  Test your solution by running `./lab` with various target passphrases.
 
 3.  Either:
 
@@ -61,7 +74,7 @@ the function to run.
 3.  The `./lab`
     program can be run like:
 
-        ./lab password
+        ./lab passphrase
 
     in which case it will set the passphrase to "password", invoke the `find_passphrase`
     function and report the results like:
@@ -142,8 +155,11 @@ the function to run.
 1.  I would recommend starting by modifying the code to time all the letters `a` through `z`
     and printing out all those timings.
 
-2.  To deal with the problem of the first thing timed being slow everytime, I would
-    recommend taking multiple measurements for each letter.
+2.  To deal with the problem of the first thing timed being slow every time (probably
+    because of caches being loaded for the first time), I would
+    recommend taking multiple measurements for each letter. Taking multiple measurements
+    will also mitigate against measurement errors from other activities happening
+    on the system.
     
 3.  When you've done this, you should be able to see that when you run, for example
 
@@ -154,7 +170,7 @@ the function to run.
 
         ./lab axxxx
 
-    you'll get significnatly longer timings for testing `a`.
+    you'll get significantly longer timings for testing `a`.
 
 1.  Next, expand your code from testing the first letter to guessing multiple letters.
     I would recommend structuring your code like:
@@ -163,7 +179,7 @@ the function to run.
 
     *  In a loop for each index *i* up to length:
 
-        *  Try each possiblity for the *i*'th letter and see which seems most likely
+        *  Try each possibility for the *i*'th letter and see which seems most likely
            based on the timings you've measured. 
 
         *  Fill in the best guess of the *i*th letter for future iterations
