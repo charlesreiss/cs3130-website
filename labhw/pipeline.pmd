@@ -7,6 +7,7 @@ author: Luther Tychnoviech
 Changelog:
 
 *  11 Apr 2023: correct link to online tool
+*  14 Apr 2023: give brief descritpion of backwards-taken forwards-not-taken
 </div>
 
 # Your Task
@@ -82,7 +83,7 @@ Assume that this is run on a five-stage pipeline, where
     |guess~2~|   |   | F |   |   |   |   |   |
     |correct |   |   |   | F | D | E | M | W |
 
-- conditional jumps are speculated using the "backwards-taken forwards-not-taken" branch prediction heuristic
+- conditional jumps are speculated using the "backwards-taken forwards-not-taken" branch prediction heuristic (meaning that jumps to a later instruction are predicted to be not taken and jumps to an earlier instruction are predicted to be taken)
 
 You're asked to expand this assuming 
 
