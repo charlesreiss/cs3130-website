@@ -27,11 +27,12 @@ the function to run.
     you function must *only* use information obtained by running and timing
     `check_passphrase`.
 
-    To aid you in this task, we've supplied a wrapper function `check_passphrase_and_time`
-    which calls `check_passphrase` and records the amount of time it took.
-
     Your function may assume that passphrases consist of
     only of the letter `a` through `z` and are exactly `size` characters long.
+    
+    We've supplied a version of `find_passphrase` which times how long it take to
+    execute with `a` through `z` and prints out the timings. It
+    uses a supplied `measure_once` function to perform the timing.
 
     A good solution should use substantially fewer guesses overall than trying
     all possible paswords of the specified length.
@@ -44,20 +45,48 @@ the function to run.
     in which case it will set the passphrase to "password", invoke your `find_passphrase`
     function and report the results like:
 
-        find_passphrase found passphrase "password" after 702 queries
+        found passphrase [password] after 702 queries
+
+    or, if your function fails, like
+
+        found [z], but that was not the passphrase
 
 
 # Hints
 
->  This section is very incomplete right now.
+1.  Observe what the supplied code does when you try:
 
-1.  When more characters of your password are correct, the `check_passphrase` code
-    will run for longer trying to compare those characters to the actual passphrase.
+        ./lab foo
 
-1.  To reduce variation in timings, I would recommend:
+    versus, for example,
+        
+        ./lab zoo
 
-    *  taking multiple measurements of which character is slowest, and trying again
-       when a majority of those measurements don't agree.
+    You'll observe that:
+    
+    *  the first thing timed "`a`" is slow every time, probably because caches are not loaded yet
+    *  the actual first letter is consistently substantially slower than most of the other letters
 
-    *  obtaining timings for possible each character right after each other,
-       to reduce the effects of chagnes in the machine performance or "training" a branch predictor
+1.  I would recommend structuring your code like:
+
+    *  Fill in the string with all \0s to start with an empty string.
+
+    *  In a loop for each index *i* up to length:
+
+        *  Try each possiblity for the *i*'th letter and see which seems most likely
+           based on the timings
+
+        *  Fill in the best guess of the *i*th letter for future iterations
+
+    *  If you get to the end of the loop and none of the guesses were correct,
+       repeat the process. Hopefully, this was just caused by something interfering
+       with the timings that won't happen over and over again.
+
+2.  To deal with the problem of the first thing timed being slow everytime, I would
+    recommend taking multiple measurements for each letter
+    and somehow discarding likely outliers.
+
+    Taking multiple measurements will also help deal with other inconsistencies in timing.
+
+    This does increase the number of check_passphrase calls, but should still be a lot
+    better than guessing all possibilities.
