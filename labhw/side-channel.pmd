@@ -3,8 +3,6 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
->  This lab writeup is subject to change.
-
 # Overview
 
 In this lab, we will give you a `check_passphrase` function
