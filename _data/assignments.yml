@@ -190,9 +190,9 @@
   lab: true
   short_name: sync
   page: labhw/sync.html
-  tentative: true
   comments: needs changes for in-person?
   comments: need .php stuff
+  missing-if-no-feedback: true
   due: 2023-03-29
 
 - name: fork HW
