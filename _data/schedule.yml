@@ -361,7 +361,7 @@
 
 - date: 2023-04-18
   week: 14
-  reading: "[processors](readings/procesors.html) §3"
+  reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
   title: out-of-order 1
   slides: yes
   slides_prelim: yes
@@ -373,8 +373,10 @@
     *  branch prediction ideas
        *  forward-taken, backwards-not-taken
        *  using history
-    *  multiple issue + out-of-order
-    *  out-of-order pipeline
+       *  predicting branch targets
+       *  if time --- more advanced ideas
+    *  interlude: buses
+    *  idea of multiple issue + out-of-order
 
 - date: 2023-04-19
   lab: true
@@ -384,18 +386,14 @@
   week: 14
   title: out-of-order 2  / buses
   description: |
+    *  out-of-order pipeline
     *  register renaming
     *  instruction queues
     *  reorder buffer and exceptions
 
-    *  buses, full/half-duplex
-    *  connecting to I/O devices
-    *  DMA
-
 - date: 2023-04-25
   week: 15
   title: side channels
-  reading: "[buses](readings/bus.html)"
   description: |
     *  time and equality testing
     *  in the cache
