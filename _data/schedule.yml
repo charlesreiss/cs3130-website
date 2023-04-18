@@ -404,7 +404,7 @@
     *  data flow model
 
     *  side channels generally
-    *  side channels in the cache
+    *  side channels in the cache (start)
 
 - date: 2023-04-26
   lab: true
@@ -415,6 +415,7 @@
   title: meltdown, spectre, etc.
   slides_see: 20230425
   description: |
+    *  side channels in the cache (finish)
     *  meltdown:
         *  speculation past a priv/protection fault
     *   spectre
