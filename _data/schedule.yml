@@ -362,10 +362,8 @@
 - date: 2023-04-18
   week: 14
   reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
-  title: out-of-order 1
+  title: branch prediction
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     * speculation idea (finish)
        *  guess and check later
@@ -375,8 +373,6 @@
        *  using history
        *  predicting branch targets
        *  if time --- more advanced ideas
-    *  interlude: buses
-    *  idea of multiple issue + out-of-order
 
 - date: 2023-04-19
   lab: true
@@ -384,21 +380,31 @@
 
 - date: 2023-04-20
   week: 14
-  title: out-of-order 2  / buses
+  title: buses / out-of-order 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
+    *  interlude: buses and direct-memory access
+
+    *  idea of multiple issue + out-of-order
     *  out-of-order pipeline
     *  register renaming
-    *  instruction queues
-    *  reorder buffer and exceptions
+    *  instruction queues (start)
 
 - date: 2023-04-25
   week: 15
-  title: side channels
+  title: out-of-order 2 / side channels
+  slides_see: 20230420
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
-    *  time and equality testing
-    *  in the cache
-    *   meltdown:
-        *  speculation past a priv/protection fault
+    *  instruction queues (finish)
+    *  data flow model
+
+    *  side channels generally
+    *  side channels in the cache
 
 - date: 2023-04-26
   lab: true
@@ -407,12 +413,13 @@
 - date: 2023-04-27
   week: 15
   title: meltdown, spectre, etc.
+  slides_see: 20230425
   description: |
+    *  meltdown:
+        *  speculation past a priv/protection fault
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
-    *   avoiding spectre+meltdown
-    *   briefly, more spectre variants
 
 - date: 2023-05-02
   week: 16
