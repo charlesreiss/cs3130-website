@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Quiz Viewer</title>
+    <link rel="stylesheet" href="s2020exam2_files/style.css">
+        <link rel="stylesheet" href="s2020exam2_files/katex.min.css">
+
+    <script>
+function pending(num) {
+    if (document.getElementById('q'+num).className != "question submitting")
+        document.getElementById('q'+num).className = "question submitting";
+}
+function postAns(name, num) {
+    document.getElementById('q'+num).className = "question submitting";
+    var ans = {
+        'user':"cr4bd", 
+        'quiz':name,
+        'slug':document.getElementById("q"+num).getAttribute('slug'), 
+        'answer':[]
+    };
+    var elems = document.getElementsByName("ans"+num);
+    for(var i=0; i<elems.length; i+=1) {
+        var elem = elems[i];
+        if (elem.type == 'text' || elem.type == 'textarea')
+            elem.value = elem.value.trim();
+        if (elem.type == 'text' || elem.type == 'textarea' || elem.checked) { ans.answer.push(elem.value); }
+    }
+    var comm = document.getElementById('comments'+num);
+    console.log(comm)
+    if (comm && comm.value) {
+        comm.value = comm.value.trim();
+        ans['comments'] = comm.value;
+    }
+    
+    
+    console.log("sending: ", JSON.stringify(ans));
+    ajaxSend(JSON.stringify(ans), num);
+
+}
+function ajaxSend(data, num) {
+    var xhr = new XMLHttpRequest();
+    if (!("withCredentials" in xhr)) {
+        return null;
+    }
+    xhr.open("POST", "quiz_listener.php", true);
+    xhr.withCredentials = true;
+    xhr.setRequestHeader("Content-type", 'application/json');
+    xhr.onerror = function() {
+        document.getElementById("notice").innerHTML = "auto-check for new data broken";
+    }
+    xhr.onreadystatechange = function() { 
+        if(xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                document.getElementById('q'+num).className = "question submitted";
+                console.log("response: " + xhr.responseText);
+            } else {
+                document.getElementById('q'+num).className = "question disconnected";
+                alert("Your latest response failed to arrive at the server.\nThis could be your Netbadge session expiring, or because of the following error message:\n\n"   + JSON.stringify(xhr.responseText));
+                console.log("response: " + xhr.responseText);
+            }
+        } else {
+            document.getElementById('q'+num).className = "question disconnected";
+            // alert("Your latest response failed to arrive at the server.\n  This is probably due to Netbadge disconnecting you behind the scenes.\n  We recommend you note any answers that have not turned green, reload the page, and enter them again.\n\nCode: " + xhr.status+"\nDetails: "+xhr.responseText)
+            // console.log("response: " + xhr.responseText);
+        }
+    }
+    xhr.send(data);
+}
+var due = Date.now();
+var timer;
+function tick() {
+    var clock = document.getElementById('clock');
+    var remaining = due - Date.now();
+    if (remaining < 0) {
+        clock.innerHTML = "Time is up; further changes will be ignored";
+        clearInterval(timer);
+    } else {
+        remaining /= 1000; remaining = Math.floor(remaining); // milliseconds -> seconds;
+        var seconds = remaining % 60;
+        remaining /= 60; remaining = Math.floor(remaining); // seconds -> minutes;
+        var minutes = remaining % 60;
+        remaining /= 60; remaining = Math.floor(remaining); // minutes -> hours;
+        var hours = remaining;
+        var text = "Time remaining: ";
+        text += hours + ":";
+        text += (minutes < 10 ? "0"+minutes : minutes)+":";
+        text += (seconds < 10 ? "0"+seconds : seconds)+"";
+        clock.innerHTML = text;
+    }
+}
+function onload() {
+    if (document.getElementById('clock')) {
+        var remaining = Number(document.getElementById('clock').innerHTML);
+        due += remaining * 1000;
+        timer = setInterval(tick, 1000);
+    }
+}
+
+    </script>
+<style type="text/css">@media print {
+        .TridactylStatusIndicator {
+            display: none !important;
+        }
+    }</style></head>
+<body onload="onload()">
+    <a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a><a href="https://kytos02.cs.virginia.edu/coa2/quizzes/" style="text-align:center; display:block;">Return to index</a><h1 style="text-align:center">Midterm</h1><div class="directions"><p>You
+ may use any resource that existed prior to this exam opening, including
+ websites, books, etc; but should not consult friends, tutors, forums, 
+or other interactive help for this exam.</p>
+
+<p>You must not share any information about this exam (even how you felt
+ about it) with any party (even others who have taken it) until after it
+ closes at 2020-04-06 23:59 EDT.</p>
+</div><div class="multiquestion"><p>The following are all of the form "inverting ____ requires".
+To invert function <em>f</em> we mean, given <em>f</em>(<em>m</em>), compute <em>m</em>.
+Assume that</p>
+
+<ul>
+<li>You do <strong>not</strong> have access to the original message (not even as private information)</li>
+<li>You do <strong>not</strong> have the time to use brute-force approaches.</li>
+</ul>
+<div class="question" id="q1" slug="85ee0b80"><div class="description" id="d1"><strong>Question 1</strong> (1 pt; mean 0.97) (see above)
+<p>Inverting a cryptographically secure hash requires</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans1" value="28119aad" disabled="disabled"><div><p>private information, like a private key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans1" value="2610c508" disabled="disabled"><div><p>public information, like a public key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans1" value="88969cbf" disabled="disabled"><div><p>unrecorded information, like when I moved my mouse</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">97%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans1" value="30c48384" disabled="disabled"><div><p>none of the above are sufficient</p>
+</div></label></li></ol></div><div class="question" id="q2" slug="c8d532ba"><div class="description" id="d2"><strong>Question 2</strong> (1 pt; mean 0.87) (see above)
+<p>Inverting a public-key encryption requires</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">82%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans2" value="0c6ac1a8" disabled="disabled"><div><p>private information, like a private key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">11%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">½</div><input type="radio" name="ans2" value="1fd4b4fb" disabled="disabled"><div><p>public information, like a public key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans2" value="d5406641" disabled="disabled"><div><p>unrecorded information, like when I moved my mouse</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">7%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans2" value="098dbb80" disabled="disabled"><div><p>none of the above are sufficient</p>
+</div></label></li></ol></div><div class="question" id="q3" slug="3639f6bd"><div class="description" id="d3"><strong>Question 3</strong> (1 pt; mean 0.76) (see above)
+<p>Inverting a private-key encryption requires</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">31%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">½</div><input type="radio" name="ans3" value="35dfccd0" disabled="disabled"><div><p>private information, like a private key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">61%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans3" value="ed8c6bcd" disabled="disabled"><div><p>public information, like a public key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans3" value="b340130f" disabled="disabled"><div><p>unrecorded information, like when I moved my mouse</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">7%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans3" value="d1f20719" disabled="disabled"><div><p>none of the above are sufficient</p>
+</div></label></li></ol></div><div class="question" id="q4" slug="eb1f5f51"><div class="description" id="d4"><strong>Question 4</strong> (1 pt; mean 0.88) (see above)
+<p>Inverting a symmetric-key encryption requires</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">86%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans4" value="7ef3202c" disabled="disabled"><div><p>private information, like a private key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">4%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans4" value="ccb0aafe" disabled="disabled"><div><p>public information, like a public key</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans4" value="f4838898" disabled="disabled"><div><p>unrecorded information, like when I moved my mouse</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">10%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans4" value="f81e3619" disabled="disabled"><div><p>none of the above are sufficient</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Untrusted agent <em>U</em> sends me a message <em>M</em> and a message signature <em>S</em> created by agent <em>A</em> using public key <em>K</em>.</p>
+<div class="question" id="q5" slug="1786c3e0"><div class="description" id="d5"><strong>Question 5</strong> (dropped) (see above)
+<p>Which of the following should I <strong>definitely not</strong> get from <em>U</em>?</p>
+</div><ol class="options"><li><label><input type="radio" name="ans5" value="f52cacce" disabled="disabled"><div><p><em>A</em></p>
+</div></label></li><li><label><input type="radio" name="ans5" value="e98d03f4" disabled="disabled"><div><p><em>K</em></p>
+</div></label></li><li><label><input type="radio" name="ans5" value="e1490307" disabled="disabled"><div><p><em>M</em></p>
+</div></label></li><li><label><input type="radio" name="ans5" value="29b0d80c" disabled="disabled"><div><p><em>S</em></p>
+</div></label></li></ol><div class="explanation"><p>This question has been dropped because of an ambiguity in its wording.
+The intent was to suggest that if <em>U</em> is my witness that <em>K</em> belongs to <em>A</em>, then <em>U</em> can simply give me <em>U</em>'s public key instead of <em>A</em>'s public key.
+Unfortunately, I failed to mention that <em>K</em> was not part of a certificate, and since certificates are commonly used to allow <em>U</em> to give me <em>K</em> in practice the question became too vague to measure learning.</p>
+</div></div><div class="question" id="q6" slug="6ad9e8fa"><div class="description" id="d6"><strong>Question 6</strong> (1 pt; mean 0.55) (see above)
+<p>Assume</p>
+
+<ul>
+<li><em>H</em>(message) is the <strong>h</strong>ash function</li>
+<li><em>P</em>(message, key) is the <strong>p</strong>ublic/<strong>p</strong>rivate encryption function</li>
+<li><em>Y</em>(message, key) is the s<strong>y</strong>mmetric encryption function</li>
+</ul>
+
+<p>Give C-syntax Boolean expression, like <code>M == Y(H(M),K)</code>, which is true if and only if the message was signed by <em>A</em>.</p>
+</div><div class="tinput"><span>Answer:</span><input type="text" name="ans6" disabled="disabled"></div>Key: <tt>H(M) == P(S,K)</tt></div></div><div class="multiquestion"><p>The following discuss caches</p>
+<div class="question" id="q7" slug="9f560110"><div class="description" id="d7"><strong>Question 7</strong> (1 pt; mean 0.94) (see above)
+<p>Large cache blocks improve cache performance when the code exhibits</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">94%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans7" value="500ecdde" disabled="disabled"><div><p>high spatial locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans7" value="732142dd" disabled="disabled"><div><p>high temporal locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">4%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans7" value="1d13e1d3" disabled="disabled"><div><p>low spatial locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans7" value="aef427bc" disabled="disabled"><div><p>low temporal locality</p>
+</div></label></li></ol></div><div class="question" id="q8" slug="98dc5335"><div class="description" id="d8"><strong>Question 8</strong> (1 pt; mean 0.82) (see above)
+<p><strong>Set-associative</strong> caches are used instead of <strong>fully-associative</strong> caches because set-associative caches</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans8" value="d34bca8d" disabled="disabled"><div><p>are conceptually simpler and easier to verify</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">11%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans8" value="ef781b82" disabled="disabled"><div><p>are less expensive to manufacture</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">6%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans8" value="e4eb55f6" disabled="disabled"><div><p>are more versatile, working well on all kinds of locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">82%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans8" value="a527ba6a" disabled="disabled"><div><p>can perform cache lookups in less time</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans8" value="81dc5fa1" disabled="disabled"><div><p>have lower miss-rates for real code</p>
+</div></label></li></ol></div><div class="question" id="q9" slug="44276b0d"><div class="description" id="d9"><strong>Question 9</strong> (1 pt; mean 1) (see above)
+<p><strong>Set-associative</strong> caches are used instead of <strong>direct-mapped</strong> caches because set-associative caches</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans9" value="f2550303" disabled="disabled"><div><p>are conceptually simpler and easier to verify</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans9" value="9b31121e" disabled="disabled"><div><p>are less expensive to manufacture</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">24%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans9" value="7aba9191" disabled="disabled"><div><p>are more versatile, working well on all kinds of locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans9" value="8f8b44e7" disabled="disabled"><div><p>can perform cache lookups in less time</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">76%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans9" value="69c1a3c8" disabled="disabled"><div><p>have lower miss-rates for real code</p>
+</div></label></li></ol></div><div class="question" id="q10" slug="833d4159"><div class="description" id="d10"><strong>Question 10</strong> (1 pt; mean 0.94) (see above)
+<p>Which code has better locality?
+Assume <code>i</code> and <code>j</code> are stored in registers and <code>a</code> is a 10,000-element array.</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">94%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans10" value="fffdb80f" disabled="disabled"><div><pre style="display: inline-block">for(i=0; i&lt;100; i+=1)<br>&nbsp; &nbsp; for(j=0; j&lt;100; j+=1)<br>&nbsp; &nbsp; &nbsp; &nbsp; a[i*100+j] = i*j;</pre>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">6%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans10" value="056eb2ff" disabled="disabled"><div><pre style="display: inline-block">for(j=0; j&lt;100; j+=1)<br>&nbsp; &nbsp; for(i=0; i&lt;100; i+=1)<br>&nbsp; &nbsp; &nbsp; &nbsp; a[i*100+j] = i*j;</pre>
+</div></label></li></ol></div><div class="question" id="q11" slug="98fc3325"><div class="description" id="d11"><strong>Question 11</strong> (1 pt; mean 0.28) (see above)
+<p>Because 1009 is prime, the following will set all 1009 elements of <code>a</code> to 0 as long as <code>x</code> is not a multiple of <code>1009</code>:</p>
+
+<pre><code>for(int i=0; i&lt;1009; i+=1)
+    a[(i*x)%1009] = 0;
+</code></pre>
+
+<p>Consider <code>x</code> values 2, 31, and 505. Order these values <strong>from slowest to fastest</strong> assuming we have a</p>
+
+<ul>
+<li>4-way set-associative cache with 32 sets</li>
+<li>4 entries of <code>a</code> can fit in a single cache block</li>
+</ul>
+
+<p>Assume that the <code>(i*x)%1009</code> takes the same number of cycles regardless of the values of <code>i</code> and <code>x</code>.</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">24%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans11" value="bd58d5c7" disabled="disabled"><div><p>2, 31, 505</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">8%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans11" value="90960667" disabled="disabled"><div><p>2, 505, 31</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">20%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans11" value="39aff94c" disabled="disabled"><div><p>31, 2, 505</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">13%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">½</div><input type="radio" name="ans11" value="590e3278" disabled="disabled"><div><p>31, 505, 2</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">10%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans11" value="e8d063ba" disabled="disabled"><div><p>505, 2, 31</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">25%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans11" value="f4f3db8f" disabled="disabled"><div><p>505, 31, 2</p>
+</div></label></li></ol><div class="explanation"><p>For 2, we access items 0, 2, 4, 6, 8, ....
+That gives us 1 cold miss, then 1 hit, then 1 cold miss, etc: 50% hit rate.</p>
+
+<p>For 31, we access items 0, 31, 62, 93, ...., 992, 43, 74, 85, ...
+That means every read is a miss, and even once we wrap around we'd on new blocks: 0% hit rate.</p>
+
+<p>For 505, we access items 0, 505, 1, 506, 2, 507, ....
+Two misses, then size hits; 2 misses then 6 hits, etc: 75% hit rate.</p>
+</div></div><div class="question" id="q12" slug="708aa522"><div class="description" id="d12"><strong>Question 12</strong> (1 pt; mean 0.42) (see above)
+<p>In your TLB code, you had no block offset because there was just one entry per block.
+We had just one entry per block because</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">38%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans12" value="309a5597" disabled="disabled"><div><p>not having a block offset makes the TLB lookup times faster</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">11%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">½</div><input type="radio" name="ans12" value="a4a64895" disabled="disabled"><div><p>not having a block offset makes the TLB misses rarer</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">37%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans12" value="bf2339b4" disabled="disabled"><div><p>TLB accesses do not show spatial locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans12" value="6e7c26fd" disabled="disabled"><div><p>TLB accesses do not show temporal locality</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">11%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans12" value="3a225482" disabled="disabled"><div><p>we simplified the problem; real TLBs do have multi-entry blocks and block offsets</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>If you have 52-bit addresses cached in a 16MB 8-way set-associative L2 cache with 64-byte blocks</p>
+<div class="question" id="q13" slug="cfb54445"><div class="description" id="d13"><strong>Question 13</strong> (1 pt; mean 0.86) (see above)
+<p>The set index is how many bits? Answer as a base-10 integer</p>
+</div><div class="tinput"><span>Answer:</span><input type="text" name="ans13" disabled="disabled"></div>Key: <tt>15</tt></div><div class="question" id="q14" slug="11cd2588"><div class="description" id="d14"><strong>Question 14</strong> (1 pt; mean 0.93) (see above)
+<p>The block offset is how many bits? Answer as a base-10 integer</p>
+</div><div class="tinput"><span>Answer:</span><input type="text" name="ans14" disabled="disabled"></div>Key: <tt>6</tt></div><div class="question" id="q15" slug="f9e48f5e"><div class="description" id="d15"><strong>Question 15</strong> (1 pt; mean 0.91) (see above)
+<p>The tag is how many bits? Answer as a C expression that evaluates to the correct number.
+You may use</p>
+
+<ul>
+<li>constants like <code>52</code></li>
+<li>the following variables
+
+<ul>
+<li><code>bob</code> (the number of block offset bits)</li>
+<li><code>sib</code> (the number of set index bits)</li>
+</ul></li>
+<li>the following function
+
+<ul>
+<li><code>log2(n)</code> the log-base-2 of <code>n</code></li>
+</ul></li>
+<li>the operators <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>&lt;&lt;</code></li>
+</ul>
+</div><div class="tinput"><span>Answer:</span><input type="text" name="ans15" disabled="disabled"></div>Key: <tt>52 - bob - sib</tt></div></div><div class="multiquestion"><p>The following ask about threading</p>
+<div class="question" id="q16" slug="19a57f9c"><div class="description" id="d16"><strong>Question 16</strong> (1 pt; mean 0.94) (see above)
+<p>When running in user mode,</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">3%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans16" value="d402bca7" disabled="disabled"><div><p>Every process belongs to a thread</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">94%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans16" value="e25ef37f" disabled="disabled"><div><p>Every thread belongs to a process</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans16" value="01ac8d52" disabled="disabled"><div><p>Some, but not all, processes belong to a thread</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">3%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans16" value="cd7a5d95" disabled="disabled"><div><p>Some, but not all, threads belong to a process</p>
+</div></label></li></ol></div><div class="question" id="q17" slug="ee5da789"><div class="description" id="d17"><strong>Question 17</strong> (1 pt; mean 0.66) (see above)
+<p>We often say that "each thread has its own stack memory"; we mean that each</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">7%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans17" value="62c71686" disabled="disabled"><div><p>has its own page table, meaning each uses different physical addresses for the stack</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">66%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans17" value="43b4dc6e" disabled="disabled"><div><p>has its own <code>%rsp</code> hardware, meaning each uses different virtual addresses for the stack</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">6%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans17" value="10a6f9ae" disabled="disabled"><div><p>use the same stack addresses, but one thread finishes using it before the next begins using it</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">21%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans17" value="141901a7" disabled="disabled"><div><p>use the same stack addresses, but when switching threads the contents are changed to match the scheduled thread</p>
+</div></label></li></ol></div><div class="question" id="q18" slug="6cb619e4"><div class="description" id="d18"><strong>Question 18</strong> (2 pt; mean 1.52) (see above)
+<p>In a multi-threaded environment, which of the following pairs of 
+instructions always runs atomically; that is, that the result of running
+ them is the same as if no other instructions were run in between them?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">85%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="checkbox" name="ans18" value="218f0b97" disabled="disabled"><div><pre style="display: inline-block">mov %rax, %rbx;<br>mov %rbx, %rcx;</pre>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">82%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="checkbox" name="ans18" value="3ffb19d6" disabled="disabled"><div><pre style="display: inline-block">mov (%rax), %rbx<br>mov %rbx, %rcx</pre>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">17%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="checkbox" name="ans18" value="79d028ec" disabled="disabled"><div><pre style="display: inline-block">mov %rax, (%rbx)<br>mov (%rbx), %rcx</pre>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">55%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="checkbox" name="ans18" value="b660e79c" disabled="disabled"><div><pre style="display: inline-block">mov %rax, %rbx<br>mov %rbx, (%rcx)</pre>
+</div></label></li><li style="text-decoration:line-through; opacity:0.35"><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">55%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="checkbox" name="ans18" value="da98dcc8" disabled="disabled"><div><pre style="display: inline-block">mov (%rax), %rbx<br>mov %rbx, (%rcx)</pre>
+</div></label></li></ol></div></div><div class="multiquestion"><p>I eat a meal consisting of a bowl of soup and a bowl of ice cream, using the same spoon for both.</p>
+<div class="question" id="q19" slug="5a825052"><div class="description" id="d19"><strong>Question 19</strong> (1 pt; mean 0.79) (see above)
+<p>Which of the following is concurrent but not parallel?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">3%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans19" value="4cdd5707" disabled="disabled"><div><p>My digestion of the two if I eat all the soup, then all the ice cream.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">4%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans19" value="0a3c2978" disabled="disabled"><div><p>My digestion of the two if I eat some soup, then some ice cream, then some more soup, then some more ice cream, etc.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">10%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans19" value="d6a70630" disabled="disabled"><div><p>The emptying of the bowls if I eat all the soup, then all the ice cream.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">79%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans19" value="56184ee6" disabled="disabled"><div><p>The emptying of the bowls if I eat some soup, then some ice cream, then some more soup, then some more ice cream, etc.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">4%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans19" value="9dff004f" disabled="disabled"><div><p>none of the above are concurrent without being parallel</p>
+</div></label></li></ol></div><div class="question" id="q20" slug="c72b3bf0"><div class="description" id="d20"><strong>Question 20</strong> (1 pt; mean 0.85) (see above)
+<p>Which of the following is parallel but not concurrent?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">3%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans20" value="0200396a" disabled="disabled"><div><p>My digestion of the two if I eat all the soup, then all the ice cream.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">10%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans20" value="2941dcb1" disabled="disabled"><div><p>My digestion of the two if I eat some soup, then some ice cream, then some more soup, then some more ice cream, etc.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans20" value="18b350ec" disabled="disabled"><div><p>The emptying of the bowls if I eat all the soup, then all the ice cream.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">1%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans20" value="64863d1d" disabled="disabled"><div><p>The emptying of the bowls if I eat some soup, then some ice cream, then some more soup, then some more ice cream, etc.</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">85%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans20" value="1e5ff950" disabled="disabled"><div><p>none of the above are parallel without being concurrent</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>A 
+memory leak in a process is limited to that process: when the process 
+terminates, all its allocated memory will be reclaimed (that is, 
+deallocated and made available to other processes).</p>
+<div class="question" id="q21" slug="823dc651"><div class="description" id="d21"><strong>Question 21</strong> (1 pt; mean 0.44) (see above)
+<p>How is process memory reclaimed?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">44%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans21" value="bd732f83" disabled="disabled"><div><p>The loader which launched the process follows frees its memory after it terminates</p>
+</div></label><div class="explanation"><p>The loader puts the process into memory. It does not do anything after that.</p>
+</div></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">13%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans21" value="ad4f4954" disabled="disabled"><div><p>The <code>malloc</code> library keeps track of allocated memory and <code>free</code>s it before the process terminates</p>
+</div></label><div class="explanation"><p>If this was what happened, that crashing would cause a system-wide memory leak.</p>
+</div></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">44%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans21" value="d44949f0" disabled="disabled"><div><p>The process's page table is deleted when the process terminates</p>
+</div></label></li></ol></div><div class="question" id="q22" slug="53396422"><div class="description" id="d22"><strong>Question 22</strong> (1 pt; mean 0.48) (see above)
+<p>If a thread has a memory leak,</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">25%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans22" value="b1885fd9" disabled="disabled"><div><p>its leaked memory is reclaimed when the thread exits, using the same mechanism as a process</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">27%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans22" value="994c0ddc" disabled="disabled"><div><p>its leaked memory is reclaimed when the thread exits, but using a different mechanism than a process</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">48%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans22" value="7c524d57" disabled="disabled"><div><p>its leaked memory is not reclaimed</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>The following ask about several synchronization primitives</p>
+<div class="question" id="q23" slug="c9c4f543"><div class="description" id="d23"><strong>Question 23</strong> (1 pt; mean 0.65) (see above)
+<p>Which of the following is commonly used to create a simple blocking mutex?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">13%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans23" value="ea92c71f" disabled="disabled"><div><p>atomic compare-and-set</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">6%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans23" value="76683d89" disabled="disabled"><div><p>barrier</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">48%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans23" value="55c17572" disabled="disabled"><div><p>monitor</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">34%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">½</div><input type="radio" name="ans23" value="6731e88a" disabled="disabled"><div><p>reader-writer lock</p>
+</div></label></li></ol></div><div class="question" id="q24" slug="2cc6aa66"><div class="description" id="d24"><strong>Question 24</strong> (1 pt; mean 0.85) (see above)
+<p>Which of the following does not block: that is, it never suspends a thread?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">85%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans24" value="536f70e8" disabled="disabled"><div><p>atomic compare-and-set</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">8%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans24" value="50accb29" disabled="disabled"><div><p>barrier</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans24" value="1591d918" disabled="disabled"><div><p>monitor</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">7%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans24" value="31123e75" disabled="disabled"><div><p>reader-writer lock</p>
+</div></label></li></ol></div><div class="question" id="q25" slug="6cb2ae55"><div class="description" id="d25"><strong>Question 25</strong> (1 pt; mean 0.92) (see above)
+<p>The x86 instruction <code>lock cmpxchg</code> is a hardware implementation of which of the following?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">92%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="radio" name="ans25" value="81cab606" disabled="disabled"><div><p>atomic compare-and-set</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;"></div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans25" value="995b92d6" disabled="disabled"><div><p>barrier</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">4%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans25" value="48f53bc0" disabled="disabled"><div><p>monitor</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">4%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="radio" name="ans25" value="0495fb1c" disabled="disabled"><div><p>reader-writer lock</p>
+</div></label></li></ol></div></div><div class="question" id="q26" slug="a019563e"><div class="description" id="d26"><strong>Question 26</strong> (2 pt; mean 1.07)
+<p>Which of the following ensure that my code has no deadlocks?</p>
+</div><ol class="options"><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">31%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="checkbox" name="ans26" value="acbe79f5" disabled="disabled"><div><p>Each resource is used by at most one thread at a time</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">49%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="checkbox" name="ans26" value="315c99bb" disabled="disabled"><div><p>Each thread uses at most one resource at a time</p>
+</div></label></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">69%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;"></div><input type="checkbox" name="ans26" value="bfb15e2c" disabled="disabled"><div><p>I used a message-passing API instead of directly using synchronization primitives</p>
+</div></label><div class="explanation"><p>I realize my writeup is vague,
+ although I think lecture was clearer: message passing reduces the 
+chance of, not prohibits possibility of, deadlock. This option was given
+ half weight compared to the others to compensate for this partial 
+ambiguity.</p>
+</div></li><li><label><div style="flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;">54%</div><div style="flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;">⊤</div><input type="checkbox" name="ans26" value="91f985d3" disabled="disabled"><div><p>I've numbered the resources from 1 to <em>n</em>; all threads always request lower-numbered resources before higher-numbered resources</p>
+</div></label></li></ol></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a><a href="https://kytos02.cs.virginia.edu/coa2/quizzes/" style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+
+
+<span class="cleanslate TridactylStatusIndicator  TridactylModenormal " style="border: #ff9f00 solid 1.5px !important">normal</span></body><iframe class="cleanslate hidden" src="s2020exam2_files/commandline.html" id="cmdline_iframe" loading="lazy" style="height: 0px !important;"></iframe></html>
