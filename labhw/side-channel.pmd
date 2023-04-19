@@ -8,7 +8,7 @@ Changelog:
 
 *  19 Apr 2023: add note about `module load gcc` being useful
 *  19 Apr 2023: add/adjust note about taking repeated measurements under same conditions, consolidating w/o outliers
-*  19 Apr 2023: be consisstent about "passphrase" versus "password"
+*  19 Apr 2023: be consistent about "passphrase" versus "password", and "length" versus "size"
 </div>
 
 # Overview
@@ -47,10 +47,10 @@ the function to run.
 
         ./lab b
 
-2.  In `lab.c`, modify the `find_passphrase(buffer, size)` function 
+2.  In `lab.c`, modify the `find_passphrase(buffer, length)` function 
     so it will figure out which passphrase `check_passphrase` accepts.
     Your function may assume that passphrases consist of
-    only of the letter `a` through `z` and are exactly `size` characters long.
+    only of the letter `a` through `z` and are exactly `length` characters long.
 
     Your function must *only* use information obtained by running and timing
     `check_passphrase`.
