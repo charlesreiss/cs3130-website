@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  19 Apr 2023: add note about `module load gcc` being useful
+*  19 Apr 2023: add note about taking repeated measurements under same conditions
 </div>
 
 # Overview
@@ -172,7 +173,7 @@ the function to run.
     before printing them out to make sure they are measured under as close to the
     same conditions as possible. (This helps avoid issues where, for example,
     the processor changes clock speeds dynamically to save power or manage heat.)
-    
+
 3.  When you've done this, you should be able to see that when you run, for example
 
         ./lab fxxxx
