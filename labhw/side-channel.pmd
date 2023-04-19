@@ -169,8 +169,8 @@ the function to run.
     will also mitigate against measurement errors from other activities happening
     on the system.
 
-2.  To get consistent measurements, I recommend measuring all the letters together
-    before printing them out to make sure they are measured under as close to the
+2.  To get consistent measurements, I recommend measuring all the letters for an index 
+    before printing measurements out to make sure they are measured under as close to the
     same conditions as possible. (This helps avoid issues where, for example,
     the processor changes clock speeds dynamically to save power or manage heat.)
 
