@@ -8,6 +8,7 @@ Changelog:
 
 *  19 Apr 2023: add note about `module load gcc` being useful
 *  19 Apr 2023: add/adjust note about taking repeated measurements under same conditions, consolidating w/o outliers
+*  19 Apr 2023: be consisstent about "passphrase" versus "password"
 </div>
 
 # Overview
@@ -58,7 +59,7 @@ the function to run.
     and to write your `find_passphrase` function in the hints below.
     
     A good solution should use substantially fewer guesses overall than trying
-    all possible passwords of the specified length.
+    all possible passphrases of the specified length.
 
 
 3.  Test your solution by running `./lab` with various target passphrases.
@@ -84,10 +85,10 @@ the function to run.
 
         ./lab passphrase
 
-    in which case it will set the passphrase to "password", invoke the `find_passphrase`
+    in which case it will set the passphrase to "passphrase", invoke the `find_passphrase`
     function and report the results like:
 
-        found passphrase [password] after 702 queries
+        found passphrase [passphrase] after 702 queries
 
     or, if the function fails to fill in `buffer` with the correct passphrase,
     it will report results like
