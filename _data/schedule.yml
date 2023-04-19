@@ -371,8 +371,6 @@
     *  branch prediction ideas
        *  forward-taken, backwards-not-taken
        *  using history
-       *  predicting branch targets
-       *  if time --- more advanced ideas
 
 - date: 2023-04-19
   lab: true
@@ -389,6 +387,7 @@
 
     *  idea of multiple issue + out-of-order
     *  out-of-order pipeline
+       *  aside: predicting branch targets
     *  register renaming
     *  instruction queues (start)
 
@@ -401,7 +400,7 @@
   slides_extra: yes
   description: |
     *  instruction queues (finish)
-    *  data flow model
+    *  data flow model + thinking about OOO performance
 
     *  side channels generally
     *  side channels in the cache (start)

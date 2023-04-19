@@ -3,6 +3,12 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  19 Apr 2023: add note about `module load gcc` being useful
+</div>
+
 # Overview
 
 In this lab, we will give you a `check_passphrase` function
@@ -23,8 +29,11 @@ the function to run.
 1.  Download the supplied skeleton code at [here](files/side-channel.tar)
     (or via something like 
     `wget https://www.cs.virginia.edu/~cr4bd/3130/S2023/labhw/files/side-channel.tar`).
+    
+    When woring on the department machines, run `module load gcc` since
+    our Makefile requires a more recent version of `gcc` than the default.
 
-    Build the supplied code using `make`.
+    Build the supplied code using `make`. 
 
 2.  Examine the `find_passphrase` function in `lab.c`.
 
