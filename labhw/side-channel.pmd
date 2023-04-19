@@ -204,10 +204,10 @@ the function to run.
     (This helps avoid issues where, for example,
     the processor changes clock speeds dynamically to save power or manage heat.)
 
-    So, for example, it might be good to do one or more of:
+    So, for example, it might be good to do things like:
 
-    *  measuring all the letters for an index before printing measurements out, and/or 
-    *  interleaving when each possiblity is measured rather than doing all the measurements for the first possiblity, then the second, and so on.
+    *  interleaving when each possiblity is measured rather than doing all the measurements for the first possiblity, then the second, and so on, and/or
+    *  measuring all the letters for an index before printing any measurements out
 
 
 3.  When consolidating mulitple measurements, it may be better to use an approach
