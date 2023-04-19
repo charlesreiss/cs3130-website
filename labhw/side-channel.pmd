@@ -213,7 +213,7 @@ the function to run.
 
     So, for example, it might be good to do things like:
 
-    *  interleaving when each possiblity is measured rather than doing all the measurements for the first possiblity, then the second, and so on, and/or
+    *  (especially if taking lots of measurements) interleaving when each possiblity is measured rather than doing all the measurements for the first possiblity, then the second, and so on, and/or
     *  measuring all the letters for an index before printing any measurements out
 
 
