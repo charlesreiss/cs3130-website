@@ -7,7 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  19 Apr 2023: add note about `module load gcc` being useful
-*  19 Apr 2023: add note about taking repeated measurements under same conditions
+*  19 Apr 2023: add note about taking repeated measurements under same conditions, consolidating w/o outliers
 </div>
 
 # Overview
@@ -169,10 +169,6 @@ the function to run.
     will also mitigate against measurement errors from other activities happening
     on the system.
 
-2.  To get consistent measurements, I recommend measuring all the letters for an index 
-    before printing measurements out to make sure they are measured under as close to the
-    same conditions as possible. (This helps avoid issues where, for example,
-    the processor changes clock speeds dynamically to save power or manage heat.)
 
 3.  When you've done this, you should be able to see that when you run, for example
 
@@ -201,3 +197,13 @@ the function to run.
        repeat the process. Hopefully, this was just caused by something interfering
        with the timings that won't happen over and over again.
 
+## On ensuring measurement consistency
+
+2.  To get consistent measurements, I recommend measuring all the letters for an index 
+    before printing measurements out to make sure they are measured under as close to the
+    same conditions as possible. (This helps avoid issues where, for example,
+    the processor changes clock speeds dynamically to save power or manage heat.)
+
+3.  When consolidating mulitple measurements, it may be better to use an approach
+    that is not very sensitive to outliers (such as taking a median or
+    trying multiple times and requiring a majority to agree).
