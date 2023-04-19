@@ -316,7 +316,7 @@ Hence `"Hi" == "Hi"`{.c} compares pointers, but `string("Hi") == string("Hi")`{.
 # Your Task
 
 :::exercise
-Implement a postfix calculator, like you did in [PA09](pa09-postfix.html) but this time use C++.
+Implement a postfix calculator, like you did in [CSO1](https://www.cs.virginia.edu/~jh2jf/courses/cs2130/spring2023/homework/hw9-postfix.html) but this time use C++.
 
 - You must use `cin` to read input, `>>` to parse numbers, `string` and `==` to find operators, and `stack<double>`{.cpp} as your stack.
     
