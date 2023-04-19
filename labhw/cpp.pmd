@@ -2,6 +2,12 @@
 title: From C to C++
 ...
 
+<div class="changelog">
+Changelog:
+
+*  19 Apr 2023: correct link to postfix assignment
+</div>
+
 The goal of this lab is to explore how C++ adds minimal extensions to C in order to provide several features that have become common in object-oriented languages.
 The subsequent lab will have you use these features to work with some basic C++ code.
 

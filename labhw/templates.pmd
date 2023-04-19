@@ -2,6 +2,12 @@
 title: C++ templates
 ...
 
+<div class="changelog">
+Changelog:
+
+*  19 Apr 2023: correct reference to CSO1 C++ lab; remove requirement for mixed-item initializer list not to compile
+</div>
+
 We showed you some basic C++ last semester, including using templates like Java uses generics.
 But that is far from all C++ templates can do...
 This lab will help you explore this topic in more detail.
@@ -15,10 +21,7 @@ I hope this lab will help you make your own opinion, but be aware that if you wo
 
 # Review
 
-Begin by reviewing the C++ labs from CSO1: <!-- FIXME: links -->
-
-- [name overloading, namespaces, references, methods](/luther/COA1/F2019/lab10-cpp.html)
-- [STL, references, templates, operator overloading, iostream](/luther/COA1/F2019/lab11-stl.html)
+Begin by reviewing the [C++ lab from CSO1](https://www.cs.virginia.edu/luther/CSO1/S2022/lab10-cpp.html).
 
 We'll be picking up from where those left off in this lab.
 
@@ -67,8 +70,6 @@ int main() {
 
     vd3 y = {1, 2, 3};
     std::cout << y << std::endl; // prints (1, 2, 3)
-    
-    vd3 z = {1, 2.3, 4.5}; // does not compile
 }
 ```
 
