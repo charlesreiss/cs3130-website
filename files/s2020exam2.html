@@ -2,106 +2,8 @@
 <html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Quiz Viewer</title>
-    <link rel="stylesheet" href="s2020exam2_files/style.css">
-        <link rel="stylesheet" href="s2020exam2_files/katex.min.css">
-
-    <script>
-function pending(num) {
-    if (document.getElementById('q'+num).className != "question submitting")
-        document.getElementById('q'+num).className = "question submitting";
-}
-function postAns(name, num) {
-    document.getElementById('q'+num).className = "question submitting";
-    var ans = {
-        'user':"cr4bd", 
-        'quiz':name,
-        'slug':document.getElementById("q"+num).getAttribute('slug'), 
-        'answer':[]
-    };
-    var elems = document.getElementsByName("ans"+num);
-    for(var i=0; i<elems.length; i+=1) {
-        var elem = elems[i];
-        if (elem.type == 'text' || elem.type == 'textarea')
-            elem.value = elem.value.trim();
-        if (elem.type == 'text' || elem.type == 'textarea' || elem.checked) { ans.answer.push(elem.value); }
-    }
-    var comm = document.getElementById('comments'+num);
-    console.log(comm)
-    if (comm && comm.value) {
-        comm.value = comm.value.trim();
-        ans['comments'] = comm.value;
-    }
-    
-    
-    console.log("sending: ", JSON.stringify(ans));
-    ajaxSend(JSON.stringify(ans), num);
-
-}
-function ajaxSend(data, num) {
-    var xhr = new XMLHttpRequest();
-    if (!("withCredentials" in xhr)) {
-        return null;
-    }
-    xhr.open("POST", "quiz_listener.php", true);
-    xhr.withCredentials = true;
-    xhr.setRequestHeader("Content-type", 'application/json');
-    xhr.onerror = function() {
-        document.getElementById("notice").innerHTML = "auto-check for new data broken";
-    }
-    xhr.onreadystatechange = function() { 
-        if(xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                document.getElementById('q'+num).className = "question submitted";
-                console.log("response: " + xhr.responseText);
-            } else {
-                document.getElementById('q'+num).className = "question disconnected";
-                alert("Your latest response failed to arrive at the server.\nThis could be your Netbadge session expiring, or because of the following error message:\n\n"   + JSON.stringify(xhr.responseText));
-                console.log("response: " + xhr.responseText);
-            }
-        } else {
-            document.getElementById('q'+num).className = "question disconnected";
-            // alert("Your latest response failed to arrive at the server.\n  This is probably due to Netbadge disconnecting you behind the scenes.\n  We recommend you note any answers that have not turned green, reload the page, and enter them again.\n\nCode: " + xhr.status+"\nDetails: "+xhr.responseText)
-            // console.log("response: " + xhr.responseText);
-        }
-    }
-    xhr.send(data);
-}
-var due = Date.now();
-var timer;
-function tick() {
-    var clock = document.getElementById('clock');
-    var remaining = due - Date.now();
-    if (remaining < 0) {
-        clock.innerHTML = "Time is up; further changes will be ignored";
-        clearInterval(timer);
-    } else {
-        remaining /= 1000; remaining = Math.floor(remaining); // milliseconds -> seconds;
-        var seconds = remaining % 60;
-        remaining /= 60; remaining = Math.floor(remaining); // seconds -> minutes;
-        var minutes = remaining % 60;
-        remaining /= 60; remaining = Math.floor(remaining); // minutes -> hours;
-        var hours = remaining;
-        var text = "Time remaining: ";
-        text += hours + ":";
-        text += (minutes < 10 ? "0"+minutes : minutes)+":";
-        text += (seconds < 10 ? "0"+seconds : seconds)+"";
-        clock.innerHTML = text;
-    }
-}
-function onload() {
-    if (document.getElementById('clock')) {
-        var remaining = Number(document.getElementById('clock').innerHTML);
-        due += remaining * 1000;
-        timer = setInterval(tick, 1000);
-    }
-}
-
-    </script>
-<style type="text/css">@media print {
-        .TridactylStatusIndicator {
-            display: none !important;
-        }
-    }</style></head>
+    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="katex.min.css">
 <body onload="onload()">
     <a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a><a href="https://kytos02.cs.virginia.edu/coa2/quizzes/" style="text-align:center; display:block;">Return to index</a><h1 style="text-align:center">Midterm</h1><div class="directions"><p>You
  may use any resource that existed prior to this exam opening, including
@@ -337,4 +239,3 @@ ambiguity.</p>
 <!--<center><a href="../">Return to course page</a></center>-->
 
 
-<span class="cleanslate TridactylStatusIndicator  TridactylModenormal " style="border: #ff9f00 solid 1.5px !important">normal</span></body><iframe class="cleanslate hidden" src="s2020exam2_files/commandline.html" id="cmdline_iframe" loading="lazy" style="height: 0px !important;"></iframe></html>
