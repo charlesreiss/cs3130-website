@@ -200,8 +200,8 @@ the function to run.
 ## On ensuring measurement consistency
 
 3.  When consolidating mulitple measurements, it may be better to use an approach
-    that is not very sensitive to outliers (such as taking a median or
-    trying multiple times and requiring a majority to agree).
+    that is not very sensitive to outliers (for example, such as taking a median; or
+    retrying whenever multiple measurements don't agree about what is slowest).
 
     (Note that outliers might occur, e.g., because of an exception occuring while the
     passphrase is being checked, which isn't relevant to the timing we care about.)
