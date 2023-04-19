@@ -199,6 +199,13 @@ the function to run.
 
 ## On ensuring measurement consistency
 
+3.  When consolidating mulitple measurements, it may be better to use an approach
+    that is not very sensitive to outliers (such as taking a median or
+    trying multiple times and requiring a majority to agree).
+
+    (Note that outliers might occur, e.g., because of an exception occuring while the
+    passphrase is being checked, which isn't relevant to the timing we care about.)
+
 2.  To get consistent measurements, you should try to measure all the possible letters under
     consistent conditions.
     (This helps avoid issues where, for example,
@@ -210,6 +217,3 @@ the function to run.
     *  measuring all the letters for an index before printing any measurements out
 
 
-3.  When consolidating mulitple measurements, it may be better to use an approach
-    that is not very sensitive to outliers (such as taking a median or
-    trying multiple times and requiring a majority to agree).
