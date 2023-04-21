@@ -6,9 +6,10 @@ title: OOO Exercise
 Changelog:
 
 *  21 Apr 2023: correct given first lines for Part 3; add two instructions to Part 3
-*  21 Apr 2023: emphasize that three-arugment form is used regardless of whether register-renaming has happened
+*  21 Apr 2023: emphasize that three-argument form is used regardless of whether register-renaming has happened
 *  21 Apr 2023: fix formatting on Part 3
 *  21 Apr 2023: edit instructions in Part 3 to make problem less trivial
+*  21 Apr 2023: correct some spelling errors
 </div>
 
 # Hypothetical OOO processor
@@ -38,7 +39,7 @@ Instructions in this processor are executed as follows:
 *  when an instruction is issued, in the following cycles it is executed on an execution unit
     *  for memory instructions, this execution unit is a pipelined data cache. It receives one instruction per cycle
         and produces the result after three cycles. To simplfy this exercise, we will assume no cache misses.
-    *  for non-memory instructoins, this execution unit is one of two arithmetic logic unit. It receives one instructoin per
+    *  for non-memory instructions, this execution unit is one of two arithmetic logic unit. It receives one instruction per
         cycle and produces the result in the next cycle.
     *  the first available memory instruction (if any) is sent to a data cache, which is pipelined. The data cache accepts one instruction per cycle
         and takes three cycles to produce the result of the read or write
@@ -129,7 +130,7 @@ Complete a pipeline diagram for the processor running the following instructions
     3. add %r04, %r05 -> %r05
     4. add %r05, %r01 -> %r01
     5. add %r01, %r01 -> %r01
-    6. add %r04, %r01 -> %r01
+    6. add %r04, %r05 -> %r05
     7. add %r02, %r04 -> %r04
 
 Identify the stages as:
