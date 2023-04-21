@@ -8,6 +8,7 @@ Changelog:
 *  21 Apr 2023: correct given first lines for Part 3; add two instructions to Part 3
 *  21 Apr 2023: emphasize that three-arugment form is used regardless of whether register-renaming has happened
 *  21 Apr 2023: fix formatting on Part 3
+*  21 Apr 2023: edit instructions in Part 3 to make problem less trivial
 </div>
 
 # Hypothetical OOO processor
@@ -128,8 +129,8 @@ Complete a pipeline diagram for the processor running the following instructions
     3. add %r04, %r05 -> %r05
     4. add %r01, %r01 -> %r01
     5. add %r02, %r04 -> %r04
-    6. add %r01, %r03 -> %r03
-    7. add %r07, %r08 -> %r08
+    6. add %r03, %r01 -> %r01
+    7. add %r04, %r01 -> %r01
 
 Identify the stages as:
 
