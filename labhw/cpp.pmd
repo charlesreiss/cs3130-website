@@ -6,6 +6,8 @@ title: From C to C++
 Changelog:
 
 *  19 Apr 2023: correct link to postfix assignment
+*  21 Apr 2023: tone down `using namespace std` suggestion since that (in my opinion) is very bad style; add mention of `using std::foo;`
+*  21 Apr 2023: adjust note about the term "STL"
 </div>
 
 The goal of this lab is to explore how C++ adds minimal extensions to C in order to provide several features that have become common in object-oriented languages.
@@ -244,7 +246,7 @@ int x2 = foo<int>(3); // told it is a template and type
 
 {.aside} Another difference from Java is that the parameters of a template do not need to be type names; they could also be values, like integers. Value templates are unusual enough in C++ we'll say no more about them here.
 
-{.aside} C++ template metaprogramming is a complicated topic on which entire books have been written. Some libraries, such as [boost](https://www.boost.org/) and [FFTW](http://fftw.org/) are well-known for complicated template usage. If you find yourself intrigued by templates, I recommend the [D language](https://dlang.org) as having a richer, more programmer-friendly template mechanism than C++.
+{.aside} C++ template metaprogramming is a complicated topic on which entire books have been written. Some libraries, such as [boost](https://www.boost.org/) and [FFTW](http://fftw.org/) are well-known for complicated template usage.
 
 ## Operator Overloading and Friends
 
@@ -260,10 +262,9 @@ There are no integers being shifted; `<<` means "left-shift" for integers, but i
 
 ```cpp
 #include <iostream>
-using namespace std;
 
 int main() {
-    cout << "Hello, world!" << endl;
+    std::cout << "Hello, world!" <<  std::endl;
 }
 ```
 
@@ -273,8 +274,22 @@ We could have equivalently written it as
 
 ```cpp
 #include <iostream>
+using std::cout;
+using std::endl;
+
 int main() {
-    std::cout << "Hello, world!" << std::endl;
+    cout << "Hello, world!" << endl;
+}
+```
+
+or
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, world!" << endl;
 }
 ```
 
@@ -299,7 +314,8 @@ A common example is to add `ostream << mytype` operators for new types.
 # STL and standard library
 
 The C++ Standard Library has a variety of types and algorithms in it.
-Some of the best known of these are part of the "Standard Template Library (STL)", and sometimes people use "STL" informally to mean the full C++ Standard Lbirary.
+Some of the best known of these are part of the "Standard Template Library (STL)"^[Historically, the Standard Template Library was distributed separately
+from the rest of the C++ standard library, which is why you'll often see it distinguished from it.], and sometimes people use "STL" informally to mean the full C++ Standard Lbirary.
 There is more in the library than we can fully cover, but the following will get you going:
 
 |include|provides|STL?|description|
@@ -314,10 +330,10 @@ There is more in the library than we can fully cover, but the following will get
 |`<iostream>`|`std::istream` and `std:ostream`||C++ file handling; operator `<<` writes and `>>` reads; defines `cin`, `cout,` and `cerr`|
 |`<sstream>`|`std::stringstream`||Lets you treat a string like a file|
 
-There are many others not listed above; see [wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library) for a reasonable overview.
+There are many others not listed above; see [wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library) and/or [the excellent reference cppreference.com](https://en.cppreference.com/w/) for a reasonable overview.
 
 Note that many C++ types overload `==` to compare values the way that `.equals()` does in Java.
-Hence `"Hi" == "Hi"`{.c} compares pointers, but `string("Hi") == string("Hi")`{.cpp} compares words.
+Hence `"Hi" == "Hi"`{.c} compares pointers, but `std::string("Hi") == std::string("Hi")`{.cpp} compares words.
 
 # Your Task
 
@@ -333,7 +349,7 @@ Implement a postfix calculator, like you did in [CSO1](https://www.cs.virginia.e
 We strongly recommend, but do not require, using a two-step read: read a word from `cin` into a `string`,
 then feed the `string` into a `stringstream` and use the stringstream to parse a number. However, there are other solutions and you do not have to do this if you do not want to.
 
-We strongly recommend, but do not require, adding `using namespace std;` after your `#include`s so that you can refer to included types by name without prefixing `std::` before each.
+We strongly recommend, but do not require, adding `std;` after your `#include`s so that you can refer to included types by name without prefixing `std::` before each.
 
 When you are done either show your TA your code for a checkoff or submit it to the submission site.
 :::
@@ -354,9 +370,9 @@ The input processing can look like a loop which, as long as `cin` is `.good()` (
         
         otherwise, push the `double`
 
-Use a `stack<double>` as your stack. Note that `pop` returns `void`; you'll need to use `top` to retrieve a value before `pop`ing it off the stack.
+Use a `std::stack<double>` as your stack. Note that `pop` returns `void`; you'll need to use `top` to retrieve a value before `pop`ing it off the stack.
 
-Displaying a `stack` is not something the STL natively supports, so you'll need to do that manually.
+Displaying a `stack` is not something the standard library natively supports, so you'll need to do that manually.
 
 If you have time, implement your own `ostream & operator<<(ostream & o, stack<double> s)`{.cpp}
 which repeatedly displays (with `<<`) the `top()` and then `pop()`s until the stack is `.empty()`.
