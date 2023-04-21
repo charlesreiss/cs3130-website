@@ -127,10 +127,10 @@ Complete a pipeline diagram for the processor running the following instructions
     1. add %r01, %r01 -> %r01
     2. add %r02, %r03 -> %r03
     3. add %r04, %r05 -> %r05
-    4. add %r01, %r01 -> %r01
-    5. add %r02, %r04 -> %r04
-    6. add %r03, %r01 -> %r01
-    7. add %r04, %r01 -> %r01
+    4. add %r05, %r01 -> %r01
+    5. add %r01, %r01 -> %r01
+    6. add %r04, %r01 -> %r01
+    7. add %r02, %r04 -> %r04
 
 Identify the stages as:
 
