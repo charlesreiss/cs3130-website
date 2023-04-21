@@ -2,6 +2,13 @@
 title: OOO Exercise
 ...
 
+<div class="changelog">
+Changelog:
+
+*  21 Apr 2023: correct given first lines for Part 3; add one instruction to Part 3
+*  21 Apr 2023: emphasize that three-arugment form is used regardless of whether register-renaming has happened
+</div>
+
 # Hypothetical OOO processor
 
 For this assignment, we will consider an out-of-order processor which has two execution units for
@@ -52,7 +59,7 @@ then the instruction will spend extra cycles waiting in the reorder buffer befor
 
 The processor has 15 logical registers `%r01` through `%r15`, but these are implemented using 64 physical registers and register renaming. We call the physical registers `%x01` through `%x63`.
 
-We will show instructions in a three-argument form like:
+We will show instructions in a three-argument form like (**regardless of whether register renaming has taken place**):
     
     add %r01, %r02 -> %r03
 
@@ -83,7 +90,7 @@ Record your answer at the answer sheet linked above.
 ## Part 2: instruction dispatch
 
 Suppose the instruction queue for this processor contains the following instructions
-after renaming:
+*after renaming*:
 
     A. add %x05, %x06 -> %x16
     B. sub %x16, %x07 -> %x17
@@ -112,13 +119,15 @@ Record your answer at the answer sheet linked above.
 
 ## Part 3: pipeline diagram
 
-Complete a pipeline diagram for the processor running the following instructions:
+Complete a pipeline diagram for the processor running the following instructions
+(shown in the form from **before** register renaming):
 
     1. add %r01, %r01 -> %r01
     2. add %r02, %r03 -> %r03
-    2. add %r04, %r05 -> %r06
-    3. add %r01, %r01 -> %r01
-    4. add %r02, %r04 -> %r04
+    3. add %r04, %r05 -> %r05
+    4. add %r01, %r01 -> %r01
+    5. add %r02, %r04 -> %r04
+    6. add %r01, %r03 -> %r03
 
 Identify the stages as:
 *  F for when the instruction is feteched
@@ -131,10 +140,10 @@ Identify the stages as:
 
 The first three rows are:
 
-    1 F D R I E C
-    2 F D R I E C
-    3   F D R I E C
+    1 F D R I E W C
+    2 F D R I E W C
+    3   F D R I E W C
 
-complete the table at the answer sheet linked above.
+complete the remaining three rows of the table at the answer sheet linked above.
 
 
