@@ -269,7 +269,7 @@
 
 - name: OOO
   short_name: OOO
-  page: labhw/ooo-exericse.html
+  page: labhw/ooo-exercise.html
   tentative: true
   due: 2023-05-02
   no-late: true

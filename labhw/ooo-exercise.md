@@ -2,8 +2,6 @@
 title: OOO Exercise
 ...
 
-> This assignment is incomplete and likely to change.
-
 # Hypothetical OOO processor
 
 For this assignment, we will consider an out-of-order processor which has two execution units for
