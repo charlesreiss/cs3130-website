@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+﻿<!DOCTYPE html>
+<html>
+<head>
     <title>Quiz Viewer</title>
     <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="katex.min.css">
+        <link rel="stylesheet" href="katex/katex.min.css">
 
     <script>
 function pending(num) {
@@ -13,7 +13,7 @@ function pending(num) {
 function postAns(name, num) {
     document.getElementById('q'+num).className = "question submitting";
     var ans = {
-        'user':"cr4bd", 
+        'user':"mst3k", 
         'quiz':name,
         'slug':document.getElementById("q"+num).getAttribute('slug'), 
         'answer':[]
@@ -97,219 +97,202 @@ function onload() {
 }
 
     </script>
-<body>
-    <a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a><a href="https://kytos02.cs.virginia.edu/coa2/quizzes/" style="text-align:center; display:block;">Return to index</a><h1 style="text-align:center">Final</h1><div class="directions"><p>You
- may use any resource that existed prior to this exam opening, including
- websites, books, etc; but should not consult friends, tutors, forums, 
-or other interactive help for this exam.</p>
+</head>
+<body onload="onload()">
+    <a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a><a href="." style="text-align:center; display:block;">Return to index</a><h1 style='text-align:center'>Final</h1><div class='directions'><p>You may use any resource that existed prior to this exam opening, including websites, books, etc; but should not consult friends, tutors, forums, or other interactive help for this exam.</p>
 
-<p>You must not share any information about this exam (even how you felt
- about it) with any party (even others who have taken it) until after it
- closes at 2020-05-07 23:59 EDT.</p>
+<p>You must not share any information about this exam (even how you felt about it) with any party (even others who have taken it) until after it closes at 2020-05-07 23:59 EDT.</p>
 </div><div class="multiquestion"><p>The following ask about adding limitations to computer functionality.</p>
-<div class="question" id="q1" slug="a46e665f"><div class="description" id="d1"><strong>Question 1</strong> (dropped) (see above)
+<div class='question' id='q1' slug='a46e665f'><div class='description' id='d1'><strong>Question 1</strong> (dropped) (see above)
 <p>Suppose we want to limit the use of the <code>xorq</code> command to only certain users or operation modes. This would require modification of</p>
-</div><ol class="options"><li><label><input type="radio" name="ans1" value="7081347b" disabled="disabled"><div><p>the operating system code</p>
-</div></label></li><li><label><input type="radio" name="ans1" value="ed2dc353" disabled="disabled"><div><p>the processor hardware</p>
-</div></label></li></ol></div><div class="question" id="q2" slug="dec29bcd"><div class="description" id="d2"><strong>Question 2</strong> (see above)
-<p>Suppose we want to limit all user-mode programs so they can only 
-access to files have an even number of letters in their names. This 
-would require modification of</p>
-</div><ol class="options"><li><label><input type="radio" name="ans2" value="b51c472b" disabled="disabled"><div><p>the operating system code</p>
-</div></label></li><li><label><input type="radio" name="ans2" value="d3e82cba" disabled="disabled"><div><p>the processor hardware</p>
-</div></label></li></ol></div><div class="question" id="q3" slug="b9543d34"><div class="description" id="d3"><strong>Question 3</strong> (see above)
-<p>Suppose we want to throttle bandwidth so each user could only send 
-1MB of network traffic per minute. This would require modification of</p>
-</div><ol class="options"><li><label><input type="radio" name="ans3" value="b2b67b2d" disabled="disabled"><div><p>the operating system code</p>
-</div></label></li><li><label><input type="radio" name="ans3" value="afdc0860" disabled="disabled"><div><p>the processor hardware</p>
+</div><ol class="options"><li><label><input type='radio' name='ans1' value='7081347b' disabled='disabled'/><div><p>the operating system code</p>
+</div></label></li><li><label><input type='radio' name='ans1' value='ed2dc353' disabled='disabled'/><div><p>the processor hardware</p>
+</div></label></li></ol></div><div class='question' id='q2' slug='dec29bcd'><div class='description' id='d2'><strong>Question 2</strong> (0 / 1 pt; mean 0.78) (see above)
+<p>Suppose we want to limit all user-mode programs so they can only access to files have an even number of letters in their names. This would require modification of</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>78%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans2' value='b51c472b' disabled='disabled'/><div><p>the operating system code</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>7%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='d3e82cba' disabled='disabled'/><div><p>the processor hardware</p>
+</div></label></li></ol></div><div class='question' id='q3' slug='b9543d34'><div class='description' id='d3'><strong>Question 3</strong> (0 / 1 pt; mean 0.59) (see above)
+<p>Suppose we want to throttle bandwidth so each user could only send 1MB of network traffic per minute. This would require modification of</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>59%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans3' value='b2b67b2d' disabled='disabled'/><div><p>the operating system code</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>27%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='afdc0860' disabled='disabled'/><div><p>the processor hardware</p>
 </div></label></li></ol></div></div><div class="multiquestion"><p>The following ask about interrupts and related concepts</p>
-<div class="question" id="q4" slug="9a4c6d17"><div class="description" id="d4"><strong>Question 4</strong> (see above)
+<div class='question' id='q4' slug='9a4c6d17'><div class='description' id='d4'><strong>Question 4</strong> (0 / 1 pt; mean 0.45) (see above)
 <p>What's the difference between an interrupt number and a system call number?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans4" value="b62753e6" disabled="disabled"><div><p>all interrupts use the same system call number</p>
-</div></label></li><li><label><input type="radio" name="ans4" value="295e111e" disabled="disabled"><div><p>all system calls use the same interrupt number</p>
-</div></label></li><li><label><input type="radio" name="ans4" value="7336d596" disabled="disabled"><div><p>one communicates hardware to software, the other the other way around</p>
-</div></label></li><li><label><input type="radio" name="ans4" value="f5e08785" disabled="disabled"><div><p>one is received by the OS, the other by user code</p>
-</div></label></li><li><label><input type="radio" name="ans4" value="940c9ca8" disabled="disabled"><div><p>they are two names for the same thing</p>
-</div></label></li></ol></div><div class="question" id="q5" slug="059d3b70"><div class="description" id="d5"><strong>Question 5</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>7%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='b62753e6' disabled='disabled'/><div><p>all interrupts use the same system call number</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>28%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans4' value='295e111e' disabled='disabled'/><div><p>all system calls use the same interrupt number</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>34%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans4' value='7336d596' disabled='disabled'/><div><p>one communicates hardware to software, the other the other way around</p>
+</div></label><div class='explanation'><p>interrupt number is (usually) hardware to software, but system call number is software to software</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>16%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='f5e08785' disabled='disabled'/><div><p>one is received by the OS, the other by user code</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='940c9ca8' disabled='disabled'/><div><p>they are two names for the same thing</p>
+</div></label></li></ol></div><div class='question' id='q5' slug='059d3b70'><div class='description' id='d5'><strong>Question 5</strong> (0.44 / 1 pt; mean 0.71) (see above)
 <p>The following are all true of interrupts; which are also true of signals?</p>
-</div><ol class="options"><li><label><input type="checkbox" name="ans5" value="1dd3a413" disabled="disabled"><div><p>Handling them causes a change in user-vs-kernel permission mode</p>
-</div></label></li><li><label><input type="checkbox" name="ans5" value="642360f7" disabled="disabled"><div><p>They are handled by the OS</p>
-</div></label></li><li><label><input type="checkbox" name="ans5" value="d4e0cd2b" disabled="disabled"><div><p>They can happen between any pair of instructions</p>
-</div></label></li><li><label><input type="checkbox" name="ans5" value="9211bc01" disabled="disabled"><div><p>They have an identifying number</p>
-</div></label></li><li><label><input type="checkbox" name="ans5" value="4894659f" disabled="disabled"><div><p>They originate in hardware</p>
-</div></label></li></ol></div></div><div class="multiquestion"><p>We 
-have often noted each of the following things about memory this 
-semester; these questions ask how they have been refined by our 
-understanding of virtual memory</p>
-<div class="question" id="q6" slug="9bf5b7ad"><div class="description" id="d6"><strong>Question 6</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>49%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans5' value='1dd3a413' disabled='disabled'/><div><p>Handling them causes a change in user-vs-kernel permission mode</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>37%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='642360f7' disabled='disabled'/><div><p>They are handled by the OS</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>69%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans5' value='d4e0cd2b' disabled='disabled'/><div><p>They can happen between any pair of instructions</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>67%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans5' value='9211bc01' disabled='disabled'/><div><p>They have an identifying number</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='4894659f' disabled='disabled'/><div><p>They originate in hardware</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>We have often noted each of the following things about memory this semester; these questions ask how they have been refined by our understanding of virtual memory</p>
+<div class='question' id='q6' slug='9bf5b7ad'><div class='description' id='d6'><strong>Question 6</strong> (0 / 1 pt; mean 0.27) (see above)
 <p>Linux on x86-64 splits memory in half: the lower half is user-mode and the upper half is kernel-mode</p>
-</div><ol class="options"><li><label><input type="radio" name="ans6" value="8ef2711d" disabled="disabled"><div><p>This is true of both virtual and physical memory</p>
-</div></label></li><li><label><input type="radio" name="ans6" value="dd9d10bf" disabled="disabled"><div><p>This is true of physical memory</p>
-</div></label></li><li><label><input type="radio" name="ans6" value="b60a7dd0" disabled="disabled"><div><p>This is true of virtual memory</p>
-</div></label></li></ol></div><div class="question" id="q7" slug="bc4ef720"><div class="description" id="d7"><strong>Question 7</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>29%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans6' value='8ef2711d' disabled='disabled'/><div><p>This is true of both virtual and physical memory</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>30%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans6' value='dd9d10bf' disabled='disabled'/><div><p>This is true of physical memory</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>27%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans6' value='b60a7dd0' disabled='disabled'/><div><p>This is true of virtual memory</p>
+</div></label></li></ol></div><div class='question' id='q7' slug='bc4ef720'><div class='description' id='d7'><strong>Question 7</strong> (0 / 1 pt; mean 0.78) (see above)
 <p>The call stack (the one handled by <code>pushq</code>, <code>callq</code>, etc) grows toward smaller addresses</p>
-</div><ol class="options"><li><label><input type="radio" name="ans7" value="f21bd2c9" disabled="disabled"><div><p>This is true of both virtual and physical memory</p>
-</div></label></li><li><label><input type="radio" name="ans7" value="414ab23e" disabled="disabled"><div><p>This is true of physical memory</p>
-</div></label></li><li><label><input type="radio" name="ans7" value="35ddf258" disabled="disabled"><div><p>This is true of virtual memory</p>
-</div></label></li></ol></div><div class="question" id="q8" slug="aa3dca41"><div class="description" id="d8"><strong>Question 8</strong> (dropped) (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>58%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans7' value='f21bd2c9' disabled='disabled'/><div><p>This is true of both virtual and physical memory</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>7%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans7' value='414ab23e' disabled='disabled'/><div><p>This is true of physical memory</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>20%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans7' value='35ddf258' disabled='disabled'/><div><p>This is true of virtual memory</p>
+</div></label></li></ol></div><div class='question' id='q8' slug='aa3dca41'><div class='description' id='d8'><strong>Question 8</strong> (dropped) (see above)
 <p>When a process is suspended, allowing other processes to use the processor, its memory is inaccessibly.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans8" value="9cebbcd6" disabled="disabled"><div><p>This is true of both virtual and physical memory</p>
-</div></label></li><li><label><input type="radio" name="ans8" value="3ebde782" disabled="disabled"><div><p>This is true of physical memory</p>
-</div></label></li><li><label><input type="radio" name="ans8" value="dc726a22" disabled="disabled"><div><p>This is true of virtual memory</p>
-</div></label></li></ol></div></div><div class="multiquestion"><p>Consider
- the 4-level page table hierarchy we discussed Intel processors using, 
-with a 4K pages, 48-bit virtual addresses, and 52-bit physical addresses</p>
-<div class="question" id="q9" slug="0f32c34d"><div class="description" id="d9"><strong>Question 9</strong> (see above)
+</div><ol class="options"><li><label><input type='radio' name='ans8' value='9cebbcd6' disabled='disabled'/><div><p>This is true of both virtual and physical memory</p>
+</div></label></li><li><label><input type='radio' name='ans8' value='3ebde782' disabled='disabled'/><div><p>This is true of physical memory</p>
+</div></label></li><li><label><input type='radio' name='ans8' value='dc726a22' disabled='disabled'/><div><p>This is true of virtual memory</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider the 4-level page table hierarchy we discussed Intel processors using, with a 4K pages, 48-bit virtual addresses, and 52-bit physical addresses</p>
+<div class='question' id='q9' slug='0f32c34d'><div class='description' id='d9'><strong>Question 9</strong> (0 / 1 pt; mean 0.58) (see above)
 <p>If I run <code>movq (%rax), %rbx</code> when <code>(%rax)</code> is on a page that <strong>is not in the TLB</strong>, how many memory accesses does the instruction perform?
 Answer as a base-10 integer, like "1" or "39"</p>
-</div><div class="tinput"><span>Answer:</span><input type="text" name="ans9" disabled="disabled"></div></div><div class="question" id="q10" slug="bb96630f"><div class="description" id="d10"><strong>Question 10</strong> (see above)
+</div><div class='tinput'><span>Answer:</span><input type='text' name='ans9' disabled='disabled'/></div>Key: <tt>5</tt></div><div class='question' id='q10' slug='bb96630f'><div class='description' id='d10'><strong>Question 10</strong> (0 / 1 pt; mean 0.71) (see above)
 <p>If I run <code>movq (%rax), %rbx</code> when <code>(%rax)</code> is on a page that <strong>is in the TLB</strong>, how many memory accesses does the instruction perform?
 Answer as a base-10 integer, like "1" or "39"</p>
-</div><div class="tinput"><span>Answer:</span><input type="text" name="ans10" disabled="disabled"></div></div><div class="question" id="q11" slug="13eede4b"><div class="description" id="d11"><strong>Question 11</strong> (see above)
+</div><div class='tinput'><span>Answer:</span><input type='text' name='ans10' disabled='disabled'/></div>Key: <tt>1</tt></div><div class='question' id='q11' slug='13eede4b'><div class='description' id='d11'><strong>Question 11</strong> (0 / 1 pt; mean 0.53) (see above)
 <p>If my code accesses the 50-bit address <code>0x2100010001000</code></p>
-</div><ol class="options"><li><label><input type="radio" name="ans11" value="8059d79a" disabled="disabled"><div><p>it acts like I accessed the 45-bit address <code>0x100010001000</code> instead</p>
-</div></label></li><li><label><input type="radio" name="ans11" value="ce18ae67" disabled="disabled"><div><p>it causes a fault</p>
-</div></label></li><li><label><input type="radio" name="ans11" value="2385a285" disabled="disabled"><div><p>it works just like accessing any other address</p>
-</div></label></li></ol></div></div><div class="question" id="q12" slug="3b907d81"><div class="description" id="d12"><strong>Question 12</strong>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>45%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans11' value='8059d79a' disabled='disabled'/><div><p>it acts like I accessed the 45-bit address <code>0x100010001000</code> instead</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>23%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans11' value='ce18ae67' disabled='disabled'/><div><p>it causes a fault</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>18%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans11' value='2385a285' disabled='disabled'/><div><p>it works just like accessing any other address</p>
+</div></label></li></ol></div></div><div class='question' id='q12' slug='3b907d81'><div class='description' id='d12'><strong>Question 12</strong> (0 / 1 pt; mean 0.53)
 <p>If a disk read is performed via Direct Memory Access (DMA),</p>
-</div><ol class="options"><li><label><input type="radio" name="ans12" value="4ef0de08" disabled="disabled"><div><p>certain ranges of virutal addresses are handled by the disk instead of by RAM</p>
-</div></label></li><li><label><input type="radio" name="ans12" value="0322fb7e" disabled="disabled"><div><p>the disk's write interrupts are routed to RAM directly without user process intervention</p>
-</div></label></li><li><label><input type="radio" name="ans12" value="3cf2f12f" disabled="disabled"><div><p>the disk modifies the data in a range of physical addresses without processor involvement</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>12%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans12' value='4ef0de08' disabled='disabled'/><div><p>certain ranges of virutal addresses are handled by the disk instead of by RAM</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>20%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans12' value='0322fb7e' disabled='disabled'/><div><p>the disk's write interrupts are routed to RAM directly without user process intervention</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>53%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans12' value='3cf2f12f' disabled='disabled'/><div><p>the disk modifies the data in a range of physical addresses without processor involvement</p>
 </div></label></li></ol></div><div class="multiquestion"><p>The following ask about the ability of devices on a bus to interact.
 In particular, assume that a bus-topology network connects the keyboard, disk, network card, and processor.</p>
 
-<p>Assume that any special status a bus-connected component can have 
-(hub position, master status, etc) is held by the processor and not the 
-other components.</p>
-<div class="question" id="q13" slug="70a0c478"><div class="description" id="d13"><strong>Question 13</strong> (see above)
+<p>Assume that any special status a bus-connected component can have (hub position, master status, etc) is held by the processor and not the other components.</p>
+<div class='question' id='q13' slug='70a0c478'><div class='description' id='d13'><strong>Question 13</strong> (0 / 1 pt; mean 0.48) (see above)
 <p>Suppose I create a nefarious disk that is programmed to log every keystroke you make.
 Assume I put any computing power needed for this task inside the disk hardware.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans13" value="d5eb4ba7" disabled="disabled"><div><p>The disk could log keystrokes with no special permissions, but the processor could see it happen.</p>
-</div></label></li><li><label><input type="radio" name="ans13" value="bdad6111" disabled="disabled"><div><p>The disk could log keystrokes with no special permissions and without the processor knowing about it.</p>
-</div></label></li><li><label><input type="radio" name="ans13" value="346b5aa7" disabled="disabled"><div><p>This disk would need to get permission from the keyboard first, but could then do the logging itself.</p>
-</div></label></li><li><label><input type="radio" name="ans13" value="834d3b32" disabled="disabled"><div><p>This disk would need to get permission from the processor first, but could then do the logging itself.</p>
-</div></label></li><li><label><input type="radio" name="ans13" value="d8b93d06" disabled="disabled"><div><p>This disk would need to have the processor route the keystroke data to the disk.</p>
-</div></label></li></ol></div><div class="question" id="q14" slug="77037d92"><div class="description" id="d14"><strong>Question 14</strong> (dropped) (see above)
-<p>Suppose I create a nefarious disk that is programmed to send your 
-files to me over your Internet connection.
-Assume I put any computing power needed for this task inside the disk 
-hardware, but do not have network connectivity in the disk itself.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans14" value="11bddab7" disabled="disabled"><div><p>The disk could send the request to send the files to the network card directly, but the processor could see it happen.</p>
-</div></label></li><li><label><input type="radio" name="ans14" value="ca2901f2" disabled="disabled"><div><p>The disk could send the request to send the files to the network card directly, without the processor knowing about it.</p>
-</div></label></li><li><label><input type="radio" name="ans14" value="5a5e5bee" disabled="disabled"><div><p>This disk would need to get permission from the network card first, but could then send the data to the network card itself.</p>
-</div></label></li><li><label><input type="radio" name="ans14" value="01cec81d" disabled="disabled"><div><p>This disk would need to get permission from the processor first, but could then send the data to the network card itself.</p>
-</div></label></li><li><label><input type="radio" name="ans14" value="aa779cb1" disabled="disabled"><div><p>This disk would need to have the processor route the data to the network card.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>11%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans13' value='d5eb4ba7' disabled='disabled'/><div><p>The disk could log keystrokes with no special permissions, but the processor could see it happen.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>48%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans13' value='bdad6111' disabled='disabled'/><div><p>The disk could log keystrokes with no special permissions and without the processor knowing about it.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>6%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans13' value='346b5aa7' disabled='disabled'/><div><p>This disk would need to get permission from the keyboard first, but could then do the logging itself.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>18%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans13' value='834d3b32' disabled='disabled'/><div><p>This disk would need to get permission from the processor first, but could then do the logging itself.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans13' value='d8b93d06' disabled='disabled'/><div><p>This disk would need to have the processor route the keystroke data to the disk.</p>
+</div></label></li></ol></div><div class='question' id='q14' slug='77037d92'><div class='description' id='d14'><strong>Question 14</strong> (dropped) (see above)
+<p>Suppose I create a nefarious disk that is programmed to send your files to me over your Internet connection.
+Assume I put any computing power needed for this task inside the disk hardware, but do not have network connectivity in the disk itself.</p>
+</div><ol class="options"><li><label><input type='radio' name='ans14' value='11bddab7' disabled='disabled'/><div><p>The disk could send the request to send the files to the network card directly, but the processor could see it happen.</p>
+</div></label></li><li><label><input type='radio' name='ans14' value='ca2901f2' disabled='disabled'/><div><p>The disk could send the request to send the files to the network card directly, without the processor knowing about it.</p>
+</div></label></li><li><label><input type='radio' name='ans14' value='5a5e5bee' disabled='disabled'/><div><p>This disk would need to get permission from the network card first, but could then send the data to the network card itself.</p>
+</div></label></li><li><label><input type='radio' name='ans14' value='01cec81d' disabled='disabled'/><div><p>This disk would need to get permission from the processor first, but could then send the data to the network card itself.</p>
+</div></label></li><li><label><input type='radio' name='ans14' value='aa779cb1' disabled='disabled'/><div><p>This disk would need to have the processor route the data to the network card.</p>
 </div></label></li></ol></div></div><div class="multiquestion"><p>HTTPS delivered web requests and replies using TLS, TCP, and IP.
 The TLS encrypts the request and reply body, but does not encrypt the IP and TCP headers.</p>
-<div class="question" id="q15" slug="f15f6b2d"><div class="description" id="d15"><strong>Question 15</strong> (see above)
+<div class='question' id='q15' slug='f15f6b2d'><div class='description' id='d15'><strong>Question 15</strong> (0 / 1 pt; mean 0.59) (see above)
 <p>Why does TLS not encrypt the IP header?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans15" value="4a88f01f" disabled="disabled"><div><p>If it did, the message could be delivered but routing computers could not optmize message flow.</p>
-</div></label></li><li><label><input type="radio" name="ans15" value="9d37ed81" disabled="disabled"><div><p>If it did, the message could not be delivered and decrypted at the other end.</p>
-</div></label></li><li><label><input type="radio" name="ans15" value="0b38240a" disabled="disabled"><div><p>If it did, the message could sometimes be delievered but could not detect and/or recover from delivery errors.</p>
-</div></label></li><li><label><input type="radio" name="ans15" value="448ff9ed" disabled="disabled"><div><p>None of the above; this was just a choice, not a design necessity.</p>
-</div></label></li></ol></div><div class="question" id="q16" slug="799d9508"><div class="description" id="d16"><strong>Question 16</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>20%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans15' value='4a88f01f' disabled='disabled'/><div><p>If it did, the message could be delivered but routing computers could not optmize message flow.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>59%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans15' value='9d37ed81' disabled='disabled'/><div><p>If it did, the message could not be delivered and decrypted at the other end.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans15' value='0b38240a' disabled='disabled'/><div><p>If it did, the message could sometimes be delievered but could not detect and/or recover from delivery errors.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans15' value='448ff9ed' disabled='disabled'/><div><p>None of the above; this was just a choice, not a design necessity.</p>
+</div></label></li></ol></div><div class='question' id='q16' slug='799d9508'><div class='description' id='d16'><strong>Question 16</strong> (0 / 1 pt; mean 0.71) (see above)
 <p>Why does TLS not encrypt the TCP header?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans16" value="99fcbe04" disabled="disabled"><div><p>If it did, the message could be delivered but routing computers could not optmize message flow.</p>
-</div></label></li><li><label><input type="radio" name="ans16" value="512acffc" disabled="disabled"><div><p>If it did, the message could not be delivered and decrypted at the other end.</p>
-</div></label></li><li><label><input type="radio" name="ans16" value="bcae9dfb" disabled="disabled"><div><p>If it did, the message could sometimes be delievered but could not detect and/or recover from delivery errors.</p>
-</div></label></li><li><label><input type="radio" name="ans16" value="0d5520bf" disabled="disabled"><div><p>None of the above; this was just a choice, not a design necessity.</p>
-</div></label></li></ol></div></div><div class="multiquestion"><p>The following ask about digital signatures</p>
-<div class="question" id="q17" slug="9e2d9f54"><div class="description" id="d17"><strong>Question 17</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>10%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans16' value='99fcbe04' disabled='disabled'/><div><p>If it did, the message could be delivered but routing computers could not optmize message flow.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>22%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans16' value='512acffc' disabled='disabled'/><div><p>If it did, the message could not be delivered and decrypted at the other end.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>43%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans16' value='bcae9dfb' disabled='disabled'/><div><p>If it did, the message could sometimes be delievered but could not detect and/or recover from delivery errors.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>11%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans16' value='0d5520bf' disabled='disabled'/><div><p>None of the above; this was just a choice, not a design necessity.</p>
+</div></label><div class='explanation'><p>we could have had the OS handle all decrption and then route to the program, but that would mean a program couldn't hide information from the OS and other programs on the same computer or use an encryption method the OS did not yet have built-in</p>
+</div></li></ol></div></div><div class="multiquestion"><p>The following ask about digital signatures</p>
+<div class='question' id='q17' slug='9e2d9f54'><div class='description' id='d17'><strong>Question 17</strong> (0 / 1 pt; mean 0.76) (see above)
 <p>Which of the following is used to sign a document?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans17" value="56a13d70" disabled="disabled"><div><p>the recipient's private key</p>
-</div></label></li><li><label><input type="radio" name="ans17" value="0cdc4f72" disabled="disabled"><div><p>the recipient's public key</p>
-</div></label></li><li><label><input type="radio" name="ans17" value="f3c38589" disabled="disabled"><div><p>the signer's and recipient's shared symmetric key</p>
-</div></label></li><li><label><input type="radio" name="ans17" value="e51e5b97" disabled="disabled"><div><p>the signer's private key</p>
-</div></label></li><li><label><input type="radio" name="ans17" value="cb21b254" disabled="disabled"><div><p>the signer's public key</p>
-</div></label></li></ol></div><div class="question" id="q18" slug="d29d6fdd"><div class="description" id="d18"><strong>Question 18</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans17' value='56a13d70' disabled='disabled'/><div><p>the recipient's private key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans17' value='0cdc4f72' disabled='disabled'/><div><p>the recipient's public key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans17' value='f3c38589' disabled='disabled'/><div><p>the signer's and recipient's shared symmetric key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>76%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans17' value='e51e5b97' disabled='disabled'/><div><p>the signer's private key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans17' value='cb21b254' disabled='disabled'/><div><p>the signer's public key</p>
+</div></label></li></ol></div><div class='question' id='q18' slug='d29d6fdd'><div class='description' id='d18'><strong>Question 18</strong> (0 / 1 pt; mean 0.55) (see above)
 <p>Which of the following is used to verify the signature of a document?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans18" value="5a4ff628" disabled="disabled"><div><p>the recipient's private key</p>
-</div></label></li><li><label><input type="radio" name="ans18" value="a7c14168" disabled="disabled"><div><p>the recipient's public key</p>
-</div></label></li><li><label><input type="radio" name="ans18" value="da85a5fd" disabled="disabled"><div><p>the signer's and recipient's shared symmetric key</p>
-</div></label></li><li><label><input type="radio" name="ans18" value="51599769" disabled="disabled"><div><p>the signer's private key</p>
-</div></label></li><li><label><input type="radio" name="ans18" value="d2da64f5" disabled="disabled"><div><p>the signer's public key</p>
-</div></label></li></ol></div><div class="question" id="q19" slug="2cc4dee9"><div class="description" id="d19"><strong>Question 19</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans18' value='5a4ff628' disabled='disabled'/><div><p>the recipient's private key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>18%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans18' value='a7c14168' disabled='disabled'/><div><p>the recipient's public key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>6%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans18' value='da85a5fd' disabled='disabled'/><div><p>the signer's and recipient's shared symmetric key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans18' value='51599769' disabled='disabled'/><div><p>the signer's private key</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>55%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans18' value='d2da64f5' disabled='disabled'/><div><p>the signer's public key</p>
+</div></label></li></ol></div><div class='question' id='q19' slug='2cc4dee9'><div class='description' id='d19'><strong>Question 19</strong> (0 / 1 pt; mean 0.73) (see above)
 <p>A digital certificate is</p>
-</div><ol class="options"><li><label><input type="radio" name="ans19" value="18a3b77a" disabled="disabled"><div><p>any document with an attached signature</p>
-</div></label></li><li><label><input type="radio" name="ans19" value="916ba238" disabled="disabled"><div><p>the key to checking an agent you don't trust's signatures, signed by an agent you do trust</p>
-</div></label></li><li><label><input type="radio" name="ans19" value="01349261" disabled="disabled"><div><p>the key to checking an agent you do trust's signatures, signed by an agent you don't trust</p>
-</div></label></li><li><label><input type="radio" name="ans19" value="139f3008" disabled="disabled"><div><p>the key to sending an agent you don't trust your signatures, signed by an agent you do trust</p>
-</div></label></li><li><label><input type="radio" name="ans19" value="653638c9" disabled="disabled"><div><p>the key to sending an agent you do trust your signatures, signed by an agent you don't trust</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans19' value='18a3b77a' disabled='disabled'/><div><p>any document with an attached signature</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>66%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans19' value='916ba238' disabled='disabled'/><div><p>the key to checking an agent you don't trust's signatures, signed by an agent you do trust</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans19' value='01349261' disabled='disabled'/><div><p>the key to checking an agent you do trust's signatures, signed by an agent you don't trust</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>14%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans19' value='139f3008' disabled='disabled'/><div><p>the key to sending an agent you don't trust your signatures, signed by an agent you do trust</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans19' value='653638c9' disabled='disabled'/><div><p>the key to sending an agent you do trust your signatures, signed by an agent you don't trust</p>
 </div></label></li></ol></div></div><div class="multiquestion"><p>The following ask about caches, in particular the memory cache hierarchy</p>
-<div class="question" id="q20" slug="2708c461"><div class="description" id="d20"><strong>Question 20</strong> (see above)
+<div class='question' id='q20' slug='2708c461'><div class='description' id='d20'><strong>Question 20</strong> (0 / 1 pt; mean 0.81) (see above)
 <p>Why do caches have larger blocks that a single access will need?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans20" value="fb11d1b5" disabled="disabled"><div><p>to distribute memory bandwidth over time</p>
-</div></label></li><li><label><input type="radio" name="ans20" value="2a5827b6" disabled="disabled"><div><p>to limit cache lookup processing time</p>
-</div></label></li><li><label><input type="radio" name="ans20" value="6ea1c3a1" disabled="disabled"><div><p>to optimize repeated writes to the same address</p>
-</div></label></li><li><label><input type="radio" name="ans20" value="c75c9e63" disabled="disabled"><div><p>to optimize spatially-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans20" value="be878a87" disabled="disabled"><div><p>to optimize temporally-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans20" value="675eccb5" disabled="disabled"><div><p>to reduce miss rate</p>
-</div></label></li></ol></div><div class="question" id="q21" slug="7f0d0091"><div class="description" id="d21"><strong>Question 21</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans20' value='fb11d1b5' disabled='disabled'/><div><p>to distribute memory bandwidth over time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans20' value='2a5827b6' disabled='disabled'/><div><p>to limit cache lookup processing time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans20' value='6ea1c3a1' disabled='disabled'/><div><p>to optimize repeated writes to the same address</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>81%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans20' value='c75c9e63' disabled='disabled'/><div><p>to optimize spatially-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans20' value='be878a87' disabled='disabled'/><div><p>to optimize temporally-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans20' value='675eccb5' disabled='disabled'/><div><p>to reduce miss rate</p>
+</div></label></li></ol></div><div class='question' id='q21' slug='7f0d0091'><div class='description' id='d21'><strong>Question 21</strong> (0 / 1 pt; mean 0.52) (see above)
 <p>Why do caches have multiple lines per set?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans21" value="3d5373bd" disabled="disabled"><div><p>to distribute memory bandwidth over time</p>
-</div></label></li><li><label><input type="radio" name="ans21" value="ee32ff9a" disabled="disabled"><div><p>to limit cache lookup processing time</p>
-</div></label></li><li><label><input type="radio" name="ans21" value="2876ab57" disabled="disabled"><div><p>to optimize repeated writes to the same address</p>
-</div></label></li><li><label><input type="radio" name="ans21" value="d23445d1" disabled="disabled"><div><p>to optimize spatially-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans21" value="89dd3267" disabled="disabled"><div><p>to optimize temporally-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans21" value="cfec9e73" disabled="disabled"><div><p>to reduce miss rate</p>
-</div></label></li></ol></div><div class="question" id="q22" slug="bdffe102"><div class="description" id="d22"><strong>Question 22</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans21' value='3d5373bd' disabled='disabled'/><div><p>to distribute memory bandwidth over time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>7%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans21' value='ee32ff9a' disabled='disabled'/><div><p>to limit cache lookup processing time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans21' value='2876ab57' disabled='disabled'/><div><p>to optimize repeated writes to the same address</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans21' value='d23445d1' disabled='disabled'/><div><p>to optimize spatially-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>22%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans21' value='89dd3267' disabled='disabled'/><div><p>to optimize temporally-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>51%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans21' value='cfec9e73' disabled='disabled'/><div><p>to reduce miss rate</p>
+</div></label></li></ol></div><div class='question' id='q22' slug='bdffe102'><div class='description' id='d22'><strong>Question 22</strong> (0 / 1 pt; mean 0.51) (see above)
 <p>Why do caches have multiple small sets instead of one large one?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans22" value="fd8e6879" disabled="disabled"><div><p>to distribute memory bandwidth over time</p>
-</div></label></li><li><label><input type="radio" name="ans22" value="622a0c17" disabled="disabled"><div><p>to limit cache lookup processing time</p>
-</div></label></li><li><label><input type="radio" name="ans22" value="6dfbec9a" disabled="disabled"><div><p>to optimize repeated writes to the same address</p>
-</div></label></li><li><label><input type="radio" name="ans22" value="9d049e50" disabled="disabled"><div><p>to optimize spatially-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans22" value="c5966045" disabled="disabled"><div><p>to optimize temporally-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans22" value="278a616e" disabled="disabled"><div><p>to reduce miss rate</p>
-</div></label></li></ol></div><div class="question" id="q23" slug="2ca3a1d9"><div class="description" id="d23"><strong>Question 23</strong> (0.5 points) (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans22' value='fd8e6879' disabled='disabled'/><div><p>to distribute memory bandwidth over time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>51%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans22' value='622a0c17' disabled='disabled'/><div><p>to limit cache lookup processing time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans22' value='6dfbec9a' disabled='disabled'/><div><p>to optimize repeated writes to the same address</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans22' value='9d049e50' disabled='disabled'/><div><p>to optimize spatially-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>16%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans22' value='c5966045' disabled='disabled'/><div><p>to optimize temporally-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>16%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans22' value='278a616e' disabled='disabled'/><div><p>to reduce miss rate</p>
+</div></label></li></ol></div><div class='question' id='q23' slug='2ca3a1d9'><div class='description' id='d23'><strong>Question 23</strong> (0 / 0.5 pt; mean 0.39) (see above)
 <p>Why are some caches write-back?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans23" value="b808257f" disabled="disabled"><div><p>to distribute memory bandwidth over time</p>
-</div></label></li><li><label><input type="radio" name="ans23" value="4922b6fd" disabled="disabled"><div><p>to limit cache lookup processing time</p>
-</div></label></li><li><label><input type="radio" name="ans23" value="3aa41eff" disabled="disabled"><div><p>to optimize repeated writes to the same address</p>
-</div></label></li><li><label><input type="radio" name="ans23" value="5483c12d" disabled="disabled"><div><p>to optimize spatially-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans23" value="d485505e" disabled="disabled"><div><p>to optimize temporally-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans23" value="5ba2c2d3" disabled="disabled"><div><p>to reduce miss rate</p>
-</div></label></li></ol></div><div class="question" id="q24" slug="5ada5002"><div class="description" id="d24"><strong>Question 24</strong> (0.5 points) (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans23' value='b808257f' disabled='disabled'/><div><p>to distribute memory bandwidth over time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans23' value='4922b6fd' disabled='disabled'/><div><p>to limit cache lookup processing time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>77%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans23' value='3aa41eff' disabled='disabled'/><div><p>to optimize repeated writes to the same address</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans23' value='5483c12d' disabled='disabled'/><div><p>to optimize spatially-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans23' value='d485505e' disabled='disabled'/><div><p>to optimize temporally-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans23' value='5ba2c2d3' disabled='disabled'/><div><p>to reduce miss rate</p>
+</div></label></li></ol></div><div class='question' id='q24' slug='5ada5002'><div class='description' id='d24'><strong>Question 24</strong> (0 / 0.5 pt; mean 0.2) (see above)
 <p>Why are some caches write-through?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans24" value="021416c3" disabled="disabled"><div><p>to distribute memory bandwidth over time</p>
-</div></label></li><li><label><input type="radio" name="ans24" value="f6f67451" disabled="disabled"><div><p>to limit cache lookup processing time</p>
-</div></label></li><li><label><input type="radio" name="ans24" value="3d522ecc" disabled="disabled"><div><p>to optimize repeated writes to the same address</p>
-</div></label></li><li><label><input type="radio" name="ans24" value="897b786c" disabled="disabled"><div><p>to optimize spatially-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans24" value="c19b4ff4" disabled="disabled"><div><p>to optimize temporally-local accesses</p>
-</div></label></li><li><label><input type="radio" name="ans24" value="e2a6f899" disabled="disabled"><div><p>to reduce miss rate</p>
-</div></label></li></ol></div></div><div class="question" id="q25" slug="4aa341ce"><div class="description" id="d25"><strong>Question 25</strong>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>40%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans24' value='021416c3' disabled='disabled'/><div><p>to distribute memory bandwidth over time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>33%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans24' value='f6f67451' disabled='disabled'/><div><p>to limit cache lookup processing time</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>8%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans24' value='3d522ecc' disabled='disabled'/><div><p>to optimize repeated writes to the same address</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans24' value='897b786c' disabled='disabled'/><div><p>to optimize spatially-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans24' value='c19b4ff4' disabled='disabled'/><div><p>to optimize temporally-local accesses</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans24' value='e2a6f899' disabled='disabled'/><div><p>to reduce miss rate</p>
+</div></label></li></ol></div></div><div class='question' id='q25' slug='4aa341ce'><div class='description' id='d25'><strong>Question 25</strong> (0 / 1 pt; mean 0.7)
 <p>Which of the following best describes Amdahl's Law?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans25" value="e47944d0" disabled="disabled"><div><p>Adding parallelism is the main way hardware becomes faster.</p>
-</div></label></li><li><label><input type="radio" name="ans25" value="de41bca0" disabled="disabled"><div><p>Speeding up part of a task doesn't make the other parts faster.</p>
-</div></label></li><li><label><input type="radio" name="ans25" value="b62bcce0" disabled="disabled"><div><p>The number of transistors on a chip doubles every few years.</p>
-</div></label></li><li><label><input type="radio" name="ans25" value="3d863470" disabled="disabled"><div><p>Throughput it more important than latency for real workloads.</p>
-</div></label></li><li><label><input type="radio" name="ans25" value="eff8f5cf" disabled="disabled"><div><p>With enough parallelism, any timing goal can be met.</p>
-</div></label></li></ol></div><div class="question" id="q26" slug="1bc765a5"><div class="description" id="d26"><strong>Question 26</strong>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>8%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans25' value='e47944d0' disabled='disabled'/><div><p>Adding parallelism is the main way hardware becomes faster.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>70%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans25' value='de41bca0' disabled='disabled'/><div><p>Speeding up part of a task doesn't make the other parts faster.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans25' value='b62bcce0' disabled='disabled'/><div><p>The number of transistors on a chip doubles every few years.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans25' value='3d863470' disabled='disabled'/><div><p>Throughput it more important than latency for real workloads.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans25' value='eff8f5cf' disabled='disabled'/><div><p>With enough parallelism, any timing goal can be met.</p>
+</div></label></li></ol></div><div class='question' id='q26' slug='1bc765a5'><div class='description' id='d26'><strong>Question 26</strong> (0.5 / 1 pt; mean 0.89)
 <p>Which two of the following correctly describe concurrency and parallelism?</p>
-</div><ol class="options"><li><label><input type="checkbox" name="ans26" value="2627c322" disabled="disabled"><div><p>If concurrent, then parallel.</p>
-</div></label></li><li><label><input type="checkbox" name="ans26" value="094ca0fc" disabled="disabled"><div><p>If not concurrent, then not parallel.</p>
-</div></label></li><li><label><input type="checkbox" name="ans26" value="8e182733" disabled="disabled"><div><p>If not parallel, then not concurrent.</p>
-</div></label></li><li><label><input type="checkbox" name="ans26" value="322fdc39" disabled="disabled"><div><p>If parallel, then concurrent.</p>
-</div></label></li></ol></div><div class="question" id="q27" slug="f339c151"><div class="description" id="d27"><strong>Question 27</strong>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans26' value='2627c322' disabled='disabled'/><div><p>If concurrent, then parallel.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>78%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans26' value='094ca0fc' disabled='disabled'/><div><p>If not concurrent, then not parallel.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans26' value='8e182733' disabled='disabled'/><div><p>If not parallel, then not concurrent.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>83%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans26' value='322fdc39' disabled='disabled'/><div><p>If parallel, then concurrent.</p>
+</div></label></li></ol></div><div class='question' id='q27' slug='f339c151'><div class='description' id='d27'><strong>Question 27</strong> (0.5 / 1 pt; mean 0.86)
 <p>Which of the following are true of synchronization primitives?</p>
-</div><ol class="options"><li><label><input type="checkbox" name="ans27" value="bc1869ae" disabled="disabled"><div><p>Barriers are commonly used to create mutual exclusion.</p>
-</div></label></li><li><label><input type="checkbox" name="ans27" value="fd77bd07" disabled="disabled"><div><p>Monitors are commonly used to create mutual exclusion.</p>
-</div></label></li><li><label><input type="checkbox" name="ans27" value="88a6174d" disabled="disabled"><div><p>One mutex can do everything one reader-writer lock can do.</p>
-</div></label></li><li><label><input type="checkbox" name="ans27" value="2cfda521" disabled="disabled"><div><p>One reader-writer lock can do everything one mutex can do.</p>
-</div></label></li></ol></div><div class="multiquestion"><p>Most 
-synchronization primitives can be created using several other primitives
- and a few auxiliary data structures. Which of the following is closest 
-to implementing barriers with other <code>pthreads</code> primitives?</p>
-<div class="question" id="q28" slug="696d692b"><div class="description" id="d28"><strong>Question 28</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans27' value='bc1869ae' disabled='disabled'/><div><p>Barriers are commonly used to create mutual exclusion.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>80%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans27' value='fd77bd07' disabled='disabled'/><div><p>Monitors are commonly used to create mutual exclusion.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>8%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans27' value='88a6174d' disabled='disabled'/><div><p>One mutex can do everything one reader-writer lock can do.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>77%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans27' value='2cfda521' disabled='disabled'/><div><p>One reader-writer lock can do everything one mutex can do.</p>
+</div></label></li></ol></div><div class="multiquestion"><p>Most synchronization primitives can be created using several other primitives and a few auxiliary data structures. Which of the following is closest to implementing barriers with other <code>pthreads</code> primitives?</p>
+<div class='question' id='q28' slug='696d692b'><div class='description' id='d28'><strong>Question 28</strong> (0.57 / 1 pt; mean 0.73) (see above)
 <p>The <code>pthread_barrier_t</code> needs
 a condition variable for threads to wait on,
 a mutex to lock access to other variables,
 and which of the following?</p>
-</div><ol class="options"><li><label><input type="checkbox" name="ans28" value="d5a7a7cf" disabled="disabled"><div><p>a Boolean to show if the barrier may be passed</p>
-</div></label></li><li><label><input type="checkbox" name="ans28" value="99e9c4bf" disabled="disabled"><div><p>a counter to show how many threads are waiting</p>
-</div></label></li><li><label><input type="checkbox" name="ans28" value="2ace69cd" disabled="disabled"><div><p>a counter to show how many threads this barrier requires before continuing</p>
-</div></label></li><li><label><input type="checkbox" name="ans28" value="d02a01c5" disabled="disabled"><div><p>a list of thread IDs allowed to use the barrier</p>
-</div></label></li><li><label><input type="checkbox" name="ans28" value="704146b1" disabled="disabled"><div><p>a list of thread IDs waiting on the barrier</p>
-</div></label></li></ol></div><div class="question" id="q29" slug="55a2539e"><div class="description" id="d29"><strong>Question 29</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>29%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans28' value='d5a7a7cf' disabled='disabled'/><div><p>a Boolean to show if the barrier may be passed</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>52%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans28' value='99e9c4bf' disabled='disabled'/><div><p>a counter to show how many threads are waiting</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>78%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans28' value='2ace69cd' disabled='disabled'/><div><p>a counter to show how many threads this barrier requires before continuing</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>7%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans28' value='d02a01c5' disabled='disabled'/><div><p>a list of thread IDs allowed to use the barrier</p>
+</div></label></li><li style="text-decoration:line-through; opacity:0.35"><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans28' value='704146b1' disabled='disabled'/><div><p>a list of thread IDs waiting on the barrier</p>
+</div></label></li></ol></div><div class='question' id='q29' slug='55a2539e'><div class='description' id='d29'><strong>Question 29</strong> (0 / 1 pt; mean 0.72) (see above)
 <p>If our <code>pthread_barrier_t</code> was implemented as</p>
 
 <pre><code>lock the mutex
@@ -323,11 +306,11 @@ unlock the mutex
 </code></pre>
 
 <p>what would go wrong? Assume the barrier requires at least two threads to continue.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans29" value="b74b28c7" disabled="disabled"><div><p>This has a race condition that could not result in a deadlock</p>
-</div></label></li><li><label><input type="radio" name="ans29" value="d7073796" disabled="disabled"><div><p>This has a race condition that could result in a deadlock</p>
-</div></label></li><li><label><input type="radio" name="ans29" value="ab72e47d" disabled="disabled"><div><p>This has a race condition that could result in one thread waiting too long</p>
-</div></label></li><li><label><input type="radio" name="ans29" value="bc704a56" disabled="disabled"><div><p>This would always deadlock</p>
-</div></label></li></ol></div><div class="question" id="q30" slug="94ff5f04"><div class="description" id="d30"><strong>Question 30</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans29' value='b74b28c7' disabled='disabled'/><div><p>This has a race condition that could not result in a deadlock</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>23%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans29' value='d7073796' disabled='disabled'/><div><p>This has a race condition that could result in a deadlock</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>11%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans29' value='ab72e47d' disabled='disabled'/><div><p>This has a race condition that could result in one thread waiting too long</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>48%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans29' value='bc704a56' disabled='disabled'/><div><p>This would always deadlock</p>
+</div></label></li></ol></div><div class='question' id='q30' slug='94ff5f04'><div class='description' id='d30'><strong>Question 30</strong> (0 / 1 pt; mean 0.58) (see above)
 <p>If our <code>pthread_barrier_t</code> was implemented as</p>
 
 <pre><code>lock the mutex
@@ -342,47 +325,47 @@ if (variables suggest should wait) {
 </code></pre>
 
 <p>what would go wrong? Assume the barrier requires at least two threads to continue.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans30" value="3cf8c2bc" disabled="disabled"><div><p>This has a race condition that could not result in a deadlock</p>
-</div></label></li><li><label><input type="radio" name="ans30" value="319fbcfd" disabled="disabled"><div><p>This has a race condition that could result in a deadlock</p>
-</div></label></li><li><label><input type="radio" name="ans30" value="efb77982" disabled="disabled"><div><p>This has a race condition that could result in one thread waiting too long</p>
-</div></label></li><li><label><input type="radio" name="ans30" value="4bd5d226" disabled="disabled"><div><p>This would always deadlock</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>45%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans30' value='3cf8c2bc' disabled='disabled'/><div><p>This has a race condition that could not result in a deadlock</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>23%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans30' value='319fbcfd' disabled='disabled'/><div><p>This has a race condition that could result in a deadlock</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>17%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans30' value='efb77982' disabled='disabled'/><div><p>This has a race condition that could result in one thread waiting too long</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans30' value='4bd5d226' disabled='disabled'/><div><p>This would always deadlock</p>
 </div></label></li></ol></div></div><div class="multiquestion"><p>The following ask about Dining Philosophers and its solutions documented in Lab 09.</p>
-<div class="question" id="q31" slug="71ae60cc"><div class="description" id="d31"><strong>Question 31</strong> (see above)
-<p>The "arbitrator" solution to dining philosophers ensures there is no 
-deadlock by removing which of the necessary conditions of deadlock?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans31" value="9274b4dc" disabled="disabled"><div><p>Circular Wait</p>
-</div></label></li><li><label><input type="radio" name="ans31" value="a4a2a344" disabled="disabled"><div><p>Hold-and-Wait</p>
-</div></label></li><li><label><input type="radio" name="ans31" value="48b24f9b" disabled="disabled"><div><p>Mutual Exclusion</p>
-</div></label></li><li><label><input type="radio" name="ans31" value="15a1b069" disabled="disabled"><div><p>No Preemption</p>
-</div></label></li><li><label><input type="radio" name="ans31" value="9c75f2c0" disabled="disabled"><div><p>None of the above; it allows deadlock</p>
-</div></label></li><li><label><input type="radio" name="ans31" value="6bf43712" disabled="disabled"><div><p>None of the above; it prevents deadlock without removing any of these conditions</p>
-</div></label></li></ol></div><div class="question" id="q32" slug="5e8edbce"><div class="description" id="d32"><strong>Question 32</strong> (see above)
-<p>The "resource hirearchy" solution to dining philosophers ensures 
-there is no deadlock by removing which of the necessary conditions of 
-deadlock?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans32" value="c391a340" disabled="disabled"><div><p>Circular Wait</p>
-</div></label></li><li><label><input type="radio" name="ans32" value="3406affa" disabled="disabled"><div><p>Hold-and-Wait</p>
-</div></label></li><li><label><input type="radio" name="ans32" value="87d97e86" disabled="disabled"><div><p>Mutual Exclusion</p>
-</div></label></li><li><label><input type="radio" name="ans32" value="de86ce96" disabled="disabled"><div><p>No Preemption</p>
-</div></label></li><li><label><input type="radio" name="ans32" value="7ebb6704" disabled="disabled"><div><p>None of the above; it allows deadlock</p>
-</div></label></li><li><label><input type="radio" name="ans32" value="405e037c" disabled="disabled"><div><p>None of the above; it prevents deadlock without removing any of these conditions</p>
-</div></label></li></ol></div></div><div class="question" id="q33" slug="a6a2aaa5"><div class="description" id="d33"><strong>Question 33</strong>
-<p>Pipelining ____ throughput and ____ latency.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans33" value="2506e1d6" disabled="disabled"><div><p>Pipelining decreases throughput and decreases latency.</p>
-</div></label></li><li><label><input type="radio" name="ans33" value="d57ce4a6" disabled="disabled"><div><p>Pipelining decreases throughput and increases latency.</p>
-</div></label></li><li><label><input type="radio" name="ans33" value="e2990fca" disabled="disabled"><div><p>Pipelining increases throughput and decreases latency.</p>
-</div></label></li><li><label><input type="radio" name="ans33" value="0adedcd7" disabled="disabled"><div><p>Pipelining increases throughput and increases latency.</p>
-</div></label></li></ol></div><div class="question" id="q34" slug="1fd60fd5"><div class="description" id="d34"><strong>Question 34</strong>
-<p>Out of order execution ____ throughput and ____ latency.</p>
-</div><ol class="options"><li><label><input type="radio" name="ans34" value="fa2fda92" disabled="disabled"><div><p>Out of order execution decreases throughput and decreases latency.</p>
-</div></label></li><li><label><input type="radio" name="ans34" value="6b71544e" disabled="disabled"><div><p>Out of order execution decreases throughput and increases latency.</p>
-</div></label></li><li><label><input type="radio" name="ans34" value="c22b1f4c" disabled="disabled"><div><p>Out of order execution increases throughput and decreases latency.</p>
-</div></label></li><li><label><input type="radio" name="ans34" value="2dec5352" disabled="disabled"><div><p>Out of order execution increases throughput and increases latency.</p>
-</div></label></li></ol></div><div class="question" id="q35" slug="f3dca445"><div class="description" id="d35"><strong>Question 35</strong>
+<div class='question' id='q31' slug='71ae60cc'><div class='description' id='d31'><strong>Question 31</strong> (0 / 1 pt; mean 0.25) (see above)
+<p>The "arbitrator" solution to dining philosophers ensures there is no deadlock by removing which of the necessary conditions of deadlock?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>41%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans31' value='9274b4dc' disabled='disabled'/><div><p>Circular Wait</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>31%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans31' value='a4a2a344' disabled='disabled'/><div><p>Hold-and-Wait</p>
+</div></label><div class='explanation'><p>I can hold the arbitration mutex while waiting for a chopstick</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>7%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans31' value='48b24f9b' disabled='disabled'/><div><p>Mutual Exclusion</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans31' value='15a1b069' disabled='disabled'/><div><p>No Preemption</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans31' value='9c75f2c0' disabled='disabled'/><div><p>None of the above; it allows deadlock</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans31' value='6bf43712' disabled='disabled'/><div><p>None of the above; it prevents deadlock without removing any of these conditions</p>
+</div></label></li></ol></div><div class='question' id='q32' slug='5e8edbce'><div class='description' id='d32'><strong>Question 32</strong> (0 / 1 pt; mean 0.61) (see above)
+<p>The "resource hirearchy" solution to dining philosophers ensures there is no deadlock by removing which of the necessary conditions of deadlock?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>57%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans32' value='c391a340' disabled='disabled'/><div><p>Circular Wait</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>11%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans32' value='3406affa' disabled='disabled'/><div><p>Hold-and-Wait</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans32' value='87d97e86' disabled='disabled'/><div><p>Mutual Exclusion</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans32' value='de86ce96' disabled='disabled'/><div><p>No Preemption</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans32' value='7ebb6704' disabled='disabled'/><div><p>None of the above; it allows deadlock</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>8%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans32' value='405e037c' disabled='disabled'/><div><p>None of the above; it prevents deadlock without removing any of these conditions</p>
+</div></label></li></ol></div></div><div class='question' id='q33' slug='a6a2aaa5'><div class='description' id='d33'><strong>Question 33</strong> (0 / 1 pt; mean 0.83)
+<p>Pipelining &#95;&#95;&#95;&#95; throughput and &#95;&#95;&#95;&#95; latency.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans33' value='2506e1d6' disabled='disabled'/><div><p>Pipelining decreases throughput and decreases latency.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans33' value='d57ce4a6' disabled='disabled'/><div><p>Pipelining decreases throughput and increases latency.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>½</div><input type='radio' name='ans33' value='e2990fca' disabled='disabled'/><div><p>Pipelining increases throughput and decreases latency.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>81%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans33' value='0adedcd7' disabled='disabled'/><div><p>Pipelining increases throughput and increases latency.</p>
+</div></label></li></ol></div><div class='question' id='q34' slug='1fd60fd5'><div class='description' id='d34'><strong>Question 34</strong> (0 / 1 pt; mean 0.8)
+<p>Out of order execution &#95;&#95;&#95;&#95; throughput and &#95;&#95;&#95;&#95; latency.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans34' value='fa2fda92' disabled='disabled'/><div><p>Out of order execution decreases throughput and decreases latency.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans34' value='6b71544e' disabled='disabled'/><div><p>Out of order execution decreases throughput and increases latency.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>61%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans34' value='c22b1f4c' disabled='disabled'/><div><p>Out of order execution increases throughput and decreases latency.</p>
+</div></label><div class='explanation'><p>Technically false, but often described as true because it lets us get a head-start on some instructions so the fact that they have a similar or increased latency is compensated by earlier starts</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>18%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans34' value='2dec5352' disabled='disabled'/><div><p>Out of order execution increases throughput and increases latency.</p>
+</div></label><div class='explanation'><p>Technically true: a single instruction has more steps to go through (register renaming, etc) than it would if not out-of-order, requiring more time</p>
+</div></li></ol></div><div class='question' id='q35' slug='f3dca445'><div class='description' id='d35'><strong>Question 35</strong> (0.33 / 1 pt; mean 0.82)
 <p>Speculative execution can increase the performance of</p>
-</div><ol class="options"><li><label><input type="checkbox" name="ans35" value="69d3cdfd" disabled="disabled"><div><p>out-of-order processors</p>
-</div></label></li><li><label><input type="checkbox" name="ans35" value="8a80af14" disabled="disabled"><div><p>pipelined in-order processors</p>
-</div></label></li><li><label><input type="checkbox" name="ans35" value="02403088" disabled="disabled"><div><p>single-sage processors, like we discussed in COA1</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>72%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans35' value='69d3cdfd' disabled='disabled'/><div><p>out-of-order processors</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>80%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='checkbox' name='ans35' value='8a80af14' disabled='disabled'/><div><p>pipelined in-order processors</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans35' value='02403088' disabled='disabled'/><div><p>single-sage processors, like we discussed in COA1</p>
 </div></label></li></ol></div><div class="multiquestion"><p>Both Spectre and Meltdown exploits included (a compiled or language-specifc version of) the code</p>
 
 <pre><code>y = arr[(*x) * 4096]
@@ -391,26 +374,25 @@ deadlock?</p>
 <p>where <code>x</code> was a pointer to an address that should not be accessible, but whose value was leaked by the exploit;
 <code>arr</code> was a pointer to memory owned by the attacker;
 and <code>y</code> was a register owned by the attacker.</p>
-<div class="question" id="q36" slug="7b6daf54"><div class="description" id="d36"><strong>Question 36</strong> (see above)
+<div class='question' id='q36' slug='7b6daf54'><div class='description' id='d36'><strong>Question 36</strong> (0 / 1 pt; mean 0.66) (see above)
 <p>After running the above code, how do these exploits learn the contents of <code>*x</code>?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans36" value="3cc0b30a" disabled="disabled"><div><p>By checking the cache presence of <code>*x</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="b719663e" disabled="disabled"><div><p>By checking the cache presence of <code>arr[0]</code>, <code>arr[4096]</code>, <code>arr[8192]</code>, ..., <code>arr[255*4096]</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="df76109a" disabled="disabled"><div><p>By checking the cache presence of <code>y</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="62600daf" disabled="disabled"><div><p>By checking the contents of <code>arr[0]</code>, <code>arr[4096]</code>, <code>arr[8192]</code>, ..., <code>arr[255*4096]</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="d89a01f2" disabled="disabled"><div><p>By checking the contents of <code>y</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="60d840c7" disabled="disabled"><div><p>By checking the page table entry for <code>*x</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="d9dcaf30" disabled="disabled"><div><p>By checking the page table entry for <code>arr[0]</code>, <code>arr[4096]</code>, <code>arr[8192]</code>, ..., <code>arr[255*4096]</code></p>
-</div></label></li><li><label><input type="radio" name="ans36" value="9be7868a" disabled="disabled"><div><p>By checking the page table entry for <code>y</code></p>
-</div></label></li></ol></div><div class="question" id="q37" slug="48bd593e"><div class="description" id="d37"><strong>Question 37</strong> (see above)
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>12%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='3cc0b30a' disabled='disabled'/><div><p>By checking the cache presence of <code>*x</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>66%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans36' value='b719663e' disabled='disabled'/><div><p>By checking the cache presence of <code>arr[0]</code>, <code>arr[4096]</code>, <code>arr[8192]</code>, ..., <code>arr[255*4096]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='df76109a' disabled='disabled'/><div><p>By checking the cache presence of <code>y</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='62600daf' disabled='disabled'/><div><p>By checking the contents of <code>arr[0]</code>, <code>arr[4096]</code>, <code>arr[8192]</code>, ..., <code>arr[255*4096]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='d89a01f2' disabled='disabled'/><div><p>By checking the contents of <code>y</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='60d840c7' disabled='disabled'/><div><p>By checking the page table entry for <code>*x</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='d9dcaf30' disabled='disabled'/><div><p>By checking the page table entry for <code>arr[0]</code>, <code>arr[4096]</code>, <code>arr[8192]</code>, ..., <code>arr[255*4096]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans36' value='9be7868a' disabled='disabled'/><div><p>By checking the page table entry for <code>y</code></p>
+</div></label></li></ol></div><div class='question' id='q37' slug='48bd593e'><div class='description' id='d37'><strong>Question 37</strong> (0 / 1 pt; mean 0.6) (see above)
 <p>Why the 4096 multiplicand?</p>
-</div><ol class="options"><li><label><input type="radio" name="ans37" value="31fbc30e" disabled="disabled"><div><p>So each value has a different cache line</p>
-</div></label></li><li><label><input type="radio" name="ans37" value="800b5a7c" disabled="disabled"><div><p>So each value has a different page table entry</p>
-</div></label></li><li><label><input type="radio" name="ans37" value="1992c503" disabled="disabled"><div><p>To cause 1-byte-integer overflow for all values of <code>*x</code></p>
-</div></label></li><li><label><input type="radio" name="ans37" value="0b266345" disabled="disabled"><div><p>To cause 2-byte-integer overflow for some but not all values of <code>*x</code></p>
-</div></label></li><li><label><input type="radio" name="ans37" value="c70cfe63" disabled="disabled"><div><p>To prevent speculative caching via prefetching</p>
-</div></label></li><li><label><input type="radio" name="ans37" value="4923a176" disabled="disabled"><div><p>To prevent speculative execution via prediction</p>
-</div></label></li></ol></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a><a href="https://kytos02.cs.virginia.edu/coa2/quizzes/" style="text-align:center; display:block;">Return to index</a>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>51%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans37' value='31fbc30e' disabled='disabled'/><div><p>So each value has a different cache line</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>20%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans37' value='800b5a7c' disabled='disabled'/><div><p>So each value has a different page table entry</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans37' value='1992c503' disabled='disabled'/><div><p>To cause 1-byte-integer overflow for all values of <code>*x</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans37' value='0b266345' disabled='disabled'/><div><p>To cause 2-byte-integer overflow for some but not all values of <code>*x</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>10%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤</div><input type='radio' name='ans37' value='c70cfe63' disabled='disabled'/><div><p>To prevent speculative caching via prefetching</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans37' value='4923a176' disabled='disabled'/><div><p>To prevent speculative execution via prediction</p>
+</div></label></li></ol></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/luther/COA2/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
 <!--<center><a href="../">Return to course page</a></center>-->
-
-
-<span class="cleanslate TridactylStatusIndicator  TridactylModenormal " style="border: #ff9f00 solid 1.5px !important">normal</span></body><iframe class="cleanslate hidden" src="s2020final_files/commandline.html" id="cmdline_iframe" loading="lazy" style="height: 0px !important;"></iframe></html>
+</body>
+</html>
