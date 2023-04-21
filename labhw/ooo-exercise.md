@@ -5,7 +5,7 @@ title: OOO Exercise
 <div class="changelog">
 Changelog:
 
-*  21 Apr 2023: correct given first lines for Part 3; add one instruction to Part 3
+*  21 Apr 2023: correct given first lines for Part 3; add two instructions to Part 3
 *  21 Apr 2023: emphasize that three-arugment form is used regardless of whether register-renaming has happened
 *  21 Apr 2023: fix formatting on Part 3
 </div>
@@ -129,6 +129,7 @@ Complete a pipeline diagram for the processor running the following instructions
     4. add %r01, %r01 -> %r01
     5. add %r02, %r04 -> %r04
     6. add %r01, %r03 -> %r03
+    7. add %r07, %r08 -> %r08
 
 Identify the stages as:
 
@@ -146,6 +147,5 @@ The first three rows are:
     2 F D R I E W C
     3   F D R I E W C
 
-complete the remaining three rows of the table at the answer sheet linked above.
-
+complete the remaining rows of the table at the answer sheet linked above.
 
