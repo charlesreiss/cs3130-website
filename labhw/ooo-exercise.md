@@ -7,6 +7,7 @@ Changelog:
 
 *  21 Apr 2023: correct given first lines for Part 3; add one instruction to Part 3
 *  21 Apr 2023: emphasize that three-arugment form is used regardless of whether register-renaming has happened
+*  21 Apr 2023: fix formatting on Part 3
 </div>
 
 # Hypothetical OOO processor
@@ -130,6 +131,7 @@ Complete a pipeline diagram for the processor running the following instructions
     6. add %r01, %r03 -> %r03
 
 Identify the stages as:
+
 *  F for when the instruction is feteched
 *  D for when an instruction is decoded
 *  R for when an instruction is renamed and dispatched into an instruction queue
