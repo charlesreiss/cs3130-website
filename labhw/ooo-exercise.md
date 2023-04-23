@@ -10,6 +10,7 @@ Changelog:
 *  21 Apr 2023: fix formatting on Part 3
 *  21 Apr 2023: edit instructions in Part 3 to make problem less trivial
 *  21 Apr 2023: correct some spelling errors
+*  21 Apr 2023: correct instruction I in part 2 to not write to register that was already used
 </div>
 
 # Hypothetical OOO processor
@@ -103,7 +104,7 @@ Suppose the instruction queue for this processor contains the following instruct
     F. sub %x18, %x07 -> %x21
     G. add %x20, %x19 -> %x22
     H. movq 0x200(%x22) -> %x23
-    I. imul %x08, %x16 -> %x17
+    I. imul %x08, %x16 -> %x24
 
 Initially the value of registers `%x01` through `%x15` is available.
 
