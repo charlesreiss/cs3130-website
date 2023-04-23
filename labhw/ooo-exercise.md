@@ -10,7 +10,7 @@ Changelog:
 *  21 Apr 2023: fix formatting on Part 3
 *  21 Apr 2023: edit instructions in Part 3 to make problem less trivial
 *  21 Apr 2023: correct some spelling errors
-*  21 Apr 2023: correct instruction I in part 2 to not write to register that was already used
+*  23 Apr 2023: correct instruction I in part 2 to not write to register that was already used (was `%x17`, changed to `%x24`)
 </div>
 
 # Hypothetical OOO processor
