@@ -8,6 +8,7 @@ Changelog:
 *  19 Apr 2023: correct link to postfix assignment
 *  21 Apr 2023: tone down `using namespace std` suggestion since that (in my opinion) is very bad style; add mention of `using std::foo;`
 *  21 Apr 2023: adjust note about the term "STL"
+*  26 Apr 2023: remove nongramatical due-to-edits text that was meant to regard `using namespace std` from "My Task"
 </div>
 
 The goal of this lab is to explore how C++ adds minimal extensions to C in order to provide several features that have become common in object-oriented languages.
@@ -348,8 +349,6 @@ Implement a postfix calculator, like you did in [CSO1](https://www.cs.virginia.e
     
 We strongly recommend, but do not require, using a two-step read: read a word from `cin` into a `string`,
 then feed the `string` into a `stringstream` and use the stringstream to parse a number. However, there are other solutions and you do not have to do this if you do not want to.
-
-We strongly recommend, but do not require, adding `std;` after your `#include`s so that you can refer to included types by name without prefixing `std::` before each.
 
 When you are done either show your TA your code for a checkoff or submit it to the submission site.
 :::
