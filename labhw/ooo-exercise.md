@@ -11,6 +11,7 @@ Changelog:
 *  21 Apr 2023: edit instructions in Part 3 to make problem less trivial
 *  21 Apr 2023: correct some spelling errors
 *  23 Apr 2023: correct instruction I in part 2 to not write to register that was already used (was `%x17`, changed to `%x24`)
+*  26 Apr 2023: make cycle numbers for part 2 start at 1 to match with answer sheet
 </div>
 
 # Hypothetical OOO processor
@@ -111,7 +112,7 @@ Initially the value of registers `%x01` through `%x15` is available.
 
 Complete the timeline to show how all the instructions can be issued and executed:
 
-                    cycle 0    1    2   3    4    5   6
+                    cycle 1    2    3   4    5    6   7
     execution unit:       
     arithmetic 1          A
     arithmetic 2          E
