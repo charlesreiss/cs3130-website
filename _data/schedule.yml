@@ -380,8 +380,6 @@
   week: 14
   title: buses / out-of-order 1
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  interlude: buses and direct-memory access
 
@@ -394,10 +392,7 @@
 - date: 2023-04-25
   week: 15
   title: out-of-order 2 / side channels
-  slides_see: 20230420
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  instruction queues (finish)
     *  data flow model + thinking about OOO performance
@@ -412,7 +407,8 @@
 - date: 2023-04-27
   week: 15
   title: meltdown, spectre, etc.
-  slides_see: 20230425
+  slides: yes
+  slides_prelim: yes
   description: |
     *  side channels in the cache (finish)
     *  meltdown:
