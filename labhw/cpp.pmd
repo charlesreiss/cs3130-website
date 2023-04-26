@@ -9,6 +9,7 @@ Changelog:
 *  21 Apr 2023: tone down `using namespace std` suggestion since that (in my opinion) is very bad style; add mention of `using std::foo;`
 *  21 Apr 2023: adjust note about the term "STL"
 *  26 Apr 2023: remove nongramatical due-to-edits text that was meant to regard `using namespace std` from "My Task"
+*  26 Apr 2023: make recommendatoin re: stringstream explicitly suggest making a new one each time, or alternately giving reset instructions
 </div>
 
 The goal of this lab is to explore how C++ adds minimal extensions to C in order to provide several features that have become common in object-oriented languages.
@@ -357,7 +358,7 @@ When you are done either show your TA your code for a checkoff or submit it to t
 The input processing can look like a loop which, as long as `cin` is `.good()` (i.e., not closed and with no read errors)
 
 1. `>>` a `string` from `cin`
-1. make a `stringstream` and `<<` a `string` into it
+1. make a new `stringstream` and `<<` a `string` into it
 1. `>>` a `double` from the `stringstream`
 1.  if that `>>`ing into the `stringstream` causes the `stringstream` to `.fail()`,
     
@@ -368,6 +369,8 @@ The input processing can look like a loop which, as long as `cin` is `.good()` (
             otherwise, end the loop
         
         otherwise, push the `double`
+
+I recommend making a new stringstream object each time. (Otherwise, you need to make sure you properly reset the state of the stringstream, such as by calling `stream.str("")` to clear the internal buffer and `stream.clear()` to reset the EOF/fail information.)
 
 Use a `std::stack<double>` as your stack. Note that `pop` returns `void`; you'll need to use `top` to retrieve a value before `pop`ing it off the stack.
 
