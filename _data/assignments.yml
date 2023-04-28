@@ -110,7 +110,6 @@
   lab: true
   short_name: codereview
   page: labhw/code-review.html
-  tentative: true
   comments: needs submission site link correction
   due: 2023-02-22
 
@@ -258,7 +257,6 @@
 - name: C++ OR templates
   short_name: cpp
   lab: true
-  tentative: true
   page: labhw/cpp-choice.html
   submit_files:
   - "*.cpp"
