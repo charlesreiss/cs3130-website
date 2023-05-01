@@ -13,6 +13,7 @@ Changelog:
 *  23 Apr 2023: correct instruction I in part 2 to not write to register that was already used (was `%x17`, changed to `%x24`)
 *  26 Apr 2023: make cycle numbers for part 2 start at 1 to match with answer sheet
 *  1 May 2023: change "produces the result in the next cycle" to "produces the result near the end of this cycle" to clarify that forwarding is possible in this cycle
+*  1 May 2023: fix off-by-one error in range of physical register numbers
 </div>
 
 # Hypothetical OOO processor
@@ -65,7 +66,7 @@ then the instruction will spend extra cycles waiting in the reorder buffer befor
 
 ### This processor's registers
 
-The processor has 15 logical registers `%r01` through `%r15`, but these are implemented using 64 physical registers and register renaming. We call the physical registers `%x01` through `%x63`.
+The processor has 15 logical registers `%r01` through `%r15`, but these are implemented using 64 physical registers and register renaming. We call the physical registers `%x01` through `%x64`.
 
 We will show instructions in a three-argument form like (**regardless of whether register renaming has taken place**):
     
