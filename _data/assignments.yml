@@ -269,7 +269,7 @@
 - name: OOO
   short_name: OOO
   page: labhw/ooo-exercise.html
-  due: 2023-05-02
+  due: 2023-05-03
   feedback: "extracted*,autograder*"
   no-late: true
   due_message: OOO due **before lecture**, late submissions **not normally accepted**

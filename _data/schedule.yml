@@ -421,6 +421,11 @@
   week: 16
   title: Exam Review
 
+- date: 2023-05-03
+  week: 16
+  no_class: true
+  title: ---
+
 - date: 2023-05-08
   week: 17
   title: Final Exam
