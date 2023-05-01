@@ -12,6 +12,7 @@ Changelog:
 *  21 Apr 2023: correct some spelling errors
 *  23 Apr 2023: correct instruction I in part 2 to not write to register that was already used (was `%x17`, changed to `%x24`)
 *  26 Apr 2023: make cycle numbers for part 2 start at 1 to match with answer sheet
+*  1 May 2023: change "produces the result in the next cycle" to "produces the result near the end of this cycle" to clarify that forwarding is possible in this cycle
 </div>
 
 # Hypothetical OOO processor
@@ -42,7 +43,8 @@ Instructions in this processor are executed as follows:
     *  for memory instructions, this execution unit is a pipelined data cache. It receives one instruction per cycle
         and produces the result after three cycles. To simplfy this exercise, we will assume no cache misses.
     *  for non-memory instructions, this execution unit is one of two arithmetic logic unit. It receives one instruction per
-        cycle and produces the result in the next cycle.
+        cycle and produces the result near the end of this cycle. (*[edited 1 May:]* originally this said "in the next cycle";
+        because this correction is late, we'll also accept answers that assume an extra cycle was needed before a value was available for forwarding.)
     *  the first available memory instruction (if any) is sent to a data cache, which is pipelined. The data cache accepts one instruction per cycle
         and takes three cycles to produce the result of the read or write
     *  the first two available non-memory instructions are sent to one of two arithmetic execution units. These execution units each take one cycle

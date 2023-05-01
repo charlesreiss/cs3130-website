@@ -252,6 +252,7 @@
 - name: pipeline
   short_name: pipeline
   page: labhw/pipeline.html
+  feedback: "extracted*,autograder*"
   due: 2023-04-26
 
 - name: C++ OR templates
@@ -269,5 +270,6 @@
   short_name: OOO
   page: labhw/ooo-exercise.html
   due: 2023-05-02
+  feedback: "extracted*,autograder*"
   no-late: true
   due_message: OOO due **before lecture**, late submissions **not normally accepted**
