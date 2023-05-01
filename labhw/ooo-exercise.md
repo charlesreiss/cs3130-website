@@ -43,7 +43,8 @@ Instructions in this processor are executed as follows:
     *  for memory instructions, this execution unit is a pipelined data cache. It receives one instruction per cycle
         and produces the result after three cycles. To simplfy this exercise, we will assume no cache misses.
     *  for non-memory instructions, this execution unit is one of two arithmetic logic unit. It receives one instruction per
-        cycle and produces the result near the end of this cycle. (*[edited 1 May:]* originally this said "in the next cycle";
+        cycle and produces the result near the end of this cycle. (*[edited 1 May:]* originally this said "in the next cycle"
+        which could have been interpretated as requiing an extra cycle before values can be forwarded;
         because this correction is late, we'll also accept answers that assume an extra cycle was needed before a value was available for forwarding.)
     *  the first available memory instruction (if any) is sent to a data cache, which is pipelined. The data cache accepts one instruction per cycle
         and takes three cycles to produce the result of the read or write
