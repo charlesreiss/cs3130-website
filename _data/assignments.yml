@@ -257,6 +257,10 @@
     Between 30 April and midday 2 May, the autograder results failed to check
     the forwarding (and gave credit regardless of the answers). Hopefully,
     this is now corrected below.
+
+    <small>Also before 7pm 2 May, the autogrades shown deducted credit for showing
+    forwarding of the PC value for mispredicted jumps (which was not expected,
+    but not intended to be a deduction).</small>
   due: 2023-04-26
 
 - name: C++ OR templates
