@@ -254,8 +254,9 @@
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   grade_describe: |
-    Between 30 April and midday 2 May, the autograder results failed to check at all whether
-    forwarding actually occurred (and just gave credit). Hopefully, this is now corrected below.
+    Between 30 April and midday 2 May, the autograder results failed to check
+    the forwarding (and gave credit regardless of the answers). Hopefully,
+    this is now corrected below.
   due: 2023-04-26
 
 - name: C++ OR templates
