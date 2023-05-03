@@ -280,4 +280,4 @@
   due: 2023-05-03
   feedback: "extracted*,autograder*"
   no-late: true
-  due_message: OOO due **before lecture**, late submissions **not normally accepted**
+  due_message: OOO due **before lecture time**, late submissions **not normally accepted**
