@@ -111,6 +111,7 @@
   short_name: codereview
   page: labhw/code-review.html
   comments: needs submission site link correction
+  missing-if-no-feedback: true
   due: 2023-02-22
 
 - name: pagetable 3 (post code review)
@@ -157,6 +158,7 @@
   short_name: cachelab
   old_page: labhw/memoize.html
   page: labhw/cache-lab.html
+  missing-if-no-feedback: true
   lab: true
   due: 2023-03-15
 
@@ -253,6 +255,7 @@
   short_name: pipeline
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
+  missing-if-no-feedback: true
   grade_describe: |
     Between 30 April and midday 2 May, the autograder results failed to check
     the forwarding (and gave credit regardless of the answers). Hopefully,
@@ -278,6 +281,7 @@
   short_name: OOO
   page: labhw/ooo-exercise.html
   due: 2023-05-03
+  missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
   no-late: true
   due_message: OOO due **before lecture time**, late submissions **not normally accepted**
