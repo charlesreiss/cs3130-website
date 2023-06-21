@@ -1,38 +1,32 @@
-- date: 2023-01-18
-  week: 1
-  no_class: true
-  description: (no lab)
 
-- date: 2023-01-19
+- date: 2023-08-22
   week: 1
   title: introduction / building (pt 1)
   reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
-  slides: yes
   description: |
     * course outline
     * .o, .a, .so
     * building
 
-- date: 2023-01-24
-  week: 2
+- date: 2023-08-23
+  week: 1
+  no_class: true
+  description: (no lab)
+
+- date: 2023-08-24
+  week: 1
   title: building (pt 2) /  privilege
   reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3.1"
-  slides: yes
   description: |
     *  make
  
     *  kernel mode
     *  system calls
 
-- date: 2023-01-25
-  week: 2
-  lab: true
-
-- date: 2023-01-26
+- date: 2023-08-29
   week: 2
   title: exceptions
   reading: "[kernel](readings/kernel.html) §2-2.2, 3.1"
-  slides: yes
   description: |
     *  exceptions
        *  events triggering
@@ -41,28 +35,24 @@
     *  threads and context switches
     *  process = threads + address space
 
+- date: 2023-08-30
+  week: 2
+  lab: true
 
-- date: 2023-01-31
-  week: 3
+
+- date: 2023-08-31
+  week: 2
   title: signals 
   reading: "[kernel](readings/kernel.html) §2.3.1"
-  slides: yes
-  slides_prelim: yes
   description: |
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation
 
-- date: 2023-02-01
-  week: 3
-  lab: true
-
-- date: 2023-02-02
+- date: 2023-09-05
   week: 3
   title: accounts + virtual memory 1
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §3"
-  slides: yes
-  video_mp4: yes
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions
@@ -73,10 +63,14 @@
     *  page tables
        *  concept, small example
 
-- date: 2023-02-07
-  week: 4
+- date: 2023-09-06
+  week: 3
+  lab: true
+
+
+- date: 2023-09-07
+  week: 3
   title: virtual memory 2
-  slides: yes
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
@@ -84,14 +78,9 @@
        *  in-memory lookup example
        *  as a tree (start)
 
-- date: 2023-02-08
-  lab: true
-  week: 4
-
-- date: 2023-02-09
+- date: 2023-09-12
   week: 4
   title: virtual memory 3
-  slides: yes
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
@@ -100,11 +89,14 @@
        *  permission bits
        *  page table tricks, loading data on demand, swapping
 
-- date: 2023-02-14
-  week: 5
+- date: 2023-09-13
+  lab: true
+  week: 4
+
+- date: 2023-09-14
+  week: 4
   title: IP + connection abstraction
   reading: "[protocols](readings/protocols.html) §1-2"
-  slides: yes
   description: |
     *  mailbox analogy
        *  inboxes and outboxes
@@ -117,14 +109,9 @@
     *  names and addresses
        *  layers preview
 
-- date: 2023-02-15
-  lab: true
-  week: 5
-
-- date: 2023-02-16
+- date: 2023-09-19
   week: 5
   title: IP +  routing
-  slides: yes
   eading: "[protocols](readings/protocols.html) §1-2"
   description: |
     *  example: a frame
@@ -134,11 +121,14 @@
        *  routers
     *  port numbers and UDP (start)
 
-- date: 2023-02-21
-  week: 6
+- date: 2023-09-20
+  lab: true
+  week: 5
+
+- date: 2023-09-21
+  week: 5
   title: URLs + DHCP + DNS
   reading: "[protocols](readings/protocols.html) §3-4"
-  slides: yes
   description: |
     *  port numbers and UDP (finish)
     *  DNS
@@ -149,14 +139,9 @@
     *  DHCP
     *  NAT
 
-- date: 2023-02-22
-  lab: true
-  week: 6
-
-- date: 2023-02-23
+- date: 2023-09-26
   week: 6
   title: network security / secure channels 1
-  slides: yes
   reading: "[security](readings/sec.html) §1-1.5, 3"
   description: |
     *  cryptography (start)
@@ -165,10 +150,13 @@
        *  digital signature
     *  replay attacks
 
-- date: 2023-02-28
-  week: 7
+- date: 2023-09-27
+  lab: true
+  week: 6
+
+- date: 2023-09-28
+  week: 6
   title: secure channels 2
-  slides: yes
   reading: "[security](readings/sec.html) §1.5-2"
   description: |
     *  cryptography (con't)
@@ -177,69 +165,27 @@
     *  public key infrastructure
     *  TLS protocol outline
 
-- date: 2023-03-01
+- date: 2023-10-03
+  no_class: true
+  title: reading day
+  week: 7
+
+- date: 2023-10-04
   lab: true
   week: 7
 
-- date: 2023-03-02
+- date: 2023-10-05
   week: 7
   title: caches 1
   reading: " [cache](readings/cache.html) §4, 1-3, 5"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
-    *  connecting processors to memory
-    *  memory hierarchy
-    *  locality
-    *  direct-mapped cache
-       *  valid bits
-       *  tags
-
-- date: 2023-03-07
-  no_class: true
-  week: 8
-
-- date: 2023-03-08
-  no_class: true
-  week: 8
-
-- date: 2023-03-09
-  no_class: true
-  week: 8
-
-- date: 2023-03-14
-  week: 9
-  slides: yes
-  title: caches 2
-  reading: "[cache](readings/cache.html) §4, 1-3, 5"
-  description: |
-    *  cache misses and C code
-
-    *  set-associative cache
-    *  replacement policies
-
-
-- date: 2023-03-15
-  lab: true
-  week: 9
-
-- date: 2023-03-16
-  week: 9
-  title: caches 3 
-  reading: "[processes and threads](readings/thread.html)"
-  slides: yes
-  description: |
-    > (Guest lecture; Prof Reiss will be out of town.)
-
     *  review of set-associative caches
     *  write policies
     *  three Cs, cache tradeoffs (start)
 
-- date: 2023-03-21
-  week: 10
+- date: 2023-10-17
+  week: 9
   title: concurrency 1
-  slides: yes
   reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
   description: |
     *  cache tradeoffs, very briefly
@@ -251,45 +197,34 @@
        *  fork, exec*
     *  waiting for processes
 
-    
-
-- date: 2023-03-22
+- date: 2023-10-18
   lab: true
-  week: 10
+  week: 9
 
-- date: 2023-03-23
-  week: 10
+- date: 2023-10-19
+  week: 9
   title: concurrency 2
-  slides: yes
-  slides_prelim: yes
-  slides_see2:  2023-03-28
   reading: "skim [consistency](readings/consistency.html); [pthreads](readings/pthread.html)" 
   description: |
     *  file descriptors
     *  pipe and dup2
 
-
-
-- date: 2023-03-28
-  week: 11
+- date: 2023-10-24
+  week: 10
   title: threads 1 / synchronization 1
   reading: "[sync](readings/sync.html) §1, 2-7, "
-  slides: yes
-  slides_prelim: yes
-  slides_see2: 20230330
   description: |
     *  creating new threads
     *  thread use examples
     *  problem of synchronization
 
-- date: 2023-03-29
+- date: 2023-10-25
   lab: true
-  week: 11
+  week: 10
 
-- date: 2023-03-30
-  week: 11
+- date: 2023-10-26
+  week: 10
   title: synchronization 2 / deadlock
-  slides: yes
   reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
   description: |
    *  atomicity, race conditions
@@ -301,10 +236,10 @@
    
    *  deadlock examples
 
-- date: 2023-04-04
-  week: 12
+
+- date: 2023-10-31
+  week: 11
   title: deadlock / synchronization 3
-  slides: yes
   reading: "[sync](readings/sync.html)"
   description: |
    *  deadlock con't
@@ -312,14 +247,13 @@
    *  monitors (mutexes + condition variables) (start)
 
 
-- date: 2023-04-05
+- date: 2023-11-01
   lab: true
   week: 12
 
-- date: 2023-04-06
+- date: 2023-11-02
   week: 12
   title: synchronization / roll back / pipelining
-  slides: yes
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
    *  monitors (finish)
@@ -327,12 +261,19 @@
    *  (if time) reader/writer locks
    *  transactions (briefly)
 
+- date: 2023-11-07
+  no_class: true
+  title: election day
+  week: 13
 
-- date: 2023-04-11
+- date: 2023-11-08
+  lab: true
+  week: 13
+
+- date: 2023-11-09
   week: 13
   title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
-  slides: yes
   description: |
    *  pipelining idea
    *  review: single-cycle CPU
@@ -341,29 +282,24 @@
    *  hazard handling, part 1
      *  stalling / waiting
 
-- date: 2023-04-12
-  lab: true
-  week: 13
-
-- date: 2023-04-13
-  week: 13
+- date: 2023-11-14
+  week: 14
   title: pipeline 2
-  reading: "[processors](readings/procesors.html) §2-3"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
+  reading: "[processors](readings/processors.html) §2-3"
   description: |
    *  hazard handling, part 2
      *  forwarding and forwarding logic
    *  control hazards + speculation idea (start)
        *  guess and check later
 
+- date: 2023-11-15
+  lab: true
+  week: 14
 
-- date: 2023-04-18
+- date: 2023-11-16
   week: 14
   reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
   title: branch prediction
-  slides: yes
   description: |
     * speculation idea (finish)
        *  guess and check later
@@ -372,14 +308,9 @@
        *  forward-taken, backwards-not-taken
        *  using history
 
-- date: 2023-04-19
-  lab: true
-  week: 14
-
-- date: 2023-04-20
+- date: 2023-11-21
   week: 14
   title: buses / out-of-order 1
-  slides: yes
   description: |
     *  interlude: buses and direct-memory access
 
@@ -389,10 +320,9 @@
     *  register renaming
     *  instruction queues (start)
 
-- date: 2023-04-25
+- date: 2023-11-28
   week: 15
   title: out-of-order 2 / side channels
-  slides: yes
   description: |
     *  instruction queues (finish)
     *  data flow model + thinking about OOO performance
@@ -400,15 +330,13 @@
     *  side channels generally
     *  side channels in the cache (start)
 
-- date: 2023-04-26
+- date: 2023-11-29
   lab: true
   week: 15
 
-- date: 2023-04-27
+- date: 2023-11-30
   week: 15
   title: meltdown, spectre, etc.
-  slides: yes
-  slides_prelim: yes
   description: |
     *  side channels in the cache (finish)
     *  meltdown:
@@ -417,21 +345,7 @@
         *   speculation past a bounds chcek
         *   using cache side-channels
 
-- date: 2023-05-02
+- date: 2023-12-05
   week: 16
   title: Exam Review
-  description: |
-    [notes](recordings/20230502-notes.txt)
 
-- date: 2023-05-03
-  week: 16
-  no_class: true
-  title: ---
-
-- date: 2023-05-08
-  week: 17
-  title: Final Exam
-  description: |
-    9am-12pm.
-
-    Chemistry 402.
