@@ -49,6 +49,9 @@
        *  events triggering
        *  signal handlers and implementation
 
+- date: 2023-09-01
+  week: 2
+
 - date: 2023-09-05
   week: 3
   title: accounts + virtual memory 1
@@ -109,6 +112,9 @@
     *  names and addresses
        *  layers preview
 
+- date: 2023-09-15
+  week: 4
+
 - date: 2023-09-19
   week: 5
   title: IP +  routing
@@ -138,6 +144,9 @@
     *  (if time) link-layer to network-layer mapping
     *  DHCP
     *  NAT
+
+- date: 2023-09-22
+  week: 5
 
 - date: 2023-09-26
   week: 6
@@ -183,8 +192,11 @@
     *  write policies
     *  three Cs, cache tradeoffs (start)
 
-- date: 2023-10-17
-  week: 9
+- date: 2023-10-06
+  week: 7
+
+- date: 2023-10-10
+  week: 8
   title: concurrency 1
   reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
   description: |
@@ -197,20 +209,20 @@
        *  fork, exec*
     *  waiting for processes
 
-- date: 2023-10-18
+- date: 2023-10-11
   lab: true
-  week: 9
+  week: 8
 
-- date: 2023-10-19
-  week: 9
+- date: 2023-10-12
+  week: 8
   title: concurrency 2
   reading: "skim [consistency](readings/consistency.html); [pthreads](readings/pthread.html)" 
   description: |
     *  file descriptors
     *  pipe and dup2
 
-- date: 2023-10-24
-  week: 10
+- date: 2023-10-17
+  week: 9
   title: threads 1 / synchronization 1
   reading: "[sync](readings/sync.html) §1, 2-7, "
   description: |
@@ -218,12 +230,12 @@
     *  thread use examples
     *  problem of synchronization
 
-- date: 2023-10-25
+- date: 2023-10-18
   lab: true
-  week: 10
+  week: 9 
 
-- date: 2023-10-26
-  week: 10
+- date: 2023-10-19
+  week: 9
   title: synchronization 2 / deadlock
   reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
   description: |
@@ -236,9 +248,11 @@
    
    *  deadlock examples
 
+- date: 2023-10-20
+  week: 9
 
-- date: 2023-10-31
-  week: 11
+- date: 2023-10-24
+  week: 10
   title: deadlock / synchronization 3
   reading: "[sync](readings/sync.html)"
   description: |
@@ -247,12 +261,12 @@
    *  monitors (mutexes + condition variables) (start)
 
 
-- date: 2023-11-01
+- date: 2023-10-25
   lab: true
-  week: 12
+  week: 10
 
-- date: 2023-11-02
-  week: 12
+- date: 2023-10-26
+  week: 10
   title: synchronization / roll back / pipelining
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
@@ -261,17 +275,11 @@
    *  (if time) reader/writer locks
    *  transactions (briefly)
 
-- date: 2023-11-07
-  no_class: true
-  title: election day
-  week: 13
+- date: 2023-10-27
+  week: 10
 
-- date: 2023-11-08
-  lab: true
-  week: 13
-
-- date: 2023-11-09
-  week: 13
+- date: 2023-10-31
+  week: 11
   title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
   description: |
@@ -282,8 +290,12 @@
    *  hazard handling, part 1
      *  stalling / waiting
 
-- date: 2023-11-14
-  week: 14
+- date: 2023-11-01
+  lab: true
+  week: 11
+
+- date: 2023-11-02
+  week: 11
   title: pipeline 2
   reading: "[processors](readings/processors.html) §2-3"
   description: |
@@ -292,12 +304,20 @@
    *  control hazards + speculation idea (start)
        *  guess and check later
 
-- date: 2023-11-15
-  lab: true
-  week: 14
+- date: 2023-11-03
+  week: 11
 
-- date: 2023-11-16
-  week: 14
+- date: 2023-11-07
+  no_class: true
+  title: election day
+  week: 12
+
+- date: 2023-11-08
+  lab: true
+  week: 13
+
+- date: 2023-11-09
+  week: 13
   reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
   title: branch prediction
   description: |
@@ -308,7 +328,7 @@
        *  forward-taken, backwards-not-taken
        *  using history
 
-- date: 2023-11-21
+- date: 2023-11-14
   week: 14
   title: buses / out-of-order 1
   description: |
@@ -320,8 +340,12 @@
     *  register renaming
     *  instruction queues (start)
 
-- date: 2023-11-28
-  week: 15
+- date: 2023-11-15
+  lab: true
+  week: 14
+
+- date: 2023-11-16
+  week: 14
   title: out-of-order 2 / side channels
   description: |
     *  instruction queues (finish)
@@ -330,11 +354,7 @@
     *  side channels generally
     *  side channels in the cache (start)
 
-- date: 2023-11-29
-  lab: true
-  week: 15
-
-- date: 2023-11-30
+- date: 2023-11-21
   week: 15
   title: meltdown, spectre, etc.
   description: |
@@ -345,7 +365,27 @@
         *   speculation past a bounds chcek
         *   using cache side-channels
 
-- date: 2023-12-05
+- date: 2023-11-22
+  week: 15
+  no_class: true
+
+- date: 2023-11-23
+  week: 15
+  no_class: true
+
+- date: 2023-11-28
   week: 16
+  title: slack
+
+- date: 2023-11-29
+  lab: true
+  week: 16
+
+- date: 2023-11-30
+  week: 16
+  title: slack
+
+- date: 2023-12-05
+  week: 17
   title: Exam Review
 

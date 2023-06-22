@@ -1,25 +1,26 @@
 - name: make
   lab: true
   page: labhw/make.html
-  due: 2023-01-25
+  due: 2023-08-30
   submit_file: Makefile
 
-- name: signal handling
-  short_name: signal
-  lab: true
-  page: labhw/signals.html
-  due: 2023-02-01
-  submit_file: "*.c"
-
 - name: warmup
-  due: 2023-02-01
+  due: 2023-09-01
   page: labhw/warmup.html
-  submit_files:
+  tentative: true
+  old_submit_files:
   - Makefile
   - makefile
   - main.c
   - primes.c
   - primes.h
+
+- name: signal handling
+  short_name: signal
+  lab: true
+  page: labhw/signals.html
+  due: 2023-08-30
+  submit_file: "*.c"
 
 - name: permissions
   lab: true
@@ -27,13 +28,12 @@
   comment: "also answer sheet on quiz system"
   comment: "should have random permission conversion problem generator"
   submit_file: permissions-lab.tar
-  due: 2023-02-08
+  due: 2023-09-13
 
 - name: timing
-  due: 2023-02-08
+  due: 2023-09-15
+  tentative: true
   page: labhw/systiming.html
-  comment: "running loop with clock_gettime + graphing and/or other performance monitoring"
-  comment: "timing system call"
   submit_files:
   - timings.txt
   - "*.txt"
@@ -49,14 +49,14 @@
   lab: true
   page: labhw/networking.html
   submit_file: "*.c"
-  due: 2023-02-15
+  due: 2023-09-20
 
 - name: pagetable part 1
   short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2023-02-15
+  due: 2023-09-22
   grade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
@@ -83,7 +83,7 @@
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2023-02-22
+  due: 2023-09-27
   grade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
@@ -112,7 +112,7 @@
   page: labhw/code-review.html
   comments: needs submission site link correction
   missing-if-no-feedback: true
-  due: 2023-02-22
+  due: 2023-09-27
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3
@@ -123,7 +123,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2023-03-01
+  due: 2023-10-04
   grade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
@@ -152,7 +152,7 @@
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
   submit_file: attack.c
-  due: 2023-03-01
+  due: 2023-10-04
 
 - name: cache exercises
   short_name: cachelab
@@ -160,20 +160,29 @@
   page: labhw/cache-lab.html
   missing-if-no-feedback: true
   lab: true
-  due: 2023-03-15
+  due: 2023-10-11
 
 - name: cache programs
   short_name: cache-programs
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
-  due: 2023-03-22
+  due: 2023-10-18
 
 - name: fork lab
   short_name: fork-lab
   lab: true
   page: labhw/fork-lab.html
   submit_file: "*.c"
-  due: 2023-03-22
+  due: 2023-10-18
+
+- name: sync games
+  lab: true
+  short_name: sync
+  page: labhw/sync.html
+  comments: needs changes for in-person?
+  comments: need .php stuff
+  missing-if-no-feedback: true
+  due: 2023-10-25
 
 - name: TLB
   short_name: tlb
@@ -185,27 +194,7 @@
   - "Makefile"
   - "makefile"
   - "*.txt"
-  due: 2023-03-29
-
-- name: sync games
-  lab: true
-  short_name: sync
-  page: labhw/sync.html
-  comments: needs changes for in-person?
-  comments: need .php stuff
-  missing-if-no-feedback: true
-  due: 2023-03-29
-
-- name: fork HW
-  short_name: fork
-  comment: "FIXUP: missing HW?"
-  comment: for pipelines? after covered in lecture?
-  page: labhw/fork.html
-  grade_describe: |
-    If all tests fail/do not run, it may be because you included a `main()` function that interferes with our testing code,
-    or because you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully.
-  submit_file: "fork_run.c"
-  due: 2023-04-05
+  due: 2023-10-27
 
 - name: pthreads (dining philosophers) 
   lab: true
@@ -221,18 +210,18 @@
   - dp-arb.c
   - dp-rh.c
   - dp-mp.c
-  due: 2023-04-05
+  due: 2023-11-01
 
-- name: life
-  short_name: life
-  page: labhw/life.html
-  due: 2023-04-12
-  submit_file: "life-parallel.c"
-  comment: may need skeleton code to be modified
-  comment: adjust skeleton code to avoid workarounds
-  comment: figure out SLURM setup
-  comment: sanitize-examples.sh script
-  comment: ThreadSanitizer stuff
+- name: fork HW
+  short_name: fork
+  comment: "FIXUP: missing HW?"
+  comment: for pipelines? after covered in lecture?
+  page: labhw/fork.html
+  grade_describe: |
+    If all tests fail/do not run, it may be because you included a `main()` function that interferes with our testing code,
+    or because you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully.
+  submit_file: "fork_run.c"
+  due: 2023-11-03
 
 - name: openmp
   short_name: openmp
@@ -241,15 +230,25 @@
   submit_files:
   - "*.c"
   - "performance.txt"
-  due: 2023-04-12
+  due: 2023-11-08
+
+- name: life
+  short_name: life
+  page: labhw/life.html
+  due: 2023-11-15
+  submit_file: "life-parallel.c"
+  comment: may need skeleton code to be modified
+  comment: adjust skeleton code to avoid workarounds
+  comment: figure out SLURM setup
+  comment: sanitize-examples.sh script
+  comment: ThreadSanitizer stuff
 
 - name: side channel
   short_name: side-channel
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
-  due: 2023-04-19
-
+  due: 2023-11-29
 
 - name: pipeline
   short_name: pipeline
@@ -264,9 +263,9 @@
     <small>Also before 7pm 2 May, the autogrades shown deducted credit for showing
     forwarding of the PC value for mispredicted jumps (which was not expected,
     but not intended to be a deduction).</small>
-  due: 2023-04-26
+  due: 2023-11-28
 
-- name: C++ OR templates
+- XXXname: C++ OR templates
   short_name: cpp
   lab: true
   page: labhw/cpp-choice.html
@@ -280,7 +279,7 @@
 - name: OOO
   short_name: OOO
   page: labhw/ooo-exercise.html
-  due: 2023-05-03
+  due: 2023-12-05
   missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
   no-late: true
