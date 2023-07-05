@@ -1,91 +1,185 @@
 ---
 title: warmup
-author: Luther Tychnoviech 
+author: Charles Reiss
 ...
-
-<div class="changelog">
-Changelog:
-
-*  26 Jan 2023: rephrase to allow invoking pprime as integers are read in
-*  26 Jan 2023: note that collaboration is exception to normal policy
-</div>
 
 # Your task
 
-1.  Write the following C files:
+1.  Create C files as follows:
 
-    `main.c`
-    :   contains a `main` function.
-        If there are command-line arguments,
-        convert each to an integer and invoke `pprime` with each.
-        If there are no command line arguments,
-        read integers from standard input (provided in base-10, one number per line)
-        until the end of standard input is reached.
-        Invoke `pprime` with each of the integers you read
-        (either immediately after reading each line or after reading all the integers).
-        `main` should not print anything itself.
-
-    `primes.c`
-    :   contains (at least) three functions:
-
-        `isprime`
-        :   Accepts a single integer and returns 1 if it is prime, 0 otherwise.
-            You are welcome to brute-force this or use the primality checking from COA1's `smallc` program.
+    *  in `split.c`, write an implementation of the function 
         
-        `nextprime`
-        :   See [CSO1's smallfunc.c](/~jh2jf/courses/cs2130/fall2022/homework/hw7-smallc.html#next-prime) for a description.
-        
-        `pprime`
-        :   Given an integer, print a single line to standard out containing either
-        
-                (number) is prime
-            
-            or
-            
-                (number) is not prime, but (bigger number) is
-            
-            where `(number)` is the argument integer
-            and `(bigger number)` is the result of invoking `nextprime` on the argument
-            
-            Do not include the parentheses in your actual output; correct formatting is
-                
-                3 is prime
-                4 is not prime, but 5 is
+            char **string_split(const char *input, const char *sep);
 
-    `primes.h`
-    :   contains the header for `pprime`, `isprime`, and `nextprime`.
+       The function should take a NUL-terminated string `input` and a 
+       NUL-terminated string
+       listing separating characters in `sep` and return a null-pointer-terminated
+       array of "words" separated by a sequence of one or more
+       of the characters in `sep`. The returned
+       array and each of the strings in that array should be allocated so
+       that they can be freed using `free()`.
 
-2.  Create a makefile named `Makefile` such that typing
+       In addition:
 
-        make
+       *  The function may not modify the input strings.
+       *  The function may not leak memory. (When the function returns,
+          the only newly allocated memory should be pointed to by the value returned.)
+       *  We do not care what your function does if `input` is an empty string
+          or if `sep` is an empty string.
+       *  We do not care what your function does if allocating memory fails (provided
+          that your function does not try to allocate a huge amount of memory relative
+          to the size of its arguments)
 
-    will rebuild (if necessary) `primes.o` and `main.o` and link them together into an executable `primes`.
+       Some examples of using this function are shown below.
 
-3.  Make sure your `.c` and `.h` file will not produce any warnings when compiled with the options
-    `-std=c11 -Wall -pedantic` (assuming GCC or Clang) (though it is okay if your Makefile uses different
-    options).
+       Your implementation may use additional utility functions
 
-3.  Submit your files to the submission site (linked above).
+    *  in `split.h`, write an appropriate header file declaring `split.c` and include
+       [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
+       against multiple inclusion.
+
+    *  in `main.c`, write a `main()` function that:
+
+       *  constructs a value for `sep` by the command line arguments, or,
+          if no command line arguments are provided, uses `" \t\n\f\v"`.
+          When there are command-line arguments, 
+          the value of `sep` should be the result of concatenating all the command line
+          arguments. For example, if the `main()` is compiled into an executable `split`, then
+          running
+
+                ./split a b c
+
+          or
+
+               ./split abc
+           
+          or
+
+               ./split ab c
+
+          should choose a sep value of `abc`.
+
+      *  reads lines of input (without prompting) of up to 4000 bytes. For each line, it should:
+
+         *  exit if the line is one period (`.`) with no other text or whitespace;
+         *  otherwise call `string_split` with that input and the chosen `sep` value,
+            then print out the resulting array with each word surrounded by square
+            brackets (`[` and `]`) and without spaces between words, followed by a newline, then frees
+            the resulting array.
+
+        Your program may not access out-of-bounds memory (such as might cause a segfault)
+        if a line of input is longer than 4000 bytes, but otherwise, we do not care
+        what it does for long input lines.
+         
+
+      (Some examples of expected transcripts are shown below.)
+
+2.  Create a Makefile such that typing `make` will build (if necessary) `split.o`, `main.o`
+    and link them into an executable `split`.
+
+3.  Make sure your C files do not produce any warnings when compiled with `-Og -g -std=c11 -Wall -pedantic` (assuming GCC or Clang). (It is okay if your Makefile uses different options.)
+
+4.  Make sure your code does not have memory leaks or errors. We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
+
+#  Examples
+
+##  `string_split`
+
+1.  Running
+
+        char **result;
+        result = string_split("foo", ":");
+
+    should have the same effect as
+
+        result = calloc(sizeof(char *), 2);
+        result[0] = malloc(4);
+        strcpy(result[0], "foo");
+        result[1] = NULL;
+
+1.  Running
+
+        char **result;
+        result = string_split("foo:bar:quux", ":");
+
+    or
+
+        char **result;
+        result = string_split("foo:bar!quux", "!:");
+
+    or
+
+        char **result;
+        result = string_split("foo:bar!quux", ":!");
+
+    should have the same effect as
+
+        char **result;
+        result = calloc(sizeof(char *), 4);
+        result[0] = malloc(4);
+        strcpy(result[0], "foo");
+        result[1] = malloc(4);
+        strcpy(result[0], "bar");
+        result[2] = malloc(5);
+        strcpy(result[0], "quux");
+        result[3] = NULL;
+
+1.  Running
+    
+        char **result;
+        result = string_split(":foo!:bar::quux!", ":!");
+
+    should have the same effect as
+
+        char **result;
+        result = calloc(sizeof(char *), 5)
+        result[0] = malloc(1);
+        strcpy(result[0], "");
+        result[1] = malloc(4);
+        strcpy(result[1], "foo");
+        result[2] = malloc(4);
+        strcpy(result[2], "bar");
+        result[3] = malloc(5);
+        strcpy(result[3], "quux");
+        result[4] = malloc(1)
+        strcpy(result[4], "");
+        result[5] = NULL;
+
+## `split` executable
+
+In the following example transcripts **bold** represents input typed in and `$ ` represents
+the shell's prompt:
+
+### Example 1
+
+<pre>
+$ <b>./split</b>
+<b>foo     bar   baz</b>
+[foo][bar][baz]
+<b>quux-no-space quux-with space !</b>
+[quux-no-space][quux-with][space][!]
+<b>   indented</b>
+[][indented]
+<b>.</b>
+$ 
+</pre>
+
+### Example 2
+
+<pre>
+$ <b>./split XY Z</b>
+<b>fooXXXXbarZXYXYXZbazYYYYY</b>
+[foo][bar][baz][]
+<b>XXXXXXXXXXXXX</b>
+[][]
+<b>X.X</b>
+[][.][]
+<b>.</b>
+$ 
+</pre>
 
 # Hints
 
-Refer to [introduction to makefiles](../readings/make.html) for
-detailed examples of how Make works. You my also refer to our `make`'s
-[online documentation](https://www.gnu.org/software/make/manual/make.html)
-including [this example](https://www.gnu.org/software/make/manual/make.html#Rule-Example) from
-that docuemntation.
+1.  I found the C standard library functions `strspn` and `strcspn` useful in my solution.
 
-You can find a reference on the C standard library and language [here](https://en.cppreference.com/w/c);
-in particular the [string functions](https://en.cppreference.com/w/c/string/byte) and
-[math functions](https://en.cppreference.com/w/c/numeric/math) might be useful.
-
-If your code uses any function in `math.h` (such as `sqrt`, `pow`, `log`, etc.),
-make sure you add `-lm` to the `LDFLAGS` of your `Makefile` or it will not compile on the department servers.
-
-# Collaboration
-
-This assignment is intended to be exploratory and get your feet wet;
-as an exception to the normal policy,
-you are welcome to help one another with it as much as you wish.
-However, you are responsible for both (a) citing help and (b) understanding what you submit.
-
+2.  To avoid scanning the string multiple times, you can use `realloc` to change the size of a dynamically allocated array. (But make sure to initialize any new space made by `realloc` --- it might not default to 0/NULL.)
