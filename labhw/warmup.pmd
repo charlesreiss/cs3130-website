@@ -32,7 +32,8 @@ author: Charles Reiss
 
        Some examples of using this function are shown below.
 
-       Your implementation may use additional utility functions
+       Your implementation may use additional utility functions, provided those are
+       also in `split.c`. It may also use any functions in the C standard library.
 
     *  in `split.h`, write an appropriate header file declaring `split.c` and include
        [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
@@ -41,7 +42,7 @@ author: Charles Reiss
     *  in `main.c`, write a `main()` function that:
 
        *  constructs a value for `sep` by the command line arguments, or,
-          if no command line arguments are provided, uses `" \t\n\f\v"`.
+          if no command line arguments are provided, uses `" \t"`.
           When there are command-line arguments, 
           the value of `sep` should be the result of concatenating all the command line
           arguments. For example, if the `main()` is compiled into an executable `split`, then
@@ -80,6 +81,8 @@ author: Charles Reiss
 3.  Make sure your C files do not produce any warnings when compiled with `-Og -g -std=c11 -Wall -pedantic` (assuming GCC or Clang). (It is okay if your Makefile uses different options.)
 
 4.  Make sure your code does not have memory leaks or errors. We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
+
+5.  We may use automated tests to assess your submission. Your solution may not hard-code the solution to any of the test cases or intentionally interfere with the testing environment.
 
 #  Examples
 

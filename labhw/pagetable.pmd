@@ -4,47 +4,30 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
 
-<div class="changelog">
-Changelog:
-
-*  9 Feb 2023: edit example code to use `0x456789abcdef` instead of `0x123456789abcdef` to avoid virtual addresses having unused bits.
-*  11 Feb 2023: fix "page table offsets" to "page offsets"; explicitly indicate that page tables are all the same size and start at the beginning of a page
-*  11 Feb 2023: mention that page tables are one page in the "Your task" section in addition to the sections below.
-*  13 Feb 2023: replace "present" with "valid" in "Your task" to be consistent with rest of writeup
-*  13 Feb 2023: explicitly indicate that page_allocate also allocates pages which don't hold page tables in order to make the mapping work
-*  13 Feb 2023: explicitly note that not all of `size_t va` is used for the address translation because of the page table sizes
-*  14 Feb 2023: add hints section with some common issues
-*  18 Feb 2023: copy diagrams from lecture into hints section; along with new diagram for 2-level lookup; more prominenantly point to reading.
-*  20 Feb 2023: note more prominently that example code assumes LEVELS = 4
-*  27 Feb 2023: correct URL for reading link at bottom of hints
-</div>
-
 {.exercise ...}
 Your task:
 
 1.  This assignment has multiple submissions.
-
-    For the first submission, you must complete:
-
-    *  item 2 below with `LEVELS` only set to 1 and `POBITS` only set to 12.
-
-    and two of:
-
-    *  item 2 with `LEVELS` being set to 2 (in addition to 1) and `POBITS` only set to 12
-    *  item 2 with `LEVELS` and `POBITS` having any valid value
-    *  item 3 below (a Makefile)
-    *  item 4 below (a README)
-    *  item 5 below (a LICENSE and licenses.txt file)
-
 
     For **all** parts of this assignment, follow the coding style described below
     and make sure your code does not
     give warnings when compiled with `-Wall`^[ ...because you resolved the warnings,
 		not because you disabled them with warning-ignoring `#pragma`s or the like.
 	].
+    
+    For the first submission, you must complete one of the following:
+    1.  `ptbr` and `translate` from part 2 for LEVELS=1 and POBITS=12 where the `va` argument to
+        `translate` is a multiple of 4096 (i.e., its lower 12 bits are 0). We describe below how you
+        can test translate without working `page_allocate`.
+    2.  `ptbr` and `page_allocate` from part 2 for LEVELS=1 and POBITS=12, where `ptbr` is manually
+        set to an allocated, empty page table as described below and the `va` argument to `page_allocate`
+        is a multiple of 4096 (i.e., its lower 12 bits are 0).
+
+    (You can choose which to complete; if you attempt both, we will take the grade based on whichever
+    option's implementation is more complete.)
 
     For the second submission, which is in preparation for a code review,
-    you must complete all parts except part 5 and 6 below.
+    you must complete all parts except part 4, 5 and 6 below.
 
     For the final submission, you must complete all parts below (and should fix
     any problems identified in the code review).
@@ -55,16 +38,21 @@ Your task:
     should have been completed on earlier submissions.)
 
 2.  Implement a simulation of multi-level page table lookup and allocation.
-    For the purposes of this simulation "physical" addresses are the ones your simulation program
-    can access via pointers.
 
-    The layout of this page table must be configurable via `config.h`, which will `#define` the constants:
+    **For the purposes of this simulation "physical" addresses are the ones your simulation program
+    can access via pointers.**
+
+    The layout of this page table must be configurable via `config.h`
+    (example shown below), which will `#define` the constants:
 
     *  `LEVELS` -- number of levels in the page table
     *  `POBITS` -- the size of page offsets
 
-    Page table entries will take up 8 bytes, with the least significant bit being the "valid" bit.
-    Each page table (at each level) will take up one page.
+    Page tables will follow the format described below.
+
+    Although pointers will be represented using 64-bit `size_t`s, usually not all bits of the
+    virtual addresses will be used; you may assume that any unused bits will be set to `0`
+    when your code is called.
 
     Your code must implement API provided by a header file called `mlpt.h`, an version of
     which is supplied [here](files/mlpt.h). It includes:
@@ -77,10 +65,15 @@ Your task:
         using the currently setup page table. If the address is not allocated,
         return a value with all bits set to 1.
 
-    *  `void page_allocate(size_t va)` --- use posix_memalign to create page tables
-        and other pages sufficient to have a mapping
-        between the given virtual address and some physical address. If there
-        already is such a page, does nothing.
+    *  `void page_allocate(size_t va)` --- 
+        setup a mapping in the page tables pointed to by `ptbr` so that
+        it contains a mapping from the virtual address `va` to physical
+        address (if such a mapping does not already exist). 
+        Any page tables and pages needed and not yet allocated must be allocated using
+        `posix_memalign`. (Any pages or page tables already created, such as by a prior
+        call to `page_allocate`, should be reused. If the mapping is already entirely
+        setup, the function should do nothing.)
+
 
 3.  Prepare a `Makefile` for your code that: 
         - produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
@@ -93,7 +86,6 @@ Your task:
 4.   Write a `README` explaining (at a minimum):
 
      *  How to customize `config.h`, with some guidance on how to pick values for that file.
-     *  An example use case for this code. Note that this cannot be "to implement virtual memory" since this code relies on `posix_memalign`, which cannot work without virtual memory already being in place.
      *   Any known bugs or limitations (if you know of none, there is no need to say so; if you have an incomplete implementation so far, you'll probably have some to document).
 	
      You are encouraged to add additional detail, such as
@@ -120,26 +112,6 @@ Your task:
 
 We supply two header files.
 
-## `config.h`
-
-`config.h` does nothing other than `#define`ing two constants.
-
-```c
-/** LEVELS = number of PTEs used to translate one address. */
-#define LEVELS  4
-
-/** POBITS = number of bits used for the page offset. */
-#define POBITS  12
-```
-
-Your code must use these constants, must not redefine them,
-and must continue to work even if we change their values.
-For example, if we compile with a different `config.h` that `#define`s `LEVELS` as `3` instead of `4`,
-your code should create a 3-level page table instead of a 4-level page table.
-Your code should work for all integer values of `LEVELS` between `1` and `6` inclusive
-and all integer values of `POBITS` between `4` and `18` inclusive.
-As an exception, it does not need to (but may) support cases where 
-(`POBITS` − 3) × (`LEVELS` + 1) > 60.
 
 ## `mlpt.h`
 
@@ -169,82 +141,28 @@ size_t translate(size_t va);
 void page_allocate(size_t va);
 ```
 
-## Behavior
+# Pages, page table and ptbr format
 
-Prior to the first invocation of `page_allocate`, `ptbr` should be `NULL`;
-thereafter it should be a pointer to a heap-allocated array, cast as a `size_t`.
-It should not change after the first `page_allocate` invocation.
+1.  Since `POBITS` is the size of page offsets, *pages* occupy 2^`POBITS`^ bytes (where `POBITS` is a constant defined in `config.h` that we may change).
 
-If `ptbr` is not `NULL`, it should point to an array of `size_t`s
-occupying 2^`POBITS`^ bytes.
-Each such `size_t` should be interpreted as a page table entry.
+2.  Each *page table* will be an array of 8-byte page table entries. Each page table will occupy one physical page.
+    (For example, with `POBITS` set to 12, this means that page tables will contain 2^12^/8 = 512 entries.)
 
-Each other page table should be the same size. All page tables should start at the beginning of a page.
-Since page tables are limited in size, probably not all bits of the `size_t va` passed to `translate`
-and `page_allocate` will be used in the address translation process.
+3.  When interpreted as a `size_t`, a *page table entry*'s least significant bit will indicate whether it is valid:
 
-{.note} Some texts refer to a PTBR containing a physical address; others to it containing a physical page number. The above definition asserts it contains a physical address, not page number. As such, it will always have 0 in its low-order `POBITS` bits.
+    *  If that bit is 0, then that indicates that there is no corresponding physical page. The remaining bits have no
+       meaning, so you may use them however you wish.
 
+    *  If that bit is 1, then most significant `(64-POBITS)` are the physical page number of the corresponding
+       physical page. For a non-last-level page table entry, this will be the location of the next level's page table;
+       otherwise, this will be a location where (non-page-table) data could be stored.
 
-Each page table entry should be either
+       {.example} If `POBITS` is set to 12, then PTE `0x1234567812345679` has a one in the low-order bit, and thus indicates the presence of a physical page or another level page table. If `POBITS` is 12, the physical page number (of the page or next page table level) is `0x1234567812345`. The corresponding physical address of the first byte of that page is `0x1234567812345000`.
 
-0 in the low-order bit
-:   There is no physical page.
-    
-    The remaining bits have no defined meaning; you may use them
-    however you wish.
+4.  There will be `LEVELS` level of page tables (where `LEVELS` is a constant defined in `config.h` that we may change).
 
-    {.example} PTE `0x1234567812345678` has a zero in the low-order bit, and thus indicates the absence of a physical page.
+5.  The global variable `ptbr` represents the page table register. It should be `0` (a null pointer) when no page
 
-1 in the low-order bit
-:   The bits above the `POBITS` low-order bits are the physical page number of either
-    the next level page table or the physical page of memory.
-    The `POBITS` − 1 low-order bits (excluding the 1 in the lowest-order bit)
-    have no defined meaning; you may use them
-    however you wish.
-
-    {.example} PTE `0x1234567812345679` has a one in the low-order bit, and thus indicates the presence of a physical page or another level page table. If `POBITS` is 12, the physical page number (of the page or next page table level) is `0x1234567812345`.
-
-No pages should be allocated unless requested by a call to `page_allocate`.
-
-{.example ...} The comments in the following code correctly describe the number of pages that have ever been allocated
-**assuming that `LEVELS` is 4 and `POBITS` is 12**. (With smaller LEVELS values, either you would not use all the non-zero bits of the virtual addresses being tested or the virtual page numbers would be out of range.)
-
-```c
-
-#include <stdio.h>
-#include <assert.h>
-#include "mlpt.h"
-#include "config.h"
-
-int main() {
-    // 0 pages have been allocated
-    assert(ptbr == 0);
-
-    page_allocate(0x456789abcdef);
-    // 5 pages have been allocated: 4 page tables and 1 data
-    assert(ptbr != 0);
-
-    page_allocate(0x456789abcd00);
-    // no new pages allocated (still 5)
-    
-    int *p1 = (int *)translate(0x456789abcd00);
-    *p1 = 0xaabbccdd;
-    short *p2 = (short *)translate(0x456789abcd02);
-    printf("%04hx\n", *p2); // prints "aabb\n"
-
-    assert(translate(0x456789ab0000) == 0xFFFFFFFFFFFFFFFF);
-    
-    page_allocate(0x456789ab0000);
-    // 1 new page allocated (now 6; 4 page table, 2 data)
-
-    assert(translate(0x456789ab0000) != 0xFFFFFFFFFFFFFFFF);
-    
-    page_allocate(0x456780000000);
-    // 2 new pages allocated (now 8; 5 page table, 3 data)
-}
-```
-{/}
 
 # Coding Style
 
@@ -346,6 +264,142 @@ To test that these work properly,
     *page numbers* rather than full addresses (which would have a page number and page offset). If our testing code
     seems to think that page table entries don't contain the addresses you think they do, using a different format
     might be why.
+
+## Testing `translate` without `page_allocate`
+
+1.  You can manually set `ptbr` to a hard-coded page table array to test `translate` without `page_allocate` being implemented.
+    The below items show examples of how to do this with POBITS = 12 and LEVELS = 1.
+
+2.  In GCC and Clang, you can use `__attribute__((aligned(4096)))` to make a variable be allocated at an address that is a multiple
+    of 4096. Using this, you can declare an array of `size_t`s which takes up a (simulated) "physical" page as follows:
+
+        __attribute__((aligned(4096)))
+        static size_t page_of_data[512];
+
+    We could also declare it as an array of 1-byte `char`s as follows:
+
+        __attribute__((aligned(4096)))
+        static char page_of_data[4096];
+
+    though this would make it more difficult to set individual page table entries later.
+
+3.  By default, global-scope variables in C (and C++) will be zero-initialized, so `page_of_data` declared as above will
+    initially be an array of 0s. Since these have a valid bit of 0 in our page table format, you can test `translate()` with
+    an empty page table by doing something like:
+
+        __attribute__((aligned(4096)))
+        static size_t testing_page_table[512];
+
+        static void set_testing_ptbr(void) {
+            ptbr = (size_t) &testing_page_table[0];
+        }
+
+    (and calling `set_testing_ptbr()`)
+
+    With a proper implementation of `translate()`, `translate(X)` will be `-1` for every address (that's a valid virtual address).
+
+4.  Since page table entries are 8 bytes (the size of `size_t`), setting index _X_ of the array declared will set 
+    index _X_ of the page table. So, let's say (with POBITS = 12 and LEVELS = 1), we want to set virtual page 3
+    to point to a (simulated) "physical" page of data. We'll first allocate memory for that physical page of data
+    as a global variable:
+
+        __attribute__((aligned(4096)))
+        static char data_for_page_3[4096];
+
+    Then, we need to convert the physical address of `data_for_page_3` into a page table entry. To do this, we
+    can first extract the page number from the address:
+
+        size_t address_of_data_for_page_3_as_integer = (size_t) &data_for_page_3[0]; 
+        size_t physical_page_number_of_data_for_page_3 = address_of_data_for_page_3_as_integer >> 12;
+            // instead of >> 12, we could have written:
+                // address_of_data_for_page_3_as_integer / 4096
+        size_t page_table_entry_for_page_3 = (
+                // physical page number in upper (64-POBITS) bits
+                (physical_page_number_of_data_for_page_3 << 12)
+            |
+                // valid bit in least significant bit, set to 1
+                1
+        );
+    
+    Then, we can store that page number at index 3 in a page table:
+
+        // assuming testing_page_table initialized as above and ptbr points to it
+        testing_page_table[3] = page_table_entry_for_page_3;
+
+    After this, we should observe that passing an address with virtual page number 3 to `translate()`
+    will return "physical" addresses that are part of `data_for_page_3`. For example, we
+    would expect
+
+        translate(0x3045) == (size_t) &data_for_page_3[0x45];
+
+## Testing `page_allocate`
+
+1.  Since `page_allocate`'s primary job is to allocate memory when neeeded, for testing, I would recommend having some
+    way to count how many allocations occur.
+
+2.  With `LEVELS=1`, there are three cases to test for `page_allocate`:
+
+    *  on the first call, two physical pages should be allocated --- one to create the page table (and set `ptbr`
+       to a non-zero value) and one to allocate a page for data
+    *  on later calls: 
+       *  if the page number supplied to `page_allocate` hasn't been used before, then
+          one page for data should be allocated;
+       *  otherwise, no pages should be allocated
+
+3.  `page_allocate` should set page table entries pointed to by `ptbr`. You can treat `ptbr` like an array of `size_t`s
+    to examine them. For example, to print out the page table entry with index 3 (with POBITS=12, LEVELS=1):
+
+        size_t *pointer_to_table;
+        pointer_to_table = (size_t *) ptbr;
+        size_t page_table_entry = pointer_to_table[3];
+        printf("PTE @ index 3: valid bit=%d  physical page number=0x%lx\n",
+            page_table_entry & 1,
+            (long) (page_table_entry >> 12)
+        );
+
+
+## Example for LEVELS=4, POBITS=12
+
+The comments in the following code correctly describe the number of pages that have ever been allocated
+**assuming that `LEVELS` is 4 and `POBITS` is 12**.
+(With smaller LEVELS values, either you would not use all the non-zero bits of the virtual addresses being tested or the virtual page numbers would be out of range.)
+
+If you want to use this code to test your solution, it would be useful to have a counter of how often `posix_memalign` is called.
+
+```c
+#include <stdio.h>
+#include <assert.h>
+#include "mlpt.h"
+#include "config.h"
+
+int main() {
+    // 0 pages have been allocated
+    assert(ptbr == 0);
+
+    page_allocate(0x456789abcdef);
+    // 5 pages have been allocated: 4 page tables and 1 data
+    assert(ptbr != 0);
+
+    page_allocate(0x456789abcd00);
+    // no new pages allocated (still 5)
+    
+    int *p1 = (int *)translate(0x456789abcd00);
+    *p1 = 0xaabbccdd;
+    short *p2 = (short *)translate(0x456789abcd02);
+    printf("%04hx\n", *p2); // prints "aabb\n"
+
+    assert(translate(0x456789ab0000) == 0xFFFFFFFFFFFFFFFF);
+    
+    page_allocate(0x456789ab0000);
+    // 1 new page allocated (now 6; 4 page table, 2 data)
+
+    assert(translate(0x456789ab0000) != 0xFFFFFFFFFFFFFFFF);
+    
+    page_allocate(0x456780000000);
+    // 2 new pages allocated (now 8; 5 page table, 3 data)
+}
+```
+{/}
 
 ## Slide diagrams of translate and lookup
 

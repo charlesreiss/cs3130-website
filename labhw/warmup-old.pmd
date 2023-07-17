@@ -3,13 +3,6 @@ title: warmup
 author: Luther Tychnoviech 
 ...
 
-<div class="changelog">
-Changelog:
-
-*  26 Jan 2023: rephrase to allow invoking pprime as integers are read in
-*  26 Jan 2023: note that collaboration is exception to normal policy
-</div>
-
 # Your task
 
 1.  Write the following C files:
