@@ -3,19 +3,6 @@ title: OpenMP -- parallelism made easy
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  10 Apr 2023: add task queue with larger tasks option for map part; remove statement about not using optimization statements
-*  10 Apr 2023: remove coment about disabling optimizations
-*  10 Apr 2023: add reference to OpenMP schedule options
-*  11 Apr 2023: change command `gcc -lm ...` to more portable `gcc ... -lm`
-*  12 Apr 2023: correct internal link to starting code section
-*  12 Apr 2023: be more explicit that the reduce examples show a particular choice for the mapping step; add more explicit statement that you need to combine a way to parallelize the map and the reduce step
-*  12 Apr 2023: add note about false sharing with fancy reduce strateguy
-</div>
-
-
 # Task
 
 {.exercise ...}
