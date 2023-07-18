@@ -37,4 +37,4 @@ def read_all_quizzes(quiz_dir):
 
 if __name__ == '__main__':
     with open('./_data/quizzes.yaml', 'w') as fh:
-        yaml.dump(read_all_quizzes('../quizzes'), stream=fh, canonical=True)
+        yaml.dump(read_all_quizzes('../cs3130/quizzes'), stream=fh, canonical=True)

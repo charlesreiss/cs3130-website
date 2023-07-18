@@ -8,12 +8,14 @@ chmod -R a+r slides
 chmod -R a+r ~/public_html/3130/S2023/recordings
 pd=/u/cr4bd/bin/pandoc
 
+BUNDLE=bundle
+
 if [ ! -e jekyll-dir ]; then
     mkdir -p jekyll-dir
     pushd jekyll-dir
     ln -s ../Gemfile .
-    ~/bin/bundle config set --local path vendor/bundle
-    ~/bin/bundle install
+    $BUNDLE config set --local path vendor/bundle
+    $BUNDLE install
     popd
 fi
 
@@ -55,4 +57,4 @@ pushd jekyll-dir
 chmod -R a+r readings/*
 chmod -R a+r labhw/*
 chmod -R a+r labhw/files/*
-~/bin/bundle exec jekyll b --trace
+$BUNDLE exec jekyll b --trace
