@@ -4,34 +4,17 @@ author: Charles Reiss
 ...
 
 
-<div class="changelog">
-Changelog:
-
-*  1 Feb 2023: adjust description of tming `getpid` to be clearer that the wrapper is the `getpid` function in the standard library and that the time can include how long the wrapper's code takes
-*  2 Feb 2023: clarify that executables/object files should not be submitted.
-*  2 Feb 2023: allow students to split out the measurements recorded by their program into separate files to keep timings.txt from getting too big
-*  2 Feb 2023: clarify that advice re: using separate files or other strategies to avoid an optimizing compiler eliding a function call is for the issue of timing a function call, not the other items
-*  2 Feb 2023: clarify that item 5 should time until the signal sent back is received, but also allow the alternate interpretation
-*  2 Feb 2023: add option of setting flag in signal handler as an idea in hints for implementing the wait-for-signal in item 5, following what was done in the lab
-*  2 Feb 2023: remove sentence from hint for timing signal handler that contradicted item 5 being in the assignment
-*  3 Feb 2023: don't describe gettpid as a system call wrapper, since it's not always one
-*  3 Feb 2023: clarify that the "describe what calculations" step only needs to cover any calculations converting the program's output to time estimates
-*  4 Feb 2023: emphasize that `kill()` does not wait for another process's signal handler to run in hints; correct formatting of footnote
-*  7 Feb 2023: adjust phrasing about `sigsuspend` to emphasize that it changes what signals are blocked
-*  8 Feb 2023: specify that measurements not used to compute time estimates do not need to be supplied and that large data files can be placed in some external file
-*  8 Feb 2023: add footnote about usleep and `_XOPEN_SOURCE`
-*  8 Feb 2023: move footnote re: links to data files into body of "your task"
-</div>
-
 # Your task
 
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
 
     1.  calling an empty function and having it return
-    2.  running the `getpid` function from `<unistd.h>`^[When writing this assignment originally, I thought that this was just a system call wrapper. But, it seems that sometimes it's something more complicated (caching the result to avoid making additional system calls), depending on the version of the system libraries. Probably should have used `getppid` instead.]
+    2.  running the `getppid` function from `<unistd.h>`
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
-    4.  sending a signal to the current process and starting a signal handler
-    5.  sending a signal to another process, then having that process's signal handler send a signal back, then having the signal sent back received by the original process <small>(because we originally didn't specify this clearly, we'll also accept timing the time to just have the signal sent back and not necessairily received, but that seems like more work to time)</small>
+    4.  sending a signal to the current process and having the signal handler start executing (but not including the signal handler returning)
+    5.  sending a signal to another process, then having that process's signal handler send a signal back, then either:
+        *  having a signal handler for that signal start executing (but not including the signal handler returning); or
+        *  identifying that the signal was received using a function like `sigwait`
 
     Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
     above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
@@ -42,24 +25,29 @@ Changelog:
     *  We will test by entering the PID of the `./gettimings 5` process into the `./gettimings -1` process first, then entering the PID of the `./gettimings -1` process into the `./gettimings 5` process.
     *  (It's okay if we need to use control-C or similar to terminate `./gettimings -1` process.)
 
-2.  In a file called `timings.txt`:
+2.  Run your program and record the measurements it outputs.
 
-    *  record the measurements output by your program or mention what separate data files these measurements are supplied in;
+    In a file called `timings.txt`:
+
+    *  either place the measurements output by your program or identify which data file(s) they are in
     *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
     *  describe what calculations (if any) were necessary to convert the measurements output from your program to time estimates
 
-    If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files. We just need the parts of your program's output you used to compute the final time estimates you report; if your program outputs additional data, that does not need to be included.
+    If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files. We just need the parts of your program's output you used to compute the final time estimates you report; if your program outputs additional data, that does not need to be included. Also, it is acceptable if your program only outputs summaries of the measurements it takes rather than every individual measurement.
 
-    When producing the time estimates, you must:
+    When producing the time estimates, you and/or your program must:
 
-    *  make an attempt to account for measurement overhead (that is, the time required to obtain the clock measurements
-       themselves. One strategy might be to measure the time required for "nothing" and subtract this time from other
+    *  make an attempt to account for any measurement overhead (that is, the time required to obtain the clock measurements
+       themselves and/or run the benchmarked task.
+       One strategy might be to measure the time required for "nothing" and subtract this time from other
        measurements.)
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
-4.  Submit all your `timings.txt`, any data files , and all your source files (`Makefile`, and all the C and assembly source files) to the submission site. (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt)
+4.  Submit all your `timings.txt`, any data files , and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
+
+    (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt.)
 
 # Hints
 
@@ -76,6 +64,8 @@ One way to do this on Linux is using `clock_gettime`:
 
 will, when successful, set `returnvalue` to 0 and `t.tv_sec` to a number of seconds and `t.tv_nsec` to a number of nanoseconds. When unsuccessful, it will
 set `returnvalue` to `-1` and `errno` (or utility functions like `perror`) can be used to obtain information about the error.
+
+> On OS X, `clock_gettime` exists, but (at least in the versions I have looked at) it is only accurate to the nearest microsecond (even though it reports its result in nanoseconds).
 
 `CLOCK_MONOTONIC` specifies to use a timer that starts around system boot. There are also other clock options like `CLOCK_REALTIME` (measures seconds
 since 1 Jan 1970 midnight UTC).
