@@ -2,21 +2,6 @@
 title: Networking lab
 ...
 
-<div class="changelog">
-Changelog:
-
-*  14 Feb 2023: refer more clearly to protocol section from exercise part; note about
-   submitting to the submission site and requirements for that; adjust intro
-   to refer to "mailbox" model.
-*  15 Feb 2023: add the parenthetical "(plus a checksum)" an additional tim in the protocol description
-*  15 Feb 2023: note explicitly that recvd is called when packets are received.
-*  15 Feb 2023: add note about wrong len for `fwrite` in some versions of the template code.
-</div>
-
-> In some versions of the lab template code before approx 4pm 15 Feb, the `fwrite` uses
-> `len` instead of `len-3`. If note corrected this may be the cause of some extra junk in the output
-> on `./netlab 2`.
-
 You've already worked with TCP sockets in CSO1.
 In this lab you'll learn how to add reliability on top of unreliable "mailbox" type model of a network.
 
@@ -73,9 +58,11 @@ We provide a network simulation driver program. It has the following pieces:
 - Function `void waitForAllTimeouts(void)`.
     If there are no pending timeouts, returns immediately.
     Otherwise, blocks until there are not scheduled timeouts left.
-    
+
+    May **not** be called from a callback.
+
     Note, if you do not call this function then your program will stop before it receives any messages.
-    
+
 # Protocol
 
 Every message must have its first byte be a checksum.
@@ -124,7 +111,7 @@ You may assume that if a message has not arrived after a full second, it will no
 - You only have two kinds of messages you'll ever send. It's probably worth writing helper functions to send them (or just one helper to send both based on an argument).
 - `ACK`0 does not work; use `GET` instead.
 - Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
-    
+
     {.example ...}The following prints 3, then 1, then 4, ending two seconds after it started.
 
     ````c
@@ -141,8 +128,66 @@ You may assume that if a message has not arrived after a full second, it will no
     }
     ````
     {/}
-    
-    
+
+- Our API does not support any "`sleep`"-like function that waits for a certain amount of time,
+  but you can achieve the same effects. For example, pseudocode like:
+
+        void Example() {
+            Foo();
+            Sleep(1000); /* function that does not exist in our API */
+            Bar();
+        }
+
+  (where `Sleep(1000)` would wait 1000 milliseconds)
+  can be transformed to use our API as follows:
+
+        void ExamplePartTwo(void *arg);
+        void Example() {
+            Foo();
+            setTimeout(ExamplePartTwo, 1000, NULL);
+        }
+        void ExamplePartTwo(void *arg) {
+            Bar();
+        }
+
+- A more challenging case for programming without any `sleep`-like function is when
+  there would be local variables. For example, the previous transform doesn't quite
+  work on:
+
+        void Example() {
+            int x = Foo();
+            int y = Foo();
+            Sleep(1000); /* function that does not exist in our API */
+            Bar(x, y);
+        }
+
+  because we need to do something wiht `x` and `y`. This is what we can use the `arg` parameter in `setTimeout` for:
+
+        struct XYHolder {
+            int x, y;
+        }
+        void ExamplePartTwo(void *arg); 
+        void Example() {
+            struct XYHolder *xy;
+            xy = malloc(sizeof(struct XYHolder));
+            xy->x = Foo();
+            xy->y = Foo();
+            setTimeout(ExamplePartTwo, 1000, xy);
+        }
+
+        void ExamplePartTwo(void *arg) {
+            struct XYHolder *xy;
+            xy = arg;
+            Bar(xy->x, xy->y);
+            free(xy);
+        }
+
+   In this case, we allocate space on the heap to store `x` and `y`, and pass a pointer to that space
+   via `setTimeout`.
+
 - The argument of your callbacks must be typed as a `void *`, but (via casting) can be any type of 8 or fewer bytes.
     Feel free to use `NULL` if you don't need an argument.
+
 - My solution used a few global variables for the information I wanted in every callback. It was 58 lines of reasonably-formatted C code.
+
+
