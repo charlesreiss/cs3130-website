@@ -5,7 +5,7 @@
   submit_file: Makefile
 
 - name: warmup
-  due: 2023-09-01
+  due: 2023-09-08
   page: labhw/warmup.html
   tentative: true
   old_submit_files:
@@ -123,7 +123,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2023-10-04
+  due: 2023-10-06
   grade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
@@ -235,7 +235,7 @@
 - name: life
   short_name: life
   page: labhw/life.html
-  due: 2023-11-15
+  due: 2023-11-17
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
