@@ -162,18 +162,18 @@
   lab: true
   due: 2023-10-11
 
-- name: cache programs
-  short_name: cache-programs
-  page: labhw/cache-programs.html
-  submit_file: "*submit*.tar"
-  due: 2023-10-18
-
 - name: fork lab
   short_name: fork-lab
   lab: true
   page: labhw/fork-lab.html
   submit_file: "*.c"
   due: 2023-10-18
+
+- name: cache programs
+  short_name: cache-programs
+  page: labhw/cache-programs.html
+  submit_file: "*submit*.tar"
+  due: 2023-10-20
 
 - name: sync games
   lab: true
