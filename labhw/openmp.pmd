@@ -32,6 +32,12 @@ OpenMP is designed to make common kinds of speed-oriented parallelism simple and
 It uses a special set of C pre-processor directives called "pragmas" to annotate common programming constructs and have then transformed into threaded versions.
 It also automatically picks a level of parallelism that matches the number of cores available.
 
+In this writeup we describe all the OpenMP functionality you should need. However, you may also find it useful to refer to (for example):
+
+*  Mattoson and Meadow's [OpenMP introduction (slidedeck)](https://www.openmp.org/wp-content/uploads/omp-hands-on-SC08.pdf) from the Supercomputing '08 conference
+*  the [official OpenMP reference guide](https://www.openmp.org/wp-content/uploads/OpenMPRefCard-5-2-web.pdf),
+*  Lawrence Livermore National Labroatory's [OpenMP tutorial](https://hpc-tutorials.llnl.gov/openmp/),
+
 ## Set-up
 
 Your compiler has to be built with OpenMP support for OpenMP to work.
