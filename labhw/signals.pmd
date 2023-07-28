@@ -3,13 +3,6 @@ title: Signals Lab
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  1 Feb 2023: adjust recommended shared memory region name from /*PID*-mmchat to /*PID*-chat
-*  1 Feb 2023: replaced "wait for `outbox[0]` to stop being `\0`" with "wait for `outbox[0]` to become `\0`" to match the given code and rest of description
-</div>
-
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
@@ -95,8 +88,8 @@ that for this lab.)
    To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like `/*PID*-chat`,
    which you can generate using code like:
 
-        char inbox_name[512];
-        snprintf(inbox_name, sizeof inbox_name, "/%d-chat", pid);
+        char inbox_filename[512];
+        snprintf(inbox_name, sizeof inbox_filename, "/%d-chat", pid);
 
    Note that the name must start with a `/`.
 
@@ -105,7 +98,7 @@ that for this lab.)
 
    To allocate and get a handle for a shared memory region, open it using shm_open with the `O_CREAT` flag:
 
-        int inbox_fd = shm_open(inbox_name, O_CREAT | O_RDWR, 0666);
+        int inbox_fd = shm_open(inbox_filename, O_CREAT | O_RDWR, 0666);
         if (inbox_fd < 0) { /* something went wrong */ }
 
    The handle, `inbox_fd` in the code above, is an integer that you will pass to the `mmap` ("memory map")
@@ -120,7 +113,7 @@ that for this lab.)
 
    To deallocate, use `shm_unlink`:
 
-        shm_unlink(inbox_name);
+        shm_unlink(inbox_filename);
     
    Shared memory regions can persist even after the creating program terminates, so **always deallocate what you allocate**!
    Even if your program stops early (e.g., by SIGINT) you still need to deallocate.
@@ -134,14 +127,16 @@ that for this lab.)
 3. A pointer. You attach a pointer to shared memory using `mmap` and detach it with `munmap`:
 
     ````c
-    inbox = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
-    if (inbox == (char*) MAP_FAILED) {
+    char *inbox_data;
+    ...
+    inbox_data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
+    if (inbox_data == (char*) MAP_FAILED) {
         /* something went wrong */
         /* note that MAP_FAILED is *NOT* the same thing as NULL */
     }
     close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
     // ...
-    munmap(inbox, size);
+    munmap(inbox_data, size);
     ````
 
 # Repeating and waiting
@@ -151,7 +146,7 @@ You've got two things to do: keyboard ↦ outbox and inbox ↦ screen.
 ## keyboard ↦ outbox
 
 A loop in `main` is the way to go: `while(!feof(stdin))`{.c} you want to `fgets` directly into the outbox.
-After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox[0]`{.c} to become `'\0'`{.c}.
+After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox_data[0]`{.c} to become `'\0'`{.c}.
 Don't just busy-wait though: check, then go to sleep for a bit, then check again.
 (A better strategy you could also try might be to wait for SIGUSR2 using sigprocmask() and sigwait()
 and have the receiving process send SIGUSR2 when it is done reading the input.)
@@ -159,7 +154,7 @@ and have the receiving process send SIGUSR2 when it is done reading the input.)
 ```c
 // wait for '\0' by checking 100 times a second
 // 10,000 μs = 10 ms = 1/100 second
-while(outbox[0]) { usleep(10000); }
+while(outbox_data[0]) { usleep(10000); }
 ```
 
 ## inbox ↦ screen
