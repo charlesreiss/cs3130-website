@@ -3,12 +3,6 @@ title: Fork and run
 author: adapted from HW by Luther Tychnoviech by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  22 March 2023: add pointer to readings
-</div>
-
 {.exercise ...}
 
 1. Possibly working with a partner, write a single file `my_system.c`

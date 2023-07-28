@@ -6,13 +6,6 @@ author:
 ...
 
 <div class="changelog">
-Changelog:
-
-*  31 Mar 2023: add some hints regarding reading all data from a pipe
-*  2 Apr 2023: be more explicit that `parallelgetoutput` requires reading from all processes at once and that therefore most likely the output will be interleaved
-*  2 Apr 2023: specify that `my_system` implementation is on resources tab on collab
-*  3 Apr 2023: include required NULL on execv's in examples
-</div>
 
 {.exercise ...}
 
@@ -172,6 +165,22 @@ allocated and never `free`d.
 {/}
 
 # Hints
+
+## catching memory errors reliably
+
+1.  Memory errors such as using uninitialized memory unintentionally are a common problem on this assignment. To help avoid these problems,
+    I recommend testing by compiling and linkingusing the flags:
+
+        -fsanitize=address -ftrivial-auto-var-init=pattern -Og -g
+
+    *  `-fsanitize=address` will enable [AddressSanitizer](https://github.com/google/sanitizers/wiki/AddressSanitizer), which checks for accessing out-of-bounds mmeory;
+
+    *  `-ftrivial-auto-var-init=pattern` will initialize local variables with a pattern that should more consistently trigger errors (rather than often "working" by accident due to leftover values on the stack).
+       If you are using GCC, note that that this requires GCC version at least 12 (available on portal/NX via `gcc-12` or via `module load gcc`). (It's been supported in Clang for much longer.)
+
+    *  `-Og` enables compiler optimizations that should work well with debugging
+
+    * -`g` enables debugging information. (In addition to being useful when using the debugger, this should allow AddressSanitizer to give better information about errors it finds).
 
 ## fork lab code
 
