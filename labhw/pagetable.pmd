@@ -399,12 +399,20 @@ int main() {
     // 2 new pages allocated (now 8; 5 page table, 3 data)
 }
 ```
-{/}
 
-## Slide diagrams of translate and lookup
+## Diagrams of translate and lookup
 
-All these assuming `ptbr` variable stored at address `0x5898`, containing `0x10000`,
-as well as some other value stored in the page tables found.
+All these assume a `ptbr` variable stored at address `0x5898`, containing `0x10000`
+and a `POBITS` setting of 12.
+
+The diagrams show "physical" memory addresses, with lowest address at the bottom of the diagram
+and the address of each thing labeled on the left-hand side. For example, "translate(va)"
+labeling a line
+indicates that the "translate(va)" (that is, the return value of translate) is equal to the
+address of this line.
+Lines with arrows at both ends marking a portion of the address space indicate that the size
+of that space is based on the value of something. For example, the region labeled "virtual page number from va"
+indicates that the size of that region is computed from the virtual page number stored in va.
 
 ### 1-level translate
 
