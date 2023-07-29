@@ -108,7 +108,9 @@ as follows:
 *  the arguments (`argv` value) for the program run shall be the elements of `argv_base` followed by the 0-based index of
    the child process converted to a string
 
-The output collected may interleave the output from each of the child processes. *[Added 2 April:]*
+The output collected may interleave the outputs of the child processes (and an implementation
+that does this is simpler than one that does not).
+
 In order to ensure that the processes run in parallel, if they are writing to a pipe, you need
 to be reading from that pipe to prevent them from hanging (if they write too much).
 With multiple processes, the easiest way of doing this would be to use a single pipe for all the programs,
