@@ -164,9 +164,39 @@ Like with the `getoutput` example, the program above has a memory leak; `output`
 allocated and never `free`d.
 {/}
 
+{.example ...}
+You can test more directly that your parallelgetoutput passes the correct arguments by
+writing a program that checks the arguments it gets. For example, if you have the following
+python program:
+
+    #!/usr/bin/python3
+    import sys
+    print("args =",sys.argv)
+
+prints out its arguments. (You could also write and compile a similar C program.)
+If you save this a file called 'args.py' and make that file
+executable, then a main() like:
+
+    int main() {
+        const char *argv_base[] = { "./foo.py", "first", "second", "third", NULL };
+        const char *output = parallelgetoutput(3, argv_base);
+
+        printf("Text: [%s]\n", output);
+    }
+
+should output something like:
+
+    args = ['./foo','first','second','third','0']
+    args = ['./foo','first','second','third','1']
+    args = ['./foo','first','second','third','2']
+
+but possibly with the lines in a different order and/or interleaved.
+{/}
+
+
 # Hints
 
-## catching memory errors reliably
+## Catching memory errors reliably
 
 1.  Memory errors such as using uninitialized memory unintentionally are a common problem on this assignment. To help avoid these problems,
     I recommend testing by compiling and linkingusing the flags:
@@ -185,7 +215,7 @@ allocated and never `free`d.
 ## fork lab code
 
 You may find it useful to consult your code for the fork lab. If you did not complete it,
-an example solution is available on Collab, under the resources tab.
+an example solution will be available on Collab, under the resources tab.
 
 ## Testing that you `waitpid`
 
