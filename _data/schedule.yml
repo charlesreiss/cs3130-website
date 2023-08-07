@@ -2,6 +2,9 @@
 - date: 2023-08-22
   week: 1
   title: introduction / building (pt 1)
+  slides: yes
+  sldies_prelim: yes
+  slides_extra: yes
   reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
   description: |
     * course outline
@@ -15,6 +18,10 @@
 
 - date: 2023-08-24
   week: 1
+  slides_see: 2023-08-22
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   title: building (pt 2) /  privilege
   reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3.1"
   description: |
@@ -27,6 +34,7 @@
   week: 2
   title: exceptions
   reading: "[kernel](readings/kernel.html) §2-2.2, 3.1"
+  slides_see: 2023-08-24
   description: |
     *  exceptions
        *  events triggering
@@ -43,6 +51,7 @@
 - date: 2023-08-31
   week: 2
   title: signals 
+  slides_see: 2023-08-24
   reading: "[kernel](readings/kernel.html) §2.3.1"
   description: |
     *  Unix signals
@@ -55,6 +64,9 @@
 - date: 2023-09-05
   week: 3
   title: accounts + virtual memory 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §3"
   description: |
     *  user IDs/account abstraction
@@ -74,6 +86,7 @@
 - date: 2023-09-07
   week: 3
   title: virtual memory 2
+  slides_see: 2023-09-05
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
@@ -87,6 +100,7 @@
 - date: 2023-09-12
   week: 4
   title: virtual memory 3
+  slides_see: 2023-09-05
   reading: "[kernel](readings/kernel.html) §3"
   description: |
     *  page tables
@@ -121,7 +135,8 @@
 - date: 2023-09-19
   week: 5
   title: IP +  routing
-  eading: "[protocols](readings/protocols.html) §1-2"
+  reading: "[protocols](readings/protocols.html) §1-2"
+  slides_see: 2023-09-14
   description: |
     *  example: a frame
        *  layers (link, network, transport)
@@ -137,6 +152,7 @@
 - date: 2023-09-21
   week: 5
   title: URLs + DHCP + DNS
+  slides_see: 2023-09-14
   reading: "[protocols](readings/protocols.html) §3-4"
   description: |
     *  port numbers and UDP (finish)
@@ -154,6 +170,9 @@
 - date: 2023-09-26
   week: 6
   title: network security / secure channels 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[security](readings/sec.html) §1-1.5, 3"
   description: |
     *  cryptography (start)
@@ -169,6 +188,7 @@
 - date: 2023-09-28
   week: 6
   title: secure channels 2
+  slides_see: 2023-09-26
   reading: "[security](readings/sec.html) §1.5-2"
   description: |
     *  cryptography (con't)
@@ -386,18 +406,18 @@
   no_class: true
 
 - date: 2023-11-28
-  week: 16
+  week: 15
   title: slack
 
 - date: 2023-11-29
   lab: true
-  week: 16
+  week: 15
 
 - date: 2023-11-30
-  week: 16
+  week: 15
   title: slack
 
 - date: 2023-12-05
-  week: 17
+  week: 16
   title: Exam Review
 

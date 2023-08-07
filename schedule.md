@@ -55,8 +55,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
     <a href="slides/{{ day.slides_see | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see | date: "%d %b"}}</a>
     pdf plus
   {%- endif -%}
-  {%- if day.slides_tentative or day.slides_prelim -%}&nbsp;(tentative)&nbsp;{%- else -%} <!-- --> {%- endif -%}
-  <a href="slides/{{ file_prefix }}-slides.pdf">slides</a>
+  <a href="slides/{{ file_prefix }}-slides.pdf">{%- if day.slides_tentative or day.slides_prelim -%}&nbsp;tentative&nbsp;{%- else -%} <!-- -->{%- endif -%}slides</a>
   {%- if day.slides_extra -%}&nbsp;<span class="slides-extra-note">(more than one day of slides)</span>{%- endif -%}
   {%- if day.slides_pptx -%}&nbsp;(or <a href="slides/{{ file_prefix }}-slides.pptx">as pptx</a>){%- endif -%}
   {%- if day.slides_see2 -%}
@@ -71,6 +70,10 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
         and <a href="slides/{{ day.slides_see2 | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see2 | date: "%d %b"}}</a> {%- if day.slides_see2_note -%}{{day.slides_see2_note}}{%- endif -%}
     {%- endif -%}
   </div>
+  {%- else -%}
+    {%- if day.slides_base -%}
+      <a href="slides/{{ day.slides_base }}.pdf">tentative slides</a>
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}
 {%- if video -%}

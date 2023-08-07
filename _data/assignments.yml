@@ -232,6 +232,13 @@
   - "performance.txt"
   due: 2023-11-08
 
+- name: side channel
+  short_name: side-channel
+  lab: true
+  page: labhw/side-channel.html
+  submit_file: "lab.c"
+  due: 2023-11-15
+
 - name: life
   short_name: life
   page: labhw/life.html
@@ -242,13 +249,6 @@
   comment: figure out SLURM setup
   comment: sanitize-examples.sh script
   comment: ThreadSanitizer stuff
-
-- name: side channel
-  short_name: side-channel
-  lab: true
-  page: labhw/side-channel.html
-  submit_file: "lab.c"
-  due: 2023-11-29
 
 - name: pipeline
   short_name: pipeline
@@ -265,7 +265,7 @@
     but not intended to be a deduction).</small>
   due: 2023-11-28
 
-- XXXname: C++ OR templates
+- name: C++ OR templates
   short_name: cpp
   lab: true
   page: labhw/cpp-choice.html
@@ -274,7 +274,7 @@
   - "*.cc"
   - "*.h"
   - "*.hh"
-  due: 2023-04-26
+  due: 2023-11-29
 
 - name: OOO
   short_name: OOO
@@ -283,4 +283,4 @@
   missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
   no-late: true
-  due_message: OOO due **before lecture time**, late submissions **not normally accepted**
+  due_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
