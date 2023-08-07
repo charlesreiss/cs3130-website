@@ -107,11 +107,23 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 1.
     If you find yourself tempted to use a global variable (such as a global mutex or barrier), you can usually get away with adding it as a field of a `struct` passed in by reference to your thread function's `void *` parameter instead.
 
-1.  If your code hangs, you can run it in a debugger until it hangs, and then interrupt it (like with control-C) and examine where each thread is.
+1.  If your code hangs:
 
-    For doing this in LLDB, see [their tutorial on examining thread state](https://lldb.llvm.org/use/tutorial.html#examining-thread-state).
+    *  you can run it in a debugger until it hangs, and then interrupt it (like with control-C) and examine where each thread is.
 
-    In GDB, you can use a command like `thread apply all backtrace` to get a backtrace from all threads, and `thread THREAD-ID` to switch to debugging the thread with a particular ID; see also [the manual for debugging with threads in GDB](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
+       For doing this in LLDB, see [their tutorial on examining thread state](https://lldb.llvm.org/use/tutorial.html#examining-thread-state).
+
+       In GDB, you can use a command like `thread apply all backtrace` to get a backtrace from all threads, and `thread THREAD-ID` to switch to debugging the thread with a particular ID; see also [the manual for debugging with threads in GDB](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
+
+    *  several common mistakes with barriers that can cause hangs include:
+
+       *  giving each thread its own copy of a barrier rather than having them share a single barrier (usually accessed using pointers);
+
+       *  initializing a barrier with an incorrect thread count;
+
+       *  destroying barriers while they are still in use;
+
+       *  running into the issue with `pthread_barrier_destroy` mentioned in caveats;
 
 # Caveats
 
