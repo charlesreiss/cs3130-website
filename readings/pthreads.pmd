@@ -2,12 +2,6 @@
 title: Using POSIX Threads
 ...
 
-<div class="changelog">
-Changelog:
-
-*  25 March 2023: add description of monitors API
-*  7 Apr 2023: correct `pthread_barrier_init` call having wrong number of arguments; mention most pthread_..._destroy functions
-</div>
 
 This document is intended to give a practical overview of using pthreads.
 It leaves out a lot of details.
@@ -243,6 +237,48 @@ See also:
 -  `pthread_mutex_trylock` for the "acquire if possible" behavior
 -  `pthread_mutex_destroy` for destroying mutexes (freeing any resources allocated by init).
 
+## On sharing mutexes (and other synchronization objects)
+
+Note that operations on mutexes take the `pthread_mutex_t` using a pointer
+because they modify the mutex object itself. This means that two threads
+need to have *same* `pthread_mutex_t` object, like is achieved using global variables
+above. You could also do this without global variables, such as by passings pointers
+to a mutex stored elsewhere:
+
+
+```c
+typedef struct {
+    pthread_mutex_t *ptr_to_mutex;
+    ...
+} task_description;
+
+void *thread_function(void *args) {
+    task_description *task = (task_description *)args;
+    /* ... */
+    pthread_mutex_lock(args->ptr_to_mutex);
+    /* only one thread can get here at a time */
+    pthread_mutex_unlock(args->ptr_to_mutex);
+    /* ... */
+}
+
+int main(int argc, const char *argv[]) {
+    pthread_mutex_t mutex;
+    task_description tasks[THREADCOUNT];
+    /* ... */
+    pthread_mutex_init(&mutex, NULL);
+    for(int i=0; i<THREADCOUNT; i+=1) {
+        tasks[i].ptr_to_mutex = &mutex;
+        /* ... */
+        pthread_create(&id[i], NULL, thread_function, tasks+i);
+    }
+    /* ... */
+}
+```
+
+However, passing by value (like modifying the above code to have a `pthread_mutex_t` in the `task_description` struct)
+would **not** work --- each thread would have a separate mutex. (Also
+
+Most of POSIX's other synchronization objects (such as barriers, reader-writer locks, semaphores) work similarly.
 
 ## Barrier {#barrier}
 
@@ -270,6 +306,9 @@ int main(int argc, const char *argv[]) {
     /* ... */
 }
 ```
+
+Like with `pthread_mutex_t`'s, the `barrier_wait` operation modifies the barrier object, so barrier objects
+need to shared between threads; they cannot be passed by value.
 
 See also `pthread_barrier_destroy` for destroying barriers (freeing any resources allocated by `pthread_barrier_init`).
 Note that less recent versions of `pthread_barrier_destroy` (such as on portal/our testing machines as of 2023) require
@@ -302,3 +341,4 @@ The relevant functions are documented in the following manpages:
 - `pthread_cond_wait` -- atomically unlock a mutex and add the current thread to the condition monitor's wait queue. When the thread is woken up from the wait queue, lock the mutex again before returning.
 - `pthread_cond_timedwait` --- like `pthread_cond_wait`, but stop waiting on the wait queue if a specified time passes and return an error
 - `pthread_cond_destory` -- free any resources allocated by `pthread_cond_init`
+
