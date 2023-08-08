@@ -19,7 +19,8 @@ A **process** has a full complement of private state:
 program registers, condition codes, virtual address space, kernel-managed resources like file descriptors, etc.
 
 A **thread** has a limited complement of private state:
-primarily just program registers and condition codes.
+primarily just program registers and condition codes. (Roughly corresponding to the state stored on an active processor core.)
+
 All the threads of a given process share the same virtual address space, kernel-managed resources like file descriptors, etc.
 Because the stack is managed by a program register (`%rsp`), this means each thread has its own stack.
 Because heap, code, and globals are stored at known virtual addresses,

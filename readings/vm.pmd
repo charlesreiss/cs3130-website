@@ -3,40 +3,19 @@ title: Virtual Memory
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-# Virtual Memory
+# Introduction
 
 One of the most important functions provided by a collaboration
 between the hardware and the operating system
 is virtual memory.
 Virtual memory provides
 
-a. each process with the illusion that it is the only process running.
+a. each process with the illusion that it is the only process in memory
 a. each process with the illusion that all possible addresses exist, no matter how much physical memory is available.
 a. memory protection such that user-mode code cannot access kernel memory.
 a. an efficient mechanism for communicating with processes.
 
-## Processes
-
-A **process** is a software-only operating system construct
-that roughly parallels the end-user idea of a running program.
-Each process has its own virtual address space.
-The hardware knows the difference between user and kernel mode,
-but not the difference between a web browser and a text editor.
-
-The operating system maintains a variety of data structures
-inside kernel-only memory to help track different processes.
-Portions of those structures relating to one process at a time^[or one per processor depending on the multiprocessor design]
-are loaded into hardware-accessible registers and memory
-so that the hardware mechanisms will cause running code to interact with the appropriate process's memory
-and other state.
-
-Changing which process's state is currently loaded is called a **context switch**.
-All major user operating systems (but not all embedded-system operating systems)
-use a hardware timer to create an exception every few dozen milliseconds
-to enable automated context switching and facilitate the illusion that
-more processes are running at a time than there are processors in the computer.
-
-## Regions of Memory
+# Regions of Memory
 
 To provide process separation,
 each memory access needs to be checked to ensure it is permitted.
@@ -53,7 +32,7 @@ Because each process may access a very large number of memory addresses,
 they also need to be efficient in space,
 meaning that in practice, permissions are applied to large contiguous regions of memory.
 
-### Segments revisited
+## Segments revisited
 
 A common internal representation of memory regions used by operating systems
 is a list of **segments**,
@@ -108,7 +87,7 @@ provide the library functions `mmap` and `munmap`
 for requesting the operating system to adjust its segments.
 Typical user applications use higher-level wrappers such as `malloc` instead.
 
-### Pages
+## Pages
 
 Hardware access to memory protections
 is designed to be very simple so that it can be very rapid.
@@ -184,13 +163,13 @@ because the data in question is known.
 That the timing of individual memory accesses was information that needed protection
 was not even known for decades after it became a potential side channel.
 
-## Page Tables
+# Page Tables
 
 A page table is conceptually just a map between virtual page numbers
 (which are fixed-size integers)
 and page table entries (which are each a physical page number and a set of Boolean flags).
 
-### Single-level page tables
+## Single-level page tables
 
 In the early days of virtual memory,
 when the entire addressable space was not large,
@@ -232,7 +211,7 @@ but the hardware can support 512KB physical RAM.
 Single-level page tables are inefficient for 32-bit addresses
 and basically untenable for 64-bit addresses.
 
-### Multi-level page tables
+## Multi-level page tables
 
 Multi-level page tables are a particular instance
 of a linked data structure known as a high-arity (or wide node)
@@ -243,7 +222,7 @@ Since this is not a data structure that is generally taught in data structure co
 this section provides a full overview of the data structure itself
 before discussing how they are used for virutal memory.
 
-#### Fixed-depth high-arity trees
+### Fixed-depth high-arity trees
 
 A tree is a linked data structure
 where each node contains an array of pointers to additional nodes.
@@ -410,7 +389,7 @@ rather than the 65,536 `PAYLOAD` values that would have been allocated for a sim
 {/}
 
 
-#### Multi-level page table implementation
+### Multi-level page table implementation
 
 Most programs access only a few megabytes of memory,
 allocated in a few contiguous chunks,
@@ -568,7 +547,7 @@ Of the above
 :::
 
 
-### Translation Lookaside Buffer
+## Translation Lookaside Buffer
 
 Address translation needs to happen for every instruction,
 at least once to fetch the instruction
@@ -604,13 +583,13 @@ pa = (ppn<<12) | (va & ((1<<12)-1));
 For more details on how caches like the TLB work,
 see [Caching](caching.html).
 
-## Usage
+# Usage
 
 Various uses of virtual memory are alluded to above
 to motivate the various features of virtual memory;
 this section focuses on those uses.
 
-### Lazy allocation
+## Lazy allocation
 
 When a program requests memory or is initially loaded, rather than having the program wait
 until all the requested space is actually setup, the operating system can let
@@ -619,7 +598,7 @@ part of that newly allocated space too early, the operating system can finish se
 in the page table handler. This "lazy" allocation idea might, for example,
 help programs start faster.
 
-### Page Swapping
+## Page Swapping
 
 Because addresses in code can be mapped to other addresses
 (with operating system intervention if needed),
@@ -720,7 +699,7 @@ Memory-mapped files
     copy of the file's data, so the bytes always reflect
     the current version of the file.
     
-### Process Switching
+## Process Switching
 
 Switching between processes happens in the operating system's code.
 When the OS was invoked (in an [Exception Handler](#handling)),
@@ -737,7 +716,7 @@ It is not uncommon for the operating system
 to perform many different bookkeeping and other operations
 each time a context switch is performed.
 
-### Direct Memory Access
+## Direct Memory Access
 
 Physical memory pages can be given to systems other than software processes.
 It is common for various input/output operations

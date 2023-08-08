@@ -23,7 +23,7 @@
   slides_prelim: yes
   slides_extra: yes
   title: building (pt 2) /  privilege
-  reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3.1"
+  reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3"
   description: |
     *  make
  
@@ -33,7 +33,7 @@
 - date: 2023-08-29
   week: 2
   title: exceptions
-  reading: "[kernel](readings/kernel.html) §2-2.2, 3.1"
+  reading: "[kernel](readings/kernel.html) §2-2.2"
   slides_see: 2023-08-24
   description: |
     *  exceptions
@@ -67,7 +67,7 @@
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [kernel](readings/kernel.html) §3"
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html)"
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions
@@ -87,7 +87,7 @@
   week: 3
   title: virtual memory 2
   slides_see: 2023-09-05
-  reading: "[kernel](readings/kernel.html) §3"
+  reading: "[VM](readings/vm.html)"
   description: |
     *  page tables
        *  storing in memory
@@ -101,7 +101,7 @@
   week: 4
   title: virtual memory 3
   slides_see: 2023-09-05
-  reading: "[kernel](readings/kernel.html) §3"
+  reading: "[VM](readings/vm.html)"
   description: |
     *  page tables
        *  as a tree (finish)
