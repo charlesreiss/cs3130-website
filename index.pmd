@@ -28,6 +28,7 @@ We have created several writeups for this course:
 - [CSO2 overview](readings/intro.html)
 - [Makefiles](readings/make.html)
 - [Kernels -- Software for the Hardware](readings/kernel.html)
+  *  [Virtual Memory](readings/vm.html)
 - [User Accounts](readings/accounts.html)
   *  [File Permissions](readings/permissions.html)
 - [Buses (and networks)](readings/bus.html)
