@@ -81,3 +81,7 @@ keep_files:
     - "*.mp3"
     - "*.m4a"
     - "*.svg"
+
+
+sass:
+  quiet_deps: true
