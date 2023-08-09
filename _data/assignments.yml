@@ -8,12 +8,12 @@
   due: 2023-09-08
   page: labhw/warmup.html
   tentative: true
-  old_submit_files:
+  submit_files:
   - Makefile
   - makefile
   - main.c
-  - primes.c
-  - primes.h
+  - split.c
+  - split.h
 
 - name: signal handling
   short_name: signal

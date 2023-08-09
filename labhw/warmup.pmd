@@ -60,7 +60,7 @@ author: Charles Reiss
 
           should choose a sep value of `abc`.
 
-      *  reads lines of input (without prompting) of up to 4000 bytes. For each line, it should:
+      *  reads lines of input (without prompting). For each line, it should:
 
          *  exit if the line is one period (`.`) with no other text or whitespace;
          *  otherwise call `string_split` with that input and the chosen `sep` value,
@@ -68,10 +68,10 @@ author: Charles Reiss
             brackets (`[` and `]`) and without spaces between words, followed by a newline, then frees
             the resulting array.
 
-        Your program may not access out-of-bounds memory (such as might cause a segfault)
-        if a line of input is longer than 4000 bytes, but otherwise, we do not care
-        what it does for long input lines.
-         
+      Your program must support lines of input of at least 4000 bytes.
+      If an input line is more than 4000 bytes, your program may not
+      access out of bounds memory (such as might cause a segfault), but
+      otherwise we do not care what it does.
 
       (Some examples of expected transcripts are shown below.)
 
