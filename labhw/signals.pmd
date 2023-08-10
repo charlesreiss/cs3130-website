@@ -165,3 +165,13 @@ When you handle `SIGUSR1`
 2. `fflush(stdout)`{.c} to ensure we see it now, not later;
 3. set the first character in the inbox to `'\0'`{.c} so the other process knows we're ready for it to send more
 
+# Note on debuggers and signals
+
+1.  If you run your program(s) in a debugger like GDB or LLDB, they will by default intercept signals:
+
+    *  for most signals, GDB and LLDB automatically stop as if there was a breakpoint when your program receives the signal;
+    *  for SIGINT and SIGTRAP, GDB and LLDB will not pass the signal to the program's own signal handler (if any) by default;
+
+    If you want to change this behavior, in LLDB you can use `process handle` command (see `help process handle` for
+    documentation), and in GDB, the `info signals`, `catch`, and `handle` commands
+    (see the [GDB reference manual chapter on signals](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Signals.html#Signals)).
