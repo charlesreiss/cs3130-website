@@ -3,16 +3,6 @@ title: Translation lookaside buffer
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  23 March 2023: add missing `size_t` in the translate stub in tips
-*  24 March 2023: note that example assumes a POBITS of 12
-*  24 March 2023: note that we don't want `main()` or `translate()` implementations submitted since that makes testing hard
-*  24 March 2023: update defunct references to PA02/PA03 to reference pagetable instead
-*  28 March 2023: add note that we don't care about unused most significant virtual address bits
-</div>
-
 Implement a TLB wrapper around the page table interface from previous assignments.
 Note you will *not* need to implement a page table for this assignment;
 you'll merely use its API, as defined in `mlpt.h`
@@ -104,43 +94,100 @@ TLBs typically do not have a CPU-write-to-TLB functionality, so they do not need
 
 # Examples
 
-With a POBITS of 12, if you stub `translate(va)`{.c} as `return va < 0x1234000 ? va + 0x20000 : -1;`{.c}
-then the following code should work
+With a POBITS of 12, if you stub `translate(va)`{.c} as:
+
+    if (va < 0x1234000)
+        return va + 0x20000;
+    else if (va > 0x2000000 && va < 0x2345000)
+        return va + 0x100000;
+    else
+        return -1;
+
+then the following tests should work:
+
+## example 1
+
+Several accesses to different sets, including with various offsets, then verifying that accesses after tlb_clear still work.
 
 ````c
 tlb_clear();
 assert(tlb_peek(0) == 0);
-assert(tlb_translate(0) == 0x20000);
+assert(tlb_translate(0) == 0x0020000);
 assert(tlb_peek(0) == 1);
 assert(tlb_translate(0x200) == 0x20200);
+assert(tlb_translate(0x400) == 0x20400);
 assert(tlb_peek(0) == 1);
 assert(tlb_peek(0x200) == 1);
-assert(tlb_translate(0x1200) == 0x21200);
-assert(tlb_translate(0x5200) == 0x25200);
-assert(tlb_translate(0x8200) == 0x28200);
-assert(tlb_translate(0x2200) == 0x22200);
+assert(tlb_translate(0x2001200) == 0x2100120);
+assert(tlb_translate(0x0005200) == 0x0025200);
+assert(tlb_translate(0x0008200) == 0x0028200);
+assert(tlb_translate(0x0002200) == 0x0022200);
 assert(tlb_peek(0x1000) == 1);
 assert(tlb_peek(0x5000) == 1);
 assert(tlb_peek(0x8000) == 1);
 assert(tlb_peek(0x2000) == 1);
 assert(tlb_peek(0x0000) == 1);
-assert(tlb_translate(0x101200) == 0x121200);
-assert(tlb_translate(0x801200) == 0x821200);
-assert(tlb_translate(0x301200) == 0x321200);
-assert(tlb_translate(0x501200) == 0x521200);
-assert(tlb_translate(0xA01200) == 0xA21200);
-assert(tlb_translate(0xA0001200) == -1);
-assert(tlb_peek(0x001200) == 0);
-assert(tlb_peek(0x101200) == 0);
-assert(tlb_peek(0x301200) == 3);
-assert(tlb_peek(0x501200) == 2);
-assert(tlb_peek(0x801200) == 4);
-assert(tlb_peek(0xA01200) == 1);
+tlb_clear();
+assert(tlb_peek(0x1000) == 0);
+assert(tlb_peek(0x5000) == 0);
+assert(tlb_peek(0x8000) == 0);
+assert(tlb_peek(0x2000) == 0);
+assert(tlb_peek(0x0000) == 0);
+assert(tlb_translate(0) == 0x120000);
+assert(tlb_peek(0x0000) == 1);
+```
+
+## example 2
+
+Accessing a single set several times, then making sure accesses to a different set don't interfere, then
+checking that accesses still work after tlb_clear:
+
+```c
+tlb_clear();
+assert(tlb_translate(0x0001200) == 0x0021200);
+assert(tlb_translate(0x2101200) == 0x2101200);
+assert(tlb_translate(0x2301200) == 0x2401200);
+assert(tlb_translate(0x0501200) == 0x0521200);
+assert(tlb_translate(0x0A01200) == 0x0A21200);
+assert(tlb_peek(0x0001200) == 0);
+assert(tlb_peek(0x2101200) == 0);
+assert(tlb_peek(0x2301200) == 3);
+assert(tlb_peek(0x0501200) == 2);
+assert(tlb_peek(0x0801200) == 4);
+assert(tlb_peek(0x0A01200) == 1);
 assert(tlb_translate(0x301800) == 0x321800);
-assert(tlb_peek(0x001000) == 0);
-assert(tlb_peek(0x101000) == 0);
-assert(tlb_peek(0x301000) == 1);
-assert(tlb_peek(0x501000) == 3);
-assert(tlb_peek(0x801000) == 4);
-assert(tlb_peek(0xA01000) == 2);
+assert(tlb_peek(0x0001000) == 0);
+assert(tlb_peek(0x2101000) == 0);
+assert(tlb_peek(0x2301000) == 1);
+assert(tlb_peek(0x0501000) == 3);
+assert(tlb_peek(0x0801000) == 4);
+assert(tlb_peek(0x0A01000) == 2);
+assert(tlb_translate(0x404000) == 0x424000)
+tlb_clear();
+assert(tlb_peek(0x301000) == 0);
+assert(tlb_peek(0x501000) == 0);
+assert(tlb_peek(0x801000) == 0);
+assert(tlb_peek(0xA01000) == 0);
+assert(tlb_translate(0xA01200) == 0xA21200);
 ````
+
+## example 3
+
+Accessing invalid addresses and making sure it doesn't change translation/LRU for valid address:
+
+```c
+tlb_clear();
+assert(tlb_translate(0xA0001200) == -1);
+assert(tlb_peek(0xA0001000) == 0);
+assert(tlb_translate(0x1200) == 0x21200);
+assert(tlb_peek(0xA0001200) == 0);
+assert(tlb_peek(0x1000) == 1);
+assert(tlb_translate(0xA0001200) == -1);
+assert(tlb_translate(0xB0001200) == -1);
+assert(tlb_translate(0xC0001200) == -1);
+assert(tlb_translate(0xD0001200) == -1);
+assert(tlb_translate(0xE0001200) == -1);
+assert(tlb_peek(0x1000) == 1);
+assert(tlb_translate(0x1200) == 0x21200);
+```
+
