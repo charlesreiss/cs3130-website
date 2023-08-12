@@ -258,7 +258,8 @@ the following notes if it is a hit or miss and if a miss, what type.
 
 # Hierarchies of memory caches
 
-<figure
+<figure>
+<img
     src="cache-hierarchy.svg"
     alt="A block diagram of a cache hierarchy featuring two cores with: each core connected to an L1 instruction cache and an L1 data cache. The L1 caches for each core are in turn connected to an L2 cache labeled as 'unified' for the core. The two L2 caches are then connected to a shared L3 cache. The L3 cache is, in turn, connected to main mmeory."
 >
