@@ -3,14 +3,6 @@ title: Caches -- Keep a finger in it
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  8 March 2023: add section on write-allocate versus write-no-allocate policies; label write-through v write-back section more clearly.
-*  16 March 2023: mention that compulsory miss = cold miss
-*  21 March 2023: add some pointers to some alternate writeups under "Additional resources"
-</div>
-
 # A thought experiment
 
 Suppose I handed you a book and asked you to tell me the 211^th^ word on the 83^rd^ page,
@@ -264,39 +256,66 @@ the following notes if it is a hit or miss and if a miss, what type.
    *  afterwards: set with index `0x23`: `0xbfaa30` through `0xbfaa3f`; `0xbf1230` through `0bf123f`
 {/}
 
-# Common memory caches
+# Hierarchies of memory caches
 
-As of 2019, it is common for end-user computers to have a variety of caches.
+<figure
+    src="cache-hierarchy.svg"
+    alt="A block diagram of a cache hierarchy featuring two cores with: each core connected to an L1 instruction cache and an L1 data cache. The L1 caches for each core are in turn connected to an L2 cache labeled as 'unified' for the core. The two L2 caches are then connected to a shared L3 cache. The L3 cache is, in turn, connected to main mmeory."
+>
+<figcaption>
+A possible cache hierarchy for a two-core system. Different systems will have different numbers of levels
+of cache and different ways of sharing those caches between cores and between data and instructions.
+</figcaption>
+</figure>
+
+Most modern end-user computers have several caches for the contents of memory arranged in a hierarchy.
 
 L1
-:   The L1 cache is the smallest and fastest cache.
+:    The **L1** (level 1) caches are the smallest and fastest caches.
     It is virtually always placed directly on the processor chip itself
-    and sized so that an access to L1 takes only a single cycle^[At least in a [pipelined](processors.html) sense. The goal is that an L1 hit does not slow down processing at all.].
+    and sized so that at least one access to L1 can complete each cycle^[At least in a [pipelined](processors.html) sense. The goal is that an L1 hit does not slow down processing at all.].
     It is often designed to work on virtual addresses rather than physical
-    or to have the set index be entirely within the page offset so that TLB lookup
-    can be performed concurrently with L1 lookup.
+    or to have the set index be entirely within the page offset so that the
+    TLB lookup (see next section) can be performed concurrently with L1 lookup.
 
-TLB
-:   The TLB tends to be a small set-associative cache with fairly large sets
-    that holds a single [page table entry](kernel.html#page-tables) per block.
-    TLBs only hold the final PTE encountered in translating an address,
-    the one that has the PPN of the final memory page.
-    
-    The TLB is often a read-only cache.
-    If the page table is modified, the TLB may need to be partly or fully **flushed**:
-    that is, (some of) its entries are marked as invalid,
-    requiring full page table lookups upon next access.
+    Usually, each core will have two separate L1 caches, one for instructions
+    and one for data. 
 
 L2--L*n*
 :   The L2 cache is larger than the L1,
     which means both that it is more likely that any given access will hit in the L2
     and that each access takes a bit longer.
     The L3 is bigger (and thus slower) than the L2, and so on.
-    The number of caches in this cache hierarchy increases every few years
-    as processors continue to get faster than memory
-    and more intermediate levels make sense.
 
-    If a block of data is stored in the L$i$ cache, it is also stored in the L$i+1$ cache and so on back up to RAM.
+    When data is not in an L1 cache, the L1 cache will ask the L2 cache for that data
+    and so on, until the last level of cache, which will communicate with main memory.
+
+    Often multiple L1 caches will use a common L2 cache and multiple L2 caches
+    will use a common L3 cache and so on. As of 2023, most commonly in desktop or laptop
+    processors, there is an L2 cache for each processor core (used for both instructions and data)
+    and one or more L3 caches shared between several processors cores on a single chip.
+
+# Page table caches ("TLB"s)
+
+In addition to caches for the contents of memory, processors typically
+also have caches for page table entries.
+
+These caches are called TLBs ("translation lookaside buffers").
+
+A TLB tends to be a small set-associative cache with fairly large sets
+that holds a single [page table entry](vm.html#page-tables) per block.
+TLBs only hold the final PTE encountered in translating an address,
+the one that has the PPN of the final memory page.
+    
+The TLB is often a read-only cache.
+If the page table is modified, the TLB may need to be partly or fully **flushed**:
+that is, (some of) its entries are marked as invalid,
+requiring full page table lookups upon next access.
+
+As of 2023, most commonly a laptop or desktop processor core will have a hierarchy of TLBs
+similar to the hiearchy of memory content caches:
+separate L1 data and L1 instruction TLBs per core and also one
+or more L2 TLBs per core.
 
 # Handling writes
 
