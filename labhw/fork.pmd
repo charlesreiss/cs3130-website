@@ -5,8 +5,6 @@ author:
     - Charles Reiss
 ...
 
-<div class="changelog">
-
 {.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
@@ -212,7 +210,7 @@ but possibly with the lines in a different order and/or interleaved.
 
     *  `-Og` enables compiler optimizations that should work well with debugging
 
-    * -`g` enables debugging information. (In addition to being useful when using the debugger, this should allow AddressSanitizer to give better information about errors it finds).
+    *  `-g` enables debugging information. (In addition to being useful when using the debugger, this should allow AddressSanitizer to give better information about errors it finds).
 
 ## fork lab code
 
