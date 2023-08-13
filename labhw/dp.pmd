@@ -2,16 +2,6 @@
 title: Dining Philosophers
 ...
 
-<div class="changelog">
-Changelog:
-
-*  4 April 2023: relate arbitrator solution to lecture discussion; be explicit that for in-person we expect to see substantial progress on at least one of the extra approaches; note expected filenames with approach descriptions
-*  4 April 2023: for message passing solution, add note on ideas for waiting for messages for message passing solution
-*  4 April 2023: note explicitly that ThreadSanitizer doesn't recognize the arbitrator solution
-*  4 April 2023: make statement about output folow same ordering as rest of recommendation for resource hierarchy
-*  4 April 2023: clarify that we expect substantial progress on an additional approach
-</div>
-
 # Logistics
 
 We encourage group work with "buddy programming"..
