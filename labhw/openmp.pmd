@@ -132,10 +132,12 @@ For example, if it uses 4 threads then they will get the following range of `i`:
 - `N/2`--`3*N/4`
 - `3*N/4`--`N`
 
+To turn this strategy into a complete solution, you'll need to combine it with one of the "reduce" parallelization
+techniques.
+
 **OpenMP pragmas used**:
 
 - `#pragma omp parallel for`{.c} means "have each thread run the next statement (a `for`{.c} loop) with different bounds".
-
 
 ### Task queue
 
