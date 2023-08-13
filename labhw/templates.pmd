@@ -2,12 +2,6 @@
 title: C++ templates
 ...
 
-<div class="changelog">
-Changelog:
-
-*  19 Apr 2023: correct reference to CSO1 C++ lab; remove requirement for mixed-item initializer list not to compile
-</div>
-
 We showed you some basic C++ last semester, including using templates like Java uses generics.
 But that is far from all C++ templates can do...
 This lab will help you explore this topic in more detail.
@@ -83,6 +77,8 @@ show your TA what you've done for check-off.
 
 - Precede your `struct` (or `class`) with `template <typename N, int n>`{.cpp} so it will work with multiple types and lengths. (The only difference between `struct` and `class` in C++ is whether it defaults to `public` or `private`.)
 
+  Note that `template` classes and functions cannot be defined in separate `.o` files. So, when template implementations are split across multiple files, usually the implementations are placed in header files.
+
 - Use a static array `N data[n]` (or the like) as the only field so avoid heap memory allocations
 
 - Constructors have no return type and the same name as the `struct`
@@ -100,8 +96,10 @@ show your TA what you've done for check-off.
         - `N& operator[] (int idx)`{.c} -- allows setting by index by returning a reference
         - `N operator[] (int idx) const`{.c} -- allows reading when no reference exists
     - Printing needs a special "friend" notation to let you access between the `ostream` and `vec` classes:
-        - `friend std::ostream& operator << (std::ostream& out, const vec<N,n>& x)`{.c}
+        - a declaration like `friend std::ostream& operator << (std::ostream& out, const vec<N,n>& x)`{.c} placed in the class definition,
+          indicating that the `operator<<` defined outside the class can access private member variables and function in the class
         - this function should use `out << thing` and then `return out`
+
 
 - It is best practice (but not technically required) to
     
