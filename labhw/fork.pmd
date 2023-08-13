@@ -186,9 +186,9 @@ executable, then a main() like:
 
 should output something like:
 
-    args = ['./foo', 'first', 'second', 'third', '0']
+    Text: [args = ['./foo', 'first', 'second', 'third', '0']
     args = ['./foo', 'first', 'second', 'third', '1']
-    args = ['./foo', 'first', 'second', 'third', '2']
+    args = ['./foo', 'first', 'second', 'third', '2']]
 
 but possibly with the lines in a different order and/or interleaved.
 {/}
