@@ -2,19 +2,6 @@
 title: OOO Exercise
 ...
 
-<div class="changelog">
-Changelog:
-
-*  21 Apr 2023: correct given first lines for Part 3; add two instructions to Part 3
-*  21 Apr 2023: emphasize that three-argument form is used regardless of whether register-renaming has happened
-*  21 Apr 2023: fix formatting on Part 3
-*  21 Apr 2023: edit instructions in Part 3 to make problem less trivial
-*  21 Apr 2023: correct some spelling errors
-*  23 Apr 2023: correct instruction I in part 2 to not write to register that was already used (was `%x17`, changed to `%x24`)
-*  26 Apr 2023: make cycle numbers for part 2 start at 1 to match with answer sheet
-*  1 May 2023: change "produces the result in the next cycle" to "produces the result near the end of this cycle" to clarify that forwarding is possible in this cycle
-*  1 May 2023: fix off-by-one error in range of physical register numbers
-</div>
 
 # Hypothetical OOO processor
 
@@ -44,9 +31,7 @@ Instructions in this processor are executed as follows:
     *  for memory instructions, this execution unit is a pipelined data cache. It receives one instruction per cycle
         and produces the result after three cycles. To simplfy this exercise, we will assume no cache misses.
     *  for non-memory instructions, this execution unit is one of two arithmetic logic unit. It receives one instruction per
-        cycle and produces the result near the end of this cycle. <small>(*[added 1 May:]* originally this said "in the next cycle"
-        which could have been interpretated as requiing an extra cycle before values can be forwarded;
-        because this correction is late, we'll also accept answers that assume an extra cycle was needed before a value was available for forwarding.)</small>
+        cycle and produces the result near the end of this cycle. 
     *  the first available memory instruction (if any) is sent to a data cache, which is pipelined. The data cache accepts one instruction per cycle
         and takes three cycles to produce the result of the read or write
     *  the first two available non-memory instructions are sent to one of two arithmetic execution units. These execution units each take one cycle
@@ -148,6 +133,10 @@ Identify the stages as:
 *  E for when an instruction is being executed (after it is issued)
 *  W for when an instruction's results are written back
 *  C for when an instruction is committed
+
+Leave the specified stage blank when an instruction is not being processed in any of the above ways (such as when
+the instruction is in the instruction queue waiting to be issued or any cycles between when an instruction is written back
+and when it is committed).
 
 The first three rows are:
 
