@@ -3,13 +3,6 @@ title: Permissions
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  3 Feb 2023: describe how to make directory accessible to another user on portal; correct link to permissions reading
-*  7 Feb 2023: fix typo of `/localtemp` for `/localtmp`
-*  7 Feb 2023: add footnote regarding not working with a partner
-</div>
 
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
 As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
@@ -21,7 +14,7 @@ be your partner's username. But you won't be able to verify that some of your pe
 I would very strongly recommend having a partner.], to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
-   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet).
+   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2023/quizzes/quiz.php?qid=permissions-answer-sheet).
 1. Create a directory either:
     *  in your home directory, or
     *  in `/localtmp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
@@ -48,7 +41,7 @@ I would very strongly recommend having a partner.], to achieve the following:
     a. reports how many lines `simple_runs` contains
   (See the section of the reading on executable text files.)
 1. Determine which of the following are possible to achieve and write your answers
-   (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/quizzes/quiz.php?qid=permissions-answer-sheet):.
+   (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2023/quizzes/quiz.php?qid=permissions-answer-sheet):.
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
