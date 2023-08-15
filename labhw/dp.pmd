@@ -17,7 +17,7 @@ Buddy programming is when
 We provide a threaded implementation of the [Dining Philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 This is a famous, if somewhat contrived, example of deadlock.
 You'll modify it to not have deadlock.
-We give four approaches to this; you'll need to do at least two.
+We give four approaches to this; you'll need to do at least two and make significant progress on a third.
 
 ## Deadlocking code
 
