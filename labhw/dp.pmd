@@ -17,7 +17,7 @@ Buddy programming is when
 We provide a threaded implementation of the [Dining Philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 This is a famous, if somewhat contrived, example of deadlock.
 You'll modify it to not have deadlock.
-We give three approaches to this; you'll need to do at least one, and we expect you to make substantial progress on an additional one.
+We give four approaches to this; you'll need to do at least two.
 
 ## Deadlocking code
 
@@ -142,19 +142,14 @@ how often to retry:
 This implementation should ensure there is no deadlock
 by using the [Chandy/Misra solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Chandy/Misra_solution).
 
-You'll probably need to add some kind of data structure to keep track of who owns which chopstick and which chopsticks are dirty,
-as well as functions to handle requesting chopsticks.
+To help you implement the message passing pattern, we supply this (optional) [code](files/dp/base-mp.c).
 
-(The functions that handle requesting chopsticks probably need data structures to track pending requests. Depending on your implementation strategy, you might also want some way to wait for a message. My personal preference would be using something like condition variables for this operation. But perhaps(?) more simply you could do this with only mutexes by ensuring that some other thread has a lock and waiting for a lock to be released. Or, alternately, you use a very inefficient solution of a loop that locks, checking a flag variable, and unlocks until the flag is finally set.)
+You'll probably need to add some kind of data structure to keep track of who owns which chopstick and
+which chopsticks are dirty.
 
 This is definitely more involved than the other files,
 but also will give you a better understanding of how to use pthreads' mutex objects 
 (and other synchronization primitives, like condition variables) to solve non-trivial problems.
-
-If correctly implemented,
-
-- There will be no deadlock; the program will always terminate
-- Philosopher 0 will always eat without waiting, starting with both chopstick 0 and chopstick *n* − 1 (where *n* is the number of philosophers).
 
 # Check off
 
