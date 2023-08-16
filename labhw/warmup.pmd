@@ -9,13 +9,13 @@ author: Charles Reiss
 
     *  in `split.c`, write an implementation of the function 
         
-            char **string_split(const char *input, const char *sep);
+            char **string_split(const char *input, const char *sep, int *num_words);
 
-       The function should take a NUL-terminated string `input` and a 
-       NUL-terminated string
-       listing separating characters in `sep` and return a null-pointer-terminated
-       array of "words" separated by a sequence of one or more
-       of the characters in `sep`. The returned
+       The function should take a `\0`-terminated string `input` and a 
+       `\0`-terminated string listing separating characters in `sep` and
+       return an array of "words" separated by a sequence of one or more
+       of the characters in `sep`. `*num_words` should be set to the size
+       of the array. The returned
        array and each of the strings in that array should be allocated so
        that they can be freed using `free()`.
 
