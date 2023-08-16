@@ -3,13 +3,6 @@ title: Policies
 index_title: Policies
 ...
 
-<div class="changelog">
-Changelog:
-
-*  18 Jan 2023: make percentages add up to 100%
-*  26 Jan 2023: explain more clearly how late policy applies to labs (late submission allowed, late checkoff not allowed without extenuating circumstances), matching what was explained in lecture.
-</div>
-
 # Logistics
 
 ## Meetings
@@ -73,13 +66,13 @@ Your final grade is computed based on the percentage of points you have earned a
 
 ## Submitting late
 
-Quiz solutions are released the moment the quiz closes, and thus quizzes cannot be taken late.
+Quiz solutions are released the moment the quiz closes (and the answers may be discussed in
+the following lecture), and thus quizzes cannot be taken late.
 Your lowest quiz score is dropped.
 
 Homeworks and labs that allow submission may be submitted up to 72 hours late.
 (Labs may not be checked off late without special-case permission.)
-They are given 90% credit between 0 and 48 hours late;
-at 80% credit between 48 and 72 hours late.
+They are given 90% credit between 0 and 72 hours late.
 If extensions beyond that time are needed, please see the professor to discuss why and if other accommodations are also needed.
 
 The final may not be taken late (or early) without special-case permission.
@@ -112,19 +105,25 @@ Put it in a comment in your code.
 
 You must write your own code.
 Not just type it (though you need to do that too): **compose it yourself**, as your own original work.
+(This includes not asking students, stack overflow, ChatGPT, etc. to compose code for you.)
 Beware of looking at other students code or code you find online: it is hard to unsee and can spoil your ability to compose your own solutions!
 
 ### Understand what you submit
 
 Working together can help you learn. But make sure you learned!
 We may ask you to explain aspects of a solution you turn in,
-and may dock points if it appears you simply copied someone else's ideas (or just guessed a lot of things until one worked) without understanding them.
+and may dock points if it appears you simply copied someone else's
+ideas (or just guessed a lot of things until one worked) without understanding them.
 
 ### No help on quizzes
 
-It would probably go without saying if we didn't say it, but no assistance may be given or received on any supervised evaluation or online quiz unless specifically announced otherwise by the professor (or another proctor of the evaluation).
+It would probably go without saying if we didn't say it, but no assistance may be given or received on any
+supervised evaluation or online quiz unless specifically announced otherwise by the professor
+(or another proctor of the evaluation).
 
-Quizzes (unless otherwise specified) are open book/open notes. You may ask for help with reviewing related lecture or lab material, but not specifically about the quiz questions.
+However, quizzes (unless otherwise specified) are open book/open notes. You may ask TAs, other students,
+and consult other resources for help with reviewing related lecture, lab, or reading material, but not
+specifically about the quiz questions.
 
 ### Consequences of Dishonesty
 
