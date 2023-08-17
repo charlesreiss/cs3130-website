@@ -229,6 +229,7 @@
 - date: 2023-10-10
   week: 8
   title: caches 2 
+  slides_see: 2023-10-05
   reading: "[cache](readings/cache.html)"
   description: |
     *  cache misses and C code
@@ -242,6 +243,7 @@
 - date: 2023-10-12
   week: 8
   title: caches 3
+  slides_see: 2023-10-05
   reading: "[cache](readings/cache.html)"
   description: |
     *  write policies
