@@ -218,8 +218,10 @@
   slides_extra: yes
   description: |
     *  caching idea
+        *  connecting processors to memory
+        *  memory hierarchy
     *  direct-mapped caches
-    *  set-associative caches (start)
+        *  valid bits, tags
 
 - date: 2023-10-06
   week: 7
@@ -227,11 +229,10 @@
 - date: 2023-10-10
   week: 8
   title: caches 2 
-  reading: "[cache](readings/cache.html) rest"
-    *  set-associative caches (finish)
-    *  write policies
-    *  (if time) briefly, cache tradeoffs
-    *  the TLB
+  reading: "[cache](readings/cache.html)"
+    *  cache misses and C code
+    *  set-associative caches
+    *  replacement policies
 
 - date: 2023-10-11
   lab: true
@@ -239,14 +240,11 @@
 
 - date: 2023-10-12
   week: 8
-  title: concurrency 1
-  reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
+  title: caches 3
+  reading: "[cache](readings/cache.html)"
   description: |
-    *  processes, threads
-    *  creating new processes
-       *  fork, exec*
-    *  waiting for processes
-    *  file descriptors
+    *  write policies
+    *  the TLB
 
 
 - date: 2023-10-13
@@ -254,12 +252,13 @@
 
 - date: 2023-10-17
   week: 9
-  title: concurrency 2  / threads 1
-  reading: "[sync](readings/sync.html) §1, 2-7, "
+  title: concurrency 1
+  reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
   description: |
-    *  pipe and dup2
-    *  creating new threads
-    *  thread use examples
+    *  processes, threads
+    *  creating new processes
+       *  fork, exec*
+    *  waiting for processes
 
 - date: 2023-10-18
   lab: true
@@ -267,13 +266,13 @@
 
 - date: 2023-10-19
   week: 9
-  title: synchronization 1 
-  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
+  title: concurrency 2
   description: |
-   *  problem of synchronization
-   *  atomicity, race conditions
-      *  atomic read-modify-write instructions
-   *  locks and mutexes
+   > (Reiss out of town)
+    
+   *  file descriptors
+   *  pipe and dup2
+
 
 
 - date: 2023-10-20
@@ -281,12 +280,13 @@
 
 - date: 2023-10-24
   week: 10
-  title: deadlock / synchronization 2
-  reading: "[sync](readings/sync.html)"
+  title: threads 1 / sycnhronization 1
+  reading: "[sync](readings/sync.html) §1, 2-7, "
   description: |
-   *  barriers
-   *  interlude: reordering
-   *  deadlock
+   *  creating new threads
+   *  thread use examples
+
+   *  problem of synchronization
 
 
 - date: 2023-10-25
@@ -295,28 +295,28 @@
 
 - date: 2023-10-26
   week: 10
-  title: synchronization 3 / roll back / pipelining
-  reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
+  title: synchronization 2 / deadlock
+  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
   description: |
-   *  monitors 
-   *  (briefly) counting semaphores
-   *  (if time) reader/writer locks
-   *  transactions (briefly)
+   *  atomicity, race conditions
+      *  atomic read-modify-write instructions
+   *  locks and mutexes
+   *  barriers
+   *  interlude: reordering
+   *  deadlock
 
 - date: 2023-10-27
   week: 10
 
 - date: 2023-10-31
   week: 11
-  title: pipeline 1
-  reading: "[processors](readings/processors.html) §1-2"
+  title: synchronization 3
+  reading: "[sync](readings/sync.html)"
   description: |
-   *  pipelining idea
-   *  review: single-cycle CPU
-   *  pipelining for the CPU (
-   *  data hazards
-   *  hazard handling, part 1
-     *  stalling / waiting
+   *  monitors 
+   *  (briefly) counting semaphores
+   *  (if time) reader/writer locks
+   *  transactions (briefly)
 
 - date: 2023-11-01
   lab: true
@@ -324,13 +324,13 @@
 
 - date: 2023-11-02
   week: 11
-  title: pipeline 2
-  reading: "[processors](readings/processors.html) §2-3"
+  title: pipeline 1
+  reading: "[processors](readings/processors.html) §1-2"
   description: |
-   *  hazard handling, part 2
-     *  forwarding and forwarding logic
-   *  control hazards + speculation idea (start)
-       *  guess and check later
+   *  pipelining idea
+   *  review: single-cycle CPU
+   *  pipelining for the CPU
+   *  data hazards
 
 - date: 2023-11-03
   week: 11
@@ -346,15 +346,15 @@
 
 - date: 2023-11-09
   week: 12
-  reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
-  title: branch prediction
+  reading: "[processors](readings/processors.html) §2-3"
+  title: pipelining 2
   description: |
-    * speculation idea (finish)
+   *  hazard handling, part 1
+     *  stalling / waiting
+   *  hazard handling, part 2
+     *  forwarding and forwarding logic
+   *  control hazards + speculation idea (start)
        *  guess and check later
-       *  undo when wrong
-    *  branch prediction ideas
-       *  forward-taken, backwards-not-taken
-       *  using history
 
 - date: 2023-11-10
   week: 12
@@ -362,14 +362,17 @@
 - date: 2023-11-14
   week: 13
   title: buses / out-of-order 1
+  reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
   description: |
+    * speculation idea (finish)
+       *  guess and check later
+       *  undo when wrong
+    *  branch prediction ideas
+       *  forward-taken, backwards-not-taken
+       *  using history
     *  interlude: buses and direct-memory access
 
     *  idea of multiple issue + out-of-order
-    *  out-of-order pipeline
-       *  aside: predicting branch targets
-    *  register renaming
-    *  instruction queues (start)
 
 - date: 2023-11-15
   lab: true
@@ -377,27 +380,25 @@
 
 - date: 2023-11-16
   week: 13
-  title: out-of-order 2 / side channels
+  title: out-of-order 2 
+  reading: "[processors](readings/procesors.html) §2-3"
   description: |
-    *  instruction queues (finish)
+    *  out-of-order pipeline
+       *  aside: predicting branch targets
+    *  register renaming
+    *  instruction queues
     *  data flow model + thinking about OOO performance
 
-    *  side channels generally
-    *  side channels in the cache (start)
 
 - date: 2023-11-17
   week: 13
 
 - date: 2023-11-21
   week: 14
-  title: meltdown, spectre, etc.
+  title: side channels 1
   description: |
-    *  side channels in the cache (finish)
-    *  meltdown:
-        *  speculation past a priv/protection fault
-    *   spectre
-        *   speculation past a bounds chcek
-        *   using cache side-channels
+    *  side channels generally
+    *  side channels in the cache
 
 - date: 2023-11-22
   week: 14
@@ -409,7 +410,13 @@
 
 - date: 2023-11-28
   week: 15
-  title: slack
+  title: meltdown/spectre
+  description: |
+    *  meltdown:
+        *  speculation past a priv/protection fault
+    *   spectre
+        *   speculation past a bounds chcek
+        *   using cache side-channels
 
 - date: 2023-11-29
   lab: true
