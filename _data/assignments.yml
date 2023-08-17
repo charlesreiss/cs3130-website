@@ -162,11 +162,13 @@
   lab: true
   due: 2023-10-11
 
-- name: fork lab
-  short_name: fork-lab
+- name: sync games
   lab: true
-  page: labhw/fork-lab.html
-  submit_file: "*.c"
+  short_name: sync
+  page: labhw/sync.html
+  comments: needs changes for in-person?
+  comments: need .php stuff
+  XXX-missing-if-no-feedback: true
   due: 2023-10-18
 
 - name: cache programs
@@ -175,13 +177,11 @@
   submit_file: "*submit*.tar"
   due: 2023-10-20
 
-- name: sync games
+- name: fork lab
+  short_name: fork-lab
   lab: true
-  short_name: sync
-  page: labhw/sync.html
-  comments: needs changes for in-person?
-  comments: need .php stuff
-  missing-if-no-feedback: true
+  page: labhw/fork-lab.html
+  submit_file: "*.c"
   due: 2023-10-25
 
 - name: TLB
