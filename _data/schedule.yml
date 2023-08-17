@@ -212,28 +212,26 @@
 - date: 2023-10-05
   week: 7
   title: caches 1
-  reading: " [cache](readings/cache.html) §4, 1-3, 5"
+  reading: "[cache](readings/cache.html) §1-5"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
-    *  review of set-associative caches
-    *  write policies
-    *  three Cs, cache tradeoffs (start)
+    *  caching idea
+    *  direct-mapped caches
+    *  set-associative caches (start)
 
 - date: 2023-10-06
   week: 7
 
 - date: 2023-10-10
   week: 8
-  title: concurrency 1
-  reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
-  description: |
-    *  cache tradeoffs, very briefly
-
+  title: caches 2 
+  reading: "[cache](readings/cache.html) rest"
+    *  set-associative caches (finish)
+    *  write policies
+    *  (if time) briefly, cache tradeoffs
     *  the TLB
-
-    *  processes, threads
-    *  creating new processes
-       *  fork, exec*
-    *  waiting for processes
 
 - date: 2023-10-11
   lab: true
@@ -241,23 +239,27 @@
 
 - date: 2023-10-12
   week: 8
-  title: concurrency 2
-  reading: "skim [consistency](readings/consistency.html); [pthreads](readings/pthread.html)" 
+  title: concurrency 1
+  reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
   description: |
+    *  processes, threads
+    *  creating new processes
+       *  fork, exec*
+    *  waiting for processes
     *  file descriptors
-    *  pipe and dup2
+
 
 - date: 2023-10-13
   week: 8
 
 - date: 2023-10-17
   week: 9
-  title: threads 1 / synchronization 1
+  title: concurrency 2  / threads 1
   reading: "[sync](readings/sync.html) §1, 2-7, "
   description: |
+    *  pipe and dup2
     *  creating new threads
     *  thread use examples
-    *  problem of synchronization
 
 - date: 2023-10-18
   lab: true
@@ -265,29 +267,26 @@
 
 - date: 2023-10-19
   week: 9
-  title: synchronization 2 / deadlock
+  title: synchronization 1 
   reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
   description: |
+   *  problem of synchronization
    *  atomicity, race conditions
       *  atomic read-modify-write instructions
    *  locks and mutexes
-   *  barriers
 
-   *  interlude: reordering
-   
-   *  deadlock examples
 
 - date: 2023-10-20
   week: 9
 
 - date: 2023-10-24
   week: 10
-  title: deadlock / synchronization 3
+  title: deadlock / synchronization 2
   reading: "[sync](readings/sync.html)"
   description: |
-   *  deadlock con't
-
-   *  monitors (mutexes + condition variables) (start)
+   *  barriers
+   *  interlude: reordering
+   *  deadlock
 
 
 - date: 2023-10-25
@@ -296,10 +295,10 @@
 
 - date: 2023-10-26
   week: 10
-  title: synchronization / roll back / pipelining
+  title: synchronization 3 / roll back / pipelining
   reading: "[sync](readings/sync.html), [processors](readings/processors.html) §1-2"
   description: |
-   *  monitors (finish)
+   *  monitors 
    *  (briefly) counting semaphores
    *  (if time) reader/writer locks
    *  transactions (briefly)
