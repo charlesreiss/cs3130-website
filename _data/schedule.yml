@@ -230,6 +230,7 @@
   week: 8
   title: caches 2 
   reading: "[cache](readings/cache.html)"
+  description: |
     *  cache misses and C code
     *  set-associative caches
     *  replacement policies
