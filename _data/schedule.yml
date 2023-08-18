@@ -257,6 +257,9 @@
   week: 9
   title: concurrency 1
   reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
+  slides: yes
+  sldies_prelim: yes
+  slides_extra: yes
   description: |
     *  processes, threads
     *  creating new processes
@@ -269,12 +272,16 @@
 
 - date: 2023-10-19
   week: 9
-  title: concurrency 2
+  title: concurrency 2 / threads 1
+  slides_see: 2023-10-17
+  slides_see2: 2023-10-24
   description: |
    > (Reiss out of town)
     
    *  file descriptors
-   *  pipe and dup2
+   *  briefly, pipe and dup2
+
+   *  creating new threads
 
 
 
@@ -285,6 +292,9 @@
   week: 10
   title: threads 1 / sycnhronization 1
   reading: "[sync](readings/sync.html) §1, 2-7, "
+  slides: yes
+  slides_prelim: yes
+  slides_see2: 2023-10-26
   description: |
    *  creating new threads
    *  thread use examples
@@ -300,6 +310,9 @@
   week: 10
   title: synchronization 2 / deadlock
   reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
    *  atomicity, race conditions
       *  atomic read-modify-write instructions
@@ -315,6 +328,7 @@
   week: 11
   title: synchronization 3
   reading: "[sync](readings/sync.html)"
+  slides_see: 2023-10-26
   description: |
    *  monitors 
    *  (briefly) counting semaphores
@@ -329,6 +343,9 @@
   week: 11
   title: pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
    *  pipelining idea
    *  review: single-cycle CPU
@@ -351,6 +368,7 @@
   week: 12
   reading: "[processors](readings/processors.html) §2-3"
   title: pipelining 2
+  slides_see: 2023-11-02
   description: |
    *  hazard handling, part 1
      *  stalling / waiting
@@ -364,8 +382,9 @@
 
 - date: 2023-11-14
   week: 13
-  title: buses / out-of-order 1
-  reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
+  title: pipelining 3
+  reading: "[processors](readings/processors.html) §2-3"
+  slides_see: 2023-11-02
   description: |
     * speculation idea (finish)
        *  guess and check later
@@ -373,9 +392,6 @@
     *  branch prediction ideas
        *  forward-taken, backwards-not-taken
        *  using history
-    *  interlude: buses and direct-memory access
-
-    *  idea of multiple issue + out-of-order
 
 - date: 2023-11-15
   lab: true
@@ -383,14 +399,15 @@
 
 - date: 2023-11-16
   week: 13
-  title: out-of-order 2 
-  reading: "[processors](readings/procesors.html) §2-3"
+  title: buses/ out-of-order 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
+  reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
   description: |
-    *  out-of-order pipeline
-       *  aside: predicting branch targets
-    *  register renaming
-    *  instruction queues
-    *  data flow model + thinking about OOO performance
+    *  interlude: buses and direct-memory access
+
+    *  idea of multiple issue + out-of-order
 
 
 - date: 2023-11-17
@@ -398,10 +415,14 @@
 
 - date: 2023-11-21
   week: 14
-  title: side channels 1
+  title: out-of-order 2
+  slides_see: 20231116
   description: |
-    *  side channels generally
-    *  side channels in the cache
+    *  out-of-order pipeline
+       *  aside: predicting branch targets
+    *  register renaming
+    *  instruction queues
+    *  data flow model + thinking about OOO performance
 
 - date: 2023-11-22
   week: 14
@@ -413,13 +434,13 @@
 
 - date: 2023-11-28
   week: 15
-  title: meltdown/spectre
+  title: side channels
+  slides: yes
+  slides_prelim: yes
+  slide_extra: yes
   description: |
-    *  meltdown:
-        *  speculation past a priv/protection fault
-    *   spectre
-        *   speculation past a bounds chcek
-        *   using cache side-channels
+    *  side channels generally
+    *  side channels in the cache
 
 - date: 2023-11-29
   lab: true
@@ -427,7 +448,14 @@
 
 - date: 2023-11-30
   week: 15
-  title: slack
+  title: meltdown/spectre
+  slides_see: 20231130
+  description: |
+    *  meltdown:
+        *  speculation past a priv/protection fault
+    *   spectre
+        *   speculation past a bounds chcek
+        *   using cache side-channels
 
 - date: 2023-12-05
   week: 16
