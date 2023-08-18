@@ -416,7 +416,7 @@
 - date: 2023-11-21
   week: 14
   title: out-of-order 2
-  slides_see: 20231116
+  slides_see: 2023-11-16
   description: |
     *  out-of-order pipeline
        *  aside: predicting branch targets
@@ -449,7 +449,7 @@
 - date: 2023-11-30
   week: 15
   title: meltdown/spectre
-  slides_see: 20231130
+  slides_see: 2023-11-30
   description: |
     *  meltdown:
         *  speculation past a priv/protection fault
