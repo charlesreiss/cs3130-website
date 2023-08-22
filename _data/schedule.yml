@@ -3,8 +3,6 @@
   week: 1
   title: introduction / building (pt 1)
   slides: yes
-  sldies_prelim: yes
-  slides_extra: yes
   reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
   description: |
     * course outline
@@ -18,7 +16,6 @@
 
 - date: 2023-08-24
   week: 1
-  slides_see: 2023-08-22
   slides: yes
   slides_prelim: yes
   slides_extra: yes
