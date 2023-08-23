@@ -166,31 +166,31 @@ the shell's prompt:
 
 ### Example 1
 
-<pre>
-$ <b>./split</b> 
-<b>foo     bar   baz</b>
-[foo][bar][baz]
-<b>quux-no-space quux-with space !</b>
-[quux-no-space][quux-with][space][!]
-<b>   indented</b>
-[][indented]
-<b>.</b>
-$ 
-</pre>
+<tt>
+$ <b>./split</b><br>
+<b>foo     bar   baz</b><br>
+[foo][bar][baz]<br>
+<b>quux-no-space quux-with space !</b><br>
+[quux-no-space][quux-with][space][!]<br>
+<b>   indented</b><br>
+[][indented]<br>
+<b>.</b><br>
+$ <br>
+</tt>
 
 ### Example 2
 
-<pre>
-$ <b>./split XY Z</b> 
-<b>fooXXXXbarZXYXYXZbazYYYYY</b>
-[foo][bar][baz][]
-<b>XXXXXXXXXXXXX</b>
-[][]
-<b>X.X</b>
-[][.][]
-<b>.</b>
-$ 
-</pre>
+<tt>
+$ <b>./split XY Z</b><br> 
+<b>fooXXXXbarZXYXYXZbazYYYYY</b><br>
+[foo][bar][baz][]<br>
+<b>XXXXXXXXXXXXX</b><br>
+[][]<br>
+<b>X.X</b><br>
+[][.][]<br>
+<b>.</b><br>
+$ <br>
+</tt>
 
 # Hints
 
