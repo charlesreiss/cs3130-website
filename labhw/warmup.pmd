@@ -167,7 +167,7 @@ the shell's prompt:
 ### Example 1
 
 <pre>
-$ <b>./split</b><br>
+$ <b>./split</b> 
 <b>foo     bar   baz</b>
 [foo][bar][baz]
 <b>quux-no-space quux-with space !</b>
@@ -181,7 +181,7 @@ $
 ### Example 2
 
 <pre>
-$ <b>./split XY Z</b><br>
+$ <b>./split XY Z</b> 
 <b>fooXXXXbarZXYXYXZbazYYYYY</b>
 [foo][bar][baz][]
 <b>XXXXXXXXXXXXX</b>
