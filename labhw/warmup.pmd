@@ -6,7 +6,7 @@ author: Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument.
+*  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument; make examples of command-line have newlines show up more consistently across browsers
 </div>
 
 # Your task
