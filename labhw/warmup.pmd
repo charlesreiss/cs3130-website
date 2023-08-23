@@ -7,7 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument; make examples of command-line have newlines show up more consistently across browsers
-*  23 August 2023: clarify that `*num_words` should be set *by `string_split`, not by its caller
+*  23 August 2023: clarify that `*num_words` should be set *by `string_split`*, not by its caller
 </div>
 
 # Your task
