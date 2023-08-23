@@ -166,7 +166,7 @@ the shell's prompt:
 
 ### Example 1
 
-<code><tt>
+<tt>
 $ <b>./split</b><br>
 <b>foo     bar   baz</b><br>
 [foo][bar][baz]<br>
@@ -176,7 +176,7 @@ $ <b>./split</b><br>
 [][indented]<br>
 <b>.</b><br>
 $ <br>
-</tt></code>
+</tt>
 
 ### Example 2
 
@@ -190,7 +190,7 @@ $ <b>./split XY Z</b><br>
 [][.][]<br>
 <b>.</b><br>
 $ <br>
-</tt></code>
+</tt>
 
 # Hints
 
