@@ -146,7 +146,7 @@ Changelog:
     should have the same effect as
 
         char **result;
-        result = calloc(sizeof(char *), 4)
+        result = calloc(sizeof(char *), 5)
         result[0] = malloc(1);
         strcpy(result[0], "");
         result[1] = malloc(4);
