@@ -155,7 +155,7 @@ Changelog:
         strcpy(result[2], "bar");
         result[3] = malloc(5);
         strcpy(result[3], "quux");
-        result[4] = malloc(1)
+        result[4] = malloc(1);
         strcpy(result[4], "");
         size = 5;
 
@@ -167,7 +167,7 @@ the shell's prompt:
 ### Example 1
 
 <pre>
-$ <b>./split</b>
+$ <b>./split</b><br>
 <b>foo     bar   baz</b>
 [foo][bar][baz]
 <b>quux-no-space quux-with space !</b>
@@ -181,7 +181,7 @@ $
 ### Example 2
 
 <pre>
-$ <b>./split XY Z</b>
+$ <b>./split XY Z</b><br>
 <b>fooXXXXbarZXYXYXZbazYYYYY</b>
 [foo][bar][baz][]
 <b>XXXXXXXXXXXXX</b>
