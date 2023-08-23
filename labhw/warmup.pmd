@@ -3,6 +3,12 @@ title: warmup
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument.
+</div>
+
 # Your task
 
 1.  Create C files as follows:
@@ -91,51 +97,56 @@ author: Charles Reiss
 1.  Running
 
         char **result;
-        result = string_split("foo", ":");
+        int size;
+        result = string_split("foo", ":", &size);
 
     should have the same effect as
 
-        result = calloc(sizeof(char *), 2);
+        result = calloc(sizeof(char *), 1);
         result[0] = malloc(4);
         strcpy(result[0], "foo");
-        result[1] = NULL;
+        size = 1;
 
 1.  Running
 
         char **result;
-        result = string_split("foo:bar:quux", ":");
+        int size;
+        result = string_split("foo:bar:quux", ":", &size);
 
     or
 
         char **result;
-        result = string_split("foo:bar!quux", "!:");
+        int size;
+        result = string_split("foo:bar!quux", "!:", &size);
 
     or
 
         char **result;
-        result = string_split("foo:bar!quux", ":!");
+        int size;
+        result = string_split("foo:bar!quux", ":!", &size);
 
     should have the same effect as
 
         char **result;
-        result = calloc(sizeof(char *), 4);
+        result = calloc(sizeof(char *), 3);
         result[0] = malloc(4);
         strcpy(result[0], "foo");
         result[1] = malloc(4);
         strcpy(result[0], "bar");
         result[2] = malloc(5);
         strcpy(result[0], "quux");
-        result[3] = NULL;
+        size = 3;
 
 1.  Running
     
         char **result;
-        result = string_split(":foo!:bar::quux!", ":!");
+        int size;
+        result = string_split(":foo!:bar::quux!", ":!", &size);
 
     should have the same effect as
 
         char **result;
-        result = calloc(sizeof(char *), 5)
+        result = calloc(sizeof(char *), 4)
         result[0] = malloc(1);
         strcpy(result[0], "");
         result[1] = malloc(4);
@@ -145,8 +156,7 @@ author: Charles Reiss
         result[3] = malloc(5);
         strcpy(result[3], "quux");
         result[4] = malloc(1)
-        strcpy(result[4], "");
-        result[5] = NULL;
+        size = 5;
 
 ## `split` executable
 
