@@ -156,6 +156,7 @@ Changelog:
         result[3] = malloc(5);
         strcpy(result[3], "quux");
         result[4] = malloc(1)
+        strcpy(result[4], "");
         size = 5;
 
 ## `split` executable
