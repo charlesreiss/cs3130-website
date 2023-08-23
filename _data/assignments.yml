@@ -7,7 +7,6 @@
 - name: warmup
   due: 2023-09-08
   page: labhw/warmup.html
-  tentative: true
   submit_files:
   - Makefile
   - makefile
@@ -18,13 +17,15 @@
 - name: signal handling
   short_name: signal
   lab: true
-  page: labhw/signals.html
+  tentative: true
+  page: labhw/sigtnals.html
   due: 2023-09-06
   submit_file: "*.c"
 
 - name: permissions
   lab: true
   page: labhw/permissions.html
+  tentative: true
   comment: "also answer sheet on quiz system"
   comment: "should have random permission conversion problem generator"
   submit_file: permissions-lab.tar
