@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument; make examples of command-line have newlines show up more consistently across browsers
+*  23 August 2023: clarify that `*num_words` should be set *by `string_split`, not by its caller
 </div>
 
 # Your task
@@ -20,8 +21,8 @@ Changelog:
        The function should take a `\0`-terminated string `input` and a 
        `\0`-terminated string listing separating characters in `sep` and
        return an array of "words" separated by a sequence of one or more
-       of the characters in `sep`. `*num_words` should be set to the size
-       of the array. The returned
+       of the characters in `sep`. `string_split` should set `*num_words`
+       to the size of the array. The returned
        array and each of the strings in that array should be allocated so
        that they can be freed using `free()`.
 
