@@ -9,6 +9,7 @@ Changelog:
 *  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument; make examples of command-line have newlines show up more consistently across browsers
 *  23 August 2023: clarify that `*num_words` should be set *by `string_split`* (not by its caller)
 *  23 August 2023: avoid omitting declarations of `result` and `size` from examples
+*  23 August 2023: link to CSO1 labs as possible reference in hints
 </div>
 
 # Your task
@@ -203,3 +204,5 @@ $ <br>
 1.  I found the C standard library functions `strspn` and `strcspn` useful in my solution.
 
 2.  To avoid scanning the string multiple times, you can use `realloc` to change the size of a dynamically allocated array. (But make sure to initialize any new space made by `realloc` --- it might not default to 0/NULL.)
+
+3.  You may find referencing the CSO1 labs on using C helpful, see for example labs 9 through 12 of the [Spring 2023 offering of CSO1](https://www.cs.virginia.edu/~jh2jf/courses/cs2130/spring2023/labs/)
