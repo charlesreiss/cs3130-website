@@ -17,28 +17,26 @@
 - date: 2023-08-24
   week: 1
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  title: building (pt 2) /  privilege
-  reading: "[makefiles](readings/make.html), [kernel](readings/kernel.html) §1-2.2, 3"
+  title: building (pt 2)
+  reading: "[makefiles](readings/make.html)"
   description: |
     *  make
  
-    *  kernel mode
-    *  system calls
 
 - date: 2023-08-29
   week: 2
-  title: exceptions
-  reading: "[kernel](readings/kernel.html) §2-2.2"
-  slides_see: 2023-08-24
+  title: privilege / exceptions
+  reading: "[kernel](readings/kernel.html) §1-2.2, 3"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
+    *  kernel mode
+    *  system calls
     *  exceptions
        *  events triggering
        *  what the hardware must do
        *  exception handlers
-    *  threads and context switches
-    *  process = threads + address space
 
 - date: 2023-08-30
   week: 2
@@ -47,10 +45,12 @@
 
 - date: 2023-08-31
   week: 2
-  title: signals 
-  slides_see: 2023-08-24
-  reading: "[kernel](readings/kernel.html) §2.3.1"
+  title: exceptions / signals 
+  slides_see: 2023-08-29
+  reading: "[kernel](readings/kernel.html) §3, 2.3.1"
   description: |
+    *  threads and context switches
+    *  process = threads + address space
     *  Unix signals
        *  events triggering
        *  signal handlers and implementation
