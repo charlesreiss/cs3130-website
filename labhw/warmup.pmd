@@ -10,6 +10,7 @@ Changelog:
 *  23 August 2023: clarify that `*num_words` should be set *by `string_split`* (not by its caller)
 *  23 August 2023: avoid omitting declarations of `result` and `size` from examples
 *  23 August 2023: link to CSO1 labs as possible reference in hints
+*  25 August 2023: fix whitespace not being formatted properly on split example 1
 </div>
 
 # Your task
@@ -175,11 +176,11 @@ the shell's prompt:
 
 <tt>
 $ <b>./split</b><br>
-<b>foo     bar   baz</b><br>
+<pre><b>foo     bar   baz</b></pre><br>
 [foo][bar][baz]<br>
 <b>quux-no-space quux-with space !</b><br>
 [quux-no-space][quux-with][space][!]<br>
-<b>   indented</b><br>
+<pre><b>   indented</b></pre><br>
 [][indented]<br>
 <b>.</b><br>
 $ <br>
