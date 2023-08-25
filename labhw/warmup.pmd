@@ -176,11 +176,11 @@ the shell's prompt:
 
 <tt>
 $ <b>./split</b><br>
-<pre><b>foo     bar   baz</b></pre><br>
+<b>foo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar&nbsp;&nbsp;&nbsp;baz</b><br>
 [foo][bar][baz]<br>
-<b>quux-no-space quux-with space !</b><br>
+<b>quux-no-space&nbsp;quux-with&nbsp;space&nbsp;!</b><br>
 [quux-no-space][quux-with][space][!]<br>
-<pre><b>   indented</b></pre><br>
+<b>&nbsp;&nbsp;&nbsp;indented</b><br>
 [][indented]<br>
 <b>.</b><br>
 $ <br>
