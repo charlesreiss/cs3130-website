@@ -28,8 +28,6 @@
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  kernel mode
     *  system calls
@@ -48,6 +46,8 @@
   title: exceptions / signals 
   slides_see: 2023-08-29
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
+  slides: yes
+  slides_prelim: yes
   description: |
     *  threads and context switches
     *  process = threads + address space
