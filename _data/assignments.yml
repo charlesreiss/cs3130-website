@@ -5,6 +5,7 @@
   submit_file: Makefile
 
 - name: warmup
+  open: 2023-08-29
   due: 2023-09-08
   page: labhw/warmup.html
   submit_files:
@@ -18,7 +19,7 @@
   short_name: signal
   lab: true
   tentative: true
-  page: labhw/sigtnals.html
+  page: labhw/signals.html
   due: 2023-09-06
   submit_file: "*.c"
 
@@ -58,7 +59,7 @@
   page: labhw/pagetable.html
   portion: 0.25
   due: 2023-09-22
-  grade_describe: |
+  XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
     <li>the "reallocation" test calls page_allocate twice for the same address</li>
@@ -85,7 +86,7 @@
   page: labhw/pagetable.html
   portion: 0.25
   due: 2023-09-27
-  grade_describe: |
+  XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
     <li>the "reallocation" test calls page_allocate twice for the same address</li>
@@ -125,7 +126,7 @@
   page: labhw/pagetable.html
   portion: 2.0
   due: 2023-10-06
-  grade_describe: |
+  XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
     <li>the "reallocation" test calls page_allocate twice for the same address</li>
