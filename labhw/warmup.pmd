@@ -12,6 +12,7 @@ Changelog:
 *  23 August 2023: link to CSO1 labs as possible reference in hints
 *  25 August 2023: fix whitespace not being formatted properly on split example 1
 *  25 August 2023: tweak wording of hint on realloc to account for not imply initializing the space is mandatory
+*  29 August 2023: clarify that `main.c` should be possible to test with our own `split.c`
 </div>
 
 # Your task
@@ -83,6 +84,9 @@ Changelog:
       If an input line is more than 4000 bytes, your program may not
       access out of bounds memory (such as might cause a segfault), but
       otherwise we do not care what it does.
+
+      We intend to test your `main.c` with our own `split.c`, so any functions other than
+      `string_split` that it needs should be contained within `main.c`.
 
       (Some examples of expected transcripts are shown below.)
 
