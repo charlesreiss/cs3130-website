@@ -85,8 +85,9 @@ Changelog:
       access out of bounds memory (such as might cause a segfault), but
       otherwise we do not care what it does.
 
-      We intend to test your `main.c` with our own `split.c`, so any functions other than
-      `string_split` that it needs should be contained within `main.c`.
+      We intend to test your `main.c` with our own `split.c`, so
+      please put any functions other than `string_split` that it needs
+      within `main.c`.
 
       (Some examples of expected transcripts are shown below.)
 
