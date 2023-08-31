@@ -13,6 +13,7 @@ Changelog:
 *  25 August 2023: fix whitespace not being formatted properly on split example 1
 *  25 August 2023: tweak wording of hint on realloc to account for not imply initializing the space is mandatory
 *  29 August 2023: clarify that `main.c` should be possible to test with our own `split.c`
+*  31 August 2023: clarify in "Your task" that words can be zero-length (matching what is shown in the examples)
 </div>
 
 # Your task
@@ -25,7 +26,7 @@ Changelog:
 
        The function should take a `\0`-terminated string `input` and a 
        `\0`-terminated string listing separating characters in `sep` and
-       return an array of "words" separated by a sequence of one or more
+       return an array of "words" (of zero or more characters) separated by a sequence of one or more
        of the characters in `sep`. `string_split` should set `*num_words`
        to the size of the array. The returned
        array and each of the strings in that array should be allocated so
