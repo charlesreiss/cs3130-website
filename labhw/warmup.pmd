@@ -14,6 +14,7 @@ Changelog:
 *  25 August 2023: tweak wording of hint on realloc to account for not imply initializing the space is mandatory
 *  29 August 2023: clarify that `main.c` should be possible to test with our own `split.c`
 *  31 August 2023: clarify in "Your task" that words can be zero-length (matching what is shown in the examples)
+*  1 Sep 2023: be more explicit about behavior for empty words at beginning/end in "Your task"
 </div>
 
 # Your task
@@ -31,6 +32,11 @@ Changelog:
        to the size of the array. The returned
        array and each of the strings in that array should be allocated so
        that they can be freed using `free()`.
+
+       (*[added 1 Sep:]* As shown in the examples below,
+       you should consider `input` to always start/end with a "word",
+       even if that word is empty, and to otherwise not
+       generate empty words.)
 
        In addition:
 
