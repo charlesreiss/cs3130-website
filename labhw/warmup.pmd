@@ -35,8 +35,8 @@ Changelog:
 
        (*[added 1 Sep:]* As shown in the examples below,
        you should consider `input` to always start/end with a "word",
-       even if that word is empty, and to otherwise not
-       generate empty words.)
+       even if that word is empty, and otherwise not generate empty words
+       even when there are multiple consecutive characters from `sep`.)
 
        In addition:
 
