@@ -44,7 +44,6 @@
 - date: 2023-08-31
   week: 2
   title: exceptions / signals 
-  slides_see: 2023-08-29
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
   slides: yes
   description: |
