@@ -47,33 +47,32 @@
   slides_see: 2023-08-29
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
   slides: yes
-  slides_prelim: yes
   description: |
     *  threads and context switches
     *  process = threads + address space
     *  Unix signals
        *  events triggering
-       *  signal handlers and implementation
+       *  signal handlers and implementation (start)
 
 - date: 2023-09-01
   week: 2
 
 - date: 2023-09-05
   week: 3
-  title: accounts + virtual memory 1
+  title: signals / accounts
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html)"
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
+    *  Unix signals
+       *  signal handlers and implementation (finish)
     *  user IDs/account abstraction
     *  POSIX permissions
     *  sudo is not kernel mode
     *  vulnerabilities and privilege escalation 
 
     *  virtual memory concept
-    *  page tables
-       *  concept, small example
 
 - date: 2023-09-06
   week: 3
@@ -82,11 +81,12 @@
 
 - date: 2023-09-07
   week: 3
-  title: virtual memory 2
+  title: virtual memory 1
   slides_see: 2023-09-05
   reading: "[VM](readings/vm.html)"
   description: |
     *  page tables
+       *  concept, small example
        *  storing in memory
        *  in-memory lookup example
        *  as a tree (start)
