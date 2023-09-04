@@ -13,8 +13,8 @@ author: Charles Reiss
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell)
     4.  sending a signal to the current process and having the signal handler start executing (but not including the signal handler returning)
     5.  sending a signal to another process, then having that process's signal handler send a signal back, then either:
-        *  having a signal handler for that signal start executing (but not including the signal handler returning); or
-        *  identifying that the signal was received using a function like `sigwait`
+        *  having a signal handler for signal sent back start executing in the original process (but not including the signal handler returning); or
+        *  identifying that the signal was sent back in the original process using a function like `sigwait`
 
     Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
     above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
@@ -33,7 +33,9 @@ author: Charles Reiss
     *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
     *  describe what calculations (if any) were necessary to convert the measurements output from your program to time estimates
 
-    If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files. We just need the parts of your program's output you used to compute the final time estimates you report; if your program outputs additional data, that does not need to be included. Also, it is acceptable if your program only outputs summaries of the measurements it takes rather than every individual measurement.
+    If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files.
+
+    In either `timings.txt` or separate data files, your submission must include the parts of your program's output you used to compute the final time estimates you report; if your program outputs additional data, that does not need to be submitted. Also, it is acceptable if your program only outputs summaries of the measurements it takes rather than every individual measurement.
 
     When producing the time estimates, you and/or your program must:
 
@@ -45,7 +47,7 @@ author: Charles Reiss
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
-4.  Submit all your `timings.txt`, any data files , and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
+4.  Submit all your `timings.txt`, any needed data files, and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
 
     (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt.)
 
