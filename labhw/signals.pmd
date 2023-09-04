@@ -3,6 +3,13 @@ title: Signals Lab
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  4 September 2023: add some more explanation of what attaching a pointer to a shared memory
+   region does
+</div>
+
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
@@ -124,7 +131,8 @@ that for this lab.)
    as well as `#define _XOPEN_SOURCE 600` (or similar) before including anything. On Linux, you will
    also need to link with `-lrt`.
 
-3. A pointer. You attach a pointer to shared memory using `mmap` and detach it with `munmap`:
+3. 
+   You can "attach" a pointer to shared memory using `mmap` and detach it with `munmap`:
 
     ````c
     char *inbox_data;
@@ -138,6 +146,8 @@ that for this lab.)
     // ...
     munmap(inbox_data, size);
     ````
+
+    Then you can use this pointer like an array to access the shared memory region.
 
 # Repeating and waiting
 
