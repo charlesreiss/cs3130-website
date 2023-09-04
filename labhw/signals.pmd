@@ -8,6 +8,8 @@ Changelog:
 
 *  4 September 2023: add some more explanation of what attaching a pointer to a shared memory
    region does
+*  4 September 2023: make instructiosn in "Your task" more explicit about shared memory regions,
+   a
 </div>
 
 In this lab you'll write yet another chat application.
@@ -26,16 +28,22 @@ I would recommend working in pairs on this lab,
 but note that both instances of the chat program need to run as the same user. (You can't send signals to another
 user's programs.)
 
-1. Make a program that prints its own PID and reads another PID from the user (store it in a global variable)
+1. Make a program that prints its own PID (process identifier) and reads another PID from the user (store it in a global variable)
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
     - SIGTERM should invoke a cleanup function
     - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
     - (Although normally one should take care to only use [signal-safe](../readings/kernel.html#signal-safety) functions in your signal handlers, for this lab, we do not
        care if you follow this rule.)
-3. Access some shared memory
-    - An "inbox" which this process will use to read values from the other process
-    - The inbox of the other process, which we'll call the "outbox."
+3. Setup access to *two* different shared memory regions:
+    - An "inbox" which this process will use to read values from the other process.
+
+
+    - The inbox of the other process, which we'll call the "outbox". You'll use this to write values to
+      the other process.
+
+  You can follow the instructions below under "Shared memory" to create this.
+
 3. Repeat until the end of file:
     - Read a typed line into the outbox (without overflow)
     - Wait until the outbox is emptied
@@ -84,7 +92,13 @@ To send a signal, use `kill(pid_to_send_to, SIGTERM)` or the like.
 One of the advantages of virtual memory is the OS can map the same physical page to different virtual pages in different processes.
 The processes can then directly communicate by loading what the other stored in that shared memory.
 
-Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is. There are multiple ways to create shared memory; in this assignment, it is recommended
+In this assignment, we'll use two regions of shared memory. If there are two chat processes running A and B,
+there will be an inbox for A which is also the outbox for B; and there will be an inbox for B which is
+also the outbox for B. In both A and B, you'll need to "map" each of these memory regions so you
+can access them.
+
+Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is.
+There are multiple ways to create shared memory; in this assignment, it is recommended
 to use `shm_open` and `mmap`. `shm_open` will give you access to special files that are kept
 in memory instead of persistent storage. Then, `mmap` takes a file and gives you access to it as a
 region of memory. (`mmap` also works for files that are stored normally on disk, though we don't recommend
@@ -132,7 +146,7 @@ that for this lab.)
    also need to link with `-lrt`.
 
 3. 
-   You can "attach" a pointer to shared memory using `mmap` and detach it with `munmap`:
+   You can "attach" a pointer `inbox_data` to shared memory using `mmap` and detach it with `munmap`:
 
     ````c
     char *inbox_data;
@@ -143,11 +157,24 @@ that for this lab.)
         /* note that MAP_FAILED is *NOT* the same thing as NULL */
     }
     close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
-    // ...
+    // ... access inbox_data ...
     munmap(inbox_data, size);
     ````
 
     Then you can use this pointer like an array to access the shared memory region.
+
+    Note that this needs to be done between allocating and deallocating the shared memory region.
+
+4.  You'll need to follow these steps **twice**: once to get the current process's inbox
+    (with a filename based on your current process's ID) , and another time to get your outbox,
+    which is another process's inbox (and therefore with a filename based on the other process's ID).
+
+    So you can access either your inbox or your outbox as appropriate, you should have two different
+    sets of variables to track the two regions.
+
+    In the instructions below, we assume that you've called the "data" pointer for the outbox obtained
+    this way "`outbox_data`" (though you are welcome to use other names).
+
 
 # Repeating and waiting
 
