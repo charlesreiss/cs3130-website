@@ -16,10 +16,10 @@ Your task:
 	].
     
     For the first submission, you must complete one of the following:
-    1.  `ptbr` and `translate` from part 2 for LEVELS=1 and POBITS=12 where the `va` argument to
+    1.  `ptbr` and `translate` from item 2 for LEVELS=1 and POBITS=12 where the `va` argument to
         `translate` is a multiple of 4096 (i.e., its lower 12 bits are 0). We describe below how you
         can test translate without working `page_allocate`.
-    2.  `ptbr` and `page_allocate` from part 2 for LEVELS=1 and POBITS=12, where `ptbr` is manually
+    2.  `ptbr` and `page_allocate` from item 2 for LEVELS=1 and POBITS=12, where `ptbr` is manually
         set to an allocated, empty page table as described below and the `va` argument to `page_allocate`
         is a multiple of 4096 (i.e., its lower 12 bits are 0).
 
@@ -27,7 +27,7 @@ Your task:
     option's implementation is more complete.)
 
     For the second submission, which is in preparation for a code review,
-    you must complete all parts except part 4, 5 and 6 below.
+    you must complete all of items 2 and 3 below.
 
     For the final submission, you must complete all parts below (and should fix
     any problems identified in the code review).
