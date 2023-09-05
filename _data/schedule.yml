@@ -58,18 +58,14 @@
 
 - date: 2023-09-05
   week: 3
-  title: signals / accounts
+  title: signals 
   slides: yes
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html) §1, 2.2, 3.1"
+  reading: "[kernel](readings/kernel.html) §2.3.1"
   description: |
+    *  exceptions and the quiz
+
     *  Unix signals
        *  signal handlers and implementation (finish)
-    *  user IDs/account abstraction
-    *  POSIX permissions
-    *  sudo is not kernel mode
-    *  vulnerabilities and privilege escalation 
-
-    *  virtual memory concept
 
 - date: 2023-09-06
   week: 3
@@ -78,32 +74,34 @@
 
 - date: 2023-09-07
   week: 3
-  title: virtual memory 1
+  title: accounts / virtual memory 1
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[VM](readings/vm.html)"
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
+    *  user IDs/account abstraction
+    *  POSIX permissions, briefly
+    *  sudo is not kernel mode
+    *  vulnerabilities and privilege escalation 
+
+    *  virtual memory concept
     *  page tables
-       *  concept, small example
-       *  storing in memory
-       *  in-memory lookup example
-       *  as a tree (start)
+       *  small example
 
 - date: 2023-09-08
   week: 3
 
 - date: 2023-09-12
   week: 4
-  title: virtual memory 3
-  slides_see: 2023-09-05
+  title: virtual memory 2
+  slides_see: 2023-09-07
   reading: "[VM](readings/vm.html)"
   description: |
     *  page tables
-       *  as a tree (finish)
-       *  in-memory page table lookup
-       *  permission bits
-       *  page table tricks, loading data on demand, swapping
+       *  storing in memory
+       *  in-memory lookup example
+       *  as a tree
 
 - date: 2023-09-13
   lab: true
@@ -111,22 +109,23 @@
 
 - date: 2023-09-14
   week: 4
-  title: IP + connection abstraction
+  title: virtual memory 3 / IP 
+  slides_see: 2023-09-07
   slides: yes
   sldies_prelim: yes
   slides_extra: yes
   reading: "[protocols](readings/protocols.html) §1-2"
   description: |
+    *  page table
+       *  multi-level lookup example
+       *  permission bits
+       *  page table tricks, loading data on demand, swapping
+
     *  mailbox analogy
        *  inboxes and outboxes
        *  addresses
        *  best-effort delivery
        *  envelope versus contents
-    *  TCP / connections
-       *  acknowledgements
-       *  state machine
-    *  names and addresses
-       *  layers preview
 
 - date: 2023-09-15
   week: 4
@@ -137,12 +136,16 @@
   reading: "[protocols](readings/protocols.html) §1-2"
   slides_see: 2023-09-14
   description: |
+    *  TCP / connections
+       *  acknowledgements
+       *  state machine
+    *  names and addresses
+       *  layers preview
     *  example: a frame
        *  layers (link, network, transport)
     *  IP
        *  addresses (v4, v6)
        *  routers
-    *  port numbers and UDP (start)
 
 - date: 2023-09-20
   lab: true
@@ -154,7 +157,7 @@
   slides_see: 2023-09-14
   reading: "[protocols](readings/protocols.html) §3-4"
   description: |
-    *  port numbers and UDP (finish)
+    *  port numbers and UDP
     *  DNS
        *  is a distributed database
        *  with caching
