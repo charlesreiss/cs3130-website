@@ -8,7 +8,7 @@ Changelog:
 
 *  4 September 2023: add some more explanation of what attaching a pointer to a shared memory
    region does
-*  4 September 2023: make instructions in "Your task" more explicit about shared memory regions,
+*  4 September 2023: make instructions be more explicit about shared memory regions
 *  5 September 2023: adjust introductory description to describe overall design of chat program.
 </div>
 
@@ -22,12 +22,13 @@ but it will also require significantly fewer system resources than our other cha
 Each instance of the chat program will have a shared memory region in which it receives
 messages. When sending a message, one instance of the chat program will modify
 the other's shared memory region, then send a signal to notify the other program
-that a new message is available. Then the sender will wait until the receiver
-acknowledges receiving the message by resetting the shared memory region before
-prompting for the next message to send.
+that a new message is available. The receiver will print out the message from its signal handler.
+Meanwhile, the sender will wait until the receiver acknowledges receiving the message by
+resetting the shared memory region before prompting for the next message to send.
 
 {.exercise ...}
-Do the following. We recommend doing them in order. Each is described in more detail below.
+To complete the signals-based chat program described above, do the following.
+We recommend doing them in order. Each is described in more detail below.
 
 Note the above instructions regarding testing on portal.
 
