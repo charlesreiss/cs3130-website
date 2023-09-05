@@ -60,8 +60,6 @@
   week: 3
   title: signals / accounts
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
     *  Unix signals
@@ -81,7 +79,9 @@
 - date: 2023-09-07
   week: 3
   title: virtual memory 1
-  slides_see: 2023-09-05
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[VM](readings/vm.html)"
   description: |
     *  page tables
