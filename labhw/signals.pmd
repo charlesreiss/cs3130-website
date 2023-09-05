@@ -8,8 +8,8 @@ Changelog:
 
 *  4 September 2023: add some more explanation of what attaching a pointer to a shared memory
    region does
-*  4 September 2023: make instructiosn in "Your task" more explicit about shared memory regions,
-   a
+*  4 September 2023: make instructions in "Your task" more explicit about shared memory regions,
+*  5 September 2023: adjust introductory description to describe overall design of chat program.
 </div>
 
 In this lab you'll write yet another chat application.
@@ -18,6 +18,13 @@ It will only work on a **single machine**, not over a network file system or the
 but it will also require significantly fewer system resources than our other chats.
 
 > If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your second SSH go directly into that portal##.cs.virginia.edu.
+
+Each instance of the chat program will have a shared memory region in which it receives
+messages. When sending a message, one instance of the chat program will modify
+the other's shared memory region, then send a signal to notify the other program
+that a new message is available. Then the sender will wait until the receiver
+acknowledges receiving the message by resetting the shared memory region before
+prompting for the next message to send.
 
 {.exercise ...}
 Do the following. We recommend doing them in order. Each is described in more detail below.
@@ -48,10 +55,11 @@ user's programs.)
     - Read a typed line into the outbox (without overflow)
     - Wait until the outbox is emptied
 4. After the user stops typing (i.e., EOF), send SIGTERM to the other process
-5. Make a cleanup function which destroys both inbox and outbox
+5. Make a cleanup function which destroys both the inbox and outbox
 
     The cleanup function should execute no matter how the program exits:
     via end-of-input, SIGINT, or SIGTERM.
+
 6.  Upload your solution to the submission site or show a TA your program for checkoff.
 {/}
 
