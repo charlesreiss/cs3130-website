@@ -75,7 +75,7 @@ This can be printed (e.g., with `printf`) by one process and input to the other 
 If you use something like `scanf("%d", ...)`, note that this does not read a full line. For example,
 if the input is `"12\n"`, then it will read only the `"12"`, leaving `"\n"` on the input.
 This means a later call to `fgets()` will return that `"\n"` as an empty line immediately,
-which may not be what you expect.
+which may need to account for later.
 
 # Signals
 
