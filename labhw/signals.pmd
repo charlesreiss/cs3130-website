@@ -39,7 +39,7 @@ user's programs.)
 
 1. Make a program that prints its own PID (process identifier) and reads another PID from the user (store it in a global variable)
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
-    - SIGTERM should invoke a cleanup function (that later you will make handle freeing shared memory regions)
+    - SIGTERM should invoke a cleanup function (can be a placeholder for now; later you will make it handle freeing shared memory regions)
     - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
     - (Although normally one should take care to only use [signal-safe](../readings/kernel.html#signal-safety) functions in your signal handlers, for this lab, we do not
@@ -57,10 +57,10 @@ user's programs.)
     - Read a typed line into the outbox (without overflow)
     - Wait until the outbox is emptied
 4. After the user stops typing (i.e., EOF), send SIGTERM to the other process
-5. Make a cleanup function which destroys both the inbox and outbox
+5. Make the cleanup function destroy both the inbox and outbox
 
-    The cleanup function should execute no matter how the program exits:
-    via end-of-input, SIGINT, or SIGTERM.
+   The cleanup function should execute no matter how the program exits:
+   via end-of-input, SIGINT, or SIGTERM.
 
 6.  Upload your solution to the submission site or show a TA your program for checkoff.
 {/}
