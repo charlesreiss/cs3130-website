@@ -40,9 +40,9 @@ author: Charles Reiss
     When producing the time estimates, you and/or your program must:
 
     *  make an attempt to account for any measurement overhead (that is, the time required to obtain the clock measurements
-       themselves and/or run the benchmarked task.
+       themselves and/or run the benchmarked task.)
        One strategy might be to measure the time required for "nothing" and subtract this time from other
-       measurements.)
+       measurements.
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
