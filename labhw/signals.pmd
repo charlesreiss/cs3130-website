@@ -10,6 +10,7 @@ Changelog:
    region does
 *  4 September 2023: make instructions be more explicit about shared memory regions
 *  5 September 2023: adjust introductory description to describe overall design of chat program.
+*  5 September 2023: add parenthetical about what cleanup function is for in step 2
 </div>
 
 In this lab you'll write yet another chat application.
@@ -38,7 +39,7 @@ user's programs.)
 
 1. Make a program that prints its own PID (process identifier) and reads another PID from the user (store it in a global variable)
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
-    - SIGTERM should invoke a cleanup function
+    - SIGTERM should invoke a cleanup function (that later you will make handle freeing shared memory regions)
     - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
     - (Although normally one should take care to only use [signal-safe](../readings/kernel.html#signal-safety) functions in your signal handlers, for this lab, we do not
