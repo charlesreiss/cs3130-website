@@ -763,7 +763,7 @@ input operation might work like this:
     call handler.
 
 3.  Otherwise, most likely the program that made the system call
-    will not be able to continue running until that input is avaiable. So,
+    will not be able to continue running until that input is available. So,
     rather than wasting processor time, the OS will, if possible,
     context switch to something else until input is available.
 
