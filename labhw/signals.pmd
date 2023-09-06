@@ -13,6 +13,7 @@ Changelog:
 *  5 September 2023: add parenthetical about what cleanup function is for in step 2
 *  6 September 2023: avoid suggesting `feof(stdin)`, instead suggest checking `fgets` return value
 *  6 September 2023: add note about `scanf` not reading a full line in PID section.
+*  6 September 2023: consistently use `inbox_filename` (not `inbox_name`) in shared memory code
 </div>
 
 In this lab you'll write yet another chat application.
@@ -127,7 +128,7 @@ that for this lab.)
    which you can generate using code like:
 
         char inbox_filename[512];
-        snprintf(inbox_name, sizeof inbox_filename, "/%d-chat", pid);
+        snprintf(inbox_filename, sizeof inbox_filename, "/%d-chat", pid);
 
    Note that the name must start with a `/`.
 
