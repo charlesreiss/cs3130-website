@@ -33,7 +33,6 @@
 
 - name: timing
   due: 2023-09-15
-  tentative: true
   page: labhw/systiming.html
   submit_files:
   - timings.txt
