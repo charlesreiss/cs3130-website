@@ -3,6 +3,13 @@ title: Kernels -- Software for the Hardware
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  5 Sep 2023: Add a little explanation under "interrupts" of why the interrupt on input is useful;
+   add section about the typical way exceptions + context switches happen with I/O
+</div>
+
 # Kernel Mode vs. User Mode
 
 All multi-purposed chips today have (at least) two modes in which they can operate:
@@ -128,6 +135,9 @@ In the convention we have followed, we use 'exception' as the generic term and u
 
 An interrupt occurs independently from the code being executed when it occurs.
 It might result from the mouse moving, a network packet arriving, or the like.
+
+Input devices commonly triggering interrupts allows the operating system to process
+and act on input even if that input occurs while an unrelated program is running.
 
 Interrupts are typically handled by the kernel in a way that is invisible to the user code.
 The user code is frozen, the interrupt is handled, and then the user code is resumed as if nothing had happened.
@@ -276,7 +286,6 @@ A fault handler, on the other hand, is supposed to remove the barrier to success
 and thus generally re-runs the faulting instruction.
 
 
-
 {.aside ...}
 Aborts
 
@@ -399,6 +408,8 @@ For example, on Linux (and all other multiuser OSes I am aware of), `malloc` and
 by library code that runs in user mode that makes simpler system calls.
 
 {/}
+
+
 
 
 ## Exception-Like Constructs
@@ -730,11 +741,57 @@ The operating system controls which address space is active by changing these sp
 Changing which thread and/or process's state is currently loaded on a processor core
 is called a **context switch**.
 All major user operating systems (but not all embedded-system operating systems)
-use a hardware timer to create an exception every few dozen milliseconds
+use a hardware timer to create an exception (a "timer interrupt") every few dozen milliseconds
 to enable automated context switching and facilitate the illusion that
 more processes are running at a time than there are processors in the computer.
 Operating systems will also perform context switches at other times, such as when
 a program needs to wait for input before it can continue executing.
+
+# Typical I/O patterns
+
+## Input
+
+When a program retrieves input from a device (like a keyboard or the network)
+often multiple exceptions and context switches are involved. A typical
+input operation might work like this:
+
+1.  A program needs to request input from the OS. It will do this with a
+    system call.
+
+2.  In some cases, the OS may already have the input available in its
+    memory and be able to return that immediately to the program in the system
+    call handler.
+
+3.  Otherwise, most likely the program that made the system call
+    will not be able to continue running until that input is avaiable. So,
+    rather than wasting processor time, the OS will, if possible,
+    context switch to something else until input is available.
+
+4.  Eventually, the device will indicate it has more input by triggering
+    an interrupt. The OS can handle interrupt by copying the data
+    and marking the waiting program as runnable again.
+    Possibly, the could context switch to the waiting program immediately,
+    or it might decide to let other programs run more first.
+
+## Output
+
+The typical output scenario is very similar to the input scenario:
+
+1.  A program will request that the OS send output to a device on its
+    behalf.
+
+2.  In many cases, the OS will be able to send the output immediately
+    to the device.
+
+3.  Otherwise, the OS might need to wait until the device is ready
+    to accept its output.
+    If the current program can run while that's happening, the OS
+    can return to the current program. Otherwise, it would context switch
+    to other programs until the device is ready for more output.
+
+4.  Eventually, the device will indicate it can accept more output
+    by triggering an interrupt. The OS will handle this interrupt
+    by completing the output operation.
 
 # Further resources
 
