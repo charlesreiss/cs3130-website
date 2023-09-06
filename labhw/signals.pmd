@@ -11,6 +11,7 @@ Changelog:
 *  4 September 2023: make instructions be more explicit about shared memory regions
 *  5 September 2023: adjust introductory description to describe overall design of chat program.
 *  5 September 2023: add parenthetical about what cleanup function is for in step 2
+*  6 September 2023: avoid suggesting `feof(stdin)`, instead suggest checking `fgets` return value
 </div>
 
 In this lab you'll write yet another chat application.
@@ -192,7 +193,7 @@ You've got two things to do: keyboard ↦ outbox and inbox ↦ screen.
 
 ## keyboard ↦ outbox
 
-A loop in `main` is the way to go: `while(!feof(stdin))`{.c} you want to `fgets` directly into the outbox.
+A loop in `main` is the way to go: `while(1)` `fgets` directly into the outbox (breaking out of the loop if `fgets` fails).
 After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox_data[0]`{.c} to become `'\0'`{.c}.
 Don't just busy-wait though: check, then go to sleep for a bit, then check again.
 (A better strategy you could also try might be to wait for SIGUSR2 using sigprocmask() and sigwait()
