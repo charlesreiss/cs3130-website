@@ -74,31 +74,31 @@
 
 - date: 2023-09-07
   week: 3
-  title: accounts / virtual memory 1
+  title: accounts
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html), [VM](readings/vm.html) §1, 2.2, 3.1"
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
-    *  sudo is not kernel mode
-    *  vulnerabilities and privilege escalation 
-
-    *  virtual memory concept
-    *  page tables
-       *  small example
+    *  set-user-ID, sudo is not kernel mode
+    *  privilege escalation 
 
 - date: 2023-09-08
   week: 3
 
 - date: 2023-09-12
   week: 4
-  title: virtual memory 2
-  slides_see: 2023-09-07
-  reading: "[VM](readings/vm.html)"
+  title: virtual memory 1
+  slides: yes
+  slides_prelim: yes
+  sldies_extra: yes
+  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
+    *  virtual memory concept
     *  page tables
+       *  small example
        *  storing in memory
        *  in-memory lookup example
        *  as a tree
@@ -109,23 +109,14 @@
 
 - date: 2023-09-14
   week: 4
-  title: virtual memory 3 / IP 
-  slides_see: 2023-09-07
-  slides: yes
-  sldies_prelim: yes
-  slides_extra: yes
-  reading: "[protocols](readings/protocols.html) §1-2"
+  title: virtual memory 2
+  slides_see: 2023-09-12
+  reading: "[VM](readings/vm.html)"
   description: |
     *  page table
        *  multi-level lookup example
        *  permission bits
        *  page table tricks, loading data on demand, swapping
-
-    *  mailbox analogy
-       *  inboxes and outboxes
-       *  addresses
-       *  best-effort delivery
-       *  envelope versus contents
 
 - date: 2023-09-15
   week: 4
@@ -134,8 +125,15 @@
   week: 5
   title: IP +  routing
   reading: "[protocols](readings/protocols.html) §1-2"
-  slides_see: 2023-09-14
+  slides: yes
+  sldies_prelim: yes
+  slides_extra: yes
   description: |
+    *  mailbox analogy
+       *  inboxes and outboxes
+       *  addresses
+       *  best-effort delivery
+       *  envelope versus contents
     *  TCP / connections
        *  acknowledgements
        *  state machine
@@ -154,7 +152,7 @@
 - date: 2023-09-21
   week: 5
   title: URLs + DHCP + DNS
-  slides_see: 2023-09-14
+  slides_see: 2023-09-19
   reading: "[protocols](readings/protocols.html) §3-4"
   description: |
     *  port numbers and UDP
@@ -180,8 +178,6 @@
     *  cryptography (start)
        *  symmetric encryption
        *  asymmetric encryption
-       *  digital signature
-    *  replay attacks
 
 - date: 2023-09-27
   lab: true
@@ -194,10 +190,11 @@
   reading: "[security](readings/sec.html) §1.5-2"
   description: |
     *  cryptography (con't)
+       *  digital signature
+    *  replay attacks
+    *  cryptography (con't)
         *  cryptographic hashes
         *  key exchange
-    *  public key infrastructure
-    *  TLS protocol outline
 
 - date: 2023-10-03
   no_class: true
@@ -211,11 +208,13 @@
 - date: 2023-10-05
   week: 7
   title: caches 1
-  reading: "[cache](readings/cache.html) §1-5"
+  reading: "secure channels 3 / [cache](readings/cache.html) §1-5"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  public key infrastructure
+    *  TLS protocol outline
     *  caching idea
         *  connecting processors to memory
         *  memory hierarchy
