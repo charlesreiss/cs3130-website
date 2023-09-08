@@ -16,6 +16,7 @@ Changelog:
 *  31 August 2023: clarify in "Your task" that words can be zero-length (matching what is shown in the examples)
 *  1 Sep 2023: be more explicit about behavior for empty words at beginning/end in "Your task"
 *  8 Sep 2023: clarify that no-hard-coding does not mean no-special-cases.
+*  8 Sep 2023: give testing string_split with our own main as reason why everything string_split needs should be in split.c
 </div>
 
 # Your task
@@ -53,7 +54,8 @@ Changelog:
        Some examples of using this function are shown below.
 
        Your implementation may use additional utility functions, provided those are
-       also in `split.c`. It may also use any functions in the C standard library.
+       also in `split.c` (so we can easily test your split.c with our own
+       main.c). It may also use any functions in the C standard library.
 
     *  in `split.h`, write an appropriate header file declaring `split.c` and include
        [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
