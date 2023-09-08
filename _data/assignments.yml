@@ -38,6 +38,9 @@
 - name: timing
   due: 2023-09-15
   page: labhw/systiming.html
+  grade_describe: |
+    I expect this assignment to be mostly hand-graded (since a lot of it is hard to check automatically),
+    so there will probably not that much useful automated output below.
   submit_files:
   - timings.txt
   - "*.txt"
