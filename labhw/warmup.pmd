@@ -15,6 +15,7 @@ Changelog:
 *  29 August 2023: clarify that `main.c` should be possible to test with our own `split.c`
 *  31 August 2023: clarify in "Your task" that words can be zero-length (matching what is shown in the examples)
 *  1 Sep 2023: be more explicit about behavior for empty words at beginning/end in "Your task"
+*  8 Sep 2023: clarify that no-hard-coding does not mean no-special-cases.
 </div>
 
 # Your task
@@ -105,7 +106,9 @@ Changelog:
 
 4.  Make sure your code does not have memory leaks or errors. We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
 
-5.  We may use automated tests to assess your submission. Your solution may not hard-code the solution to any of the test cases or intentionally interfere with the testing environment.
+5.  We may use automated tests to assess your submission. Your solution may not hard-code the solution for any of the test cases or intentionally interfere with the testing environment.
+    <small>(By "hard-code the solution", we mean code that looks for our specific test inputs (such as checking if the input contains the "XfooX" because one of the test cases is "XfooXbar")
+    rather than the more general situation being tested (such checking for separator characters at the beginning of the input); it's not a prohibition on having special cases.)</small>
 
 #  Examples
 
