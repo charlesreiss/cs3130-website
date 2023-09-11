@@ -76,8 +76,6 @@
   week: 3
   title: accounts
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   description: |
     *  user IDs/account abstraction
