@@ -46,8 +46,7 @@ Changelog:
 
     When producing the time estimates, you and/or your program must:
 
-    *  make an attempt to account for any measurement overhead (that is, the time required to obtain the clock measurements
-       themselves, setup the benchmarked task, etc. that might unintentionally be included in raw time measurements.)
+    *  make an attempt to account for any measurement overhead (that is, the time unintentionally included in raw timings used to obtain the clock measurements themselves, setup the benchmarked task, etc. rather than do the task being timed)
        One strategy might be to measure the time required for "nothing" and subtract this time from other
        measurements.
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
