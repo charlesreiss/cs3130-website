@@ -8,7 +8,7 @@ Changelog:
 
 *  10 Sep 2023: allow using `/usr/bin/true` instead of `/bin/true` on system that does not have `/bin/true`
 *  10 Sep 2023: tweak phrasing re: timing overhead to make it clear it's about dealing with non-benchmark
-   tasks that area accidentally timed
+   tasks that are accidentally timed
 </div>
 
 # Your task
