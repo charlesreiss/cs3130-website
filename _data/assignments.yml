@@ -90,6 +90,8 @@
   page: labhw/pagetable.html
   portion: 0.25
   due: 2023-10-03
+  pre_lab: true
+  due_message: pagetable part 2 (pre code review) due BEFORE LAB
   XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
