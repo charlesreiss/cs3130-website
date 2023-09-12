@@ -296,7 +296,7 @@ To test that these work properly,
 
     (and calling `set_testing_ptbr()`)
 
-    With a proper implementation of `translate()`, `translate(X)` will be `-1` for every address (that's a valid virtual address).
+    With a proper implementation of `translate()`, `translate(X)` will be `-1` for every address (that is not too big to be a virtual address).
 
 4.  Since page table entries are 8 bytes (the size of `size_t`), setting index _X_ of the array declared will set 
     index _X_ of the page table. So, let's say (with POBITS = 12 and LEVELS = 1), we want to set virtual page 3
