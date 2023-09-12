@@ -157,7 +157,7 @@
   lab: true
   short_name: securechannel
   removed_page: labhw/signatures.html
-  page: labhw/secure-channel.html - "*.gz"
+  page: labhw/secure-channel.html
   due: 2023-10-11
   submit_file: attack.c
 
@@ -275,7 +275,8 @@
   - "*.cc"
   - "*.h"
   - "*.hh"
-  XXXdue: 2023-11-29
+  due: never
+  no_assignments_json: true
 
 - name: OOO
   short_name: OOO
