@@ -89,7 +89,7 @@
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2023-09-27
+  due: 2023-10-03
   XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
     <ul>
@@ -110,7 +110,13 @@
   - "Makefile"
   - "makefile"
   - "*.txt"
-  - "*.gz"
+ 
+- name: secure channels lab
+  lab: true
+  short_name: securechannel
+  removed_page: labhw/signatures.html
+  page: labhw/secure-channel.html - "*.gz"
+  due: 2023-09-27
 
 - name: code reviews
   lab: true
@@ -118,7 +124,7 @@
   page: labhw/code-review.html
   comments: needs submission site link correction
   missing-if-no-feedback: true
-  due: 2023-09-27
+  due: 2023-10-03
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3
@@ -152,11 +158,6 @@
   - "*.txt"
   - "*.gz"
 
-- name: secure channels lab
-  lab: true
-  short_name: securechannel
-  removed_page: labhw/signatures.html
-  page: labhw/secure-channel.html
   submit_file: attack.c
   due: 2023-10-04
 

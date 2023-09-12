@@ -114,7 +114,7 @@
     *  page table
        *  multi-level lookup example
        *  permission bits
-       *  page table tricks, loading data on demand, swapping
+       *  (if time) page table tricks, loading data on demand, swapping
 
 - date: 2023-09-15
   week: 4
@@ -260,6 +260,7 @@
     *  processes, threads
     *  creating new processes
        *  fork, exec*
+    *  (if needed) allocate-on-demand, copy-on-write, swapping
     *  waiting for processes
 
 - date: 2023-10-18
