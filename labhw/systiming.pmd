@@ -167,7 +167,7 @@ it might be possible
 that something that takes a very short amount of time runs entirely simulatenously with your timing code around it
 and so takes "no" time.
 In other unusual cases, it's possible that relocating or making apparently inconsequential
-changes the task-running code speeds that code up
+changes the timing code speeds that code up
 slightly (due to arranging code or data on the stack in a slightly better way in memory, etc.).
 
 There are ways to avoid instructions overlapping (by including instructions
