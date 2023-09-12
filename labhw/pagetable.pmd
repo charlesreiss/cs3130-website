@@ -6,7 +6,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  12 Sep 2023: require translate to work for arbitrary `va` (not just page offset = 0) for part 1
+*  12 Sep 2023: require page_allocate/translate to work for arbitrary `va` (not just page offset = 0) for part 1
 </div>
 
 {.exercise ...}
@@ -25,8 +25,8 @@ Your task:
         We describe below how you
         can test translate without working `page_allocate`.
     2.  `ptbr` and `page_allocate` from item 2 for LEVELS=1 and POBITS=12, where `ptbr` is manually
-        set to an allocated, empty page table as described below and the `va` argument to `page_allocate`
-        is a multiple of 4096 (i.e., its lower 12 bits are 0).
+        set to an allocated, empty page table as described below
+        (i.e., its lower 12 bits are 0).
 
     (You can choose which to complete; if you attempt both, we will take the grade based on whichever
     option's implementation is more complete.)
