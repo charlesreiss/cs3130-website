@@ -168,7 +168,7 @@ that something that takes a very short amount of time runs entirely simulatenous
 and so takes "no" time.
 In other unusual cases, it's possible that relocating or making apparently inconsequential
 changes the task-running code speeds that code up
-slightly (due to arranging code in a slightly better way in memory, etc.).
+slightly (due to arranging code or data on the stack in a slightly better way in memory, etc.).
 
 There are ways to avoid instructions overlapping (by including instructions
 that the proecssor manufacturer designates to prevent this;
