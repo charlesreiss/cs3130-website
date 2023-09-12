@@ -89,7 +89,7 @@
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2023-10-03
+  due: 2023-10-04
   pre_lab: true
   due_message: pagetable part 2 (pre code review) due BEFORE LAB
   XXXgrade_describe: |
@@ -119,7 +119,7 @@
   page: labhw/code-review.html
   comments: needs submission site link correction
   missing-if-no-feedback: true
-  due: 2023-10-03
+  due: 2023-10-04
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3

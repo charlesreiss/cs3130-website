@@ -9,7 +9,7 @@ Changelog:
 *  10 Sep 2023: allow using `/usr/bin/true` instead of `/bin/true` on system that does not have `/bin/true`
 *  10 Sep 2023: tweak phrasing re: timing overhead to make it clear it's about dealing with non-benchmark
    tasks that are accidentally timed
-*  12 Sep 2023: address negative times explicitly in hints
+*  12 Sep 2023: address negative times explicitly in hints, and indicate rare cases where "real" such results might happen
 </div>
 
 # Your task
@@ -157,20 +157,25 @@ of issues like:
 
 *  not repeating measurements of overhead enough times to discount "warmup" effects (where the measurements will be slower the first few times they run). For example, if the overhead measurement needs to spend extra time loading the code for reading the clock into the processor's caches (fast memories).
 
-Because processors try to run multiple instructions at a time, in some unusual cases, it might be possible
+If you you make an significnat effort to eliminate/diagnose measurement errors that would
+cause a negative time and still have a negative time and you report it accurately when
+you report your results, that is fine. In some rare cases, these results could be "real"
+due to how modern processors work:
+
+Because processors try to run multiple instructions at a time, in some unusual cases,
+it might be possible
 that something that takes a very short amount of time runs entirely simulatenously with your timing code around it
 and so takes "no" time.
-In even more unusual cases, it's possible that relocating the task-running code speeds that code up
+In other unusual cases, it's possible that relocating or making apparently inconsequential
+changes the task-running code speeds that code up
 slightly (due to arranging code in a slightly better way in memory, etc.).
-In this rare case, you might get a legitimate "negative" time.
-If this happens and you did the work to make sure it's not just measurement problems and
-you report it accurately, that is fine.
 
 There are ways to avoid instructions overlapping (by including instructions
 that the proecssor manufacturer designates to prevent this;
 see, for example, [this Intel document](https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf))
 to make sure you are only timing the task of interest and not how it interacts with instructions around it, but that
 is not required for this assignment.
+
 
 ## Compiler optimization and function calls
 
