@@ -3,6 +3,11 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  12 Sep 2023: require translate to work for arbitrary `va` (not just page offset = 0) for part 1
+</div>
 
 {.exercise ...}
 Your task:
@@ -16,8 +21,8 @@ Your task:
 	].
     
     For the first submission, you must complete one of the following:
-    1.  `ptbr` and `translate` from item 2 for LEVELS=1 and POBITS=12 where the `va` argument to
-        `translate` is a multiple of 4096 (i.e., its lower 12 bits are 0). We describe below how you
+    1.  `ptbr` and `translate` from item 2 for LEVELS=1 and POBITS=12.
+        We describe below how you
         can test translate without working `page_allocate`.
     2.  `ptbr` and `page_allocate` from item 2 for LEVELS=1 and POBITS=12, where `ptbr` is manually
         set to an allocated, empty page table as described below and the `va` argument to `page_allocate`
