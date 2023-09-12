@@ -9,6 +9,7 @@ Changelog:
 *  10 Sep 2023: allow using `/usr/bin/true` instead of `/bin/true` on system that does not have `/bin/true`
 *  10 Sep 2023: tweak phrasing re: timing overhead to make it clear it's about dealing with non-benchmark
    tasks that are accidentally timed
+*  12 Sep 2023: address negative times explicitly in hints
 </div>
 
 # Your task
@@ -135,6 +136,41 @@ To mitigate this, usually one would:
 
 Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. To compensate for this,
 I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings.
+
+In addition, the amount of overhead is generally lower when you compile with optimizations, so I would
+recommend trying to do so. Keep in mind, however, to enable optimizations, you'll need to keep the compiler
+from doing optimizations that eliminate the things you are trying to time. The ideas in section 2.4
+can be helpful for this.
+
+### Negative times from overhead
+
+Sometimes students get consistently negative times after attempting to subtract overhead. *Usually* I think this is the result
+of issues like:
+
+*  not eliminating differences in the environment your overhead measurements come from and the environment your "real" measurements come from. For example, if they have loops that require different amounts of work to keep track of the loop indices, or if the compiler produces better assembly for one than the other.
+
+   As part of trying to eliminate these differences, one thing I'd recommend is trying to enable some
+   compiler optimizations so the compiler does not keep all values on the stack. Because of caches,
+   the speed of memory accesses can vary based on how things are laid out in memory, but accesses to registers
+   are more consistent. (As mentioned above, unfortunately, you may need to do extra work to make sure
+   the compiler does not eliminate code you are timing that apparently "does nothing" to speed the program up.)
+
+*  not repeating measurements of overhead enough times to discount "warmup" effects (where the measurements will be slower the first few times they run). For example, if the overhead measurement needs to spend extra time loading the code for reading the clock into the processor's caches (fast memories).
+
+Because processors try to run multiple instructions at a time, in some unusual cases, it might be possible
+that something that takes a very short amount of time runs entirely simulatenously with your timing code around it
+and so takes "no" time.
+In even more unusual cases, it's possible that relocating the task-running code speeds that code up
+slightly (due to arranging code in a slightly better way in memory, etc.).
+In this rare case, you might get a legitimate "negative" time.
+If this happens and you did the work to make sure it's not just measurement problems and
+you report it accurately, that is fine.
+
+There are ways to avoid instructions overlapping (by including instructions
+that the proecssor manufacturer designates to prevent this;
+see, for example, [this Intel document](https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf))
+to make sure you are only timing the task of interest and not how it interacts with instructions around it, but that
+is not required for this assignment.
 
 ## Compiler optimization and function calls
 
