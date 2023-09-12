@@ -95,11 +95,9 @@
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
     *  virtual memory concept
+        *   address space and address sizes
     *  page tables
-       *  small example
-       *  storing in memory
-       *  in-memory lookup example
-       *  as a tree
+    *  storing in memory (start)
 
 - date: 2023-09-13
   lab: true
@@ -111,22 +109,27 @@
   slides_see: 2023-09-12
   reading: "[VM](readings/vm.html)"
   description: |
-    *  page table
-       *  multi-level lookup example
-       *  permission bits
-       *  (if time) page table tricks, loading data on demand, swapping
+    *  page tables
+       *  small example (not in memory)
+       *  storing in memory (finish)
+       *  as a tree
 
 - date: 2023-09-15
   week: 4
 
 - date: 2023-09-19
   week: 5
-  title: IP +  routing
+  title: virtual memory 3 / IP +  routing
   reading: "[protocols](readings/protocols.html) §1-2"
+  slides_See: 2023-09-12
   slides: yes
   sldies_prelim: yes
   slides_extra: yes
   description: |
+    *  page tables (finish)
+       *  multi-level lookup example
+       *  permission bits
+       *  (if time) page table tricks, loading data on demand, swapping
     *  mailbox analogy
        *  inboxes and outboxes
        *  addresses
@@ -135,13 +138,6 @@
     *  TCP / connections
        *  acknowledgements
        *  state machine
-    *  names and addresses
-       *  layers preview
-    *  example: a frame
-       *  layers (link, network, transport)
-    *  IP
-       *  addresses (v4, v6)
-       *  routers
 
 - date: 2023-09-20
   lab: true
@@ -153,14 +149,17 @@
   slides_see: 2023-09-19
   reading: "[protocols](readings/protocols.html) §3-4"
   description: |
+    *  names and addresses
+       *  layers preview
+    *  example: a frame
+       *  layers (link, network, transport)
+    *  IP
+       *  addresses (v4, v6)
+       *  routers
     *  port numbers and UDP
     *  DNS
        *  is a distributed database
        *  with caching
-    *  URLs
-    *  (if time) link-layer to network-layer mapping
-    *  DHCP
-    *  NAT
 
 - date: 2023-09-22
   week: 5
@@ -173,6 +172,10 @@
   slides_extra: yes
   reading: "[security](readings/sec.html) §1-1.5, 3"
   description: |
+    *  URLs
+    *  (if time) link-layer to network-layer mapping
+    *  DHCP
+    *  NAT
     *  cryptography (start)
        *  symmetric encryption
        *  asymmetric encryption
@@ -453,6 +456,9 @@
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
+
+- date: 2023-12-01
+  week: 15
 
 - date: 2023-12-05
   week: 16

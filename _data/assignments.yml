@@ -51,12 +51,6 @@
   - "*.asm"
   - "Makefile"
 
-- name: networking
-  lab: true
-  page: labhw/networking.html
-  submit_file: "*.c"
-  due: 2023-09-20
-
 - name: pagetable part 1
   short_name: pagetable1
   comment: no introducing lab
@@ -85,6 +79,12 @@
   - "*.txt"
   - "*.gz"
 
+- name: networking
+  lab: true
+  page: labhw/networking.html
+  submit_file: "*.c"
+  due: 2023-09-27
+
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
   page: labhw/pagetable.html
@@ -112,13 +112,6 @@
   - "Makefile"
   - "makefile"
   - "*.txt"
- 
-- name: secure channels lab
-  lab: true
-  short_name: securechannel
-  removed_page: labhw/signatures.html
-  page: labhw/secure-channel.html - "*.gz"
-  due: 2023-09-27
 
 - name: code reviews
   lab: true
@@ -160,8 +153,13 @@
   - "*.txt"
   - "*.gz"
 
+- name: secure channels lab
+  lab: true
+  short_name: securechannel
+  removed_page: labhw/signatures.html
+  page: labhw/secure-channel.html - "*.gz"
+  due: 2023-10-11
   submit_file: attack.c
-  due: 2023-10-04
 
 - name: cache exercises
   short_name: cachelab
@@ -169,7 +167,20 @@
   page: labhw/cache-lab.html
   missing-if-no-feedback: true
   lab: true
-  due: 2023-10-11
+  due: 2023-10-18
+
+- name: fork lab
+  short_name: fork-lab
+  lab: true
+  page: labhw/fork-lab.html
+  submit_file: "*.c"
+  due: 2023-10-25
+
+- name: cache programs
+  short_name: cache-programs
+  page: labhw/cache-programs.html
+  submit_file: "*submit*.tar"
+  due: 2023-10-27
 
 - name: sync games
   lab: true
@@ -178,20 +189,9 @@
   comments: needs changes for in-person?
   comments: need .php stuff
   XXX-missing-if-no-feedback: true
-  due: 2023-10-18
+  due: 2023-11-01
 
-- name: cache programs
-  short_name: cache-programs
-  page: labhw/cache-programs.html
-  submit_file: "*submit*.tar"
-  due: 2023-10-20
 
-- name: fork lab
-  short_name: fork-lab
-  lab: true
-  page: labhw/fork-lab.html
-  submit_file: "*.c"
-  due: 2023-10-25
 
 - name: TLB
   short_name: tlb
@@ -203,7 +203,7 @@
   - "Makefile"
   - "makefile"
   - "*.txt"
-  due: 2023-10-27
+  due: 2023-11-03
 
 - name: pthreads (dining philosophers) 
   lab: true
@@ -219,7 +219,7 @@
   - dp-arb.c
   - dp-rh.c
   - dp-mp.c
-  due: 2023-11-01
+  due: 2023-11-08
 
 - name: fork HW
   short_name: fork
@@ -230,7 +230,7 @@
     If all tests fail/do not run, it may be because you included a `main()` function that interferes with our testing code,
     or because you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully.
   submit_file: "fork_run.c"
-  due: 2023-11-03
+  due: 2023-11-10
 
 - name: openmp
   short_name: openmp
@@ -239,13 +239,6 @@
   submit_files:
   - "*.c"
   - "performance.txt"
-  due: 2023-11-08
-
-- name: side channel
-  short_name: side-channel
-  lab: true
-  page: labhw/side-channel.html
-  submit_file: "lab.c"
   due: 2023-11-15
 
 - name: life
@@ -259,20 +252,19 @@
   comment: sanitize-examples.sh script
   comment: ThreadSanitizer stuff
 
+- name: side channel
+  short_name: side-channel
+  lab: true
+  page: labhw/side-channel.html
+  submit_file: "lab.c"
+  due: 2023-11-29
+
 - name: pipeline
   short_name: pipeline
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   missing-if-no-feedback: true
-  grade_describe: |
-    Between 30 April and midday 2 May, the autograder results failed to check
-    the forwarding (and gave credit regardless of the answers). Hopefully,
-    this is now corrected below.
-
-    <small>Also before 7pm 2 May, the autogrades shown deducted credit for showing
-    forwarding of the PC value for mispredicted jumps (which was not expected,
-    but not intended to be a deduction).</small>
-  due: 2023-11-28
+  due: 2023-11-29
 
 - name: C++ OR templates
   short_name: cpp
@@ -283,7 +275,7 @@
   - "*.cc"
   - "*.h"
   - "*.hh"
-  due: 2023-11-29
+  XXXdue: 2023-11-29
 
 - name: OOO
   short_name: OOO
