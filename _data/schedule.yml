@@ -90,8 +90,6 @@
   week: 4
   title: virtual memory 1
   slides: yes
-  slides_prelim: yes
-  sldies_extra: yes
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
     *  virtual memory concept
@@ -106,7 +104,9 @@
 - date: 2023-09-14
   week: 4
   title: virtual memory 2
-  slides_see: 2023-09-12
+  slides: yes
+  slides_prelim: yes
+  sldies_extra: yes
   reading: "[VM](readings/vm.html)"
   description: |
     *  page tables
@@ -121,7 +121,7 @@
   week: 5
   title: virtual memory 3 / IP +  routing
   reading: "[protocols](readings/protocols.html) §1-2"
-  slides_See: 2023-09-12
+  slides_see: 2023-09-14
   slides: yes
   sldies_prelim: yes
   slides_extra: yes
