@@ -190,27 +190,6 @@
   submit_file: "*submit*.tar"
   due: 2023-10-20
 
-- name: openmp
-  short_name: openmp
-  lab: true
-  page: labhw/openmp.html
-  submit_files:
-  - "*.c"
-  - "performance.txt"
-  due: 2023-10-25
-
-- name: TLB
-  short_name: tlb
-  comment: no introducing lab
-  page: labhw/tlb.html
-  submit_files:
-  - "*.c"
-  - "*.h"
-  - "Makefile"
-  - "makefile"
-  - "*.txt"
-  due: 2023-10-27
-
 - name: pthreads (dining philosophers) 
   lab: true
   short_name: pthreads
@@ -225,13 +204,34 @@
   - dp-arb.c
   - dp-rh.c
   - dp-mp.c
-  due: 2023-11-01
+  due: 2023-10-25
+
+- name: TLB
+  short_name: tlb
+  comment: no introducing lab
+  page: labhw/tlb.html
+  submit_files:
+  - "*.c"
+  - "*.h"
+  - "Makefile"
+  - "makefile"
+  - "*.txt"
+  due: 2023-10-27
 
 - name: networking
   lab: true
   page: labhw/networking.html
   submit_file: "*.c"
+  due: 2023-11-01
+
+
+- name: secure channels lab
+  lab: true
+  short_name: securechannel
+  removed_page: labhw/signatures.html
+  page: labhw/secure-channel.html
   due: 2023-11-08
+  submit_file: attack.c
 
 - name: life
   short_name: life
@@ -244,13 +244,14 @@
   comment: sanitize-examples.sh script
   comment: ThreadSanitizer stuff
 
-- name: secure channels lab
+- name: openmp
+  short_name: openmp
   lab: true
-  short_name: securechannel
-  removed_page: labhw/signatures.html
-  page: labhw/secure-channel.html
-  due: 2023-11-15
-  submit_file: attack.c
+  page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
+  due: 2023-11-01
 
 - name: pipeline
   short_name: pipeline
