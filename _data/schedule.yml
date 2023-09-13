@@ -177,7 +177,7 @@
   week: 6
   title: caches 2
   slides_see: 2023-09-26
-  descripiton: |
+  description: |
     *  cache misses and C code
     *  set-associative caches
     *  replacement policies
@@ -195,7 +195,7 @@
   week: 7
   title: caches 3
   slides_see: 2023-09-26
-  descripiton: |
+  description: |
     *  write policies
     *  the TLB
 
