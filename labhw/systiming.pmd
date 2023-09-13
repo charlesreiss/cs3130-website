@@ -18,7 +18,7 @@ Changelog:
 
     1.  calling an empty function and having it return
     2.  running the `getppid` function from `<unistd.h>`
-    3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bi/true` does, you may use `system("/usr/bin/true") instead]
+    3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bin/true` does, you may use `system("/usr/bin/true")` instead]
     4.  sending a signal to the current process and having its signal handler start executing (but not including the signal handler returning)
     5.  sending a signal to another process, then having that process's signal handler send a signal back, then either:
         *  having a signal handler for signal sent back start executing in the original process (but not including the signal handler returning); or
