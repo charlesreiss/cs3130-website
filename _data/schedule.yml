@@ -119,8 +119,8 @@
 
 - date: 2023-09-19
   week: 5
-  title: virtual memory 3 / IP +  routing
-  reading: "[protocols](readings/protocols.html) §1-2"
+  title: virtual memory 3 / multiple processes 1
+  reading: "[kernel] §3.3.3; [threads](readings/thread.html)"
   slides_see: 2023-09-14
   slides: yes
   sldies_prelim: yes
@@ -130,14 +130,11 @@
        *  multi-level lookup example
        *  permission bits
        *  (if time) page table tricks, loading data on demand, swapping
-    *  mailbox analogy
-       *  inboxes and outboxes
-       *  addresses
-       *  best-effort delivery
-       *  envelope versus contents
-    *  TCP / connections
-       *  acknowledgements
-       *  state machine
+    *  processes, threads
+    *  creating new processes
+       *  fork, exec*
+    *  (if needed) allocate-on-demand, copy-on-write, swapping
+    *  waiting for processes
 
 - date: 2023-09-20
   lab: true
@@ -145,40 +142,30 @@
 
 - date: 2023-09-21
   week: 5
-  title: URLs + DHCP + DNS
+  title: multiple processes 2
   slides_see: 2023-09-19
-  reading: "[protocols](readings/protocols.html) §3-4"
   description: |
-    *  names and addresses
-       *  layers preview
-    *  example: a frame
-       *  layers (link, network, transport)
-    *  IP
-       *  addresses (v4, v6)
-       *  routers
-    *  port numbers and UDP
-    *  DNS
-       *  is a distributed database
-       *  with caching
+    *  file descriptors
+    *  briefly, pipe and dup2
+    *  preview: threads
+
 
 - date: 2023-09-22
   week: 5
 
 - date: 2023-09-26
   week: 6
-  title: network security / secure channels 1
+  title: caches 1
+  reading: "[cache](readings/cache.html)"
   slides: yes
-  slides_prelim: yes
   slides_extra: yes
-  reading: "[security](readings/sec.html) §1-1.5, 3"
+  slides_prelim: yes
   description: |
-    *  URLs
-    *  (if time) link-layer to network-layer mapping
-    *  DHCP
-    *  NAT
-    *  cryptography (start)
-       *  symmetric encryption
-       *  asymmetric encryption
+    *  caching idea
+        *  connecting processors to memory
+        *  memory hierarchy
+    *  direct-mapped caches
+        *  valid bits, tags
 
 - date: 2023-09-27
   lab: true
@@ -186,16 +173,12 @@
 
 - date: 2023-09-28
   week: 6
-  title: secure channels 2
+  title: caches 2
   slides_see: 2023-09-26
-  reading: "[security](readings/sec.html) §1.5-2"
-  description: |
-    *  cryptography (con't)
-       *  digital signature
-    *  replay attacks
-    *  cryptography (con't)
-        *  cryptographic hashes
-        *  key exchange
+  descripiton: |
+    *  cache misses and C code
+    *  set-associative caches
+    *  replacement policies
 
 - date: 2023-10-03
   no_class: true
@@ -208,32 +191,35 @@
 
 - date: 2023-10-05
   week: 7
-  title: secure channels 3 / caches 1
-  reading: "secure channels 3 / [cache](readings/cache.html) §1-5"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  description: |
-    *  public key infrastructure
-    *  TLS protocol outline
-    *  caching idea
-        *  connecting processors to memory
-        *  memory hierarchy
-    *  direct-mapped caches
-        *  valid bits, tags
+  title: caches 3
+  slides_see: 2023-09-26
+  descripiton: |
+    *  write policies
+    *  the TLB
 
 - date: 2023-10-06
   week: 7
 
 - date: 2023-10-10
   week: 8
-  title: caches 2 
-  slides_see: 2023-10-05
-  reading: "[cache](readings/cache.html)"
+  title: networking 1 (IP+routing)
+  reading: "[protocols](readings/protocols.html) §1-2"
+  slides: yes
+  slides_extra: yes
+  slides_prelim: yes
   description: |
-    *  cache misses and C code
-    *  set-associative caches
-    *  replacement policies
+    *  mailbox analogy
+       *  inboxes and outboxes
+       *  addresses
+       *  best-effort delivery
+       *  envelope versus contents
+    *  connections (TCP)
+       *  acknowledgements
+       *  state machine
+    *  names and addresses
+       *  layers preview
+    *  example: a frame
+       *  layers (link, network, transport)
 
 - date: 2023-10-11
   lab: true
@@ -241,30 +227,40 @@
 
 - date: 2023-10-12
   week: 8
-  title: caches 3
-  slides_see: 2023-10-05
-  reading: "[cache](readings/cache.html)"
+  title: networking 2 (URLs + DHCP + DNS)
+  slides_see: 2023-09-28
+  reading: "[protocols](readings/protocols.html) §3-4"
   description: |
-    *  write policies
-    *  the TLB
-
+    *  IP
+       *  addresses (v4, v6)
+       *  routers
+    *  port numbers and UDP
+    *  DNS
+       *  is a distributed database
+       *  with caching
+    *  URLs
+    *  DHCP
+    *  NAT
 
 - date: 2023-10-13
   week: 8
 
 - date: 2023-10-17
   week: 9
-  title: concurrency 1
-  reading: "[kernel] §3.3.3; [threads](readings/thread.html); [pthreads](readings/pthreads.html)"
+  title: threads 1 / synchronization 1
+  reading: "[pthreads](readings/pthreads.html), [sync](readings/sync.html) §1"
   slides: yes
-  sldies_prelim: yes
+  slides_prelim: yes
   slides_extra: yes
+  slides_see2: 2023-10-17
   description: |
-    *  processes, threads
-    *  creating new processes
-       *  fork, exec*
-    *  (if needed) allocate-on-demand, copy-on-write, swapping
-    *  waiting for processes
+   *  creating new threads
+   *  thread use examples
+
+   *  problem of synchronization
+    *  atomicity, race conditions
+       *  atomic read-modify-write instructions
+
 
 - date: 2023-10-18
   lab: true
@@ -272,35 +268,31 @@
 
 - date: 2023-10-19
   week: 9
-  title: concurrency 2 / threads 1
-  slides_see: 2023-10-17
-  slides_see2: 2023-10-24
+  title: synchronization 2 / deadlock
+  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
-   > (Reiss out of town)
-    
-   *  file descriptors
-   *  briefly, pipe and dup2
-
-   *  creating new threads
-
-
+    > (Reiss out of town)
+    *  locks and mutexes
+    *  barriers
+    *  interlude: reordering
+    *  monitors
 
 - date: 2023-10-20
   week: 9
 
 - date: 2023-10-24
   week: 10
-  title: threads 1 / sycnhronization 1
-  reading: "[sync](readings/sync.html) §1, 2-7, "
-  slides: yes
-  slides_prelim: yes
-  slides_see2: 2023-10-26
+  title: synchronization 3
+  reading: "[sync](readings/sync.html)"
+  slides_see: 2023-10-19
   description: |
-   *  creating new threads
-   *  thread use examples
-
-   *  problem of synchronization
-
+   *  deadlock
+   *  (briefly) counting semaphores
+   *  (if time) reader/writer locks
+   *  transactions (briefly)
 
 - date: 2023-10-25
   lab: true
@@ -308,32 +300,32 @@
 
 - date: 2023-10-26
   week: 10
-  title: synchronization 2 / deadlock
-  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
+  title: secure channels 1
+  reading: "[security](readings/sec.html) §1-1.5, 3"
   slides: yes
-  slides_prelim: yes
   slides_extra: yes
+  slides_prelim: yes
   description: |
-   *  atomicity, race conditions
-      *  atomic read-modify-write instructions
-   *  locks and mutexes
-   *  barriers
-   *  interlude: reordering
-   *  deadlock
+    *  cryptography (start)
+       *  symmetric encryption
+       *  asymmetric encryption
+       *  digital signature
+    *  replay attacks
 
 - date: 2023-10-27
   week: 10
 
 - date: 2023-10-31
   week: 11
-  title: synchronization 3
-  reading: "[sync](readings/sync.html)"
+  title: secure channels 2
   slides_see: 2023-10-26
+  reading: "[security](readings/sec.html) §1.5-2"
   description: |
-   *  monitors 
-   *  (briefly) counting semaphores
-   *  (if time) reader/writer locks
-   *  transactions (briefly)
+    *  cryptography (finish)
+        *  cryptographic hashes
+        *  key exchange
+    *  public key infrastructure
+    *  TLS protocol outline
 
 - date: 2023-11-01
   lab: true
