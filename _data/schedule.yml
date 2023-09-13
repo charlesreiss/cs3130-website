@@ -149,6 +149,8 @@
     *  briefly, pipe and dup2
     *  preview: threads
 
+    *  (if time) start caching
+
 
 - date: 2023-09-22
   week: 5
@@ -202,12 +204,66 @@
 
 - date: 2023-10-10
   week: 8
+  title: threads 1 / synchronization 1
+  reading: "[pthreads](readings/pthreads.html), [sync](readings/sync.html) §1"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
+  slides_see2: 2023-10-12
+  description: |
+   *  creating new threads
+   *  thread use examples
+
+   *  problem of synchronization
+   *  atomicity, race conditions
+      *  atomic read-modify-write instructions
+
+- date: 2023-10-11
+  lab: true
+  week: 8
+
+- date: 2023-10-12
+  week: 8
+  title: synchronization 2 / deadlock
+  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
+  description: |
+    *  locks and mutexes
+    *  barriers
+    *  interlude: reordering
+    *  monitors
+
+- date: 2023-10-13
+  week: 8
+
+- date: 2023-10-17
+  week: 9
+  title: synchronization 3
+  reading: "[sync](readings/sync.html)"
+  slides_see: 2023-10-19
+  description: |
+   *  deadlock
+   *  (briefly) counting semaphores
+   *  (if time) reader/writer locks
+   *  transactions (briefly)
+
+
+- date: 2023-10-18
+  lab: true
+  week: 9 
+
+- date: 2023-10-19
+  week: 9
   title: networking 1 (IP+routing)
   reading: "[protocols](readings/protocols.html) §1-2"
   slides: yes
   slides_extra: yes
   slides_prelim: yes
   description: |
+    > (Reiss out of town)
+
     *  mailbox analogy
        *  inboxes and outboxes
        *  addresses
@@ -221,14 +277,12 @@
     *  example: a frame
        *  layers (link, network, transport)
 
-- date: 2023-10-11
-  lab: true
-  week: 8
+- date: 2023-10-20
+  week: 9
 
-- date: 2023-10-12
-  week: 8
+- date: 2023-10-24
+  week: 10
   title: networking 2 (URLs + DHCP + DNS)
-  slides_see: 2023-09-28
   reading: "[protocols](readings/protocols.html) §3-4"
   description: |
     *  IP
@@ -241,58 +295,6 @@
     *  URLs
     *  DHCP
     *  NAT
-
-- date: 2023-10-13
-  week: 8
-
-- date: 2023-10-17
-  week: 9
-  title: threads 1 / synchronization 1
-  reading: "[pthreads](readings/pthreads.html), [sync](readings/sync.html) §1"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  slides_see2: 2023-10-17
-  description: |
-   *  creating new threads
-   *  thread use examples
-
-   *  problem of synchronization
-    *  atomicity, race conditions
-       *  atomic read-modify-write instructions
-
-
-- date: 2023-10-18
-  lab: true
-  week: 9 
-
-- date: 2023-10-19
-  week: 9
-  title: synchronization 2 / deadlock
-  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  description: |
-    > (Reiss out of town)
-    *  locks and mutexes
-    *  barriers
-    *  interlude: reordering
-    *  monitors
-
-- date: 2023-10-20
-  week: 9
-
-- date: 2023-10-24
-  week: 10
-  title: synchronization 3
-  reading: "[sync](readings/sync.html)"
-  slides_see: 2023-10-19
-  description: |
-   *  deadlock
-   *  (briefly) counting semaphores
-   *  (if time) reader/writer locks
-   *  transactions (briefly)
 
 - date: 2023-10-25
   lab: true
@@ -391,7 +393,7 @@
 
 - date: 2023-11-16
   week: 13
-  title: buses/ out-of-order 1
+  title: buses / out-of-order 1
   slides: yes
   slides_prelim: yes
   slides_extra: yes
