@@ -2,6 +2,12 @@
 title: POSIX permissions
 ...
 
+<div class="changelog">
+Changelog:
+
+*  14 Sep 2023: change "owning users" to "owning user"
+</div>
+
 # "Users" and "Groups"
 
 Every program runs as some **user**.
@@ -69,7 +75,7 @@ The most commonly used permission tool is `chmod`, used as `chmod [permission] f
 As noted in `man chmod`{.bash}, the permission argument can be either letters or octal
 
 - `chmod 644 file` means "change the permission bits to exactly 644~8~ = 110100100~2~ = rw-r--r--
-- `chmod ug+rw file` means "add r and w permissions for the owning **u**sers and the owning **g**roup"
+- `chmod ug+rw file` means "add r and w permissions for the owning **u**ser and the owning **g**roup"
 {/}
 
 ## Defaults: the `umask`
