@@ -241,7 +241,7 @@ less poll.3p
 to see the roff source of the manual page `man 3p poll`.
 I don't personally know anyone who writes roff by hand;
 generally it is output from a source-code processing tool like `doxygen`^[which is installed on department machines; see `man doxygen`{.bash} for more.]
-or a converter like `pandoc`^[a very old version (1.3) is installed on the department servers without man support; visit <https://pandoc.org/> to get a copy yourself.] from an easier-to-write format like markdown or reStrucuredText.
+or a converter like `pandoc` from an easier-to-write format like markdown or reStrucuredText.
 
 Including man page `page_allocate.3.gz` and `translate.3.gz` in your submission will earn you kudos.
 To test that these work properly,
