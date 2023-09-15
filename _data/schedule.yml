@@ -112,7 +112,6 @@
     *  page tables
        *  small example (not in memory)
        *  storing in memory (finish)
-       *  as a tree
 
 - date: 2023-09-15
   week: 4
@@ -127,14 +126,14 @@
   slides_extra: yes
   description: |
     *  page tables (finish)
+       *  as a tree
        *  multi-level lookup example
        *  permission bits
        *  (if time) page table tricks, loading data on demand, swapping
     *  processes, threads
     *  creating new processes
        *  fork, exec*
-    *  (if needed) allocate-on-demand, copy-on-write, swapping
-    *  waiting for processes
+    *  copy-on-write
 
 - date: 2023-09-20
   lab: true
@@ -145,6 +144,7 @@
   title: multiple processes 2
   slides_see: 2023-09-19
   description: |
+    *  waiting for processes
     *  file descriptors
     *  briefly, pipe and dup2
     *  preview: threads
