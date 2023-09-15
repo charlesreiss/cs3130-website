@@ -107,7 +107,7 @@
   slides: yes
   slides_prelim: yes
   sldies_extra: yes
-  reading: "[VM](readings/vm.html)"
+  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
     *  page tables
        *  small example (not in memory)
@@ -120,7 +120,7 @@
 - date: 2023-09-19
   week: 5
   title: virtual memory 3 / multiple processes 1
-  reading: "[kernel] §3.3.3; [threads](readings/thread.html)"
+  reading: "[VM](readings/vm.html) §2.1, 3.2, 4, [kernel] §3.3.3; [threads](readings/thread.html)"
   slides_see: 2023-09-14
   slides: yes
   sldies_prelim: yes
