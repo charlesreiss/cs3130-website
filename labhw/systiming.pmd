@@ -11,6 +11,7 @@ Changelog:
    tasks that are accidentally timed
 *  12 Sep 2023: address negative times explicitly in hints, and indicate rare cases where "real" such results might happen
 *  15 Sep 2023: address -std=c11 hiding sigaction(), etc. without something like `#define _XOPEN_SOURCE 700`
+*  15 Sep 2023: mention that `-fsanitize=address` will dramatically increase overhead
 </div>
 
 # Your task
@@ -138,7 +139,8 @@ To mitigate this, usually one would:
 Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. To compensate for this,
 I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings.
 
-In addition, the amount of overhead is generally lower when you compile with optimizations, so I would
+In addition, the amount of overhead is generally lower when you compile with optimizations
+and (when timing) without enabling debugging features like `-fsanitize=address`, so I would
 recommend trying to do so. Keep in mind, however, to enable optimizations, you'll need to keep the compiler
 from doing optimizations that eliminate the things you are trying to time. The ideas in section 2.4
 can be helpful for this.
