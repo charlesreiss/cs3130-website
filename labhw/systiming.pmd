@@ -10,6 +10,7 @@ Changelog:
 *  10 Sep 2023: tweak phrasing re: timing overhead to make it clear it's about dealing with non-benchmark
    tasks that are accidentally timed
 *  12 Sep 2023: address negative times explicitly in hints, and indicate rare cases where "real" such results might happen
+*  15 Sep 2023: address -std=c11 hiding sigaction(), etc. without something like `#define _XOPEN_SOURCE 700`
 </div>
 
 # Your task
@@ -185,6 +186,17 @@ with the compiler's optimizer replacing a function call with the body of that fu
 *  write the function in a separately compiled file, so the compiler will not have the information to do this optimization
 *  write the function call itself in assembly file, so it won't be subject to the compiler's optimizations at all
 *  make a C function marked with the `__attribute__((noinline))` before its reutrn type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
+
+## If `sigaction` or `sigset_t` is not defined
+
+If you compile with `-std=c11` or similar, , this requests only C standard functions by default, and <signal.h> is part of standard C, but includes only a limited set of funtions/types
+(not including most of what we discussed for signal handling).
+
+You can request the full set of Linux/Unix functions (despite using `-std=c11`)
+by using a "feature test macro" like `#define _XOPEN_SOURCE 700` before including anything (or, equivalently, by compiling with
+an option like `-D_XOPEN_SOURCE=700`). This #define requests features from X/Open System Interfaces associated with the [POSIX.1-2017 standard](https://pubs.opengroup.org/onlinepubs/9699919799/).
+
+There are similar feature test macros that request slightly different sets of functionality; Linux documents all of these in the "feature_test_macros" manpage.
 
 ## Timing the signal handler
 
