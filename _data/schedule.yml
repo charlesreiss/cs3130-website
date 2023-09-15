@@ -136,7 +136,8 @@
     *  copy-on-write
 
 - date: 2023-09-20
-  lab: true
+  no_class: true
+  description: (no lab)
   week: 5
 
 - date: 2023-09-21
