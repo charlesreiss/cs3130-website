@@ -7,7 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  12 Sep 2023: require page_allocate/translate to work for arbitrary `va` (not just page offset = 0) for part 1
-*  17 Sep 2023: add back unintentionally removed `config.h` from Specification
+*  17 Sep 2023: add back unintentionally removed `config.h` example from Specification
 </div>
 
 {.exercise ...}
