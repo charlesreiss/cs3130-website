@@ -7,6 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  12 Sep 2023: require page_allocate/translate to work for arbitrary `va` (not just page offset = 0) for part 1
+*  17 Sep 2023: add back unintentionally removed `config.h` from Specification
 </div>
 
 {.exercise ...}
@@ -117,6 +118,25 @@ Your task:
 
 We supply two header files.
 
+## `config.h`
+
+`config.h` does nothing other than `#define`ing two constants.
+
+```c
+/** LEVELS = number of PTEs used to translate one address. */
+#define LEVELS  1
+
+/** POBITS = number of bits used for the page offset. */
+#define POBITS  12
+```
+
+and must continue to work even if we change their values.
+For example, if we compile with a different `config.h` that `#define`s `LEVELS` as `3` instead of `1`,
+your code should create a 3-level page table instead of a 1-level page table.
+Your code should work for all integer values of `LEVELS` between `1` and `6` inclusive
+and all integer values of `POBITS` between `4` and `18` inclusive.
+As an exception, it does not need to (but may) support cases where 
+(`POBITS` − 3) × (`LEVELS` + 1) > 60.
 
 ## `mlpt.h`
 
