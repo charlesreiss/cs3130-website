@@ -8,6 +8,7 @@ Changelog:
 
 *  12 Sep 2023: require page_allocate/translate to work for arbitrary `va` (not just page offset = 0) for part 1
 *  17 Sep 2023: add back unintentionally removed `config.h` example from Specification
+*  18 Sep 2023: note "page hasn't been used before" in page_allocate testing = "virtual page not valid in the page table"
 </div>
 
 {.exercise ...}
@@ -367,7 +368,8 @@ To test that these work properly,
     *  on the first call, two physical pages should be allocated --- one to create the page table (and set `ptbr`
        to a non-zero value) and one to allocate a page for data
     *  on later calls: 
-       *  if the page number supplied to `page_allocate` hasn't been used before, then
+       *  if the page number supplied to `page_allocate` hasn't been used before
+          (is not marked valid in the page table), then
           one page for data should be allocated;
        *  otherwise, no pages should be allocated
 
