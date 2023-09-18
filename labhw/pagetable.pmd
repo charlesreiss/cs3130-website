@@ -9,6 +9,7 @@ Changelog:
 *  12 Sep 2023: require page_allocate/translate to work for arbitrary `va` (not just page offset = 0) for part 1
 *  17 Sep 2023: add back unintentionally removed `config.h` example from Specification
 *  18 Sep 2023: note "page hasn't been used before" in page_allocate testing = "virtual page not valid in the page table"
+*  18 Sep 2023: in sample code for testing page_allocate, cast to int for using %d to avoid warning
 </div>
 
 {.exercise ...}
@@ -380,7 +381,7 @@ To test that these work properly,
         pointer_to_table = (size_t *) ptbr;
         size_t page_table_entry = pointer_to_table[3];
         printf("PTE @ index 3: valid bit=%d  physical page number=0x%lx\n",
-            page_table_entry & 1,
+            (int) (page_table_entry & 1),
             (long) (page_table_entry >> 12)
         );
 
