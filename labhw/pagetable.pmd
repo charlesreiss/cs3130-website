@@ -10,6 +10,7 @@ Changelog:
 *  17 Sep 2023: add back unintentionally removed `config.h` example from Specification
 *  18 Sep 2023: note "page hasn't been used before" in page_allocate testing = "virtual page not valid in the page table"
 *  18 Sep 2023: in sample code for testing page_allocate, cast to int for using %d to avoid warning
+*  19 Sep 2023: write the value with all 1-bits as `~0` (instead of `-1`) and indicate what it is
 </div>
 
 {.exercise ...}
@@ -323,7 +324,7 @@ To test that these work properly,
 
     (and calling `set_testing_ptbr()`)
 
-    With a proper implementation of `translate()`, `translate(X)` will be `-1` for every address (that is not too big to be a virtual address).
+    With a proper implementation of `translate()`, `translate(X)` will be `~0` (all 1 bits) for every address (that is not too big to be a virtual address).
 
 4.  Since page table entries are 8 bytes (the size of `size_t`), setting index _X_ of the array declared will set 
     index _X_ of the page table. So, let's say (with POBITS = 12 and LEVELS = 1), we want to set virtual page 3
