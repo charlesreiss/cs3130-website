@@ -11,6 +11,7 @@ Changelog:
 *  18 Sep 2023: note "page hasn't been used before" in page_allocate testing = "virtual page not valid in the page table"
 *  18 Sep 2023: in sample code for testing page_allocate, cast to int for using %d to avoid warning
 *  19 Sep 2023: write the value with all 1-bits as `~0` (instead of `-1`) and indicate what it is
+*  19 Sep 2023: "when no page" → "when no page tables are allocated"
 </div>
 
 {.exercise ...}
@@ -189,7 +190,7 @@ void page_allocate(size_t va);
 
 4.  There will be `LEVELS` level of page tables (where `LEVELS` is a constant defined in `config.h` that we may change).
 
-5.  The global variable `ptbr` represents the page table register. It should be `0` (a null pointer) when no page
+5.  The global variable `ptbr` represents the page table register. It should be `0` (a null pointer) when no page tables are allocated
 
 
 # Coding Style
