@@ -12,6 +12,7 @@ Changelog:
 *  18 Sep 2023: in sample code for testing page_allocate, cast to int for using %d to avoid warning
 *  19 Sep 2023: write the value with all 1-bits as `~0` (instead of `-1`) and indicate what it is
 *  19 Sep 2023: "when no page" → "when no page tables are allocated"
+*  20 Sep 2023: add item to hints on if `posix_memalign` is not defined
 </div>
 
 {.exercise ...}
@@ -280,9 +281,21 @@ To test that these work properly,
 
 ## Common C issues
 
+### posix_memalign issues
 1.  `posix_memalign(&x, ...)` is similar to `x = malloc(...)` except that the memory is guarenteed at a multiple of a particular value.
     The pointer to pointer passed into `posix_memalign` is used in lieu of returning a pointer to the memory allocated. 
     (The return value of `posix_memalign` indicates success (`0`) or failure (non-zero error code).)
+
+2.  If `posix_memalign` is not defined after `#include <stdlib.h>`, adding `#define _XOPEN_SOURCE 700` or similar before
+    any `#include` may help.
+
+    `posix_memalign` is not part of standard C; it's something Linux and other Unix-like systems have added. If you are
+    compiling with `-std=c11` or similar, then by default `<stdlib.h>` only includes things from the C standard.
+    You can override this to request additional functions with "feature test macros" like `_XOPEN_SOURCE`.
+    On Linux, the command `man feature_test_macros` brings up the full documentation about thea available feature
+    test macros.
+
+### using ptbr
 
 1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it uses `ptbr` as a pointer. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr`.
 
