@@ -13,6 +13,7 @@ Changelog:
 *  19 Sep 2023: write the value with all 1-bits as `~0` (instead of `-1`) and indicate what it is
 *  19 Sep 2023: "when no page" → "when no page tables are allocated"
 *  20 Sep 2023: add item to hints on if `posix_memalign` is not defined
+*  22 Sep 2023: remove stray semicolon in == expression in translate testing advice
 </div>
 
 {.exercise ...}
@@ -372,7 +373,7 @@ To test that these work properly,
     will return "physical" addresses that are part of `data_for_page_3`. For example, we
     would expect
 
-        translate(0x3045) == (size_t) &data_for_page_3[0x45];
+        translate(0x3045) == (size_t) &data_for_page_3[0x45]
 
 ## Testing `page_allocate`
 
