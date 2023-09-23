@@ -140,10 +140,7 @@
   week: 5
   title: processes 1 
   reading: "[VM](readings/vm.html) 4, [kernel] §3.3.3; [threads](readings/thread.html)"
-  slides_see: 2023-09-19
   slides: yes
-  sldies_prelim: yes
-  slides_extra: yes
   description: |
     *  page tables: loading data on demand
     *  processes, threads
