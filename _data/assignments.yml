@@ -102,7 +102,9 @@
   short_name: fork-lab
   lab: true
   page: labhw/fork-lab.html
-  submit_file: "*.c"
+  submit_files:
+  - "my_system.c"
+  - "*.c"
   due: 2023-09-27
 
 - name: code reviews
