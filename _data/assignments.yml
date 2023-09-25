@@ -76,6 +76,7 @@
   portion: 0.25
   due: 2023-10-04
   pre_lab: true
+  no_late: true
   due_message: pagetable part 2 (pre code review) due BEFORE FIRST LAB &mdash; normal late policy does not apply
   XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
