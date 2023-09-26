@@ -15,8 +15,7 @@ A code review is a chance to get feedback from others on the design and implemen
     b. Reviewers make suggestions while the code author takes notes
     c. The code author chooses the review's focus, but make sure to address
         - variable and function names
-        - functional decomposition and code organization
-        - README clarity
+        - code organization, including functional decomposition
     d. If time remains after the above are handled, go line-by-line, discussing if there could be an error on that line (e.g., an unchecked return type, integer overflow, etc).
 {/}
 
