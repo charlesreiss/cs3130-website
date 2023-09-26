@@ -154,6 +154,7 @@
   page: labhw/cache-lab.html
   missing-if-no-feedback: true
   lab: true
+  tentative: true
   due: 2023-10-11
 
 
