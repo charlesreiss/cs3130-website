@@ -3,6 +3,12 @@ title: Processes and threads
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  27 Sep 2023: add section on file descriptors
+</div>
+
 # Terminology
 
 **Multitasking** is a generic term for having multiple flows through code occurring concurrently.
@@ -210,6 +216,64 @@ depending on whether the parent or child gets to its first `printf` first.
 
 The `status` integer also has other information, such as if it was terminated with a signal and if so which signal, which can be accessed with other macros instead of `WEXITSTATUS`.
 {/}
+
+# File descriptors
+
+On POSIX systems, programs access open files using *file descriptors*. For every process, a POSIX OS track which files it has open
+using a table of pointers to information needed to access (read, write, etc.) an open file, which POSIX calls an *open file description*.
+The *file descriptor* is an integer used to index into this table.
+
+Creating a new file descriptor such as with the `open()` function creates a new open file descirption and adds pointer to it to the table. The file descriptor is in the index
+at which it was added to the table. Running `close()` removes an entry from the table.
+(When an open file description no longer has any pointers to it, resources associated with it are freed.)
+By convention, file descriptor 0 corresponds to standard input (`stdin` in `<stdio.h>`), file descriptor 1 to standard output (`stdout`), and file descriptor 2 to
+standard error (`stderr`).
+
+The file descriptor table is copied by `fork()`, so the new process will have pointers to the same set of open file descriptions.
+and not changed by `execv()`. For this reason, usually if your program is outputting to one terminal
+and starts a new process, by default that process also outputs to the same terminal. Unless you make an effort to change the file descrpitors,
+the new process's file descriptor for stdout will specify the same process.
+
+## `dup2`
+
+The library call `dup2()` allows one to copy a file descriptor onto another.
+`dup2(X, Y)` makes file descriptor Y refer to the same open file description as file descriptor Y. Most notably, this can be used to reassign where stdin or stdout go.
+This functionality is used by shells when executing a command like `./a.out > output.txt`, which runs `./a.out` but
+sends its output to the file `output.txt`.
+
+{.example ...} The following program
+```c
+#include <unistd.h>
+#include <stdio.h>
+
+int main() {
+    printf("This is before open\n"); fflush(stdout);
+    int fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC);
+    if (fd < 0) { printf("Error in open\n"); return 1; }
+    printf("This is after open\n"); fflush(stdout);
+    dup2(fd, 1);
+    printf("This is after dup2\n"); fflush(stdout);
+    close(fd);
+    printf("This is after close\n"); fflush(stdout);
+    return 0;
+}
+```
+will output 
+```
+This is before open
+This is after open
+```
+to the terminal and
+```
+This is after dup2
+This is after close
+```
+to `output.txt` (assuming it can be succesfully opened.
+
+Note that the `close()` only effects when one file descriptor, even when
+there are multiple file descriptors referring to the same open file.
+{/}
+
 
 # Using `pthreads`
 
