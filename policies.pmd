@@ -3,6 +3,12 @@ title: Policies
 index_title: Policies
 ...
 
+<div class="changelog">
+Changelog:
+
+*  27 Sep 2023: mention that labs unlike homeworks/labs usually allow collaboration (as was mentioned in the first day of lecture); rmv meniton of textbooks considered
+</div>
+
 # Logistics
 
 ## Meetings
@@ -19,6 +25,7 @@ You will be asked to
 
 - Participate in lab
     - Each lab has milestones that need to be reached for full credit.
+    - Most labs will permit/encourage collaboration (in contrast to homeworks/quizzes)
     - For most labs, we will allow either submission via the submission site *or* in-person lab check-off with a TA. When labs are checked off in-person, we will be less strict about checking for completion/correctness since the TA will know more about how much time you spent on the lab.
     - Some labs must be completed during the lab time and checked off with a TA, primarily for logistical reasons.
     - If you have a reason you cannot attend lab (illness, etc.), please let me know about your situation and we'll make some accommodation.
@@ -33,8 +40,6 @@ You will be asked to
 
 ## Readings
 
-Although we have several textbooks we are considering for use,
-none of them were settled on for this pilot.
 Readings written by us or selected from articles or web pages will periodically be posted on the schedule.
 
 ## Coding
