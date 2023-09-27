@@ -3,17 +3,6 @@ title: Cache program problems
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog: 
-
-*  9 Mar 2023: update skeleton code Makefile to rename target to `make submit` and have it not look
-   for prog4.c, prog5.c
-*  14 Mar 2023: add some more detailt to section on the template code re: the main loop
-*  16 Mar 2023: be explicit that for this assignment KB = 1024 bytes
-*  18 Mar 2023: fix valgrind cachegrind section header not being formatted correctly
-</div>
-
-
 # Your Task
 
 > Compatability note: 

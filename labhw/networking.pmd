@@ -8,7 +8,9 @@ In this lab you'll learn how to add reliability on top of unreliable "mailbox" t
 You'll have enough to do in this lab, we'll not worry about doing it over an actual network.
 We've provided a simple network simulator for you.
 
-{.exercise ...}
+
+{.exercise ...} Possibly working with a partner ---
+
 1. Download [netlab.tar](../files/netlab.tar) on a linux system
     (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2023/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
