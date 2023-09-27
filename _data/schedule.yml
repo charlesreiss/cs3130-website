@@ -156,8 +156,7 @@
 
 - date: 2023-09-26
   week: 6
-  title: proceses 2 / caches 1
-  reading: "[cache](readings/cache.html)"
+  title: proceses 2
   slides: yes
   description: |
     *  briefly, pipe and dup2
@@ -173,7 +172,8 @@
 
 - date: 2023-09-28
   week: 6
-  title: caches 2
+  title: caches 1
+  reading: "[cache](readings/cache.html)"
   slides: yes
   slides_extra: yes
   slides_prelim: yes
@@ -182,7 +182,6 @@
         *  valid bits, tags
     *  cache misses and C code
     *  set-associative caches
-    *  replacement policies
 
 - date: 2023-10-03
   no_class: true
@@ -198,6 +197,7 @@
   title: caches 3
   slides_see: 2023-09-26
   description: |
+    *  replacement policies
     *  write policies
     *  the TLB
 
