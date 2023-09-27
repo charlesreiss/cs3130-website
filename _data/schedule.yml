@@ -247,6 +247,7 @@
   slides_see: 2023-10-19
   description: |
    *  monitors (finish)
+   *  (briefly) counting semaphores
    *  deadlock
    *  transactions (briefly)
 
