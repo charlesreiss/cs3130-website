@@ -182,8 +182,6 @@
     *  memory hierarchy
     *  direct-mapped caches
         *  valid bits, tags
-    *  cache misses and C code
-    *  set-associative caches
 
 - date: 2023-10-03
   no_class: true
@@ -196,31 +194,34 @@
 
 - date: 2023-10-05
   week: 7
-  title: caches 3
-  slides_see: 2023-09-26
+  title: caches 2
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
+  reading: "[cache](readings/cache.html)"
   description: |
-    *  replacement policies
+    *  cache misses and C code
+    *  set-associative caches
+    *  (briefly) replacement policies
     *  write policies
-    *  the TLB
 
 - date: 2023-10-06
   week: 7
 
 - date: 2023-10-10
   week: 8
-  title: threads 1 / synchronization 1
-  reading: "[pthreads](readings/pthreads.html), [sync](readings/sync.html) §1"
+  title: caches 3 / threads 1
+  reading: "[cache](readings/cache.html), [pthreads](readings/pthreads.html)"
+  slides_see: 20231005
   slides: yes
   slides_prelim: yes
-  slides_extra: yes
-  slides_see2: 2023-10-12
   description: |
+   *  the TLB
+
    *  creating new threads
    *  thread use examples
 
-   *  problem of synchronization
-   *  atomicity, race conditions
-      *  atomic read-modify-write instructions
+   *  (if time) start synchronization (12 Oct slides)
 
 - date: 2023-10-11
   lab: true
@@ -228,16 +229,17 @@
 
 - date: 2023-10-12
   week: 8
-  title: synchronization 2 / deadlock
-  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9, [deadlock](readings/deadlock.html)"
+  title: "synchronization 1"
+  reading: "[consistency](readings/consistency.html), [sync](readings/sync.html) §1, 2-7, 8-9"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  problem of synchronization
+    *  atomicity, race conditions
     *  locks and mutexes
     *  barriers
     *  interlude: reordering
-    *  monitors (start)
 
 - date: 2023-10-13
   week: 8
@@ -245,10 +247,10 @@
 - date: 2023-10-17
   week: 9
   title: synchronization 3
-  reading: "[sync](readings/sync.html)"
+  reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html)"
   slides_see: 2023-10-19
   description: |
-   *  monitors (finish)
+   *  monitors
    *  (briefly) counting semaphores
    *  deadlock
    *  transactions (briefly)
