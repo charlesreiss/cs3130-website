@@ -83,7 +83,7 @@
     Selected notes on interpreting our testing output below <small>(added 30 Sep)</small>:
     <ul>
     <li>our tests use <tt>ptbr</tt> to inspect the page table contents and require the page table entries use the format specified in the assignment (including valid bits and the placement of physical page numbers)
-    <li>note that the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to initialize the memory it returns)
+    <li>note that the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
     <li>tests that count allocations are looking to see if all allocations are accounted for by what's in the page table; there are separate tests that the correct page table entries were filled in
     </ul>
   XXXgrade_describe: |
@@ -138,7 +138,7 @@
     Selected notes on interpreting our testing output below <small>(added 30 Sep)</small>:
     <ul>
     <li>our tests use <tt>ptbr</tt> to inspect the page table contents and require the page table entries use the format specified in the assignment (including valid bits and the placement of physical page numbers)
-    <li>note that the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to initialize the memory it returns)
+    <li>note that the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
     <li>tests that count allocations are looking to see if all allocations are accounted for by what's in the page table; there are separate tests that the correct page table entries were filled in
     </ul>
   XXXgrade_describe: |
