@@ -235,6 +235,7 @@
   page: labhw/networking.html
   submit_file: "*.c"
   due: 2023-11-01
+  tentative: true
 
 
 - name: secure channels lab
@@ -244,6 +245,7 @@
   page: labhw/secure-channel.html
   due: 2023-11-08
   submit_file: attack.c
+  tentative: true
 
 - name: life
   short_name: life
@@ -264,6 +266,7 @@
   - "*.c"
   - "performance.txt"
   due: 2023-11-15
+  tentative: true
 
 - name: pipeline
   short_name: pipeline
