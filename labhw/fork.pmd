@@ -24,7 +24,7 @@ This should behave something like `system`, except that instead of letting the c
 
 I am not aware of a standard library function that does this, but if you find one do not use it; do this by forking, execing, and piping yourself.
 
-We will supply an example implementation of `my_system` from the prior fork lab as a potential starting point sometime after the late deadline for that lab on the resources tab on Collab.
+We will supply an example implementation of `my_system` from the prior fork lab as a potential starting point sometime after the late deadline for that lab on Canvas under the 'Files' tab.
 
 {.example ...} The following main function
 
