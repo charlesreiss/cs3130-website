@@ -7,6 +7,7 @@ author: Luther Tychnoviech and Charles Reiss
 Changelog:
 
 *  27 Sep 2023: add section on file descriptors
+*  6 Oct 2023: correct duplicated Y to X in dup2 description
 </div>
 
 # Terminology
@@ -237,7 +238,7 @@ the new process's file descriptor for stdout will specify the same process.
 ## `dup2`
 
 The library call `dup2()` allows one to copy a file descriptor onto another.
-`dup2(X, Y)` makes file descriptor Y refer to the same open file description as file descriptor Y. Most notably, this can be used to reassign where stdin or stdout go.
+`dup2(X, Y)` makes file descriptor Y refer to the same open file description as file descriptor X. Most notably, this can be used to reassign where stdin or stdout go.
 This functionality is used by shells when executing a command like `./a.out > output.txt`, which runs `./a.out` but
 sends its output to the file `output.txt`.
 
