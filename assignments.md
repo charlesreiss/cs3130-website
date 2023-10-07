@@ -30,12 +30,22 @@ to the assignment before it is officially released.
 *  Lab: {{assignment.name}} (writeup not yet available) &mdash; on {{assignment.due}}{{nl}}
 {%- endif -%}
 {%- else -%} 
+{%- if assignment.due_message -%}
+{%- if assignment.page -%}
+*  HW: <a href="{{assignment.page | relative_url}}">{{assignment.due_message}}</a> {%- if assignment.tentative -%}&nbsp;(tentative) {%- endif -%} &mdash; on {{assignment.due}}{{nl}}
+{%- elsif assignment.url -%}
+*  HW: <a href="{{assignment.url}}">{{assignment.due_message}}</a> {%- if assignment.tentative -%}&nbsp;(writeup tentative) {%- endif -%} &mdash; on {{assignment.due}}{{nl}}
+{%- else -%}
+*  HW: {{assignment.name}} (writeup not yet available) &mdash; due {{assignment.due}}{{nl}}
+{%- endif -%}
+{%- else -%}
 {%- if assignment.page -%}
 *  HW: <a href="{{assignment.page | relative_url}}">{{assignment.name}}</a> {%- if assignment.tentative -%}&nbsp;(tentative) {%- endif -%} &mdash; due {{assignment.due}}{{nl}}
 {%- elsif assignment.url -%}
 *  HW: <a href="{{assignment.url}}">{{assignment.name}}</a> {%- if assignment.tentative -%}&nbsp;(writeup tentative) {%- endif -%} &mdash; due {{assignment.due}}{{nl}}
 {%- else -%}
 *  HW: {{assignment.name}} (writeup not yet available) &mdash; due {{assignment.due}}{{nl}}
+{%- endif -%}
 {%- endif -%}
 {%- endif -%}
 {{nl}}
