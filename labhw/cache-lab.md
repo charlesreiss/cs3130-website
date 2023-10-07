@@ -13,9 +13,13 @@ author: Charles Reiss
 
 # Hints
 
-In addition to the cache slides/lecture recordings in general, you may find helpful:
+In addition to the cache slides/lecture recordings/readings in general, you may find helpful:
 
-*  diagram on [slide 40 (PDF page 57) from 14 March 2023](https://www.cs.virginia.edu/~cr4bd/3130/S2023/slides/20230314-slides.pdf#page=57)
 
-*  formulas on [slide 49 (PDF page 69) from 14 March 2023](https://www.cs.virginia.edu/~cr4bd/3130/S2023/slides/20230314-slides.pdf#page=69)
+*  formulas on [slide 28 (PDF page 69) from 5 October 2023](https://www.cs.virginia.edu/~cr4bd/3130/F2023/slides/20231005-slides.pdf#page=43)
+
+*  example on slide 23 (PDF pages [30](https://www.cs.virginia.edu/~cr4bd/3130/F2023/slides/20231005-slides.pdf#page=30) through [36](https://www.cs.virginia.edu/~cr4bd/3130/F2023/slides/20231005-slides.pdf#page=30))
+    from 5 October 2023
+
+*  diagram on [slide 99 (PDF page 141) from 5 October 2023](https://www.cs.virginia.edu/~cr4bd/3130/F2023/slides/20231005-slides.pdf#page=141)
     (in the backup slides, not shown in particular in lecture)

@@ -196,8 +196,6 @@
   week: 7
   title: caches 2
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[cache](readings/cache.html)"
   description: |
     *  cache misses and C code
