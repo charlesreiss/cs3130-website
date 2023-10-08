@@ -211,6 +211,7 @@
   reading: "[cache](readings/cache.html), [pthreads](readings/pthreads.html)"
   slides: yes
   slides_prelim: yes
+  slides_see2: 2023-10-12
   description: |
    *  write policies
    *  the TLB
