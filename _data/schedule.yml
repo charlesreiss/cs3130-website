@@ -209,9 +209,7 @@
   week: 8
   title: caches 3 / threads 1
   reading: "[cache](readings/cache.html), [pthreads](readings/pthreads.html)"
-  slides_see: 20231005
   slides: yes
-  slides_prelim: yes
   description: |
    *  write policies
    *  the TLB
