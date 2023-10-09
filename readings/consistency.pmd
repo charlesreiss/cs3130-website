@@ -2,6 +2,12 @@
 title: Consistency
 ...
 
+<div class="changelog">
+Changelog:
+
+*  9 Oct 2023: remove section on strict consistency; add section on memory barriers; add brief discussion of typical memory models for processors/compilers
+</div>
+
 In practice, true shared-memory concurrency (where there is only one piece of hardware that stores the bits of a particular memory location) is not very scalable.
 L1 caches routinely create separate copies for each core;
 systems with multiple CPU chips may replicate across all cache layers;
@@ -12,27 +18,53 @@ virtually always replicate data at each computer.
 Thus, we need to worry about the consistency of multiple copies.
 Roughly speaking, by *consistent* we mean
 
-> what one processor writes to an address, other processors see when they read that address.
+> when one processor writes to an address, other processors see when they read that address.
 
 There are *many* more formal definitions of consistency^[See, e.g., the [Wikipedia category](https://en.wikipedia.org/wiki/Category:Consistency_models) and [summary article](https://en.wikipedia.org/wiki/Consistency_model)].
 This writeup mentions just a few of the most common.
 
-# Strict consistency
+For memory accesses with multiple cores,
+most processors provide something in between the strong consistency model and the weak consistency model
+discussed below. This means that not all processors will have a fully consistent view of the values in memory
+--- reads and writes may appear to occur in different order on different cores.
 
-> All accesses (read and write) are seen **instantly** by all processors.
+Memory consistency is also a concern for compilers. For example, when there's a loop
+accessing a global variable, an optimizing compiler may want to store the global variable
+temporarily in a register. But this optimization prevents the value being visible to other threads
+while it is being changed. In contrast to most processors, compilers typical only provide relatively
+minimal consistency gaurentees. Typically, by default, compilers only very few gaurentees
+except when synchronization constructs are used.
 
-This cannot be implemented
-because information cannot travel faster than the speed of light^[At least it cannot without quantum entanglement. It is not yet clear whether strict consistency will be achievable with quantum computing.].
-But it's nice to have a name for the impossible ideal.
+# Memory Barriers
 
-# Strong Consistency
+Most processors provide special instructions called *memory barriers* to allow a program to 
+ensure that values are made consistency between processors. 
+A memory gaurentees that all reads and writes before memory barrier appear to occur before all
+operations after the memory barrier to all other processors.
+
+Implementations of synchronization primitives often use memory barriers. For example, a common
+way to implement a unlock method might look something like:
+
+    MemoryBarrier();
+    the_lock->locked = FALSE;
+
+The memory barrier here ensures that, even under "weaker" consistency models, any processor
+that sees the lock as unlocked will also see the results of all operations performed
+while the lock was locked.
+
+On most architectures, in addition to dedicated memory barrier instructions,
+the read/modify/write operations, used to implement most synchronziation primitives, also act
+as memory barriers.
+
+# Some Consistency Models
+
+## Strong Consistency / Sequential Consistency
 
 > All accesses (read and write) are seen by all parallel processors **in the same sequential order**.
 
-This is weaker than strict consistency in that it is only the *ordering*, not the *time*, or accesses that all processors agree upon.
-If you programmed only with atomic operations or with a memory barrier between every memory access, you'd have strong consistency.
+If you programmed only with *memory barriers* between every memory access, you'd have strong consistency.
 
-# Weak consistency
+## Weak consistency
 
 > All accesses (read and write) **to synchronization variables** are seen by all parallel processors in the same sequential order.
 
@@ -40,7 +72,7 @@ This is a relaxation of strong consistency to apply to only a few special memory
 It is what is provided by correct use of things like `pthread_mutex_lock(&m)`{.c} -- `m` is one such "synchronization variable."
 
 
-# Sequential consistency
+## Sequential consistency
 
 > The **result** of execution is the same as if each process was interleaved **in some order** on a single sequential processor.
 
@@ -67,7 +99,7 @@ If the outcomes are the same when one processor executes any one of the followin
 then it is sequentially consistent. If any of the outcomes are different, it is not.
 {/}
 
-# Eventual consistency
+## Eventual consistency
 
 > There **exists a time after** the last write to each address when all processors will receive the **same value** when reading from that address.
 
