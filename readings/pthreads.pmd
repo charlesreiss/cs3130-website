@@ -2,6 +2,12 @@
 title: Using POSIX Threads
 ...
 
+<div class="changelog">
+Changelog:
+
+*  9 Oct 2023: add explicit pointer to synchronization reading; point to relevant additional resources
+</div>
+
 
 This document is intended to give a practical overview of using pthreads.
 It leaves out a lot of details.
@@ -205,6 +211,8 @@ We will not have time in this course to dive into multithreaded debugging in any
 
 # Synchronization with pthreads
 
+>  See first [the reading on synchronization generally](sync.html).
+
 ## Mutex {#mutex}
 
 Recall that a mutex only lets one thread have it locked at a time,
@@ -342,3 +350,8 @@ The relevant functions are documented in the following manpages:
 - `pthread_cond_timedwait` --- like `pthread_cond_wait`, but stop waiting on the wait queue if a specified time passes and return an error
 - `pthread_cond_destory` -- free any resources allocated by `pthread_cond_init`
 
+# Additional resources
+
+*  [LLNL's POSIX Threads Programming Guide](https://hpc-tutorials.llnl.gov/posix/)
+*  [Dive Into Systems chapter 14](https://diveintosystems.org/book/C14-SharedMemory/index.html)
+*  [OS:TEP](https://pages.cs.wisc.edu/~remzi/OSTEP/)'s chapters 28--31

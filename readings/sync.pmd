@@ -3,14 +3,6 @@ title: Synchronization primitives
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  25 March 2023: add aside describing what are atomic operations
-*  25 March 2023: add section on reordering/optimizations
-*  30 March 2023: undo syntax error that truncated a lot of the text here (sorry!)
-</div>
-
 # Day-to-day life
 
 When you make a comment in a conversation, it is (usually) treated as an [atomic operation](#atomic-operation): you can divide the conversation into what happened before and what happened after your comment, but during it nothing else occurred. This is not true in most text-based chats, though, where it is common for multiple comments to be created concurrently.
