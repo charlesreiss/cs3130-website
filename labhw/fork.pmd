@@ -5,6 +5,12 @@ author:
     - Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  9 Oct 2023: do not omit trailing newline in example output from parallelgetoutput (though it is fine if your implementation strips it)
+</div>
+
 {.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
@@ -109,6 +115,9 @@ as follows:
 The output collected may interleave the outputs of the child processes (and an implementation
 that does this is simpler than one that does not).
 
+*[added 9 Oct]:* You may optionally strip a trailing newline from the output; in the examples below
+we do not do this (but we did not do this in the first version of this writeup).
+
 In order to ensure that the processes run in parallel, if they are writing to a pipe, you need
 to be reading from that pipe to prevent them from hanging (if they write too much).
 With multiple processes, the easiest way of doing this would be to use a single pipe for all the programs,
@@ -146,17 +155,21 @@ into a single string `output`. On a system with a `/bin/echo` program like exist
 the output would probably be either:
 
     Text: [running 0
-    running 1]
+    running 1
+    ]
 
 or:
 
     Text: [running 1
-    running 0]
+    running 0
+    ]
 
 (but on some systems, maybe other interleaved outputs would be possible like:
 
     Text: [running running 1
-    0]
+    0
+
+    ]
 
 )
 
@@ -188,7 +201,8 @@ should output something like:
 
     Text: [args = ['./foo', 'first', 'second', 'third', '0']
     args = ['./foo', 'first', 'second', 'third', '1']
-    args = ['./foo', 'first', 'second', 'third', '2']]
+    args = ['./foo', 'first', 'second', 'third', '2']
+    ]
 
 but possibly with the lines in a different order and/or interleaved.
 {/}
