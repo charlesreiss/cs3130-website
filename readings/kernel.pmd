@@ -8,6 +8,8 @@ Changelog:
 
 *  5 Sep 2023: Add a little explanation under "interrupts" of why the interrupt on input is useful;
    add section about the typical way exceptions + context switches happen with I/O
+*  9 Oct 2023: move discussion of processes, threads, context switches to processes/threads reading
+   to reduce duplication
 </div>
 
 # Kernel Mode vs. User Mode
@@ -693,59 +695,14 @@ instead of an expensive `throw` and less expensive `try`.
 
 # Processes and Threads
 
+>  2023-10-09: Most of the content of this section was moved to the processes threads reading to reduce duplication. You can find the old contents [here](kernel-old.html).
+
 A **process** is a software-only operating system construct
 that roughly parallels the end-user idea of a running program.
 The hardware knows the difference between user and kernel mode,
 but not the difference between a web browser and a text editor.
 
-The process abstract provides a kind of "virtual machine",
-with its own equivalent of processor cores and of memory.
-To implement these, the operating system maintains a variety of data structures
-inside kernel-only memory to help track different processes.
-Portions of those structures relating to one process at a time^[or one per processor depending on the multiprocessor design]
-are loaded into hardware-accessible registers and memory
-so that the hardware mechanisms will cause running code to interact with the appropriate process's memory
-and other state.
-
-## Threads
-
-We call the process's equivalent of a processor core a _thread_.
-Each thread has its own program registers, program counter, condition codes,
-and perhaps other similar state.
-
-Since each thread has its own program registers and program counters, each thread
-can use registers and change the program counter without worrying about interferring
-with other programs.
-
-The operating system can control which thread is running by loading the correct thread's
-values into the processor's^[if there are multiple processors, any one of the processors] registers, condition codes, etc.
-
-For the first part of the semester, we will only deal with processes that have
-a single thread. Later in the semester, we will
-discuss programming with multiple threads in more detail.
-
-## Virtual address spaces
-
-We call the process's equivalent of memory a *virtual address space*.
-   
-Since each process has its own virtual address space, it can use memory without worrying
-about interfering with other programs accidentally.
-
-We discuss how this virtual address space is implemented in the [reading on virtual memory](vm.html).
-Briefly, the most common mechanism uses *address translation*, where based on settings in special
-registers, the hardware will convert a program's addresses to real addresses in the hardware.
-The operating system controls which address space is active by changing these special registers.
-
-## Context Switches
-
-Changing which thread and/or process's state is currently loaded on a processor core
-is called a **context switch**.
-All major user operating systems (but not all embedded-system operating systems)
-use a hardware timer to create an exception (a "timer interrupt") every few dozen milliseconds
-to enable automated context switching and facilitate the illusion that
-more processes are running at a time than there are processors in the computer.
-Operating systems will also perform context switches at other times, such as when
-a program needs to wait for input before it can continue executing.
+We discuss processes in more detail in the [processes and threads](threads.html) reading.
 
 # Typical I/O patterns
 

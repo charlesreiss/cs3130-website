@@ -8,9 +8,12 @@ Changelog:
 
 *  27 Sep 2023: add section on file descriptors
 *  6 Oct 2023: correct duplicated Y to X in dup2 description
+*  9 Oct 2023: merge material in kernel reading section on processes+threads here
 </div>
 
 # Terminology
+
+## Multitasking
 
 **Multitasking** is a generic term for having multiple flows through code occurring concurrently.
 
@@ -19,22 +22,73 @@ and the task's access to them can be *preempted*, or taken away, from it by an a
 
 **Cooperative multitasking** is multitasking where the scheduling of which task has access to the processor and related resources is controlled by a library that must be manually invoked by code that is willing to lose control of the resource.
 
-## Preemptive multitasking
+## Processes
 
+A **process** is a software-only operating system construct
+that roughly parallels the end-user idea of a running program.
 
 A **process** has a full complement of private state:
 program registers, condition codes, virtual address space, kernel-managed resources like file descriptors, etc.
 
+The process abstraction provides a kind of "virtual machine",
+with its own equivalent of processor cores and of memory.
+To implement these, the operating system maintains a variety of data structures
+inside kernel-only memory to help track different processes.
+Portions of those structures relating to one process at a time^[or one per processor depending on the multiprocessor design]
+are loaded into hardware-accessible registers and memory
+so that the hardware mechanisms will cause running code to interact with the appropriate process's memory
+and other state.
+
+### Virtual address spaces
+
+We call the process's equivalent of memory a *virtual address space*.
+
+Since each process has its own virtual address space, it can use memory without worrying
+about interfering with other programs accidentally.
+
+We discuss how this virtual address space is implemented in the [reading on virtual memory](vm.html).
+Briefly, the most common mechanism uses *address translation*, where based on settings in special
+registers, the hardware will convert a program's addresses to real addresses in the hardware.
+The operating system controls which address space is active by changing these special registers.
+
+## Threads
+
 A **thread** has a limited complement of private state:
 primarily just program registers and condition codes. (Roughly corresponding to the state stored on an active processor core.)
+
+Since each thread has its own program registers and program counters, each thread
+can use registers and change the program counter without worrying about interferring
+with other programs.
+
+For the first part of the semester, we will only deal with processes that have
+a single thread. Later in the semester, we will
+discuss programming with multiple threads in more detail.
+
+## Multi-threaded Processes
 
 All the threads of a given process share the same virtual address space, kernel-managed resources like file descriptors, etc.
 Because the stack is managed by a program register (`%rsp`), this means each thread has its own stack.
 Because heap, code, and globals are stored at known virtual addresses,
 that memory is shared by all threads.
 
+# Implementing multitasking
+
+## Context Switches
+
+Changing which thread and/or process's state is currently loaded on a processor core
+is called a **context switch**. Most commonly operating systems with perform context
+switches as part of handling an exception.
+
+## Preemptive multitasking 
+
 Both processes and threads are scheduled by the operating system, with periodic interrupts being used to switch between them preemptively.
-On some hardware, two threads can be scheduled on the same core in parallel using "hyperthreading"; this involves creating a limited amount of duplicated state on the processor, and generally does not work for processes, only threads.
+
+All major user operating systems (but not all embedded-system operating systems)
+use a hardware timer to create an exception (a "timer interrupt") every few dozen milliseconds
+to enable automated context switching and facilitate the illusion that
+more processes are running at a time than there are processors in the computer.
+Operating systems will also perform context switches at other times, such as when
+a program needs to wait for input before it can continue executing.
 
 ## Cooperative multitasking
 
@@ -42,11 +96,18 @@ Some operating systems (including 1980s versions of Windows and Mac OS, as well 
 this means, in particular, that if a process enters an infinite loop or otherwise runs forever without using the "give up control" system call, the entire computer can freeze.
 
 More commonly today, cooperative multitasking is used for user-mode-only event libraries.
-Being user-mode software, these are relatively easy to implement and change, resulting in many names (fibers, tasklets, coroutines, promises, futures, the asyc/await pattern, event libraries, continuation-passing style, etc.) and nuances of detail.
+Being user-mode software, these are relatively easy to implement and change, resulting in many names
+(fibers, tasklets, coroutines, promises, futures, the asyc/await pattern, event libraries, continuation-passing style, etc.) and nuances of detail.
+
+## Hardware multitasking
+
+On some processors, two or more threads can be scheduled on the same core in parallel using "hyperthreading"
+or "simultaneous multithreading".
+This hardware typically appears to the operating system as if it were multiple cores.
 
 # `fork` et al.
 
-The most common functions for handling processes are `fork` and `waitpid`:
+On Unix-like systems, the most common functions for handling processes are `fork` and `waitpid`:
 `fork` creates a new process, and `waitpid` removes one.
 
 ## New process, what's in memory?
