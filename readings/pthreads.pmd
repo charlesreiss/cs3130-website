@@ -211,7 +211,7 @@ We will not have time in this course to dive into multithreaded debugging in any
 
 # Synchronization with pthreads
 
->  See first [the reading on synchronization generally](sync.html).
+>  See first: [the reading on synchronization generally](sync.html).
 
 ## Mutex {#mutex}
 

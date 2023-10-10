@@ -9,6 +9,7 @@ Changelog:
 *  27 Sep 2023: add section on file descriptors
 *  6 Oct 2023: correct duplicated Y to X in dup2 description
 *  9 Oct 2023: merge material in kernel reading section on processes+threads here
+*  10 Oct 2023: reference both pthreads API + synchronization write-up in last section
 </div>
 
 # Terminology
@@ -344,4 +345,17 @@ which are implemented as a native threading mechanism on Linux and OS X
 and as an optional mechanism on Windows.
 POSIX threads, often abbreviated pthreads,
 are complicated enough to deserve [their own writeup](pthreads.html).
+
+# Coordinating between threads
+
+The topic of coordinating between threads, especially when multiple threads
+are accessing the same values in memory, is a very complicated topic.
+So we have three writeups related to this:
+
+*  on [synchronization primitives](sync.html) --- interfaces provided to allow programmers
+   to coordinate how the threads work together; and
+*  on [deadlock](deadlock.html) --- a common problem that results in hanging when using
+   synchronization primitives incorrectly
+*  on [consistency](consistency.html) --- on when other threads see modifications to values
+   in shared storage
 
