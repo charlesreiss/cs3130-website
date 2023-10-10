@@ -6,7 +6,7 @@ title: Consistency
 Changelog:
 
 *  9 Oct 2023: remove section on strict consistency; add section on memory barriers; add brief discussion of typical memory models for processors/compilers
-*  10 Oct 2023: cleanup description of compiler requirements re: synchronization guarnetees; specify *atomic* in describing read/modify/write operations
+*  10 Oct 2023: cleanup description of compiler requirements re: synchronization guarnetees; fix a bunch of grammatical issues in memory barriers section, add mention of partial barriers + the term "fence"
 </div>
 
 In practice, true shared-memory concurrency (where there is only one piece of hardware that stores the bits of a particular memory location) is not very scalable.
@@ -40,8 +40,8 @@ to shared values being visible to other threads.
 # Memory Barriers
 
 Most processors provide special instructions called *memory barriers* to allow a program to 
-ensure that values are made consistency between processors. 
-A memory gaurentees that all reads and writes before memory barrier appear to occur before all
+ensure that values are made consistently between processors. 
+A memory barrier gaurentees that all reads and writes before memory barrier appear to occur before all
 operations after the memory barrier to all other processors.
 
 Implementations of synchronization primitives often use memory barriers. For example, a common
@@ -54,9 +54,14 @@ The memory barrier here ensures that, even under "weaker" consistency models, an
 that sees the lock as unlocked will also see the results of all operations performed
 while the lock was locked.
 
+Memory barriers are sometimes called *memory fences*.
+
+Many processors provide partial memory barriers, where, rather than gaurenteeing the apparent order of
+all operations as observed on other processors, only a subset (e.g. only stores) are guarenteed.
+
 On most architectures, in addition to dedicated memory barrier instructions,
 the read/modify/write atomic operations, used to implement most synchronziation primitives, also act
-as memory barriers.
+as memory barrier or partial memory barrier.
 
 # Some Consistency Models
 
