@@ -6,6 +6,7 @@ title: Consistency
 Changelog:
 
 *  9 Oct 2023: remove section on strict consistency; add section on memory barriers; add brief discussion of typical memory models for processors/compilers
+*  10 Oct 2023: cleanup description of compiler requirements re: synchronization guarnetees; specify *atomic* in describing read/modify/write operations
 </div>
 
 In practice, true shared-memory concurrency (where there is only one piece of hardware that stores the bits of a particular memory location) is not very scalable.
@@ -32,8 +33,9 @@ Memory consistency is also a concern for compilers. For example, when there's a 
 accessing a global variable, an optimizing compiler may want to store the global variable
 temporarily in a register. But this optimization prevents the value being visible to other threads
 while it is being changed. In contrast to most processors, compilers typical only provide relatively
-minimal consistency gaurentees. Typically, by default, compilers only very few gaurentees
-except when synchronization constructs are used.
+minimal consistency guarentees. Essentially, most compilers require code to use synchronization
+primitives (like locks, thread joining functions, etc.) to get any gaurentees about modifications
+to shared values being visible to other threads.
 
 # Memory Barriers
 
@@ -53,7 +55,7 @@ that sees the lock as unlocked will also see the results of all operations perfo
 while the lock was locked.
 
 On most architectures, in addition to dedicated memory barrier instructions,
-the read/modify/write operations, used to implement most synchronziation primitives, also act
+the read/modify/write atomic operations, used to implement most synchronziation primitives, also act
 as memory barriers.
 
 # Some Consistency Models
