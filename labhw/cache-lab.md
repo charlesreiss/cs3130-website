@@ -16,7 +16,7 @@ Changelog:
     Each person should answer an individual set of questions, but you may work with others to figure how to do
     so.
 
-    (If you have fully and correctly completed the exercises on the lab interface, that counts
+    (If you have correctly completed the exercises on the lab interface, that counts
     as submitting the lab and you do not need to get checked off.)
 
 
