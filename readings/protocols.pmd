@@ -3,12 +3,6 @@ title: Networking Protocols
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  4 Feb 2023: give expansion for acronym URI; describe what a "router" is in IP; add section on network address translation and selected special IP addresses
-</div>
-
 
 This document is designed to be a brief overview of several common network communication protocols, suitable for a day or two overview of a set of topics that we also teach entire courses about.
 As such it glosses over or completely ignores many important topics.
