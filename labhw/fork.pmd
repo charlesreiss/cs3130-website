@@ -9,6 +9,7 @@ author:
 Changelog:
 
 *  9 Oct 2023: do not omit trailing newline in example output from parallelgetoutput (though it is fine if your implementation strips it)
+*  11 Oct 2023: mention testing 0 + lots of arguments for `parallelgetoutput`
 </div>
 
 {.exercise ...}
@@ -251,6 +252,7 @@ should return `-1` and set `errno` to ECHILD (indicating that there are no child
 
 I would recommend testing:
 
+*  `parallelgetoutput` with 0 arguments after the program name or with a bunch of arguments after the program name
 *  programs that output a lot (tens of kilobytes) at least.
 *  programs that output something, then wait, then output another thing, then wait, etc. If you're writing programs to simulate this, I recommend using `fflush()` or similar to make sure the output is sent when you expect it.
 
