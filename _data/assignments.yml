@@ -180,8 +180,11 @@
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
   grade_describe: |
-    If all tests fail/do not run, it may be because you included a `main()` function that interferes with our testing code,
-    or because you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully.
+    If all tests fail/do not run, it may be because:
+    <ul><li>you included a `main()` function that interferes with our testing code,
+    <li>you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully, or
+    <li>your code crashes due to a memory error (see section 3.1 of the assignment for advice on checking for this locally)
+    </ul>
   submit_file: "fork_run.c"
   due: 2023-10-13
 

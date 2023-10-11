@@ -213,7 +213,7 @@ but possibly with the lines in a different order and/or interleaved.
 ## Catching memory errors reliably
 
 1.  Memory errors such as using uninitialized memory unintentionally are a common problem on this assignment. To help avoid these problems,
-    I recommend testing by compiling and linkingusing the flags:
+    I recommend testing by compiling and linking using the flags:
 
         -fsanitize=address -ftrivial-auto-var-init=pattern -Og -g
 
