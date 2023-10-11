@@ -3,12 +3,21 @@ title: Cache lab
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  11 October 2023: note that a checkoff is not needed if exericses on lab interface are fully completed.
+</div>
+
 # Your Task
 
 1.  Answer the questions at the [lab interface](https://kytos02.cs.virginia.edu/cs3130-spring2023/cachelab.php).
 
     Each person should answer an individual set of questions, but you may work with others to figure how to do
     so.
+
+    (If you have fully and correctly completed the exercises on the lab interface, that counts
+    as submitting the lab and you do not need to get checked off.)
 
 
 # Hints
