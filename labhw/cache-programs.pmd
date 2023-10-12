@@ -3,6 +3,12 @@ title: Cache program problems
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  12 Oct 2023: note about `module load valgrind` being required on department machines
+</div>
+
 # Your Task
 
 > Compatability note: 
@@ -46,6 +52,9 @@ author: Charles Reiss
 
 `valgrind`, which is installed on the department machines, includes a cache simulator
 that can simulate a variety of data cache configurations and report the results.
+
+On the department machines, you will need to run `module load valgrind` to use
+the valgrind command.
 
 For example, running something like:
     
@@ -141,6 +150,9 @@ If you would rather write your own code entirely to achieve these cache miss rat
 but I believe the supplied template code would make this task easier.
 
 # Compiling and Testing
+
+**For any of these commands to work on the department machines,
+you will need to first run `module load valgrind`.**
 
 ## Testing individual programs
 
