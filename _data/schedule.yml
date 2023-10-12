@@ -224,9 +224,8 @@
 - date: 2023-10-12
   week: 8
   title: "synchronization 1"
-  reading: "[sync](readings/sync.html) §1, 2-7, 8-9; [consistency](readings/consistency.html)"
+  reading: "[sync](readings/sync.html) §1, 2-7, 8-9; [consistency](readings/consistency.html) §1"
   slides: yes
-  slides_prelim: yes
   slides_extra: yes
   description: |
     *  creating new threads
@@ -234,7 +233,6 @@
 
     *  problem of synchronization
     *  atomicity, race conditions
-    *  locks and mutexes
 
 - date: 2023-10-13
   week: 8
@@ -242,19 +240,17 @@
 - date: 2023-10-17
   week: 9
   title: synchronization 3
-  reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html)"
-  slides_see: 2023-10-12
+  reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
   slides: yes
+  slides_prelim: yes
   slides_extra: yes
   description: |
+   *  reordering
+   *  locks and mutexes
    *  barriers
    *  interlude: reordering
+
    *  deadlock
-
-   *  (briefly) transactions
-
-   *  producer/consumer problem
-
 
 - date: 2023-10-18
   lab: true
@@ -262,31 +258,30 @@
 
 - date: 2023-10-19
   week: 9
-  title: synchronization 4 / networking 1
-  reading: "[protocols](readings/protocols.html) §1"
+  title: synchronization 4
+  reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
   slides: yes
   slides_extra: yes
   slides_prelim: yes
-  slides_see: 20231017
   description: |
     > (Reiss out of town)
-
+    
+    *  producer/consumer problem
     *  monitors
-
-    ----
-
-    *  mailbox analogy
-       *  best-effort delivery
-       *  envelope versus contents
-
 - date: 2023-10-20
   week: 9
 
 - date: 2023-10-24
   week: 10
-  title: networking 2
+  title: networking 1
   reading: "[protocols](readings/protocols.html) §2-4"
+  slides: yes
+  slides_extra: yes
+  slides_prelim: yes
   description: |
+    *  mailbox analogy
+       *  best-effort delivery
+       *  envelope versus contents
     *  connections atop mailbox model
     *  layers
     *  names and addresses
@@ -295,10 +290,6 @@
        *  state machine
     *  example: a frame
        *  layers (link, network, transport)
-    *  IP
-       *  addresses (v4, v6)
-       *  routers
-    *  port numbers and UDP
 
 - date: 2023-10-25
   lab: true
@@ -306,12 +297,14 @@
 
 - date: 2023-10-26
   week: 10
-  title: networking 3 / secure channels 1
+  title: networking 2
   reading: "[security](readings/sec.html) §1-1.5, 3"
-  slides: yes
-  slides_extra: yes
-  slides_prelim: yes
+  slides_see: 2023-10-24
   description: |
+    *  IP
+       *  addresses (v4, v6)
+       *  routers
+    *  port numbers and UDP
     *  DNS
        *  is a distributed database
        *  with caching
@@ -319,26 +312,22 @@
     *  DHCP
     *  NAT
 
-    *  cryptography (start)
-       *  symmetric encryption
-       *  asymmetric encryption
-       *  digital signature
-    *  replay attacks
-
 - date: 2023-10-27
   week: 10
 
 - date: 2023-10-31
   week: 11
-  title: secure channels 2
-  slides_see: 2023-10-26
+  title: secure channels 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[security](readings/sec.html) §1.5-2"
   description: |
-    *  cryptography (finish)
-        *  cryptographic hashes
-        *  key exchange
-    *  public key infrastructure
-    *  TLS protocol outline
+    *  cryptography (start)
+       *  symmetric encryption
+       *  asymmetric encryption
+       *  digital signature
+    *  replay attacks
 
 - date: 2023-11-01
   lab: true
@@ -346,16 +335,21 @@
 
 - date: 2023-11-02
   week: 11
-  title: pipeline 1
+  title: secure channels 2 / pipeline 1
   reading: "[processors](readings/processors.html) §1-2"
+  slides_see: 2023-10-31
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  cryptography (finish)
+        *  cryptographic hashes
+        *  key exchange
+   *  public key infrastructure
+   *  TLS protocol outline
+
    *  pipelining idea
    *  review: single-cycle CPU
-   *  pipelining for the CPU
-   *  data hazards
 
 - date: 2023-11-03
   week: 11
@@ -375,6 +369,8 @@
   title: pipelining 2
   slides_see: 2023-11-02
   description: |
+   *  pipelining for the CPU
+   *  data hazards
    *  hazard handling, part 1
      *  stalling / waiting
    *  hazard handling, part 2
