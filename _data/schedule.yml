@@ -276,12 +276,8 @@
     ----
 
     *  mailbox analogy
-       *  inboxes and outboxes
-       *  addresses
        *  best-effort delivery
        *  envelope versus contents
-    *  names and addresses
-    *  layers preview
 
 - date: 2023-10-20
   week: 9
@@ -291,7 +287,9 @@
   title: networking 2
   reading: "[protocols](readings/protocols.html) §2-4"
   description: |
+    *  connections atop mailbox model
     *  layers
+    *  names and addresses
     *  connections (TCP)
        *  acknowledgements
        *  state machine
