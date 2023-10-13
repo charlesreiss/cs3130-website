@@ -10,6 +10,7 @@ Changelog:
 
 *  9 Oct 2023: do not omit trailing newline in example output from parallelgetoutput (though it is fine if your implementation strips it)
 *  11 Oct 2023: mention testing 0 + lots of arguments for `parallelgetoutput`
+*  13 Oct 2023: consistently call test program in example `args.py`, not both `args.py` and `foo.py`
 </div>
 
 {.exercise ...}
@@ -192,7 +193,7 @@ If you save this a file called 'args.py' and make that file
 executable, then a main() like:
 
     int main() {
-        const char *argv_base[] = { "./foo.py", "first", "second", "third", NULL };
+        const char *argv_base[] = { "./args.py", "first", "second", "third", NULL };
         const char *output = parallelgetoutput(3, argv_base);
 
         printf("Text: [%s]\n", output);
@@ -200,9 +201,9 @@ executable, then a main() like:
 
 should output something like:
 
-    Text: [args = ['./foo', 'first', 'second', 'third', '0']
-    args = ['./foo', 'first', 'second', 'third', '1']
-    args = ['./foo', 'first', 'second', 'third', '2']
+    Text: [args = ['./args.py', 'first', 'second', 'third', '0']
+    args = ['./args.py', 'first', 'second', 'third', '1']
+    args = ['./args.py', 'first', 'second', 'third', '2']
     ]
 
 but possibly with the lines in a different order and/or interleaved.
