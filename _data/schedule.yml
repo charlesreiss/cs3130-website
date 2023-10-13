@@ -210,8 +210,6 @@
   title: caches 3 / threads 1
   reading: "[cache](readings/cache.html), [threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
   slides: yes
-  slides_prelim: yes
-  slides_see2: 2023-10-12
   description: |
    *  write policies
    *  the TLB
@@ -226,7 +224,6 @@
   title: "synchronization 1"
   reading: "[sync](readings/sync.html) §1, 2-7, 8-9; [consistency](readings/consistency.html) §1"
   slides: yes
-  slides_extra: yes
   description: |
     *  creating new threads
     *  thread use examples
