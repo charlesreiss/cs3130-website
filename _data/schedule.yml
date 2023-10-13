@@ -343,7 +343,7 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
-    *  cryptography (finish)
+   *  cryptography (finish)
         *  cryptographic hashes
         *  key exchange
    *  public key infrastructure
