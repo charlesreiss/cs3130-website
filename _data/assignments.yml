@@ -208,6 +208,7 @@
   lab: true
   short_name: pthreads
   page: labhw/dp.html
+  tentative: true
   comments: needs changes for in-person
   comments: "FIXME: HAS TA CHECK OFF"
   comments: "FIXME: ThreadSanitizer"

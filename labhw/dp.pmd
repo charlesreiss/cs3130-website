@@ -126,14 +126,27 @@ If correctly implemented,
 
 ## Extra approach 2: Retry with backoff
 
-> Submisison filename: `dp-backoff.c`
+> Submission filename: `dp-backoff.c`
 
-This implementation should ensure there is no deadock by acquiring the lock in a way that will fail if it is already locked.
-Then, it should retry locking. To avoid starvation ("*livelock*"), it should use randomized exponential backoff to decide
-how often to retry:
+This implementation should ensure there is no deadlock by acquiring the lock in a way that will fail if it is already locked.
+Then, it should retry locking.
+To avoid "livelock" where threads continue retrying indefinitely,
+threads should use _randomized exponential backoff_ to limit how often retry
+and make it unlikely that two threads which both decide to retry at the same time
+end up retrying at the same time.
 
-*  the approximate amount of time the system waits between retries should increase exponentially with each retry a thread does; and
-*  the exact amount of time should be chosen at random from a range to avoid two threads exactly synchronizing
+For example:
+
+*  after locking fails the first time, a thread could wait a randomly chosen amount of time between 50 and 100 microseconds
+*  after locking fails the second time, a thread could wait a randomly chosen amount of time between 100 and 200 microseconds
+*  after locking fails the third time, a thread could wait a randomly chosen amount of time between 200 and 400 microseconds
+*  and so on
+
+Your implementation can vary the amount of time threads wait so long as:
+
+*  the average increases by a multiplicative factor each time (to keep threads from hogging all the processor time just retrying); and
+*  the exact amount of time is always randomized (so threads that started being exactly in sync with each other will not stay in sync)
+
 
 ## Extra approach 3: Message passing
 
