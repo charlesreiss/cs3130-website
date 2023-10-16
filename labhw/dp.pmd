@@ -74,7 +74,7 @@ clang -O2 -lpthread dp.c && ./a.out`
 
 Because thread scheduling is somewhat random in practice, you may need to run the program several times in a row to see a deadlock.
 
-To help idenitfy deadlocks and other synchronization problems more reliably,
+To help identify deadlocks and other synchronization problems more reliably,
 we strongly recommend using ThreadSanitizer:
 
 ```bash
