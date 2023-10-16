@@ -142,8 +142,12 @@ If correctly implemented,
 
 > Submission filename: `dp-backoff.c`
 
-This implementation should ensure there is no deadlock by acquiring the lock in a way that will fail if it is already locked.
-Then, it should retry locking.
+This implementation should ensure there is no deadlock by acquiring the
+lock on the second chopstick in a way that
+will fail if it is already locked.
+If acquiring the second chopstick fails, it should set down the first chopstick,
+and retry the whole process.
+
 To avoid "livelock" where threads continue retrying indefinitely,
 threads should use _randomized exponential backoff_ to limit how often retry
 and make it unlikely that two threads which both decide to retry at the same time
@@ -162,8 +166,13 @@ Your implementation can vary the amount of time threads wait so long as:
 *  the exact amount of time is always randomized (so threads that started being exactly in sync with each other will not stay in sync)
 
 You can use:
-*  `pthread_mutex_trylock` to attempt to get a mutex lock and detect when this is not immediately possible
+*  `pthread_mutex_trylock` to attempt to get a mutex lock and detect when this is not immediately possible. `pthread_mutex_trylock` will return 0 when successful
 *  `rand()` to generate pseudorandom numbers and `usleep()` or `nanosleep()` to have threads wait for varying amounts of time.
+
+If successful:
+
+*  There will be no deadlock; the program will always terminate.
+*  One philosopher will usually end up trying to acquire the lock several times before succeeding.
 
 # Check off
 
