@@ -170,7 +170,7 @@ Also, the Makefile provides testing commands like:
 which will compile (if needed) and run a program under valgrind cachegrind with the cache settings
 in the tasks above.
 
-## Testing everything (homework only)
+## Testing everything
 
 We have a standalone test:
 
