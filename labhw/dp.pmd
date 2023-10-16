@@ -86,7 +86,7 @@ the program does not implement a resource hierarchy strategy (that is, does not 
 for acquiring locks). It also will (with varying
 reliablity) detect several other kinds of thread usage errors (like race conditions).
 
-## Required approach: Arbitrator
+## Approach 1: Arbitrator
 
 > Submission filename: `dp-arb.c`
 
@@ -110,7 +110,7 @@ If correctly implemented,
 because thread sanitizer is checking for the constistent lock
 order solution for preventing deadlock; it's not programmed to identify this strategy.)
 
-## Extra approach 1: Resource hierarchy
+## Approach 2: Resource hierarchy
 
 > Submission filename: `dp-rh.c`
 
@@ -124,7 +124,7 @@ If correctly implemented,
 - There will be no deadlock; the program will always terminate
 - After a "Philosopher *i* got chopstick *j*" line, any following "Philosopher *i* got chopstick *k*" line will have a *k* > *j*.
 
-## Extra approach 2: Retry with backoff
+## Approach 3 : Retry with backoff
 
 > Submission filename: `dp-backoff.c`
 
@@ -147,33 +147,17 @@ Your implementation can vary the amount of time threads wait so long as:
 *  the average increases by a multiplicative factor each time (to keep threads from hogging all the processor time just retrying); and
 *  the exact amount of time is always randomized (so threads that started being exactly in sync with each other will not stay in sync)
 
-You can use `rand()` to generate pseudorandom numbers and `usleep()` or `nanosleep()` to have threads wait for varying amounts of time.
-
-## Extra approach 3: Message passing
-
-> Submission filename: `dp-mp.c`
-
-This implementation should ensure there is no deadlock
-by using the [Chandy/Misra solution](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Chandy/Misra_solution).
-
-To help you implement the message passing pattern, we supply this (optional) [code](files/dp/base-mp.c).
-
-You'll probably need to add some kind of data structure to keep track of who owns which chopstick and
-which chopsticks are dirty.
-
-This is definitely more involved than the other files,
-but also will give you a better understanding of how to use pthreads' mutex objects 
-(and other synchronization primitives, like condition variables) to solve non-trivial problems.
+You can use:
+*  `pthread_mutex_trylock` to attempt to get a mutex lock and detect when this is not immediately possible
+*  `rand()` to generate pseudorandom numbers and `usleep()` or `nanosleep()` to have threads wait for varying amounts of time.
 
 # Check off
 
 Either:
 
-*  submit solutions including at least one of the extra approaches to the submission site
-   * submit separate files for each approach.
-   * use the filenames `dp-arb.c`, `dp-rh.c`, and/or `dp-mp.c`.
+*  submit solutions for all the approaches
 *  OR have a TA see your program working:
-   * the required approach should be completed;
-   * _at least_ one of the extra approaches should be complete or have substantial progress by the end of the lab time. (If you have extra time in the lab, we would prefer you attempt both extra approaches, but we will not require this.)
+   * at least two of the required approaches should be completed;
+   * the remaining approach should have significant progress
 
 For an in-person checkoff, TAs may ask to see your code and ask a questions along the lines of "why this line here instead of there?" which all team members should be prepared to answer.
