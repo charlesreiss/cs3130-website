@@ -239,8 +239,6 @@
   title: synchronization 3
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
    *  reordering
    *  locks and mutexes
@@ -248,6 +246,7 @@
    *  interlude: reordering
 
    *  deadlock
+      *  examples of
 
 - date: 2023-10-18
   lab: true
@@ -262,7 +261,10 @@
   slides_prelim: yes
   description: |
     > (Reiss out of town)
-    
+   
+    *  deadlock
+       *  definition
+       *  preventing/avoiding
     *  producer/consumer problem
     *  monitors
 

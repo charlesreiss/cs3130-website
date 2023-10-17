@@ -155,9 +155,9 @@ end up retrying at the same time.
 
 For example:
 
-*  after locking fails the first time, a thread could wait a psuedorandomly chosen amount of time between 50 and 100 microseconds
-*  after locking fails a second time, a thread could wait a psuedorandomly chosen amount of time between 100 and 200 microseconds
-*  after locking fails a third time, a thread could wait a psuedorandomly chosen amount of time between 200 and 400 microseconds
+*  after locking fails the first time, a thread could wait a pseudorandomly chosen amount of time between 50 and 100 microseconds
+*  after locking fails a second time, a thread could wait a pseudorandomly chosen amount of time between 100 and 200 microseconds
+*  after locking fails a third time, a thread could wait a pseudorandomly chosen amount of time between 200 and 400 microseconds
 *  and so on
 
 Your implementation can vary the amount of time threads wait so long as:
@@ -166,7 +166,7 @@ Your implementation can vary the amount of time threads wait so long as:
 *  the exact amount of time is always randomized (so threads that started being exactly in sync with each other will not stay in sync)
 
 You can use:
-*  `pthread_mutex_trylock` to attempt to get a mutex lock and detect when this is not immediately possible. `pthread_mutex_trylock` will return 0 when successful
+*  `pthread_mutex_trylock` to attempt to get a mutex lock and detect when this is not immediately possible. `pthread_mutex_trylock` will return 0 when successful, and some non-zero value when locking fails.
 *  `rand()` to generate pseudorandom numbers and `usleep()` or `nanosleep()` to have threads wait for varying amounts of time.
 
 If successful:
