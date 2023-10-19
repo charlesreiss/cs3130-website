@@ -260,25 +260,30 @@
   slides_extra: yes
   slides_prelim: yes
   description: |
-    > (Reiss out of town)
+    > (Reiss out of town, Campbell guest lectured)
+
+    Lecture recording: [link](https://uva.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cd5ea24b-2186-4fa7-8773-b0a00129693a)
    
     *  deadlock
        *  definition
        *  preventing/avoiding
     *  producer/consumer problem
-    *  monitors
+    *  monitors (start)
 
 - date: 2023-10-20
   week: 9
 
 - date: 2023-10-24
   week: 10
-  title: networking 1
+  title: synchronization 5 / networking 1
   reading: "[protocols](readings/protocols.html) §2-4"
   slides: yes
   slides_extra: yes
   slides_prelim: yes
   description: |
+    *  monitors (finish)
+    *  briefly, transactions
+
     *  mailbox analogy
        *  best-effort delivery
        *  envelope versus contents
