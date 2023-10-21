@@ -109,7 +109,7 @@ then the following tests should work:
 
 Several accesses to different sets, including with various offsets, then verifying that accesses after tlb_clear still work.
 
-````c
+```c
 tlb_clear();
 assert(tlb_peek(0) == 0);
 assert(tlb_translate(0) == 0x0020000);
