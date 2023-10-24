@@ -295,14 +295,8 @@
     *  mailbox analogy
        *  best-effort delivery
        *  envelope versus contents
-    *  connections atop mailbox model
     *  layers
-    *  names and addresses
-    *  connections (TCP)
-       *  acknowledgements
-       *  state machine
-    *  example: a frame
-       *  layers (link, network, transport)
+    *  connections atop mailbox model (start)
 
 - date: 2023-10-25
   lab: true
@@ -314,9 +308,25 @@
   reading: "[security](readings/sec.html) §1-1.5, 3"
   slides_see: 2023-10-24
   description: |
+    *  connections atop mailbox model (finish)
+    *  names and addresses
+    *  example: a frame
+       *  layers (link, network, transport)
     *  IP
        *  addresses (v4, v6)
        *  routers
+
+- date: 2023-10-27
+  week: 10
+
+- date: 2023-10-31
+  week: 11
+  title: networking 3 / secure channels 1
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
+  reading: "[security](readings/sec.html) §1.5-2"
+  description: |
     *  port numbers and UDP
     *  DNS
        *  is a distributed database
@@ -325,17 +335,6 @@
     *  DHCP
     *  NAT
 
-- date: 2023-10-27
-  week: 10
-
-- date: 2023-10-31
-  week: 11
-  title: secure channels 1
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  reading: "[security](readings/sec.html) §1.5-2"
-  description: |
     *  cryptography (start)
        *  symmetric encryption
        *  asymmetric encryption
