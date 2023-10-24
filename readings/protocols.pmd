@@ -3,6 +3,12 @@ title: Networking Protocols
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  24 Oct 2023: mention that best-effort delivery can include reordering messages or messages being corrupted; mention that TCP uses sequence numbers and port numbers and checksms
+</div>
+
 
 This document is designed to be a brief overview of several common network communication protocols, suitable for a day or two overview of a set of topics that we also teach entire courses about.
 As such it glosses over or completely ignores many important topics.
@@ -125,8 +131,11 @@ IP (both versions) works on the following principles:
     Each computer involved in delivering a packet
     sends the packet to the computer that it has a link to
     and that it believes is most likely to get the message where it is going,
-    but there is no guarantee that the packet will arrive at all
-    or that the sender will know if it arrived.
+    but there is no guarantee that:
+    *   the packet will arrive at all,
+    *   that the sender will know if it arrived,
+    *   what order the message will be received in relative to other messages, and
+    *   that the message data won't be corrupted in transit
 
 
 ## UDP
@@ -151,7 +160,17 @@ that some packets that are sent will never arrive.
 
 TCP, or Transmission Control Protocol, is a reliable, ordered, connection-oriented transport protocol.
 It creates this over IP by a somewhat complicated state machine;
-a core idea in this is that each received message must be acknowledged by the recipient and will be re-sent by the sender otherwise.
+a core idea in this is that each received message must be acknowledged by the recipient
+and will be re-sent by the sender otherwise.
+
+To deal with splitting the possibly very large stream of data into a connection into smaller messages
+and preserving order, each message has a *sequence number*, letting the receiver's OS ensure
+that messages are given to the receiving program in order even if they are not received from
+the network in order.
+
+Like UDP, TCP includes 16-bit port numbers to let the OSes of the involved computers
+identify which program and connection packets are associated with. ALso like UDP, it uses checksums to detect
+when messages are corrupted.
 
 ![Simplified TCP state diagram for how to establish and terminate a connection (from [Wikimedia](https://en.wikipedia.org/wiki/Transmission_Control_Protocol#/media/File:Tcp_state_diagram_fixed_new.svg))](https://upload.wikimedia.org/wikipedia/commons/f/f6/Tcp_state_diagram_fixed_new.svg)
 
