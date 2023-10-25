@@ -3,6 +3,12 @@ title: Translation lookaside buffer
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  24 October 2024: add additional example that might help with checking tlb_clear behaves correctly.
+</div>
+
 Implement a TLB wrapper around the page table interface from previous assignments.
 Note you will *not* need to implement a page table for this assignment;
 you'll merely use its API, as defined in `mlpt.h`
@@ -194,3 +200,25 @@ assert(tlb_peek(0x1000) == 1);
 assert(tlb_translate(0x1200) == 0x21200);
 ```
 
+## example 4
+
+Filling a single set, then calling tlb_clear, then doing more access to the set
+and checking LRU results.
+
+```c
+tlb_clear();
+assert(tlb_translate(0x0001200) == 0x0021200);
+assert(tlb_translate(0x2101200) == 0x2201200);
+assert(tlb_translate(0x0801200) == 0x0821200);
+assert(tlb_translate(0x2301200) == 0x2401200);
+tlb_clear();
+assert(tlb_translate(0x2101200) == 0x2201200);
+assert(tlb_translate(0x0001200) == 0x0021200);
+assert(tlb_translate(0x2101200) == 0x2201200);
+assert(tlb_translate(0x2301200) == 0x2401200);
+assert(tlb_translate(0x0011200) == 0x0031200);
+assert(tlb_peek(0x0001200) == 4);
+assert(tlb_peek(0x2101200) == 3);
+assert(tlb_peek(0x2301200) == 2);
+assert(tlb_peek(0x0011200) == 1);
+```
