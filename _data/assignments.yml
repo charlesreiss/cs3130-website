@@ -235,7 +235,7 @@
     Selected notes on tests:
     <ul><li>The testing scripts call tlb_clear() in between groups of tests, so if your tlb_clear() doesn't really reset everything that could cause apparently unrelated tests to fail.
     <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
-        or that you evict the wrong entry sometimes.
+        or because you evict the wrong entry sometimes.
     </ul>
   due: 2023-10-27
 
