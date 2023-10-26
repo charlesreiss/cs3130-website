@@ -12,7 +12,7 @@ We've provided a simple network simulator for you.
 {.exercise ...} Possibly working with a partner ---
 
 1. Download [netlab.tar](../files/netlab.tar) on a linux system
-    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2023/files/netlab.tar`{.bash}).
+    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/F2023/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
     
@@ -53,13 +53,16 @@ We provide a network simulation driver program. It has the following pieces:
     - `-2` if you have too many pending callbacks scheduled (based on an implementation-defined limit guaranteed to be at least 16)
     
     The callback is executed once per `setTimeout` call, assuming it is not cleared with `clearTimeout` first.
+
+    The actual invoking of `callback` will be done by the `waitForAllTimeouts` function.
 - Function `void clearTimeout(int timeoutID)`.
     If `timeoutID` was returned by `setTimeout` and the callback has not yet been invoked,
     unschedules that callback.
     Otherwise, does nothing.
 - Function `void waitForAllTimeouts(void)`.
     If there are no pending timeouts, returns immediately.
-    Otherwise, blocks until there are not scheduled timeouts left.
+    Otherwise, blocks until there are no scheduled timeouts left, running a loop
+    that calls the timeout callbacks as it waits.
 
     May **not** be called from a callback.
 
@@ -109,27 +112,37 @@ You may assume that if a message has not arrived after a full second, it will no
 # Tips
 
 - Work with a partner.
+
+## How the protocol works
+
 - Messages with bad checksums are ignored by the server.
+
 - You only have two kinds of messages you'll ever send. It's probably worth writing helper functions to send them (or just one helper to send both based on an argument).
+
 - `ACK`0 does not work; use `GET` instead.
-- Make a simple program that uses the `setTimeout` to print something or the like, just to make sure you understand how it works.
 
-    {.example ...}The following prints 3, then 1, then 4, ending two seconds after it started.
+## Using `setTimeout`
 
-    ````c
-    void pnum(void *num) {
-        printf("%d\n", (int)num);
-    }
-    int main() {
-        int one = setTimeout(pnum, 1000, (void *)1uL);
-        int two = setTimeout(pnum, 500, (void *)2uL);
-        int three = setTimeout(pnum, 100, (void *)3uL);
-        int four = setTimeout(pnum, 2000, (void *)4uL);
-        clearTimeout(two);
-        waitForAllTimeouts();
-    }
-    ````
-    {/}
+- You can use `setTimeout` to make `waitForAllTimeouts` run something in the future. For example,
+  the following prints 3, then 1, then 4, ending two seconds after it started.
+
+        void pnum(void *num) {
+            printf("%d\n", (int)num);
+        }
+        int main() {
+            int one = setTimeout(pnum, 1000, (void *)1uL);
+            int two = setTimeout(pnum, 500, (void *)2uL);
+            int three = setTimeout(pnum, 100, (void *)3uL);
+            int four = setTimeout(pnum, 2000, (void *)4uL);
+            clearTimeout(two);
+            waitForAllTimeouts();
+        }
+
+  Note that `2` is not printed out because of the call to `clearTimeout`.
+
+  The `waitForAllTimeouts` function looks at the list of non-cleared timeouts, waits
+  until each of those timeouts expire, and calls the callback function (`pnum` in this case)
+  with the specified arguments (1, 3, and 4) in the case.
 
 - Our API does not support any "`sleep`"-like function that waits for a certain amount of time,
   but you can achieve the same effects. For example, pseudocode like:
