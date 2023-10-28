@@ -2,6 +2,13 @@
 title: Networking lab
 ...
 
+<div class="changelog">
+Changelog:
+
+*  27 Oct 2023: update netlab.tar's libnetsim.a to support waitForAllTimeouts() being called multiple times;
+   also adjust make flags some
+</div>
+
 You've already worked with TCP sockets in CSO1.
 In this lab you'll learn how to add reliability on top of unreliable "mailbox" type model of a network.
 
@@ -11,7 +18,7 @@ We've provided a simple network simulator for you.
 
 {.exercise ...} Possibly working with a partner ---
 
-1. Download [netlab.tar](../files/netlab.tar) *[last updated 26 Oct] on a linux system
+1. Download [netlab.tar](../files/netlab.tar) *[last updated 27 Oct]* on a linux system
     (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/F2023/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with

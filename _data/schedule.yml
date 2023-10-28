@@ -316,9 +316,6 @@
        *  addresses (v4, v6)
        *  routers
     *  port numbers and UDP
-    *  DNS
-       *  is a distributed database
-       *  with caching
 
 - date: 2023-10-27
   week: 10
@@ -332,10 +329,12 @@
   slides_extra: yes
   reading: "[security](readings/sec.html) §1-1.5"
   description: |
-
+    *  mapping between addresses and names/other addresses:
+        *  MAC <-> IP mapping
+        *  DNS
+        *  NAT
     *  URLs
     *  DHCP
-    *  NAT
 
     *  cryptography (start)
        *  symmetric encryption
