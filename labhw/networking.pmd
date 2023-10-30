@@ -88,7 +88,8 @@ you actually send a five-byte message: `[0^1^2^5, 0, 1, 2, 5]`.
 
 You should send the server a 4-byte message (plus a checksum) to initiate conversation.
 The first three bytes should be the ASCII characters for `GET`; the fourth should be an ASCII digit `0` through `9`.
-The ASCII digit selects which message to retrieve, and is filled in from the command line argument in our supplied code.
+The ASCII digit selects which message to retrieve (higher numbered messages are more difficult to handle),
+and is filled in from the command line argument in our supplied code.
 The server will then start sending you messages in discrete packets.
 
 The first three bytes of each packet the server sends will be a checksum, a (1-based) sequence number, and the total sequence count.
