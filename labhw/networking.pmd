@@ -130,7 +130,7 @@ You may assume that if a message has not arrived after a full second, it will no
 
 - You only have two kinds of messages you'll ever send. It's probably worth writing helper functions to send them (or just one helper to send both based on an argument).
 
-- `ACK`0 does not work; use `GET` instead.
+- `ACK`0 does not work; use `GET` instead (with the correct message number).
 
 ## Using `setTimeout`
 
