@@ -5,6 +5,12 @@ author:
     - Luther Tychonievich
 ...
 
+<div class="changelog">
+Changelog:
+
+*  30 October 2023: remove references to before 6 April versions of the skeleton code.
+</div>
+
 # Your Task
 
 ## Before you code
@@ -70,8 +76,6 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
     - if you get an error about a race condition with pthread_barrier_destroy and pthread_barrier_wait, see the first caveat below.
 
-   >  If you downloaded the skeleton code before 6 April, your Makefile may not properly build life-tsan; you can download an [updated Makefile here](../files/life/Makefile).
-
 - `./life 0 input/o0075 serial-result`{.bash} to ensure you can load an example file.
 
 - `./life 110 input/o0075 serial-result`{.bash} to ensure you can simulate an example file.
@@ -81,9 +85,6 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 - `./time-examples.sh`{.bash} to get a sense of how you are doing on parallel performance.
 
 - `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer, ThreadSanitizer
-
-   >  If you downloaded the skeleton code before 6 April, your Makefile may not properly build life-tsan or include `sanitizer-test.sh`; you can download an [updated Makefile here](../files/life/Makefile)
-   >  and [`sanitizer-test.sh`](../files/life/sanitizer-test.sh) here.
 
 # Tips
 
