@@ -244,7 +244,6 @@
   page: labhw/networking.html
   submit_file: "*.c"
   due: 2023-11-01
-  tentative: true
 
 
 - name: secure channels lab
