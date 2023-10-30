@@ -75,9 +75,9 @@ Possibly working with a partner or two ---
 
 7.  Submit your `attack.c` to the submission site or show your code to a TA for checkoff.
 
-    (This is a new lab, so I'm not sure how much typical students will complete. But I'm expecting that
-     most students will *not* complete scenario "3" within the lab time, and so it will not be expected
-     to be complete for submission to the submission site.)
+    If you submit the lab, we expect scenarios 1-3 to be complete.
+
+    If you checkoff the lab, we will give credit if you do not complete scenario 3 but have significant progress by the end of the lab.
 
 {/}
 
@@ -206,10 +206,12 @@ private keys.
 
 ## Scenario 3
 
+    A->B [encrypted to B's public key, then signed by A's private key]: PAY $0001 TO M
+    B->A [encrypted to A's public key, then signed by B's private key]: PAID #1 OF UP TO 3
     A->B [encrypted to B's public key, then signed by A's private key]: PAY $1000 TO M
-    B->A [encrypted to A's public key, then signed by B's private key]: PAID #1 OF UP TO 2
-    A->B [encrypted to B's public key, then signed by A's private key]: PAY $0438 TO M
-    B->A [encrypted to A's public key, then signed by B's private key]: PAID #2 OF UP TO 2
+    B->A [encrypted to A's public key, then signed by B's private key]: PAID #2 OF UP TO 3
+    A->B [encrypted to B's public key, then signed by A's private key]: PAY $0437 TO M
+    B->A [encrypted to A's public key, then signed by B's private key]: PAID #3 OF UP TO 3
 
 ## Scenario 4
 
