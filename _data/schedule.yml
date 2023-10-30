@@ -305,8 +305,6 @@
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
   slides: yes
-  slides_extra: yes
-  slides_prelim: yes
   description: |
     *  connections atop mailbox model (finish)
     *  names and addresses
