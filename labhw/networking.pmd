@@ -9,6 +9,7 @@ Changelog:
    also adjust make flags some
 *  30 Oct 2023: be more explicit that number after GET selects which message to retrieve and that this is
    is filled in from the command line by the supplied code
+*  30 Oct 2023: fix bug where simulator would mishandle clearTimeout() of a currently active callback; adjust supplied code to not print out extra NULs
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -20,7 +21,7 @@ We've provided a simple network simulator for you.
 
 {.exercise ...} Possibly working with a partner ---
 
-1. Download [netlab.tar](../files/netlab.tar) *[last updated 27 Oct]* on a linux system
+1. Download [netlab.tar](../files/netlab.tar) *[last updated 30 Oct]* on a linux system
     (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/F2023/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
