@@ -7,6 +7,8 @@ Changelog:
 
 *  27 Oct 2023: update netlab.tar's libnetsim.a to support waitForAllTimeouts() being called multiple times;
    also adjust make flags some
+*  30 Oct 2023: be more explicit that number after GET selects which message to retrieve and that this is
+   is filled in from the command line by the supplied code
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -86,6 +88,7 @@ you actually send a five-byte message: `[0^1^2^5, 0, 1, 2, 5]`.
 
 You should send the server a 4-byte message (plus a checksum) to initiate conversation.
 The first three bytes should be the ASCII characters for `GET`; the fourth should be an ASCII digit `0` through `9`.
+The ASCII digit selects which message to retrieve, and is filled in from the command line argument in our supplied code.
 The server will then start sending you messages in discrete packets.
 
 The first three bytes of each packet the server sends will be a checksum, a (1-based) sequence number, and the total sequence count.
