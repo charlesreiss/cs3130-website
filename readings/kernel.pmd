@@ -10,6 +10,7 @@ Changelog:
    add section about the typical way exceptions + context switches happen with I/O
 *  9 Oct 2023: move discussion of processes, threads, context switches to processes/threads reading
    to reduce duplication
+*  30 Oct 2023: link to dive into systems textbook from further resources
 </div>
 
 # Kernel Mode vs. User Mode
@@ -755,6 +756,8 @@ The typical output scenario is very similar to the input scenario:
 ## General
 
 *  Arpaci-Dusseau and Arpaci-Dusseau, [_Operating Systems: Three Easy Pieces_](https://pages.cs.wisc.edu/~remzi/OSTEP/) chapters 4, 6, 36. More detailed textbook on all these topics, intended in the context of a more dedicated operating systems course.
+
+*  [Dive Into Systems, Chapter 13](https://diveintosystems.org/book/C13-OS/index.html)
 
 ## For signal handling
 
