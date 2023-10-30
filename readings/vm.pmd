@@ -745,7 +745,7 @@ it is generally implemented as an extension of the virtual memory system.
 
 *  Arpaci-Dusseau and Arpaci-Dusseau, [_Operating Systems: Three Easy Pieces_](https://pages.cs.wisc.edu/~remzi/OSTEP/) chapters 13, 15, 18, 36. More detailed textbook on all these topics, intended in the context of a more dedicated operating systems course.
 
-*  [Dive into Systems, Chapter 13.3](https://diveintosystems.org/book/C13-OS/vm.html)
+*  [Dive into Systems, Chapter 13.3](https://diveintosystems.org/book/C13-OS/vm.html) --- doesn't cover multi-level page tables, but covers idea of virtual memory
 
 ## Virtual memory system examples
 
