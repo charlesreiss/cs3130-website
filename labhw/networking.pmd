@@ -37,7 +37,7 @@ We've provided a simple network simulator for you.
    communicating with expects, including when you need to send acknowledgment
    or resend requests if you don't receive a response.
 5. Show a TA your code or submit it to the submissoin site.
-    - We expect everyone to finish `./netlab 1` and to make good progress on `./netlab 2`
+    - We expect everyone (and require for a check-off) to finish `./netlab 1` and to make good progress on `./netlab 2`
     - `./netlab 3` is quite a bit harder and is recommended if you have time
     - If you are submitting instead of checking off, we require `./netlab 1` and `./netlab 2` to be complete
 {/}
