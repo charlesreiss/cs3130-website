@@ -10,6 +10,7 @@ Changelog:
 *  30 Oct 2023: be more explicit that number after GET selects which message to retrieve and that this is
    is filled in from the command line by the supplied code
 *  30 Oct 2023: fix bug where simulator would mishandle clearTimeout() of a currently active callback; adjust supplied code to not print out extra NULs
+*  31 Oct 2023: be more explicit about checkoff requirements
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -36,9 +37,9 @@ We've provided a simple network simulator for you.
    See below for a description of the messages the (simulated) server you are
    communicating with expects, including when you need to send acknowledgment
    or resend requests if you don't receive a response.
-5. Show a TA your code or submit it to the submissoin site.
-    - We expect everyone (and require for a check-off) to finish `./netlab 1` and to make good progress on `./netlab 2`
-    - `./netlab 3` is quite a bit harder and is recommended if you have time
+5. Show a TA your code or submit it to the submission site.
+    - To get full credit for checkoff, you must finish `./netlab 1` and show significant progress on `./netlab 2`. (We'd like you to complete `./netlab 2` if you're able to in the lab time, but we intend to give credit if you make a significant attempt but don't manage.)
+    - `./netlab 3` is quite a bit harder and is recommended if you have time, but not required for checkoff/submission
     - If you are submitting instead of checking off, we require `./netlab 1` and `./netlab 2` to be complete
 {/}
 
