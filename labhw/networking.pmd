@@ -38,7 +38,7 @@ We've provided a simple network simulator for you.
    communicating with expects, including when you need to send acknowledgment
    or resend requests if you don't receive a response.
 5. Show a TA your code or submit it to the submission site.
-    - To get full credit for checkoff, you must finish `./netlab 1` and show significant progress on `./netlab 2`. (We'd like you to complete `./netlab 2` if you're able to in the lab time, but we intend to give credit if you make a significant attempt but don't manage.)
+    - To get full credit for checkoff, you should finish `./netlab 1` and show significant progress on `./netlab 2`. (We'd like you to complete `./netlab 2` if you're able to in the lab time, but we intend to give credit if you make a significant attempt but don't manage.)
     - `./netlab 3` is quite a bit harder and is recommended if you have time, but not required for checkoff/submission
     - If you are submitting instead of checking off, we require `./netlab 1` and `./netlab 2` to be complete
 {/}
