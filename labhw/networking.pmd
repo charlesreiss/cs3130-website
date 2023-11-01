@@ -12,7 +12,7 @@ Changelog:
 *  30 Oct 2023: fix bug where simulator would mishandle clearTimeout() of a currently active callback; adjust supplied code to not print out extra NULs
 *  31 Oct 2023: be more explicit about checkoff requirements
 *  31 Oct 2023: update netlab.tar to make `./netlab 0` (not required for lab) avoids sending duplicate messages for single ACKs
-*  1 Nov 2023: be more explicit that waitForAllTimeouts is what calls recvd and timeout callbacks
+*  1 Nov 2023: be more explicit that waitForAllTimeouts is what calls recvd and timeout callbacks; mention that it needs to run in Sleep example
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -179,6 +179,10 @@ You may assume that if a message has not arrived after a full second, it will no
         void ExamplePartTwo(void *arg) {
             Bar();
         }
+
+  (assuming that waitForAllTimeouts runs to call ExamplePartTwo. This could be
+  because Example itself is called while waitForAllTimeouts() is running [via `recvd` or a callback function],
+  or because whatever code calls Example() then runs waitForAllTimeouts().)
 
 - A more challenging case for programming without any `sleep`-like function is when
   there would be local variables. For example, the previous transform doesn't quite
