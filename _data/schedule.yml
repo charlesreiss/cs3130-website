@@ -336,8 +336,6 @@
 
     *  cryptography (start)
        *  symmetric encryption
-       *  asymmetric encryption
-       *  digital signature
 
 - date: 2023-11-01
   lab: true
@@ -347,14 +345,15 @@
   week: 11
   title: secure channels 2
   reading: "[security](readings/sec.html) §1-3"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   slides_see: 2023-10-31
   description: |
+   *  cryptography (con't)
+       *  asymmetric encryption
+       *  digital signature
    *  replay attacks
-   *  cryptography (finish)
-        *  cryptographic hashes
-        *  key exchange
-   *  public key infrastructure
-   *  TLS protocol outline
 
 
 - date: 2023-11-03
@@ -372,11 +371,15 @@
 - date: 2023-11-09
   week: 12
   reading: "[processors](readings/processors.html) §1-3"
-  title: pipelining 1
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
+  title: secure channels 3 / pipelining 1
+  slides_see: 2023-11-02
   description: |
+   *  cryptography (finish)
+        *  cryptographic hashes
+        *  key exchange
+   *  public key infrastructure
+   *  TLS protocol outline
+
    *  pipelining idea
    *  review: single-cycle CPU
    *  pipelining for the CPU
