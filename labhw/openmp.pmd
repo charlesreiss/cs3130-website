@@ -18,6 +18,7 @@ To run the code, compile with the `-lm` flag and give it file names as command-l
 To parallelize, separate the code into Map and Reduce steps and try several OpenMP parallelizations; keep track of which was best.
 
 When timing:
+
 *  make sure the answer (`6.46571` in the output example above) does not change substantially because of our optimizations; and
 *  take multiple measurements so other activity on the machines doesn't dramatically affect your results
 
@@ -246,7 +247,7 @@ for(int i=0; i<N; i+=1) {
 ```
 
 (where `op=` is some kind of augmented assignment, like `+=` or `*=`)
-with  (assuming the mapping step uses the "even split" strategy):
+with (assuming the mapping step uses the "even split" strategy):
 
 ```c
 my_type result = zero_for_my_type;
@@ -257,7 +258,23 @@ for(int i=0; i<N; i+=1) {
 }
 ```
 
-(If the mapping step did not use the even split strategy, we would adjust the for loop accordingly.)
+If the mapping step did not use the even split strategy, we would replace the for loop with another
+looping construct accordingly. For example, with
+the task queue map strategy mentioned above, we'd end up with code like:
+
+```c
+my_type result = zero_for_my_type;
+int j = 0;
+#pragma omp parallel
+while (1) {
+    int i;
+    #pragma omp atomic capture
+    i = j++;
+    if (i >= N) break;
+    #pragma omp atomic update
+    result op= array[i];
+}
+```
 
 Note that since the bulk of the operation is atomic, it runs in a mostly serial fashion.
 However, the array lookup and loop indexing can be done in parallel, so it might still have some value.
