@@ -9,6 +9,7 @@ author:
 Changelog:
 
 *  30 October 2023: remove references to before 6 April versions of the skeleton code.
+*  1 November 2023: add diagram of even/odd pattern to hints; divide hints into subsections
 </div>
 
 # Your Task
@@ -88,6 +89,8 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 # Tips
 
+## General strategy
+
 1.
     This assignment was designed to be a natural fit for [barriers](../readings/pthreads.html#barrier). You are strongly encourage to get a barrier-based solution working first before attempting any other approaches.
 
@@ -98,15 +101,31 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
     To compute the value of a cell in generation $i$, one needs the value of its neighbors in generation $i-1$. Barriers are one way to make sure that the values from generation $i-1$ are available before any thread starts computing generation $i$.
 
 1.
-    The supplied code calls `LB_swap()` to exchange boards. If one uses that code as is, one must ensure that all threads stop accessing the boards before the swap happens and don’t start accessing the boards again until the swap finishes.
-
-    An alternative, which calls wait on barriers fewer times each iteration, is to avoid swapping by having an “even” state and “odd” state and choose which board to write to based on the generation number. (In even iterations, threads would use the “odd” version of the state to write to the “even” state; and in odd iterations, threads would use the “even” version of the state to write to the “odd” state.) In this way, rather than waiting for the swap to finish before starting the next generation, threads just need to wait for all other threads to have finished the current generation.
-
-1.
     You should be able to reuse almost all of the `simulate_life_serial` code. You will probably need to split it into at least two functions — one that represents the work done in separate threads and one that spawns the threads and waits for them to finish.
 
 1.
     If you find yourself tempted to use a global variable (such as a global mutex or barrier), you can usually get away with adding it as a field of a `struct` passed in by reference to your thread function's `void *` parameter instead.
+
+## Understanding the swap and alternatives
+
+1.
+    The supplied code calls `LB_swap()` to exchange boards. This means that the values in `state` are used to set `next_state`, then `next_state` is swapped to become `state`. We can visualize
+    this as follows:
+
+    <img src="files/life-pattern-evenodd.svg" alt="diagram showing timeline with odd and even items, with operations using odd to set even, then using even to set odd" style="width: 10em">
+
+    If one uses that code as is, one must ensure that all threads stop accessing the boards before the swap happens and don’t start accessing the boards again until the swap finishes. Otherwise,
+    threads could read values from the wrong version of the board and/or write values to the wrong version of the board.
+
+2.  An alternative, which calls wait on barriers fewer times each iteration, is to avoid swapping by having an “even” state and “odd” state and choose which board to write to based on the generation number. (In even iterations, threads would use the “odd” version of the state to write to the “even” state; and in odd iterations, threads would use the “even” version of the state to write to the “odd” state.) 
+    This would result in a pattern that looks like this:
+    
+    <img src="files/life-pattern-evenodd.svg" alt="diagram showing timeline with odd and even items, with operations using odd to set even, then using even to set odd" style="width: 10em">
+
+    In this way, rather than waiting for the swap to finish before starting the next generation, threads just need to wait for all other threads to have finished the current generation.
+    As long as threads have finished the current iteration, the values needed to compute the next iteration will be available and in a consistent location.
+
+## Debugging
 
 1.  If your code hangs:
 
