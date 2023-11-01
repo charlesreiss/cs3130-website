@@ -180,9 +180,10 @@ You may assume that if a message has not arrived after a full second, it will no
             Bar();
         }
 
-  (assuming that waitForAllTimeouts runs to call ExamplePartTwo. This could be
-  because Example itself is called while waitForAllTimeouts() is running [via `recvd` or a callback function],
-  or because whatever code calls Example() then runs waitForAllTimeouts().)
+  (assuming that waitForAllTimeouts runs so it can call ExamplePartTwo.
+  If Example itself was called by waitForAllTimeouts using `recvd` or callback, then returning from recvd or
+  that callback will continue running waitForAllTimeouts. Otherwise (such as if Example was called from `main()`),
+  the code that calls Example would need to later call `waitForAllTimeouts`.)
 
 - A more challenging case for programming without any `sleep`-like function is when
   there would be local variables. For example, the previous transform doesn't quite
