@@ -12,6 +12,7 @@ Changelog:
 *  30 Oct 2023: fix bug where simulator would mishandle clearTimeout() of a currently active callback; adjust supplied code to not print out extra NULs
 *  31 Oct 2023: be more explicit about checkoff requirements
 *  31 Oct 2023: update netlab.tar to make `./netlab 0` (not required for lab) avoids sending duplicate messages for single ACKs
+*  1 Nov 2023: be more explicit that waitForAllTimeouts is what calls recvd and timeout callbacks
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -51,7 +52,7 @@ We provide a network simulation driver program. It has the following pieces:
 - Function `void send(size_t len, void* data)`.
     You'll invoke this to simulate sending unreliable packets over a network.
 - Function skeleton `void recvd(size_t len, void* data)`.
-    This function is called by our simulation code when packets are received.
+    This function is called by our simulation code (in waitForAllTimeouts) when packets are received.
     You'll fill in details to describe what you would do on a packet receipt.
 - Function `int setTimeout(void (*callback)(void*), unsigned long ms, void *arg)`.
     You may invoke this to ask to have `callback` invoked after `ms` milliseconds (`ms * 0.001` seconds),
@@ -72,9 +73,9 @@ We provide a network simulation driver program. It has the following pieces:
     unschedules that callback.
     Otherwise, does nothing.
 - Function `void waitForAllTimeouts(void)`.
-    If there are no pending timeouts, returns immediately.
-    Otherwise, blocks until there are no scheduled timeouts left, running a loop
-    that calls the timeout callbacks as it waits.
+    If there are no pending timeouts or messages, returns immediately.
+    Otherwise, blocks until there are no scheduled timeouts or messages left, running a loop
+    that calls the timeout callbacks and/or `recvd` as it waits.
 
     May **not** be called from a callback.
 
