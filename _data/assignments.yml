@@ -246,13 +246,14 @@
   due: 2023-11-01
 
 
-- name: secure channels lab
+- name: openmp
+  short_name: openmp
   lab: true
-  short_name: securechannel
-  removed_page: labhw/signatures.html
-  page: labhw/secure-channel.html
+  page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
   due: 2023-11-08
-  submit_file: attack.c
   tentative: true
 
 - name: life
@@ -266,15 +267,15 @@
   comment: sanitize-examples.sh script
   comment: ThreadSanitizer stuff
 
-- name: openmp
-  short_name: openmp
+- name: secure channels lab
   lab: true
-  page: labhw/openmp.html
-  submit_files:
-  - "*.c"
-  - "performance.txt"
+  short_name: securechannel
+  removed_page: labhw/signatures.html
+  page: labhw/secure-channel.html
   due: 2023-11-15
+  submit_file: attack.c
   tentative: true
+
 
 - name: pipeline
   short_name: pipeline
