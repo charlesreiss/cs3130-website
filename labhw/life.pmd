@@ -10,6 +10,8 @@ Changelog:
 
 *  30 October 2023: remove references to before 6 April versions of the skeleton code.
 *  1 November 2023: add diagram of even/odd pattern to tips; divide tips into subsections
+*  1 November 2023: explicitly state that it's okay if threads if some threads have no work for very small sizes
+*  1 November 2023: add section to hints about disagreeing results
 </div>
 
 # Your Task
@@ -61,6 +63,8 @@ Additional constraints:
 
 1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between the threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
 
+  (With small numbers of rows or columns, it is okay if the work is not split up as evenly. For extremely small numbers of rows or columns, it is okay if some threads have no work to do.)
+
 1. And, of course, you are still bound by all the usual [course policies](policies.html#write-your-own-code).
 
 1. You must not use OpenMP (subject of one of our labs) in your solution: we are trying to measure your understanding of the lower-level tools OpenMP uses.
@@ -82,7 +86,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 - `./life 110 input/o0075 serial-result`{.bash} to ensure you can simulate an example file.
 
 - `./life 10 input/make-a time`{.bash} to time the `make-a` file with 10 steps.
-
+  
 - `./time-examples.sh`{.bash} to get a sense of how you are doing on parallel performance.
 
 - `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer, ThreadSanitizer
@@ -144,6 +148,22 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
        *  destroying barriers while they are still in use;
 
        *  running into the issue with `pthread_barrier_destroy` mentioned in caveats;
+
+2.  If your parallel code's result disagrees with the serial code:
+
+    *  I would recommend check to see if the sanitizer tests find problems first;
+
+    *  Besides issues found by the sanitizer tests, common problems include:
+
+        *  Not handling the same set of x, y values as the serial code.
+
+        *  Unintentionally not sharing boards between threads
+
+    *  You may find the very small input `input/tiny` useful for debugging; or you can modify it (in a text editor) into a slightly larger input;
+
+    *  You can look at the actual board your parallel code computed using commands like `life-asan 10 input/tiny time-and-result`.
+
+    *  You can call `LB_print` to print out the contents of a LifeBoard for debugging.
 
 # Caveats
 
