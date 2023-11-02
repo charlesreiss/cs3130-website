@@ -6,15 +6,14 @@ author: Luther Tychnoviech
 <div id="changelog">
 Changelog:
 
-*  11 Apr 2023: correct link to online tool
-*  14 Apr 2023: give brief descritpion of backwards-taken forwards-not-taken
+*  2 Nov 2023: correct URL to point to tool for this semester; adjust due date slightly later
 </div>
 
 # Your Task
 
 Fill in a pipeline diagram for a small function's full execution.
 
-Place you answer in the online tool <https://kytos02.cs.virginia.edu/cs3130-spring2023/pld.php>.
+Place you answer in the online tool <https://kytos02.cs.virginia.edu/cs3130-fall2023/pld.php>.
 
 # Guidelines
 

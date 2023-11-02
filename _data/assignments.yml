@@ -279,7 +279,7 @@
   short_name: pipeline
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
-  missing-if-no-feedback: true
+  xxx-missing-if-no-feedback: true
   due: 2023-11-21
 
 - name: side channel
