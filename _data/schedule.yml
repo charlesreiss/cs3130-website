@@ -321,10 +321,7 @@
 - date: 2023-10-31
   week: 11
   title: networking 3 / secure channels 1
-  slides_see: 2023-10-26
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[security](readings/sec.html) §1-1.5"
   description: |
     *  mapping between addresses and names/other addresses:
@@ -346,9 +343,6 @@
   title: secure channels 2
   reading: "[security](readings/sec.html) §1-3"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  slides_see: 2023-10-31
   description: |
    *  cryptography (con't)
        *  asymmetric encryption
@@ -373,7 +367,6 @@
   week: 12
   reading: "[processors](readings/processors.html) §1-3"
   title: secure channels 3 / pipelining 1
-  slides_see: 2023-11-02
   slides: yes
   slides_prelim: yes
   slides_extra: yes
@@ -427,7 +420,7 @@
 
 - date: 2023-11-17
   week: 13
-  due_message: assingment due folowing Tuesday!
+  due_message: <b>assignment due following Tuesday!</b>
 
 - date: 2023-11-21
   week: 14
