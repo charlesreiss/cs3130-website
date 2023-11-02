@@ -398,7 +398,7 @@
     *  hazard handling, part 1
       *  stalling / waiting
       *  forwarding and forwarding logic
-    *  control hazards + speculation idea (start)
+    *  control hazards + speculation idea
        *  guess and check later
        *  undo when wrong
     *  branch prediction ideas
