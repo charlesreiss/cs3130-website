@@ -374,6 +374,9 @@
   reading: "[processors](readings/processors.html) §1-3"
   title: secure channels 3 / pipelining 1
   slides_see: 2023-11-02
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
    *  public key infrastructure (finish)
    *  extra cryptography bits
@@ -393,7 +396,7 @@
   week: 13
   title: pipelining 2
   reading: "[processors](readings/processors.html) §2-3"
-  slides_see: 2023-11-02
+  slides_see: 2023-11-09
   description: |
     *  hazard handling, part 1
       *  stalling / waiting
