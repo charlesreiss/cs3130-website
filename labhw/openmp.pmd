@@ -3,6 +3,12 @@ title: OpenMP -- parallelism made easy
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  2 Nov 2023: state that one of the non-required map strategies should be measured; adjust optional labels to something else
+</div>
+
 # Task
 
 {.exercise ...}
@@ -15,7 +21,11 @@ To run the code, compile with the `-lm` flag and give it file names as command-l
     $ ./a.out /usr/bin/emacs-24.3
     313710435 ns to process 14784560 characters: 6.46571
 
-To parallelize, separate the code into Map and Reduce steps and try several OpenMP parallelizations; keep track of which was best.
+To parallelize, separate the code into Map and Reduce steps and try several OpenMP parallelization strategies described below; keep track of which was best.
+
+For full credit on submission, you must measure all the strategies not labeled "not required" or "extra" below, plus one of the extra strategies for map.
+
+For full credit for an in-person checkoff, we may accept somewhat less being measured if you run out of time in the lab.
 
 When timing:
 
@@ -24,7 +34,7 @@ When timing:
 
 Then either:
 
-*  submit your code (preferably as one file with multiple copies of the geomean function) and a text file "performance.txt" explaining which was fastest and your guess as to why; or
+*  submit your code (preferably as one file with multiple copies of the geomean function, including all versions you timed) and a text file "performance.txt" explaining which was fastest and your guess as to why; or
 *  check-off with a TA, being prepared to explain which approach was fastest and your guess as to why
 
 {/}
@@ -177,7 +187,7 @@ like you to try first with the lower-level tools to better understand what is go
 
 - `#pragma omp atomic capture`{.c} means "the next statement (`i = j++`{.c}) is a capture-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
-### (optional) Task queue with larger tasks
+### (extra) Task queue with larger tasks
 
 A variant of the task queue method to reduce the impact of the performance the atomic operation might be to have threads increment the shared counter
 by some value `K` (instead of `1`) and do work for `K` items instead of 1:
@@ -194,7 +204,7 @@ while (1) {
 }
 ```
 
-### (optional) OpenMP's parallel for schedules
+### (extra) OpenMP's parallel for schedules
 
 OpenMP's `parallel for` construct supports a "schedule" option where rather than dividing up the threads statically,
 it will use another strategy.
@@ -336,7 +346,7 @@ then atomically update the shared total
 - `#pragma omp atomic update`{.c} means "the next statement (`result op= local_result`{.c}) is an update-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
 
-### Many-to-few reduction -- array version
+### (not required) Many-to-few reduction -- array version 
 
 If your reduction step is more than a single update operation, a more complicated solution is needed. See [the Appendix](#appendix-fancy-reduce) for more.
 
