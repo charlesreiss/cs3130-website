@@ -13,6 +13,7 @@ Changelog:
 *  31 Oct 2023: be more explicit about checkoff requirements
 *  31 Oct 2023: update netlab.tar to make `./netlab 0` (not required for lab) avoids sending duplicate messages for single ACKs
 *  1 Nov 2023: be more explicit that waitForAllTimeouts is what calls recvd and timeout callbacks; mention that it needs to run in Sleep example
+*  2 Nov 2023: explicitly state that acknowledging the previous message requests the next one be sent/resent
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -107,16 +108,17 @@ and
 `[2^2^4^1^5, 2, 2, 4, 1, 5]`.
 {/}
 
-After receiving a message, you should reply with a four-byte message (plus a checksum).
+After receiving a message, you should reply with a four-byte message (plus a checksum)
+to acknowledge it and request the next message.
 The first three bytes should be the ASCII characters for `ACK`; the fourth should be the sequence number you received.
-If a message is not delivered, you should reply with the `ACK` of the last message you got in order (or re-send the `GET` if the very first message is not delivered).
+If the next message is not delivered, you should reply with the `ACK` of the last message you got in order (or re-send the `GET` if the very first message is not delivered) to request the next message be resent.
 However, messages may be delayed in transit and may arrive out of order.
 You should wait at least a few seconds before deciding a message will not arrive and re-sending its request.
 
 Each `GET` will give a different message, and with a different level of errors you need to handle.
 
 0. sends the full message without errors
-1. sends the message without errors, one a packet at a time, requiring you to `ACK` properly
+1. sends the full message without errors, one a packet at a time, requiring you to `ACK` properly
 2. sends messages unreliably; some messages never arrive and need to be re-requested
 3. sends messages unreliably; some messages arrive in a corrupted state and need to be re-requested
 
