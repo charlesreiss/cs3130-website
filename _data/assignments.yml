@@ -253,7 +253,6 @@
   - "*.c"
   - "performance.txt"
   due: 2023-11-08
-  tentative: true
 
 - name: life
   short_name: life
