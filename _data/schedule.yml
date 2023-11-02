@@ -427,8 +427,7 @@
 
 - date: 2023-11-17
   week: 13
-  description: |
-    NOTE: Assignment due following Tuesday!
+  due_message: assingment due folowing Tuesday!
 
 - date: 2023-11-21
   week: 14
