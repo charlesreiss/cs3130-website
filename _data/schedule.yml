@@ -354,6 +354,7 @@
        *  asymmetric encryption
        *  digital signature
    *  replay attacks
+   *  public key infrastructure (start)
 
 
 - date: 2023-11-03
@@ -374,22 +375,16 @@
   title: secure channels 3 / pipelining 1
   slides_see: 2023-11-02
   description: |
-   *  cryptography (finish)
+   *  public key infrastructure (finish)
+   *  extra cryptography bits
         *  cryptographic hashes
         *  key exchange
-   *  public key infrastructure
    *  TLS protocol outline
 
    *  pipelining idea
    *  review: single-cycle CPU
    *  pipelining for the CPU
    *  data hazards
-   *  hazard handling, part 1
-     *  stalling / waiting
-   *  hazard handling, part 2
-     *  forwarding and forwarding logic
-   *  control hazards + speculation idea (start)
-       *  guess and check later
 
 - date: 2023-11-10
   week: 12
@@ -400,7 +395,10 @@
   reading: "[processors](readings/processors.html) §2-3"
   slides_see: 2023-11-02
   description: |
-    * speculation idea (finish)
+    *  hazard handling, part 1
+      *  stalling / waiting
+      *  forwarding and forwarding logic
+    *  control hazards + speculation idea (start)
        *  guess and check later
        *  undo when wrong
     *  branch prediction ideas
