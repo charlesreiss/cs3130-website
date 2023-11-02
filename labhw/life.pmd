@@ -63,7 +63,7 @@ Additional constraints:
 
 1. On sufficiently large boards (both enough rows and enough columns), you should split up the work roughly evenly between the threads. (With large sizes, no thread should end up doing more than a few percent more computations than another.)
 
-  (With small numbers of rows or columns, it is okay if the work is not split up as evenly. For extremely small numbers of rows or columns, it is okay if some threads have no work to do.)
+   (With small numbers of rows or columns, it is okay if the work is not split up as evenly. For extremely small numbers of rows or columns, it is okay if some threads have no work to do.)
 
 1. And, of course, you are still bound by all the usual [course policies](policies.html#write-your-own-code).
 
