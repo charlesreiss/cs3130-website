@@ -12,6 +12,7 @@ Changelog:
 *  1 November 2023: add diagram of even/odd pattern to tips; divide tips into subsections
 *  1 November 2023: explicitly state that it's okay if threads if some threads have no work for very small sizes
 *  1 November 2023: add section to hints about disagreeing results
+*  3 November 2023: correct hitn re: even/odd diagram to have a picture of the state/next_state with swapping, rather than two diagrams of the even/odd pattern
 </div>
 
 # Your Task
@@ -116,7 +117,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
     The supplied code calls `LB_swap()` to exchange boards. This means that the values in `state` are used to set `next_state`, then `next_state` is swapped to become `state`. We can visualize
     this as follows:
 
-    <img src="files/life-pattern-evenodd.svg" alt="diagram showing timeline with odd and even items, with operations using odd to set even, then using even to set odd" style="width: 10em">
+    <img src="files/life-pattern-orig.svg" alt="diagram showing timeline with state/next_state, with operations using state to set next_state, then the two being swapped" style="width: 10em">
 
     If one uses that code as is, one must ensure that all threads stop accessing the boards before the swap happens and don’t start accessing the boards again until the swap finishes. Otherwise,
     threads could read values from the wrong version of the board and/or write values to the wrong version of the board.
