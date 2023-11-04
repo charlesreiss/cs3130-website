@@ -272,7 +272,6 @@
   page: labhw/secure-channel.html
   due: 2023-11-15
   submit_file: attack.c
-  tentative: true
 
 
 - name: pipeline
