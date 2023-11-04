@@ -279,6 +279,7 @@
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   xxx-missing-if-no-feedback: true
+  tentative: true
   due: 2023-11-21
 
 - name: side channel
@@ -286,6 +287,7 @@
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
+  tentative: true
   due: 2023-11-29
 
 - name: C++ OR templates
@@ -304,7 +306,8 @@
   short_name: OOO
   page: labhw/ooo-exercise.html
   due: 2023-12-01
-  missing-if-no-feedback: true
+  xxx-missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
+  tentative: true
   no-late: true
   xxdue_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
