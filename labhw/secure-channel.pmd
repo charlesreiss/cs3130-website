@@ -2,12 +2,17 @@
 title: Secure channels lab
 ...
 
+<div class="changelog">
+Changelog:
+
+*  3 Nov 2023: update securelab.tar for this semester
+</div>
 
 {.exercise ...}
 
 Possibly working with a partner or two ---
 
-1.  Download link TBA <!-- [securelab.tar](files/securelab.tar) --> and extract it.
+1.  Download [securelab.tar](files/securelab.tar) *[last updated 3 November]* and extract it.
 
 2.  In this lab, you will act as a network attacker on
     several examples of attempts to communicate securely.
