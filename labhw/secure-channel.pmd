@@ -6,6 +6,8 @@ title: Secure channels lab
 Changelog:
 
 *  3 Nov 2023: update securelab.tar for this semester
+*  6 Nov 2023: remove notes about old versions of securelab.tar
+*  6 Nov 2023: for scenario 3 request that B not think A sent too many payments
 </div>
 
 {.exercise ...}
@@ -65,10 +67,10 @@ Possibly working with a partner or two ---
 
 5.  Scenario 2 is trickier. Get B to pay at least $2000 (we don't care about the exact amount) instead of $1438.
 
-5.  Do the same for scenario 3 as scenario 2.
+5.  Do the same for scenario 3 as scenario 2 without causing B to think A sent too many payment requests.
 
 8.  (optional) If you have time,
-    do the same as scenario "4" for scenarios 2 and 3. In this scenario, B initiates the communication with A
+    do the same as scenario 4 for scenarios 2 and 3. In this scenario, B initiates the communication with A
     and tries to use a nonce to prevent replay attacks.
     It will help that A will also accept messages from you (M), but will always indicate
     that there are no more payments. You can use this to run a
@@ -87,10 +89,6 @@ Possibly working with a partner or two ---
 {/}
 
 # Our simulation API
-
-> [Note added 1 March:] If your simulation crashes with an error like "thread '<unnamed>' panicked at 'range start index 18446744073709551594 out of range for slice of length 10'", then
-> this is from sending a message that is marked as encrypted but whose data is too short. Versions of `securelab.tar` after 2023-03-01 3:45pm
-> give a better error message in this case.
 
 The code for forward_normal looks like:
 
