@@ -10,6 +10,7 @@ Changelog:
 *  6 Nov 2023: suggest different file on portal to test with since what's installed on portal changed since last semester
 *  6 Nov 2023: add cast in starting code to quash signedness changing warning
 *  6 Nov 2023: expand explanation of `#pragma omp parallel for` to separate it into `#pragma omp parallel` and `#pragma omp for`
+*  6 Nov 2023: reorganize explanation of parallel for schedules to more clearly separate options
 </div>
 
 # Task
@@ -229,35 +230,61 @@ while (1) {
 
 ### (extra) OpenMP's parallel for schedules
 
-OpenMP's `parallel for` construct supports a "schedule" option where rather than dividing up the threads statically,
-it will use another strategy.
+OpenMP's `parallel for` construct supports a "schedule" option where rather than dividing up the threads statically
+in as large chunks as possible, it can use another strategy.
 
-With the "dynamic" schedule, it uses the task queue. It will do something like the "Task queue"
-code above with:
-```
-#pragma omp parallel for schedule(dynamic)
-for(int i=0; i<N; i+=1) {
-    // ...
-}
-```
-and something like "the task queue with larger tasks" with:
-```
-#pragma omp parallel for schedule(dynamic, K)
-for(int i=0; i<N; i+=1) {
-    // ...
-}
-```
-(where `K` is some integer constant)
+(For timing this, it's sufficient to choose one of the schedules options below, though you may find it interesting
+to examine multiple if you have time.)
 
-It also supports a "guided" schedule, which is like dynamic, except it varies
-the size of the tasks automatically:
+The schedules that you choose from include:
 
-```
-#pragma omp parallel for schedule(guided)
-for(int i=0; i<N; i+=1) {
-    // ...
-}
-```
+*   a "guided" schedule, which is like task queues with larger tasks, except it varies
+    the size of task each thread gets automatically rather than having you choose a single value:
+    ```
+    #pragma omp parallel for schedule(guided)
+    for(int i=0; i<N; i+=1) {
+        // ...
+    }
+    ```
+
+*   a "dynamic" schedule, which acts like task queues with fixed-sizes tasks.
+    Code like the following will do something similar to the "Task queue" strategy:
+    ```
+    #pragma omp parallel for schedule(dynamic)
+    for(int i=0; i<N; i+=1) {
+        // ...
+    }
+    ```
+    and code like the following will use something similar to the "Task queue with larger tasks"
+    strategy:
+    ```
+    #pragma omp parallel for schedule(dynamic, K)
+    for(int i=0; i<N; i+=1) {
+        // ...
+    }
+    ```
+    where `K` is some integer constant of the number of iterations to do as a "task", which OpenMP's
+    documentation called the "chunk size".
+
+*   the default "static" schedule, which can take a parameter of how many iterations to assign to threads
+    at a time (instead of trying to do as large "chunks" as possible). For example
+
+    ```
+    #pragma omp paralle for schedule(static, 10)
+    for(int i=0; i<N; i+=1) {
+        // ...
+    }
+    ```
+
+    with two threads would:
+
+    *  assign 0..9, 20..29, 40..49, etc. (up to N) to thread 1
+    *  assign 10..19, 30..39, etc. (up to N) to thread 2
+
+    instead of assigning 0..(N/2) and (N/2) to N-1.
+
+
+
 
 ## Parallel Reduce
 
