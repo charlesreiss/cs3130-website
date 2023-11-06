@@ -9,6 +9,7 @@ Changelog:
 *  2 Nov 2023: state that one of the non-required map strategies should be measured; adjust optional labels to something else
 *  6 Nov 2023: suggest different file on portal to test with since what's installed on portal changed since last semester
 *  6 Nov 2023: add cast in starting code to quash signedness changing warning
+*  6 Nov 2023: expand explanation of `#pragma omp parallel for` to separate it into `#pragma omp parallel` and `#pragma omp for`
 </div>
 
 # Task
@@ -130,12 +131,26 @@ for(int i=0; i<N; i+=1) {
 
 then the parallel code
 
+
+```
+#pragma omp parallel
+{
+#pragma omp for
+    for(int i=0; i<N; i+=1) {
+        // ...
+    }
+}
+```
+
+which can also be more succintly written
+
 ```c
 #pragma omp parallel for
 for(int i=0; i<N; i+=1) {
     // ...
 }
 ```
+
 
 works my splitting up the `0`--`N` range into a number of chunks equal to the number of threads.
 For example, if it uses 4 threads then they will get the following range of `i`:
@@ -150,7 +165,13 @@ techniques.
 
 **OpenMP pragmas used**:
 
-- `#pragma omp parallel for`{.c} means "have each thread run the next statement (a `for`{.c} loop) with different bounds".
+- `#pragma omp parallel`{.c} means "run the next statement/block simulatenously in separate threads"
+
+- `#pragma omp for`{.c} means "assuming, we're running the next for loop in parallel, run it with different bounds in every thread"
+
+- `#pragma omp parallel for`{.c} means "have each thread run the next statement (a `for`{.c} loop) with different bounds"; it's a short-hand
+  combining omp parallel and omp for
+
 
 ### Task queue
 
