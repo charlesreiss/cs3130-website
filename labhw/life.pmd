@@ -12,7 +12,8 @@ Changelog:
 *  1 November 2023: add diagram of even/odd pattern to tips; divide tips into subsections
 *  1 November 2023: explicitly state that it's okay if threads if some threads have no work for very small sizes
 *  1 November 2023: add section to hints about disagreeing results
-*  3 November 2023: correct hitn re: even/odd diagram to have a picture of the state/next_state with swapping, rather than two diagrams of the even/odd pattern
+*  3 November 2023: correct hint re: even/odd diagram to have a picture of the state/next_state with swapping, rather than two diagrams of the even/odd pattern
+*  6 November 2023: add brief note about what ThreadSanitizer potential data race means
 </div>
 
 # Your Task
@@ -165,6 +166,12 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
     *  You can look at the actual board your parallel code computed using commands like `life-asan 10 input/tiny time-and-result`.
 
     *  You can call `LB_print` to print out the contents of a LifeBoard for debugging.
+
+## ThreadSanitizer "data races"
+
+1.  When ThreadSanitizer detects a potential data race, that means that it identified a case where you're writing to some memory from
+    one thread while another thread might also be writing or reading at the same time. The ThreadSanitizer output should show where
+    in your code the write and the read/write are happening and also idenitfy the memory location where this happened.
 
 # Caveats
 
