@@ -11,6 +11,7 @@ Changelog:
 *  6 Nov 2023: add cast in starting code to quash signedness changing warning
 *  6 Nov 2023: expand explanation of `#pragma omp parallel for` to separate it into `#pragma omp parallel` and `#pragma omp for`
 *  6 Nov 2023: reorganize explanation of parallel for schedules to more clearly separate options
+*  8 Nov 2023: on task queue with larger task, correct indices to work on to reflect what += returns
 </div>
 
 # Task
@@ -224,7 +225,7 @@ while (1) {
     #pragma omp atomic capture
     i = j += K;
     if (i >= N) break;
-    // work on item i through item min(i + K, N)
+    // work on item i - K through item min(i, N)
 }
 ```
 
