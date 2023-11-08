@@ -224,7 +224,7 @@ while (1) {
     int i;
     #pragma omp atomic capture
     i = j += K;
-    if (i >= N) break;
+    if (i - K >= N) break;
     // work on item i - K through item min(i, N)
 }
 ```
