@@ -377,10 +377,9 @@
         *  key exchange
    *  TLS protocol outline
 
-   *  pipelining idea
    *  review: single-cycle CPU
-   *  pipelining for the CPU
-   *  data hazards
+   *  pipelining idea
+   *  pipelining for the CPU (start)
 
 - date: 2023-11-10
   week: 12
@@ -389,14 +388,14 @@
   week: 13
   title: pipelining 2
   reading: "[processors](readings/processors.html) §2-3"
-  slides_see: 2023-11-09
+  slides: yes
+  slides_prelim: yes
   description: |
-    *  hazard handling, part 1
-      *  stalling / waiting
-      *  forwarding and forwarding logic
-    *  control hazards + speculation idea
-       *  guess and check later
-       *  undo when wrong
+    *  pipelining for the CPU (con't)
+    *  hazards and hazard hnadlings
+       *  stalling / waiting
+       *  forwarding and forwarding logic
+       *  speculation: guess and check later
     *  branch prediction ideas
        *  forward-taken, backwards-not-taken
        *  using history
