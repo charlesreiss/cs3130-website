@@ -8,6 +8,7 @@ Changelog:
 *  3 Nov 2023: update securelab.tar for this semester
 *  6 Nov 2023: remove notes about old versions of securelab.tar
 *  6 Nov 2023: for scenario 3 request that B not think A sent too many payments
+*  12 Nov 2023: hopefully be more clear about `./lab X attack` being what you have to get "working"
 </div>
 
 {.exercise ...}
@@ -46,7 +47,7 @@ Possibly working with a partner or two ---
     In this function, you can process the messages sent between A and B,
     including changing messages, adding new messages, or discarding messages.
     
-    When you run `./lab N normal`, we'll forward messages wihtout
+    When you run `./lab N normal`, we'll forward messages without
     changes function for scenario N (where N is 0, 1, 2, 3, or 4).
 
     When you run `./lab N attack`, we'll use the `forward_attack_N`
@@ -57,11 +58,14 @@ Possibly working with a partner or two ---
     pay M (you) $10001438 instead of $1438.
     (Hint: This does not require sending a lot of messages.)
 
-4.  Do the same for scenario "1" and `forward_attack_1`, which you can run with
+    When you're successful, this should be reflected in the output
+    `./lab 0 attack`.
+
+4.  Do the same for scenario "1" and `forward_attack_1`. You can examine what scenario 1 is with
 
         ./lab 1 normal
 
-    (non-attacked version) or
+    and run your attack on it with
 
         ./lab 1 attack
 
