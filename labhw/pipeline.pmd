@@ -7,6 +7,7 @@ author: Luther Tychnoviech
 Changelog:
 
 *  2 Nov 2023: correct URL to point to tool for this semester; adjust due date slightly later
+*  14 Nov 2023: more text re: how branch prediction works
 </div>
 
 # Your Task
@@ -73,7 +74,7 @@ Assume that this is run on a five-stage pipeline, where
     - condition code creation from test, compare, arithmetic, and logic
     - condition code comparison for conditional moves and jumps
 
-    e.g., if a conditional jump is poorly speculated, the correct instruction will be fetched after the jump completes its execute stage.
+    e.g., if a conditional jump is poorly speculated (predicted), the correct instruction will be fetched after the jump completes its execute stage.
    
     |        |   |   |   |   |   |   |   |   |
     |:-------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -82,7 +83,24 @@ Assume that this is run on a five-stage pipeline, where
     |guess~2~|   |   | F |   |   |   |   |   |
     |correct |   |   |   | F | D | E | M | W |
 
+    (where guess~1~ and guess~2~ represent two incorrect predicted instructions that are fetched
+    and then squashed (cancelled) before they can complete).
+
 - conditional jumps are speculated using the "backwards-taken forwards-not-taken" branch prediction heuristic (meaning that jumps to a later instruction are predicted to be not taken and jumps to an earlier instruction are predicted to be taken)
+
+  When a conditional jump is predicted to be taken, the processor will fetch the target of the jump in the cycle after the jump is fetched. When a conditional jump is predicted to be not taken, the processor will fetch the following instruction in memory in the cycle after the jump is fetched.
+
+  When a prediction is correct, the processor will continue executing instructions without delay:
+    
+    |        |   |   |   |   |   |   |   |   |
+    |:-------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+    |jump    | F | D | E | M | W |   |   |   |
+    |guess   |   | F | D | E | M | W |   |   |
+
+  When a prediction is incorrect, the processor will need to cancel the predicted instructions
+  and fetch the correct instruction during the jump's memory stage, as in the example timeline
+  under the previous bullet
+
 
 You're asked to expand this assuming 
 
