@@ -392,13 +392,10 @@
   slides_prelim: yes
   description: |
     *  pipelining for the CPU (con't)
-    *  hazards and hazard hnadlings
+    *  hazards and hazard handlings
        *  stalling / waiting
        *  forwarding and forwarding logic
-       *  speculation: guess and check later
-    *  branch prediction ideas
-       *  forward-taken, backwards-not-taken
-       *  using history
+       *  speculation: guess and check later (start)
 
 - date: 2023-11-15
   lab: true
@@ -406,14 +403,18 @@
 
 - date: 2023-11-16
   week: 13
-  title: buses / out-of-order 1
+  title: pipelining 3 / out-of-order 1
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[processors](readings/procesors.html) §2-3, [buses](readings/buses.html)"
+  reading: "[processors](readings/procesors.html) §2-3"
   description: |
-    *  interlude: buses and direct-memory access
-
+    *  speculation: guess and check later (finish)
+    *  briefly, branch prediction ideas
+       *  static prediction
+       *  local history
+       *  predicting branch targets
+    *  pipeline exercises
     *  idea of multiple issue + out-of-order
 
 
@@ -425,9 +426,9 @@
   week: 14
   title: out-of-order 2
   slides_see: 2023-11-16
+  reading: "[processors](readings/procesors.html) §2-3"
   description: |
     *  out-of-order pipeline
-       *  aside: predicting branch targets
     *  register renaming
     *  instruction queues
     *  data flow model + thinking about OOO performance
