@@ -403,19 +403,17 @@
 
 - date: 2023-11-16
   week: 13
-  title: pipelining 3 / out-of-order 1
+  title: pipelining 3
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
     *  speculation: guess and check later (finish)
-    *  briefly, branch prediction ideas
-       *  static prediction
-       *  local history
-       *  predicting branch targets
     *  pipeline exercises
-    *  idea of multiple issue + out-of-order
+
+    *  briefly, branch prediction ideas (start)
+       *  static prediction
 
 
 - date: 2023-11-17
@@ -424,14 +422,17 @@
 
 - date: 2023-11-21
   week: 14
-  title: out-of-order 2
+  title: out-of-order 1
   slides_see: 2023-11-16
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
+    *  briefly, branch prediction ideas (start)
+       *  local history
+
+    *  idea of multiple issue + out-of-order
     *  out-of-order pipeline
     *  register renaming
     *  instruction queues
-    *  data flow model + thinking about OOO performance
 
 - date: 2023-11-22
   week: 14
@@ -443,7 +444,7 @@
 
 - date: 2023-11-28
   week: 15
-  title: side channels
+  title: out-of-order 2 / side channels
   slides: yes
   slides_prelim: yes
   slide_extra: yes
