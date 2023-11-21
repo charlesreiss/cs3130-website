@@ -428,6 +428,8 @@
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
+    >  Note: the first few minutes of screencapture for the lecture recording is rerecorded (and so might not quite be in sync)
+
     *  briefly, branch prediction ideas (start)
        *  local history
 
