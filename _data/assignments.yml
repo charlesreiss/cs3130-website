@@ -306,6 +306,5 @@
   due: 2023-12-01
   xxx-missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
-  tentative: true
-  no-late: true
+  xx-no-late: true
   xxdue_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
