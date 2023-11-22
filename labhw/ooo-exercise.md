@@ -2,7 +2,6 @@
 title: OOO Exercise
 ...
 
-
 # Hypothetical OOO processor
 
 For this assignment, we will consider an out-of-order processor which has two execution units for
@@ -59,7 +58,7 @@ We will show instructions in a three-argument form like (**regardless of whether
 
 this indicates to add %r01 and %r02 and put the result into %r03.
 
-Answer the questions on [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2023/ooo.php).
+Answer the questions on [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2023/ooo.php).
 
 ## Part 1: register renaming
 

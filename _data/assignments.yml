@@ -286,7 +286,6 @@
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
-  tentative: true
   due: 2023-11-29
 
 - name: C++ OR templates
