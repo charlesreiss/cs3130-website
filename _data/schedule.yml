@@ -424,8 +424,6 @@
   week: 14
   title: out-of-order 1
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
     >  Note: the first few minutes of screencapture for the lecture recording is rerecorded (and so might not quite be in sync)
@@ -450,8 +448,8 @@
   week: 15
   title: out-of-order 2 / side channels
   slides: yes
+  slides_extra: yes
   slides_prelim: yes
-  slide_extra: yes
   description: |
     *  side channels generally
     *  side channels in the cache
@@ -463,7 +461,7 @@
 - date: 2023-11-30
   week: 15
   title: meltdown/spectre
-  slides_see: 2023-11-30
+  slides_see: 2023-11-28
   description: |
     *  meltdown:
         *  speculation past a priv/protection fault
