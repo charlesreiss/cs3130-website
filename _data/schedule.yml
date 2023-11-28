@@ -448,9 +448,10 @@
   week: 15
   title: out-of-order 2 / side channels
   slides: yes
-  slides_extra: yes
-  slides_prelim: yes
   description: |
+    *  data flow model for out-of-order
+    *  out-of-order limits
+
     *  side channels generally
     *  side channels in the cache
 
@@ -461,7 +462,9 @@
 - date: 2023-11-30
   week: 15
   title: meltdown/spectre
-  slides_see: 2023-11-28
+  slides: yes
+  slides_extra: yes
+  slides_prelim: yes
   description: |
     *  meltdown:
         *  speculation past a priv/protection fault
