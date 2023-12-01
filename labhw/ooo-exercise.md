@@ -2,6 +2,12 @@
 title: OOO Exercise
 ...
 
+<div class="changelog">
+Changelog:
+
+*  30 Nov 2023: be explicit about assumption that previous register values andphysical registers are available for part 3.
+</div>
+
 # Hypothetical OOO processor
 
 For this assignment, we will consider an out-of-order processor which has two execution units for
@@ -144,4 +150,7 @@ The first three rows are:
     3   F D R I E W C
 
 complete the remaining rows of the table at the answer sheet linked above.
+
+You may assume that register values computed by previous instructions are available and that physical registers are free
+such that stages will not be delayed for missing previous register values or lack of available physical registers.
 
