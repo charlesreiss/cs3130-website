@@ -6,6 +6,7 @@ title: OOO Exercise
 Changelog:
 
 *  30 Nov 2023: be explicit about assumption that previous register values andphysical registers are available for part 3.
+*  1 Dec 2023: be explicit that when fewer instructions are available to issue, as many as possible are issued
 </div>
 
 # Hypothetical OOO processor
@@ -29,7 +30,7 @@ Instructions in this processor are executed as follows:
     *  each cycle, the instruction queue is scanned for instructions whose operands are ready. (For this exercise, we'll only account for their register operands
         being ready and assume that we do not need to worry about data memory-related dependencies.)
         *  operands for an instruction are considered ready during the cycle in which they finish execution
-    *  the first memory instruction available and first two non-memory instructions available are selected to be issued.
+    *  the first memory instruction available and first two non-memory instructions available are selected to be issued. (If fewer instructions are available, as many are issued as possible.)
     *  during the cycle an instruction is issued, its register values are read or forwarded
 
 *  when an instruction is issued, in the following cycles it is executed on an execution unit
