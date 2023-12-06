@@ -169,7 +169,7 @@
   short_name: cachelab
   old_page: labhw/memoize.html
   page: labhw/cache-lab.html
-  xxx-missing-if-no-feedback: true
+  missing-if-no-feedback: true
   lab: true
   due: 2023-10-11
 
@@ -195,7 +195,7 @@
   page: labhw/sync.html
   comments: needs changes for in-person?
   comments: need .php stuff
-  XXX-missing-if-no-feedback: true
+  missing-if-no-feedback: true
   due: 2023-10-18
 
 - name: cache programs
@@ -278,7 +278,7 @@
   short_name: pipeline
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
-  xxx-missing-if-no-feedback: true
+  missing-if-no-feedback: true
   due: 2023-11-21
 
 - name: side channel
@@ -304,7 +304,7 @@
   short_name: OOO
   page: labhw/ooo-exercise.html
   due: 2023-12-01
-  xxx-missing-if-no-feedback: true
+  missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
   xx-no-late: true
   xxdue_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
