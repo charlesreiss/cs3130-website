@@ -7,6 +7,9 @@
     * .o, .a, .so
     * building
 
+- date: 2023-01-19
+  week: 1
+
 - date: 2024-01-23
   week: 2
   title: building (pt 2)
@@ -15,7 +18,7 @@
     *  make
  
 - date: 2024-01-24
-  week: 1
+  week: 2
   no_class: true
   description: (no lab)
 
