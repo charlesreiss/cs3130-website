@@ -1,32 +1,28 @@
-- date: 2023-08-22
+- date: 2024-01-18
   week: 1
   title: introduction / building (pt 1)
-  slides: yes
   reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
   description: |
     * course outline
     * .o, .a, .so
     * building
 
-- date: 2023-08-23
-  week: 1
-  no_class: true
-  description: (no lab)
-
-- date: 2023-08-24
-  week: 1
-  slides: yes
+- date: 2024-01-23
+  week: 2
   title: building (pt 2)
   reading: "[makefiles](readings/make.html)"
   description: |
     *  make
  
+- date: 2024-01-24
+  week: 1
+  no_class: true
+  description: (no lab)
 
-- date: 2023-08-29
+- date: 2024-01-25
   week: 2
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 / [threads](reading/threads.html) §1-2"
-  slides: yes
   description: |
     *  kernel mode
     *  system calls
@@ -35,16 +31,11 @@
        *  what the hardware must do
        *  exception handlers
 
-- date: 2023-08-30
-  week: 2
-  lab: true
 
-
-- date: 2023-08-31
-  week: 2
+- date: 2024-01-30
+  week: 3
   title: exceptions / signals 
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
-  slides: yes
   description: |
     *  threads and context switches
     *  process = threads + address space
@@ -52,13 +43,13 @@
        *  events triggering
        *  signal handlers and implementation (start)
 
-- date: 2023-09-01
-  week: 2
+- date: 2024-01-31
+  week: 3
+  lab: true
 
-- date: 2023-09-05
+- date: 2024-02-01
   week: 3
   title: signals 
-  slides: yes
   reading: "[kernel](readings/kernel.html) §2.3.1"
   description: |
     *  exceptions and the quiz
@@ -66,15 +57,14 @@
     *  Unix signals
        *  signal handlers and implementation (finish)
 
-- date: 2023-09-06
+- date: 2024-02-02
   week: 3
-  lab: true
 
 
-- date: 2023-09-07
-  week: 3
+
+- date: 2024-02-06
+  week: 4
   title: accounts
-  slides: yes
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   description: |
     *  user IDs/account abstraction
@@ -82,13 +72,13 @@
     *  set-user-ID, sudo is not kernel mode
     *  privilege escalation 
 
-- date: 2023-09-08
-  week: 3
+- date: 2024-02-07
+  week: 4
+  lab: true
 
-- date: 2023-09-12
+- date: 2024-02-08
   week: 4
   title: virtual memory 1
-  slides: yes
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   description: |
     *  virtual memory concept
@@ -96,14 +86,13 @@
     *  page tables
     *  storing in memory (start)
 
-- date: 2023-09-13
-  lab: true
+- date: 2024-02-09
   week: 4
 
-- date: 2023-09-14
-  week: 4
+
+- date: 2024-02-13
+  week: 5
   title: virtual memory 2
-  slides: yes
   slides_prelim: yes
   sldies_extra: yes
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
@@ -112,17 +101,14 @@
        *  small example (not in memory)
        *  storing in memory (finish)
 
-- date: 2023-09-15
-  week: 4
+- date: 2024-02-14
+  lab: true
+  week: 5
 
-- date: 2023-09-16
-  week: 4
-
-- date: 2023-09-19
+- date: 2024-02-15
   week: 5
   title: virtual memory 3
   reading: "[VM](readings/vm.html) §2.1, 3.2"
-  slides: yes
   sldies_prelim: yes
   slides_extra: yes
   description: |
@@ -131,16 +117,14 @@
        *  multi-level lookup example
        *  permission bits
 
-- date: 2023-09-20
-  no_class: true
-  description: (no lab)
+
+- date: 2024-02-16
   week: 5
 
-- date: 2023-09-21
-  week: 5
+- date: 2024-02-20
+  week: 6
   title: processes 1 
   reading: "[VM](readings/vm.html) 4, [kernel](readings/thread.html) §3.3.3; [threads](readings/thread.html)"
-  slides: yes
   description: |
     *  page tables: loading data on demand
     *  processes, threads
@@ -150,30 +134,26 @@
     *  preview: threads
     *  waiting for processes
 
+- date: 2024-02-21
+  lab: true
+  week: 6
 
-- date: 2023-09-22
-  week: 5
-
-- date: 2023-09-26
+- date: 2024-02-22
   week: 6
   title: proceses 2
-  slides: yes
   reading: "[threads](readings/thread.html)"
   description: |
     *  briefly, pipe and dup2
     *  file descriptors
     *  pipe
 
-
-- date: 2023-09-27
-  lab: true
+- date: 2024-02-23
   week: 6
 
-- date: 2023-09-28
-  week: 6
+- date: 2024-02-27
+  week: 7
   title: caches 1
   reading: "[cache](readings/cache.html)"
-  slides: yes
   slides_extra: yes
   slides_prelim: yes
   description: |
@@ -183,47 +163,47 @@
     *  direct-mapped caches
         *  valid bits, tags
 
-- date: 2023-10-03
-  no_class: true
-  title: reading day
-  week: 7
-
-- date: 2023-10-04
+- date: 2024-02-28
   lab: true
   week: 7
 
-- date: 2023-10-05
+- date: 2024-02-29
   week: 7
   title: caches 2
-  slides: yes
   reading: "[cache](readings/cache.html)"
   description: |
     *  cache misses and C code
     *  set-associative caches
     *  (briefly) replacement policies
 
-- date: 2023-10-06
+- date: 2024-03-01
   week: 7
 
-- date: 2023-10-10
+- date: 2024-03-05
   week: 8
+  no_class: true
+
+- date: 2024-03-07
+  week: 8
+  no_class: true
+
+- date: 2024-03-12
+  week: 9
   title: caches 3 / threads 1
   reading: "[cache](readings/cache.html), [threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
-  slides: yes
   description: |
    *  write policies
    *  the TLB
 
 
-- date: 2023-10-11
+- date: 2024-03-13
   lab: true
-  week: 8
+  week: 9
 
-- date: 2023-10-12
-  week: 8
+- date: 2024-03-14
+  week: 9
   title: "synchronization 1"
   reading: "[sync](readings/sync.html) §1, 2-7, 8-9; [consistency](readings/consistency.html) §1"
-  slides: yes
   description: |
     *  creating new threads
     *  thread use examples
@@ -231,14 +211,14 @@
     *  problem of synchronization
     *  atomicity, race conditions
 
-- date: 2023-10-13
-  week: 8
-
-- date: 2023-10-17
+- date: 2024-03-15
   week: 9
+
+
+- date: 2024-03-19
+  week: 10
   title: synchronization 3
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
-  slides: yes
   description: |
    *  reordering
    *  locks and mutexes
@@ -248,43 +228,28 @@
    *  deadlock
       *  examples of
 
-- date: 2023-10-18
+- date: 2024-03-20
   lab: true
-  week: 9 
+  week: 10
 
-- date: 2023-10-19
-  week: 9
+- date: 2024-03-21
+  week: 10
   title: synchronization 4
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
-  slides: yes
   description: |
-    > (Reiss out of town, Campbell guest lectured)
-    
-    > Unfortunately, the audio on the lecture recording is noisy.
-
-    > Access lecture recording [here](https://uva.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cd5ea24b-2186-4fa7-8773-b0a00129693a)
-    
-    > Or access this version with volume boosted: [browser](https://www.cs.virginia.edu/~cr4bd/videoplayer/?3130/F2023/recordings/20231019-video-and-audio-loud) [mp4](https://www.cs.virginia.edu/~cr4bd/3130/F2023/recordings/20231019-video-and-audio-loud.mp4)
-
-    > Or if that doesn't work/you prefer me doing the lecture:
-    > 
-    > *  I have a recording of me practicing going through the same topics outside lecture: <!-- [browser](https://www.cs.virginia.edu/~cr4bd/videoplayer/?3130/F2023/recordings/20231019-alt-video-and-audio)-->  [mp4](https://www.cs.virginia.edu/~cr4bd/3130/F2023/recordings/20231019-alt-video-and-audio.mp4); or
-    > *  last semester's 4 April lecture starting at 24 minutes in covers close to the same material: [link to schedule from last semester](https://www.cs.virginia.edu/~cr4bd/3130/S2023/schedule.html#week=12)
-   
     *  deadlock
        *  definition
        *  preventing/avoiding
     *  producer/consumer problem
     *  monitors (start)
 
-- date: 2023-10-20
-  week: 9
-
-- date: 2023-10-24
+- date: 2024-03-22
   week: 10
+
+- date: 2024-03-26
+  week: 11
   title: synchronization 5 / networking 1
   reading: "[protocols](readings/protocols.html) §1-2"
-  slides: yes
   description: |
     *  monitors (finish)
     *  false sharing
@@ -296,15 +261,14 @@
     *  layers
     *  connections atop mailbox model (start)
 
-- date: 2023-10-25
+- date: 2024-03-27
   lab: true
-  week: 10
+  week: 11
 
-- date: 2023-10-26
-  week: 10
+- date: 2024-03-28
+  week: 11
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
-  slides: yes
   description: |
     *  connections atop mailbox model (finish)
     *  names and addresses
@@ -315,13 +279,13 @@
        *  routers
     *  port numbers and UDP
 
-- date: 2023-10-27
-  week: 10
-
-- date: 2023-10-31
+- date: 2024-03-29
   week: 11
+
+
+- date: 2024-04-02
+  week: 12
   title: networking 3 / secure channels 1
-  slides: yes
   reading: "[security](readings/sec.html) §1-1.5"
   description: |
     *  mapping between addresses and names/other addresses:
@@ -334,15 +298,14 @@
     *  cryptography (start)
        *  symmetric encryption
 
-- date: 2023-11-01
+- date: 2024-04-03
   lab: true
-  week: 11
+  week: 12
 
-- date: 2023-11-02
-  week: 11
+- date: 2024-04-04
+  week: 12
   title: secure channels 2
   reading: "[security](readings/sec.html) §1-3"
-  slides: yes
   description: |
    *  cryptography (con't)
        *  asymmetric encryption
@@ -351,23 +314,10 @@
    *  public key infrastructure (start)
 
 
-- date: 2023-11-03
-  week: 11
-
-- date: 2023-11-07
-  no_class: true
-  title: election day
-  week: 12
-
-- date: 2023-11-08
-  lab: true
-  week: 12
-
-- date: 2023-11-09
-  week: 12
+- date: 2024-04-07
+  week: 13
   reading: "[processors](readings/processors.html) §1-3"
   title: secure channels 3 / pipelining 1
-  slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
@@ -381,14 +331,14 @@
    *  pipelining idea
    *  pipelining for the CPU (start)
 
-- date: 2023-11-10
-  week: 12
+- date: 2024-04-08
+  week: 13
+  lab: true
 
-- date: 2023-11-14
+- date: 2024-04-09
   week: 13
   title: pipelining 2
   reading: "[processors](readings/processors.html) §2-3"
-  slides: yes
   slides_prelim: yes
   description: |
     *  pipelining for the CPU (con't)
@@ -397,14 +347,12 @@
        *  forwarding and forwarding logic
        *  speculation: guess and check later (start)
 
-- date: 2023-11-15
-  lab: true
+- date: 2024-04-10
   week: 13
 
-- date: 2023-11-16
-  week: 13
+- date: 2024-04-16
+  week: 14
   title: pipelining 3
-  slides: yes
   slides_prelim: yes
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
@@ -416,18 +364,15 @@
        *  static prediction
 
 
-- date: 2023-11-17
-  week: 13
-  due_message: <b>assignment due following Tuesday!</b>
+- date: 2024-04-17
+  lab: true
+  week: 14
 
-- date: 2023-11-21
+- date: 2024-04-18
   week: 14
   title: out-of-order 1
-  slides: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
-    >  Note: the first few minutes of screencapture for the lecture recording is rerecorded (and so might not quite be in sync)
-
     *  briefly, branch prediction ideas (start)
        *  local history
 
@@ -436,18 +381,12 @@
     *  register renaming
     *  instruction queues
 
-- date: 2023-11-22
+- date: 2024-04-19
   week: 14
-  no_class: true
 
-- date: 2023-11-23
-  week: 14
-  no_class: true
-
-- date: 2023-11-28
+- date: 2024-04-23
   week: 15
   title: out-of-order 2 / side channels
-  slides: yes
   description: |
     *  data flow model for out-of-order
     *  out-of-order limits
@@ -455,14 +394,13 @@
     *  side channels generally
     *  side channels in the cache
 
-- date: 2023-11-29
+- date: 2024-04-24
   lab: true
   week: 15
 
-- date: 2023-11-30
+- date: 2024-04-25
   week: 15
   title: meltdown/spectre
-  slides: yes
   slides_extra: yes
   slides_prelim: yes
   description: |
@@ -472,17 +410,15 @@
         *   speculation past a bounds chcek
         *   using cache side-channels
 
-- date: 2023-12-01
+- date: 2024-04-26
   week: 15
 
-- date: 2023-12-05
+- date: 2024-04-30
   week: 16
   title: Exam Review
-  description: |
-    [text file from lecture](recordings/20231205-notes.txt)
 
-- date: 2023-12-14
-  week: 17
+- date: 2024-05-03
+  week: 16
   title: Final Exam
   description: |
-    Scheduled time: 9am-12pm Thursday 14 December in McLeod auditorium
+    Scheduled time: 9am-12pm
