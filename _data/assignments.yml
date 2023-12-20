@@ -74,7 +74,7 @@
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2023-03-13
+  due: 2024-03-13
   pre_lab: true
   no_late: true
   no-late: true
@@ -257,7 +257,7 @@
 - name: life
   short_name: life
   page: labhw/life.html
-  due: 2023-04-12
+  due: 2024-04-12
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
