@@ -7,7 +7,7 @@
     * .o, .a, .so
     * building
 
-- date: 2023-01-19
+- date: 2024-01-19
   week: 1
 
 - date: 2024-01-23
@@ -34,6 +34,8 @@
        *  what the hardware must do
        *  exception handlers
 
+- date: 2024-01-26
+  week: 2
 
 - date: 2024-01-30
   week: 3
@@ -317,7 +319,7 @@
    *  public key infrastructure (start)
 
 
-- date: 2024-04-07
+- date: 2024-04-09
   week: 13
   reading: "[processors](readings/processors.html) §1-3"
   title: secure channels 3 / pipelining 1
@@ -334,11 +336,11 @@
    *  pipelining idea
    *  pipelining for the CPU (start)
 
-- date: 2024-04-08
+- date: 2024-04-10
   week: 13
   lab: true
 
-- date: 2024-04-09
+- date: 2024-04-11
   week: 13
   title: pipelining 2
   reading: "[processors](readings/processors.html) §2-3"
@@ -350,7 +352,7 @@
        *  forwarding and forwarding logic
        *  speculation: guess and check later (start)
 
-- date: 2024-04-10
+- date: 2024-04-12
   week: 13
 
 - date: 2024-04-16
