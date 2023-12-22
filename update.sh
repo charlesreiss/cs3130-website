@@ -10,6 +10,10 @@ chmod -R a+r slides
 chmod -R a+r ~/public_html/3130/F2024/recordings
 pd=/u/cr4bd/bin/pandoc
 
+if [ ! -e $pd ]; then
+    pd=pandoc
+fi
+
 BUNDLE=bundle
 
 if [ ! -e jekyll-dir ]; then
@@ -59,4 +63,4 @@ pushd jekyll-dir
 chmod -R a+r readings/*
 chmod -R a+r labhw/*
 chmod -R a+r labhw/files/*
-$BUNDLE exec jekyll b --trace
+$BUNDLE exec jekyll b --trace "${@}"
