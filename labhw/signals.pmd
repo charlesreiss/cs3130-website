@@ -3,19 +3,6 @@ title: Signals Lab
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  4 September 2023: add some more explanation of what attaching a pointer to a shared memory
-   region does
-*  4 September 2023: make instructions be more explicit about shared memory regions
-*  5 September 2023: adjust introductory description to describe overall design of chat program.
-*  5 September 2023: add parenthetical about what cleanup function is for in step 2
-*  6 September 2023: avoid suggesting `feof(stdin)`, instead suggest checking `fgets` return value
-*  6 September 2023: add note about `scanf` not reading a full line in PID section.
-*  6 September 2023: consistently use `inbox_filename` (not `inbox_name`) in shared memory code
-</div>
-
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
@@ -40,7 +27,8 @@ I would recommend working in pairs on this lab,
 but note that both instances of the chat program need to run as the same user. (You can't send signals to another
 user's programs.)
 
-1. Make a program that prints its own PID (process identifier) and reads another PID from the user (store it in a global variable)
+1. Start with the [template program](#starter) below that prints out its PID and reads in another PID into a global variable.
+
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
     - SIGTERM should invoke a cleanup function (can be a placeholder for now; later you will make it handle freeing shared memory regions)
     - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
@@ -67,6 +55,31 @@ user's programs.)
 
 6.  Upload your solution to the submission site or show a TA your program for checkoff.
 {/}
+
+# Starter code {#starter}
+
+```c
+#define _XOPEN_SOURCE 700 // request all POSIX features, even with -std=c11
+#include <stdlib.h>       // for EXIT_SUCCESS, NULL, abort
+#include <stdio.h>        // for getline
+#include <unistd.h>       // for getpid
+
+pid_t other_pid = 0;
+
+int main(void) {
+    printf("This process's ID: %ld\n", (long) getpid());
+    char *line = NULL; size_t line_length = 0;
+    do {
+        printf("Enter other process ID: ");
+        if (-1 == getline(&line, &line_length, stdin)) {
+            perror("getline");
+            abort();
+        }
+    } while ((other_pid = strtol(line, NULL, 10)) == 0);
+    free(line);
+    return EXIT_SUCCESS;
+}
+```
 
 # PID
 
