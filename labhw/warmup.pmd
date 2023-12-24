@@ -3,21 +3,6 @@ title: warmup
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  23 August 2023: make examples consistent with prototype of `string_split` having a `num_words` argument; make examples of command-line have newlines show up more consistently across browsers
-*  23 August 2023: clarify that `*num_words` should be set *by `string_split`* (not by its caller)
-*  23 August 2023: avoid omitting declarations of `result` and `size` from examples
-*  23 August 2023: link to CSO1 labs as possible reference in hints
-*  25 August 2023: fix whitespace not being formatted properly on split example 1
-*  25 August 2023: tweak wording of hint on realloc to account for not imply initializing the space is mandatory
-*  29 August 2023: clarify that `main.c` should be possible to test with our own `split.c`
-*  31 August 2023: clarify in "Your task" that words can be zero-length (matching what is shown in the examples)
-*  1 Sep 2023: be more explicit about behavior for empty words at beginning/end in "Your task"
-*  8 Sep 2023: clarify that no-hard-coding does not mean no-special-cases.
-*  8 Sep 2023: give testing string_split with our own main as reason why everything string_split needs should be in split.c
-</div>
 
 # Your task
 
@@ -27,18 +12,21 @@ Changelog:
         
             char **string_split(const char *input, const char *sep, int *num_words);
 
-       The function should take a `\0`-terminated string `input` and a 
-       `\0`-terminated string listing separating characters in `sep` and
-       return an array of "words" (of zero or more characters) separated by a sequence of one or more
-       of the characters in `sep`. `string_split` should set `*num_words`
-       to the size of the array. The returned
-       array and each of the strings in that array should be allocated so
-       that they can be freed using `free()`.
+       You can see examples of what this function should do below.
 
-       (*[added 1 Sep:]* As shown in the examples below,
-       you should consider `input` to always start/end with a "word",
-       even if that word is empty, and otherwise not generate empty words
-       even when there are multiple consecutive characters from `sep`.)
+       The function takes a `\0`-terminated string `input` and a 
+       `\0`-terminated string listing separating characters in `sep`.
+
+       The function interprets `input` into a sequence of "words" (which it returns as described
+       in the next paragraph).
+       These words are separated by one or more of the seperating characters in `sep`. `input`
+       should be considered to always start and end with a word. If the `input`
+       starts or ends with a separating charcter, this word will be empty (zero-length). Empty
+       words must not be generated in any other circumstance.
+
+       The function should return the words using a dynamically allocated array of `\0`-terminated strings.
+       It must possible to free the array by calling `free()` on each element of the array and
+       the array itself. The length of the array must be stored in `*num_words`.
 
        In addition:
 
@@ -51,13 +39,20 @@ Changelog:
           that your function does not try to allocate a huge amount of memory relative
           to the size of its arguments)
 
-       Some examples of using this function are shown below.
-
        Your implementation may use additional utility functions, provided those are
-       also in `split.c` (so we can easily test your split.c with our own
-       main.c). It may also use any functions in the C standard library.
+       also in `split.c` (so we can easily test your `split.c` with our own
+       `main.c`). It may also use library functions that are part of the C standard
+       or the POSIX standard. This includes most functions you may be familiar with
+       declared in `<string.h>` and `<stdio.h>`, with the notable exceptions
+       of `strsep`, `index`, and `rindex`.
+       You can determine if a function meets this criteria by looking for
 
-    *  in `split.h`, write an appropriate header file declaring `split.c` and include
+       *  the "CONFORMING TO" section of its manpage will listing some verison of "POSIX"
+          or C89 or C99 or C11 (or multiple of these); or
+       *  it is in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
+          from the 2018 POSIX specification
+
+    *  in `split.h`, write an appropriate header file declaring `split()` and include
        [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
        against multiple inclusion.
 
@@ -75,7 +70,7 @@ Changelog:
           or
 
                ./split abc
-           
+
           or
 
                ./split ab c
@@ -97,20 +92,20 @@ Changelog:
 
       We intend to test your `main.c` with our own `split.c`, so
       please put any functions other than `string_split` that it needs
-      within `main.c`.
+      within `main.c`. Your implementation may use functions defined in the C or POSIX standards.
 
       (Some examples of expected transcripts are shown below.)
 
 2.  Create a Makefile such that typing `make` will build (if necessary) `split.o`, `main.o`
     and link them into an executable `split`.
 
-3.  Make sure your C files do not produce any warnings when compiled with `-Og -g -std=c11 -Wall -pedantic` (assuming GCC or Clang). (It is okay if your Makefile uses different options.)
+3.  Make sure your C files do not produce any warnings when compiled with `-D_XOPEN_SOURCE=700 -Og -g -std=c11 -Wall -pedantic` (assuming GCC or Clang). (It is okay if your Makefile uses different options.)
 
 4.  Make sure your code does not have memory leaks or errors. We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
 
 5.  We may use automated tests to assess your submission. Your solution may not hard-code the solution for any of the test cases or intentionally interfere with the testing environment.
     <small>(By "hard-code the solution", we mean code that looks for our specific test inputs (such as checking if the input contains the "XfooX" because one of the test cases is "XfooXbar")
-    rather than the more general situation being tested (such checking for separator characters at the beginning of the input); it's not a prohibition on having special cases.)</small>
+    rather than the more general situation being tested (such checking for separator characters at the beginning of the input); it's not a prohibition on having less specific special cases.)</small>
 
 #  Examples
 
