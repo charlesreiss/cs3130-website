@@ -177,7 +177,7 @@ that for this lab.)
    also need to link with `-lrt`.
 
 3. 
-   You can "attach" a pointer `inbox_data` to shared memory using `mmap` and detach it with `munmap`:
+   You can "attach" a pointer `inbox_data` to shared memory using `mmap`:
 
     ````c
     char *inbox_data;
@@ -188,13 +188,15 @@ that for this lab.)
         /* note that MAP_FAILED is *NOT* the same thing as NULL */
     }
     close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
-    // ... access inbox_data ...
+    ```
+
+    Then, you can access the shared memory region using `inbox_data` like a character array.
+
+    Later, you can "detach" the `inbox_data` pointer from the shared memory region using:
+    ```
     munmap(inbox_data, size);
     ````
-
-    Then you can use this pointer like an array to access the shared memory region.
-
-    Note that this needs to be done between allocating and deallocating the shared memory region.
+    (This does not delete the memory region itself.)
 
 4.  You'll need to follow these steps **twice**: once to get the current process's inbox
     (with a filename based on your current process's ID) , and another time to get your outbox,
