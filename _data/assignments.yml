@@ -36,7 +36,7 @@
 
 - name: timing
   due: 2024-02-16
-  page: labhw/systiming.html
+  page: labhw/timing.html
   grade_describe: |
     I expect this assignment to be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
