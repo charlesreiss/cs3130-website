@@ -3,18 +3,6 @@ title: timing homework
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  10 Sep 2023: allow using `/usr/bin/true` instead of `/bin/true` on system that does not have `/bin/true`
-*  10 Sep 2023: tweak phrasing re: timing overhead to make it clear it's about dealing with non-benchmark
-   tasks that are accidentally timed
-*  12 Sep 2023: address negative times explicitly in hints, and indicate rare cases where "real" such results might happen
-*  15 Sep 2023: address -std=c11 hiding sigaction(), etc. without something like `#define _XOPEN_SOURCE 700`
-*  15 Sep 2023: mention that `-fsanitize=address` will dramatically increase overhead
-*  15 Sep 2023: add example of optimization flag when mentioning compiling with optimizations
-</div>
-
 # Your task
 
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
@@ -137,7 +125,15 @@ To mitigate this, usually one would:
 
 ## Avoiding measurement overhead
 
-Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. To compensate for this,
+<img src="files/timing-overhead.svg"
+     alt="timeline showing a call to getppid labeled 'what you want to measured', surrounded by events of getppid being called and calls to clock_gettime. Two points in the calls to clock_gettime are marked with dotted lines to indicate the point where clock_gettime reads the clock. The time between these two points is marked 'time measured directly'."
+>
+
+Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. 
+For example, in the timeline diagram above, comparing the two results of `clock_gettime` calls measure `getppid` and also part of 
+`clock_gettime` and the code that called `getppid` and `clock_gettime`. Because clock_gettime and other time reading functions
+can't be called instaneously, your raw time measurements will always include the time for some "extra" stuff.
+To compensate for this,
 I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings.
 
 In addition, the amount of overhead is generally lower when you compile with optimizations (for example, `-Og` or `-O1`)
