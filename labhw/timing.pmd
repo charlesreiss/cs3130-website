@@ -126,7 +126,7 @@ To mitigate this, usually one would:
 ## Avoiding measurement overhead
 
 <img src="files/timing-overhead.svg"
-     alt="timeline showing a call to getppid labeled 'what you want to measured', surrounded by events of getppid being called and calls to clock_gettime. Two points in the calls to clock_gettime are marked with dotted lines to indicate the point where clock_gettime reads the clock. The time between these two points is marked 'time measured directly'."
+     alt="Diagram showing getppid running. The timeline shows a call to getppid labeled 'what you want to measured', surrounded by events of getppid being called and calls to clock_gettime. Two points in the calls to clock_gettime are marked with dotted lines to indicate the point where clock_gettime reads the clock. The time between these two points is marked 'time measured directly'."
 >
 
 Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. 
