@@ -235,7 +235,7 @@ When you handle `SIGUSR1`
 2. `fflush(stdout)`{.c} to ensure we see it now, not later;
 3. set the first character in the inbox to `'\0'`{.c} so the other process knows we're ready for it to send more
 
-# Note on debuggers and signals
+# Debugging notes
 
 1.  If you run your program(s) in a debugger like GDB or LLDB, they will by default intercept signals:
 
@@ -245,3 +245,6 @@ When you handle `SIGUSR1`
     If you want to change this behavior, in LLDB you can use `process handle` command (see `help process handle` for
     documentation), and in GDB, the `info signals`, `catch`, and `handle` commands
     (see the [GDB reference manual chapter on signals](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Signals.html#Signals)).
+
+2.  If you do not setup a signal handler for SIGUSR1 and it is received by a process, then, by default, the process will terminate
+    and the shell will print the message "User defined signal 1".
