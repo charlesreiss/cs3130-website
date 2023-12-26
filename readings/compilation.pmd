@@ -41,15 +41,17 @@ There are two types of libraries:
 
 Static libraries on most Unix-like systems are archives of object files produced with the `ar` command. After generating object files,
 
-    ar rcs libfoo.a quux.o bar.o
+    ar -rcs libfoo.a quux.o bar.o
 
-will create a library `libfoo.a`.
+will create a library `libfoo.a`.^[The `c` option says to create a new archive silently if one does not exist; the `r` option to add to or update the archive; and the `s` option to create an index of the object files for the linker to use. Sometimes you might see the index creation done by a separate `ranlib` command.]
 
 Then, if the resulting `libfoo.a` is placed in one of the standard system directories^[`clang -print-search-dirs` lists these] a command like
 
    clang -o exec main.o -lfoo
 
-will create an executable linking `main.o` and the library together.
+will create an executable linking `main.o` and the library together. You should usually put the `-lXXX` flags last on the command line:
+the linker processes the files listed in order and, when adding a static library, by default only includes parts that appear to be needed by files it
+has already processed.
 
 If `libfoo.a` is not placed in one the standard system directory, then add `-L`:
 
@@ -102,7 +104,7 @@ If `libfoo.so` is not placed in one these directories, then you will need to:
 
        You can also use syntax like `LD_LIBRARY_PATH=directory1:directory2:directory3` to specify multiple directories.
 
-# Additional references
+# Additional resources
 
 On Clang and GCC options:
 
