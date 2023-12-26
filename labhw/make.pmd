@@ -3,12 +3,6 @@ title: Make lab
 author: Luther Tychnoviech
 ...
 
-<div class="changelog">
-Changelog:
-
-*  26 Jan 2023: make link to `make-lab.tar` match `wget` command
-</div>
-
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
 
@@ -17,7 +11,7 @@ Your task:
 
 We would recommend working with a partner, but it is also fine if you do this alone.
 
-1. Download [`make-lab.tar`](../files/make-lab.tar) (you can do this using the link on this page, or from a command line via `wget https://www.cs.virginia.edu/~cr4bd/3130/S2023/files/make-lab.tar`{.bash})
+1. Download [`make-lab.tar`](../files/make-lab.tar) (you can do this using the link on this page, or from a command line via `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/files/make-lab.tar`{.bash})
 
 2. Expand it using `tar xvf make-lab.tar`{.bash}
 
@@ -42,7 +36,7 @@ We would recommend working with a partner, but it is also fine if you do this al
 
 {/}
 
-Refer to the [makefiles and C compilation](../readings/make.html) reading and/or
+Refer to the [complation and libraries](../readings/compilation.html) and [makefiles](../readings/make.html) reading and/or
 the corresponding C material for information on how to achieve these goals.
 We recommend you read it in full, discussing it with a partner and asking clarifying questions of TAs as you go, then return to the tasks above.
 

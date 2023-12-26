@@ -1,0 +1,115 @@
+---
+title: Compilation, Linking, Libraries
+author: Charles Reiss
+...
+
+# (review?) `clang`/`gcc` modes
+
+The `clang` program (or the `gcc` or `cc` programs, which work essentially the same way)
+can perform assembly, linking, and compilation, depending on how it is invoked:
+
+*  compile only: `clang -S foo.c` --- compile `foo.c` into the assembly file `foo.s`
+*  assemble only: `clang -c foo.s` --- assemble `foo.s` into the object file `foo.o`
+*  link only (executable): `clang foo.o bar.o quux.o` --- link the object files `foo.o`, `bar.o`, and `quux.o` into an executable `a.out`^[This is the default name on Unix-like systems; on native Windows, it may be a.exe.]
+*  link only (shared library): `clang -shared foo.o bar.o quux.o` --- link the object files `foo.o`, `bar.o`, and `quux.o` into a shared library `a.out`
+
+Or you can perform multiple at once:
+
+*  compile+assemble: `clang -c foo.c` --- compile and assemble `foo.c`, to produce the object file `foo.o`.
+*  compile+assemble+link: `clang foo.c bar.c` --- compile and assemble foo.c, and compile and assemble bar.c, and link them together to generate `a.out`.
+
+You can specify a different output file for any of these commands with `-o FILENAME`, for example:
+
+*  `clang -o exec foo.o bar.o quux.o` -or- `clang foo.o bar.o quux.o -o exec` --- link `foo.o`, `bar.o`, and `quux.o` into the executable `exec` (instead of `a.out`)
+
+# selected other `clang`/`gcc` options
+
+*  `-Wall`: enable "all" warnings
+*  `-g`: generate information for debuggers
+*  `-Og`, `-O1`, `-O2`, `-O3`, `-Os`, `-O`: enable various amounts/types of compiler optimizations. `-Og` optimizes for debugging; `-Os` optimizes for size; otherwise, 1 or 2 or 3 set various levels of "aggressiveness" with which to apply optimizations
+*  `-std=c11`, `-std=c99`, `-ansi`, ...: ask the compiler/standard library to follow a particular version of the C standard
+*  `-fsanitize=address`, `-fsanitize=undefined`, `-fsanitize=thread`, `-fsanitize=leak`: enable various "sanitizers" that check for certain types of errors/bugs as the resulting executables run (must be supplied both when compiling and linking)
+
+# producing and using libraries
+
+There are two types of libraries:
+
+*  dynamic libraries, which are loaded from the library file while an executable is running. These most commonly use the extension `.so` (Linux), `.dylib` (OS X), or `.dll` (Windows).
+*  static libraries, which are embedded into an executable when it is linked. These most commonly use the extension `.a` (Linux, OS X), `.lib` (Windows).
+
+## producing and using static libraries (on Unix-like systems)
+
+Static libraries on most Unix-like systems are archives of object files produced with the `ar` command. After generating object files,
+
+    ar rcs libfoo.a quux.o bar.o
+
+will create a library `libfoo.a`.
+
+Then, if the resulting `libfoo.a` is placed in one of the standard system directories^[`clang -print-search-dirs` lists these] a command like
+
+   clang -o exec main.o -lfoo
+
+will create an executable linking `main.o` and the library together.
+
+If `libfoo.a` is not placed in one the standard system directory, then add `-L`:
+
+    clang -o exec main.o -LdirectoryContainingLibFoo -lfoo
+
+## producing and using dynamic libraries (on Linux)
+
+On Linux, files that will be used in a dynamic library need to be compiled specially so they can be loaded anywhere in memory. This can be done by using the `-fPIC` option when compilng.
+
+Then, you can generate a library by linking with `-shared` as in:
+
+    clang -shared -o libfoo.so bar.o quux.o
+
+Then, like static libraries, if the resulting `libfoo.so` is placed in one of the standard system directories^[`clang -print-search-dirs` lists the directories that are searched when the executable is geneated. For loading libraries when an executable runs, the system searches `/lib`, `/usr/lib`, and directories specified by the configuration file `/etc/ld.so.conf`.] a command like
+
+    clang -o exec main.o -lfoo
+
+will create an executable `exec` that loads `libfoo.so` at runtime.
+
+If `libfoo.so` is not placed in one these directories, then you will need to:
+
+*  tell the compiler how to find the library when generating the executable by adding `-Ldirectory` to specify the directory where `libfoo.so` is:
+
+       clang -o exec main.o -LdirectoryWithLibFoo -lfoo
+
+*  tell the executable how to find the library when it runs by either:
+
+    *  specifying an "rpath" (runtime path) when generating the executable specifying an additional directory to search:
+
+            clang -o exec main.o ... -Wl,-rpath,directoryWithLibFoo
+
+       (`-Wl,X` says to pass an option to the linker program, which is typically `ld` on Linux.)
+
+       This is specifies separately from the `-L` option so you can have libraries in different locations when executables are generated versus when executables are run.
+
+    *  setting the `LD_LIBRARY_PATH` environment variable to contain the directory containing the library when the executable is run.
+       So instead of running the shell command (`$` represents a shell prompt):
+
+            $ ./exec ...
+
+       you could do
+
+            $ LD_LIBRARY_PATH=directoryWithLibFoo ./exec ...
+
+       or
+
+            $ export LD_LIBRARY_PATH=directoryWithLibFoo
+            ...
+            $ ./exec ...
+
+       You can also use syntax like `LD_LIBRARY_PATH=directory1:directory2:directory3` to specify multiple directories.
+
+# Additional references
+
+On Clang and GCC options:
+
+*  [Clang manual section on options](https://clang.llvm.org/docs/UsersManual.html#command-line-options)
+*  [GCC manual section on options](https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html)
+
+On linking and libraries:
+
+*  Ulrich Drepper, "[How To Write Shared Libraries](https://akkadia.org/drepper/dsohowto.pdf)" (2011) (also provides an explanation of how dynamic linking works on Linux)
+*  [toolchains.net](https://www.toolchains.net/) --- index of references on compiler toolchains, including many references about what linkers do

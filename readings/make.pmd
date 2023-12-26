@@ -1,15 +1,7 @@
 ---
-title: Makefiles and compilation
+title: Makefiles
 author: Luther Tychnoviech with modifications by Charles Reiss
-...
 
-<div class="changelog">
-Changelog:
-
-*  18 Jan 2023: add description of setting runtime search paths
-*  18 Jan 2023: avoid indicating that most Makefiles must define particular common variables
-*  24 Jan 2023: talk about LDLIBS/LIBS in addition to LDFLAGS; link to ninja build system
-</div>
 
 # The `make` tool
 
@@ -223,98 +215,6 @@ Source File
     - the declaration and implementation of provided helper functions
     - the memory in which to store global variables
 
-## Common patterns
-
-A project
-:   consists of several source files, header files, and dependencies
-    
-    header file
-    :   Contains the declaration of functions and shared global variables, but not their definitions.
-        May also contain various `typedef`s.
-        To be `#include`d by any file that wants to use those functions, etc.
-    
-    source file
-    :   Contains the definitions of closely related functions and global variables.
-        May also declare helper functions that are not exported in a header file.
-    
-    dependency
-    :   A separate project that creates a library used by this project
-    
-    Projects generally are designed to either create a library or a program, but not both.
-    This lab is an exception, having both a library and a program using it in one project to keep the lab short enough to be manageable.
-
-Creating a shared library
-:   1. Compile each `.c` file into a `.o` file; use the `-fPIC` compiler flag ("position independent code") so the resulting code can be shared by multiple applications.
-    2. Use the `ld` tool to combine the `.o` files. Since this is tricky to get right, your compiler (`gcc` or `clang`) will have a simpler interface that calls `ld` under the hood, generally like
-        
-        ````bash
-        clang -shared \
-            all.o your.o object.o files.o \
-            -o libyourname.so
-        ````
-
-        Note that loaders often assume that shared library names begin with `lib` and end with `.so`, so you should abide by that pattern.
-    
-Creating a static library
-:   1. Compile each `.c` file into a `.o` file.
-    2. Use the `ar` tool to turn a collection of `.o` files into an `.a` file, generally like
-        
-        ````bash
-        ar rcs \
-            libyouname.a \
-            all.o your.o object.o files.o
-        ````
-
-        Note that linkers often assume that static library names begin with `lib` and end with `.a`, so you should abide by that pattern.
-    
-    Alternatively, `make` provides special syntax for making a library:
-    
-    1. Use the library name as the target
-    2. Use the library name followed by an object file in parentheses as the dependencies
-    3. Use the command `ranlib` in the system command
-    
-    ````makefile
-    libname.a: libname.a(your.o) libname.a(object.o) libname.a(files.o)
-        ranlib libname.a
-    ````
-
-Creating a program
-:   1. Compile each `.c` file into a `.o` file.
-    2. Link your `.o` files and `.a` files together, with references to any needed `.so` files.
-        
-        The tool that actually does this is `ld`, but you should use your compiler's wrapper around that instead.
-        The compiler needs to be told all your `.o` files explicitly,
-        as well as the "library path" (directories where library files are located; specified with `-L`)
-        and "libraries" (the part of library names between `lib` and `.`; specified with `-l`)
-        
-        For example, the following code
-        
-        ````bash
-        clang \
-            all.o your.o object.o files.o \
-            -L../mylib -L./ \
-            -lflub -lflux -lflibber \
-            -o runme
-        ````
-        
-        will create a program named `runme`
-        by combining `all.o`, `your.o`, `object.o`, and `files.o`
-        with `libflub.so` or `libflub.a` (whichever it can find),
-        `libflux.so` or `libflux.a` (whichever it can find), and
-        `libflibber.so` or `libflibber.a` (whichever it can find),
-        looking for each library in the directories `../mylib/` and `./`
-        as well as the system-wide library path (on Linux, usually 
-        `/lib`, `/usr/lib/` and additional directories specified by `/etc/ld.so.conf`).
-
-    3. Make sure any needed `.so` files can be found at runtime (if they aren't in
-       a standard location).
-
-        The `-L` option only affects where the shared libraries are found while building
-        the executable. So, for shared libraries, some additional steps may be needed
-        the library will also be found when the program is done. On Linux, some ways
-        of doing this include setting the `LD_LIBRARY_PATH` environment variable or
-        including a runtime library search path in the executable using a link-time option
-        like `-Wl,-rpath=/path/to/mylib`.
 
 # Some additional references
 
@@ -331,6 +231,3 @@ On build systems:
    *  [ninja](https://ninja-build.org/)
    *  [scons](https://scons.org/)
 
-On linking and libraries:
-
-*  Ulrich Drepper, "[How To Write Shared Libraries](https://akkadia.org/drepper/dsohowto.pdf)" (2011) (also provides an explanation of how dynamic linking works on Linux)
