@@ -42,7 +42,8 @@ user's programs.)
     - The inbox of the other process, which we'll call the "outbox". You'll use this to write values to
       the other process.
 
-  You can follow the instructions below under "Shared memory" to create this.
+  You can follow the instructions below under "Shared memory" to create this. (Note that these
+  instructions require linking with `-lrt`.)
 
 3. Repeat until the end of file:
     - Read a typed line into the outbox (without overflow)
