@@ -154,8 +154,15 @@ Examples include dividing by zero, dereferencing a null pointer, or attempting t
 There are two basic families of responses to faults:
 either the kernel fixes the problem and reruns the user code that generated the fault,
 or it cannot fix the problem and kills the process that caused the fault.
-In practice, fixable faults happen quite often, notably the [page fault](#pages) discussed later.
-Even faults the kernel cannot fix on its own are often handled by asking the user code if it knows how to fix them through mechanisms called [signals](#signals). However, many programs do not choose to handle the signals, so the end result is often still termination of the fault-generating process.
+In practice, fixable faults happen quite often, most frequently the *page fault* that occurs when
+using virtual memory. (As described in more detail in the [virtual memory reading](vm.html),
+these occur when a program accesses memory that is not yet assigned to the program (as far as
+the hardware knows).
+The OS can choose to respond to the fault by assigning the memory to the program.
+Then, it can allow the memory acess to be retried and this time, the hardware will be able
+to complete the memory access.)
+
+Even faults the kernel cannot fix on its own may be handled by asking the user code if it knows how to fix them through mechanisms called [signals](#signals). However, many programs do not choose to handle the signals, so the end result is often still termination of the fault-generating process.
 
 ### Traps
 
