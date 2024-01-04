@@ -3,20 +3,13 @@ title: Policies
 index_title: Policies
 ...
 
-<div class="changelog">
-Changelog:
-
-*  27 Sep 2023: mention that labs unlike homeworks/labs usually allow collaboration (as was mentioned in the first day of lecture); rmv meniton of textbooks considered
-*  7 Oct 2023: mention that late policy for homeworks may have exceptions that are announced
-</div>
-
 # Logistics
 
 ## Meetings
 
 Lecture is optional but strongly encouraged.
 
-Lectures are Tuesdays and Thursdays at 2pm. I will attempt to record all lectures.
+Lectures are Tuesdays and Thursdays at 3:30pm. I will attempt to record all lectures.
 
 I do not schedule review sessions or the like outside of usual class time.
 
@@ -118,7 +111,8 @@ if you do something you regret, the sooner you tell me the sooner (and more leni
 
 ### No plagiarism (nor anything like it)
 
-You **must** cite any and every source you consult, other than those explicitly provided by the course itself.
+You **must** cite any and every source you consult,
+other than those explicitly provided by the course itself.
 Talked to a friend, saw an interesting video, consulted a website, had a tutor?
 Tell us!
 
@@ -127,8 +121,9 @@ In cases where you submit or show code, please put it an appropriate a comment i
 ### Write your own code
 
 You must write your own code.
+
 Not just type it (though you need to do that too): **compose it yourself**, as your own original work.
-(This includes not asking students, stack overflow, ChatGPT, etc. to compose code for you.)
+This includes not asking for/accepting code from students, stack overflow, generative AI tools, etc.
 Beware of looking at other students code or code you find online: it is hard to unsee and can spoil your ability to compose your own solutions!
 
 ### Understand what you submit
