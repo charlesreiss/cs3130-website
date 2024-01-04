@@ -162,7 +162,11 @@ The OS can choose to respond to the fault by assigning the memory to the program
 Then, it can allow the memory acess to be retried and this time, the hardware will be able
 to complete the memory access.)
 
-Even faults the kernel cannot fix on its own may be handled by asking the user code if it knows how to fix them through mechanisms called [signals](#signals). However, many programs do not choose to handle the signals, so the end result is often still termination of the fault-generating process.
+Even faults the kernel cannot fix on its own may be handled by having the kernel's fault handler
+ask the user code if it knows how to fix them.
+On Unix-like systems like Linux, this is done through a mechanism called [signals](#signals).
+However, many programs do not handle the signals,
+so the kernel's handler will often end up just terminating the program regardless.
 
 ### Traps
 
