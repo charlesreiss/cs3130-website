@@ -10,6 +10,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
 </p>
 
 <p id="weekJump" style="display: none"></p>
+<p id="hideOutline" style="display: none"></p>
 
 <table class="schedule" id="schedule" data-start="{{ site.data.schedule[0].date | date: "%Y-%m-%d" }}">
 <tr class="header"><td>Date</td><td>Topic</td><td>Assignment</td></tr>
@@ -104,6 +105,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
 {%- endif -%}
 {%- endfor -%}
 </div>
+<div class="description">
 {%- if day.reading -%}
 <em class="readingLabel">Reading: </em> <span class="readingText">{{day.reading | markdownify}}</span>
 {%- endif -%}
@@ -114,6 +116,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
 {%- elsif non_lecture_day -%}
   &mdash;
 {%- endif -%}
+</div>
 </td>
 {%- if due_assignments or released_assignments or day.assignment or open_quizzes or due_quizzes -%}
 <td class="assignment">
@@ -190,4 +193,17 @@ if (result != "") {
     document.querySelector("#weekJump").innerHTML = result;
     document.querySelector("#weekJump").style.display = "block";
 }
+
+function showOutlines() {
+    document.querySelectorAll('.description').forEach(x => x.classList.remove('hide'));
+}
+function hideOutlines() {
+    document.querySelectorAll('.description').forEach(x => x.classList.add('hide'));
+}
+
+document.querySelector("#hideOutline").innerHTML =
+    '<input type="button" value="show" onclick="showOutlines()"> \
+    or <input type="button" value="hide" onclick="hideOutlines()"> outlines/readings';
+
+document.querySelector("#hideOutline").style.display = "block";
 </script>

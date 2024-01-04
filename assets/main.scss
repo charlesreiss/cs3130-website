@@ -59,6 +59,9 @@ table.schedule { width: 100%; }
 .schedule tr.no_class td.assignment { background-color: #fff }
 .schedule tr.no_lab td.assignment { background-color: #fff }
 
+.schedule tr div.description {}
+.schedule tr div.description.hide { display: none; }
+
 .schedule h3 { font-size: $base-font-size; font-weight: bold; margin-bottom: .5ex; display: inline; }
 .schedule .titlestuff { display: block; }
 .schedule .titlestuff .slides { display: inline; }
