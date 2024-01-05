@@ -60,7 +60,7 @@ This schedule is an estimate. It may be updated based on the actual pacing of th
   {%- if day.slides_extra -%}&nbsp;<span class="slides-extra-note">(more than one day of slides)</span>{%- endif -%}
   {%- if day.slides_pptx -%}&nbsp;(or <a href="slides/{{ file_prefix }}-slides.pptx">as pptx</a>){%- endif -%}
   {%- if day.slides_see2 -%}
-      &nbsp;plus beginning of <a href="slides/{{ day.slides_see2 | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see2 | date: "%d %b"}}</a> {%- if day.slides_see2_note -%}{{day.slides_see2_note}}{%- endif -%}
+      &nbsp;plus <a href="slides/{{ day.slides_see2 | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see2 | date: "%d %b"}} slides</a> {%- if day.slides_see2_note -%}{{day.slides_see2_note}}{%- endif -%}
   {%- endif -%}
 </div>
 {%- else -%}

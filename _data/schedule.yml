@@ -1,6 +1,8 @@
 - date: 2024-01-18
   week: 1
   title: introduction / building (pt 1)
+  slides: yes
+  slides_prelim: yes
   reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
   description: |
     * course outline
@@ -13,6 +15,7 @@
 - date: 2024-01-23
   week: 2
   title: building (pt 2)
+  slides_see: 2024-01-18
   reading: "[makefiles](readings/make.html)"
   description: |
     *  make
@@ -26,6 +29,9 @@
   week: 2
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 / [threads](reading/threads.html) §1-2"
+  slides: yes
+  slides_prelim: yes
+  sldies_extra: yes
   description: |
     *  kernel mode
     *  system calls
@@ -39,8 +45,11 @@
 
 - date: 2024-01-30
   week: 3
-  title: exceptions / signals 
+  title: exceptions / signals 1
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
+  slides_see: 2024-01-25
+  slides: yes
+  slides_prelim: yes
   description: |
     *  threads and context switches
     *  process = threads + address space
@@ -54,23 +63,22 @@
 
 - date: 2024-02-01
   week: 3
-  title: signals 
+  title: signals 2
   reading: "[kernel](readings/kernel.html) §2.3.1"
+  slides_see: 2024-01-30
   description: |
-    *  exceptions and the quiz
-
     *  Unix signals
        *  signal handlers and implementation (finish)
 
 - date: 2024-02-02
   week: 3
 
-
-
 - date: 2024-02-06
   week: 4
   title: accounts
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  slides: yes
+  slides_prelim: yes
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
@@ -85,6 +93,9 @@
   week: 4
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  virtual memory concept
         *   address space and address sizes
@@ -98,9 +109,8 @@
 - date: 2024-02-13
   week: 5
   title: virtual memory 2
-  slides_prelim: yes
-  sldies_extra: yes
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
+  sldies_see: 2024-02-08
   description: |
     *  page tables
        *  small example (not in memory)
@@ -114,8 +124,7 @@
   week: 5
   title: virtual memory 3
   reading: "[VM](readings/vm.html) §2.1, 3.2"
-  sldies_prelim: yes
-  slides_extra: yes
+  slides_see: 2024-02-08
   description: |
     *  page tables (finish)
        *  as a tree
@@ -130,6 +139,9 @@
   week: 6
   title: processes 1 
   reading: "[VM](readings/vm.html) 4, [kernel](readings/thread.html) §3.3.3; [threads](readings/thread.html)"
+  slides_see: 2024-02-08
+  slides: yes
+  slides_prelim: yes
   description: |
     *  page tables: loading data on demand
     *  processes, threads
@@ -147,6 +159,7 @@
   week: 6
   title: proceses 2
   reading: "[threads](readings/thread.html)"
+  slides_see: 2024-02-20
   description: |
     *  briefly, pipe and dup2
     *  file descriptors
@@ -159,8 +172,9 @@
   week: 7
   title: caches 1
   reading: "[cache](readings/cache.html)"
-  slides_extra: yes
+  slides: yes
   slides_prelim: yes
+  slides_extra: yes
   description: |
     *  caching idea
     *  (if time) connecting processors to memory
@@ -175,6 +189,7 @@
 - date: 2024-02-29
   week: 7
   title: caches 2
+  slides_see: 2024-02-27
   reading: "[cache](readings/cache.html)"
   description: |
     *  cache misses and C code
@@ -194,7 +209,8 @@
 
 - date: 2024-03-12
   week: 9
-  title: caches 3 / threads 1
+  title: caches 3
+  slides_see: 2024-02-27
   reading: "[cache](readings/cache.html), [threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
   description: |
    *  write policies
@@ -207,7 +223,10 @@
 
 - date: 2024-03-14
   week: 9
-  title: "synchronization 1"
+  title: "threads / synchronization 1"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[sync](readings/sync.html) §1, 2-7, 8-9; [consistency](readings/consistency.html) §1"
   description: |
     *  creating new threads
@@ -222,8 +241,12 @@
 
 - date: 2024-03-19
   week: 10
-  title: synchronization 3
+  title: "synchronization 2 / deadlock"
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
+  slides_see: 2024-03-14
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
    *  reordering
    *  locks and mutexes
@@ -241,6 +264,8 @@
   week: 10
   title: synchronization 4
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
+  slides_see: 2024-03-19
+  slides_see2: 2024-03-14
   description: |
     *  deadlock
        *  definition
@@ -255,6 +280,10 @@
   week: 11
   title: synchronization 5 / networking 1
   reading: "[protocols](readings/protocols.html) §1-2"
+  slides_see: 2024-03-14
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  monitors (finish)
     *  false sharing
@@ -274,6 +303,7 @@
   week: 11
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
+  slides_see: 2024-03-26
   description: |
     *  connections atop mailbox model (finish)
     *  names and addresses
@@ -292,6 +322,10 @@
   week: 12
   title: networking 3 / secure channels 1
   reading: "[security](readings/sec.html) §1-1.5"
+  slides_see: 2024-03-26
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  mapping between addresses and names/other addresses:
         *  MAC <-> IP mapping
@@ -311,6 +345,7 @@
   week: 12
   title: secure channels 2
   reading: "[security](readings/sec.html) §1-3"
+  slides_see: 2024-04-02
   description: |
    *  cryptography (con't)
        *  asymmetric encryption
@@ -323,6 +358,8 @@
   week: 13
   reading: "[processors](readings/processors.html) §1-3"
   title: secure channels 3 / pipelining 1
+  slides_see: 2024-04-02
+  slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
@@ -344,7 +381,7 @@
   week: 13
   title: pipelining 2
   reading: "[processors](readings/processors.html) §2-3"
-  slides_prelim: yes
+  slides_see: 2024-04-09
   description: |
     *  pipelining for the CPU (con't)
     *  hazards and hazard handlings
@@ -358,6 +395,8 @@
 - date: 2024-04-16
   week: 14
   title: pipelining 3
+  slides_see: 2024-04-09
+  slides: yes
   slides_prelim: yes
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
@@ -377,6 +416,9 @@
   week: 14
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  briefly, branch prediction ideas (start)
        *  local history
@@ -392,6 +434,10 @@
 - date: 2024-04-23
   week: 15
   title: out-of-order 2 / side channels
+  slides_see: 2024-04-18
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
     *  data flow model for out-of-order
     *  out-of-order limits
@@ -406,8 +452,7 @@
 - date: 2024-04-25
   week: 15
   title: meltdown/spectre
-  slides_extra: yes
-  slides_prelim: yes
+  slides_see: 2024-04-23
   description: |
     *  meltdown:
         *  speculation past a priv/protection fault
