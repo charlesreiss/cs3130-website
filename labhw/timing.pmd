@@ -7,7 +7,7 @@ author: Charles Reiss
 
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
 
-    1.  calling an empty function and having it return
+    1.  calling an empty function (such that the function call is not optimized away) and having it return
     2.  running the `getppid` function from `<unistd.h>`
     3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bin/true` does, you may use `system("/usr/bin/true")` instead]
     4.  sending a signal to the current process and having its signal handler start executing (but not including the signal handler returning)
@@ -29,15 +29,18 @@ author: Charles Reiss
     In a file called `timings.txt`:
 
     *  either place the measurements output by your program or identify which data file(s) they are in
-    *  if necessary, convert the measurements from your programs to the time estimates listed above (be sure to include units)
+    *  if necessary, convert the measurements from your programs to time estimates for each of the items listed above (be sure to include units)
     *  describe what calculations (if any) were necessary to convert the measurements output from your program to time estimates
 
     If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files.
 
-    In either `timings.txt` or separate data files, your submission must include the parts of your program's output you used to compute the final time estimates you report; if your program outputs additional data, that does not need to be submitted. Also, it is acceptable if your program only outputs summaries of the measurements it takes rather than every individual measurement.
+    In either `timings.txt` or separate data files, your submission must include the parts of your program's output you used to compute the final time estimates you report;
+    if your program outputs additional data, that does not need to be submitted. Also, it is acceptable if your program only outputs summaries of the measurements it takes rather than every individual measurement.
 
     When producing the time estimates, you and/or your program must:
 
+    *  have C code be compiled with some optimizations enabled (at least `-Og` or `-O1` or `-Os` or similar) to avoid timing the very awkward assembly clang or gcc generate when
+       all optimizations are disabled;
     *  make an attempt to account for any measurement overhead (that is, the time unintentionally included in raw timings not used to do the task being timed but instead to
        obtain clock measurements, setup the task, etc.)
        One strategy might be to measure the time required for "nothing" and subtract this time from other
