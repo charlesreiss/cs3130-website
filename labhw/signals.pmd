@@ -249,3 +249,6 @@ When you handle `SIGUSR1`
 
 2.  If you do not setup a signal handler for SIGUSR1 and it is received by a process, then, by default, the process will terminate
     and the shell will print the message "User defined signal 1".
+
+3.  If you're having issues with "segmentation faults" and "bus errors", then it might be useful to use AddressSanitizer
+    (a memory error detector) by compiling and linking with `-fsanitize=address` and `-g`.
