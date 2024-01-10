@@ -2,19 +2,6 @@
 title: Networking lab
 ...
 
-<div class="changelog">
-Changelog:
-
-*  27 Oct 2023: update netlab.tar's libnetsim.a to support waitForAllTimeouts() being called multiple times;
-   also adjust make flags some
-*  30 Oct 2023: be more explicit that number after GET selects which message to retrieve and that this is
-   is filled in from the command line by the supplied code
-*  30 Oct 2023: fix bug where simulator would mishandle clearTimeout() of a currently active callback; adjust supplied code to not print out extra NULs
-*  31 Oct 2023: be more explicit about checkoff requirements
-*  31 Oct 2023: update netlab.tar to make `./netlab 0` (not required for lab) avoids sending duplicate messages for single ACKs
-*  1 Nov 2023: be more explicit that waitForAllTimeouts is what calls recvd and timeout callbacks; mention that it needs to run in Sleep example
-*  2 Nov 2023: explicitly state that acknowledging the previous message requests the next one be sent/resent
-</div>
 
 You've already worked with TCP sockets in CSO1.
 In this lab you'll learn how to add reliability on top of unreliable "mailbox" type model of a network.
@@ -25,8 +12,8 @@ We've provided a simple network simulator for you.
 
 {.exercise ...} Possibly working with a partner ---
 
-1. Download [netlab.tar](../files/netlab.tar) *[last updated 31 Oct]* on a linux system
-    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/F2023/files/netlab.tar`{.bash}).
+1. Download [netlab.tar](../files/netlab.tar) *[last updated 9 Jan]* on a linux system
+    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/files/netlab.tar`{.bash}).
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
     
@@ -73,14 +60,14 @@ We provide a network simulation driver program. It has the following pieces:
     If `timeoutID` was returned by `setTimeout` and the callback has not yet been invoked,
     unschedules that callback.
     Otherwise, does nothing.
-- Function `void waitForAllTimeouts(void)`.
-    If there are no pending timeouts or messages, returns immediately.
+- Function `void waitForAllTimeoutsAndMessagesThenExit(void)`.
+    If there are no pending timeouts or messages, exits *the entire program* immediately.
     Otherwise, blocks until there are no scheduled timeouts or messages left, running a loop
-    that calls the timeout callbacks and/or `recvd` as it waits.
+    that calls the timeout callbacks and/or `recvd` as it waits. After there are no more timeouts,
+    exits the entire program.
 
     May **not** be called from a callback.
 
-    Note, if you do not call this function then your program will stop before it receives any messages.
 
 # Protocol
 
@@ -152,12 +139,12 @@ You may assume that if a message has not arrived after a full second, it will no
             int three = setTimeout(pnum, 100, (void *)3uL);
             int four = setTimeout(pnum, 2000, (void *)4uL);
             clearTimeout(two);
-            waitForAllTimeouts();
+            waitForAllTimeoutsAndMessagesAndExit();
         }
 
   Note that `2` is not printed out because of the call to `clearTimeout`.
 
-  The `waitForAllTimeouts` function looks at the list of non-cleared timeouts, waits
+  The `waitForAllTimeoutsAndMessagesAndExit` function looks at the list of non-cleared timeouts, waits
   until each of those timeouts expire, and calls the callback function (`pnum` in this case)
   with the specified arguments (1, 3, and 4) in the case.
 
@@ -182,7 +169,7 @@ You may assume that if a message has not arrived after a full second, it will no
             Bar();
         }
 
-  (assuming that waitForAllTimeouts runs so it can call ExamplePartTwo.
+  (assuming that waitForAllTimeoutAndMessagesAndExit runs so it can call ExamplePartTwo.
   If Example itself was called by waitForAllTimeouts using `recvd` or callback, then returning from recvd or
   that callback will continue running waitForAllTimeouts. Otherwise (such as if Example was called from `main()`),
   the code that calls Example would need to later call `waitForAllTimeouts`.)
