@@ -5,6 +5,10 @@ index_title: HWs+Labs
 index_sort: 2
 ---
 
+<div class="oldsite">
+This schedule is tentative and may be updated substantially, especially before the semester starts.
+</div>
+
 This page lists all lab and homework assignments.
 There are also [quizzes]({{site.quiz_site}}){:target="_top"} after each week of lecture.
 

@@ -5,8 +5,12 @@ index_title: Schedule
 index_sort: 99
 ---
 
+<div class="oldsite">
+This schedule is tentative and may be updated substantially, especially before the semester starts.
+</div>
+
 <p>
-<b>This schedule is an estimate. It may be updated based on the actual pacing of the course material.</b>
+This schedule is an estimate. It may be updated based on the actual pacing of the course material.
 </p>
 
 <p id="weekJump" style="display: none"></p>
