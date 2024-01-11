@@ -65,6 +65,8 @@
 - date: 2024-01-31
   week: 3
   lab: true
+  description: |
+    (add deadline)
 
 - date: 2024-02-01
   week: 3
@@ -190,6 +192,8 @@
 - date: 2024-02-28
   lab: true
   week: 7
+  description: |
+    (drop deadline)
 
 - date: 2024-02-29
   week: 7
@@ -225,6 +229,8 @@
 - date: 2024-03-13
   lab: true
   week: 9
+  description: |
+    (withdraw deadline)
 
 - date: 2024-03-14
   week: 9
