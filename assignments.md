@@ -5,7 +5,7 @@ index_title: HWs+Labs
 index_sort: 2
 ---
 
-<div class="oldsite">
+<div class="oldsitesm">
 This schedule is tentative and subject to change (especially before the semester starts).
 </div>
 

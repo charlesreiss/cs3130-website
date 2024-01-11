@@ -5,7 +5,7 @@ index_title: Schedule
 index_sort: 99
 ---
 
-<div class="oldsite">
+<div class="oldsitesm">
 This schedule is tentative and subject to change (especially before the semester starts).
 </div>
 
