@@ -6,7 +6,7 @@ index_sort: 99
 ---
 
 <p>
-This schedule is an estimate. It may be updated based on the actual pacing of the course material.
+<b>This schedule is an estimate. It may be updated based on the actual pacing of the course material.</b>
 </p>
 
 <p id="weekJump" style="display: none"></p>
