@@ -32,6 +32,21 @@
 
 - date: 2024-01-25
   week: 2
+  title: accounts
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  slides: yes
+  slides_prelim: yes
+  description: |
+    *  user IDs/account abstraction
+    *  POSIX permissions, briefly
+    *  set-user-ID, sudo is not kernel mode
+    *  privilege escalation 
+
+- date: 2024-01-26
+  week: 2
+
+- date: 2024-01-30
+  week: 3
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 / [threads](reading/threads.html) §1-2"
   slides: yes
@@ -45,10 +60,13 @@
        *  what the hardware must do
        *  exception handlers
 
-- date: 2024-01-26
-  week: 2
+- date: 2024-01-31
+  week: 3
+  lab: true
+  description: |
+    (add deadline)
 
-- date: 2024-01-30
+- date: 2024-02-01
   week: 3
   title: exceptions / signals 1
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
@@ -62,35 +80,17 @@
        *  events triggering
        *  signal handlers and implementation (start)
 
-- date: 2024-01-31
+- date: 2024-02-02
   week: 3
-  lab: true
-  description: |
-    (add deadline)
 
-- date: 2024-02-01
-  week: 3
+- date: 2024-02-06
+  week: 4
   title: signals 2
   reading: "[kernel](readings/kernel.html) §2.3.1"
   slides_see: 2024-01-30
   description: |
     *  Unix signals
        *  signal handlers and implementation (finish)
-
-- date: 2024-02-02
-  week: 3
-
-- date: 2024-02-06
-  week: 4
-  title: accounts
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
-  slides: yes
-  slides_prelim: yes
-  description: |
-    *  user IDs/account abstraction
-    *  POSIX permissions, briefly
-    *  set-user-ID, sudo is not kernel mode
-    *  privilege escalation 
 
 - date: 2024-02-07
   week: 4

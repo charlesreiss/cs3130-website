@@ -1,12 +1,21 @@
 - name: make
   lab: true
   page: labhw/make.html
-  due: 2024-01-31
+  due: 2024-01-24
   submit_file: Makefile
+
+
+- name: permissions
+  lab: true
+  page: labhw/permissions.html
+  comment: "also answer sheet on quiz system"
+  comment: "should have random permission conversion problem generator"
+  submit_file: permissions-lab.tar
+  due: 2024-01-31
 
 - name: warmup
   open: 2024-01-18
-  due: 2024-02-09
+  due: 2024-02-02
   page: labhw/warmup.html
   grade_describe: |
     When the output below indicates "not yet graded" that means your output did not match
@@ -25,14 +34,6 @@
   page: labhw/signals.html
   due: 2024-02-07
   submit_file: "*.c"
-
-- name: permissions
-  lab: true
-  page: labhw/permissions.html
-  comment: "also answer sheet on quiz system"
-  comment: "should have random permission conversion problem generator"
-  submit_file: permissions-lab.tar
-  due: 2024-02-14
 
 - name: timing
   due: 2024-02-16
