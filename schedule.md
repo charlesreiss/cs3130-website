@@ -6,7 +6,7 @@ index_sort: 99
 ---
 
 <div class="oldsite">
-This schedule is tentative and may be updated substantially, especially before the semester starts.
+This schedule is tentative and subject to change (especially before the semester starts).
 </div>
 
 <p>
