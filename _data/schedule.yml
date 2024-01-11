@@ -27,6 +27,7 @@
  
 - date: 2024-01-24
   week: 2
+  lab: true
   x_no_class: true
   x_description: tentatively no lab
 

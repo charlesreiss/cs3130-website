@@ -35,6 +35,10 @@
   due: 2024-02-07
   submit_file: "*.c"
 
+- name: (possible VM/exceptions lab)
+  lab: true
+  due: 2024-02-14
+
 - name: timing
   due: 2024-02-16
   page: labhw/timing.html
