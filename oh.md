@@ -8,7 +8,7 @@ index_title: Office Hours
 
 Office hours are either remote via Discord or at the physical location specified in the calendar below.
 
-For remote office hours, the invite to the Discord will be posted on Collab.
+For remote office hours, the invite to the Discord will be posted on Canvas.
 The `#rules` channel in the Discord will have instructions for how remote office hours work.
 
 ## Office hour queue
