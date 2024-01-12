@@ -35,8 +35,13 @@
   due: 2024-02-07
   submit_file: "*.c"
 
-- name: (possible VM/exceptions lab)
+- name: fork lab
+  short_name: fork-lab
   lab: true
+  page: labhw/fork-lab.html
+  submit_files:
+  - "my_system.c"
+  - "*.c"
   due: 2024-02-14
 
 - name: timing
@@ -56,12 +61,39 @@
   - "*.asm"
   - "Makefile"
 
+- name: (possible VM/exceptions lab)
+  lab: true
+  due: 2024-02-21
+
+- name: fork HW
+  short_name: fork
+  comment: "FIXUP: missing HW?"
+  comment: for pipelines? after covered in lecture?
+  page: labhw/fork.html
+  grade_describe: |
+    If all tests fail/do not run, it may be because:
+    <ul><li>you included a `main()` function that interferes with our testing code,
+    <li>you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully, or
+    <li>your code crashes due to a memory error (see section 3.1 of the assignment for advice on checking for this locally)
+    </ul>
+  submit_file: "fork_run.c"
+  due: 2024-02-23
+
+- name: sync games
+  lab: true
+  short_name: sync
+  page: labhw/sync.html
+  comments: needs changes for in-person?
+  comments: need .php stuff
+  missing-if-no-feedback: true
+  due: 2024-02-28
+
 - name: pagetable part 1
   short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2024-02-23
+  due: 2024-03-01
   grade_describe: |
     Note that the results below include many tests which aren't part of the grade for part 1.
   submit_files:
@@ -75,31 +107,20 @@
   - "*.txt"
   - "*.gz"
 
-- name: fork lab
-  short_name: fork-lab
-  lab: true
-  page: labhw/fork-lab.html
-  submit_files:
-  - "my_system.c"
-  - "*.c"
-  due: 2024-02-21
 
-
-- name: sync games
-  lab: true
-  short_name: sync
-  page: labhw/sync.html
-  comments: needs changes for in-person?
-  comments: need .php stuff
+- name: cache exercises
+  short_name: cachelab
+  old_page: labhw/memoize.html
+  page: labhw/cache-lab.html
   missing-if-no-feedback: true
-  due: 2024-02-28
-
+  lab: true
+  due: 2024-03-13
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2024-03-13
+  due: 2024-03-20
   pre_lab: true
   no_late: true
   no-late: true
@@ -139,7 +160,7 @@
   page: labhw/code-review.html
   comments: needs submission site link correction
   missing-if-no-feedback: true
-  due: 2024-03-13
+  due: 2024-03-20
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3
@@ -150,7 +171,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2024-03-15
+  due: 2024-03-22
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 1 Oct)</small>:
     <ul>
@@ -181,28 +202,6 @@
   - "*.txt"
   - "*.gz"
 
-- name: cache exercises
-  short_name: cachelab
-  old_page: labhw/memoize.html
-  page: labhw/cache-lab.html
-  missing-if-no-feedback: true
-  lab: true
-  due: 2024-03-20
-
-
-- name: fork HW
-  short_name: fork
-  comment: "FIXUP: missing HW?"
-  comment: for pipelines? after covered in lecture?
-  page: labhw/fork.html
-  grade_describe: |
-    If all tests fail/do not run, it may be because:
-    <ul><li>you included a `main()` function that interferes with our testing code,
-    <li>you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully, or
-    <li>your code crashes due to a memory error (see section 3.1 of the assignment for advice on checking for this locally)
-    </ul>
-  submit_file: "fork_run.c"
-  due: 2024-03-22
 
 - name: pthreads (dining philosophers) 
   lab: true

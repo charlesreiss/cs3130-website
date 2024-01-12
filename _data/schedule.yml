@@ -99,52 +99,6 @@
 
 - date: 2024-02-08
   week: 4
-  title: virtual memory 1
-  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  description: |
-    *  virtual memory concept
-        *   address space and address sizes
-    *  page tables
-    *  storing in memory (start)
-
-- date: 2024-02-09
-  week: 4
-
-
-- date: 2024-02-13
-  week: 5
-  title: virtual memory 2
-  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
-  sldies_see: 2024-02-08
-  description: |
-    *  page tables
-       *  small example (not in memory)
-       *  storing in memory (finish)
-
-- date: 2024-02-14
-  lab: true
-  week: 5
-
-- date: 2024-02-15
-  week: 5
-  title: virtual memory 3
-  reading: "[VM](readings/vm.html) §2.1, 3.2"
-  slides_see: 2024-02-08
-  description: |
-    *  page tables (finish)
-       *  as a tree
-       *  multi-level lookup example
-       *  permission bits
-
-
-- date: 2024-02-16
-  week: 5
-
-- date: 2024-02-20
-  week: 6
   title: processes 1 
   reading: "[VM](readings/vm.html) 4, [kernel](readings/thread.html) §3.3.3; [threads](readings/thread.html)"
   slides_see: 2024-02-08
@@ -159,12 +113,12 @@
     *  preview: threads
     *  waiting for processes
 
-- date: 2024-02-21
-  lab: true
-  week: 6
+- date: 2024-02-09
+  week: 4
 
-- date: 2024-02-22
-  week: 6
+
+- date: 2024-02-13
+  week: 5
   title: proceses 2
   reading: "[threads](readings/thread.html)"
   slides_see: 2024-02-20
@@ -172,6 +126,52 @@
     *  briefly, pipe and dup2
     *  file descriptors
     *  pipe
+
+- date: 2024-02-14
+  lab: true
+  week: 5
+
+- date: 2024-02-15
+  week: 5
+  title: virtual memory 1
+  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
+  description: |
+    *  virtual memory concept
+        *   address space and address sizes
+    *  page tables
+    *  storing in memory (start)
+
+
+- date: 2024-02-16
+  week: 5
+
+- date: 2024-02-20
+  week: 6
+  title: virtual memory 2
+  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
+  sldies_see: 2024-02-08
+  description: |
+    *  page tables
+       *  small example (not in memory)
+       *  storing in memory (finish)
+
+- date: 2024-02-21
+  lab: true
+  week: 6
+
+- date: 2024-02-22
+  week: 6
+  title: virtual memory 3
+  reading: "[VM](readings/vm.html) §2.1, 3.2"
+  slides_see: 2024-02-08
+  description: |
+    *  page tables (finish)
+       *  as a tree
+       *  multi-level lookup example
+       *  permission bits
 
 - date: 2024-02-23
   week: 6
@@ -274,7 +274,7 @@
 
 - date: 2024-03-21
   week: 10
-  title: synchronization 4
+  title: synchronization 3
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
   slides_see: 2024-03-19
   slides_see2: 2024-03-14
@@ -292,7 +292,7 @@
 
 - date: 2024-03-26
   week: 11
-  title: synchronization 5 / networking 1
+  title: synchronization 4 / networking 1
   reading: "[protocols](readings/protocols.html) §1-2"
   slides_see: 2024-03-14
   slides: yes
