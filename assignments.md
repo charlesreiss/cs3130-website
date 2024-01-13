@@ -5,11 +5,13 @@ index_title: HWs+Labs
 index_sort: 2
 ---
 
-<div class="oldsitesm">
+<!-- <div class="oldsitesm">
 This schedule is tentative and subject to change (especially before the semester starts).
-</div>
+</div> -->
 
-This page lists all lab and homework assignments.
+This page lists all lab and homework assignments and their currently anticipated due times.
+(The schedule may change based on the actual pacing of the course material and other factors.)
+
 There are also [quizzes]({{site.quiz_site}}){:target="_top"} after each week of lecture.
 
 Labs which allow submission are due by 11:59am (before noon) the following day unless otherwise noted. Labs which do not allow submission must be completed in the lab time

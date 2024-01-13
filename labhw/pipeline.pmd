@@ -3,18 +3,12 @@ title: Pipeline Diagrams
 author: Luther Tychnoviech
 ...
 
-<div id="changelog">
-Changelog:
-
-*  2 Nov 2023: correct URL to point to tool for this semester; adjust due date slightly later
-*  14 Nov 2023: more text re: how branch prediction works
-</div>
 
 # Your Task
 
 Fill in a pipeline diagram for a small function's full execution.
 
-Place you answer in the online tool <https://kytos02.cs.virginia.edu/cs3130-fall2023/pld.php>.
+Place you answer in the online tool <https://kytos02.cs.virginia.edu/cs3130-spring2024/pld.php>.
 
 # Guidelines
 

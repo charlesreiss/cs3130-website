@@ -1,5 +1,6 @@
 - name: make
   lab: true
+  tentative: true
   page: labhw/make.html
   due: 2024-01-24
   submit_file: Makefile
@@ -7,6 +8,7 @@
 
 - name: permissions
   lab: true
+  tentative: true
   page: labhw/permissions.html
   comment: "also answer sheet on quiz system"
   comment: "should have random permission conversion problem generator"
@@ -17,6 +19,7 @@
   open: 2024-01-18
   due: 2024-02-02
   page: labhw/warmup.html
+  tentative: true
   grade_describe: |
     When the output below indicates "not yet graded" that means your output did not match
     something the autograder recognized. Usually, this means something is wrong, but we
@@ -31,6 +34,7 @@
 - name: signal handling
   short_name: signal
   lab: true
+  tentative: true
   page: labhw/signals.html
   due: 2024-02-07
   submit_file: "*.c"
@@ -38,6 +42,7 @@
 - name: fork lab
   short_name: fork-lab
   lab: true
+  tentative: true
   page: labhw/fork-lab.html
   submit_files:
   - "my_system.c"
@@ -47,6 +52,7 @@
 - name: timing
   due: 2024-02-16
   page: labhw/timing.html
+  tentative: true
   grade_describe: |
     I expect this assignment to be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
@@ -63,10 +69,12 @@
 
 - name: (possible VM/exceptions lab)
   lab: true
+  tentative: true
   due: 2024-02-21
 
 - name: fork HW
   short_name: fork
+  tentative: true
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html
@@ -81,6 +89,7 @@
 
 - name: sync games
   lab: true
+  tentative: true
   short_name: sync
   page: labhw/sync.html
   comments: needs changes for in-person?
@@ -89,6 +98,7 @@
   due: 2024-02-28
 
 - name: pagetable part 1
+  tentative: true
   short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable.html
@@ -114,6 +124,7 @@
   page: labhw/cache-lab.html
   missing-if-no-feedback: true
   lab: true
+  tentative: true
   due: 2024-03-13
 
 - name: pagetable 2 (pre code review)
@@ -122,6 +133,7 @@
   portion: 0.25
   due: 2024-03-20
   pre_lab: true
+  tentative: true
   no_late: true
   no-late: true
   due_message: pagetable part 2 (pre code review) due BEFORE FIRST LAB &mdash; normal late policy does not apply
@@ -156,6 +168,7 @@
 
 - name: code reviews
   lab: true
+  tentative: true
   short_name: codereview
   page: labhw/code-review.html
   comments: needs submission site link correction
@@ -172,6 +185,7 @@
   page: labhw/pagetable.html
   portion: 2.0
   due: 2024-03-22
+  tentative: true
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 1 Oct)</small>:
     <ul>
@@ -205,6 +219,7 @@
 
 - name: pthreads (dining philosophers) 
   lab: true
+  tentative: true
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
@@ -224,11 +239,13 @@
   short_name: cache-programs
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
+  tentative: true
   due: 2024-03-29
 
 
 - name: networking
   lab: true
+  tentative: true
   page: labhw/networking.html
   submit_file: "*.c"
   due: 2024-04-03
@@ -237,6 +254,7 @@
   short_name: tlb
   comment: no introducing lab
   page: labhw/tlb.html
+  tentative: true
   submit_files:
   - "*.c"
   - "*.h"
@@ -255,6 +273,7 @@
 - name: openmp
   short_name: openmp
   lab: true
+  tentative: true
   page: labhw/openmp.html
   submit_files:
   - "*.c"
@@ -265,6 +284,7 @@
   short_name: life
   page: labhw/life.html
   due: 2024-04-12
+  tentative: true
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
@@ -274,6 +294,7 @@
 
 - name: secure channels lab
   lab: true
+  tentative: true
   short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
@@ -291,6 +312,7 @@
 - name: side channel
   short_name: side-channel
   lab: true
+  tentative: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
   due: 2024-04-24
@@ -298,6 +320,7 @@
 - name: C++ OR templates
   short_name: cpp
   lab: true
+  tentative: true
   page: labhw/cpp-choice.html
   submit_files:
   - "*.cpp"
@@ -311,6 +334,7 @@
   short_name: OOO
   page: labhw/ooo-exercise.html
   due: 2024-04-26
+  tentative: true
   missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
   xx-no-late: true

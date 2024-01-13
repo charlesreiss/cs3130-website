@@ -2,12 +2,6 @@
 title: OOO Exercise
 ...
 
-<div class="changelog">
-Changelog:
-
-*  30 Nov 2023: be explicit about assumption that previous register values andphysical registers are available for part 3.
-*  1 Dec 2023: be explicit that when fewer instructions are available to issue, as many as possible are issued; be explicit about the register values read/forwarded in issue being the input ones
-</div>
 
 # Hypothetical OOO processor
 
@@ -65,7 +59,7 @@ We will show instructions in a three-argument form like (**regardless of whether
 
 this indicates to add %r01 and %r02 and put the result into %r03.
 
-Answer the questions on [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2023/ooo.php).
+Answer the questions on [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/ooo.php).
 
 ## Part 1: register renaming
 
