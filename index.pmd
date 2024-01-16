@@ -56,7 +56,7 @@ that are accessible via SSH.
 Unlike some offerings of CSO1, you are welcome to use an IDE of your choice (that doesn't write your code for you)
 as long as your submission will work when we test it from a command line-like environment.
 
-A lot of students have had success using VSCode with its SSH support, as is (for example)
+A lot of students have had success using VSCode and its SSH support to access the department machines, as is (for example)
 described in [the Fall 2024 CSO1's first lab](https://researcher111.github.io/uva-cso1-F23-DG/labs/lab1-ssh-ed.html).
 
 In addition, for accessing the department machines remotely, you may find these writeups helpful:
