@@ -50,14 +50,18 @@ We will augment these with various examples, online articles, and other resource
 
 ## Environment for assignments
 
-The assignments in this class require using a POSIX-like environment
-(such as Linux).
-You could either setup a suitable environment yourself or use
-one of the department machines remotely.
-If you're using the department machines, you may find these
-writeups helpful:
+We will test your assignments on an environment similar to the department's Linux machines
+that are accessible via SSH.
 
-*  options for [using SSH](ssh.html)
+Unlike some offerings of CSO1, you are welcome to use an IDE of your choice (that doesn't write your code for you)
+as long as your submission will work when we test it from a command line-like environment.
+
+A lot of students have had success using VSCode with its SSH support, as is (for example)
+described in [the Fall 2024 CSO1's first lab](https://researcher111.github.io/uva-cso1-F23-DG/labs/lab1-ssh-ed.html).
+
+In addition, for accessing the department machines remotely, you may find these writeups helpful:
+
+*  options for [using SSH and setting up keypairs to avoid retyping your password all the time](ssh.html)
 *  instructions for [remote desktop access (via NoMachine)](https://www.cs.virginia.edu/wiki/lib/exe/fetch.php?media=nx-setup_v3a.pdf)
 
 ## Old quizzes/exams
