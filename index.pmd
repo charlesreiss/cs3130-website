@@ -58,6 +58,9 @@ as long as your submission will work when we test it from a command line-like en
 
 A lot of students have had success using VSCode and its SSH support to access the department machines, as is (for example)
 described in [the Fall 2024 CSO1's first lab](https://researcher111.github.io/uva-cso1-F23-DG/labs/lab1-ssh-ed.html).
+If using VSCode, you may find it helpful to install
+the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+and [Makefile](https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools) extensions.
 
 In addition, for accessing the department machines remotely, you may find these writeups helpful:
 
