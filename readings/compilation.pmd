@@ -3,14 +3,20 @@ title: Compilation, Linking, Libraries
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  17 Jan 2024: merge text previously in "glossary" under makefiles into here; mention explicitly that standard library is linked by default
+</div>
+
 # (review?) `clang`/`gcc` modes
 
 The `clang` program (or the `gcc` or `cc` programs, which work essentially the same way)
 can perform assembly, linking, and compilation, depending on how it is invoked:
 
-*  compile only: `clang -S foo.c` --- compile `foo.c` into the assembly file `foo.s`
+*  compile only: `clang -S foo.c` --- compile the source file `foo.c` into the assembly file `foo.s`. Note that this also uses any files `foo.c` #includes.
 *  assemble only: `clang -c foo.s` --- assemble `foo.s` into the object file `foo.o`
-*  link only (executable): `clang foo.o bar.o quux.o` --- link the object files `foo.o`, `bar.o`, and `quux.o` into an executable `a.out`^[This is the default name on Unix-like systems; on native Windows, it may be a.exe.]
+*  link only (executable): `clang foo.o bar.o quux.o` --- link the object files `foo.o`, `bar.o`, and `quux.o` into an executable `a.out`^[This is the default name on Unix-like systems; on native Windows, it may be a.exe.]. By default this also links in the *standard library* (which contains functions like `printf` and `malloc`) to the executable.
 *  link only (shared library): `clang -shared foo.o bar.o quux.o` --- link the object files `foo.o`, `bar.o`, and `quux.o` into a shared library `a.out`
 
 Or you can perform multiple at once:
@@ -32,9 +38,12 @@ You can specify a different output file for any of these commands with `-o FILEN
 
 # producing and using libraries
 
-There are two types of libraries:
+A library is a collection of related implementations. For C or C++, a libary is generally provided as a *library file* and (one or more) *header files*.
+
+There are two types of library files:
 
 *  dynamic libraries, which are loaded from the library file while an executable is running. These most commonly use the extension `.so` (Linux), `.dylib` (OS X), or `.dll` (Windows).
+
 *  static libraries, which are embedded into an executable when it is linked. These most commonly use the extension `.a` (Linux, OS X), `.lib` (Windows).
 
 ## producing and using static libraries (on Unix-like systems)
@@ -103,6 +112,35 @@ If `libfoo.so` is not placed in one these directories, then you will need to:
             $ ./exec ...
 
        You can also use syntax like `LD_LIBRARY_PATH=directory1:directory2:directory3` to specify multiple directories.
+
+# Glossary
+
+Header File
+:   A file (`.h` for C; `.h`, `.hpp`, `.H` or `.hh` for C++) that provides 
+    
+    - the signatures of functions, but not their definitions
+    - the names and types of global variables, but not where in memory they go
+    - `typedef`s and `#define`s
+
+Object File
+:   A file (`.o` on most systems, `.obj` on Windows) that contains assembled binary code in the target ISA, with metadata to allow the linker to place it in various locations in memory depending on what other files it is linked with.
+
+Standard Library
+:   A *library* to which every program is linked by default.
+    Virtually every language has a *standard library*, which does much to define the character of the language.
+    
+    The C language's *standard library* is typically called `libc` and is defined by the C standard (see <https://en.wikipedia.org/wiki/C_standard_library>); there are several implementations of it, but `glibc` is probably the most pervasive on Linux.
+
+Static Library
+:   A file (`.a` on most Unix-like systems, `.lib` on Windows) that contains one more more *object files* together with metadata needed to connect them into a running code system by the *linker*. This compile-time linkage means that each executable has its own copy of the library stored internally to the file, without external dependencies.
+
+Source File
+:   A file (`.c` for C, `.cpp`, `.C`, or `.cc` for C++) that provides
+    
+    - the implementation of functions
+    - the declaration and implementation of provided helper functions
+    - the memory in which to store global variables
+
 
 # Additional resources
 

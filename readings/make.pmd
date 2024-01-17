@@ -3,6 +3,11 @@ title: Makefiles
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  17 Jan 2024: move text previously in glossary here to compilation; add text about automatically finding dependencies
+</div>
 
 # The `make` tool
 
@@ -22,7 +27,7 @@ The key component of a makefile is a **rule**, consisting of three parts:
 
 The *target* must begin a line (i.e., must not be indented) and end in a colon.
 Anything after that colon is a *dependency*.
-Indented lines that follow (which must be indented with a single tab character, not spaces) are *systems commands*.
+Indented lines that follow (which must be indented with a single tab character, not spaces) are *system commands*.
 
 
 {.example ...}
@@ -82,8 +87,38 @@ since `runme`'s dependencies include `hello.o` and `bye.o`, both of those rules 
 
 Makefiles routinely use variables (which they call macros) to separate out the list of files from the rules that make them, as well as to allow easy swapping out of different compilers, compilation flags, etc.
 
-Variables are defined with `NAME := meaning`{.makefile} syntax. Traditionally, variable names are in all-caps.
-Variables are used by placing them in parentheses, preceded by a dollar sign: `$(NAME)`.
+Variables are defined with `NAME = meaning`{.makefile} or `NAME := meaning`{.makefile} or `NAME ::= meaning`{.makefile} syntax.
+(The syntaxes with `:` evaluate `meaning` immediately; the syntax without evaluates it each time it is used.[^varexpand])
+Traditionally, variable names are in all-caps.  Variables are used by placing them in parentheses, preceded by a dollar sign: `$(NAME)`.
+
+[^varexpand:]
+    See also [GNU make manual, "Two Flavors of Variables"](https://www.gnu.org/software/make/manual/html_node/Flavors.html).
+
+    For example,
+   
+        BAR = c 
+        FOO = $(BAR) b
+        BAR = a
+
+    will make `$(FOO)` evaluate to `a b` even though `BAR`.
+
+    In contrast:
+
+        BAR = c
+        FOO := $(BAR)
+        BAR = a
+
+    will make `$(FOO)` evaluate to `c b`.
+
+    In addition to variable references, the right-hand side of assignments can contain "function" calls, for example:
+
+        DATE1 = $(shell date)
+        DATE2 := $(shell date)
+
+    will run the `date` command and use its output as the value of `$(DATE1)` or `$(DATE2)`. Since `DATE2`'s assignment
+    uses `:=`, the `date` command will be run just once for it, making the value of `$(DATE2)` constant. In contrast,
+    `$(DATE1)` will rerun the `date` command each time it is used, potentially resulting in different values over
+    time.
 
 Some variables names that are very common to find in Makefiles include:
 
@@ -110,7 +145,8 @@ You *should* always have a rule named `clean` that removes all files that are bu
 
 ## Pattern rules
 
-You will often want a few "pattern rules" using a few "automatic variables". There are a lot of things [you could learn](https://www.gnu.org/software/make/manual/make.html#Pattern-Rules) about these, but a simple version will often suffice:
+You will often want a few "pattern rules" using a few "automatic variables".
+There are a lot of things [you could learn](https://www.gnu.org/software/make/manual/make.html#Pattern-Rules) about these, but a simple version will often suffice:
 
 - Use `%.ending` as a target. `%` is a wild-card and can represent any name.
 - Use `%.other_ending` as a dependency. `%` has the same meaning it did in the target.
@@ -172,50 +208,38 @@ You can also combine lines; a `;` is (almost) the same as a new-line to `bash`.
 
 {/}
 
+## Identifying dependencies
+
+In the case of .o files depending on their .c files and executables depending on their .o files and similar,
+a programmer can easily determine the appropriate dependencies for a makefile rule by reading
+the command the rule would run.
+
+But dependencies of .o files on .h files are less apparent. If `foo.c` includes `bar.h`, then the rule
+for producing `foo.o` should depend on `bar.h` (and `foo.c`), since changes to `bar.h` might change
+what goes into `foo.o`. This would mean that when `foo.c`'s `#include`s are updated, the makefile
+rule needs to be updated correspondingly.
+
+Although it is common to manually synchronize makefile rules and the `#include`s in source files,
+often projects that use makefiles automate this task. There are a variety of mechanisms that you might see projects
+use to do this (examples: [1](https://www.gnu.org/software/make/manual/html_node/Automatic-Prerequisites.html),
+[2](https://linux.die.net/man/1/makedepend)). (Alternately, avoiding worrying about such issues might be a
+reason projects will use a build system where the programmers do not use `make` or do not use `make` directly.)
+
+
 # Multi-file project design
 
-It is possible to have a compiler read every file involved in a project and from them create one big binary.
-However, that is generally undesirable, as it means both that the build process takes time proportional to the total project size and that the resulting binary can get quite large.
+In simple use of Makefiles, a *project*, which may produce multiple executable program and/or libraries,
+will have a single Makefile.
 
-## Glossary
+Generally, this Makefile will have targets and corresponding rules:
 
-Header File
-:   A file (`.h` for C; `.h`, `.hpp`, `.H` or `.hh` for C++) that provides 
-    
-    - the signatures of functions, but not their definitions
-    - the names and types of global variables, but not where in memory they go
-    - `typedef`s and `#define`s
+*  for each object file, to compile each source file (for example, `foo.c`) into that object file (`foo.o`) whenever it or anything it #includes changes.
+   Commonly, rather than writing an individual rule for each .o file, pattern rules will be used for this task.
 
-Library
-:   A collection of related implementations, generally provided as both a *library file* and a *header file*.
+*  for each executable program and/or library, to link all the object files that form a parto of it if any of the object files have changed
 
-Library File
-:   Either a *shared library* file or a *static library* file.
-
-Object File
-:   A file (`.o` on most systems, `.obj` on Windows) that contains assembled binary code in the target ISA, with metadata to allow the linker to place it in various locations in memory depending on what other files it is linked with.
-
-Shared Library
-:   A file (`.so` on Linux, `.dll` on Windows, `.dylib` on OS X) that contains one more more *object files* together with metadata needed to connect them into a running code system by the *loader*. This load-time linkage means that (a) multiple running programs can share the same copy of the shared library, saving memory; and (b) the library can be updated independently of the programs that use it, ideally allowing modular updates.
-    
-    Because they are linked by the *loader* each time the program is run, your OS needs to (a) have a copy of the library files and (b) know where they are in order to run a program that uses *shared libraries*.
-
-Standard Library
-:   A *library* to which every program is linked by default.
-    Virtually every language has a *standard library*, which does much to define the character of the language.
-    
-    The C language's *standard library* is typically called `libc` and is defined by the C standard (see <https://en.wikipedia.org/wiki/C_standard_library>); there are several implementations of it, but `glibc` is probably the most pervasive on Linux.
-
-Static Library
-:   A file (`.a` on most Unix-like systems, `.lib` on Windows) that contains one more more *object files* together with metadata needed to connect them into a running code system by the *linker*. This compile-time linkage means that each executable has its own copy of the library stored internally to the file, without external dependencies.
-
-Source File
-:   A file (`.c` for C, `.cpp`, `.C`, or `.cc` for C++) that provides
-    
-    - the implementation of functions
-    - the declaration and implementation of provided helper functions
-    - the memory in which to store global variables
-
+*  for common tasks (like "all" for building everything and "clean" for removing built files) that just depend on other targets or run certain commands, so users can run things like `make clean` to
+   do those tasks
 
 # Some additional references
 
