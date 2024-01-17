@@ -18,17 +18,22 @@ We would recommend working with a partner, but it is also fine if you do this al
 3. Read enough of the files to get an idea what they do. Then build them with `clang *.c` and run `./a.out` to verify your understanding. Ask a TA for help if you are not sure you fully understand.
 
 4. Add a `Makefile` in the resulting `make-lab` directory, which
-    - has targets for the following
-        - build each `.c` file into a `.o` file
-        - combine `cheer.o` and `grunt.o` into a library (either `libsay.a` or `libsay.so`)
-        - combine the library and `guesser.o` into program `guesser`
+    - has rules for the following
+        - building each `.c` file into a `.o` file
+        - combining `cheer.o` and `grunt.o` into a library (either `libsay.a` or `libsay.so`)
+        - combining the library and `guesser.o` into program `guesser`
     - has `CC`, `CFLAGS`, and `LDFLAGS` we can edit
     - `make all` creates `guesser` and its dependencies
     - `make clean` deletes all files that `make` can recreate
-    - editing `say.h` causes all files to be rebuilt
-    - editing any .c file causes its .o file to be rebuilt, along with the library and/or program if they depend on the .c file
+
+    Your `Makefile` must have correct dependencies for all rules, so for example,
+    - running `make` twice in a row without editing anything does not cause anything to rebuilt the second time
+    - editing `say.h` and running `make` should cause all files to be rebuilt
+    - editing any .c file and running `make` causes its .o file to be rebuilt, along with the library and/or program if they depend on the .c file
         - Note: if you chose library format `libsay.a`, then `guesser` should be rebuilt if `libsay.a` changes;
             but if you chose library format `libsay.so`, then `guesser` should not be rebuilt if `libsay.so` changes, only if `say.h` or `guesser.c` change.
+    
+    Also, your Makefile should not rely on "built-in" rules^[make has some default rules, for example for building .o files from .c files, intended to allow Makefiles to avoid boilerplate for common tasks. For this lab, we want to write all the needed make rules explicitly.]; you can test this using `make --no-builtin-rules ...` instead of `make ...`.
 
 5. Either:
     *  Place a comment (line starting with `#`) at the top of your Makefile indicating  who you worked with and submit your Makefile to the [submission site](https://kytos02.cs.virginia.edu/cs3130-spring2023/task.php?task=make). (If working with a partner, both must submit.) *and/or*
