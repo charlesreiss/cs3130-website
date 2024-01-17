@@ -5,14 +5,6 @@ author:
     - Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  9 Oct 2023: do not omit trailing newline in example output from parallelgetoutput (though it is fine if your implementation strips it)
-*  11 Oct 2023: mention testing 0 + lots of arguments for `parallelgetoutput`
-*  13 Oct 2023: consistently call test program in example `args.py`, not both `args.py` and `foo.py`
-</div>
-
 {.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
