@@ -8,7 +8,7 @@ Changelog:
 
 *  17 Jan 2024: move text previously in glossary here to compilation; add text about automatically finding dependencies
 *  18 Jan 2024: add section on suffix rules
-*  18 Jan 2024: correct typo in := versus = example code
+*  18 Jan 2024: correct typo in := versus = example code; format footnote as footnote
 </div>
 
 # The `make` tool
@@ -93,7 +93,7 @@ Variables are defined with `NAME = meaning`{.makefile} or `NAME := meaning`{.mak
 (The syntaxes with `:` evaluate `meaning` immediately; the syntax without evaluates it each time it is used.[^varexpand])
 Traditionally, variable names are in all-caps.  Variables are used by placing them in parentheses, preceded by a dollar sign: `$(NAME)`.
 
-[^varexpand:]
+[^varexpand]:
     See also [GNU make manual, "Two Flavors of Variables"](https://www.gnu.org/software/make/manual/html_node/Flavors.html).
 
     For example,
