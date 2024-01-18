@@ -82,7 +82,7 @@ This schedule is tentative and subject to change (especially before the semester
   {%- endif -%}
 {%- endif -%}
 {%- if video -%}
-      | screencapture (<a href="/~cr4bd/videoplayer/?3130/F2023/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
+      | screencapture (<a href="/~cr4bd/videoplayer/?3130/S2024/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
     )
 {%- else -%}
     {%- if day.video_mp4 -%}
