@@ -11,8 +11,7 @@
   reading: "[overview](readings/intro.html), (partially) [makefiles](readings/make.html)"
   description: |
     * course outline
-    * .o, .a, .so
-    * building
+    * pointers in C (review?)
 
 - date: 2024-01-19
   week: 1
@@ -20,16 +19,19 @@
 - date: 2024-01-23
   week: 2
   title: building (pt 2)
-  slides_see: 2024-01-18
+  slides: yes
+  slides_prelim: yes
   reading: "[makefiles](readings/make.html)"
   description: |
+    *  .o, .a, .so files
+    *  dynamic and static linking
     *  make
+       *  rules
+       *  pattern rules
  
 - date: 2024-01-24
   week: 2
   lab: true
-  x_no_class: true
-  x_description: tentatively no lab
 
 - date: 2024-01-25
   week: 2
