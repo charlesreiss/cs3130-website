@@ -8,6 +8,7 @@ Changelog:
 
 *  17 Jan 2024: move text previously in glossary here to compilation; add text about automatically finding dependencies
 *  18 Jan 2024: add section on suffix rules
+*  18 Jan 2024: correct typo in := versus = example code
 </div>
 
 # The `make` tool
@@ -106,7 +107,7 @@ Traditionally, variable names are in all-caps.  Variables are used by placing th
     In contrast:
 
         BAR = c
-        FOO := $(BAR)
+        FOO := $(BAR) b
         BAR = a
 
     will make `$(FOO)` evaluate to `c b`.
