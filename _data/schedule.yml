@@ -7,7 +7,6 @@
   week: 1
   title: introduction / building (pt 1)
   slides: yes
-  slides_prelim: yes
   reading: "[overview](readings/intro.html), (partially) [compilation](reading/compilation.html)"
   description: |
     * course outline
