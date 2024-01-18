@@ -1,0 +1,186 @@
+---
+title: Virtual memory exploration
+author: Charles Reiss
+...
+
+<div class="oldsite">This lab is an incomplete draft and likely to change substantially.</div>
+
+# Your Task
+
+1.  Download the skeleton code and run `make` to compile it.
+
+    It will produce two executables:
+
+        ./usage
+
+    queries the several aspects  current program's memory usage, then runs a function 
+    `labStuff` you can edit in
+    `usage.c`, then prints the new memory usage.
+
+    The program displays
+
+        *  the "VM size", the size of available data and code, regardless of whether it
+            is currently mapped in the page table or will be loaded on demand
+        *  the "resident set size", which is essentially the size of loaded data and code
+        *  the "page table size", which is the total size of all page tables for the program
+
+    Your tasks in this lab will be to modify the program to change the values displayed
+    for each of these by writing code in the function `labStuff`.
+
+    The function takes an integer parameter, for which part of the lab, you can change this value
+    by running
+        
+        ./lab NUMBER
+
+    You can try `./lab 0` to see the output it shows when the `labStuff` function does nothing.
+    It will shows some statistics related to memory allocations, which should all have no changes
+    when the `labStuff` function does nothing.
+
+    In the exercises below, you'll modify `labStuff` to do some operations with memory and
+    observe how they change those statistics.
+
+## Part 1
+
+1.  On Linux, the kernel usually sets up page table entries only at the last
+    possible moment. That is, when a program first attempts to access a page,
+    it will not yet be in the page table, then an exception will occur called
+    a "page fault". Linux records the number of page faults that occur
+    classifying them as "major" (requiring I/O) and "minor" (not requiring I/O).
+
+    Make a global array like:
+
+        volatile char global_array[4096 * 32];
+
+    Declaring it as `volatile` will make our C compilers not optimize away memory
+    accesses to the array^[This functionality is intended primarily for the purpose of
+    supporting "memory-mapped I/O", where reading and writing memory locations
+    causes an input or output operation to occur instead of just storing or
+    retrieving values. So, generally, assembly
+    that the compiler generates will not omit reads and writes to volatile values
+    even if they superficially appear to do nothing.
+
+    An alternate, more direct strategy to avoid such optimizations would be to use
+    assembly to do the memory accesses.].
+
+    From the code in `labStuff` when the parameter is `1`, access this array
+    and run it, observing how:
+
+    *  accessing it once increase the number of minor faults, and it does not matter if
+       the access is a read or write
+    *  accessing it multiple times within the same page does not increase the number of minor faults
+    *  accessing it in different pages increases the number of minor faults
+
+## Part 2
+
+1.  Modify labStuff to allocate 1MB when the parameter is `2`,
+    and observing how the resident set size changes substantailly less than the VM size.
+
+    If you don't use the allocated memory, the compiler may optimize the memory allocation
+    away. To avoid this, see the advice below.
+
+    See how accessing the first byte of this allocation changes the "resident set size"
+    repeatedly.
+
+## Part 3
+
+2.  Linux usually actually allocates pages for data as it is accessed.
+
+    Taking advantage of this modify the labStuff function when the parameter is `3`
+    increase the "VM size" by 1MB and the "resident set size" by 128 KB (or as close to
+    these numbers as you can get as possible).
+    Do so with the fewest memory accesses you can to the allocated memory.
+
+## Part 4
+
+1.  Multi-level page tables are more space-efficient when the used pages are closer together.
+
+    Modify the labStuff function so that when the paramter is `4` it allocates at most 128KB of
+    memory for the program (as measured by "Size (bytes)")
+    but uses as much much page table storage as possible (as measured by "PTE (bytes)").
+
+    To do this, it will be helpful to know what the memory layout of the program is. Unfortuantely,
+    this is randomzied by default. You can disable this by running the program with
+    `setarch --addr-no-randomize ./lab ...` instead of `./lab ...`.
+
+     I would recommend using
+    `mmap` to allocate memory with `MAP_FIXED` to choose a particular address (as discussed below).
+
+    To figure out what is the most possible, note that x86-64 Linux (as configured on portal, etc.)
+    uses a 4-level page table with 4096 byte pages and 512 entries in page tables at each level.
+
+## Checkoff/Submission
+
+1.  Show a TA your labStuff function and the `./lab` program operating for parts 2-4,
+    or submit your lab.c to the submission site.
+
+# Hints/Advice
+
+## mmap generally
+
+1.  The `mmap` library function (documented in `man mmap`) was originally built to load
+    a file's data into a program's memory. For example:
+
+        int file_descriptor = open("foo.dat", O_RDWR);
+        if (file_descriptor < 0) { handle_error(); }
+        char *ptr;
+        ptr = mmap(NULL /* "hint" address */,
+                   8192 /* length of mapping */,
+                   PROT_READ | PROT_WRITE /* types of access allowed */,
+                   MAP_SHARED /* "flags" controlling mapping */,
+                   file_descriptor,
+                   0 /* offset in file */
+        );
+        if (ptr == MAP_FAILED) { handle_error(); }
+
+    will make `ptr` point to the first 8192 bytes (two pages on x86-64 Linux) of the file `foo.dat`.
+    Since `MAP_SHARED` was selected, modifying what `ptr` points to will modify the file `foo.dat`.
+    (The modifications will be "shared" with other users of the file; the alternate `MAP_PRIVATE`
+    will give a private copy of the file's data.)
+
+## mmap for memory allocation 
+
+2.  On Linux, `mmap` can also be used for memory allocation, without involving any actual files.
+    To do this one supplies
+    the invalid file descriptor `-1` and specifies `MAP_ANONYMOUS` as one of the 
+    `mmap` "flags". (The mapping is anonymous in the sense that there is no file name it corresponds to.)
+    For example, 
+
+        char *ptr;
+        ptr = mmap(NULL /* hint address */
+                   8192 /* length */,
+                   PROT_READ | PROT_WRITE,
+                   MAP_PRIVATE | MAP_ANONYMOUS,
+                   -1 /* file descriptor (-1 for "none") */
+                   0
+            );
+        if (ptr == MAP_FAILED) { handle_error(); }
+
+    will make `ptr` point to a new allocation of 8192 bytes.
+
+## MAP_FIXED_NOREPALCE and MAP_FIXED
+
+3.  By defaut `mmap` chooses a new location for the mapping.
+
+    But you can use the MAP_FIXED_NOREPLACE or MAP_FIXED flags to require the mapping be located in at
+    a particular virtual address.
+
+    For example:
+
+        char *ptr;
+        ptr = mmap(0x123456000,
+                   8192,
+                   PROT_READ | PROT_WRITE,
+                   MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED_NOREPLACE,
+                   -1
+                    0
+            );
+        if (ptr == MAP_FAILED) { handle_error(); }
+
+    will allocate 8192 bytes of memory at virtual address 0x123456000 and set
+    `ptr` to 0x123456000 if it succeeds. If something is already at that address
+    or it fails for some other reason, `ptr` will be set to MAP_FAILED.
+
+    Unlike MAP_FIXED_NOREPLACE, using MAP_FIXED will not fail if something is
+    already allocated at the requested address; instead those address will be
+    reassigned (probably breaking the program if anything important was there).
+
