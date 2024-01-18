@@ -8,7 +8,7 @@ Changelog:
 
 *  17 Jan 2024: move text previously in glossary here to compilation; add text about automatically finding dependencies
 *  18 Jan 2024: add section on suffix rules
-*  18 Jan 2024: correct typo in := versus = example code; format footnote as footnote
+*  18 Jan 2024: correct typo in := versus = example code; format that discussion as endnote as intended
 </div>
 
 # The `make` tool
