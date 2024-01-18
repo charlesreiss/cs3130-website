@@ -20,7 +20,6 @@
   open: 2024-01-18
   due: 2024-02-02
   page: labhw/warmup.html
-  tentative: true
   grade_describe: |
     When the output below indicates "not yet graded" that means your output did not match
     something the autograder recognized. Usually, this means something is wrong, but we
