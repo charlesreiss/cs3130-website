@@ -7,6 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  17 Jan 2024: move text previously in glossary here to compilation; add text about automatically finding dependencies
+*  18 Jan 2024: add section on suffix rules
 </div>
 
 # The `make` tool
@@ -87,7 +88,7 @@ since `runme`'s dependencies include `hello.o` and `bye.o`, both of those rules 
 
 Makefiles routinely use variables (which they call macros) to separate out the list of files from the rules that make them, as well as to allow easy swapping out of different compilers, compilation flags, etc.
 
-Variables are defined with `NAME = meaning`{.makefile} or `NAME := meaning`{.makefile} or `NAME ::= meaning`{.makefile} syntax.
+Variables are defined with `NAME = meaning`{.makefile} or `NAME := meaning`{.makefile} syntax.
 (The syntaxes with `:` evaluate `meaning` immediately; the syntax without evaluates it each time it is used.[^varexpand])
 Traditionally, variable names are in all-caps.  Variables are used by placing them in parentheses, preceded by a dollar sign: `$(NAME)`.
 
@@ -176,6 +177,41 @@ Part            Meaning
 
 {/}
 
+## Suffix rules
+
+Pattern rules are as shown above are flexible and relatively intuitive, but do not work
+in all versions of `make`. (In particular, they are an addition of GNU make, which is almost
+always the version of `make` you will find on a Linux or OS X system, and the version
+of `make` we will assume in this course.)
+They were added to supplement a less flexible and (in my opinion) less intuitive
+(but much older and more widely supported)
+mechanism known as *suffix rules*.
+
+A suffix rule represents the case files with one extension are produced from files with
+another extension. To make a suffix rule that produces `.ending` files from `.other_ending`
+files, then:
+
+*  Use `.other_ending.ending` should be the "target" of the rule; this will represent
+    (something).other_ending being a dependency and (something).ending being a target.
+*  Use `$<` in the system commands for the dependency file ((something).other_ending)
+*  Use `$@` in the system commands for the target file ((something).ending)
+
+In order to ensure that a `.other_ending.ending` rule has the wild-card property,
+one needs to inform `make` that `.other_ending` and `.ending` are file extensions
+using the special `.SUFFIXES` target:
+    
+    .SUFFIXES: .ending .other_ending
+
+{.example ...}
+A suffix rule for compiling .o files from .c files with the same effect
+as the above pattern rule example may look like:
+
+```makefile
+.c.o: config.h
+	$(CC) -c $(CFLAGS) $< -o $@
+```
+
+{/}
 
 {.aside ...}
 # A bit about `bash`
