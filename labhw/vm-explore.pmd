@@ -7,18 +7,21 @@ author: Charles Reiss
 
 # Your Task
 
-1.  Download the skeleton code and run `make` to compile it.
+1.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
-    It will produce two executables:
+    It will produce an executable caled `./lab`, which you can run with
 
-        ./usage
+        ./lab NUMBER
 
-    queries the several aspects  current program's memory usage, then runs a function 
-    `labStuff` you can edit in
-    `usage.c`, then prints the new memory usage.
+    where NUMBER is an integer that will be passed to the function `labStuff`
+    which you will edit later in the lab. You can try `./lab 0` to see an example of the output.
 
-    The program displays
+    It displays the program's memory layout, then displays several statistics
+    about the program's memory usage, then runs the function 
+    `labStuff`, then prints the new memory usage.
 
+    When displaying memory usage, the program displays
+        
         *  the "VM size", the size of available data and code, regardless of whether it
             is currently mapped in the page table or will be loaded on demand
         *  the "resident set size", which is essentially the size of loaded data and code
@@ -26,15 +29,6 @@ author: Charles Reiss
 
     Your tasks in this lab will be to modify the program to change the values displayed
     for each of these by writing code in the function `labStuff`.
-
-    The function takes an integer parameter, for which part of the lab, you can change this value
-    by running
-        
-        ./lab NUMBER
-
-    You can try `./lab 0` to see the output it shows when the `labStuff` function does nothing.
-    It will shows some statistics related to memory allocations, which should all have no changes
-    when the `labStuff` function does nothing.
 
     In the exercises below, you'll modify `labStuff` to do some operations with memory and
     observe how they change those statistics.
