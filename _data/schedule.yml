@@ -7,7 +7,7 @@
   week: 1
   title: introduction / building (pt 1)
   slides: yes
-  reading: "[overview](readings/intro.html), (partially) [compilation](reading/compilation.html)"
+  reading: "[overview](readings/intro.html), (partially) [compilation](readings/compilation.html)"
   description: |
     * course outline
     * pointers in C (review?)
@@ -20,7 +20,7 @@
   title: building (pt 2)
   slides: yes
   slides_prelim: yes
-  reading: "[compilation](reading/compilation.html), [makefiles](readings/make.html)"
+  reading: "[compilation](readings/compilation.html), [makefiles](readings/make.html)"
   description: |
     *  .o, .a, .so files
     *  dynamic and static linking
