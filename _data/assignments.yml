@@ -1,6 +1,5 @@
 - name: make
   lab: true
-  tentative: true
   page: labhw/make.html
   open: 2024-01-20
   due: 2024-01-24
