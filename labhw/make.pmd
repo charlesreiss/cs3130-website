@@ -36,7 +36,7 @@ We would recommend working with a partner, but it is also fine if you do this al
     Also, your Makefile should not rely on "built-in" rules^[make has some default rules, for example for building .o files from .c files, intended to allow Makefiles to avoid boilerplate for common tasks. For this lab, we want to write all the needed make rules explicitly.]; you can test this using `make --no-builtin-rules ...` instead of `make ...`.
 
 5. Either:
-    *  Place a comment (line starting with `#`) at the top of your Makefile indicating  who you worked with and submit your Makefile to the [submission site](https://kytos02.cs.virginia.edu/cs3130-spring2023/task.php?task=make). (If working with a partner, both must submit.) *and/or*
+    *  Place a comment (line starting with `#`) at the top of your Makefile indicating  who you worked with and submit your Makefile to the [submission site](https://kytos02.cs.virginia.edu/cs3130-spring2024/task.php?task=make). (If working with a partner, both must submit.) *and/or*
     *  Show a TA your `Makefile`. They may ask you to show it working, or to look at its contents, or both.
 
 {/}
