@@ -9,6 +9,7 @@ Changelog:
 *  17 Jan 2024: move text previously in glossary here to compilation; add text about automatically finding dependencies
 *  18 Jan 2024: add section on suffix rules
 *  18 Jan 2024: correct typo in := versus = example code; format that discussion as endnote as intended
+*  24 Jan 2024: mention that variables can be overriden on command line
 </div>
 
 # The `make` tool
@@ -135,6 +136,8 @@ CXXFLAGS        -O2 -g      Compile-time flags for the C++ compiler
 --------        ----------  ----------------------------------
 
 Even if you do not need linker flags or libraries, it's still common to define a blank `LDFLAGS :=`  or `LIBS :=` and use `$(LDFLAGS)` or `$(LIBS)` in all linking locations so that if you later realize you need to link to an external library (like the math library, `-lm`), you can easily do so.
+
+In addition to being edited in the Makefile, variables can be temporarily overriden on the command line. For example, running `make target CFLAGS="-Wall -g"` will run `make target`, but with `CFLAGS` set to `-Wall -g` instead of whatever setting is in the Makefile.
 
 
 ## Targets that aren't files
