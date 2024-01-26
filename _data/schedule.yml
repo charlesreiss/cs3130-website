@@ -36,12 +36,10 @@
   title: accounts
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   slides: yes
-  slides_prelim: yes
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
     *  set-user-ID, sudo is not kernel mode
-    *  privilege escalation 
 
 - date: 2024-01-26
   week: 2
