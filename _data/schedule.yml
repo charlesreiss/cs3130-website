@@ -47,7 +47,7 @@
 - date: 2024-01-30
   week: 3
   title: privilege / exceptions
-  reading: "[kernel](readings/kernel.html) §1-2.2, 3 / [threads](readings/threads.html) §1-2"
+  reading: "[kernel](readings/kernel.html) §1-2.2, 3 / [thread](readings/thread.html) §1-2"
   slides: yes
   slides_prelim: yes
   sldies_extra: yes

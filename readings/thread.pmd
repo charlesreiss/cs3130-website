@@ -3,15 +3,6 @@ title: Processes and threads
 author: Luther Tychnoviech and Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  27 Sep 2023: add section on file descriptors
-*  6 Oct 2023: correct duplicated Y to X in dup2 description
-*  9 Oct 2023: merge material in kernel reading section on processes+threads here
-*  10 Oct 2023: reference both pthreads API + synchronization write-up in last section
-</div>
-
 # Terminology
 
 ## Multitasking
