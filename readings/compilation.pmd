@@ -56,7 +56,7 @@ will create a library `libfoo.a`.^[The `c` option says to create a new archive s
 
 Then, if the resulting `libfoo.a` is placed in one of the standard system directories^[`clang -print-search-dirs` lists these] a command like
 
-   clang -o exec main.o -lfoo
+    clang -o exec main.o -lfoo
 
 will create an executable linking `main.o` and the library together. You should usually put the `-lXXX` flags last on the command line:
 the linker processes the files listed in order and, when adding a static library, by default only includes parts that appear to be needed by files it
