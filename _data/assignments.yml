@@ -8,7 +8,6 @@
 
 - name: permissions
   lab: true
-  tentative: true
   page: labhw/permissions.html
   comment: "also answer sheet on quiz system"
   comment: "should have random permission conversion problem generator"
