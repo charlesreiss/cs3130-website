@@ -52,12 +52,9 @@
   slides_prelim: yes
   sldies_extra: yes
   description: |
+    *  quiz review
     *  kernel mode
     *  system calls
-    *  exceptions
-       *  events triggering
-       *  what the hardware must do
-       *  exception handlers
 
 - date: 2024-01-31
   week: 3
@@ -69,14 +66,14 @@
   week: 3
   title: exceptions / signals 1
   reading: "[kernel](readings/kernel.html) §3, 2.3.1"
-  slides_see: 2024-01-30
   slides: yes
-  slides_prelim: yes
+  slides_extra: yes
   description: |
+    *  exceptions
+       *  other events triggering
     *  threads and context switches
     *  process = threads + address space
-    *  Unix signals
-       *  events triggering
+    *  Unix signals 
        *  signal handlers and implementation (start)
 
 - date: 2024-02-02
