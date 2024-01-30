@@ -3,6 +3,12 @@ title: Permissions
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  30 Jan 2024: give insturctions for logging into same portal machine for /localtmp, instead of referring to future signals lab
+</div>
+
 
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
 As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
@@ -26,7 +32,9 @@ I would very strongly recommend having a partner.], to achieve the following:
       this with something like `chmod og+x /u/COMPUTING-ID` (On directories,
       `x` is "search" permission; which allows accessing files within the direcgtory if you know their names).
 
-   *  If it is in `/localtmp`, make sure you are on the same portal backend machine, like you did for the signals lab.
+   *  If it is in `/localtmp`, make sure you are on the same portal backend machine as your partner. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your partner's SSH (or yours, if you reconnect) go directly into that portal##.cs.virginia.edu.
+
+
 
 1. Create a directory `dir` with a file `foo` and a file `baz` where you can `ls` and `cat` freely, but your partner finds that
     a. `ls dir`{.bash} refuses to run
