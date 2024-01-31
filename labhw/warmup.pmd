@@ -47,7 +47,7 @@ author: Charles Reiss
        of `strsep`, `index`, and `rindex`.
        You can determine if a function meets this criteria by looking for
 
-       *  the "CONFORMING TO" section of its manpage will listing some verison of "POSIX"
+       *  the "CONFORMING TO" section of its manpage listing some verison of "POSIX"
           or C89 or C99 or C11 (or multiple of these); or
        *  it is in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
           from the 2018 POSIX specification
