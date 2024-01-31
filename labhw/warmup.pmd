@@ -49,7 +49,7 @@ author: Charles Reiss
 
        *  the "CONFORMING TO" section of its manpage listing some verison of "POSIX"
           or C89 or C99 or C11 (or multiple of these); or
-       *  it is in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
+       *  it appearing in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
           from the 2018 POSIX specification
 
     *  in `split.h`, write an appropriate header file declaring `split()` and include
