@@ -3,6 +3,11 @@ title: warmup
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  31 Jan 2024: correct description of what's declared in the header file to say `string_split` and not `split`
+</div> 
 
 # Your task
 
@@ -52,7 +57,7 @@ author: Charles Reiss
        *  it appearing in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
           from the 2018 POSIX specification
 
-    *  in `split.h`, write an appropriate header file declaring `split()` and include
+    *  in `split.h`, write an appropriate header file declaring `string_split()` and include
        [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
        against multiple inclusion.
 
