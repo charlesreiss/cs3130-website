@@ -7,6 +7,8 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  30 Jan 2024: give insturctions for logging into same portal machine for /localtmp, instead of referring to future signals lab
+*  31 Jan 2024: clarify that questions on the answer sheet assume file already exists (as the answer sheet states)
+*  31 Jan 2024: note that lab should be done on portal
 </div>
 
 
@@ -22,7 +24,7 @@ I would very strongly recommend having a partner.], to achieve the following:
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
    on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/quizzes/quiz.php?qid=permissions-answer-sheet).
 1. Create a directory either:
-    *  in your home directory, or
+    *  in your home directory preferably on the portal machines (we strongly recommend doing the lab on the department machines where we know setfacl-style ACLs work), or
     *  in `/localtmp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
    Do each of the following steps in that directory.
 1. Make sure the directory is accessible to your partner. Use `chmod` or `setfacl` to set permissions on the directory.
@@ -48,7 +50,7 @@ I would very strongly recommend having a partner.], to achieve the following:
     a. appends a line containing the current day and time to file `simple_runs`
     a. reports how many lines `simple_runs` contains
   (See the section of the reading on executable text files.)
-1. Determine which of the following are possible to achieve and write your answers
+1. Determine which of the following are possible after creating a file `xyxxy` and setting its permissions and write your answers
    (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/quizzes/quiz.php?qid=permissions-answer-sheet):.
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
