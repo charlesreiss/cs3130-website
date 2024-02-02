@@ -65,7 +65,9 @@
   - "*.asm"
   - "Makefile"
 
-- name: (possible VM/exceptions lab)
+- name: virtual memory exploration
+  page: labhw/vm-explore.html
+  short_name: vmexplore
   lab: true
   tentative: true
   due: 2024-02-21
