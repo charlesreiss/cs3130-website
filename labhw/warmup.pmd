@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  31 Jan 2024: correct description of what's declared in the header file to say `string_split` and not `split`
+*  1 Feb 2024: add note about `-ftrivial-auto-var-init=pattern`
 </div> 
 
 # Your task
@@ -225,3 +226,5 @@ $ <br>
 2.  To avoid scanning the string multiple times, you can use `realloc` to change the size of a dynamically allocated array. (But note that you might need to initialize space made by `realloc` --- it might not default to 0/NULL.)
 
 3.  You may find referencing the CSO1 labs on using C helpful, see for example labs 9 through 12 of the [Spring 2023 offering of CSO1](https://www.cs.virginia.edu/~jh2jf/courses/cs2130/spring2023/labs/)
+
+4.  In addition to the problems caught by AddressSanitizer, you might have memory errors that arise from assuming local variables are initialized in a particular way even though you don't set them explicitly. With recent versions of GCC and with clang you can use the `-ftrivial-auto-var-init=pattern` flag to help catch this --- this will make the compiler initialize any uninitialized local variables to a pattern likely to cause issues if it is used.
