@@ -83,7 +83,8 @@
   week: 4
   title: signals 2
   reading: "[kernel](readings/kernel.html) §2.3.1"
-  slides_see: 2024-02-01
+  slides_prelim: yes
+  slides: yes
   description: |
     *  Unix signals
        *  signal handlers and implementation (finish)
