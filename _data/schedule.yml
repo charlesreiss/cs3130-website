@@ -73,8 +73,6 @@
        *  other events triggering
     *  threads and context switches
     *  process = threads + address space
-    *  Unix signals 
-       *  signal handlers and implementation (start)
 
 - date: 2024-02-02
   week: 3
@@ -87,7 +85,7 @@
   slides: yes
   description: |
     *  Unix signals
-       *  signal handlers and implementation (finish)
+       *  signal handlers and implementation
 
 - date: 2024-02-07
   week: 4
