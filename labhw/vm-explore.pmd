@@ -18,7 +18,7 @@ author: Charles Reiss
 
     It displays the program's memory layout, then displays several statistics
     about the program's memory usage, then runs the function 
-    `labStuff`, then prints the new memory usage.
+    `labStuff`, then prints the new memory usage and the new memory layout.
 
     When displaying memory usage, the program displays
         
@@ -86,6 +86,31 @@ author: Charles Reiss
 
 ## Part 4
 
+1.  As we'll learn later, the multi-level page table structure used on modern systems
+    is more efficient when pages are closer to together. Explore this by allocating and
+    using memory at addresses different distances from the allocation.
+
+    A problem we'll run into in doing this is that Linux (and most current OSes) by
+    default randomize addresses. We can avoid by this by running
+
+        setarch --addr-no-randomize ./lab ...
+
+    instead of
+
+        setarch --addr-no-randomize ./lab ...
+
+    After doing this, make `./lab 4` allocate memory at an address
+    about `0x10000` bytes after the heap and allocate and use
+    4096 bytes of memory at that location. To do this, I would
+    recommend using `mmap` with `MAP_FIXED` or `MAP_FIXED_NOREPLACE`
+    as discussed below.
+
+    Then make `./lab 5` do the same thing but allocate memory at an addresss
+    about  `0x10000000` bytes after the heap.
+
+    Observe how there is a difference in the PTE bytes between these two scenarios.
+
+<!--
 1.  Multi-level page tables are more space-efficient when the used pages are closer together.
 
     Modify the labStuff function so that when the paramter is `4` it allocates at most 128KB of
@@ -101,6 +126,7 @@ author: Charles Reiss
 
     To figure out what is the most possible, note that x86-64 Linux (as configured on portal, etc.)
     uses a 4-level page table with 4096 byte pages and 512 entries in page tables at each level.
+-->
 
 ## Checkoff/Submission
 
@@ -178,3 +204,5 @@ author: Charles Reiss
     already allocated at the requested address; instead those address will be
     reassigned (probably breaking the program if anything important was there).
 
+4.  Note that the location you specify must be at the beginning of a page,
+    which on our systems is a multiple of 4096 (0x1000)
