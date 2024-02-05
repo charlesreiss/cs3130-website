@@ -9,6 +9,8 @@ author: Charles Reiss
 
 1.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
+    (Note that this code requires a 64-bit Linux environment, like on portal.)
+
     It will produce an executable caled `./lab`, which you can run with
 
         ./lab NUMBER
@@ -106,7 +108,7 @@ author: Charles Reiss
     as discussed below.
 
     Then make `./lab 5` do the same thing but allocate memory at an addresss
-    about  `0x10000000` bytes after the heap.
+    about  `0x10000000000` bytes after the heap.
 
     Observe how there is a difference in the PTE bytes between these two scenarios.
 
