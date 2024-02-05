@@ -24,10 +24,10 @@ author: Charles Reiss
 
     When displaying memory usage, the program displays
         
-        *  the "VM size", the size of available data and code, regardless of whether it
-            is currently mapped in the page table or will be loaded on demand
-        *  the "resident set size", which is essentially the size of loaded data and code
-        *  the "page table size", which is the total size of all page tables for the program
+    *  the "size", the size of available data and code, regardless of whether it
+       is currently mapped in the page table or will be loaded on demand
+    *  the "resident set size", which is essentially the size of loaded data and code
+    *  the "page table size", which is the total size of all page tables for the program
 
     Your tasks in this lab will be to modify the program to change the values displayed
     for each of these by writing code in the function `labStuff`.
@@ -97,7 +97,7 @@ author: Charles Reiss
 2.  Linux usually actually allocates pages for data as it is accessed.
 
     Taking advantage of this modify the labStuff function when the parameter is `3`
-    increase the "VM size" by 1MB and the "resident set size" by 128 KB (or as close to
+    increase the "size" by 1MB and the "resident set size" by 128 KB (or as close to
     these numbers as you can get as possible).
     Do so with the fewest memory accesses you can to the allocated memory.
 
