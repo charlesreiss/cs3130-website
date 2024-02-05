@@ -49,8 +49,6 @@
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 "
   slides: yes
-  slides_prelim: yes
-  sldies_extra: yes
   description: |
     *  quiz review
     *  kernel mode
