@@ -9,7 +9,7 @@ author: Charles Reiss
 
 1.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
-    (Note that this code requires a 64-bit Linux environment, like on portal.)
+    (Note that this lab expects 64-bit Linux environment with 4096 byte pages, like on portal.)
 
     It will produce an executable caled `./lab`, which you can run with
 
@@ -63,19 +63,34 @@ author: Charles Reiss
 
     *  accessing it once increase the number of minor faults, and it does not matter if
        the access is a read or write
-    *  accessing it multiple times within the same page does not increase the number of minor faults
+    *  as you access the array, the resident size (amount of memory actually assigned
+       to the program) increases one page (4096 byte) units
+    *  accessing it multiple times within the same page (4096 byte region)
+       does not increase the number of minor faults
     *  accessing it in different pages increases the number of minor faults
 
 ## Part 2
 
 1.  Modify labStuff to allocate 1MB when the parameter is `2`,
-    and observing how the resident set size changes substantailly less than the VM size.
 
-    If you don't use the allocated memory, the compiler may optimize the memory allocation
-    away. To avoid this, see the advice below.
+    Note that normally when you allocate memory and do not do something useful, the compiler might
+    optimize away the memory access. To avoid this,
 
-    See how accessing the first byte of this allocation changes the "resident set size"
-    repeatedly.
+    *  pass compiler flags^[`-fno-builtin-malloc` and `-fno-builtin-calloc`] like our Makefile does that prevent `malloc` and `calloc` calls
+       from being optimized away when their results seem not to be used (or use memory allocation
+       functions like `mmap` that the compiler won't optimize away); and
+    *  access the memory through pointers to a `volatile` type (such as by declaring a pointer with
+       `volatile char *ptr;`) to discourage the compiler from optimizing away code that
+       dereferences the pointer when it does not appear to do useful work.
+    
+    Observe how the resident set size changes substantailly less than the VM size.
+    The VM size represents addresses assigned to the program, but those adresseses
+    are not immediately assigned to useful storage. By default, this only happens
+    as you actually access the memory.
+
+    Modify your code to access a few bytes of the 1MB allocation, and observe
+    how adding those accesses causes the "resident set size" to increase
+    and minor fault count to increase, showing this.
 
 ## Part 3
 
@@ -110,7 +125,8 @@ author: Charles Reiss
     Then make `./lab 5` do the same thing but allocate memory at an addresss
     about  `0x10000000000` bytes after the heap.
 
-    Observe how there is a difference in the PTE bytes between these two scenarios.
+    You should see `./lab 5` allocates several more pages for page tables
+    than `./lab 4`, and most likely, both will require additional pages for page tables.
 
 <!--
 1.  Multi-level page tables are more space-efficient when the used pages are closer together.
@@ -145,7 +161,7 @@ author: Charles Reiss
         int file_descriptor = open("foo.dat", O_RDWR);
         if (file_descriptor < 0) { handle_error(); }
         char *ptr;
-        ptr = mmap(NULL /* "hint" address */,
+        ptr = mmap(NULL /* "hint" address, NULL for "don't care what address chosen" */,
                    8192 /* length of mapping */,
                    PROT_READ | PROT_WRITE /* types of access allowed */,
                    MAP_SHARED /* "flags" controlling mapping */,
