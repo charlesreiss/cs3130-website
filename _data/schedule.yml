@@ -91,12 +91,14 @@
 - date: 2024-02-08
   week: 4
   title: processes 1 
-  reading: "[VM](readings/vm.html) 4, [kernel](readings/thread.html) §3.3.3; [threads](readings/thread.html)"
+  reading: "[kernel](readings/thread.html) §3.3.3; [threads](readings/thread.html)"
   slides_see: 2024-02-08
   slides: yes
   slides_prelim: yes
   description: |
-    *  page tables: loading data on demand
+    *  Unix signals
+       *  signal unsafety
+       *  handling signals without signal handlers
     *  processes, threads
     *  creating new processes
        *  fork, exec*
@@ -125,7 +127,7 @@
 - date: 2024-02-15
   week: 5
   title: virtual memory 1
-  reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
+  reading: "[VM](readings/vm.html) §1, 2.2, 3.1, 4"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
@@ -133,6 +135,7 @@
     *  virtual memory concept
         *   address space and address sizes
     *  page tables
+    *  loading data on demand
     *  storing in memory (start)
 
 

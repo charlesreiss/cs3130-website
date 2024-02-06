@@ -32,7 +32,6 @@
 - name: signal handling
   short_name: signal
   lab: true
-  tentative: true
   page: labhw/signals.html
   due: 2024-02-07
   submit_file: "*.c"
