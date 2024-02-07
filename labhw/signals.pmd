@@ -7,6 +7,7 @@ author: Luther Tychnoviech, with modifications by Charles Reiss
 Changelog:
 
 *  6 Feb 2024: recommend `nanosleep` instead of `usleep`, since `usleep` is deprecated/removed from recent versions of POSIX; include `<time.h>` to support it.
+*  7 Feb 2024: correct "inbox for B which is also the outbox for B" to "inbox for B which is also the outbox for A
 </div>
 
 In this lab you'll write yet another chat application.
@@ -133,7 +134,7 @@ The processes can then directly communicate by loading what the other stored in 
 
 In this assignment, we'll use two regions of shared memory. If there are two chat processes running A and B,
 there will be an inbox for A which is also the outbox for B; and there will be an inbox for B which is
-also the outbox for B. In both A and B, you'll need to "map" each of these memory regions so you
+also the outbox for A. In both A and B, you'll need to "map" each of these memory regions so you
 can access them.
 
 Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is.
