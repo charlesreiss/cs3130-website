@@ -3,6 +3,11 @@ title: Kernels -- Software for the Hardware
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  7 Feb 2024: in further resources, note exception terms used by textbooks
+</div>
 
 # Kernel Mode vs. User Mode
 
@@ -759,7 +764,15 @@ The typical output scenario is very similar to the input scenario:
 
 *  Arpaci-Dusseau and Arpaci-Dusseau, [_Operating Systems: Three Easy Pieces_](https://pages.cs.wisc.edu/~remzi/OSTEP/) chapters 4, 6, 36. More detailed textbook on all these topics, intended in the context of a more dedicated operating systems course.
 
+   In chapter 6, this textbook talks about exceptions referring to hardware exceptions triggered by 
+   attempting ot run an instruction (what we call system calls or faults) as *traps*, and exceptions
+   triggered by external events as *interrupts*. It does not use the term "exception" explicitly.
+
 *  [Dive Into Systems, Chapter 13](https://diveintosystems.org/book/C13-OS/index.html)
+
+   Like Arpaci-Dusseau, this textbook uses the term *traps* to refer to exceptions
+   triggered by attempting to run an instruction and *interrupts* to refer exceptions
+   triggered by external events.
 
 ## For signal handling
 
