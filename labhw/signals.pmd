@@ -3,6 +3,12 @@ title: Signals Lab
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  6 Feb 2024: recommend `nanosleep` instead of `usleep`, since `usleep` is deprecated/removed from recent versions of POSIX; include `<time.h>` to support it.
+</div>
+
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
@@ -63,6 +69,7 @@ user's programs.)
 #define _XOPEN_SOURCE 700 // request all POSIX features, even with -std=c11
 #include <stdlib.h>       // for EXIT_SUCCESS, NULL, abort
 #include <stdio.h>        // for getline
+#include <time.h>         // for nanosleep 
 #include <unistd.h>       // for getpid
 
 pid_t other_pid = 0;
@@ -224,8 +231,11 @@ and have the receiving process send SIGUSR2 when it is done reading the input.)
 
 ```c
 // wait for '\0' by checking 100 times a second
-// 10,000 μs = 10 ms = 1/100 second
-while(outbox_data[0]) { usleep(10000); }
+// 10,000,000 ns = 10 ms = 1/100 second
+while(outbox_data[0]) { 
+    struct timespec ts = { .tv_sec = 0, .tv_nsec = 10000000 };
+    nanosleep(&ts, NULL);
+}
 ```
 
 ## inbox ↦ screen
