@@ -49,7 +49,6 @@
 - name: timing
   due: 2024-02-16
   page: labhw/timing.html
-  tentative: true
   grade_describe: |
     I expect this assignment to be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
