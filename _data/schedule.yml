@@ -93,7 +93,6 @@
   title: processes 1 
   reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
   slides: yes
-  slides_prelim: yes
   description: |
     *  Unix signals
        *  signal unsafety
