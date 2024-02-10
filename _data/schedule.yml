@@ -100,7 +100,6 @@
     *  processes, threads
     *  creating new processes
        *  fork, exec*
-       *  copy-on-write
     *  waiting for processes
 
 - date: 2024-02-09
