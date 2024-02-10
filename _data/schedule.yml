@@ -112,7 +112,8 @@
   week: 5
   title: proceses 2
   reading: "[threads](readings/thread.html)"
-  slides_see: 2024-02-08
+  slides: yes
+  slides_prelim: yes
   description: |
     *  file descriptors
     *  dup2
