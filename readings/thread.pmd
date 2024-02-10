@@ -3,6 +3,12 @@ title: Processes and threads
 author: Luther Tychnoviech and Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  10 Feb 2024: add section on `pipe`
+</div>
+
 # Terminology
 
 ## Multitasking
@@ -328,6 +334,23 @@ Note that the `close()` only effects when one file descriptor, even when
 there are multiple file descriptors referring to the same open file.
 {/}
 
+## `pipe`
+
+The library call `pipe()` creates a pair of file descriptors that are connected to each other.
+One of the file descriptors is the "write end" of the pipe and one is the "read end".
+Data written to the "write end" can be read from the "read end" of the pipe.
+
+This functionality along with `dup2`
+is used by shells when executing a command like `./first | ./second`
+(called a *pipeline*),
+which runs `./first` and `./second` at the same time, sending the output of
+`./first` as the input of `./second`. 
+
+The OS implements pipes with a limited size buffer. If the buffer would become
+full from writing, attempts to write will hang until a process reads from the
+pipe to free up space in the buffer. This means that when executing a command
+like `./first | ./second`, the first command may end up being slowed down
+so the second command can keep up.
 
 # Using `pthreads`
 

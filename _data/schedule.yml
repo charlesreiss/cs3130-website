@@ -91,8 +91,7 @@
 - date: 2024-02-08
   week: 4
   title: processes 1 
-  reading: "[kernel](readings/thread.html) §3.3.3; [threads](readings/thread.html)"
-  slides_see: 2024-02-08
+  reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
   slides: yes
   slides_prelim: yes
   description: |
@@ -103,7 +102,6 @@
     *  creating new processes
        *  fork, exec*
        *  copy-on-write
-    *  preview: threads
     *  waiting for processes
 
 - date: 2024-02-09
@@ -114,10 +112,10 @@
   week: 5
   title: proceses 2
   reading: "[threads](readings/thread.html)"
-  slides_see: 2024-02-20
+  slides_see: 2024-02-08
   description: |
-    *  briefly, pipe and dup2
     *  file descriptors
+    *  dup2
     *  pipe
 
 - date: 2024-02-14

@@ -39,7 +39,6 @@
 - name: fork lab
   short_name: fork-lab
   lab: true
-  tentative: true
   page: labhw/fork-lab.html
   submit_files:
   - "my_system.c"
