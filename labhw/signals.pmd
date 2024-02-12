@@ -8,6 +8,7 @@ Changelog:
 
 *  6 Feb 2024: recommend `nanosleep` instead of `usleep`, since `usleep` is deprecated/removed from recent versions of POSIX; include `<time.h>` to support it.
 *  7 Feb 2024: correct "inbox for B which is also the outbox for B" to "inbox for B which is also the outbox for A
+*  12 Feb 2024: fixup formatting of shared memory code
 </div>
 
 In this lab you'll write yet another chat application.
@@ -197,12 +198,13 @@ that for this lab.)
         /* note that MAP_FAILED is *NOT* the same thing as NULL */
     }
     close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
-    ```
+    ````
 
     Then, you can access the shared memory region using `inbox_data` like a character array.
 
     Later, you can "detach" the `inbox_data` pointer from the shared memory region using:
-    ```
+
+    ```1
     munmap(inbox_data, size);
     ````
     (This does not delete the memory region itself.)
