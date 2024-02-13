@@ -7,6 +7,7 @@ author: Luther Tychnoviech, with modifications by Charles Reiss
 Changelog:
 
 *  7 Feb 2024: in further resources, note exception terms used by textbooks
+*  13 Feb 2024: correct typo in URL of link to processes and threads reading
 </div>
 
 # Kernel Mode vs. User Mode
@@ -710,7 +711,7 @@ that roughly parallels the end-user idea of a running program.
 The hardware knows the difference between user and kernel mode,
 but not the difference between a web browser and a text editor.
 
-We discuss processes in more detail in the [processes and threads](threads.html) reading.
+We discuss processes in more detail in the [processes and threads](thread.html) reading.
 
 # Typical I/O patterns
 
