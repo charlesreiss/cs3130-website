@@ -54,7 +54,7 @@ The operating system controls which address space is active by changing these sp
 A **thread** has a limited complement of private state:
 primarily just program registers and condition codes. (Roughly corresponding to the state stored on an active processor core.)
 
-Since each thread has its own program registers and program counters, each thread
+Since each thread has its own program registers and program counter, each thread
 can use registers and change the program counter without worrying about interferring
 with other programs.
 
