@@ -60,6 +60,7 @@
   - "*.s"
   - "*.S"
   - "*.asm"
+  - "*"
   - "Makefile"
 
 - name: virtual memory exploration
