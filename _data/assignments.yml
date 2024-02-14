@@ -68,6 +68,7 @@
   short_name: vmexplore
   lab: true
   tentative: true
+  open: 2024-02-18
   due: 2024-02-21
 
 - name: fork HW
