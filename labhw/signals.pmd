@@ -9,6 +9,7 @@ Changelog:
 *  6 Feb 2024: recommend `nanosleep` instead of `usleep`, since `usleep` is deprecated/removed from recent versions of POSIX; include `<time.h>` to support it.
 *  7 Feb 2024: correct "inbox for B which is also the outbox for B" to "inbox for B which is also the outbox for A
 *  12 Feb 2024: fixup formatting of shared memory code
+*  15 Feb 2024: mention that SIGINT/TERM signal handlers should exit
 </div>
 
 In this lab you'll write yet another chat application.
@@ -38,8 +39,8 @@ user's programs.)
 1. Start with the [template program](#starter) below that prints out its PID and reads in another PID into a global variable.
 
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
-    - SIGTERM should invoke a cleanup function (can be a placeholder for now; later you will make it handle freeing shared memory regions)
-    - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user
+    - SIGTERM should invoke a cleanup function (can be a placeholder for now; later you will make it handle freeing shared memory regions) and then exit
+    - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user and then exit
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
     - (Although normally one should take care to only use [signal-safe](../readings/kernel.html#signal-safety) functions in your signal handlers, for this lab, we do not
        care if you follow this rule.)
