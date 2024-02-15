@@ -27,7 +27,8 @@ author: Charles Reiss
     *  the "size", the size of available data and code, regardless of whether it
        is currently mapped in the page table or will be loaded on demand
     *  the "resident set size", which is essentially the size of loaded data and code
-    *  the "page table size", which is the total size of all page tables for the program
+    *  the "page table entries", which is the total space used to store page table entries
+       for the program.
     *  the "shared" size, the amount of available data/code that may be shared with other programs
     *  the "swap" size, the amount of available data/code that would normally be stored in
        memory, but is temporarily being stored on disk
@@ -109,24 +110,28 @@ author: Charles Reiss
     Taking advantage of this modify the labStuff function when the parameter is `3`
     increase the "size" by 1MB and the "resident set size" by 128 KB (or as close to
     these numbers as you can get as possible).
-    Do so with the fewest memory accesses you can to the allocated memory.
+    Do so with the **fewest** memory accesses you can to the allocated memory.
 
 ## Part 4
 
 1.  As we'll learn later, the multi-level page table structure used on modern systems
-    is more efficient when pages are closer to together. Explore this by allocating and
+    to store page table entries is more efficient when pages are closer to together.
+    Explore this by allocating and
     using memory at addresses different distances from the allocation.
 
-    A problem we'll run into in doing this is that Linux (and most current OSes) by
-    default randomize addresses. We can avoid by this by running
+    To do this, we can use functions that allocate memory at a particular address
+    that is a particular distance from the allocations made by loading the program.
+    By default most OSes, including Linux, randomizes the addresses of allocations,
+    which would be a problem for us choosing addresses.
+    We can avoid by this by running
 
         setarch --addr-no-randomize ./lab ...
 
     instead of
 
-        setarch --addr-no-randomize ./lab ...
+        ./lab ...
 
-    After doing this, make `./lab 4` allocate memory at an address
+    Running `./lab` this way, make `./lab 4` allocate memory at an address
     about `0x10000` bytes after the heap and allocate and use
     4096 bytes of memory at that location. To do this, I would
     recommend using `mmap` with `MAP_FIXED` or `MAP_FIXED_NOREPLACE`
