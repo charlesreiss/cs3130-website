@@ -28,6 +28,9 @@ author: Charles Reiss
        is currently mapped in the page table or will be loaded on demand
     *  the "resident set size", which is essentially the size of loaded data and code
     *  the "page table size", which is the total size of all page tables for the program
+    *  the "shared" size, the amount of available data/code that may be shared with other programs
+    *  the "swap" size, the amount of available data/code that would normally be stored in
+       memory, but is temporarily being stored on disk
 
     Your tasks in this lab will be to modify the program to change the values displayed
     for each of these by writing code in the function `labStuff`.
@@ -45,7 +48,7 @@ author: Charles Reiss
 
     Make a global array like:
 
-        volatile char global_array[4096 * 32];
+        alignas(4096) volatile char global_array[4096 * 32];
 
     Declaring it as `volatile` will make our C compilers not optimize away memory
     accesses to the array^[This functionality is intended primarily for the purpose of
@@ -56,18 +59,26 @@ author: Charles Reiss
     even if they superficially appear to do nothing.
 
     An alternate, more direct strategy to avoid such optimizations would be to use
-    assembly to do the memory accesses.].
+    assembly to do the memory accesses.]. Using `alignas(4096)` asks the compiler
+    to place `global_array` at an address that is a multiple of 4096; this will ensure
+    that the array does not share virtual pages with other global variables.
+    (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
 
-    From the code in `labStuff` when the parameter is `1`, access this array
-    and run it, observing how:
-
-    *  accessing it once increase the number of minor faults, and it does not matter if
+    Change the code in `labStuff` so that when the parameter is `1`, it runs
+    some code to access the array somewhere.
+    Observe how this:
+    *  accessing it once increases the number of minor faults, and it does not matter if
        the access is a read or write
-    *  as you access the array, the resident size (amount of memory actually assigned
-       to the program) increases one page (4096 byte) units
+    *  the resident size (amount of memory actually assigned
+       to the program) increases by one page (4096 byte)
+
+    Then, modify your code for the parameter `1` to acecess the array more times,
+    observing how:
+
     *  accessing it multiple times within the same page (4096 byte region)
        does not increase the number of minor faults
     *  accessing it in different pages increases the number of minor faults
+       and correspondingly increases the resident size
 
 ## Part 2
 
