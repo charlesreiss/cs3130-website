@@ -84,15 +84,14 @@ author: Charles Reiss
 
 1.  Modify labStuff to allocate 1MB when the parameter is `2`,
 
-    Note that normally when you allocate memory and do not do something useful, the compiler might
-    optimize away the memory access. To avoid this,
-
-    *  pass compiler flags^[`-fno-builtin-malloc` and `-fno-builtin-calloc`] like our Makefile does that prevent `malloc` and `calloc` calls
-       from being optimized away when their results seem not to be used (or use memory allocation
-       functions like `mmap` that the compiler won't optimize away); and
-    *  access the memory through pointers to a `volatile` type (such as by declaring a pointer with
-       `volatile char *ptr;`) to discourage the compiler from optimizing away code that
-       dereferences the pointer when it does not appear to do useful work.
+    Note that normally when you allocate memory with the stdlib.h functions
+    and do not do something useful with the resulting memory, the compiler might
+    optimize away the memory allocation. We've setup our Makefile to avoid this when
+    using `malloc` or `calloc`.^[By passing
+    `-fno-builtin-malloc` and `-fno-builtin-calloc` to gcc or clang. Alternately
+    you could prevent this from happening by using non-standard-library memory allocation
+    functions like `mmap` or by accessing the resulting memory through
+    volatile` pointers.]
     
     Observe how the resident set size changes substantailly less than the VM size.
     The VM size represents addresses assigned to the program, but those adresseses
