@@ -52,7 +52,7 @@ author: Charles Reiss
 
     Hint: You should only need to access each allocated page once.
 
-5.  (if time) For this item , run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
+5.  For this item , run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
     (instead of `./lab ...`).
 
     Determine the location of the heap, from `./lab`'s output.
@@ -67,7 +67,10 @@ author: Charles Reiss
     See below for information about how to do this and why you should
     observe these changes in page table entry space.
 
-6.  Show a TA your labStuff function and the `./lab` program operating for items 2-5
+6.  (optional) if you have time, observe how increasing the size of your allocations from item 5 causes no or little
+    change to the page table entry space used
+
+7.  Show a TA your labStuff function and the `./lab` program operating for items 2-5
     or whatever you managed to complete in the lab time,
     or submit your lab.c to the submission site.
 
