@@ -9,6 +9,7 @@ Changelog:
 *  9 Feb 2024: change suggestion of `usleep` to `nanosleep` to match change to signals lab this semester
 *  12 Feb 2024: give definition of signal mask in discussion of strategies re: item 5; add footnote about what sigsuspend's argument does
 *  12 Feb 2024: be more specific about clock_gettime with CLOCK_MONOTONIC/REALTIME on OS X being microsecond precision, not necessarily "clocks" clock_gettime might support
+*  15 Feb 2024: "OS X" -> "macOS X" for clarity
 </div>
 
 # Your task
@@ -77,7 +78,7 @@ One way to do this on Linux is using `clock_gettime`:
 will, when successful, set `returnvalue` to 0 and `t.tv_sec` to a number of seconds and `t.tv_nsec` to a number of nanoseconds. When unsuccessful, it will
 set `returnvalue` to `-1` and `errno` (or utility functions like `perror`) can be used to obtain information about the error.
 
-> On OS X, `clock_gettime` exists, but (at least in the versions I have looked at with CLOCK_MONOTONIC and CLOCK_REALTIME) it is only accurate to the nearest microsecond (even though it reports its result in nanoseconds).
+> On macOS X, `clock_gettime` exists, but (at least in the versions I have looked at with CLOCK_MONOTONIC and CLOCK_REALTIME) it is only accurate to the nearest microsecond (even though it reports its result in nanoseconds).
 
 `CLOCK_MONOTONIC` specifies to use a timer that starts around system boot. There are also other clock options like `CLOCK_REALTIME` (measures seconds
 since 1 Jan 1970 midnight UTC).
