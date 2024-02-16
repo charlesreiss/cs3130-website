@@ -91,7 +91,7 @@ author: Charles Reiss
 # the `./lab` program
 
 We supply `./lab` program, built from `lab.c` (which you will modify)
-and `util.c` (wich you shouldn't need to modify.
+and `util.c` (which you shouldn't need to modify).
 
 To run it, run
 
