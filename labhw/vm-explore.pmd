@@ -9,11 +9,11 @@ author: Charles Reiss
 
 > Note that this lab expects 64-bit Linux environment with 4096 byte pages, like on portal.
 
-1.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
+0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
     Run the code like `./lab 0` and observe the output, which is explained below in the "the ./lab program" section below
 
-2.  Make a global array like:
+1.  Make a global array like:
 
         alignas(4096) volatile char global_array[4096 * 32];
 
@@ -31,7 +31,7 @@ author: Charles Reiss
 
     See the section "[Linux and allocate-on-demand](#demand)" below for why this should happen.
 
-3.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `2`, it
+2.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `2`, it
     runs code that:
 
     *  allocates 1MB of memory, and
@@ -45,14 +45,14 @@ author: Charles Reiss
 
     See the advice under "Item 3" below on how to ensure that this happens.
 
-4.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `3`, it
+3.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `3`, it
     runs code that incresaes the "virtual memory size" by 1048576 bytes and the
     "resident set size" by 131072 bytes and performs the fewest memory accesses
     possible to do so.
 
     Hint: You should only need to access each allocated page once.
 
-5.  For this item , run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
+4.  For this item, run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
     (instead of `./lab ...`).
 
     Determine the location of the heap, from `./lab`'s output.
@@ -67,7 +67,7 @@ author: Charles Reiss
     See below for information about how to do this and why you should
     observe these changes in page table entry space.
 
-6.  Show a TA your labStuff function and the `./lab` program operating for items 2-5
+5.  Show a TA your labStuff function and the `./lab` program operating for items 1-4 above
     or whatever you managed to complete in the lab time,
     or submit your lab.c to the submission site.
 
