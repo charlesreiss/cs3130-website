@@ -52,22 +52,32 @@ author: Charles Reiss
 
     Hint: You should only need to access each allocated page once.
 
-4.  For this item, run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
+4.  For this and the following item,
+    run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
     (instead of `./lab ...`).
 
     Determine the location of the heap, from `./lab`'s output.
 
-    Modify `labStuff` so that when the parameter is `4`, it allocates and uses memory
-    0x10000 bytes after the end of the heap, and when the parameter is `5`
-    it allocates and uses memory 0x10000000000 bytes after the end of the heap.
+    Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
+    5096 bytes of memory 0x10000 bytes after the end of the heap.
 
-    You should observe that the former causes a small increase in the space used for
-    page table entries, and the latter causes a somewhat larger increase.
+    See below for information about how to do this.
 
-    See below for information about how to do this and why you should
-    observe these changes in page table entry space.
+    If successful, you should observe that:
 
-5.  Show a TA your labStuff function and the `./lab` program operating for items 1-4 above
+    *  the allocation should be visible on the memory layout output by the `./lab` program
+
+    *  this results in a small increase in the space used for page table entries, which you may not have seen on
+       the previous items
+
+5.  Do the same as item 4, but make it so when  `5`
+    it allocates and uses 4096 bytes of
+    memory 0x10000000000 bytes after the end of the heap.
+
+    If successful, you should observe that this allocation results in a larger increase in the space
+    used for page table entries than what you did for item 4.
+
+6.  Show a TA your labStuff function and the `./lab` program operating for items 1-4 above
     or whatever you managed to complete in the lab time,
     or submit your lab.c to the submission site.
 
