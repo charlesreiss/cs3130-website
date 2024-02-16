@@ -142,7 +142,7 @@ observe how they change those statistics.
 
 # Item-specific info
 
-## Item 2
+## Item 1
 
 ### array declaration {#array-decl}
 
@@ -178,7 +178,7 @@ possible moment. That is, when a program first attempts to access a page,
 it will not yet be in the page table, then an exception will occur
 and Linux will update the page table entries accordingly.
 
-## Item 3
+## Item 2
 
 ### preventing access from being optimized away {#item-3-opt}
 
@@ -208,7 +208,7 @@ allocation itself. In this case, it's possible that if you values access near
 the beginning or end of the allocation, that your access will be part of
 the same page that `malloc` used and therefore caused to be allocated already.
 
-## Item 5
+## Item 4 and Item 5
 
 ### find the location of the heap
 
