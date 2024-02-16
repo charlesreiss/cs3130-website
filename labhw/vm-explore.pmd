@@ -70,15 +70,7 @@ author: Charles Reiss
         alignas(4096) volatile char global_array[4096 * 32];
 
     Declaring it as `volatile` will make our C compilers not optimize away memory
-    accesses to the array^[This functionality is intended primarily for the purpose of
-    supporting "memory-mapped I/O", where reading and writing memory locations
-    causes an input or output operation to occur instead of just storing or
-    retrieving values. So, generally, assembly
-    that the compiler generates will not omit reads and writes to volatile values
-    even if they superficially appear to do nothing.
-
-    An alternate, more direct strategy to avoid such optimizations would be to use
-    assembly to do the memory accesses.]. Using `alignas(4096)` asks the compiler
+    accesses to the array[^mmapio]. Using `alignas(4096)` asks the compiler
     to place `global_array` at an address that is a multiple of 4096; this will ensure
     that the array does not share virtual pages with other global variables.
     (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
@@ -97,7 +89,17 @@ author: Charles Reiss
     *  accessing it multiple times within the same page (4096 byte region)
        does not increase the number of minor faults
     *  accessing it in different pages increases the number of minor faults
-       and correspondingly increases the resident size
+
+[^mmapio]:
+    This functionality is intended primarily for the purpose of
+    supporting "memory-mapped I/O", where reading and writing memory locations
+    causes an input or output operation to occur instead of just storing or
+    retrieving values. So, generally, assembly
+    that the compiler generates will not omit reads and writes to volatile values
+    even if they superficially appear to do nothing.
+
+    An alternate, more direct strategy to avoid such optimizations would be to use
+    assembly to do the memory accesses.
 
 ## Part 2
 
