@@ -22,7 +22,7 @@ author: Charles Reiss
     Change the code in `lab.c`'s `labStuff` so that when the parameter is `1`, it
     runs some code to access the array.
 
-    Make sure you can observe that when you:
+    Make sure you can observe (running `./lab 1`) that when you:
 
     *  access different pages (4096-byte regions) of the array, that increases the number of faults
        and the resident set size
@@ -37,7 +37,7 @@ author: Charles Reiss
     *  allocates 1MB of memory, and
     *  accesses a few bytes of the allocation
 
-    Make sure you observe that:
+    Make sure you observe (running `./lab 2`) that:
 
     *  the allocation increase the "virtual memory size" reported by 1MB, but not
        the resident set size; and
@@ -67,10 +67,7 @@ author: Charles Reiss
     See below for information about how to do this and why you should
     observe these changes in page table entry space.
 
-6.  (optional) if you have time, observe how increasing the size of your allocations from item 5 causes no or little
-    change to the page table entry space used
-
-7.  Show a TA your labStuff function and the `./lab` program operating for items 2-5
+6.  Show a TA your labStuff function and the `./lab` program operating for items 2-5
     or whatever you managed to complete in the lab time,
     or submit your lab.c to the submission site.
 
