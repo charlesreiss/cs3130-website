@@ -5,90 +5,150 @@ author: Charles Reiss
 
 <div class="oldsite">This lab is a draft and may change some before it is released.</div>
 
-# Your Task
+{.exercise ...}
+
+> Note that this lab expects 64-bit Linux environment with 4096 byte pages, like on portal.
 
 1.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
-    (Note that this lab expects 64-bit Linux environment with 4096 byte pages, like on portal.)
+    Run the code like `./lab 0` and observe the output, which is explained below in the "the ./lab program" section below
 
-    It will produce an executable caled `./lab`, which you can run with
-
-        ./lab NUMBER
-
-    where NUMBER is an integer that will be passed to the function `labStuff`
-    which you will edit later in the lab. You can try `./lab 0` to see an example of the output.
-
-    It displays the program's memory layout, then displays several statistics
-    about the program's memory usage, then runs the function 
-    `labStuff`, then prints the new memory usage and the new memory layout.
-
-    When displaying memory layout, each line has a range of hexadecimal addresses and either
-    what file is loaded into that memory or some other label for the memory region. Inaccessible
-    parts of memory are not listed. Since Linux does allocate-on-demand, the memory layout
-    does not reflect what pages are actually allocated to the process --- just what the
-    process will be able to successfully access.
-
-    When displaying memory usage, the program displays
-
-    *  the number of page faults that occured. (Page faults are the hardware exception that occurs
-       when a program tries to access a memory location which has no valid mapping in its page table
-       or which has a valid mapping but without appropriate permission bits set.)
-
-       The page faults are divided into "minor" faults, which are resolved without I/O
-       (such as by allocating a new, "empty" page or copying a read-only page for copy-on-write), and "major"
-       faults which require I/O (such as by reading a file from disk into RAM).
-
-    *  the "virtual memory size", the size of available data and code, regardless of whether it
-       is currently mapped in the page table or will be loaded on demand
-
-    *  the "resident set size", which is essentially the size of loaded data and code
-
-    *  the "page table entries", which is the total space used to store page table entries
-       for the program.
-
-    *  the "shared" size, the amount of available data/code that may be shared with other programs
-
-    *  the "swap" size, the amount of available data/code that would normally be stored in
-       memory, but is temporarily being stored on disk
-
-    Your tasks in this lab will be to modify the program to change the values displayed
-    for each of these by writing code in the function `labStuff`.
-
-    In the exercises below, you'll modify `labStuff` to do some operations with memory and
-    observe how they change those statistics.
-
-## Part 1
-
-1.  On Linux, the kernel usually sets up page table entries only at the last
-    possible moment. That is, when a program first attempts to access a page,
-    it will not yet be in the page table, then an exception will occur called
-    a "page fault". Linux records the number of page faults that occur
-    classifying them as "major" (requiring I/O) and "minor" (not requiring I/O).
-
-    Make a global array like:
+2.  Make a global array like:
 
         alignas(4096) volatile char global_array[4096 * 32];
 
-    Declaring it as `volatile` will make our C compilers not optimize away memory
-    accesses to the array[^mmapio]. Using `alignas(4096)` asks the compiler
-    to place `global_array` at an address that is a multiple of 4096; this will ensure
-    that the array does not share virtual pages with other global variables.
-    (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
+    See the section "[array declaration](#array-decl)" for an explanation of what this code does.
 
-    Change the code in `labStuff` so that when the parameter is `1`, it runs
-    some code to access the array somewhere.
-    Observe how this:
-    *  accessing it once increases the number of minor faults, and it does not matter if
-       the access is a read or write
-    *  the resident size (amount of memory actually assigned
-       to the program) increases by one page (4096 byte)
+    Change the code in `lab.c`'s `labStuff` so that when the parameter is `1`, it
+    runs some code to access the array.
 
-    Then, modify your code for the parameter `1` to acecess the array more times,
-    observing how:
+    Make sure you can observe that when you:
 
-    *  accessing it multiple times within the same page (4096 byte region)
-       does not increase the number of minor faults
-    *  accessing it in different pages increases the number of minor faults
+    *  access different pages (4096-byte regions) of the array, that increases the number of faults
+       and the resident set size
+    *  access the same page multiple times, that does not increase the number of faults
+       or the resident set size more than accessing a page once
+
+    See the section "[Linux and allocate-on-demand](#demand)" below for why this should happen.
+
+3.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `2`, it
+    runs code that:
+
+    *  allocates 1MB of memory, and
+    *  accesses a few bytes of the allocation
+
+    Make sure you observe that:
+
+    *  the allocation increase the "virtual memory size" reported by 1MB, but not
+       the resident set size; and
+    *  the resident set size and fault count increases as you access this allocation
+
+    See the advice under "Item 3" below on how to ensure that this happens.
+
+4.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `3`, it
+    runs code that incresaes the "virtual memory size" by 1048576 bytes and the
+    "resident set size" by 131072 bytes and performs the fewest memory accesses
+    possible to do so.
+
+    Hint: You should only need to access each allocated page once.
+
+5.  (if time) For this item , run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
+    (instead of `./lab ...`).
+
+    Determine the location of the heap, from `./lab`'s output.
+
+    Modify `labStuff` so that when the parameter is `4`, it allocates and uses memory
+    0x10000 bytes after the end of the heap, and when the parameter is `5`
+    it allocates and uses memory 0x10000000000 bytes after the end of the heap.
+
+    You should observe that the former causes a small increase in the space used for
+    page table entries, and the latter causes a somewhat larger increase.
+
+    See below for information about how to do this and why you should
+    observe these changes in page table entry space.
+
+6.  Show a TA your labStuff function and the `./lab` program operating for items 2-5
+    or whatever you managed to complete in the lab time,
+    or submit your lab.c to the submission site.
+
+    Since this is the first time we are using this lab, I am not sure how much time
+    the lab will take in practice --- we intend to give full credit even if you are
+    working in person for most of the lab time and unable to complete it.
+
+{/}
+
+
+# the `./lab` program
+
+We supply `./lab` program, built from `lab.c` (which you will modify)
+and `util.c` (wich you shouldn't need to modify.
+
+To run it, run
+
+
+    ./lab NUMBER
+
+where NUMBER is an integer that will be passed to the function `labStuff`
+which you will edit later in the lab. You can try `./lab 0` to see an example of the output.
+
+It displays the program's memory layout, then displays several statistics
+about the program's memory usage, then runs the function 
+`labStuff`, then prints the new memory usage and the new memory layout.
+
+When displaying memory layout, each line has a range of hexadecimal addresses and either
+what file is loaded into that memory or some other label for the memory region. Inaccessible
+parts of memory are not listed. Since Linux does allocate-on-demand, the memory layout
+does not reflect what pages are actually allocated to the process --- just what the
+process will be able to successfully access.
+
+When displaying memory usage, the program displays
+
+*  the number of page faults that occured. (Page faults are the hardware exception that occurs
+   when a program tries to access a memory location which has no valid mapping in its page table
+   or which has a valid mapping but without appropriate permission bits set.)
+
+   The page faults are divided into "minor" faults, which are resolved without I/O
+   (such as by allocating a new, "empty" page or copying a read-only page for copy-on-write), and "major"
+   faults which require I/O (such as by reading a file from disk into RAM).
+
+*  the "virtual memory size", the size of available data and code, regardless of whether it
+   is currently mapped in the page table or will be loaded on demand
+
+*  the "resident set size", which is essentially the size of loaded data and code
+
+*  the "page table entries", which is the total space used to store page table entries
+   for the program.
+
+*  the "shared" size, the amount of available data/code that may be shared with other programs
+
+*  the "swap" size, the amount of available data/code that would normally be stored in
+   memory, but is temporarily being stored on disk
+
+Your tasks in this lab will be to modify the program to change the values displayed
+for each of these by writing code in the function `labStuff`.
+
+In the exercises in this lab, you'll modify `labStuff` to do some operations with memory and
+observe how they change those statistics.
+
+# Item-specific info
+
+## Item 2
+
+### array declaration {#array-decl}
+
+The array declaration
+
+    alignas(4096) volatile char global_array[4096 * 32];
+
+declares an array of `4096 * 32` characters.
+
+Declaring it as `volatile` will make our C compilers not optimize away memory
+accesses to the array[^mmapio].
+
+Using `alignas(4096)` asks the compiler
+to place `global_array` at an address that is a multiple of 4096; this will ensure
+that the array does not share virtual pages with other global variables.
+(One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
 
 [^mmapio]:
     This functionality is intended primarily for the purpose of
@@ -101,116 +161,54 @@ author: Charles Reiss
     An alternate, more direct strategy to avoid such optimizations would be to use
     assembly to do the memory accesses.
 
-## Part 2
+### Linux and allocate-on-demand {#demand}
 
-1.  Modify labStuff to allocate 1MB when the parameter is `2`,
+On Linux, the kernel usually sets up page table entries only at the last
+possible moment. That is, when a program first attempts to access a page,
+it will not yet be in the page table, then an exception will occur
+and Linux will update the page table entries accordingly.
 
-    Note that normally when you allocate memory with the stdlib.h functions
-    and do not do something useful with the resulting memory, the compiler might
-    optimize away the memory allocation. We've setup our Makefile to avoid this when
-    using `malloc` or `calloc`.^[By passing
-    `-fno-builtin-malloc` and `-fno-builtin-calloc` to gcc or clang. Alternately
-    you could prevent this from happening by using non-standard-library memory allocation
-    functions like `mmap` or by accessing the resulting memory through
-    volatile` pointers.]
-    
-    Observe how the resident set size changes substantailly less than the VM size.
-    The VM size represents addresses assigned to the program, but those adresseses
-    are not immediately assigned to useful storage. By default, this only happens
-    as you actually access the memory.
+## Item 3
 
-    Modify your code to access a few bytes of the 1MB allocation, and observe
-    how adding those accesses causes the "resident set size" to increase
-    and minor fault count to increase, showing this. (You may need to access those
-    bytes somewhere after the beginning of the allocation.)
+### preventing access from being optimized away {#item-3-opt}
 
-## Part 3
+Normally when you allocate memory with the stdlib.h functions
+and do not do something useful with the resulting memory, the compiler might
+optimize away the memory allocation. We've setup our Makefile to avoid this when
+using `malloc`.^[By passing
+`-fno-builtin-malloc` to gcc or clang. Alternately
+you could prevent this from happening by using non-standard-library memory allocation
+functions like `mmap` or by accessing the resulting memory through
+volatile` pointers.]
 
-2.  Linux usually actually allocates pages for data as it is accessed.
+Besides the memory allocation itself being optimized, accesses to that memory
+could also be optimized away. Probably the simplest way to avoid this is to
+make a pointer to volatile char (or volatile int or any other volatile type)
+and access values through that pointer.
 
-    Taking advantage of this modify the labStuff function when the parameter is `3`
-    increase the "size" by 1MB and the "resident set size" by 128 KB (or as close to
-    these numbers as you can get as possible).
+### accesses and resulting real allocations by malloc/calloc
 
-    Do so with the **fewest** memory accesses you can to the allocated memory.
+It's possible that `malloc` will access some memory to do bookkeeping
+This may cause additional pages to be allocated, increasing the resident set size
+even if you do no accesses --- even though it is still the case that the memory
+is only allocated on demand.
 
-    Hint: You should only need to access each allocated page once.
+Also, sometimes `malloc` will keep memory it uses for bookkeeping near the
+allocation itself. In this case, it's possible that if you values access near
+the beginning or end of the allocation, that your access will be part of
+the same page that `malloc` used and therefore caused to be allocated already.
 
-## Part 4
+## Item 5
 
-1.  As we'll learn later, the multi-level page table structure used on modern systems
-    to store page table entries is more efficient when pages are closer to together.
-    Explore this by allocating and
-    using memory at addresses different distances from the allocation.
+### find the location of the heap
 
-    To do this, we can use functions that allocate memory at a particular address
-    that is a particular distance from the allocations made by loading the program.
-    By default most OSes, including Linux, randomizes the addresses of allocations,
-    which would be a problem for us choosing addresses.
-    We can avoid by this by running
+1.  The memory layout we display indicates the range of the address that correspond to the heap.
 
-        setarch --addr-no-randomize ./lab ...
+    If you run the program with address randomization disabled, it should be the same every time.
 
-    instead of
+### mmap to allocate memory at a particular location
 
-        ./lab ...
-
-    Running `./lab` this way, make `./lab 4` allocate memory at an address
-    about `0x10000` bytes after the heap and allocate and *use* (read or write to)
-    4096 bytes of memory at that location. To do this, I would
-    recommend using `mmap` with `MAP_FIXED` or `MAP_FIXED_NOREPLACE`
-    as discussed below.
-
-    Then make `./lab 5` (run with address randomization disabled)
-    do the same thing but allocate memory at an addresss
-    about  `0x10000000000` bytes after the heap.
-
-    You should see `./lab 5` allocates several more pages for page tables
-    than `./lab 4`, and most likely, both will require additional space for page tables.
-
-## (if time) Part 5
-
-1.  Then, try increasing the size of the allocations for `./lab 4` and `./lab 5`;
-    you should see that though the size and resident size increases, probably the space
-    used for page tables either does not increase or increases little in proportion.
-
-## Checkoff/Submission
-
-1.  Show a TA your labStuff function and the `./lab` program operating for parts 2-4
-    or whatever you managed to complete in the lab time,
-    or submit your lab.c to the submission site.
-
-    Since this is the first time we are using this lab, I am not sure how much time
-    the lab will take in practice --- we intend to give full credit even if you are
-    working in person for most of the lab time and unable to complete it.
-
-# Hints/Advice
-
-## mmap generally
-
-1.  The `mmap` library function (documented in `man mmap`) was originally built to load
-    a file's data into a program's memory. For example:
-
-        int file_descriptor = open("foo.dat", O_RDWR);
-        if (file_descriptor < 0) { handle_error(); }
-        char *ptr;
-        ptr = mmap(NULL /* "hint" address, NULL for "don't care what address chosen" */,
-                   8192 /* length of mapping */,
-                   PROT_READ | PROT_WRITE /* types of access allowed */,
-                   MAP_SHARED /* "flags" controlling mapping */,
-                   file_descriptor,
-                   0 /* offset in file */
-        );
-        if (ptr == MAP_FAILED) { handle_error(); }
-
-    will make `ptr` point to the first 8192 bytes (two pages on x86-64 Linux) of the file `foo.dat`.
-    Since `MAP_SHARED` was selected, modifying what `ptr` points to will modify the file `foo.dat`.
-    (The modifications will be "shared" with other users of the file; the alternate `MAP_PRIVATE`
-    will give a private copy of the file's data.)
-
-## mmap for memory allocation 
-
-2.  On Linux, `mmap` can also be used for memory allocation, without involving any actual files.
+1.  On Linux, `mmap` can also be used for memory allocation, without involving any actual files.
     To do this one supplies
     the invalid file descriptor `-1` and specifies `MAP_ANONYMOUS` as one of the 
     `mmap` "flags". (The mapping is anonymous in the sense that there is no file name it corresponds to.)
@@ -228,9 +226,7 @@ author: Charles Reiss
 
     will make `ptr` point to a new allocation of 8192 bytes.
 
-## MAP_FIXED_NOREPLACE and MAP_FIXED
-
-3.  By defaut `mmap` chooses a new location for the mapping.
+2.  By defaut `mmap` chooses a new location for the mapping.
 
     But you can use the MAP_FIXED_NOREPLACE or MAP_FIXED flags to require the mapping be located in at
     a particular virtual address.
@@ -258,7 +254,58 @@ author: Charles Reiss
 4.  Note that the location you specify must be at the beginning of a page,
     which on our systems is a multiple of 4096 (0x1000)
 
-# Special regions in the memory layout
+
+### address randomization
+
+By default most OSes, including Linux, randomizes the addresses of allocations.
+
+This is typically done as a security feature. Although, ideally, it should not
+matter whether some attacking a program can guess the addresses of important code
+and data in the program, this information is helpful when there are other bugs in the
+program. For example, a common form of security bug might allow an attacker to execute
+code at an address they choose. If the addresses in the program are randomized,
+it is harder for an attacker to take advantage of that security bug.
+
+The `setarch` command we mention allows running programs with this feature turned off.
+
+### why different increases
+
+As we'll learn in lecture and our readings later, the multi-level page table structure used on modern systems
+to store page table entries is more efficient when pages are closer to together.
+
+There is a tree data structure where the bits of the virtual page number
+are used starting with the most significant bits to determine how to traverse the tree.
+This means that virtual page numbers that share more significant bits will share nodes
+of this tree.
+If all the virtual page numbers under a node of the tree are invalid, then that node
+does not need to be stored at all.
+Therefore, when more virtual page numbers that are valid
+have common significant bits, there will be fewer nodes and therefore fewer space
+devoted to storing the page table information.
+
+### mmap generally
+
+1.  The `mmap` library function (documented in `man mmap`) was originally built to load
+    a file's data into a program's memory. For example:
+
+        int file_descriptor = open("foo.dat", O_RDWR);
+        if (file_descriptor < 0) { handle_error(); }
+        char *ptr;
+        ptr = mmap(NULL /* "hint" address, NULL for "don't care what address chosen" */,
+                   8192 /* length of mapping */,
+                   PROT_READ | PROT_WRITE /* types of access allowed */,
+                   MAP_SHARED /* "flags" controlling mapping */,
+                   file_descriptor,
+                   0 /* offset in file */
+        );
+        if (ptr == MAP_FAILED) { handle_error(); }
+
+    will make `ptr` point to the first 8192 bytes (two pages on x86-64 Linux) of the file `foo.dat`.
+    Since `MAP_SHARED` was selected, modifying what `ptr` points to will modify the file `foo.dat`.
+    (The modifications will be "shared" with other users of the file; the alternate `MAP_PRIVATE`
+    will give a private copy of the file's data.)
+
+# Special regions in the memory layout {#special}
 
 1.  When our program displays the memory layout, you may see some regions whose purpose is not obvious:
 
