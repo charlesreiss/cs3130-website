@@ -3,7 +3,7 @@ title: Virtual memory exploration
 author: Charles Reiss
 ...
 
-<div class="oldsite">This lab is an incomplete draft and likely to change substantially.</div>
+<div class="oldsite">This lab is a draft and may change some before it is released.</div>
 
 # Your Task
 
@@ -22,14 +22,32 @@ author: Charles Reiss
     about the program's memory usage, then runs the function 
     `labStuff`, then prints the new memory usage and the new memory layout.
 
+    When displaying memory layout, each line has a range of hexadecimal addresses and either
+    what file is loaded into that memory or some other label for the memory region. Inaccessible
+    parts of memory are not listed. Since Linux does allocate-on-demand, the memory layout
+    does not reflect what pages are actually allocated to the process --- just what the
+    process will be able to successfully access.
+
     When displaying memory usage, the program displays
-        
-    *  the "size", the size of available data and code, regardless of whether it
+
+    *  the number of page faults that occured. (Page faults are the hardware exception that occurs
+       when a program tries to access a memory location which has no valid mapping in its page table
+       or which has a valid mapping but without appropriate permission bits set.)
+
+       The page faults are divided into "minor" faults, which are resolved without I/O
+       (such as by allocating a new, "empty" page or copying a read-only page for copy-on-write), and "major"
+       faults which require I/O (such as by reading a file from disk into RAM).
+
+    *  the "virtual memory size", the size of available data and code, regardless of whether it
        is currently mapped in the page table or will be loaded on demand
+
     *  the "resident set size", which is essentially the size of loaded data and code
+
     *  the "page table entries", which is the total space used to store page table entries
        for the program.
+
     *  the "shared" size, the amount of available data/code that may be shared with other programs
+
     *  the "swap" size, the amount of available data/code that would normally be stored in
        memory, but is temporarily being stored on disk
 
@@ -101,7 +119,8 @@ author: Charles Reiss
 
     Modify your code to access a few bytes of the 1MB allocation, and observe
     how adding those accesses causes the "resident set size" to increase
-    and minor fault count to increase, showing this.
+    and minor fault count to increase, showing this. (You may need to access those
+    bytes somewhere after the beginning of the allocation.)
 
 ## Part 3
 
@@ -110,7 +129,10 @@ author: Charles Reiss
     Taking advantage of this modify the labStuff function when the parameter is `3`
     increase the "size" by 1MB and the "resident set size" by 128 KB (or as close to
     these numbers as you can get as possible).
+
     Do so with the **fewest** memory accesses you can to the allocated memory.
+
+    Hint: You should only need to access each allocated page once.
 
 ## Part 4
 
@@ -132,39 +154,33 @@ author: Charles Reiss
         ./lab ...
 
     Running `./lab` this way, make `./lab 4` allocate memory at an address
-    about `0x10000` bytes after the heap and allocate and use
+    about `0x10000` bytes after the heap and allocate and *use* (read or write to)
     4096 bytes of memory at that location. To do this, I would
     recommend using `mmap` with `MAP_FIXED` or `MAP_FIXED_NOREPLACE`
     as discussed below.
 
-    Then make `./lab 5` do the same thing but allocate memory at an addresss
+    Then make `./lab 5` (run with address randomization disabled)
+    do the same thing but allocate memory at an addresss
     about  `0x10000000000` bytes after the heap.
 
     You should see `./lab 5` allocates several more pages for page tables
-    than `./lab 4`, and most likely, both will require additional pages for page tables.
+    than `./lab 4`, and most likely, both will require additional space for page tables.
 
-<!--
-1.  Multi-level page tables are more space-efficient when the used pages are closer together.
+## (if time) Part 5
 
-    Modify the labStuff function so that when the paramter is `4` it allocates at most 128KB of
-    memory for the program (as measured by "Size (bytes)")
-    but uses as much much page table storage as possible (as measured by "PTE (bytes)").
-
-    To do this, it will be helpful to know what the memory layout of the program is. Unfortuantely,
-    this is randomzied by default. You can disable this by running the program with
-    `setarch --addr-no-randomize ./lab ...` instead of `./lab ...`.
-
-     I would recommend using
-    `mmap` to allocate memory with `MAP_FIXED` to choose a particular address (as discussed below).
-
-    To figure out what is the most possible, note that x86-64 Linux (as configured on portal, etc.)
-    uses a 4-level page table with 4096 byte pages and 512 entries in page tables at each level.
--->
+1.  Then, try increasing the size of the allocations for `./lab 4` and `./lab 5`;
+    you should see that though the size and resident size increases, probably the space
+    used for page tables either does not increase or increases little in proportion.
 
 ## Checkoff/Submission
 
-1.  Show a TA your labStuff function and the `./lab` program operating for parts 2-4,
+1.  Show a TA your labStuff function and the `./lab` program operating for parts 2-4
+    or whatever you managed to complete in the lab time,
     or submit your lab.c to the submission site.
+
+    Since this is the first time we are using this lab, I am not sure how much time
+    the lab will take in practice --- we intend to give full credit even if you are
+    working in person for most of the lab time and unable to complete it.
 
 # Hints/Advice
 
@@ -210,7 +226,7 @@ author: Charles Reiss
 
     will make `ptr` point to a new allocation of 8192 bytes.
 
-## MAP_FIXED_NOREPALCE and MAP_FIXED
+## MAP_FIXED_NOREPLACE and MAP_FIXED
 
 3.  By defaut `mmap` chooses a new location for the mapping.
 
@@ -239,3 +255,22 @@ author: Charles Reiss
 
 4.  Note that the location you specify must be at the beginning of a page,
     which on our systems is a multiple of 4096 (0x1000)
+
+# Special regions in the memory layout
+
+1.  When our program displays the memory layout, you may see some regions whose purpose is not obvious:
+
+    *  "dynamic allocation" --- this is an allocation of "empty" memory that is not on the heap. This can be used for
+       global variables that are initially zero or by functions like malloc() when you request a large amount of memory.
+       (It's more efficient to make large allocations outside the heap, since then they can be freed without disrupting
+       other things on the heap.)
+
+    *  "vvar", "vdso" --- To speed up some operations that would otherwise be system calls, Linux implements a feature
+       called [vDSO](https://man7.org/linux/man-pages/man7/vdso.7.html) ("virtual dynamic shared object").
+       The kernel loads a dynamically linked library into every program and this library has implementations of some
+       operations which were previously system calls entirely in user-space.
+
+       Some of these operations
+       require access to data tracked by the OS, such as about how to translate the processor's clock
+       to a usable date and time.
+       This information is shared with all processes through the "vvar" region.
