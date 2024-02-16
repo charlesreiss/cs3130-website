@@ -77,7 +77,7 @@ author: Charles Reiss
     If successful, you should observe that this allocation results in a larger increase in the space
     used for page table entries than what you did for item 4.
 
-6.  Show a TA your labStuff function and the `./lab` program operating for items 1-4 above
+6.  Show a TA your labStuff function and the `./lab` program operating for items 1-5 above
     or whatever you managed to complete in the lab time,
     or submit your lab.c to the submission site.
 
