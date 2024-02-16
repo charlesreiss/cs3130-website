@@ -5,9 +5,9 @@ author: Charles Reiss
 
 <div class="oldsite">This lab is a draft and may have some (probably minor) changes before it is released.</div>
 
-{.exercise ...}
+{.exercise ...} <!-- -->
 
-> Note that this lab expects 64-bit Linux environment with 4096 byte pages, like on portal.
+> This lab expects 64-bit Linux environment with 4096 byte pages, like on portal.
 
 0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
