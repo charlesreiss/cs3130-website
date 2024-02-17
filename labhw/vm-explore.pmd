@@ -3,9 +3,9 @@ title: Virtual memory exploration
 author: Charles Reiss
 ...
 
-{.exercise ...} .
+> This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
 
-> This lab expects 64-bit Linux environment with 4096 byte pages, like on portal.
+{.exercise ...}
 
 0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
