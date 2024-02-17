@@ -8,7 +8,8 @@ author: Charles Reiss
 > Since this is the first time we are using this lab, I am not sure how much time
 > the lab will take in practice. I am hoping that finishing the lab in time is not
 > an issue, but if not, we intend to give full credit if you are
-> working in person for most of the lab time and make significant progress.
+> working in person for most of the lab time and make significant progress
+> (but run into issues that prevent you from completing the lab).
 
 {.exercise ...} Possibly working with a partner ---
 
@@ -61,7 +62,7 @@ author: Charles Reiss
     Determine the location of the heap, from `./lab`'s output.
 
     Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
-    5096 bytes of memory 0x10000 bytes after the end of the heap.
+    4096 bytes of memory 0x10000 bytes after the end of the heap.
 
     See [below](#item-45) for information about how to do this.
 
