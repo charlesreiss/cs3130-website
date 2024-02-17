@@ -5,7 +5,11 @@ author: Charles Reiss
 
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
 
-{.exercise ...}
+> Since this is the first time we are using this lab, I am not sure how much time
+> the lab will take in practice --- we intend to give full credit if you are
+> working in person for most of the lab time and make significant progress.
+
+{.exercise ...} Possibly working with a partner ---
 
 0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
@@ -75,12 +79,8 @@ author: Charles Reiss
     used for page table entries than what you did for item 4.
 
 6.  Show a TA your labStuff function and the `./lab` program operating for items 1-5 above
-    or whatever you managed to complete in the lab time,
+    **or whatever you managed to complete in the lab time**,
     or submit your lab.c to the submission site.
-
-    Since this is the first time we are using this lab, I am not sure how much time
-    the lab will take in practice --- we intend to give full credit if you are
-    working in person for most of the lab time and make significant progress.
 
 {/}
 
