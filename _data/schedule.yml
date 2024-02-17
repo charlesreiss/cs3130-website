@@ -124,14 +124,11 @@
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1, 4"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  virtual memory concept
         *   address space and address sizes
     *  page tables
-    *  loading data on demand
-    *  storing in memory (start)
+    *  loading data on demand (start)
 
 
 - date: 2024-02-16
@@ -141,11 +138,13 @@
   week: 6
   title: virtual memory 2
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
-  sldies_see: 2024-02-08
+  slides: yes
+  slides_extra: yes
+  slides_prelim: yes
   description: |
-    *  page tables
-       *  small example (not in memory)
-       *  storing in memory (finish)
+    *  loading data on demand (finish)
+    *  copy-on-write, other "page table tricks"
+    *  storing page tables in memory
 
 - date: 2024-02-21
   lab: true
@@ -153,9 +152,9 @@
 
 - date: 2024-02-22
   week: 6
-  title: virtual memory 3
+  title: virtual memory 2
   reading: "[VM](readings/vm.html) §2.1, 3.2"
-  slides_see: 2024-02-08
+  slides_see: 2024-02-20
   description: |
     *  page tables (finish)
        *  as a tree
@@ -173,6 +172,8 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  (as necessary) more examples of multi-level page tables
+
     *  caching idea
     *  (if time) connecting processors to memory
     *  memory hierarchy
