@@ -66,7 +66,6 @@
 - name: virtual memory exploration
   page: labhw/vm-explore.html
   short_name: vmexplore
-  tentative: true
   lab: true
   submit_file: "lab.c"
   open: 2024-02-18
