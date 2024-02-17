@@ -6,7 +6,8 @@ author: Charles Reiss
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
 
 > Since this is the first time we are using this lab, I am not sure how much time
-> the lab will take in practice --- we intend to give full credit if you are
+> the lab will take in practice. I am hoping that finishing the lab in time is not
+> an issue, but if not, we intend to give full credit if you are
 > working in person for most of the lab time and make significant progress.
 
 {.exercise ...} Possibly working with a partner ---
