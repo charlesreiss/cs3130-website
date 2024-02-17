@@ -135,6 +135,10 @@ When displaying memory usage, the program displays
 Your tasks in this lab will be to modify the program to change the values displayed
 for each of these by writing code in the function `labStuff`.
 
+To help compare the memory usage before and after, the program will display the change
+in parenthesis next to the "after" values. (There is no similar display for changes
+in the memory layout; you'll need to compare in some other way.)
+
 In the exercises in this lab, you'll modify `labStuff` to do some operations with memory and
 observe how they change those statistics.
 
