@@ -191,7 +191,7 @@ and do not do something useful with the resulting memory, the compiler might
 optimize away the memory allocation. We've setup our Makefile to avoid this when
 using `malloc`.^[By passing
 `-fno-builtin-malloc` to gcc or clang. Alternately
-you could prevent this from happening by using non-standard-library memory allocation
+you could prevent this from happening by using non-C-standard-library memory allocation
 functions like `mmap` or by accessing the resulting memory through
 volatile` pointers.]
 
