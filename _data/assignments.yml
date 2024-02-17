@@ -74,7 +74,6 @@
 
 - name: fork HW
   short_name: fork
-  tentative: true
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
   page: labhw/fork.html

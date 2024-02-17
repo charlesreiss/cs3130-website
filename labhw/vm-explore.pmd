@@ -158,7 +158,10 @@ accesses to the array[^mmapio].
 
 Using `alignas(4096)` asks the compiler
 to place `global_array` at an address that is a multiple of 4096; this will ensure
-that the array does not share virtual pages with other global variables.
+that the array does not share virtual pages with other global variables. It will also
+ensure that the array starts at the beginning of a page, so array
+indices 0 through 4095 inclusive will be one virtual page, indices 4096 through 8191
+another, and so on.
 (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
 
 [^mmapio]:
