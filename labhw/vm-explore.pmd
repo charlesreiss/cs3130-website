@@ -165,7 +165,7 @@ another, and so on.
 (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
 
 [^mmapio]:
-    This functionality is intended primarily for the purpose of
+    The `volatile` keyword is intended primarily for the purpose of
     supporting "memory-mapped I/O", where reading and writing memory locations
     causes an input or output operation to occur instead of just storing or
     retrieving values. So, generally, assembly
