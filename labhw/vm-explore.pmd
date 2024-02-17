@@ -193,11 +193,11 @@ using `malloc`.^[By passing
 `-fno-builtin-malloc` to gcc or clang. Alternately
 you could prevent this from happening by using non-C-standard-library memory allocation
 functions like `mmap` or by accessing the resulting memory through
-volatile` pointers.]
+`volatile` pointers (which one probably needs to do anyways as we describe above).]
 
 Besides the memory allocation itself being optimized, accesses to that memory
 could also be optimized away. Probably the simplest way to avoid this is to
-make a pointer to volatile char (or volatile int or any other volatile type)
+make a pointer to `volatile char` (or `volatile int` or any other `volatile` type)
 and access values through that pointer.
 
 ### accesses and resulting real allocations by malloc/calloc
