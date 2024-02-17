@@ -67,7 +67,7 @@ author: Charles Reiss
 
     If successful, you should observe that:
 
-    *  the allocation should be visible on the memory layout output by the `./lab` program
+    *  the allocation should be visible on the memory layout output by the `./lab` program at the end
 
     *  this results in a small increase in the space used for page table entries, which you may not have seen on
        the previous items
