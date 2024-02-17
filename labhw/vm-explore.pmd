@@ -3,8 +3,6 @@ title: Virtual memory exploration
 author: Charles Reiss
 ...
 
-<div class="oldsite">This lab is a draft and may have some (probably minor) changes before it is released.</div>
-
 {.exercise ...} <!-- -->
 
 > This lab expects 64-bit Linux environment with 4096 byte pages, like on portal.
