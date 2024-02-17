@@ -11,7 +11,7 @@ author: Charles Reiss
 
 0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
-    Run the code like `./lab 0` and observe the output, which is explained below in the "the ./lab program" section below
+    Run the code like `./lab 0` and observe the output, which is explained below in the "[the ./lab program](#program)" section below
 
 1.  Make a global array like:
 
@@ -39,21 +39,20 @@ author: Charles Reiss
 
     Make sure you observe (running `./lab 2`) that:
 
-    *  the allocation increase the "virtual memory size" reported by 1MB, but not
+    *  the allocation increase the "virtual memory size" reported is 1MB, but not
        the resident set size; and
-    *  the resident set size and fault count increases as you access this allocation
-
-    See the advice under "Item 3" below on how to ensure that this happens.
+    *  the resident set size and fault count increases in proportion to how many
+       pages of the allocated memory you access (as in item 1)
 
 3.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `3`, it
-    runs code that incresaes the "virtual memory size" by 1048576 bytes and the
-    "resident set size" by 131072 bytes and performs the fewest memory accesses
-    possible to do so.
+    runs code that increases the "virtual memory size" by 1048576 bytes and the
+    "resident set size" by 131072 bytes and performs the *fewest memory accesses
+    possible to do so*.
 
     Hint: You should only need to access each allocated page once.
 
 4.  For this and the following item,
-    run `./lab` with address randomization disabled using `setarch --addr-no-randomize ./lab ...`
+    run `./lab` with [address randomization](#addr-random) disabled using `setarch --addr-no-randomize ./lab ...`
     (instead of `./lab ...`).
 
     Determine the location of the heap, from `./lab`'s output.
@@ -61,7 +60,7 @@ author: Charles Reiss
     Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
     5096 bytes of memory 0x10000 bytes after the end of the heap.
 
-    See below for information about how to do this.
+    See [below](#item-45) for information about how to do this.
 
     If successful, you should observe that:
 
@@ -88,13 +87,12 @@ author: Charles Reiss
 {/}
 
 
-# the `./lab` program
+# the `./lab` program {#program}
 
 We supply `./lab` program, built from `lab.c` (which you will modify)
 and `util.c` (which you shouldn't need to modify).
 
 To run it, run
-
 
     ./lab NUMBER
 
@@ -140,7 +138,7 @@ for each of these by writing code in the function `labStuff`.
 In the exercises in this lab, you'll modify `labStuff` to do some operations with memory and
 observe how they change those statistics.
 
-# Item-specific info
+# Item-specific info/hints/advice
 
 ## Item 1
 
@@ -178,9 +176,9 @@ possible moment. That is, when a program first attempts to access a page,
 it will not yet be in the page table, then an exception will occur
 and Linux will update the page table entries accordingly.
 
-## Item 2
+## Item 2 {#item-2}
 
-### preventing access from being optimized away {#item-3-opt}
+### preventing access from being optimized away {#item-2-opt}
 
 Normally when you allocate memory with the stdlib.h functions
 and do not do something useful with the resulting memory, the compiler might
@@ -208,11 +206,11 @@ allocation itself. In this case, it's possible that if you values access near
 the beginning or end of the allocation, that your access will be part of
 the same page that `malloc` used and therefore caused to be allocated already.
 
-## Item 4 and Item 5
+## Item 4 and Item 5 {#item-45}
 
 ### find the location of the heap
 
-1.  The memory layout we display indicates the range of the address that correspond to the heap.
+1.  The memory layout we display indicates the range of the address that correspond to the heap (labeled `[heap]`)
 
     If you run the program with address randomization disabled, it should be the same every time.
 
@@ -264,8 +262,7 @@ the same page that `malloc` used and therefore caused to be allocated already.
 4.  Note that the location you specify must be at the beginning of a page,
     which on our systems is a multiple of 4096 (0x1000)
 
-
-### address randomization
+### address randomization {#addr-random}
 
 By default most OSes, including Linux, randomizes the addresses of allocations.
 
