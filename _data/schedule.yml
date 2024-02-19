@@ -159,7 +159,6 @@
     *  page tables (finish)
        *  as a tree
        *  multi-level lookup example
-       *  permission bits
 
 - date: 2024-02-23
   week: 6
