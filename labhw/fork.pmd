@@ -109,7 +109,7 @@ as follows:
 The output collected may interleave the outputs of the child processes (and an implementation
 that does this is simpler than one that does not).
 
-*[added 9 Oct]:* You may optionally strip a trailing newline from the output; in the examples below
+You may optionally strip a trailing newline from the output; in the examples below
 we do not do this (but we did not do this in the first version of this writeup).
 
 In order to ensure that the processes run in parallel, if they are writing to a pipe, you need
