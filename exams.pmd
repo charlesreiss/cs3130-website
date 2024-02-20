@@ -17,19 +17,19 @@ Changelog:
 
 # Summary
 
-Semester     Exam                                                                            High    Median   Mean   Low     StdDev
-----------  ------                                                                          ------  -------- ------ ------- --------
-Spring 2019 [1](files/s2019exam1.pdf)                                                        91.1%   80.6%    78.6%  54.8%   9.6%  
-Spring 2019 [2](files/s2019exam2.pdf)                                                        93.1%   77.8%    76.0%  52.2%   11.3% 
-Spring 2019 [3](files/s2019exam3.pdf)                                                        98.2%   85.3%    85.0%  60.1%   8.7%  
+Semester     Exam                                                                            High   75th       Median   Mean   25th     Low     StdDev
+----------  ------                                                                          ------  --------  -------- ------ -------- ------- --------
+Spring 2019 [1](files/s2019exam1.pdf)                                                        91.1%             80.6%    78.6%           54.8%   9.6%  
+Spring 2019 [2](files/s2019exam2.pdf)                                                        93.1%             77.8%    76.0%           52.2%   11.3% 
+Spring 2019 [3](files/s2019exam3.pdf)                                                        98.2%             85.3%    85.0%           60.1%   8.7%  
 Spring 2020 [quizzes](https://kytos02.cs.virginia.edu/coa2/quizzes/)
 Spring 2020 1 --- not available ---
 Spring 2020 [2](files/s2020exam2-viewonly.html)
 Spring 2020 [3](files/s2020final-viewonly.html)
 Spring 2023 [quizzes](files/s2023quizzes.html) + [key](files/s2023quizzeskey.html)
-Spring 2023 [final](files/s2023final.pdf) + [key](files/s2023finalkey.pdf)
+Spring 2023 [final](files/s2023final.pdf) + [key](files/s2023finalkey.pdf)                           ~77%       ~68%             ~58%
 Fall 2023   [quizzes](files/f2023quizzes.html) + [key](files/f2023quizzeskey.html)
-Fall 2023   [final](files/f2023final.pdf) + [key](files/f2023finalkey.pdf)
+Fall 2023   [final](files/f2023final.pdf) + [key](files/f2023finalkey.pdf)                           ~72%       ~56%             ~43%
 
 # Other Keys
 
