@@ -5,6 +5,12 @@ author:
     - Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  20 Feb 2024: change reference from Collab to Canvas
+</div>
+
 {.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
@@ -223,7 +229,7 @@ but possibly with the lines in a different order and/or interleaved.
 ## fork lab code
 
 You may find it useful to consult your code for the fork lab. If you did not complete it,
-an example solution will be available on Collab, under the resources tab.
+an example solution will be available on Canvas, under the files tab.
 
 ## Testing that you `waitpid`
 
