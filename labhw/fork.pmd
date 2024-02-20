@@ -110,7 +110,7 @@ The output collected may interleave the outputs of the child processes (and an i
 that does this is simpler than one that does not).
 
 You may optionally strip a trailing newline from the output; in the examples below
-we do not do this (but we did not do this in the first version of this writeup).
+we do not do this.
 
 In order to ensure that the processes run in parallel, if they are writing to a pipe, you need
 to be reading from that pipe to prevent them from hanging (if they write too much).
