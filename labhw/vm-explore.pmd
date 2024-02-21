@@ -30,13 +30,14 @@ Changelog:
     See the section "[array declaration](#array-decl)" for an explanation of what this code does.
 
     Change the code in `lab.c`'s `labStuff` so that when the parameter is `1`, it
-    runs some code to write to the array.
+    runs some code to write^[Originally I wrote access, and not write. You'll see a change a the fault count with just reads. But to see a change in the resident set size, it needs
+    to be a write, because Linux uses a clever trick of having a [common zero page](https://lwn.net/Articles/517465/) when the data is all zeroes.]
 
     Make sure you can observe (running `./lab 1`) that when you:
 
-    *  access different pages (4096-byte regions) of the array, that increases the number of faults
+    *  writing different pages (4096-byte regions) of the array, that increases the number of faults
        and the resident set size
-    *  access the same page multiple times, that does not increase the number of faults
+    *  writing the same page multiple times, that does not increase the number of faults
        or the resident set size more than accessing a page once
 
     See the section "[Linux and allocate-on-demand](#demand)" below for why this should happen.
