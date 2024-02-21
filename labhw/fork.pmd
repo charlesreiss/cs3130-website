@@ -11,6 +11,8 @@ Changelog:
 *  20 Feb 2024: change reference from Collab to Canvas
 *  21 Feb 2024: explicitly mention that the way parallelgetoutput needs to run programs
    is easiest to do without involving a shell
+*  21 Feb 2024: indicate that `parallelgetoutput()` can assume there is no `\0` in program's
+   output and explicitly indicate that it's return value you should be dynamically allocated like `getoutput()`
 </div>
 
 {.exercise ...}
@@ -105,7 +107,9 @@ see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 # `char *parallelgetoutput(int count, const char **argv_base)`
 
 Run `count` child processes simulatenously and collect their output into a single string,
-returning only after all the child processes have finished. 
+returning only after all the child processes have finished. (You may assume the output
+does not include `\0`. Like `getoutput()` the string you return should be dynamically
+allocated.)
 Each of the child processes
 should run a command specified by the NULL-pointer-terminated array `argv_base` 
 as follows:
