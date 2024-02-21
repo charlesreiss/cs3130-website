@@ -3,6 +3,12 @@ title: Virtual memory exploration
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  20 Feb 2024: change 0x10000 to 0x200000 in item 4 to more consistently trigger page table size change; note that address should be multiple of 4096
+</div>
+
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
 
 > Since this is the first time we are using this lab, I am not sure how much time
@@ -61,7 +67,8 @@ author: Charles Reiss
     Determine the location of the heap, from `./lab`'s output.
 
     Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
-    4096 bytes of memory 0x10000 bytes after the end of the heap.
+    4096 bytes of memory at an address 0x200000 bytes after the end of the heap (rounded up to the next address
+    that is a multiple of 4096).
 
     See [below](#item-45) for information about how to do this.
 
