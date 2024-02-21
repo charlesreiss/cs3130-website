@@ -67,8 +67,8 @@ Changelog:
     Determine the location of the heap, from `./lab`'s output.
 
     Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
-    4096 bytes of memory at an address 0x200000 bytes after the end of the heap (rounded up to the next address
-    that is a multiple of 4096).
+    4096 bytes of memory at an address 0x200000 bytes after the end of the heap (rounded up, if necessary,
+    to the next address that is a multiple of 4096 (= 0x1000)).
 
     See [below](#item-45) for information about how to do this.
 
