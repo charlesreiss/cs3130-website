@@ -178,7 +178,7 @@ another, and so on.
 (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
 
 We deliberately do not set an initial value for this array to ensure that
-the memory for it will be constructed "from scratch" rather than copied from a file's data.
+the memory for it will be constructed "from scratch" rather than copied from (or potentially shared with, using copy-on-write) an executable file's data.
 
 [^mmapio]:
     The `volatile` keyword is intended primarily for the purpose of
