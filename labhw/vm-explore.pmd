@@ -7,7 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  20 Feb 2024: change 0x10000 to 0x200000 in item 4 to more consistently trigger page table size change; note that address should be multiple of 4096
-*  21 Feb 2024: for item 1, request writing to the array instead of just accessing, since this more consistently triggers resident set size changes (the OS can use copy-on-write to avoid allocated all-zero pages)
+*  21 Feb 2024: for item 1, request writing to the array instead of just accessing, since this more consistently triggers resident set size changes (the OS can use copy-on-write to avoid allocated all-zero pages); mention that the array declaration deliberately avoids setting an initial value
 </div>
 
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
@@ -31,7 +31,7 @@ Changelog:
 
     Change the code in `lab.c`'s `labStuff` so that when the parameter is `1`, it
     runs some code to write^[Originally I wrote access, and not write. You'll see a change a the fault count with just reads. But to see a change in the resident set size, it needs
-    to be a write, because Linux uses a clever trick of having a [common zero page](https://lwn.net/Articles/340370/) when the data is all zeroes.] to the array.
+    to be a write. I think this is because Linux uses a clever trick of having a [common zero page](https://lwn.net/Articles/340370/) when the data is all zeroes.] to the array.
 
     Make sure you can observe (running `./lab 1`) that when you:
 
@@ -176,6 +176,9 @@ ensure that the array starts at the beginning of a page, so array
 indices 0 through 4095 inclusive will be one virtual page, indices 4096 through 8191
 another, and so on.
 (One needs to include `<stdalign.h>` to use `alignas`, which our template code does.)
+
+We deliberately do not set an initial value for this array to ensure that
+the memory for it will be constructed "from scratch" rather than copied from a file's data.
 
 [^mmapio]:
     The `volatile` keyword is intended primarily for the purpose of
