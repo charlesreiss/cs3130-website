@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  20 Feb 2024: change 0x10000 to 0x200000 in item 4 to more consistently trigger page table size change; note that address should be multiple of 4096
+*  21 Feb 2024: for item 1, request writing to the array instead of just accessing, since this more consistently triggers resident set size changes (the OS can use copy-on-write to avoid allocated all-zero pages)
 </div>
 
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
@@ -29,7 +30,7 @@ Changelog:
     See the section "[array declaration](#array-decl)" for an explanation of what this code does.
 
     Change the code in `lab.c`'s `labStuff` so that when the parameter is `1`, it
-    runs some code to access the array.
+    runs some code to write to the array.
 
     Make sure you can observe (running `./lab 1`) that when you:
 
