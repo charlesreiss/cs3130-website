@@ -45,7 +45,7 @@ Changelog:
 2.  Change the code in `lab.c`'s `labStuff` so that when the parameter is `2`, it
     runs code that:
 
-    *  allocates 1MB of memory, and
+    *  allocates 1048576 bytes (1MB) of memory, and
     *  accesses a few bytes of the allocation
 
     Make sure you observe (running `./lab 2`) that:
