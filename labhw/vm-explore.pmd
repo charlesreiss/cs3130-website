@@ -67,7 +67,7 @@ Changelog:
     Determine the location of the heap, from `./lab`'s output.
 
     Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
-    4096 bytes of memory at an address 0x200000 bytes after the end of the heap (rounded up, if necessary,
+    4096 bytes of memory at an address 0x200000[^item4count] bytes after the end of the heap (rounded up, if necessary,
     to the next address that is a multiple of 4096 (= 0x1000)).
 
     See [below](#item-45) for information about how to do this.
@@ -91,6 +91,10 @@ Changelog:
     or submit your `lab.c` (making sure it indicates in a comment anyone you worked with) to the submission site.
 
 {/}
+
+[^item4count]:
+    The original version of this writeup used 0x10000, and it's okay to use that, too, but 0x200000 should be more foolproof for
+    observing a change in page table entry space.
 
 
 # the `./lab` program {#program}
