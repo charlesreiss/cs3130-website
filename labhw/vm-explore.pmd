@@ -9,6 +9,7 @@ Changelog:
 *  20 Feb 2024: change 0x10000 to 0x200000 in item 4 to more consistently trigger page table size change; note that address should be multiple of 4096
 *  21 Feb 2024: for item 1, request writing to the array instead of just accessing, since this more consistently triggers resident set size changes (the OS can use copy-on-write to avoid allocated all-zero pages); mention that the array declaration deliberately avoids setting an initial value
 *  21 Feb 2024: for item 2, only request virtual memory size increase by 'about 1MB' to avoid issues with interpreting 1 MB as 10 to 6 bytes versus 2 to 20 bytes and with malloc bookkeeping/etc. that we want to save until item 3
+*  21 Feb 2024: fix missing ,s in mmap examples; be explicit about rounding up for item 5
 </div>
 
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
@@ -84,7 +85,7 @@ Changelog:
 
 5.  Do the same as item 4, but make it so when  `5`
     it allocates and uses 4096 bytes of
-    memory 0x10000000000 bytes after the end of the heap.
+    memory 0x10000000000 bytes after the end of the heap (again, with the address rounded up to a multiple of 4096 if necessary).
 
     If successful, you should observe that this allocation results in a larger increase in the space
     used for page table entries than what you did for item 4.
@@ -252,7 +253,7 @@ the same page that `malloc` used and therefore caused to be allocated already.
                    8192 /* length */,
                    PROT_READ | PROT_WRITE,
                    MAP_PRIVATE | MAP_ANONYMOUS,
-                   -1 /* file descriptor (-1 for "none") */
+                   -1, /* file descriptor (-1 for "none") */
                    0
             );
         if (ptr == MAP_FAILED) { handle_error(); }
@@ -271,7 +272,7 @@ the same page that `malloc` used and therefore caused to be allocated already.
                    8192,
                    PROT_READ | PROT_WRITE,
                    MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED_NOREPLACE,
-                   -1
+                   -1,
                     0
             );
         if (ptr == MAP_FAILED) { handle_error(); }
