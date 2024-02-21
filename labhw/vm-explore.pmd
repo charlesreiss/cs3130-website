@@ -93,8 +93,8 @@ Changelog:
 {/}
 
 [^item4count]:
-    The original version of this writeup used 0x10000, and it's okay to use that, too, but 0x200000 should be more foolproof for
-    observing a change in page table entry space.
+    The original version of this writeup used 0x10000, and it's okay to use that, too, but 0x200000 may be more consistent
+    at ensuring a change in page table entry space.
 
 
 # the `./lab` program {#program}
