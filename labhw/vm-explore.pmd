@@ -50,7 +50,7 @@ Changelog:
 
     Make sure you observe (running `./lab 2`) that:
 
-    *  the allocation increase the "virtual memory size" reported is 1MB, but not
+    *  the allocation increase the "virtual memory size" reported is about 1MB, but not
        the resident set size; and
     *  the resident set size and fault count increases in proportion to how many
        pages of the allocated memory you access (as in item 1)
