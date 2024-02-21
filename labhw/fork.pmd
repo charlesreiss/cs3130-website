@@ -9,6 +9,8 @@ author:
 Changelog:
 
 *  20 Feb 2024: change reference from Collab to Canvas
+*  21 Feb 2024: explicitly mention that the way parallelgetoutput needs to run programs
+   is easiest to do without involving a shell
 </div>
 
 {.exercise ...}
@@ -111,6 +113,10 @@ as follows:
 *  the executable run shall be `argv_base[0]`
 *  the arguments (`argv` value) for the program run shall be the elements of `argv_base` followed by the 0-based index of
    the child process converted to a string
+
+(Running a command this way easiest if you do *not* run a shell (like `/bin/sh`),
+so your call to an exec function will likely be different than it was for `getoutput` or
+`parallelgetoutput`.)
 
 The output collected may interleave the outputs of the child processes (and an implementation
 that does this is simpler than one that does not).
