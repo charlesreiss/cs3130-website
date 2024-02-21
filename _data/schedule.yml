@@ -139,8 +139,6 @@
   title: virtual memory 2
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   slides: yes
-  slides_extra: yes
-  slides_prelim: yes
   description: |
     *  loading data on demand (finish)
     *  copy-on-write, other "page table tricks"
