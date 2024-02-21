@@ -31,7 +31,7 @@ Changelog:
 
     Change the code in `lab.c`'s `labStuff` so that when the parameter is `1`, it
     runs some code to write^[Originally I wrote access, and not write. You'll see a change a the fault count with just reads. But to see a change in the resident set size, it needs
-    to be a write, because Linux uses a clever trick of having a [common zero page](https://lwn.net/Articles/517465/) when the data is all zeroes.]
+    to be a write, because Linux uses a clever trick of having a [common zero page](https://lwn.net/Articles/517465/) when the data is all zeroes.] to the array.
 
     Make sure you can observe (running `./lab 1`) that when you:
 
