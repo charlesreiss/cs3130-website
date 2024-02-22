@@ -3,6 +3,12 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section
+</div>
+
 {.exercise ...}
 Your task:
 
@@ -195,8 +201,16 @@ void page_allocate(size_t va);
 
 4.  There will be `LEVELS` level of page tables (where `LEVELS` is a constant defined in `config.h` that we may change).
 
-5.  The global variable `ptbr` represents the page table register. It should be `0` (a null pointer) when no page tables are allocated
+    The number of LEVELS and the size of page tables will determine the effective
+    size of virtual addresses.
 
+    {.example} With `POBITS` set to 12 and `LEVELS` set to 2,
+    page tables each contain 2^12^/8 = 512 = 2^9^ entries and only 30 bits of virtual addresses
+    will be used: a 12-bit page offset and
+    an 18-bit (2 times 9 bits) virtual page number, which will be divided into
+    two parts for the page table lookup.
+
+5.  The global variable `ptbr` represents the page table register. It should be `0` (a null pointer) when no page tables are allocated. (Even though it is a `size_t`, it represents an address.)
 
 # Coding Style
 
