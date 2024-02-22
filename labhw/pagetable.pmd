@@ -6,7 +6,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section
+*  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section; provide forward reference in "your task" part that POBITS determines page table sizes
 </div>
 
 {.exercise ...}
@@ -51,13 +51,14 @@ Your task:
     (example shown below), which will `#define` the constants:
 
     *  `LEVELS` -- number of levels in the page table
-    *  `POBITS` -- the size of page offsets
+    *  `POBITS` -- the size of page offsets (which, as described below, also determined
+       the size of each page table)
 
     Page tables will follow the format described below.
 
-    Although pointers will be represented using 64-bit `size_t`s, usually not all bits of the
-    virtual addresses will be used; you may assume that any unused bits will be set to `0`
-    when your code is called.
+    Although virtual addresses will be represented using 64-bit `size_t`s,
+    usually not all bits of those `size_t`s will be used;
+    you may assume that any unused bits will be set to `0` when your code is called.
 
     Your code must implement API provided by a header file called `mlpt.h`, an version of
     which is supplied [here](files/mlpt.h). It includes:
@@ -205,7 +206,7 @@ void page_allocate(size_t va);
     size of virtual addresses.
 
     {.example} With `POBITS` set to 12 and `LEVELS` set to 2,
-    page tables each contain 2^12^/8 = 512 = 2^9^ entries and only 30 bits of virtual addresses
+    page tables each contain 2^12^/8 = 512 = 2^9^ entries and only 30 bits from virtual addresses
     will be used: a 12-bit page offset and
     an 18-bit (2 times 9 bits) virtual page number, which will be divided into
     two parts for the page table lookup.
