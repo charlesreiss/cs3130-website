@@ -84,7 +84,7 @@
     <li><small><i>[added 23 Feb:]</i></small> our testing code has trouble free()ing what you return
     </ul>
     <p>
-    <small><i>[added 23 Feb:]</i></small> Memory errors reported below can include issues related to our testing code outputting what you return.
+    <small><i>[added 23 Feb:]</i></small> Memory errors reported below can include issues related to our testing code outputting what you return (in which case they make indicate a line number in your code related to the allocation you return).
   submit_file: "fork_run.c"
   due: 2024-02-23
 
