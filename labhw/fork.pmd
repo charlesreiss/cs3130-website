@@ -58,7 +58,7 @@ then wait for 2 seconds before printing
     ]]]
     Bye!
 
-Note that this `main` also has a memory leak: `my_getoutput` invokes `malloc` and `main` is not invoking `free`.
+Note that this `main` also has a memory leak: `getoutput` invokes `malloc` and `main` is not invoking `free`.
 {/}
 
 To do this, use the following outline.
