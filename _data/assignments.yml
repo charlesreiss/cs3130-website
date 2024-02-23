@@ -81,7 +81,10 @@
     <ul><li>you included a `main()` function that interferes with our testing code,
     <li>you did not define both `getoutput` and `parallelgetoutput` so our testing code will link successfully, or
     <li>your code crashes due to a memory error (see section 3.1 of the assignment for advice on checking for this locally)
+    <li><small><i>[added 23 Feb:]<i></small> our testing code has trouble free()ing what you return
     </ul>
+    <p>
+    <small><i>[added 23 Feb:]</i></small> Memory errors reported below can include issues related to our testing code outputting what you return.
   submit_file: "fork_run.c"
   due: 2024-02-23
 
