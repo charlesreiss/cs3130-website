@@ -7,6 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section; provide forward reference in "your task" part that POBITS determines page table sizes
+*  26 Feb 2024: update use of `__attribute__((aligned))` in manual testing code to possibly more portable `alignas()` from `<stdalign.h>`
 </div>
 
 {.exercise ...}
@@ -333,15 +334,18 @@ To test that these work properly,
 1.  You can manually set `ptbr` to a hard-coded page table array to test `translate` without `page_allocate` being implemented.
     The below items show examples of how to do this with POBITS = 12 and LEVELS = 1.
 
-2.  In GCC and Clang, you can use `__attribute__((aligned(4096)))` to make a variable be allocated at an address that is a multiple
+2.  After including `<stdalign.h>`, you can use `alignas(4096)`^[An alternate way to do this, mentioned by previous version of this writeup,
+    is to use `__attribute__((aligned(4096)))` instead of `alignas(4096)`. This is only likely to work in GCC or Clang (and, in my opinion,
+    is a lot uglier).]
+    to make a variable be allocated at an address that is a multiple
     of 4096. Using this, you can declare an array of `size_t`s which takes up a (simulated) "physical" page as follows:
 
-        __attribute__((aligned(4096)))
+        alignas(4096)
         static size_t page_of_data[512];
 
     We could also declare it as an array of 1-byte `char`s as follows:
 
-        __attribute__((aligned(4096)))
+        alignas(4096)
         static char page_of_data[4096];
 
     though this would make it more difficult to set individual page table entries later.
@@ -350,7 +354,7 @@ To test that these work properly,
     initially be an array of 0s. Since these have a valid bit of 0 in our page table format, you can test `translate()` with
     an empty page table by doing something like:
 
-        __attribute__((aligned(4096)))
+        alignas(4096)
         static size_t testing_page_table[512];
 
         static void set_testing_ptbr(void) {
@@ -366,7 +370,7 @@ To test that these work properly,
     to point to a (simulated) "physical" page of data. We'll first allocate memory for that physical page of data
     as a global variable:
 
-        __attribute__((aligned(4096)))
+        alignas(4096)
         static char data_for_page_3[4096];
 
     Then, we need to convert the physical address of `data_for_page_3` into a page table entry. To do this, we
