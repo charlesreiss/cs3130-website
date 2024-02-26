@@ -90,7 +90,6 @@
 
 - name: sync games
   lab: true
-  tentative: true
   short_name: sync
   page: labhw/sync.html
   comments: needs changes for in-person?
