@@ -153,7 +153,6 @@
   title: virtual memory 3
   reading: "[VM](readings/vm.html) §2.1, 3.2"
   slides: yes
-  slides_prelim: yes
   description: |
     *  page tables (finish)
        *  pagetable assignment
@@ -171,7 +170,6 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
-    *  (as necessary) more examples of multi-level page tables
 
     *  caching idea
     *  (if time) connecting processors to memory
