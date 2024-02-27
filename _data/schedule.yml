@@ -167,8 +167,6 @@
   title: caches 1
   reading: "[cache](readings/cache.html)"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
 
     *  caching idea
@@ -186,12 +184,14 @@
 - date: 2024-02-29
   week: 7
   title: caches 2
-  slides_see: 2024-02-27
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   reading: "[cache](readings/cache.html)"
   description: |
-    *  cache misses and C code
     *  set-associative caches
     *  (briefly) replacement policies
+    *  cache misses and C code (start)
 
 - date: 2024-03-01
   week: 7
@@ -207,9 +207,10 @@
 - date: 2024-03-12
   week: 9
   title: caches 3
-  slides_see: 2024-02-27
-  reading: "[cache](readings/cache.html), [threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
+  slides_see: 2024-02-29
+  reading: "[cache](readings/cache.html)"
   description: |
+   *  cache misses and C code (finish)
    *  write policies
    *  the TLB
 
@@ -226,7 +227,7 @@
   slides: yes
   slides_prelim: yes
   slides_extra: yes
-  reading: "[sync](readings/sync.html) §1, 2-7, 8-9; [consistency](readings/consistency.html) §1"
+  reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
   description: |
     *  creating new threads
     *  thread use examples
