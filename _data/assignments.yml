@@ -98,7 +98,6 @@
   due: 2024-02-28
 
 - name: pagetable part 1
-  tentative: true
   short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable.html
@@ -133,7 +132,6 @@
   portion: 0.25
   due: 2024-03-20
   pre_lab: true
-  tentative: true
   no_late: true
   no-late: true
   due_message: pagetable part 2 (pre code review) due BEFORE FIRST LAB &mdash; normal late policy does not apply
@@ -185,7 +183,6 @@
   page: labhw/pagetable.html
   portion: 2.0
   due: 2024-03-22
-  tentative: true
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 1 Oct)</small>:
     <ul>
