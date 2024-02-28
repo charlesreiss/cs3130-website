@@ -19,8 +19,7 @@ Labs which allow submission are due by 11:59am (before noon) the following day u
 
 Homeworks are due at 11:59pm Eastern Time unless otherwise noted.
 
-If an assignment is linked but tentative, there may be some changes, perhaps very substantial changes,
-to the assignment before it is officially released.
+If an assignment is linked but tentative, there may be some changes to the assignment before it is officially released.
 
 {: #assignments}
 {% for assignment in site.data.assignments %}
