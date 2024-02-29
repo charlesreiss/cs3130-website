@@ -3,6 +3,12 @@ title: Policies
 index_title: Policies
 ...
 
+<div class="changelog">
+Changelog:
+
+*  29 Feb 2024: be extremely explicit (even though it should not really be necessary) that helping others not write their own code counts as dishonesty
+</div>
+
 # Logistics
 
 ## Meetings
@@ -127,6 +133,8 @@ This includes not asking for/accepting code from students, stack overflow, gener
 the assignment).
 Beware of looking at other students code or code you find online: it is hard to unsee and can spoil your ability to compose your own solutions!
 
+(As should go without saying, you should also not help others in the class avoid composing their own code.)
+
 ### Understand what you submit
 
 Working together can help you learn. But make sure you learned!
@@ -147,8 +155,8 @@ ask specifically about (or look for instances where others asked specifically ab
 
 ### Consequences of Dishonesty
 
-If I believe you have acted dishonestly (such as by submitting code that are not yours as if they were yours),
-I will communicate this fact to you and propose a penalty. 
+If I believe you have acted dishonestly (such as by submitting code that are not yours as if they were yours
+or helping someone else do the same), I will communicate this fact to you and propose a penalty. 
 If you have information I lack, please share that with me; I may thereafter change my belief and/or proposed penalty.
 
 This penalty is independent of and may be in addition to any referral to the University Honor System.
