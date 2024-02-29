@@ -8,6 +8,7 @@ Changelog:
 
 *  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section; provide forward reference in "your task" part that POBITS determines page table sizes
 *  26 Feb 2024: update use of `__attribute__((aligned))` in manual testing code to possibly more portable `alignas()` from `<stdalign.h>`
+*  28 Feb 2024: add section on pointers versus integers to common C issues in hints
 </div>
 
 {.exercise ...}
@@ -321,6 +322,30 @@ To test that these work properly,
 
 1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it uses `ptbr` as a pointer. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr`.
 
+### integers versus pointers
+
+1.  If you have an integer (such as something declared as a `size_t`) and want to access the value stored there, you can convert it to a pointer and then dereference it:
+
+        size_t address;
+        size_t *address_as_pointer;
+        ...
+        address = /* some code that computes an address as an integer */;
+        address_as_pointer = (size_t *) address;
+        size_t value_from_address = *address_as_pointer;
+
+2.  If you add to a pointer, it modifies the address based on the size of what the pointer points to. For example given:
+
+        size_t *ptr;
+        size_t *new_ptr;
+        ...
+        new_ptr = ptr + 10;
+
+    will set `new_ptr` to an address that is `10*sizeof(size_t) = 80` more than new_ptr, similar to if one did:
+
+        size_t temp;
+        temp = (size_t) ptr;
+        temp = temp + 80;
+        new_ptr = (size_t*) temp;
 
 ## Page table format and page numbers
 
