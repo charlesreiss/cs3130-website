@@ -207,12 +207,13 @@
 - date: 2024-03-12
   week: 9
   title: caches 3
-  slides_see: 2024-02-29
+  slides: yes
+  slides_prelim: yes
   reading: "[cache](readings/cache.html)"
   description: |
    *  cache misses and C code (finish)
    *  write policies
-   *  the TLB
+   *  the TLB (start)
 
 
 - date: 2024-03-13
@@ -229,6 +230,8 @@
   slides_extra: yes
   reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
   description: |
+    *  the TLB (finish)
+
     *  creating new threads
     *  thread use examples
 
