@@ -9,7 +9,7 @@ Changelog:
 *  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section; provide forward reference in "your task" part that POBITS determines page table sizes
 *  26 Feb 2024: update use of `__attribute__((aligned))` in manual testing code to possibly more portable `alignas()` from `<stdalign.h>`
 *  28 Feb 2024: add section on pointers versus integers to common C issues in hints
-*  6 March 2024: "memory is gaurenteed" -> "the address `x` is gaurenteed"
+*  6 March 2024: "memory is gaurenteed" -> "the address `x` is gaurenteed"; other clarification to hints
 </div>
 
 {.exercise ...}
@@ -321,7 +321,7 @@ To test that these work properly,
 
 ### using ptbr
 
-1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it uses `ptbr` as a pointer. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr`.
+1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it interprets `ptbr` as a memory address and allows it to be dereferenced to access that memory address. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr`.
 
 ### integers versus pointers
 
