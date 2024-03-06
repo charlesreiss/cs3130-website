@@ -321,7 +321,7 @@ To test that these work properly,
 
 ### using ptbr
 
-1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it interprets `ptbr` as a memory address and allows it to be dereferenced to access that memory address. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr`.
+1.  `(size_t*) ptbr` uses the value contained in `ptbr` as a pointer &mdash; in other words, it interprets `ptbr` as a memory address and allows it to be dereferenced to access that memory address. In contrast, `&ptbr` gets a pointer to the value contained in `ptbr`; in other words, it makes a pointer **to** `ptbr` &mdash; derferencing that pointer will modify `ptbr` itself, not things around the address it contains.
 
 ### integers versus pointers
 
