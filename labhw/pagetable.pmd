@@ -9,6 +9,7 @@ Changelog:
 *  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section; provide forward reference in "your task" part that POBITS determines page table sizes
 *  26 Feb 2024: update use of `__attribute__((aligned))` in manual testing code to possibly more portable `alignas()` from `<stdalign.h>`
 *  28 Feb 2024: add section on pointers versus integers to common C issues in hints
+*  6 March 2024: "memory is gaurenteed" -> "the address `x` is gaurenteed"
 </div>
 
 {.exercise ...}
@@ -303,7 +304,7 @@ To test that these work properly,
 ## Common C issues
 
 ### posix_memalign issues
-1.  `posix_memalign(&x, ...)` is similar to `x = malloc(...)` except that the memory is guarenteed at a multiple of a particular value.
+1.  `posix_memalign(&x, ...)` is similar to `x = malloc(...)` except that the address `x` is guarenteed at a multiple of a particular value.
     The pointer to pointer passed into `posix_memalign` is used in lieu of returning a pointer to the memory allocated. 
     (The return value of `posix_memalign` indicates success (`0`) or failure (non-zero error code).)
 
