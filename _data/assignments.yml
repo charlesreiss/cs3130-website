@@ -137,7 +137,7 @@
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
-    <li>if your test does an out-of-bounds memory access, this means that part of the function that did the access did not run (our tests contain code that can partially recover from segfaults)
+    <li>if your test does an out-of-bounds memory access, this means that part of the function that did the access did not run --- our test code aborts the function when an out-of-bounds access occurs
     <li>our tests use <tt>ptbr</tt> to inspect the page table contents and require the page table entries use the format specified in the assignment (including valid bits and the placement of physical page numbers)
     <li>the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
     <li>the expected results of tests of translate() are based on which page table entries (appear to our testing code to) map to valid allocations, not on what page_allocate calls were made previously
@@ -185,7 +185,7 @@
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
-    <li>if your test does an out-of-bounds memory access, this means that part of the function that did the access did not run (our tests contain code that can partially recover from segfaults)
+    <li>if your test does an out-of-bounds memory access, this means that part of the function that did the access did not run --- our test code aborts the function when an out-of-bounds access occurs
     <li>our tests use <tt>ptbr</tt> to inspect the page table contents and require the page table entries use the format specified in the assignment (including valid bits and the placement of physical page numbers)
     <li>the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
     <li>the expected results of tests of translate() are based on which page table entries (appear to our testing code to) map to valid allocations, not on what page_allocate calls were made previously
