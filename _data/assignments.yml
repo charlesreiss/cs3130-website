@@ -135,11 +135,12 @@
   no-late: true
   due_message: pagetable part 2 (pre code review) due BEFORE FIRST LAB &mdash; normal late policy does not apply
   grade_describe: |
-    Selected notes on interpreting our testing output below <small>(updated 1 Oct)</small>:
+    Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
+    <li>if your test does an out-of-bounds memory access, this means that part of the function that did the access did not run (our tests contain code that can partially recover from segfaults)
     <li>our tests use <tt>ptbr</tt> to inspect the page table contents and require the page table entries use the format specified in the assignment (including valid bits and the placement of physical page numbers)
     <li>the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
-    <li>the expected results of tests of translate() are based on which page table entries map to valid allocations, not on what page_allocate calls were made previously, so if your page table is formatted differently than we expect, they make require
+    <li>the expected results of tests of translate() are based on which page table entries (appear to our testing code to) map to valid allocations, not on what page_allocate calls were made previously
     </ul>
   XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
@@ -182,12 +183,12 @@
   portion: 2.0
   due: 2024-03-22
   grade_describe: |
-    Selected notes on interpreting our testing output below <small>(updated 1 Oct)</small>:
+    Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
+    <li>if your test does an out-of-bounds memory access, this means that part of the function that did the access did not run (our tests contain code that can partially recover from segfaults)
     <li>our tests use <tt>ptbr</tt> to inspect the page table contents and require the page table entries use the format specified in the assignment (including valid bits and the placement of physical page numbers)
-    <li>note that the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
-    <li>tests that count allocations are looking to see if all allocations are accounted for by what's in the page table; there are separate tests that the correct page table entries were filled in
-    <li>the expected results of tests of translate() are based on which page table entries map to valid allocations, so if page table entries are not formatted the way the tests expect (because of a problem with page_allocate()), they may "expect" translate() to return all 1's even though there's something in the page table entries
+    <li>the memory posix_memalign allocates may be initialized differently in our test environment than your environment (posix_memalign is not required to zero out the memory it returns)
+    <li>the expected results of tests of translate() are based on which page table entries (appear to our testing code to) map to valid allocations, not on what page_allocate calls were made previously
     </ul>
   XXXgrade_describe: |
     Selected notes on interpreting our testing output below:
