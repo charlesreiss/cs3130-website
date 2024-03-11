@@ -7,7 +7,7 @@ A code review is a chance to get feedback from others on the design and implemen
 {.exercise ...}
 1. Submit your current [pagetable 2](pagetable.html) material before lab on the submission site.
     We may compare your before-and-after code and expect to see citations for any changes inspired by the code review.
-2. Get into a group of three students. None of the students should have collaborated on this assignment before this lab.
+2. Get into a group of three (or four, if needed) students. None of the students should have collaborated on this assignment before this lab.
 3. Arrange and write down an order to review each members code and a schedule (⅓ of remaining lab time each, with 5 minutes breaks in between) at which you'll switch from one student's code to another.
 4. Understand both reviewer and reviewee roles.
 5. For each student,
@@ -15,7 +15,8 @@ A code review is a chance to get feedback from others on the design and implemen
     b. Reviewers make suggestions while the code author takes notes
     c. The code author chooses the review's focus, but make sure to address
         - variable and function names
-        - code organization, including functional decomposition
+        - code organization, including functional decomposition and whether there is redundant code
+        - organization of the Makefile
     d. If time remains after the above are handled, go line-by-line, discussing if there could be an error on that line (e.g., an unchecked return type, integer overflow, etc).
 {/}
 
