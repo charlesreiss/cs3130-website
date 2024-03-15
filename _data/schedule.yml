@@ -272,29 +272,25 @@
        *  definition
        *  preventing/avoiding
     *  producer/consumer problem
-    *  monitors (start)
+    *  (if time) monitors (start)
 
 - date: 2024-03-22
   week: 10
 
 - date: 2024-03-26
   week: 11
-  title: synchronization 4 / networking 1
-  reading: "[protocols](readings/protocols.html) §1-2"
+  title: synchronization 4 / networking 0
+  reading: "[sync](readings/sync.html),  [protocols](readings/protocols.html) §1-2"
   slides_see: 2024-03-14
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
+  slides_see2: 2024-03-28
   description: |
-    *  monitors (finish)
+    *  monitors
     *  false sharing
     *  briefly, transactions
 
     *  mailbox analogy
        *  best-effort delivery
        *  envelope versus contents
-    *  layers
-    *  connections atop mailbox model (start)
 
 - date: 2024-03-27
   lab: true
@@ -302,11 +298,14 @@
 
 - date: 2024-03-28
   week: 11
-  title: networking 2
+  title: networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
-  slides_see: 2024-03-26
+  slides: yes
+  slides_prelim: yes
+  slides_extra: yes
   description: |
-    *  connections atop mailbox model (finish)
+    *  layers
+    *  connections atop mailbox model
     *  names and addresses
     *  example: a frame
        *  layers (link, network, transport)
@@ -321,9 +320,9 @@
 
 - date: 2024-04-02
   week: 12
-  title: networking 3 / secure channels 1
+  title: networking 2 / secure channels 1
   reading: "[security](readings/sec.html) §1-1.5"
-  slides_see: 2024-03-26
+  slides_see: 2024-03-28
   slides: yes
   slides_prelim: yes
   slides_extra: yes
