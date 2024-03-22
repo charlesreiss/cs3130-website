@@ -238,8 +238,6 @@
   title: "synchronization 1 / deadlock"
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
    *  problem of synchronization
    *  atomicity, race conditions
@@ -247,8 +245,6 @@
    *  locks and mutexes
    *  barriers
    *  interlude: reordering
-
-   *  examples of deadlock
 
 - date: 2024-03-20
   lab: true
@@ -258,32 +254,32 @@
   week: 10
   title: synchronization 2
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
-  slides_see: 2024-03-19
-  slides_see2: 2024-03-14
+  slides: yes
   description: |
     (Reiss out of town)
 
     *  deadlock
        *  definition
        *  preventing/avoiding
-    *  producer/consumer problem
-    *  (if time) monitors (start)
+    *  (if time) producer/consumer problem
 
 - date: 2024-03-22
   week: 10
 
 - date: 2024-03-26
   week: 11
-  title: synchronization 4 / networking 0
+  title: synchronization 3
   reading: "[sync](readings/sync.html),  [protocols](readings/protocols.html) §1-2"
-  slides_see: 2024-03-14
+  slides: yes
+  slides_prelim: yes
   slides_see2: 2024-03-28
   description: |
+    *  producer/consumer problem
     *  monitors
     *  false sharing
     *  briefly, transactions
 
-    *  mailbox analogy
+    *  (if time) mailbox analogy
        *  best-effort delivery
        *  envelope versus contents
 
