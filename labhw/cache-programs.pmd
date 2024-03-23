@@ -3,14 +3,6 @@ title: Cache program problems
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  12 Oct 2023: note about `module load valgrind` being required on department machines
-*  13 Oct 2023: update skeleton code archive's Makefile default/all target (not mentioned in instructions here) to work
-*  16 Oct 2023: write some general hints for all problems at the end
-</div>
-
 # Your Task
 
 > Compatability note: 
