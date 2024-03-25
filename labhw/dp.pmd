@@ -2,6 +2,13 @@
 title: Dining Philosophers
 ...
 
+<div class="changelog">
+Changelog:
+
+*  25 March 2024: update deadlocking code to use barriers to hopefully make deadlock more consistent
+
+</div>
+
 # Logistics
 
 We encourage group work with "buddy programming"..
@@ -27,11 +34,17 @@ We give four approaches to this; you'll need to do at least two and make signifi
 #include <pthread.h>
 #include <unistd.h>
 
+pthread_barrier_t barrier; // optional: to make deadlock more consistent
+
 pthread_t philosopher[5];
 pthread_mutex_t chopstick[5];
 
 void *eat(void *arg) {
     int n = (int) (long)arg;
+
+    // optional: sync up threads to make deadlock happen slightly more consistently
+    pthread_barrier_wait(&barrier);
+
     // take two chopsticks
     pthread_mutex_lock(&chopstick[n]);
     printf("Philosopher %d got chopstick %d\n", n, n);
@@ -50,6 +63,8 @@ void *eat(void *arg) {
 }
 
 int main(int argc, const char *argv[]) {
+    pthread_barrier_init(&barrier, NULL, 5);
+
     for(int i = 0; i < 5; i += 1)
         pthread_mutex_init(&chopstick[i], NULL);
 
@@ -61,6 +76,8 @@ int main(int argc, const char *argv[]) {
 
     for(int i=0; i < 5; i += 1)
         pthread_mutex_destroy(&chopstick[i]);
+
+    pthread_barrier_destroy(&barrier);
 
     return 0;
 }
