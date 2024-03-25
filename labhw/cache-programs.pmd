@@ -3,6 +3,12 @@ title: Cache program problems
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  25 March 2024: add note about possibility of using volatile in hints
+</div>
+
 # Your Task
 
 > Compatability note: 
@@ -201,3 +207,30 @@ first.
         global_array[195] = 0;
 
     Then the second loop (the one that uses `j`) will follow that the 0, 53, 195, 0, 53, 195, etc. pattern
+
+3.  If you want to replace our loop that does `j = global_array[j]`, you need to take care to avoid accesses being optimized away.
+
+    For example, if you want to do an access pattern like global_array[0], global_array[53], global_array[195], global_array[0], global_array[53], global_array[195], etc.
+    then code like this will ***NOT*** work:
+        
+        for (...) {
+            x = global_array[0];
+            x = global_array[53];
+            x = global_array[195];
+        }
+
+    because the compiler will optimize it to:
+
+        x = global_array[195];
+
+    One way to avoid this might be to declare `global_array` as `volatile`, similar to the vmexplore lab.
+    If `global_array` is volatile, then you should be able to get the desired access pattern using code like:
+        
+        for (...) {
+            global_array[0];
+            global_array[53];
+            global_array[195];
+        }
+
+    since accesses to `volatile` memory cannot be optimized away.
+
