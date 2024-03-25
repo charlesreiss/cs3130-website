@@ -5,7 +5,7 @@ title: Dining Philosophers
 <div class="changelog">
 Changelog:
 
-*  25 March 2024: update deadlocking code to use barriers to hopefully make deadlock more consistent
+*  25 March 2024: update deadlocking code to use barriers to hopefully make deadlock more consistent, instead of hvaing separate advice about using barriers
 
 </div>
 
@@ -34,7 +34,7 @@ We give four approaches to this; you'll need to do at least two and make signifi
 #include <pthread.h>
 #include <unistd.h>
 
-pthread_barrier_t barrier; // optional: to make deadlock more consistent
+pthread_barrier_t barrier; // optional: to hopefully make deadlock more consistent
 
 pthread_t philosopher[5];
 pthread_mutex_t chopstick[5];
@@ -42,7 +42,7 @@ pthread_mutex_t chopstick[5];
 void *eat(void *arg) {
     int n = (int) (long)arg;
 
-    // optional: sync up threads to make deadlock happen slightly more consistently
+    // optional: sync up threads to make deadlock hopefully happen more consistently
     pthread_barrier_wait(&barrier);
 
     // take two chopsticks
@@ -90,20 +90,6 @@ clang -O2 -lpthread dp.c && ./a.out`
 ```
 
 Because thread scheduling is somewhat random in practice, you may need to run the program several times in a row to see a deadlock.
-
-(You may be able to make a deadlock occur more reliably by having all threads try to lock at closer to the same time with a barrier. Declaring a global
-
-    pthread_barrier_t barrier;
-
-which is initialized with
-    
-    pthread_barrier_init(&barrier, 5);
-
-and having each thread wait on the barrier before acquiring their first lock:
-
-    pthread_barrier_wait(&barrier);
-
-.)
 
 To help identify deadlocks and other synchronization problems more reliably,
 we strongly recommend using ThreadSanitizer:
