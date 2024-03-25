@@ -235,7 +235,7 @@
 
 - date: 2024-03-19
   week: 10
-  title: "synchronization 1 / deadlock"
+  title: "synchronization 1"
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
   slides: yes
   description: |
@@ -244,7 +244,6 @@
    *  reordering
    *  locks and mutexes
    *  barriers
-   *  interlude: reordering
 
 - date: 2024-03-20
   lab: true
@@ -252,16 +251,16 @@
 
 - date: 2024-03-21
   week: 10
-  title: synchronization 2
+  title: synchronization 2 / deadlock
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
   slides: yes
   description: |
     (Reiss out of town)
 
     *  deadlock
+       *  examples
        *  definition
        *  preventing/avoiding
-    *  (if time) producer/consumer problem
 
 - date: 2024-03-22
   week: 10
