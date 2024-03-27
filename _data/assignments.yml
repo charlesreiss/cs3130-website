@@ -238,11 +238,14 @@
   due: 2024-03-29
 
 
-- name: networking
+- name: openmp
+  short_name: openmp
   lab: true
   tentative: true
-  page: labhw/networking.html
-  submit_file: "*.c"
+  page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
   due: 2024-04-03
 
 - name: TLB
@@ -264,15 +267,11 @@
     </ul>
   due: 2024-04-05
 
-
-- name: openmp
-  short_name: openmp
+- name: networking
   lab: true
   tentative: true
-  page: labhw/openmp.html
-  submit_files:
-  - "*.c"
-  - "performance.txt"
+  page: labhw/networking.html
+  submit_file: "*.c"
   due: 2024-04-10
 
 - name: life
