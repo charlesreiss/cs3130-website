@@ -278,9 +278,6 @@
     *  false sharing
     *  briefly, transactions
 
-    *  (if time) mailbox analogy
-       *  best-effort delivery
-       *  envelope versus contents
 
 - date: 2024-03-27
   lab: true
@@ -288,13 +285,18 @@
 
 - date: 2024-03-28
   week: 11
-  title: networking 1
+  title: synchronization 4 / networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  transcations
+
     *  layers
+    *  mailbox analogy
+       *  best-effort delivery
+       *  envelope versus contents
     *  connections atop mailbox model
     *  names and addresses
     *  example: a frame
