@@ -40,7 +40,7 @@ We provide a network simulation driver program. It has the following pieces:
 - Function `void send(size_t len, void* data)`.
     You'll invoke this to simulate sending unreliable packets over a network.
 - Function skeleton `void recvd(size_t len, void* data)`.
-    This function is called by our simulation code (in waitForAllTimeouts) when packets are received.
+    This function is called by our simulation code (in waitForAllTimeoutsAndMessagesAndExit) when packets are received.
     You'll fill in details to describe what you would do on a packet receipt.
 - Function `int setTimeout(void (*callback)(void*), unsigned long ms, void *arg)`.
     You may invoke this to ask to have `callback` invoked after `ms` milliseconds (`ms * 0.001` seconds),
@@ -55,7 +55,7 @@ We provide a network simulation driver program. It has the following pieces:
     
     The callback is executed once per `setTimeout` call, assuming it is not cleared with `clearTimeout` first.
 
-    The actual invoking of `callback` will be done by the `waitForAllTimeouts` function.
+    The actual invoking of `callback` will be done by the `waitForAllTimeoutsAndMessagesThenExit` function.
 - Function `void clearTimeout(int timeoutID)`.
     If `timeoutID` was returned by `setTimeout` and the callback has not yet been invoked,
     unschedules that callback.
@@ -139,12 +139,12 @@ You may assume that if a message has not arrived after a full second, it will no
             int three = setTimeout(pnum, 100, (void *)3uL);
             int four = setTimeout(pnum, 2000, (void *)4uL);
             clearTimeout(two);
-            waitForAllTimeoutsAndMessagesAndExit();
+            waitForAllTimeoutsAndMessagesThenExit();
         }
 
   Note that `2` is not printed out because of the call to `clearTimeout`.
 
-  The `waitForAllTimeoutsAndMessagesAndExit` function looks at the list of non-cleared timeouts, waits
+  The `waitForAllTimeoutsAndMessagesThenExit` function looks at the list of non-cleared timeouts, waits
   until each of those timeouts expire, and calls the callback function (`pnum` in this case)
   with the specified arguments (1, 3, and 4) in the case.
 
@@ -169,10 +169,10 @@ You may assume that if a message has not arrived after a full second, it will no
             Bar();
         }
 
-  (assuming that waitForAllTimeoutAndMessagesAndExit runs so it can call ExamplePartTwo.
+  (assuming that waitForAllTimeoutAndMessagesThenExit runs so it can call ExamplePartTwo.
   If Example itself was called by waitForAllTimeouts using `recvd` or callback, then returning from recvd or
   that callback will continue running waitForAllTimeouts. Otherwise (such as if Example was called from `main()`),
-  the code that calls Example would need to later call `waitForAllTimeouts`.)
+  the code that calls Example would need to later call `waitForAllTimeoutsAndMessagesThenExit`.)
 
 - A more challenging case for programming without any `sleep`-like function is when
   there would be local variables. For example, the previous transform doesn't quite
