@@ -5,17 +5,6 @@ author:
     - Luther Tychonievich
 ...
 
-<div class="changelog">
-Changelog:
-
-*  30 October 2023: remove references to before 6 April versions of the skeleton code.
-*  1 November 2023: add diagram of even/odd pattern to tips; divide tips into subsections
-*  1 November 2023: explicitly state that it's okay if threads if some threads have no work for very small sizes
-*  1 November 2023: add section to hints about disagreeing results
-*  3 November 2023: correct hint re: even/odd diagram to have a picture of the state/next_state with swapping, rather than two diagrams of the even/odd pattern
-*  6 November 2023: add brief note about what ThreadSanitizer potential data race means
-</div>
-
 # Your Task
 
 ## Before you code
@@ -59,7 +48,7 @@ Additional constraints:
 
 1. You must call the appropriate `pthread_***_destroy` for each `pthread_***_init` you call to reclaim any pthreads-allocated memory.
     
-    1. On portal/our testing machines, `pthread_barrier_destroy` won't work properly unless called after _all_ `pthread_barrier_wait` calls have _returned_. (This is a bug in the pthread_barrier implementation on those machines.)
+    1. On some older Linux machines, `pthread_barrier_destroy` won't work properly unless called after _all_ `pthread_barrier_wait` calls have _returned_. (This is a bug in the pthread_barrier implementation on those machines.)
 
 1. On a multi-core machine, your parallel code must be noticeably faster than the serial code when run on sufficiently large boards for sufficiently many iterations.
 
@@ -175,7 +164,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 # Caveats
 
--  The version of `pthread_barrier_destroy` on portal and our testing machines requires that you do not call pthread_barrier_destroy until you are sure that _all_ threads have first returned from `ptherad_barrier_wait`. This is a bug in the those machine's version of the `libc`, see [this mailing list post](https://sourceware.org/legacy-ml/libc-alpha/2015-07/msg00585.html).
+-  The version of `pthread_barrier_destroy` suppleid with GNU libc version 2.22 and older requires that you do not call pthread_barrier_destroy until you are sure that _all_ threads have first returned from `ptherad_barrier_wait`. This is a bug in the those machine's version of the `libc`, see [this mailing list post](https://sourceware.org/legacy-ml/libc-alpha/2015-07/msg00585.html) or [this bug](https://sourceware.org/bugzilla/show_bug.cgi?id=13065). This should not be a problem on portal/our testing machines, which have GNU libc version 2.35 (as of this writing).
 
 - MacOS and OS X ship with only a subset of the pthreads library, notably excluding `pthread_barrier_t` and its associated functions.
     You should probably use portal, a virtual machine, etc.
