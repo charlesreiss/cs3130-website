@@ -241,7 +241,6 @@
 - name: openmp
   short_name: openmp
   lab: true
-  tentative: true
   page: labhw/openmp.html
   submit_files:
   - "*.c"
@@ -252,7 +251,6 @@
   short_name: tlb
   comment: no introducing lab
   page: labhw/tlb.html
-  tentative: true
   submit_files:
   - "*.c"
   - "*.h"
