@@ -307,8 +307,6 @@
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  example: a frame
        *  layers (link, network, transport)
@@ -317,11 +315,7 @@
        *  routers
     *  port numbers and UDP
     *  mapping between addresses and names/other addresses:
-        *  MAC <-> IP mapping
         *  DNS
-        *  NAT
-    *  URLs
-    *  DHCP
 
 - date: 2024-04-03
   lab: true
@@ -329,36 +323,38 @@
 
 - date: 2024-04-04
   week: 12
-  title: secure channels 1
+  title: networking 3 / secure channels 1
   reading: "[security](readings/sec.html) §1-3"
   slides: yes
   slides_prelim: yes
-  slides_etra: yes
+  slides_extra: yes
   description: |
-   *  (if needed) finish networking topics
+   *  mapping between addresses and names/other addresses (con't)
+       *  MAC <-> IP mapping
+       *  NAT
+   *  URLs
+   *  DHCP
 
    *  cryptography
        *  symmetric encryption
        *  asymmetric encryption
        *  digital signature
-   *  replay attacks
 
 - date: 2024-04-05
 
 - date: 2024-04-09
   week: 13
-  reading: "[processors](readings/processors.html) §1"
+  reading: "[security](readings/sec.html) §1-3"
   title: secure channels 3 / pipelining 0
   slides_see: 2024-04-04
   slides_see2: 2024-04-11
   description: |
+   *  replay attacks
    *  public key infrastructure
    *  extra cryptography bits
         *  cryptographic hashes
         *  key exchange
    *  TLS protocol outline
-
-   *  review: single-cycle CPU
 
 - date: 2024-04-10
   week: 13
@@ -372,12 +368,11 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  review: single-cycle CPU
     *  pipelining idea
     *  pipelining for the CPU 
-    *  hazards and hazard handlings
+    *  hazards and hazard handling (start)
        *  stalling / waiting
-       *  forwarding and forwarding logic
-       *  speculation: guess and check later (start)
 
 - date: 2024-04-12
   week: 13
@@ -391,11 +386,10 @@
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
-    *  speculation: guess and check later (finish)
+    *  hazards and hazard handling (finish)
+       *  forwarding and forwarding logic
+       *  speculation: guess and check later
     *  pipeline exercises
-
-    *  briefly, branch prediction ideas (start)
-       *  static prediction
 
 
 - date: 2024-04-17
@@ -410,7 +404,8 @@
   slides_prelim: yes
   slides_extra: yes
   description: |
-    *  briefly, branch prediction ideas (start)
+    *  briefly, branch prediction ideas
+       *  static prediction
        *  local history
 
     *  idea of multiple issue + out-of-order
