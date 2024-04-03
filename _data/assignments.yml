@@ -276,7 +276,6 @@
   short_name: life
   page: labhw/life.html
   due: 2024-04-12
-  tentative: true
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
