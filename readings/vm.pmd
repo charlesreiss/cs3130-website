@@ -6,7 +6,8 @@ author: Luther Tychnoviech, with modifications by Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  30 Oct 2023: Link to dive into systems under further resources
+*  30 Oct 2023: link to dive into systems under further resources
+*  3 Apr 2024: correct typo in link to cache reading
 </div>
 
 # Introduction
@@ -587,7 +588,7 @@ pa = (ppn<<12) | (va & ((1<<12)-1));
 ````
 
 For more details on how caches like the TLB work,
-see [Caching](caching.html).
+see [the reading on caches](caches.html).
 
 # Usage
 
