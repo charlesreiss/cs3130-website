@@ -59,7 +59,7 @@ We will show instructions in a three-argument form like (**regardless of whether
 
 this indicates to add %r01 and %r02 and put the result into %r03.
 
-Answer the questions on [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/ooo.php).
+Answer the questions on the online answer sheet (link TBD) <!-- [this answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/ooo.php). -->
 
 ## Part 1: register renaming
 
