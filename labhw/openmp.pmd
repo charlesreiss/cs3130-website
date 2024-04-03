@@ -3,16 +3,6 @@ title: OpenMP -- parallelism made easy
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  2 Nov 2023: state that one of the non-required map strategies should be measured; adjust optional labels to something else
-*  6 Nov 2023: suggest different file on portal to test with since what's installed on portal changed since last semester
-*  6 Nov 2023: add cast in starting code to quash signedness changing warning
-*  6 Nov 2023: expand explanation of `#pragma omp parallel for` to separate it into `#pragma omp parallel` and `#pragma omp for`
-*  6 Nov 2023: reorganize explanation of parallel for schedules to more clearly separate options
-*  8 Nov 2023: on task queue with larger task, correct indices to work on to reflect what += returns
-</div>
 
 # Task
 
