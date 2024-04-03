@@ -588,7 +588,7 @@ pa = (ppn<<12) | (va & ((1<<12)-1));
 ````
 
 For more details on how caches like the TLB work,
-see [the reading on caches](caches.html).
+see [the reading on caches](cache.html).
 
 # Usage
 
