@@ -326,8 +326,6 @@
   title: networking 3 / secure channels 1
   reading: "[security](readings/sec.html) §1-3"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
    *  mapping between addresses and names/other addresses (con't)
        *  MAC <-> IP mapping
@@ -346,7 +344,8 @@
   week: 13
   reading: "[security](readings/sec.html) §1-3"
   title: secure channels 3 / pipelining 0
-  slides_see: 2024-04-04
+  slides: yes
+  slides_prelim: yes
   slides_see2: 2024-04-11
   description: |
    *  replay attacks
