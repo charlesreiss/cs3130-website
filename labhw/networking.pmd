@@ -20,7 +20,7 @@ We've provided a simple network simulator for you.
 1. Download [netlab.tar](../files/netlab.tar) *[last updated 6 April]* on a linux system
     (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/files/netlab.tar`{.bash}).
 
-    > Versions of netlab.tar before 6 April around 9:15pm were incomplete
+    > Versions of netlab.tar before 6 April around 9:18pm were incomplete
 
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
