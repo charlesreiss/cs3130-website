@@ -5,7 +5,7 @@ title: Networking lab
 <div class="changelog">
 Changelog:
 
-*  6 April 2024: updat enetlab.tar to actually include necesary libnetsim.a
+*  6 April 2024: update netlab.tar to actually include necesary libnetsim.a and correct function call in starter code
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -20,7 +20,7 @@ We've provided a simple network simulator for you.
 1. Download [netlab.tar](../files/netlab.tar) *[last updated 6 April]* on a linux system
     (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/files/netlab.tar`{.bash}).
 
-    > Versions of netlab.tar before 6 April were incomplete (missing libnetsim.a)
+    > Versions of netlab.tar before 6 April around 9:15pm were incomplete
 
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
