@@ -8,6 +8,7 @@ Changelog:
 
 *  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; reorganize asymmetric encyrption section to not assume that encryption function and decryption are the same function with different parameters; add section on pitfalls with cryptographic protocols; reorganize Diffie-Hellman key exchange to separate out of the more mathematical parts
 *  5 Feb 2023: adjust security property phrasing for MACs to mirror symmetric ciphers more; add further resourecs; expand on the existence of other protocol attacks
+*  10 Apr 2024: explicitly discuss cipher malleability
 </div>
 
 
@@ -76,6 +77,11 @@ Describing why this is insecure stems from the fact that messages have internal 
 
 Getting the first two properties is easy; getting the third is hard, contributing to a history of finding a weakness in one cipher and picking another to replace it.
 
+Symmetric ciphers functions often do not protect against *malleability*. For example, some symmetric ciphers make flipping certain bits in the ciphertext also flip
+corresponding bits in the corresponding plaintext.^[An example of such a scheme is AES in CTR mode. There are also common symmetric ciphers (for example, AES in CBC mode) which are malleable, but not in such a clearly useful way. However, this more limited malleability has still lead to practical attacks (for example, see Wikipedia's section on [CBC padding oracle attacks](https://en.wikipedia.org/wiki/Padding_oracle_attack#Padding_oracle_attack_on_CBC_encryption).)] In such a scheme, an attacker who knows or guesses that *c* is the ciphertext for a message m = "PAY $1000" may figure out
+that flipping a particular bit of *c* will change the message to m' = "PAY $9000".
+
+
 ## Message authentication codes and authenticated encryption
 
 A **message authentication code** are functions similar to a hash function except it takes a
@@ -91,6 +97,9 @@ who had the secret key $k$.
 Frequently, this is used in conjunction with symmetric ciphers. The symmetric cipher itself only ensures that
 the message contents is secret, but it doesn't ensure that it is not maliciously corrupted.
 Combining asymmetric encryption and a message authentication code is called **authenticated encryption**.
+
+Sometimes libraries for encryption will provide authenticated encryption by default and simply call it "encryption", but quite often they require users to explicitly ask for this protection
+against malicious corruption.
 
 ## Asymmetric ciphers
 
