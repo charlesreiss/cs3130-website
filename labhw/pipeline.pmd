@@ -3,6 +3,12 @@ title: Pipeline Diagrams
 author: Luther Tychnoviech
 ...
 
+<div class="changelog">
+Changelog:
+
+*  10 April 2024: change code slightly for this semester.
+</div>
+
 
 # Your Task
 
@@ -15,27 +21,32 @@ Place you answer in the online tool (link TBD). <!-- <https://kytos02.cs.virgini
 Consider the following code:
 
 ```c
-long count_odd(long *arr, long len) {
-    long ans = 0;
-    for(long i=0; i<len; i+=1)
-        ans += arr[i]&1;
-    return ans;
+long sum_squared(long *array_start, long *array_end) {
+    long *pointer;
+    pointer = array_start;
+    long result = 0;
+    while (pointer != array_end) {
+        long current = *pointer;
+        pointer += 1;
+        result += current * current;
+    }
+    return result;
 }
 ```
 
 which has been compiled to (numbers inserted for ease of reference)
 
 ```asm
-    count_odd:
+    sum_squared:
 0.  	xorl	%eax, %eax
-1.  	testq	%rsi, %rsi
-2.  	jle	.LBB0_2
+1.  	cmpq	%rsi, %rdi
+2.  	je	.LBB0_2
     .LBB0_1:
 3.  	movq	(%rdi), %rcx
-4.  	andl	$1, %ecx
-5.  	addq	%rcx, %rax
-6.  	addq	$8, %rdi
-7.  	decq	%rsi
+4.  	imulq	%rcx, %rcx
+5.  	addq	$8, %rdi
+6.  	addq	%rcx, %rax
+7.  	cmpq	%rdi, %rsi
 8.  	jne	.LBB0_1
     .LBB0_2:
 9.  	retq
