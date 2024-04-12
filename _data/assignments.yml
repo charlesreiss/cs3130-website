@@ -298,7 +298,7 @@
   feedback: "extracted*,autograder*"
   missing-if-no-feedback: false
   tentative: true
-  due: 2024-04-19
+  due: 2024-04-24
 
 - name: side channel
   short_name: side-channel
@@ -324,9 +324,9 @@
 - name: OOO
   short_name: OOO
   page: labhw/ooo-exercise.html
-  due: 2024-04-26
+  due: 2024-04-30
   tentative: true
   missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
-  xx-no-late: true
-  xxdue_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
+  no-late: true
+  due_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
