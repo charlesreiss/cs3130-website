@@ -375,17 +375,16 @@
 - date: 2024-04-16
   week: 14
   title: pipelining 2
-  slides_see: 2024-04-09
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
+    *  pipelining tradeoffs
     *  hazards and hazard handling
        * stalling
        *  forwarding and forwarding logic
        *  speculation: guess and check later
-    *  pipeline exercises
 
 
 - date: 2024-04-17
@@ -396,10 +395,12 @@
   week: 14
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
+  slides_see: 2024-04-16
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+    *  pipeline exercises
     *  briefly, branch prediction ideas
        *  static prediction
        *  local history
