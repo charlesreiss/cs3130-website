@@ -325,6 +325,7 @@
   short_name: OOO
   page: labhw/ooo-exercise.html
   due: 2024-04-30
+  due_exact: 2024-04-30 15:29:59
   tentative: true
   missing-if-no-feedback: true
   feedback: "extracted*,autograder*"
