@@ -297,7 +297,6 @@
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   missing-if-no-feedback: false
-  tentative: true
   due: 2024-04-24
 
 - name: side channel
