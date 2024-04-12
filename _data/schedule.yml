@@ -343,17 +343,11 @@
 - date: 2024-04-09
   week: 13
   reading: "[security](readings/sec.html) §1-3"
-  title: secure channels 3 / pipelining 0
+  title: secure channels 2
   slides: yes
-  slides_prelim: yes
-  slides_see2: 2024-04-11
   description: |
    *  replay attacks
    *  public key infrastructure
-   *  extra cryptography bits
-        *  cryptographic hashes
-        *  key exchange
-   *  TLS protocol outline
 
 - date: 2024-04-10
   week: 13
@@ -361,31 +355,34 @@
 
 - date: 2024-04-11
   week: 13
-  title: pipelining 2
+  title: secure channels 3 / pipelining 1
   reading: "[processors](readings/processors.html) §1-3"
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
+   *  extra cryptography bits
+        *  cryptographic hashes
+        *  key exchange
+   *  TLS protocol outline
     *  review: single-cycle CPU
     *  pipelining idea
     *  pipelining for the CPU 
-    *  hazards and hazard handling (start)
-       *  stalling / waiting
 
 - date: 2024-04-12
   week: 13
 
 - date: 2024-04-16
   week: 14
-  title: pipelining 3
+  title: pipelining 2
   slides_see: 2024-04-09
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
-    *  hazards and hazard handling (finish)
+    *  hazards and hazard handling
+       * stalling
        *  forwarding and forwarding logic
        *  speculation: guess and check later
     *  pipeline exercises
