@@ -358,8 +358,6 @@
   title: secure channels 3 / pipelining 1
   reading: "[processors](readings/processors.html) §1-3"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
    *  extra cryptography bits
         *  cryptographic hashes
