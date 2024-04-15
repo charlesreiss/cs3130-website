@@ -7,6 +7,7 @@ author: Luther Tychnoviech
 Changelog:
 
 *  10 April 2024: change code slightly for this semester.
+*  15 April 2024: change specification of arguments to actually match function used this semester
 </div>
 
 
@@ -109,9 +110,9 @@ Assume that this is run on a five-stage pipeline, where
 
 You're asked to expand this assuming 
 
-1. you start with the first instruction after `count_odd` is called
-1. the first instruction of `count_odd` does not need to stall
-1. `arr` pointing to the array `{1, 2}`
-1. `len` stores the value `2`
+1. you start with the first instruction after `sum_squared` is called
+1. the first instruction of `sum_squared` does not need to stall
+1. `array_start` pointing to the array `{1, 2}`
+1. `array_end` points to `array_start + 2` (one past of the end of the array)
 1. the `retq` is the last instruction you need to handle
 
