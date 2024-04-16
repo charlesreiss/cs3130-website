@@ -374,8 +374,6 @@
   week: 14
   title: pipelining 2
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   reading: "[processors](readings/procesors.html) §2-3"
   description: |
     *  pipelining tradeoffs
@@ -392,13 +390,11 @@
   week: 14
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
-  slides_see: 2024-04-16
   slides: yes
   slides_prelim: yes
   slides_extra: yes
   description: |
     *  speculation: guess and check later
-    *  pipeline exercises
     *  briefly, branch prediction ideas
        *  static prediction
        *  local history
