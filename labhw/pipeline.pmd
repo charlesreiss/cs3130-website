@@ -7,7 +7,8 @@ author: Luther Tychnoviech
 Changelog:
 
 *  10 April 2024: change code slightly for this semester.
-*  15 April 2024: change specification of arguments to actually match function used this semester
+*  15 April 2024: change specification of arguments to actually match function used this semester, since its arguments are passed differently
+*  16 April 2024: also make online tool's copy of explanation use a matching description of the arguments
 </div>
 
 
