@@ -9,6 +9,7 @@ Changelog:
 *  4 Feb 2023: don't actually describe trap door functions as asymmetric encryption, add section on message authentication codes; reorganize asymmetric encyrption section to not assume that encryption function and decryption are the same function with different parameters; add section on pitfalls with cryptographic protocols; reorganize Diffie-Hellman key exchange to separate out of the more mathematical parts
 *  5 Feb 2023: adjust security property phrasing for MACs to mirror symmetric ciphers more; add further resourecs; expand on the existence of other protocol attacks
 *  10 Apr 2024: explicitly discuss cipher malleability
+*  16 Apr 2024: explicitly discuss randomization of public-key encryption
 </div>
 
 
@@ -147,6 +148,7 @@ displays
     <- message: deadbeef; ciphertext: ba965523; decrypted: deadbeef
 
 This cipher is not secure because the [extended Euclid's algorithm](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse#Extended_Euclidean_algorithm) can efficiently derive $k_1$ from $k_2$.
+It is also not secure beacuse it is not randomized, as discussed below.
 {/}
 
 Typically, keys are generated in pairs and one of them (chosen arbitrarily) is kept secret while the other one is shared publicly.
@@ -158,6 +160,14 @@ only a few asymmetric ciphers have ever been popular:
 
 *  RSA^[RSA is short for Rivest-Shamir-Adleman, named after Ron Rivest, Adi Shamir, and Len Adleman, its inventors. It was previously invented by Clifford Cocks, but Cocks' document describing it was given a top-secret classification by the British government and not made public until 1997.] encryption is the most well known by far.
 *  ElGamal encryption and ECIES and some similar schemes, which are all based on Diffie-Hellman key exchange (see below)
+
+### Randomization
+
+Since with asymmetric encryption, anyone can encrypt any message, secure public key encryption schemes are usually non-deterministic.
+Otherwise, in scenarios where there are a relatively small number of possible messages (for example, maybe corresponding to the 10000 possible PINs for a debit card),
+an attacker can enumerate all the possible messages, encrypt each in the same way, and check which one matches.
+A simple way to avoid this is to use some random data when encrypting any message; as long as the attacker cannot guess this random data in addition to the message itself,
+they should not be able encrypt the message in the same way and compare the result.
 
 ## Digital Signatures
 
