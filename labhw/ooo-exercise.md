@@ -1,4 +1,4 @@
----
+--
 title: OOO Exercise
 ...
 
@@ -77,14 +77,15 @@ Rewrite the following instructions using the `%x01` taking into account how regi
 might occur that would allow all of these instructions to be placed in the instruction queue
 at once:
 
-    add %r01, %r01 -> %r01
-    add %r02, %r01 -> %r01
-    add %r03, %r01 -> %r01
-    add %r04, %r01 -> %r01
-    movq 0x1234(%r05) -> %r02
-    imul %r02, %r03 -> %r03
-    movq 0x1234(%r06) -> %r03
-    imul %r02, %r04 -> %r04
+    add %r01, %r01-> %r01   
+    imul %r02, %r03-> %r04  
+    add %r01, %r01-> %r01   
+    add %r02, %r01-> %r01   
+    add %r03, %r01-> %r01   
+    imul %r02, %r03-> %r03  
+    movq 0x1234(%r01)-> %r02
+    imul %r02, %r03-> %r03  
+    movq 0x1234(%r04)-> %r03
 
 Record your answer at the answer sheet linked above.
 
@@ -97,8 +98,8 @@ Suppose the instruction queue for this processor contains the following instruct
     B. sub %x16, %x07 -> %x17
     C. movq 0x100(%x05) -> %x18
     D. imul %x17, %x09 -> %x19
-    E. add %x05, %x07 -> %x20
-    F. sub %x18, %x07 -> %x21
+    E. add %x05, %x08 -> %x20
+    F. sub %x18, %x19 -> %x21
     G. add %x20, %x19 -> %x22
     H. movq 0x200(%x22) -> %x23
     I. imul %x08, %x16 -> %x24
