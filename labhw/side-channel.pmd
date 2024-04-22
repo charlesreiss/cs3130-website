@@ -3,6 +3,13 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
+{:.changelog}
+Changelog:
+
+*  22 April 2024: emphasize that fewer guesses only needs to happen with large enough length
+   and that the difference should be large and not-passphrase dependent;
+   add footnote exponential versus linear scaling
+
 # Overview
 
 In this lab, we will give you a `check_passphrase` function
@@ -31,7 +38,7 @@ the function to run.
 
 2.  Examine the `find_passphrase` function in `lab.c`.
 
-    Try running our test hardness with a target passphrase of "foo" with
+    Try running our test harness with a target passphrase of "foo" with
 
         ./lab foo
 
@@ -49,10 +56,17 @@ the function to run.
 
     We provide advice on how to understand the supplied code and utility functions
     and to write your `find_passphrase` function in the hints below.
-    
-    A good solution should use substantially fewer guesses overall than trying
-    all possible passphrases of the specified length.
 
+    When the passphrase length is large enough, a correct solution will use
+    *many* times fewer guesses overall than trying all possible passphrases
+    of the specified length regardless of the chosen passphrase.^[
+    Trying all possible passphrases would take Theta(26^n^) guesses
+    (averaging 26^n^/2 passphrases before it finds the correct one),
+    but the timing information should allow around Theta(n) guesses.
+    It's possible your timing-based solution may sometimes get confused
+    by a spuriously low or high measurement and therefore not
+    achieve linear scaling. But it should still be much better than the
+    "trying all passphrases" solution.]
 
 3.  Test your solution by running `./lab` with various target passphrases.
 
