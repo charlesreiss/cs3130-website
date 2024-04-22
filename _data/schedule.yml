@@ -391,8 +391,6 @@
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  speculation: guess and check later
     *  briefly, branch prediction ideas
