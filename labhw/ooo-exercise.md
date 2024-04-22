@@ -5,7 +5,8 @@ title: OOO Exercise
 <div class="changelog">
 Changelog:
 
-*  22 April 2024: actually post answer sheet link
+*  22 April 2024: actually post answer sheet link; change part 1/part 2 instructions to match answer sheet
+*  22 April 2024: add footnote about %x19 reuse in part 2
 </div>
 
 See [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/ooo.php). 
@@ -92,7 +93,9 @@ Record your answer at the answer sheet linked above.
 ## Part 2: instruction dispatch
 
 Suppose the instruction queue for this processor contains the following instructions
-*after renaming*:
+*after renaming*^[Since instruciton E and G both use `%x19` as their second input but have different destinations, it can't
+be the case that this was generated from normal x86-64 assembly. To make this happen, the processor must support some
+other form of `add` that takes three operands (two sources and a destination) instead of just two.]
 
     A. add %x05, %x06 -> %x16
     B. sub %x16, %x07 -> %x17
