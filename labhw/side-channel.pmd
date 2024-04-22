@@ -3,12 +3,13 @@ title: Side channel lab
 author: Charles Reiss
 ...
 
-{:.changelog}
+<div class="changelog">
 Changelog:
 
 *  22 April 2024: emphasize that fewer guesses only needs to happen with large enough length
    and that the difference should be large and not-passphrase dependent;
    add footnote exponential versus linear scaling
+</div>
 
 # Overview
 
