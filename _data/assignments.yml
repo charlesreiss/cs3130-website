@@ -302,7 +302,6 @@
 - name: side channel
   short_name: side-channel
   lab: true
-  tentative: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
   due: 2024-04-24
