@@ -406,16 +406,14 @@
 - date: 2024-04-23
   week: 15
   title: out-of-order 2 / side channels
-  slides_see: 2024-04-18
   slides: yes
-  slides_prelim: yes
-  slides_extra: yes
   description: |
     *  register renaming
     *  instruction queues
+    *  OOO limits
 
     *  side channels generally
-    *  side channels in the cache
+    *  side channels in the cache  (start)
 
 - date: 2024-04-24
   lab: true
@@ -424,8 +422,10 @@
 - date: 2024-04-25
   week: 15
   title: meltdown/spectre
-  slides_see: 2024-04-23
+  slides: yes
+  slides_prelim: yes
   description: |
+    *  side channels in the cache  (finish)
     *  meltdown:
         *  speculation past a priv/protection fault
     *   spectre
