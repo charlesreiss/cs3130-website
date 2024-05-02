@@ -423,7 +423,6 @@
   week: 15
   title: meltdown/spectre
   slides: yes
-  slides_prelim: yes
   description: |
     *  side channels in the cache  (finish)
     *  meltdown:
