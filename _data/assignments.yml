@@ -296,7 +296,7 @@
   short_name: pipeline
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
-  missing-if-no-feedback: false
+  missing-if-no-feedback: true
   due: 2024-04-24
 
 - name: side channel
@@ -326,4 +326,5 @@
   due_exact: 2024-04-30 15:29:59
   feedback: "extracted*,autograder*"
   no-late: true
+  missing-if-no-feedback: true
   due_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
