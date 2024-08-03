@@ -13,10 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: CS 3130 Spring 2024
+title: CS 3130-001 Fall 2024
 author: Charles Reiss
 email: creiss@virginia.edu
-baseurl: "/~cr4bd/3130/S2024" # the subpath of your site, e.g. /blog
+baseurl: "/~cr4bd/3130/F2024" # the subpath of your site, e.g. /blog
 url: "https://www.cs.virginia.edu" # the base hostname & protocol for your site, e.g. http://example.com
 
 #plugins:
@@ -48,8 +48,8 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
-destination: /u/cr4bd/public_html/3130/S2024
-submit_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/"
+destination: /u/cr4bd/public_html/3130/F2024
+submit_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/submit/"
 quiz_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/quizzes/"
 ohq_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/ohq/"
 kytos: "kytos02.cs.virginia.edu"

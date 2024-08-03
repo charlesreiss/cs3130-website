@@ -1,296 +1,253 @@
-- date: 2024-01-17
-  week: 1
-  no_class: true
-  description: (no lab)
 
-- date: 2024-01-18
+- date: 2024-08-27
   week: 1
   title: introduction / building intro
-  slides: yes
-  reading: "[overview](readings/intro.html), (partially) [compilation](readings/compilation.html)"
+    reading: "[overview](readings/intro.html), (partially) [compilation](readings/compilation.html)"
   description: |
     * course outline
     * pointers in C (review?)
 
-- date: 2024-01-19
+- date: 2024-08-28
   week: 1
+  no_class: true
+  description: (no lab)
 
-- date: 2024-01-23
-  week: 2
+- date: 2024-08-29
+  week: 1
   title: building
-  slides: yes
-  reading: "[compilation](readings/compilation.html), [makefiles](readings/make.html)"
+    reading: "[compilation](readings/compilation.html), [makefiles](readings/make.html)"
   description: |
     *  .o, .a, .so files
     *  dynamic and static linking
     *  make
        *  rules
        *  pattern rules
- 
-- date: 2024-01-24
-  week: 2
-  lab: true
 
-- date: 2024-01-25
+- date: 2024-08-30
+  week: 1
+ 
+- date: 2024-09-03
   week: 2
   title: accounts
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
-  slides: yes
-  description: |
+    description: |
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
     *  set-user-ID, sudo is not kernel mode
 
-- date: 2024-01-26
+- date: 2024-09-04
   week: 2
+  lab: true
 
-- date: 2024-01-30
-  week: 3
+- date: 2024-09-05
+  week: 2
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 "
-  slides: yes
-  description: |
-    *  quiz review
+    description: |
     *  kernel mode
     *  system calls
+    *  exceptions, other events triggering
 
-- date: 2024-01-31
-  week: 3
-  lab: true
-  description: |
-    (add deadline)
-
-- date: 2024-02-01
-  week: 3
-  title: exceptions 
-  reading: "[thread](readings/thread.html) §1-2 / [kernel](readings/kernel.html) §2-2.2, 3, 2.3.1"
-  slides: yes
-  description: |
-    *  exceptions
-       *  other events triggering
     *  threads and context switches
-    *  process = threads + address space
 
-- date: 2024-02-02
+- date: 2024-09-06
+  week: 2
+
+- date: 2024-09-10
   week: 3
-
-- date: 2024-02-06
-  week: 4
-  title: signals 1
-  reading: "[kernel](readings/kernel.html) §2.3.1"
-  slides: yes
-  description: |
+  title: exceptions / signals
+  reading: "[thread](readings/thread.html) §1-2 / [kernel](readings/kernel.html) §2-2.2, 3, 2.3.1"
+    description: |
     *  Unix signals
        *  signal handlers and implementation
-
-- date: 2024-02-07
-  week: 4
-  lab: true
-
-- date: 2024-02-08
-  week: 4
-  title: processes 1 
-  reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
-  slides: yes
-  description: |
-    *  Unix signals
        *  signal unsafety
        *  handling signals without signal handlers
+
+- date: 2024-09-11
+  week: 3
+  lab: true
+
+- date: 2024-09-12
+  week: 3
+  title: processes 1
+  reading: "[kernel](readings/kernel.html) §2.3.1"
+    description: |
     *  processes, threads
+
     *  creating new processes
        *  fork, exec*
     *  waiting for processes
 
-- date: 2024-02-09
+- date: 2024-09-13
+  week: 3
+
+- date: 2024-09-17
   week: 4
+  title: processes 2
+  reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
+    description: |
+    (Reiss out of town)
 
-
-- date: 2024-02-13
-  week: 5
-  title: proceses 2
-  reading: "[threads](readings/thread.html)"
-  slides: yes
-  description: |
     *  file descriptors
     *  dup2
     *  pipe
 
-- date: 2024-02-14
+- date: 2024-09-18
+  week: 4
   lab: true
-  week: 5
 
-- date: 2024-02-15
-  week: 5
+- date: 2024-09-19
+  week: 4
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1, 4"
-  slides: yes
-  description: |
+    description: |
+    (Reiss out of town)
+
     *  virtual memory concept
         *   address space and address sizes
     *  page tables
-    *  loading data on demand (start)
+    *  loading data on demand 
 
 
-- date: 2024-02-16
+- date: 2024-09-20
+  week: 4
+
+- date: 2024-09-24
   week: 5
-
-- date: 2024-02-20
-  week: 6
   title: virtual memory 2
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
-  slides: yes
-  description: |
-    *  loading data on demand (finish)
+    description: |
     *  copy-on-write, other "page table tricks"
     *  storing page tables in memory
 
-- date: 2024-02-21
+- date: 2024-09-25
   lab: true
-  week: 6
+  week: 5
 
-- date: 2024-02-22
-  week: 6
+- date: 2024-09-26
+  week: 5
   title: virtual memory 3
   reading: "[VM](readings/vm.html) §2.1, 3.2"
-  slides: yes
-  description: |
-    *  page tables (finish)
+    description: |
+    *  storing page tables in memory (Finish)
        *  pagetable assignment
        *  as a tree
        *  multi-level lookup example
 
-- date: 2024-02-23
-  week: 6
 
-- date: 2024-02-27
-  week: 7
+- date: 2024-09-27
+  week: 5
+
+- date: 2024-10-01
+  week: 6
   title: caches 1
   reading: "[cache](readings/cache.html)"
-  slides: yes
-  description: |
-
+    description: |
     *  caching idea
-    *  (if time) connecting processors to memory
     *  memory hierarchy
     *  direct-mapped caches
         *  valid bits, tags
 
-- date: 2024-02-28
+- date: 2024-10-02
   lab: true
-  week: 7
-  description: |
-    (drop deadline)
+  week: 6
 
-- date: 2024-02-29
-  week: 7
+- date: 2024-10-03
+  week: 6
   title: caches 2
-  slides: yes
-  reading: "[cache](readings/cache.html)"
+    reading: "[cache](readings/cache.html)"
   description: |
     *  set-associative caches
     *  (briefly) replacement policies
     *  cache misses and C code (start)
 
-- date: 2024-03-01
+- date: 2024-10-04
+  week: 6
+
+- date: 2024-10-08
   week: 7
-
-- date: 2024-03-05
-  week: 8
-  no_class: true
-
-- date: 2024-03-07
-  week: 8
-  no_class: true
-
-- date: 2024-03-12
-  week: 9
   title: caches 3
-  slides: yes
-  reading: "[cache](readings/cache.html)"
+    reading: "[cache](readings/cache.html)"
   description: |
    *  cache misses and C code (finish)
    *  cache write policies
+   *  the TLB
 
-
-- date: 2024-03-13
+- date: 2024-10-09
   lab: true
-  week: 9
-  description: |
-    (withdraw deadline)
+  week: 7
 
-- date: 2024-03-14
-  week: 9
-  title: "(caches 4) / threads"
-  slides: yes
-  reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
+- date: 2024-10-11
+  week: 7
+  title: "threads"
+    reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
   description: |
-    *  the TLB 
-
     *  creating new threads
     *  thread use examples
+ 
+    *  problem of synchronization
+    *  atomicity, race conditions
 
-- date: 2024-03-15
-  week: 9
+
+- date: 2024-10-12
+  week: 7
 
 
-- date: 2024-03-19
-  week: 10
+- date: 2024-10-15
+  week: 8
+  no_class: true
+
+- date: 2024-10-16
+  week: 8
+  lab: true
+
+- date: 2024-10-17
+  week: 8
   title: "synchronization 1"
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
-  slides: yes
-  description: |
-   *  problem of synchronization
-   *  atomicity, race conditions
+    description: |
    *  reordering
    *  locks and mutexes
    *  barriers
+   *  deadlock
+      *  examples
 
-- date: 2024-03-20
-  lab: true
-  week: 10
+- date: 2024-10-18
+  week: 8
 
-- date: 2024-03-21
-  week: 10
+
+- date: 2024-10-22
+  week: 9
   title: synchronization 2 / deadlock
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
-  slides: yes
-  description: |
-    (Reiss out of town)
-
-    *  deadlock
-       *  examples
+    description: |
+    *  deadlock (con't)
        *  definition
        *  preventing/avoiding
 
-- date: 2024-03-22
-  week: 10
+    *  producer/consumer problem
 
-- date: 2024-03-26
-  week: 11
+- date: 2024-10-23
+  lab: true
+  week: 9
+
+- date: 2024-10-24
+  week: 9
   title: synchronization 3
   reading: "[sync](readings/sync.html),  [protocols](readings/protocols.html) §1-2"
-  slides: yes
-  description: |
-    *  producer/consumer problem
+    description: |
     *  monitors
     *  false sharing
     *  briefly, transactions
 
+- date: 2024-10-25
+  week: 9
 
-- date: 2024-03-27
-  lab: true
-  week: 11
-
-- date: 2024-03-28
-  week: 11
-  title: synchronization 4 / networking 1
+- date: 2024-10-29
+  week: 10
+  title: networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
-  slides: yes
-  slides_prelim: yes
-  slides_extra: yes
-  description: |
-    *  transcations
-
+    description: |
     *  layers
     *  mailbox analogy
        *  best-effort delivery
@@ -298,16 +255,16 @@
     *  connections atop mailbox model
     *  names and addresses
 
-- date: 2024-03-29
-  week: 11
 
+- date: 2024-10-30
+  lab: true
+  week: 10
 
-- date: 2024-04-02
-  week: 12
+- date: 2024-10-31
+  week: 10
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
-  slides: yes
-  description: |
+    description: |
     *  example: a frame
        *  layers (link, network, transport)
     *  IP
@@ -317,133 +274,143 @@
     *  mapping between addresses and names/other addresses:
         *  DNS
 
-- date: 2024-04-03
-  lab: true
-  week: 12
+- date: 2024-11-01
+  week: 10
 
-- date: 2024-04-04
-  week: 12
+- date: 2024-11-03
+  week: 11
+  no_class: true
+
+- date: 2024-11-04
+  week: 11
+  lab: true
+
+- date: 2024-11-05
+  week: 11
   title: networking 3 / secure channels 1
   reading: "[security](readings/sec.html) §1-3"
-  slides: yes
-  description: |
+    description: |
    *  mapping between addresses and names/other addresses (con't)
        *  MAC <-> IP mapping
        *  NAT
    *  URLs
    *  DHCP
 
-   *  cryptography
+   *  cryptography (start)
        *  symmetric encryption
        *  asymmetric encryption
        *  digital signature
 
-- date: 2024-04-05
+- date: 2024-11-06
+  week: 11
 
-- date: 2024-04-09
-  week: 13
+- date: 2024-11-12
+  week: 12
   reading: "[security](readings/sec.html) §1-3"
   title: secure channels 2
-  slides: yes
-  description: |
+    description: |
    *  replay attacks
    *  public key infrastructure
-
-- date: 2024-04-10
-  week: 13
-  lab: true
-
-- date: 2024-04-11
-  week: 13
-  title: secure channels 3 / pipelining 1
-  reading: "[processors](readings/processors.html) §1-3"
-  slides: yes
-  description: |
    *  extra cryptography bits
         *  cryptographic hashes
         *  key exchange
+
+- date: 2024-11-13
+  week: 12
+  lab: true
+
+- date: 2024-11-14
+  week: 12
+  title: secure channels 3 / pipelining 1
+  reading: "[processors](readings/processors.html) §1-3"
+    description: |
    *  TLS protocol outline
-    *  review: single-cycle CPU
-    *  pipelining idea
-    *  pipelining for the CPU 
 
-- date: 2024-04-12
+   *  review: single-cycle CPU
+   *  pipelining idea
+   *  pipelining for the CPU 
+   *  pipelining tradeoffs
+
+- date: 2024-11-15
+  week: 12
+
+
+- date: 2024-11-19
   week: 13
-
-- date: 2024-04-16
-  week: 14
   title: pipelining 2
-  slides: yes
-  reading: "[processors](readings/procesors.html) §2-3"
+    reading: "[processors](readings/procesors.html) §2-3"
   description: |
-    *  pipelining tradeoffs
     *  hazards and hazard handling
        * stalling
        *  forwarding and forwarding logic
-
-
-- date: 2024-04-17
-  lab: true
-  week: 14
-
-- date: 2024-04-18
-  week: 14
-  title: out-of-order 1
-  reading: "[processors](readings/procesors.html) §2-3"
-  slides: yes
-  description: |
     *  speculation: guess and check later
     *  briefly, branch prediction ideas
        *  static prediction
        *  local history
 
+- date: 2024-11-20
+  week: 13
+  lab: true
+
+- date: 2024-11-21
+  week: 13
+  title: out-of-order 1
+  reading: "[processors](readings/procesors.html) §2-3"
+    description: |
     *  idea of multiple issue + out-of-order
     *  out-of-order pipeline
-
-- date: 2024-04-19
-  week: 14
-
-- date: 2024-04-23
-  week: 15
-  title: out-of-order 2 / side channels
-  slides: yes
-  description: |
     *  register renaming
     *  instruction queues
     *  OOO limits
 
+- date: 2024-11-22
+  week: 13
+
+- date: 2024-11-26
+  week: 14
+  title: out of order 2 / side channels
+    description: |
+    *  OOO limits
     *  side channels generally
-    *  side channels in the cache  (start)
+    *  side channels in the cache  
 
-- date: 2024-04-24
-  lab: true
-  week: 15
+- date: 2024-11-27
+  week: 14
+  no_class: true
 
-- date: 2024-04-25
+- date: 2024-11-28
+  week: 14
+  no_class: true
+
+- date: 2024-11-29
+  week: 14
+  no_class: true
+
+- date: 2024-12-03
   week: 15
   title: meltdown/spectre
-  slides: yes
-  description: |
-    *  side channels in the cache  (finish)
+    description: |
     *  meltdown:
         *  speculation past a priv/protection fault
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
 
-- date: 2024-04-26
+- date: 2024-12-04
+  lab: true
   week: 15
 
-- date: 2024-04-30
-  week: 16
-  title: Exam Review
-  description: |
-    * [notes](recordings/20240430-notes.txt)
+- date: 2024-12-05
+  week: 15
+  title: exam review
 
-- date: 2024-05-03
+- date: 2024-12-06
+  week: 15
+
+- date: 2024-12-09
   week: 16
   title: Final Exam
   description: |
-    9am-12pm in Chemistry 402
+      Combined final time with other section.
 
-    [reference sheet](files/s2024-reference.pdf)
+      7PM-10PM, location TBA.

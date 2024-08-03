@@ -1,22 +1,20 @@
 - name: make
   lab: true
   page: labhw/make.html
-  open: 2024-01-20
-  due: 2024-01-24
+  open: 2024-08-30
+  due: 2024-09-04
   submit_file: Makefile
 
 
 - name: permissions
   lab: true
   page: labhw/permissions.html
-  comment: "also answer sheet on quiz system"
-  comment: "should have random permission conversion problem generator"
   submit_file: permissions-lab.tar
-  due: 2024-01-31
+  due: 2024-09-11
 
 - name: warmup
-  open: 2024-01-18
-  due: 2024-02-02
+  open: 2024-08-30
+  due: 2024-09-13
   page: labhw/warmup.html
   grade_describe: |
     When the output below indicates "not yet graded" that means your output did not match
@@ -33,7 +31,7 @@
   short_name: signal
   lab: true
   page: labhw/signals.html
-  due: 2024-02-07
+  due: 2024-09-18
   submit_file: "*.c"
 
 - name: fork lab
@@ -43,13 +41,13 @@
   submit_files:
   - "my_system.c"
   - "*.c"
-  due: 2024-02-14
+  due: 2024-09-25
 
 - name: timing
-  due: 2024-02-16
+  due: 2024-09-27
   page: labhw/timing.html
   grade_describe: |
-    I expect this assignment to be mostly hand-graded (since a lot of it is hard to check automatically),
+    I [Reiss] expect this assignment to be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
   submit_files:
   - timings.txt
@@ -68,8 +66,7 @@
   short_name: vmexplore
   lab: true
   submit_file: "lab.c"
-  open: 2024-02-18
-  due: 2024-02-21
+  due: 2024-10-02
 
 - name: fork HW
   short_name: fork
@@ -86,7 +83,7 @@
     <p>
     <small><i>[added 23 Feb:]</i></small> Memory errors reported below can include issues related to our testing code outputting what you return (in which case they make indicate a line number in your code related to the allocation you return).
   submit_file: "fork_run.c"
-  due: 2024-02-23
+  due: 2024-10-04
 
 - name: sync games
   lab: true
@@ -95,14 +92,14 @@
   comments: needs changes for in-person?
   comments: need .php stuff
   missing-if-no-feedback: true
-  due: 2024-02-28
+  due: 2024-10-09
 
 - name: pagetable part 1
   short_name: pagetable1
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2024-03-01
+  due: 2024-10-12
   grade_describe: |
     Note that the results below include many tests which aren't part of the grade for part 1.
   submit_files:
@@ -122,14 +119,14 @@
   old_page: labhw/memoize.html
   page: labhw/cache-lab.html
   lab: true
-  due: 2024-03-13
+  due: 2024-10-16
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  open: 2024-02-29
-  due: 2024-03-20
+  open: 2024-10-04
+  due: 2024-10-23
   pre_lab: true
   no_late: true
   no-late: true
@@ -170,7 +167,7 @@
   page: labhw/code-review.html
   comments: needs submission site link correction
   missing-if-no-feedback: true
-  due: 2024-03-20
+  due: 2024-10-23
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3
@@ -181,7 +178,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2024-03-22
+  due: 2024-10-25
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
@@ -228,14 +225,14 @@
   - dp-arb.c
   - dp-rh.c
   - dp-backoff.c
-  due: 2024-03-27
+  due: 2024-10-30
 
 
 - name: cache programs
   short_name: cache-programs
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
-  due: 2024-03-29
+  due: 2024-11-01
 
 
 - name: openmp
@@ -245,7 +242,7 @@
   submit_files:
   - "*.c"
   - "performance.txt"
-  due: 2024-04-03
+  due: 2024-11-04
 
 - name: TLB
   short_name: tlb
@@ -263,18 +260,18 @@
     <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
         or because you evict the wrong entry sometimes.
     </ul>
-  due: 2024-04-05
+  due: 2024-11-06
 
 - name: networking
   lab: true
   page: labhw/networking.html
   submit_file: "*.c"
-  due: 2024-04-10
+  due: 2024-11-13
 
 - name: life
   short_name: life
   page: labhw/life.html
-  due: 2024-04-12
+  due: 2024-11-15
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
@@ -288,7 +285,7 @@
   short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
-  due: 2024-04-17
+  due: 2024-11-20
   submit_file: attack.c
 
 
@@ -297,14 +294,14 @@
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   missing-if-no-feedback: true
-  due: 2024-04-24
+  due: 2024-11-22
 
 - name: side channel
   short_name: side-channel
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
-  due: 2024-04-24
+  due: 2024-12-04
 
 - name: C++ OR templates
   short_name: cpp
@@ -322,9 +319,9 @@
 - name: OOO
   short_name: OOO
   page: labhw/ooo-exercise.html
-  due: 2024-04-30
-  due_exact: 2024-04-30 15:29:59
+  due: 2024-12-05
+  due_exact: 2024-12-05 12:29:59
   feedback: "extracted*,autograder*"
   no-late: true
   missing-if-no-feedback: true
-  due_message: OOO due <em>before lecture time</em>, late submissions <em>not normally accepted</em>
+  due_message: OOO due <em>before 12:29PM</em>, late submissions <em>not normally accepted</em>
