@@ -1,0 +1,26 @@
+---
+layout: default
+title: Slides
+---
+
+Reiss's slides for each day are typically drawn from these slidedecks organized by topic:
+
+- [intro](slides/intro.pdf)
+- [logistics](slides/logistics.pdf) (course logistics, might not be updated for current semester)
+- [building](slides/building.pdf)
+- [accounts](slides/accounts.pdf)
+- [kernel](slides/kernel.pdf) (including exceptions)
+- [signals](slides/signals.pdf)
+- [unix-api](slides/unix-api.pdf) (fork, dup2, etc.)
+- [vm](slides/vm.pdf) (virtual memory)
+- [caching](slides/caching.pdf)
+- [threads](slides/threads.pdf)
+- [sync](slides/sync.pdf) (synchronization)
+- [deadlock](slides/deadlock.pdf) 
+- [network](slides/network.pdf) 
+- [secure](slides/secure.pdf) (secure channels, cryptography)
+- [pipeline](slides/secure.pdf) (pipeline)
+- [ooo](slides/ooo.pdf)
+- [spectre](slides/spectre.pdf) (side-channels, Meltdown, Spectre)
+
+- [bpred](slides/bpred.pdf) (branch prediction)

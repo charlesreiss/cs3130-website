@@ -3,6 +3,10 @@
   week: 1
   title: introduction / building intro
   reading: "[overview](readings/intro.html), (partially) [compilation](readings/compilation.html)"
+  slides_ref:
+  - intro
+  - logistics
+  - building
   description: |
     * course outline
     * pointers in C (review?)
@@ -16,6 +20,8 @@
   week: 1
   title: building
   reading: "[compilation](readings/compilation.html), [makefiles](readings/make.html)"
+  slides_ref:
+  - building
   description: |
     *  .o, .a, .so files
     *  dynamic and static linking
@@ -30,6 +36,8 @@
   week: 2
   title: accounts
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  slides_ref:
+  - accounts
   description: |
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
@@ -43,6 +51,8 @@
   week: 2
   title: privilege / exceptions
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 "
+  slides_ref:
+  - kernel
   description: |
     *  kernel mode
     *  system calls
@@ -57,6 +67,9 @@
   week: 3
   title: exceptions / signals
   reading: "[thread](readings/thread.html) §1-2 / [kernel](readings/kernel.html) §2-2.2, 3, 2.3.1"
+  slides_ref:
+  - kernel
+  - signals
   description: |
     *  Unix signals
        *  signal handlers and implementation
@@ -71,6 +84,9 @@
   week: 3
   title: processes 1
   reading: "[kernel](readings/kernel.html) §2.3.1"
+  slides_ref:
+  - kernel
+  - unix-api
   description: |
     *  processes, threads
 
@@ -85,6 +101,9 @@
   week: 4
   title: processes 2
   reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
+  slides_ref:
+  - kernel
+  - unix-api
   description: |
     (Reiss out of town)
 
@@ -100,6 +119,8 @@
   week: 4
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1, 4"
+  slides_ref:
+  - vm
   description: |
     (Reiss out of town)
 
@@ -116,6 +137,8 @@
   week: 5
   title: virtual memory 2
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
+  slides_ref:
+  - vm
   description: |
     *  copy-on-write, other "page table tricks"
     *  storing page tables in memory
@@ -128,6 +151,8 @@
   week: 5
   title: virtual memory 3
   reading: "[VM](readings/vm.html) §2.1, 3.2"
+  slides_ref:
+  - vm
   description: |
     *  storing page tables in memory (Finish)
        *  pagetable assignment
@@ -142,6 +167,8 @@
   week: 6
   title: caches 1
   reading: "[cache](readings/cache.html)"
+  slides_ref:
+  - caching
   description: |
     *  caching idea
     *  memory hierarchy
@@ -156,6 +183,8 @@
   week: 6
   title: caches 2
   reading: "[cache](readings/cache.html)"
+  slides_ref:
+  - caching
   description: |
     *  set-associative caches
     *  (briefly) replacement policies
@@ -168,6 +197,8 @@
   week: 7
   title: caches 3
   reading: "[cache](readings/cache.html)"
+  slides_ref:
+  - caching
   description: |
    *  cache misses and C code (finish)
    *  cache write policies
@@ -181,6 +212,8 @@
   week: 7
   title: "threads"
   reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
+  slides_ref:
+  - threads
   description: |
     *  creating new threads
     *  thread use examples
@@ -205,6 +238,10 @@
   week: 8
   title: "synchronization 1"
   reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
+  slides_ref:
+  - threads
+  - sync
+  - deadlock
   description: |
    *  reordering
    *  locks and mutexes
@@ -220,6 +257,8 @@
   week: 9
   title: synchronization 2 / deadlock
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
+  slides_ref:
+  - sync
   description: |
     *  deadlock (con't)
        *  definition
@@ -235,6 +274,8 @@
   week: 9
   title: synchronization 3
   reading: "[sync](readings/sync.html),  [protocols](readings/protocols.html) §1-2"
+  slides_ref:
+  - sync
   description: |
     *  monitors
     *  false sharing
@@ -247,6 +288,8 @@
   week: 10
   title: networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
+  slides_ref:
+  - network
   description: |
     *  layers
     *  mailbox analogy
@@ -264,6 +307,8 @@
   week: 10
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
+  slides_ref:
+  - network
   description: |
     *  example: a frame
        *  layers (link, network, transport)
@@ -289,6 +334,9 @@
   week: 11
   title: networking 3 / secure channels 1
   reading: "[security](readings/sec.html) §1-3"
+  slides_ref:
+  - network
+  - secure
   description: |
    *  mapping between addresses and names/other addresses (con't)
        *  MAC <-> IP mapping
@@ -308,6 +356,8 @@
   week: 12
   reading: "[security](readings/sec.html) §1-3"
   title: secure channels 2
+  slides_ref:
+  - secure
   description: |
    *  replay attacks
    *  public key infrastructure
@@ -323,6 +373,10 @@
   week: 12
   title: secure channels 3 / pipelining 1
   reading: "[processors](readings/processors.html) §1-3"
+  slides_ref:
+  - secure
+  - processors
+  - pipeline
   description: |
    *  TLS protocol outline
 
@@ -339,6 +393,8 @@
   week: 13
   title: pipelining 2
   reading: "[processors](readings/procesors.html) §2-3"
+  slides_ref:
+  - pipeline
   description: |
     *  hazards and hazard handling
        * stalling
@@ -356,6 +412,8 @@
   week: 13
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
+  slides_ref:
+  - ooo
   description: |
     *  idea of multiple issue + out-of-order
     *  out-of-order pipeline
@@ -369,6 +427,9 @@
 - date: 2024-11-26
   week: 14
   title: out of order 2 / side channels
+  slides_ref:
+  - ooo
+  - spectre
   description: |
     *  OOO limits
     *  side channels generally
@@ -389,6 +450,8 @@
 - date: 2024-12-03
   week: 15
   title: meltdown/spectre
+  slides_ref:
+  - spectre
   description: |
     *  meltdown:
         *  speculation past a priv/protection fault

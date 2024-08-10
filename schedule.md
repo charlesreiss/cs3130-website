@@ -13,6 +13,12 @@ This schedule is tentative and subject to change (especially before the semester
 <b>This schedule is an estimate. It may be updated based on the actual pacing of the course material.</b>
 </p>
 
+<p>
+Slides linked with text "slides from" references slide deck(s) for the overall topic(s)
+that Reiss has built over the years. You can see a list of those slidedecks [here](allslides.html).
+Often not everything in the slide deck will be covered in one day (or sometimes, at all in the semester).
+</p>
+
 <p id="weekJump" style="display: none"></p>
 <p id="hideOutline" style="display: none"></p>
 
@@ -49,18 +55,25 @@ This schedule is tentative and subject to change (especially before the semester
 {%- if day.title -%}
 <h3>{{ day.title }}</h3>
 {%- endif -%}
-{%- if day.who or day.slides or day.video_webm or day.slides_see or day.slides_base -%}
+{%- if day.who or day.slides_ref or day.slides or day.video_webm or day.slides_see or day.slides_base -%}
 &nbsp;[&nbsp;
     {%- if day.who -%}{{ day.who }}:&nbsp;{%- endif -%}
 {%- endif -%}
-{%- if day.slides -%}
+{%- if day.slides or day.slides_ref -%}
 <div class="slides">
   {%- if day.slides_see -%}
     end of
     <a href="slides/{{ day.slides_see | date: "%Y%m%d" }}-slides.pdf">{{day.slides_see | date: "%d %b"}}</a>
     pdf plus
   {%- endif -%}
-  <a href="slides/{{ file_prefix }}-slides.pdf">{%- if day.slides_tentative or day.slides_prelim -%}&nbsp;tentative&nbsp;{%- else -%} <!-- -->{%- endif -%}slides</a>
+  {%- if day.slides_ref -%}
+      slides from:&nbsp;
+      {%- for slide_ref in day.slides_ref -%}
+          <a href="slides/{{slide_ref}}.pdf">{{slide_ref}}</a>{%- unless forloop.last -%},&nbsp;{%- endunless -%}
+      {%- endfor -%}
+  {%- else -%}
+      <a href="slides/{{ file_prefix }}-slides.pdf">{%- if day.slides_tentative or day.slides_prelim -%}&nbsp;tentative&nbsp;{%- else -%} <!-- -->{%- endif -%}slides</a>
+  {%- endif -%}
   {%- if day.slides_extra -%}&nbsp;<span class="slides-extra-note">(more than one day of slides)</span>{%- endif -%}
   {%- if day.slides_pptx -%}&nbsp;(or <a href="slides/{{ file_prefix }}-slides.pptx">as pptx</a>){%- endif -%}
   {%- if day.slides_see2 -%}
@@ -89,7 +102,7 @@ This schedule is tentative and subject to change (especially before the semester
       | screencapture (download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>)
     {%- endif -%}
 {%- endif -%} 
-{%- if day.slides or day.video_webm or day.who or day.slides_see -%}
+{%- if day.slides or day.slides_ref or day.video_webm or day.who or day.slides_see -%}
 &nbsp;]
 {%- endif -%}
 </div>
