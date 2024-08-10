@@ -1,7 +1,7 @@
 ---
-layout: default
-title: Slides
----
+title: Reiss's Slidedecks
+author: Charles Reiss
+...
 
 Reiss's slides for each day are typically drawn from these slidedecks organized by topic:
 
@@ -24,3 +24,5 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 - [spectre](slides/spectre.pdf) (side-channels, Meltdown, Spectre)
 
 - [bpred](slides/bpred.pdf) (branch prediction)
+
+Note that these slidedecks frequently contain extra slides that will not be used in most semesters.
