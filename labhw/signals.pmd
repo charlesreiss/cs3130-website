@@ -3,21 +3,12 @@ title: Signals Lab
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  6 Feb 2024: recommend `nanosleep` instead of `usleep`, since `usleep` is deprecated/removed from recent versions of POSIX; include `<time.h>` to support it.
-*  7 Feb 2024: correct "inbox for B which is also the outbox for B" to "inbox for B which is also the outbox for A
-*  12 Feb 2024: fixup formatting of shared memory code
-*  15 Feb 2024: mention that SIGINT/TERM signal handlers should exit
-</div>
-
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
 but it will also require significantly fewer system resources than our other chats.
 
-> If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your second SSH go directly into that portal##.cs.virginia.edu.
+> If you are using ssh, this means you need to **ssh into the same back-end server twice**. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your second SSH go to portal, then SSH from portal into that portal##.cs.virginia.edu. (If you're using SSH from the command line of a Unix-like machine, you can also do `ssh -J portal.cs.virginia.edu portal##.cs.virginia.edu` to automate this process.)
 
 Each instance of the chat program will have a shared memory region in which it receives
 messages. When sending a message, one instance of the chat program will modify
@@ -37,19 +28,20 @@ but note that both instances of the chat program need to run as the same user. (
 user's programs.)
 
 1. Start with the [template program](#starter) below that prints out its PID and reads in another PID into a global variable.
+   
+   As described below, the template program sets up access to two shared memory regions:
+
+    - "my_inbox" which is this process's "inbox" for chat messages;
+    - "other_inbox" which is the other process's "inbox" for chaat messages.
+
+   Your code will write to `other_inbox` and read from `my_inbox`.
 
 2. Create a signal handler for the SIGINT, SIGTERM, and SIGUSR1 signals
-    - SIGTERM should invoke a cleanup function (can be a placeholder for now; later you will make it handle freeing shared memory regions) and then exit
-    - SIGINT should  invoke a cleanup function and then send SIGTERM to the other user and then exit
+    - SIGTERM should invoke `cleanup_inboxes` and then exit
+    - SIGINT should  invoke `cleanup_inboxes` and then send SIGTERM to the other user and then exit
     - SIGUSR1 should display the contents of the inbox (eventually in shared memory; make a pointer to a placeholder character array for now) and then set its first character to be `'\0'`
     - (Although normally one should take care to only use [signal-safe](../readings/kernel.html#signal-safety) functions in your signal handlers, for this lab, we do not
        care if you follow this rule.)
-3. Setup access to *two* different shared memory regions:
-    - An "inbox" which this process will use to read values from the other process.
-
-
-    - The inbox of the other process, which we'll call the "outbox". You'll use this to write values to
-      the other process.
 
   You can follow the instructions below under "Shared memory" to create this. (Note that these
   instructions require linking with `-lrt`.)
@@ -70,12 +62,52 @@ user's programs.)
 
 ```c
 #define _XOPEN_SOURCE 700 // request all POSIX features, even with -std=c11
+#include <fcntl.h>        // for O_CREAT, O_RDWR
 #include <stdlib.h>       // for EXIT_SUCCESS, NULL, abort
-#include <stdio.h>        // for getline
+#include <stdio.h>        // for getline, perror
+#include <sys/mman.h>     // for mmap, shm_open
 #include <time.h>         // for nanosleep 
 #include <unistd.h>       // for getpid
 
 pid_t other_pid = 0;
+
+#define BOX_SIZE 4096
+char *my_inbox;     // inbox of current process, set by setup_inboxes()
+char *other_inbox;  // inbox of PID other_pid, set by setup_inboxes()
+
+// bookkeeping for cleanup_inboxes()
+char my_inbox_shm_open_name[NAME_MAX];
+char other_inbox_shm_open_name[NAME_mAX];
+
+char *setup_inbox_for(pid_t pid, char *filename) {
+    snprintf(filename, NAME_MAX, "/%d-chat", pid);
+    int fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    if (fd < 0) {
+        perror("shm_open");
+        abort();
+    }
+    if (ftruncate(fd, BOX_SIZE) != 0) {
+        perror("ftruncate");
+        abort();
+    }
+    char *ptr = mmap(NULL, BOX_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    if (*data == (char*) MAP_FAILED) {
+        perror("mmap");
+        abort();
+    }
+    return ptr;
+}
+
+void setup_inboxes(pid_t other_pid) {
+    my_inbox = setup_box_for(getpid(), my_inbox_shm_open_name);
+    other_inbox = setup_box_for(other_pid, other_inbox_shm_open_name);
+}
+
+void cleanup_inboxes() {
+    mmunmap(my_inbox, BOX_SIZE);
+    mmunmap(other_inbox, BOX_SIZE);
+    shm_unlink(my_inbox_shm_open_name);
+}
 
 int main(void) {
     printf("This process's ID: %ld\n", (long) getpid());
@@ -88,6 +120,9 @@ int main(void) {
         }
     } while ((other_pid = strtol(line, NULL, 10)) == 0);
     free(line);
+    setup_inboxes();
+    // YOUR CODE HERE
+    cleanup_inboxes();
     return EXIT_SUCCESS;
 }
 ```
@@ -135,90 +170,38 @@ One of the advantages of virtual memory is the OS can map the same physical page
 The processes can then directly communicate by loading what the other stored in that shared memory.
 
 In this assignment, we'll use two regions of shared memory. If there are two chat processes running A and B,
-there will be an inbox for A which is also the outbox for B; and there will be an inbox for B which is
-also the outbox for A. In both A and B, you'll need to "map" each of these memory regions so you
+there will be an inbox for A and an inbox for B.
+In both A and B, our supplied code "maps" each of these memory regions so you
 can access them.
 
-Because shared memory needs to be able to span processes, it is a bit more involved to create and destroy than ordinary memory is.
-There are multiple ways to create shared memory; in this assignment, it is recommended
-to use `shm_open` and `mmap`. `shm_open` will give you access to special files that are kept
-in memory instead of persistent storage. Then, `mmap` takes a file and gives you access to it as a
-region of memory. (`mmap` also works for files that are stored normally on disk, though we don't recommend
-that for this lab.)
+Because shared memory needs to be able to span processes, it is
+a bit more involved to create and destroy than ordinary memory is.
 
-1. Choose a name for each process's inbox
-   (similar to a filename; in Linux's implementation of shared memory, this will become a file in the special directory /dev/shm).
-   To allow finding inboxes using PIDs and avoid interference with other students, I recommend chosing a name like `/*PID*-chat`,
-   which you can generate using code like:
+Our sample code provides functions that do this for you:
 
-        char inbox_filename[512];
-        snprintf(inbox_filename, sizeof inbox_filename, "/%d-chat", pid);
+1.  `setup_inboxes()` sets `my_inbox` to point to the inbox for the current process and `other_inbox`
+    to point to the inbox for the process with PID `other_pid` (which is read from user input).
+    Each of these inboxes can be treated
+    as 4 kilobyte `char` array.
 
-   Note that the name must start with a `/`.
+    `setup_inboxes()` works using `shm_open`, which requires shared memory regions be identified
+    by a string that works similarly to a filename. We choose the psuedo-filename `/1234-chat`
+    where `1234` is the PID of a process. `shm_open` returns a *file descriptor*, which allows
+    us to access the shared memory region similarly to how we would access a file. (In fact, on
+    Linux, the shared memory regions are files that just happen to be stored in memory.)
 
-2. The shared memory regions we will access are a special kind of file opened with `shm_open`
-   and deleted with `shm_unlink`.
+    `setup_inboxes()` uses `ftruncate` to set the size of the shared memory region, then uses
+    `mmap()` to request that it be made available in the current process. `mmap()`
+    returns a pointer that that can be used to access the shared memory.
 
-   To allocate and get a handle for a shared memory region, open it using shm_open with the `O_CREAT` flag:
+2.  `cleanup_inboxes()` frees resources associated with both inboxes. This consists of making
+    the shared memory no longer be available in the current process using `munmap`, and then
+    using `shm_unlink` to delete the current process's region.
 
-        int inbox_fd = shm_open(inbox_filename, O_CREAT | O_RDWR, 0666);
-        if (inbox_fd < 0) { /* something went wrong */ }
-
-   The handle, `inbox_fd` in the code above, is an integer that you will pass to the `mmap` ("memory map")
-   call later. I use `fd` in the name because it is a *file descriptor*.
-
-   Initially, created shared memory regions will be empty, but you can allocate space for them with 
-   `ftruncate`:
-        
-        ftruncate(inbox_fd, size);
-
-   (where `size` is a size in bytes; I recommend 4096). 
-
-   To deallocate, use `shm_unlink`:
-
-        shm_unlink(inbox_filename);
-    
-   Shared memory regions can persist even after the creating program terminates, so **always deallocate what you allocate**!
-   Even if your program stops early (e.g., by SIGINT) you still need to deallocate.
-   It does not hurt (though it does set `errno`) to deallocate multiple times
-   or from the wrong process.
-
-   You will need to include `<unistd.h>`, `<sys/mman.h>`, and `<fcntl.h>` to use these functions
-   as well as `#define _XOPEN_SOURCE 600` (or similar) before including anything. On Linux, you will
-   also need to link with `-lrt`.
-
-3. 
-   You can "attach" a pointer `inbox_data` to shared memory using `mmap`:
-
-    ````c
-    char *inbox_data;
-    ...
-    inbox_data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, inbox_fd, 0);
-    if (inbox_data == (char*) MAP_FAILED) {
-        /* something went wrong */
-        /* note that MAP_FAILED is *NOT* the same thing as NULL */
-    }
-    close(inbox_fd); // deallocate file descriptor --- can stil use `inbox` after doing this
-    ````
-
-    Then, you can access the shared memory region using `inbox_data` like a character array.
-
-    Later, you can "detach" the `inbox_data` pointer from the shared memory region using:
-
-    ```1
-    munmap(inbox_data, size);
-    ````
-    (This does not delete the memory region itself.)
-
-4.  You'll need to follow these steps **twice**: once to get the current process's inbox
-    (with a filename based on your current process's ID) , and another time to get your outbox,
-    which is another process's inbox (and therefore with a filename based on the other process's ID).
-
-    So you can access either your inbox or your outbox as appropriate, you should have two different
-    sets of variables to track the two regions.
-
-    In the instructions below, we assume that you've called the "data" pointer for the outbox obtained
-    this way "`outbox_data`" (though you are welcome to use other names).
+    If we fail to call `shm_unlink`, then the shared memory will remain present on the system
+    indefinitely, even if both processes using the shared memory region exit.
+    (Failing to call `munmap` won't have this problem --- the "mapping" of the memory to the
+    current process wil be cleaned up when the current process exits or crashes.)
 
 
 # Repeating and waiting
@@ -227,8 +210,8 @@ You've got two things to do: keyboard ↦ outbox and inbox ↦ screen.
 
 ## keyboard ↦ outbox
 
-A loop in `main` is the way to go: `while(1)` `fgets` directly into the outbox (breaking out of the loop if `fgets` fails).
-After data is in the outbox, send SIGUSR1 (using `kill`) to the other process; then, wait for `outbox_data[0]`{.c} to become `'\0'`{.c}.
+A loop in `main` is the way to go: `while(1)` `fgets` directly into the other_inbox (breaking out of the loop if `fgets` fails).
+After data is in the `other_inbox`, send SIGUSR1 (using `kill`) to the other process; then, wait for `other_inbox[0]`{.c} to become `'\0'`{.c}.
 Don't just busy-wait though: check, then go to sleep for a bit, then check again.
 (A better strategy you could also try might be to wait for SIGUSR2 using sigprocmask() and sigwait()
 and have the receiving process send SIGUSR2 when it is done reading the input.)
@@ -236,7 +219,7 @@ and have the receiving process send SIGUSR2 when it is done reading the input.)
 ```c
 // wait for '\0' by checking 100 times a second
 // 10,000,000 ns = 10 ms = 1/100 second
-while(outbox_data[0]) { 
+while(my_inbox[0]) { 
     struct timespec ts = { .tv_sec = 0, .tv_nsec = 10000000 };
     nanosleep(&ts, NULL);
 }
@@ -246,7 +229,7 @@ while(outbox_data[0]) {
 
 When you handle `SIGUSR1`
 
-1. `fputs` the inbox so we can see what was sent;
+1. `fputs` my_inbox so we can see what was sent;
 2. `fflush(stdout)`{.c} to ensure we see it now, not later;
 3. set the first character in the inbox to `'\0'`{.c} so the other process knows we're ready for it to send more
 
