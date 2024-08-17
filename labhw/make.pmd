@@ -32,6 +32,7 @@ We would recommend working with a partner, but it is also fine if you do this al
     - editing any .c file and running `make` causes its .o file to be rebuilt, along with the library and/or program if they depend on the .c file
         - Note: if you chose library format `libsay.a`, then `guesser` should be rebuilt if `libsay.a` changes;
             but if you chose library format `libsay.so`, then `guesser` should not be rebuilt if `libsay.so` changes, only if `say.h` or `guesser.c` change.
+    - editing `cheer.c` or `grunt.c` should cause libsay and possibly `guesser` to be rebuilt, but should not cause `guesser.o` to be rebuilt
     
     Also, your Makefile should not rely on "built-in" rules^[make has some default rules, for example for building .o files from .c files, intended to allow Makefiles to avoid boilerplate for common tasks. For this lab, we want to write all the needed make rules explicitly.]; you can test this using `make --no-builtin-rules ...` instead of `make ...`.
 
