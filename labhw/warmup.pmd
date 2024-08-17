@@ -3,13 +3,6 @@ title: warmup
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  31 Jan 2024: correct description of what's declared in the header file to say `string_split` and not `split`
-*  1 Feb 2024: add note about `-ftrivial-auto-var-init=pattern`
-</div> 
-
 # Your task
 
 1.  Create C files as follows:
@@ -32,7 +25,7 @@ Changelog:
 
        The function should return the words using a dynamically allocated array of `\0`-terminated strings.
        It must possible to free the array by calling `free()` on each element of the array and
-       the array itself. The length of the array must be stored in `*num_words`.
+       the array itself. The function must store the length of the array in `*num_words`.
 
        In addition:
 
@@ -120,7 +113,7 @@ Changelog:
 1.  Running
 
         char **result;
-        int size;
+        int size = ANY_VALUE;
         result = string_split("foo", ":", &size);
 
     should have the same effect as
