@@ -3,15 +3,6 @@ title: Permissions
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  30 Jan 2024: give insturctions for logging into same portal machine for /localtmp, instead of referring to future signals lab
-*  31 Jan 2024: clarify that questions on the answer sheet assume file already exists (as the answer sheet states)
-*  31 Jan 2024: note that lab should be done on portal
-*  31 Jan 2024: remove suggestion to use home directory, since apparently setfacl is not configured to work for /u on portal (even though it works on some other department machines)
-</div>
-
 
 Creating, renaming, removing, opening, reading from, writing to, and executing files can only be done the operating system.
 As such, the OS gets to decide when to approve a request to do one of these things and when to reject it.
@@ -23,7 +14,7 @@ be your partner's username. But you won't be able to verify that some of your pe
 I would very strongly recommend having a partner.], to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
-   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/quizzes/quiz.php?qid=permissions-answer-sheet).
+   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2024/quizzes/quiz.php?qid=permissions-answer-sheet).
 1. Create a directory in `/localtmp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
    Do each of the following steps in that directory.
 1. Make sure the directory is accessible to your partner. Use `chmod` or `setfacl` to set permissions on the directory.
@@ -33,7 +24,7 @@ I would very strongly recommend having a partner.], to achieve the following:
       this with something like `chmod og+x /u/COMPUTING-ID` (On directories,
       `x` is "search" permission; which allows accessing files within the direcgtory if you know their names).
 
-   *  If it is in `/localtmp`, make sure you are on the same portal backend machine as your partner. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your partner's SSH (or yours, if you reconnect) go directly into that portal##.cs.virginia.edu.
+   *  If it is in `/localtmp`, make sure you are on the same portal backend machine as your partner. To do this, first SSH into portal.cs.virginia.edu and run `uname -n` to find out what server you are on (portal## for some two-digit number ##). Then, have your partner SSH into portal.cs.virginia.edu, and then SSH from whatever machine that takes them to into the correct portal##.cs.virginia.edu. (Alternately, if your partner is using SSH on a Unix-like system, they can use `ssh -J portal.cs.virginia.edu portal##.cs.virginia.edu` to automate this process.)
 
 
 
@@ -50,7 +41,7 @@ I would very strongly recommend having a partner.], to achieve the following:
     a. reports how many lines `simple_runs` contains
   (See the section of the reading on executable text files.)
 1. Determine which of the following are possible after creating a file `xyxxy` and setting its permissions and write your answers
-   (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/quizzes/quiz.php?qid=permissions-answer-sheet):.
+   (with a brief explanation) on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2024/quizzes/quiz.php?qid=permissions-answer-sheet):.
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
