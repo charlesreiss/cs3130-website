@@ -63,6 +63,7 @@ user's programs.)
 ```c
 #define _XOPEN_SOURCE 700 // request all POSIX features, even with -std=c11
 #include <fcntl.h>        // for O_CREAT, O_RDWR
+#include <limits.h>       // for NAME_MAX
 #include <stdlib.h>       // for EXIT_SUCCESS, NULL, abort
 #include <stdio.h>        // for getline, perror
 #include <sys/mman.h>     // for mmap, shm_open
@@ -79,9 +80,15 @@ char *other_inbox;  // inbox of PID other_pid, set by setup_inboxes()
 char my_inbox_shm_open_name[NAME_MAX];
 char other_inbox_shm_open_name[NAME_mAX];
 
+/* open, creating if needed, an inbox shared memory region
+   for the specified pid.
+
+   store the shm_open filename used in filename, which must
+   be NAME_MAX bytes long.
+ */
 char *setup_inbox_for(pid_t pid, char *filename) {
     snprintf(filename, NAME_MAX, "/%d-chat", pid);
-    int fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    int fd = shm_open(filename, O_CREAT | O_RDWR, 0666);
     if (fd < 0) {
         perror("shm_open");
         abort();
@@ -91,21 +98,21 @@ char *setup_inbox_for(pid_t pid, char *filename) {
         abort();
     }
     char *ptr = mmap(NULL, BOX_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    if (*data == (char*) MAP_FAILED) {
+    if (ptr == (char*) MAP_FAILED) {
         perror("mmap");
         abort();
     }
     return ptr;
 }
 
-void setup_inboxes(pid_t other_pid) {
-    my_inbox = setup_box_for(getpid(), my_inbox_shm_open_name);
-    other_inbox = setup_box_for(other_pid, other_inbox_shm_open_name);
+void setup_inboxes() {
+    my_inbox = setup_inbox_for(getpid(), my_inbox_shm_open_name);
+    other_inbox = setup_inbox_for(other_pid, other_inbox_shm_open_name);
 }
 
 void cleanup_inboxes() {
-    mmunmap(my_inbox, BOX_SIZE);
-    mmunmap(other_inbox, BOX_SIZE);
+    munmap(my_inbox, BOX_SIZE);
+    munmap(other_inbox, BOX_SIZE);
     shm_unlink(my_inbox_shm_open_name);
 }
 
