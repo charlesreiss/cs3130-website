@@ -4,7 +4,7 @@ author: Charles Reiss
 index_title: Main/Readings
 ...
 
-This is the website for the Spring 2024 offering of CS 3130.
+This is the website for the Fall 2024 offering of CS 3130.
 
 You'll probably find the [schedule](schedule.html) link above most useful.
 
@@ -57,7 +57,7 @@ Unlike some offerings of CSO1, you are welcome to use an IDE of your choice (tha
 as long as your submission will work when we test it from a command line-like environment.
 
 A lot of students have had success using VSCode and its SSH support to access the department machines, as is (for example)
-described in [the Fall 2024 CSO1's first lab](https://researcher111.github.io/uva-cso1-F23-DG/labs/lab1-ssh-ed.html).
+described in [the Fall 2023 CSO1's first lab](https://researcher111.github.io/uva-cso1-F23-DG/labs/lab1-ssh-ed.html).
 If using VSCode, you may find it helpful to install
 the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 and [Makefile](https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools) extensions.
@@ -82,11 +82,13 @@ On the [study materials link above](exams.html), you can find some old exams and
 
 # Course Staff
 
-**Charles Reiss**
+**Charles Reiss** &mdash; section 001
 :   Office: Rice 205. 
     <br/>Email: creiss@virginia.edu
     <br/>Telephone: 434-924-8274
     <br/>Office Hours: (see [office hours](oh.html) page)
+
+**Kevin Skadron** &mdash; section 002
 
 **TAs**
 :   TBA.
