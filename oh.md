@@ -20,8 +20,8 @@ in the office hour room.
 
 # Office Hours and Privacy
 
-Professor office hours are open, meaning that I will not close the door to have a private conversation.
-If you have sensitive matters to discuss, please schedule a separate meeting time with me.
+Professor office hours are open, meaning that we may not close the door to have a private conversation.
+If you have sensitive matters to discuss, please schedule a separate meeting time.
 
 # Calendar
 
