@@ -13,7 +13,7 @@ The `#rules` channel in the Discord will have instructions for how remote office
 
 ## Office hour queue
 
-We have a [office hour queue]({{site.ohq_site}}). This will be use for remote office hours.
+We will have a office hour queue (link TBA).
 
 In-person office hours may or may not use this queue; look for something written on the whiteboard
 in the office hour room.
