@@ -14,7 +14,7 @@ This schedule is tentative and subject to change (especially before the semester
 </p>
 
 <p>
-Slides linked with text "slides from" references slide deck(s) for the overall topic(s)
+Slides linked with text "Reiss's slides from" references slide deck(s) for the overall topic(s)
 that Reiss has built over the years. You can see a list of those slidedecks [here](allslides.html).
 Often not everything in the slide deck will be covered in one day (or sometimes, at all in the semester).
 </p>
@@ -67,7 +67,7 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
     pdf plus
   {%- endif -%}
   {%- if day.slides_ref -%}
-      slides from:&nbsp;
+      Reiss's slides from:&nbsp;
       {%- for slide_ref in day.slides_ref -%}
           <a href="slides/{{slide_ref}}.pdf">{{slide_ref}}</a>{%- unless forloop.last -%},&nbsp;{%- endunless -%}
       {%- endfor -%}
