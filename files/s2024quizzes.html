@@ -1,0 +1,1783 @@
+ 
+    <html>
+    <head>
+        <title>S2024 quizzes</title>
+        <link rel="icon" type="image/svg+xml" href="favicon.svg">
+        <link rel="stylesheet" href="style.css">
+        <?php if (isset($_GET['view_only'])) { ?>
+        <style>
+            body { background:#fdb; }
+            .directions, .multiquestion { background: #fed;  }
+        </style>
+        <?php
+        }
+        ?>
+        
+        <link rel="stylesheet" href="katex/katex.min.css">
+        <script type="text/javascript" src="katex/katex.min.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelectorAll('span.mymath').forEach(x => 
+                    katex.render(x.textContent, x, 
+                        {throwOnError:false, displayMode:false})
+                )
+                document.querySelectorAll('div.mymath').forEach(x => 
+                    katex.render(x.textContent, x, 
+                        {throwOnError:false, displayMode:true})
+                )
+            });
+        </script>
+    </head>
+    <body>
+    <h1>S2024 quizzes</h1>
+    
+﻿
+<h1 style='text-align:center'>quiz for week 2</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class='question' id='q1' slug='dd09f208'><div class='description' id='d1'><strong>Question 1</strong> (4 points)
+<p>Suppose we create a library with a function foo:</p>
+
+<pre><code>int foo(int x);
+</code></pre>
+
+<p>This function is declared in a header file <code>bar.h</code>
+and the library implementation is linked into a file
+<code>libbar.so</code>.</p>
+
+<p>If we modify the function foo to have the prototype</p>
+
+<pre><code>int foo(double x);
+</code></pre>
+
+<p>and update <code>bar.h</code> and <code>libbar.so</code> accordingly, we find that
+executables that use the library and used to work now crash
+(even though there are no relevant bugs in the library itself).</p>
+
+<p>Which of the following would either fix this issue
+or have avoided this issue in the first place?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='33bc5786' /><div><p>if the library always used .a files instead of .so files</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='a3e6b788' /><div><p>if one relinked the executable program from its existing .o files (and libraries)</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='b0ba1089' /><div><p>if one recompiled the executable from its .c files, and relinked it</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='7eb56594' /><div><p>if one modified the <code>bar.h</code> header file to include <em>both</em> prototypes and then recompiled and relinked the library</p>
+</div></label></li></ol></div><div class='question' id='q2' slug='cfa916aa'><div class='description' id='d2'><strong>Question 2</strong> (4 points)
+<p>Consider the following <em>erroneous</em> Makefile.</p>
+
+<pre><code>all: executable
+
+foo.c: foo.h
+    gcc -Wall -c foo.c
+
+main.c: foo.h
+    gcc -Wall -c main.c
+
+executable: foo.c main.c
+    gcc -Wall -o executable foo.c main.c
+
+clean:
+    rm --force main.o foo.o executable
+</code></pre>
+
+<p>(Assume the commands in each rule are prefixed by tab characters.)</p>
+
+<p>Which of the following is true about this erroneous Makefile? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans2' value='cc1401f1' /><div><p>running <code>make all</code> will never build <code>foo.o</code>, regardless of the modification times or existence of other files</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='bfe37a0a' /><div><p>running <code>make all</code> once could compile <code>main.c</code> multiple times</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='522b18a5' /><div><p>updating <code>foo.h</code>, then running <code>make all</code> might not update <code>executable</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='a254509a' /><div><p>running <code>make clean</code> will remove <code>foo.c</code> instead of <code>foo.o</code></p>
+</div></label></li></ol></div><div class="multiquestion"><p>Suppose a program displays its logo when it starts. Rather than store that logo in a separate data file,
+the program includes it in its executable. To do this, multiple steps are used:</p>
+
+<ol>
+<li><p>First a program converts the logo file from SVG format in the file <code>logo.svg</code> into
+BMP format in the file <code>logo.bmp</code>:</p>
+
+<pre><code>svg2png logo.svg logo.bmp
+</code></pre></li>
+<li><p>Then, the BMP file <code>logo.bmp</code> is converted to a file <code>logo.h</code> file that defines
+an array of unsigned chars <code>logo</code> using the <code>xxd</code> utility:</p>
+
+<pre><code>xxd -i logo.bmp logo.h
+</code></pre></li>
+<li><p>The file logo.h is included by <code>main.c</code>, along with the utility header file <code>graphics.h</code>
+and the C standard library headers <code>&lt;stdlib.h&gt;</code> and <code>&lt;stdio.h&gt;</code>.</p></li>
+</ol>
+
+<p>Consider the following <em>incomplete</em> Makefile that implements this scheme, including
+building the final executalbe <code>program</code>. In this incomplete <code>Makefile</code>,
+lines or partial lines of code that are not yet complete are replaced by <code>### BLANK X ###</code>
+where <code>X</code> is some number:</p>
+
+<pre><code>all: program
+
+### BLANK 1 ###
+    svg2png logo.svg logo.bmp
+
+### BLANK 2 ###
+    xxd -i logo.bmp logo.h
+
+main.o: ### BLANK 3 ###
+
+graphics.o: graphics.h
+
+%.o: %.c
+    clang -c $^
+
+program: main.o graphics.o
+    clang -o program main.o graphics.o
+</code></pre>
+
+<p>(Assume the commands in each rule are prefixed by tab characters.)</p>
+<div class='question' id='q3' slug='f6de16d4'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>What would be appropriate to put in place of <code>### BLANK 2 ###</code>?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div><div class='question' id='q4' slug='35168db5'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>What would be appropriate to put in place of <code>### BLANK 3 ###</code>?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div></div><div class='question' id='q5' slug='ae3ed3ab'><div class='description' id='d5'><strong>Question 5</strong> (4 points)
+<p>Suppose the file "first.txt" has the following access control list:</p>
+
+<pre><code>user:A:rw-
+user:B:r--
+group:C:rw-
+group:D:r--
+other::---
+</code></pre>
+
+<p>and the file "second.txt" has the following access control list:</p>
+
+<pre><code>user:B:rw-
+group:C:rw-
+other::---
+</code></pre>
+
+<p>(The <code>other::...</code> lines provide default permissions for cases where other entries of
+the access control list do not apply.)</p>
+
+<p>It's possible for a running program to be able to read and write "second.txt"
+but not to be able to both read and write "first.txt". Which of the following is a sufficient
+condition for this to be true? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans5' value='520a23ba' /><div><p>the program is running as user A</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='f05fd88d' /><div><p>the program is running as user B</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='3f47f159' /><div><p>the program is running as user A and groups C and E</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='5490e880' /><div><p>the program is running as user E and group C</p>
+</div></label></li></ol></div><div class='question' id='q6' slug='cc3996ff'><div class='description' id='d6'><strong>Question 6</strong> (4 points)
+<p>Suppose we wanted to allow users to collaborate on a shared system like
+the department machines (portal, etc.)</p>
+
+<p>In particular, one student A wants to collect comments from their collaborator
+students B and C and then reply to those comments. Students B and C should not be able to
+see each other's comments or the replies intended for the other student. But no one else
+should be able to read those comments.</p>
+
+<p>Suppose to implement this scheme, we have separate files for B's comments and the corresponding replies and for C's comments and the corresponding replies.</p>
+
+<p>Suppose we want to set the permissions on these files to restrict access appropriately,
+but instead of being able to use full access control lists
+(where we can specify read/write/execute access individually for arbitrary numbers
+of users and groups), we have to use more limited
+chmod-style permissions (where we can only specify read/write/execute access
+for a single user and for a single group).</p>
+
+<p>We would need to create some groups of users to enable this.
+(When we say a "group contains users", we mean that everytime one of those
+users runs a program it runs as part of that group.)
+What sets of new groups could enable this? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans6' value='8ec35a70' /><div><p>a group containing just student A</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='00ed9c34' /><div><p>a group containing just students A, B, and C (and no other users)</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='aa52c9e2' /><div><p>a group containing just student B and a group containing just student C</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='4006c576' /><div><p>a group containing just students B and C</p>
+</div></label></li></ol></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 3</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Suppose a <em>single-core</em> Unix-like system is running three processes, one for a text editor,
+one for a compiler, and one for simulation.
+The following sequence of events happens:</p>
+
+<ol>
+<li>initially, the compiler is running on the processor to generate assembly in memory;</li>
+<li>then, the compiler starts waiting for more source code to be read from disk;</li>
+<li>while the compiler is waiting, the simulation runs and does computations in memory, including using many functions in <code>&lt;math.h&gt;</code></li>
+<li>then, a keypress occurs and as a result, the text editor immediately runs to process the keypress and update the screen, and then ask for more input</li>
+<li>then, after the keypress is handled, the simulation resumes running, continuing to do computations in memory</li>
+<li>then, the compiler's read from disk finishes, and the compiler resumes generating assembly</li>
+<li>the compiler opens and write a file back to disk to store the assembly it computed and starts waiting for this to complete</li>
+<li>while the compiler is waiting for the data to finish being written by the disk, the simulation resumes running, performing computations in memory</li>
+</ol>
+<div class='question' id='q1' slug='fdcd73c4'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>Sometimes a system call's completion will be triggered by a non-system call exception
+(although system calls are always started with the system call itself -- a system call exception).</p>
+
+<p>During what steps in the above scenario is this likely to happen?</p>
+
+<p>Write the number of steps above; for example, if it would happen in steps 4 and 7, write "47"</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' /></div></div><div class='question' id='q2' slug='dcf7a875'><div class='description' id='d2'><strong>Question 2</strong> (4 points) (see above)
+<p>Some of the steps above are likely <strong>not</strong> to involve any system calls exceptions occuring.
+(That is steps in which no system call exception handler starts.
+The steps may or may not involve a system call handler that was started in a previous
+step resuming or continuing running.)
+Which ones?</p>
+
+<p>Write the number of steps above; for example, if the answer is steps 4 and 7, write "47"</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' /></div></div><div class='question' id='q3' slug='7227c41d'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>Some of the steps above may require multiple exceptions to occur. Identify them.</p>
+
+<p>Write the number of steps above; for example, if it would happen in steps 4 and 7, write "47"</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div></div><div class="multiquestion"><p>On Linux, the <code>sched_yield</code> system call requests that the OS to context switch to another thread/process
+(if there is one to switch to). (<code>sched_yield</code> does not do anything else.)</p>
+
+<p>For the following questions, suppose we are running a single-core Linux system with only two processes and that
+<strong><code>sched_yield</code> calls and processes exiting are the only reason context switches occur</strong>, and
+that <strong>each call to <code>sched_yield</code> causes a context switch if another process can be run</strong>.</p>
+
+<p>Suppose the first process is running the program:</p>
+
+<pre><code>int main() {
+    int x = 1;
+    printf("%d", x); fflush(stdout);
+    x = x + 1;
+    sched_yield();
+    printf("%d", x); fflush(stdout);
+    x = x + 1;
+    sched_yield();
+    printf("%d", x); fflush(stdout);
+    exit(0);
+}
+</code></pre>
+
+<p>and the second process is running the program:</p>
+
+<pre><code>int main() {
+    printf("A"); fflush(stdout);
+    sched_yield();
+    printf("B"); fflush(stdout);
+    sched_yield();
+    printf("C"); fflush(stdout);
+    exit(0);
+}
+</code></pre>
+
+<p>(Assume all appropriate header files are <code>#include</code>d.)</p>
+
+<p>Suppose we start both of these programs at the same time, but arrange for the first process to
+initially have access to the processor.</p>
+<div class='question' id='q4' slug='ff9da88e'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>If both programs output to the same terminal,
+what is a possible output one could see on that terminal?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div><div class='question' id='q5' slug='a41fa20b'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Running <code>printf</code> and/or <code>fflush</code> may require performing system calls. If so, ___.
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans5' value='da8bc480' /><div><p>any immediately following <code>sched_yield</code> invocation will not require entering kernel mode</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='d7aee070' /><div><p>the assembly code for main that calls <code>printf</code> and/or <code>fflush</code> will use a different call instruction than is normally used for function calls</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='216f8f80' /><div><p>some of the instructions in the assembly code for <code>main()</code> will end up running in kernel mode</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='f0b9500a' /><div><p>the system could enter kernel mode, run code in kernel mode, and then exit kernel mode without performing a process context switch</p>
+</div></label></li></ol></div><div class='question' id='q6' slug='eb52683d'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>Suppose the assembly for first process's code stores the value <code>x</code> in the
+callee-saved register <code>%r15</code> and does not use the stack to store it.</p>
+
+<p>Then, while the second process is outputting <code>B</code>, the value of <code>x</code> is
+most likely ____.</p>
+</div><ol class="options"><li><label><input type='radio' name='ans6' value='91744af7' /><div><p>stored in a register on the processor</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='6b383f1c' /><div><p>stored in memory managed by the OS</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='91e79386' /><div><p>stored in the first process's exectuable file</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='d38a6fb2' /><div><p>stored on the second process's stack</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='d6d1010a' /><div><p>not stored anywhere, because it will be recomputed when the first process resumes running</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='ec126dd8' /><div><p>not stored anywhere, because the first process will not run anymore</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='da167f42' /><div><p>none of the above (explain in comments)</p>
+</div></label></li></ol></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 4</h1><div class='directions'><p>Answer the following questions about the lecture materials for this week.</p>
+</div><div class="multiquestion"><p>For the following questions, suppose we run two processes. The first process runs with PID 48
+and has a signal handler setup for SIGUSR1 with the following code:</p>
+
+<pre><code>int global = 0;
+void handle_usr1_program1(int signum) {
+    global += 1;
+    int temp = global * 2 + global;
+    printf("%d", temp); fflush(stdout);
+    kill(54, SIGUSR1);
+    printf("A"); fflush(stdout);
+}
+</code></pre>
+
+<p>and the second process runs with PID 54 and has a signal handler
+setup for SIGUSR1 with the following code:</p>
+
+<pre><code>int global = 0;
+void handle_usr1_program2(int signum) {
+    global += 1;
+    printf("%d", global); fflush(stdout);
+}
+</code></pre>
+
+<p>Assume the code outside signal handlers in these processes does not do anything
+relevant to these questions (other than not exiting or exiting as described below)
+and that the signal handlers are setup using <code>sigaction</code>
+with an <code>sa_flags</code> value of <code>SA_RESTART</code>.</p>
+<div class='question' id='q1' slug='7c695507'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>If both processes are running and outputting to the same terminal, 
+no code that would change <code>global</code> has run in any process,
+and we send SIGUSR1 to the first process, what is a possible output?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' /></div></div><div class='question' id='q2' slug='27e2b6cc'><div class='description' id='d2'><strong>Question 2</strong> (4 points) (see above)
+<p><code>handle_usr1_program2</code> can run as a result of <code>handle_usr1_program1</code>'s call to <code>kill</code>.
+When <code>handle_usr1_program</code><strong><code>2</code></strong> runs  this way, ____. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans2' value='549f384c' /><div><p>incrementing global will be performed by making a system call</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='914f69cb' /><div><p>the return address for <code>handle_usr1_program2</code> will point to the machine code for <code>handle_usr1_program1</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='519fc2aa' /><div><p>the value of global will be stored in the second process's memory but outside its stack</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='d008addd' /><div><p>the value of <code>temp</code> from  <code>handle_usr1_program1</code> will be stored on the function's stack or in a register on the processor</p>
+</div></label></li></ol></div><div class='question' id='q3' slug='ca0f0b0a'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>Suppose initially both processes are running, but then
+the second process terminates and a message about it exiting is printed by the shell
+that was running it. If we wait a while after this happens, and
+then send SIGUSR1 to the first process, which of the following may happen
+depending on the details of other running programs? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans3' value='81dc4d86' /><div><p>the <code>kill</code> function call in <code>handle_usr1_program1</code> may return a non-zero value to indicate an error</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='e0a5479b' /><div><p>if other processes have been started, the <code>kill</code> function call in <code>handle_usr1_program1</code> might cause one of them to terminate</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='1ec4df18' /><div><p>if there are no other processes with SIGUSR1 handlers, <code>handle_usr1_program1</code> may recursively call itself because of its call to <code>kill()</code> causing a stack overflow</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='0f41b8c7' /><div><p>the <code>kill</code> function call in <code>handle_usr1_program1</code> may result in the first process having a segmentation fault</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider the following program that uses the POSIX API:</p>
+
+<pre><code>pid_t orig_pid, other_pid;
+void handle_signal(int signum) {
+    if (signum == SIGUSR1) {
+        printf("%d:SIGUSR1 ", (int) other_pid); fflush(stdout);
+        if (other_pid != 0)
+            kill(other_pid, SIGUSR2);
+        else
+            kill(orig_pid, SIGUSR2);
+    } else {
+        printf("%d:SIGUSR2 ", (int) other_pid); fflush(stdout);
+        exit(0);
+    }
+}
+
+int main() {
+    struct sigaction sa;
+    sa.sa_handler = &amp;handle_signal;
+    sigemptyset(&amp;sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGUSR1, &amp;sa, NULL);
+    sigaction(SIGUSR2, &amp;sa, NULL);
+    orig_pid = getpid();
+    other_pid = fork();
+    if (other_pid == 0) {
+        /* child process */
+        kill(orig_pid, SIGUSR1);
+        while (1) pause();
+    } else {
+        /* parent process */
+        kill(other_pid, SIGUSR1);
+        while (1) pause();
+    }
+}
+</code></pre>
+
+<p>Assume all relevant header files are <code>#include</code>d,
+and that the call to <code>fork</code> does not fail.</p>
+
+<p>For the questions below, <strong>assume that when this program runs that a signal
+handler is never started while a signal handler is already running in the same process</strong>.</p>
+
+<p>The <code>pause()</code> function called by the code above waits until the current process receives a signal.</p>
+<div class='question' id='q4' slug='c7aca2ca'><div class='description' id='d4'><strong>Question 4</strong> (5 points) (see above)
+<p>Under the assumption above, which are possible outputs of this program?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans4' value='de338a36' /><div><p>0:SIGUSR1 0:SIGUSR2 43:SIGUSR1 43:SIGUSR2</p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='e423c89c' /><div><p>0:SIGUSR1 32:SIGUSR2 32:SIGUSR1 0:SIGUSR2</p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='8335264d' /><div><p>0:SIGUSR1 43:SIGUSR1 44:SIGUSR2 0:SIGUSR2</p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='85215e49' /><div><p>0:SIGUSR1 50:SIGUSR2 0:SIGUSR2</p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='5dadf51e' /><div><p>0:SIGUSR1 50:SIGUSR1 50:SIGUSR2 0:SIGUSR2</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider the following program that uses the POSIX API:</p>
+
+<pre><code>int global = 0;
+int main() {
+    pid_t pid1, pid2;
+    int status;
+    pid1 = fork();
+    if (pid1 == 0) {
+        pid2 = fork();
+        if (pid2 == 0) {
+            global += 1;
+        } else {
+            global += 2;
+            waitpid(pid2, &amp;status, NULL);
+        }
+    } else {
+        waitpid(pid1, &amp;status, NULL); 
+        pid2 = fork();
+        if (pid2 == 0) {
+            global += 4;
+        } else {
+            global += 8;
+            waitpid(pid2, &amp;status, NULL);
+        }
+    }
+    printf("%d\n", global);
+    return 0;
+}
+</code></pre>
+
+<p>Assume all relevant header files are included and <code>fork</code> and <code>waitpid</code> do not fail.</p>
+<div class='question' id='q5' slug='79f4a823'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>When we run this program, its output will include "4". This will be outputted by ____.</p>
+
+<p>(For the purpose of this question, a child process of some process X is a process that
+was created directly by process X calling fork().)</p>
+</div><ol class="options"><li><label><input type='radio' name='ans5' value='03342947' /><div><p>the original process that was run</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='17e4c1f0' /><div><p>a child process of the original process that was run</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='b26a9bff' /><div><p>a child process of a child process of the original process that was run</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='f9af9e67' /><div><p>a child process of a child process of a child process of the original process that was run</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='95da7144' /><div><p>a process that varies depending on timing</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='7a1dd05a' /><div><p>none of the above (explain in comments)</p>
+</div></label></li></ol></div><div class='question' id='q6' slug='3b852447'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>If we run this program once, what is the maximum number of <strong>simulatenously running</strong> processes that could result?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans6' /></div></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 5</h1><div class='directions'><p>Answer the following quesitons about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Suppose an analyst wants to run an analysis on a large list of data files. They
+have a program they wrote called <code>./analyze</code>, which reads a file from stdin
+and appends to a summary file.</p>
+
+<p>Doing this by hand, they'd run commands like:</p>
+
+<pre><code>./analyze &lt; first-file
+./analyze &lt; second-file
+./analyze &lt; third-file
+...
+</code></pre>
+
+<p>They find that typing all these commands is tedious and fails to take
+advantage of their system having four cores, which could speed
+up the analysis by analyzing multiple files at the same time.
+So, they write a function to analyze a large list of files:</p>
+
+<pre><code>void analyze_all(int num_files, const char **filenames) {
+    pid_t *pids = malloc(num_files * sizeof(pid_t));  // was erroneously not pointer on quiz as released
+    for (int i = 0; i &lt; num_files; i += 1) {
+        pids[i] = fork();
+        if (pids[i] &lt; 0) {
+            handle_error();
+        } else if (pids[i] == 0) {
+            int fd = open(filenames[i], O_RDONLY);
+            if (fd &lt; 0)
+                handle_error();
+            if (dup2(fd, STDIN_FILENO) &lt; 0)
+                handle_error();
+            close(fd);
+            const char *argv[] = {"./analyze", NULL};
+            if (execv("./analyze", argv) &lt; 0)
+                handle_error();
+        }
+        /* LOCATION 1 */
+    }
+    /* LOCATION 2 */
+}
+</code></pre>
+
+<p>This seems to function, but they discover that there are two problems:</p>
+
+<ul>
+<li>when the function returns, the analysis is still going on since it does not wait for the analyze programs to finish</li>
+<li>the function runs so many instances of the <code>analyze</code> program at the same time that it overloads their machine</li>
+</ul>
+
+<p>The following questions ask about modifying the code to fix these issues.
+Throughout the questions, assume that the <code>handle_error()</code> function is never reached.</p>
+<div class='question' id='q1' slug='88b5c2ab'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>Suppose to solve the problem of the function not waiting for the analyze programs to finish, they add
+the code <code>waitpid(pids[i], NULL, 0)</code> at the line labeled "LOCATION 1".
+This will solve the problem of not waiting for the analyze programs to finish, but create
+other problems. Which ones? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='c2bb967a' /><div><p>they will not take advantage of multiple cores anymore</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='7e612da8' /><div><p>the system will be more overloaded will be worse because of the extra code in <code>analyze_all</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='c581f62f' /><div><p>multiple instances of <code>./analyze</code> may read from the same file</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='c56b2ba4' /><div><p>the child processes will attempt to <code>waitpid</code> for themselves and hang, so <code>analyze_all</code> will not terminate</p>
+</div></label></li></ol></div><div class='question' id='q2' slug='c9108d4b'><div class='description' id='d2'><strong>Question 2</strong> (4 points) (see above)
+<p>As a revised solution, they place code at "LOCATION 1" as follows:</p>
+
+<pre><code>if (i &gt;= 4) {
+    waitpid(pids[i-3], NULL, 0);
+}
+</code></pre>
+
+<p>To complete this solution, what code would be best to place at LOCATION 2?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans2' value='5f6ceff3' /><div><p><code>for (int i = 0; i &lt; 4 &amp;&amp; i &lt; num_files; i += 1) waitpid(pids[i], NULL, 0);</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='d4b76db5' /><div><p><code>for (int i = 0; i &lt; 4 &amp;&amp; i &lt; num_files; i += 1) { pids[i] = fork(); if (pids[i] &gt; 0) { waitpid(pids[i], NULL, 0); } }</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='521ba440' /><div><p><code>for (int i = num_files - 1; i &gt;= num_files - 4 &amp;&amp; i &gt; 0; i -= 1) waitpid(pids[i], NULL, 0);</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='f351aec3' /><div><p><code>for (int i = num_files - 1; i &gt;= num_files - 4 &amp;&amp; i &gt; 0; i -= 1) { pids[i] = fork(); if (pids[i] &gt; 0) { waitpid(pids[i], NULL, 0); } }</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='de8858be' /><div><p><code>if (num_files &gt; 0) waitpid(pids[num_files - 1], NULL, 0);</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='c7fbd8f9' /><div><p>none of the above (explain in comments)</p>
+</div></label></li></ol></div><div class='question' id='q3' slug='0d25afcb'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>After using the solution of the previous question, the analyst finds that sometimes only one instance of analyze is running,
+failing to take advantage of all four cores available on their system. This seems to happen even when the list of files is very
+long and the loop in <code>analyze_all</code> is near the beginning of the list of files.
+What is most likely happening?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans3' value='18a10628' /><div><p>some of the <code>analyze</code> processes finish quickly but are not waited for until well after they finish</p>
+</div></label></li><li><label><input type='radio' name='ans3' value='3e34c284' /><div><p>since the <code>analyze</code> processes all append to the same file, one cannot start until all previous ones finish</p>
+</div></label></li><li><label><input type='radio' name='ans3' value='dbeb8762' /><div><p>since the code in <code>analyze_all</code> does not redirect the analyze process's stdout, one cannot start until all previous ones finish</p>
+</div></label></li><li><label><input type='radio' name='ans3' value='ea28ad2d' /><div><p>because there's only one call to <code>open</code> in the loop and one <code>fd</code> variable, only one input file can be opened at a time</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider a system with a virtual memory system with:</p>
+
+<ul>
+<li>13 bit virtual addresses</li>
+<li>16 bit physical addresses</li>
+<li>1024 byte pages</li>
+</ul>
+
+<p>and the following page table:</p>
+
+<table>
+<thead>
+<tr>
+<td>virtual page number</td>
+<td>valid</td>
+<td>physical page number</td>
+<td>read allowed?</td>
+<td>write allocated?</td>
+<td>execute allocated?</td>
+<td>user mode access allowed?</td>
+</tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0x3</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>2</td><td>1</td><td>0x4</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>3</td><td>1</td><td>0x1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>4</td><td>1</td><td>0x7</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>5</td><td>0</td></tr>
+<tr><td>6</td><td>1</td><td>0x0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>7</td><td>1</td><td>0x2</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+</tbody>
+</table>
+<div class='question' id='q4' slug='7ddef53a'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>What is the maximum value a physical page number <em>could</em> have on this system?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div><div class='question' id='q5' slug='37fabaf6'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Consider executing the C snippet</p>
+
+<pre><code>*p += 1;
+</code></pre>
+
+<p>on this processor in a program running in user mode
+where <code>p</code> is a pointer to unsigned char.
+Assume the compiler does not optimize away the memory accesses.
+This will succeed without exceptions occuring
+if <code>p</code> points to a value in virtual page ____. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans5' value='82c85b67' /><div><p>0</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='0e0795fa' /><div><p>1</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='f2d542a0' /><div><p>2</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='e73958cb' /><div><p>3</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='b4f2585b' /><div><p>4</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='cd63e52a' /><div><p>5</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='f5bfbd79' /><div><p>6</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='a5f5d025' /><div><p>7</p>
+</div></label></li></ol></div><div class='question' id='q6' slug='74df739f'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>The virtual address <code>0x1123</code> on this system corresponds to
+what physical address?
+Write your answer as a hexadecimal number.
+If there is no corresponding physical address so accessing virtual address <code>0x1123</code>
+would cause an exception (such as a page fault) write "fault".</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans6' /></div></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 6</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Suppose a system with 256 byte pages is running a process with the following memory layout
+(all address virtual, all ranges inclusive):</p>
+
+<ul>
+<li>0x100-0x2ff (2 virtual pages): code and constants (read-only and executable)</li>
+<li>0x300-0x4ff (2 virtual pages): global variables (read/write)</li>
+<li>0x500-0x6ff (2 virtual pages): heap (read/write)</li>
+<li>0xe00-0xfff (2 virtual pages): stack (read/write)</li>
+<li>(and all other virtual pages are not accessible to the process)</li>
+</ul>
+<div class='question' id='q1' slug='15f247fe'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>Suppose the system uses allocate-on-demand to allocate memory for its
+heap and stack. In this scheme,
+the page table initially has no valid entries for the program's heap or stack, and it
+is updated as the program accesses memory (in response to the exceptions triggered
+by the memory accesses to invalid pages). Assume that when updating the page table this way,
+the operating system only allocates as much memory as needed to make the access that triggered
+the exception work.</p>
+
+<p>If the process runs code that:</p>
+
+<ul>
+<li>writes to a global array at address 0x310 through 0x33f (inclusive)</li>
+<li>writes to an array on the heap address 0x5f0 through 0x61f (inclusive)</li>
+<li>reads the array on the heap at addresses 0x5f0 through 0x61f, computes the sum, and writes to
+a global variable at address 0x380</li>
+</ul>
+
+<p>then, after that code completes, which of the following will be true? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='32709e3f' /><div><p>the process reading from some part of the "global variable" region could trigger an exception</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='2a156b69' /><div><p>the process writing to some part of the "heap" region could trigger an exception</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='e5ab4b55' /><div><p>at least two physical pages will be allocated to store the process's global variable region</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='544a2fbb' /><div><p>at least two physical pages will be allocated to store the process's heap region</p>
+</div></label></li></ol></div><div class='question' id='q2' slug='a32bd572'><div class='description' id='d2'><strong>Question 2</strong> (5 points) (see above)
+<p>Suppose:</p>
+
+<ul>
+<li>initially all accessible virtual pages have a corresponding physical page (so they can be accessed without an exception occurring), and</li>
+<li>the system uses copy on write and does the <strong>minimum</strong> copying possible</li>
+</ul>
+
+<p>and the process fork()s and then:</p>
+
+<ul>
+<li>the child process runs code at addresses 0x1f0 through 0x210 that:
+
+<ul>
+<li>copies a global variable at address 0x310 to the stack at address 0xe40</li>
+<li>copies a global variable at address 0x340 to the stack at address 0xe41</li>
+<li>copies a global variable at address 0x410 to the stack at address 0xe42</li>
+</ul></li>
+<li>the parent process runs code at addresses 0x220 through 0x240 that:
+
+<ul>
+<li>modifies a value on the stack at address 0xe08</li>
+</ul></li>
+</ul>
+
+<p>and no other relevant memory accesses occur.</p>
+
+<p>After these events occur, which of the following is true? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans2' value='34c24028' /><div><p>if the child process reads from <code>0xe08</code>, then an exception will occur</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='eaf8c99a' /><div><p>if the parent process writes to <code>0x500</code>, then an exception will occur</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='a83d77c0' /><div><p>the parent and child process will use same physical pages to store their code and constants</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='15622297' /><div><p>there will be at least 4 physical pages allocated to store the stacks of the two processes</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='81939461' /><div><p>there will be at least 4 physical pages allocated to store the code and constants of the two processes</p>
+</div></label></li></ol></div><div class='question' id='q3' slug='627b38b1'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>In lecture, we mentioned the Unix <code>mmap()</code> call, which allows a program to access
+the contents of a file as if it is part of its own memory.</p>
+
+<p>Suppose a program opens and mmap's a file as follows:</p>
+
+<pre><code>int fd = open("file.dat", O_RDWR);
+char *p;
+p = mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+</code></pre>
+
+<p>This makes it so <code>p</code> can be used like a 4096 element array of chars
+that is stored in the file.</p>
+
+<p>If we run two instances of the program at the same time and from
+the same directory, and <code>open</code>
+and <code>mmap</code> do not fail, then _____. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans3' value='0fd1f9ce' /><div><p><code>p</code> will have the same value in both processes</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='b21ea152' /><div><p>running <code>p[0]</code> will access the same physical address in both processes</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='eb6c28f8' /><div><p>running <code>munmap(p, 4096)</code> in one process would make the other process unable to use its <code>p</code> as an array</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='347b31e2' /><div><p>writing to the file descriptor <code>fd</code> (from the code above) could change the contents of <code>p[0]</code></p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider a system which uses single-level page tables with:</p>
+
+<ul>
+<li>65536 (2 to the 16) byte pages (and therefore 16-bit page offsets)</li>
+<li>32-bit virtual addresses</li>
+<li>40-bit physical addresses</li>
+<li>8 byte page table entries, which contain, starting with the
+most significant bits when interpreted as a 64-bit integer:
+
+<ul>
+<li>24 unused bits (which must be 0)</li>
+<li>a 24 bit physical page number</li>
+<li>a 11 unused bits (which must be 0)</li>
+<li>a user-mode-accessible bit</li>
+<li>a readable bit</li>
+<li>a writeable bit</li>
+<li>an executable bit</li>
+<li>a valid bit</li>
+</ul></li>
+<li>a page table base register, which contains the address of the first byte of the page table
+(so if the page table base register contains 0x10000, the first page table entry is at physical address
+0x10000 and the second at 0x10008 and so on.)</li>
+</ul>
+<div class='question' id='q4' slug='d7b4a397'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>While executing the instruction</p>
+
+<pre><code>movq 0x123450, %rax
+</code></pre>
+
+<p>which reads an 8-byte integer from 0x123450 and stores it in the register %rax,
+the processor accesses the page table to perform the read.</p>
+
+<p>If the page table base register contains 0xA0000, then what physical address
+will the processor read a page table entry from?
+Write your answer as a hexadecimal number. If not enough information is provided,
+write "unknown" an explain briefly in the comments.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div><div class='question' id='q5' slug='2ce87381'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Consider the access described in the previous question.</p>
+
+<p>Suppose the <code>mov</code> instruction runs in user mode, and
+after reading the page table entry from the address that is the answer to the previous question,
+the processor then reads an integer from physical address 0x903450 and copies the integer into <code>%rax</code>.</p>
+
+<p>In order for this to happen, what is a possible value of that page table entry?</p>
+
+<p>Write your answer as a hexadecimal number (interpreting the page table entry as a 64-bit integer).</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' /></div></div></div><div class="multiquestion"><p>Consider  a system which uses three-level page tables with:</p>
+
+<ul>
+<li>65536 (2 to the 16) byte pages (and therefore 16-bit page offsets)</li>
+<li>55-bit virtual addresses</li>
+<li>40-bit physical addresses</li>
+<li>65536 byte page tables (at each level), each containing 8192 entries, where each entry is 8 bytes in size</li>
+<li>a page table base register, which contains the address of the first byte of the first-level page table
+(so if the page table base register contains 0x10000, the first page table entry in the first-level page table is at physical address
+0x10000 and the second entry at 0x10008 and so on.)</li>
+</ul>
+<div class='question' id='q6' slug='eda2530f'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>Suppose when the processor is translating the virtual address <code>0x00123456789ABC</code>, the following sequence of events happens:</p>
+
+<ul>
+<li>based on a page table base register of value of <code>0x10000000</code>, the processor accesses a first-level page table entry at address <code>0x10000020</code></li>
+<li>based on the value retrieved from the first-level page table entry, the processor discovers that the relevant second-level page table
+is in physical page 0x54, which starts at byte address <code>0x540000</code>.</li>
+<li>after looking up the appropriate entry in the second-level page table, the processor discovers that the relevant third-level page table
+is in physical page 0x60, which starts at byte address <code>0x600000</code>.</li>
+<li>in the third-level page table, the processor reads a page table entry from address <code>0x60b3c0</code> and discovers
+that the final translation of <code>0x00123456789ABC</code> should be <code>0x9009ABC</code></li>
+</ul>
+
+<p>From what physical address did the processor access a second-level page table entry in this lookup?
+Write your answer as a hexadecimal number.
+If not enough information is provided, write "unknown" and explain what additional information is needed in the comments.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans6' /></div></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 7</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Consider the following C snippet
+that computes two values <code>sum</code> and <code>squared_sum</code>
+from an array of doubles <code>A</code> with a constant number <code>N</code> elements.</p>
+
+<pre><code>double sum = 0.0;
+for (int i = 0; i &lt; N; ++i) {
+    sum += A[i];
+}
+double squared_sum = 0.0;
+for (int i = 0; i &lt; N; ++i) {
+    squared_sum += A[i] * A[i];
+}
+</code></pre>
+<div class='question' id='q1' slug='983743c9'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>Which of the following changes would <strong>improve</strong> the temporal
+and/or spatial locality of the snippet's accesses to <code>A</code>? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='a015f052' /><div><p>adjusting each for loop to iterate through the array in reverse order (from N-1 to 0 instead of 0 to N-1)</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='6b415ec3' /><div><p>the array was replaced with a singly-linked list</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='4cd05e37' /><div><p>computing both <code>sum</code> and <code>squared_sum</code> in a single for loop instead of two separate ones</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='1e8ba76c' /><div><p>halving the value of <code>N</code></p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>For the following questions, consider a direct-mapped data cache with 16 byte cache blocks.</p>
+<div class='question' id='q2' slug='3594991c'><div class='description' id='d2'><strong>Question 2</strong> (4 points) (see above)
+<p>If the addresses <code>0x401</code> and <code>0x542</code> map to two different
+cache sets, then what is the <em>minimum</em> number of sets
+the cache could have?</p>
+
+<p>Assume that the cache must have a power of two number of sets.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' /></div></div><div class='question' id='q3' slug='fc187497'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>Suppose the cache has 4 sets (and therefore 2 set index bits) and is initially
+empty; and a processor accesses the cache as follows:</p>
+
+<ul>
+<li>reads 2 bytes from an address with tag 0x43, set index 2, offset 4</li>
+<li>reads 2 bytes from an address with tag 0x43, set index 2, offset 6</li>
+<li>reads 2 bytes from an address with tag 0x43, set index 3, offset 0</li>
+</ul>
+
+<p>When the cache performs these accesses, how many bytes will it
+read from memory (or the next level of cache)?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div><div class='question' id='q4' slug='42959e29'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>Suppose the cache has 256 sets (and therefore 8 set index bits) and addresses passed to the
+cache are 32 bits in size.
+Including space for valid bits, tags, and the actual data stored
+in the cache, how many bits of storage does the cache contain?</p>
+
+<p>(Remember to account for bytes taking up 8 bits.)</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div></div><div class="multiquestion"><p>Consider a two-way set associative cache whose contents are as follows.
+Data is written as as sequence of bytes, starting with the lowest address (lowest offset), with each byte written in hexadecimal.
+The "LRU way" bit indicates which way is least recently used in each set.</p>
+
+<table>
+<thead>
+<tr><td></td><td colspan="3" style="border-top: 1pt solid black; border-right: 1pt solid black; border-left: 1pt solid black">way 0</td><td colspan="3" style="border-top: 1pt solid black; border-right: 1pt solid black; border-left: 1pt solid black">way 1</td>
+<tr><td>index (written in binary)</td>
+<td>valid</td><td>tag (written in binary)</td><td>data</td>
+<td>valid</td><td>tag (written in binary)</td><td>data</td>
+<td>LRU way</td>
+</thead>
+<tbody>
+<tr><td>000</td>
+<td>1</td><td>00000</td><td>12 13 14 15</td>
+<td>1</td><td>00100</td><td>A0 B1 C2 D2</td>
+<td>0</td>
+<tr><td>001</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>1</td>
+<tr><td>010</td>
+<td>1</td><td>00100</td><td>E1 F2 A3 B4</td>
+<td>1</td><td>00101</td><td>D4 D5 D6 D7</td>
+<td>1</td>
+<tr><td>011</td>
+<td>1</td><td>01000</td><td>00 11 22 33</td>
+<td>1</td><td>01010</td><td>01 44 66 88</td>
+<td>0</td>
+<tr><td>100</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td>
+<tr><td>101</td>
+<td>1</td><td>11111</td><td>09 19 29 39</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>1</td>
+<tr><td>110</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td>
+<tr><td>111</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td><td>&mdash;</td><td>&mdash;</td>
+<td>0</td>
+</tbody>
+</table>
+<div class='question' id='q5' slug='2f5c52ed'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>The value 0xB1 has index 0, tag 4, and offset 1 (index, tag, and offset all written in decimal).
+What is its address? Write your answer as a binary number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' /></div></div><div class='question' id='q6' slug='2ed69990'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>When reading a byte from the address with tag 00000 (binary), index 011 (binary), and offset 3 (decimal), the cache will ___.
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans6' value='91bbd709' /><div><p>replace data in a cache block that was previously marked valid</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='caf29393' /><div><p>return a byte with value <code>0x15</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='4f57637e' /><div><p>change at least one "LRU way" bit</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='b6dfbde8' /><div><p>change at least one valid bit</p>
+</div></label></li></ol></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 9</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Consider a direct-mapped data cache with</p>
+
+<ul>
+<li>16 byte cache blocks,</li>
+<li>256 sets</li>
+<li>a write-allocate policy and a write-back policy</li>
+</ul>
+
+<p>Suppose the cache is initially empty and a program using this cache does
+the following sequence of accesses, in this order:</p>
+
+<ul>
+<li>writing 4 bytes to an address with set index 4, block offset 8, tag 0x1234</li>
+<li>reading 4 bytes from an address with set index 3, block offset 0, tag 0x1234</li>
+<li>writing 4 bytes to an address with set index 3, block offset 4, tag 0x1234</li>
+<li>writing 4 bytes to an address with set index 4, block offset 0, tag 0x2000</li>
+</ul>
+
+<p>In the following questions ask about what happens during the accesses above.
+Do not include anything that will happen while processing later accesses, even if they
+are affected by the accesses above.</p>
+<div class='question' id='q1' slug='9005a42b'><div class='description' id='d1'><strong>Question 1</strong> (3 points) (see above)
+<p>How many bytes will be <em>written</em> to the next level of cache or main memory
+during the accesses above?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' /></div></div><div class='question' id='q2' slug='2594cbbc'><div class='description' id='d2'><strong>Question 2</strong> (3 points) (see above)
+<p>How many bytes will be <em>read</em> from the next level of cache or main memory
+during the accesses above?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' /></div></div></div><div class="multiquestion"><p>Consider a direct-mapped data cache with</p>
+
+<ul>
+<li>16 byte cache blocks,</li>
+<li>256 sets</li>
+</ul>
+
+<p>on a system where virtual memory is not in use.</p>
+<div class='question' id='q3' slug='725e91c3'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>Suppose a program uses this cache to access an array of 8192 four-byte integers
+which is located at address 0x1000000.</p>
+
+<p>If a program reads from <code>array[100]</code>, then a cache block
+containing <code>array[100]</code> will be stored in the cache.
+If the program then accesses <code>array[X]</code> for some <code>X</code>, then
+the cache block containing <code>array[100]</code> will be evicted
+from the cache. Give a possible value of <code>X</code> that is within the bounds
+of the array.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div></div><div class="multiquestion"><p>Suppose a system has:</p>
+
+<ul>
+<li>4096 byte pages;</li>
+<li>two-level page tables with 1024 entries in page tables at each level;</li>
+<li>a 2-way data TLB with 16 total entries; and</li>
+<li>a 8KB (8192 byte) data cache with 256-byte blocks which uses only physical addresses.
+(This cache has 8 block offset bits and 5 set index bits.)</li>
+</ul>
+<div class='question' id='q4' slug='af2a41d3'><div class='description' id='d4'><strong>Question 4</strong> (3 points) (see above)
+<p>When translating the virtual address 0xABCDEF, the system will check
+the TLB set with index _____.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div><div class='question' id='q5' slug='fb5b2b4c'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Suppose a program running on this system has an 8192 byte array of bytes.
+Depending on how the program's page tables are setup, sometimes 
+index 4096 of the array and index 0 of the array map to the same data cache set, so they cannot
+be stored simulatenously in the cache, even though they are both present in memory.
+Which of the following must be true for this situation to happen?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans5' value='aecea2d0' /><div><p>the page numbers of the physical pages assigned to the array are not consecutive</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='1eee6caf' /><div><p>the page table entries for virtual pages containing the array are stored across two different second-level page tables</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='ebebec48' /><div><p>the starting address of the array is in the middle of a page (not a multiple of 4096)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='3f7746ce' /><div><p>two or more of the virtual pages used by the array have the same tag in the TLB</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider the following code that uses multiple threads using the POSIX ("pthreads") API.</p>
+
+<pre><code>int x, y;
+void *thread_function(void *argument) {
+    int *p = (int*) argument;
+    *p = *p + x;
+    return &amp;y;
+}
+
+int main() {
+    pthread_t thread;
+    int z;
+    x = 10; y = 20;
+    if (0 != pthread_create(&amp;thread, NULL, thread_function, &amp;z))
+        handle_error();
+    printf("here\n");
+    void *result;
+    if (0 != pthread_join(thread, &amp;result))
+        handle_error();
+    printf("%d %d %d %p\n", x, y, z, result);
+    return 0;
+}
+</code></pre>
+<div class='question' id='q6' slug='657c4237'><div class='description' id='d6'><strong>Question 6</strong> (3 points) (see above)
+<p>The <code>*p = *p + x</code> line modifies ____.</p>
+</div><ol class="options"><li><label><input type='radio' name='ans6' value='5254a14d' /><div><p>a value on the stack of the thread created by <code>pthread_create</code></p>
+</div></label></li><li><label><input type='radio' name='ans6' value='a77e3584' /><div><p>a value on the stack of the thread that was running <code>main</code></p>
+</div></label></li><li><label><input type='radio' name='ans6' value='e8091c05' /><div><p>a value stored in a register</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='ddb1cd41' /><div><p>a value stored in memory outside of any stacks</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='26892fa3' /><div><p>something that depends on how the code is compiled (explain briefly in comments)</p>
+</div></label></li><li><label><input type='radio' name='ans6' value='eded8b68' /><div><p>none of the above (explain briefly in comments)</p>
+</div></label></li></ol></div><div class='question' id='q7' slug='2608bbb9'><div class='description' id='d7'><strong>Question 7</strong> (4 points) (see above)
+<p>The message <code>here</code> may be output ___. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans7' value='839cbb27' /><div><p>before <code>thread_function</code> starts running</p>
+</div></label></li><li><label><input type='checkbox' name='ans7' value='a359b90f' /><div><p>after <code>thread_function</code> starts running but before it returns</p>
+</div></label></li><li><label><input type='checkbox' name='ans7' value='b49b0895' /><div><p>after <code>thread_function</code> returns</p>
+</div></label></li><li><label><input type='checkbox' name='ans7' value='150cddbe' /><div><p>after all resources created by the <code>pthread_create</code> call in main() are freed</p>
+</div></label></li></ol></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 10</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Consider the following C code that uses the POSIX API and implements a binary search tree search
+function that can be called from multiple threads at the same time:</p>
+
+<pre><code>struct tree_node {
+    int value;
+    struct tree_node *left;
+    struct tree_node *right;
+    pthread_mutex_t lock;
+};
+
+bool Find(struct tree_node *node, int value) {
+    bool result = false;
+    if (node != NULL) {
+        struct tree_node *next = NULL;
+        pthread_mutex_lock(&amp;node-&gt;lock);
+        if (value == node-&gt;value) {
+            result = true;
+        } else {
+            if (value &lt; node-&gt;value) {
+                next = node-&gt;left;
+            } else {
+                next = node-&gt;right;
+            }
+        }
+        pthread_mutex_unlock(&amp;node-&gt;lock);
+        if (next != NULL) {
+            result = Find(next, value);
+        }
+    }
+    return result;
+}
+</code></pre>
+
+<p>This <code>Find</code> function would be called by passing the root node of the tree as <code>node</code>
+and some integer <code>value</code> to search for.</p>
+<div class='question' id='q1' slug='17b1d4fb'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>Suppose we run multiple instances of the above <code>Find</code> function from multiple threads at the same time.
+Depending on the tree and the arugments to <code>Find</code>, the threads will be able to make more or less effective
+use of mutliple cores.</p>
+
+<p>Which of the following changes would <em>increase</em> how effectively the threads use multiple cores?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='3bd39136' /><div><p>changing from a tree with many nodes to one with just one node</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='53e56391' /><div><p>changing the tree so most non-leaf nodes in the tree only have one child instead of two</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='f56ab38b' /><div><p>distributing the <code>value</code> arguments to <code>Find</code> so they are split between more evenly between the left and right sides of the tree</p>
+</div></label></li></ol></div><div class='question' id='q2' slug='8c434715'><div class='description' id='d2'><strong>Question 2</strong> (4 points) (see above)
+<p>The locking in the <code>Find</code> routine should enable writing routines that manipulate the tree in parallel with calls to Find.
+Consider the following code that attempts to manipulate the tree:</p>
+
+<pre><code>pthread_mutex_lock(&amp;root-&gt;lock);
+struct tree_node *left;
+left = root-&gt;left;
+pthread_mutex_unlock(&amp;root-&gt;lock);
+pthread_mutex_lock(&amp;left-&gt;lock);
+struct tree_node *left_left;
+left_left = left-&gt;left;
+left-&gt;value = left_left-&gt;value;     /* Line A */
+left-&gt;left = left_left-&gt;left;       /* Line B */
+left-&gt;right = left_left-&gt;right;
+free(left_left);
+pthread_mutex_unlock(&amp;left-&gt;lock);
+</code></pre>
+
+<p>Despite the locking, some race conditions can occur when this code is run at the same time as calls to <code>Find</code>.
+Which of the following are possible? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans2' value='fc4f003f' /><div><p><code>Find</code> can examine the old value of <code>left-&gt;value</code> (before the modification in Line A) but recurse to the new value of <code>left-&gt;left</code> (set by Line B), causing it to return the wrong result in some cases</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='21747a43' /><div><p>the <code>free</code> on <code>left_left</code> can run before <code>Find</code> inspects <code>left_left</code>'s value (causing <code>Find</code> to try to access deallocated memory)</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='2ca56a19' /><div><p>if <code>left_left-&gt;right</code> is NULL, then <code>Find</code> might attempt to dereference a NULL pointer</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider the following (incomplete) C code that uses barriers:</p>
+
+<pre><code>pthread_barrier_t barrier;
+int global = 0;
+int N, M;
+void *f1(void *ignored) {
+    for (int i = 0; i &lt; N; i += 1) {
+        pthread_barrier_wait(&amp;barrier);
+        printf("f1: %d, global: %d\n", i, global);
+        global += i + 1;
+        pthread_barrier_wait(&amp;barrier);
+    }
+    return NULL;
+}
+
+void *f2(void *ignored) {
+    for (int i = 0; i &lt; M; i += 1) {
+        pthread_barrier_wait(&amp;barrier);
+        if (_____________ /* BLANK 1 */) {
+            global += 10;
+        }
+    }
+    return NULL;
+}
+
+void run() {
+    pthread_barrier_init(&amp;barrier, NULL, 2);
+    pthread_t t1, t2;
+    N = 100;
+    M = _________ /* BLANK 2 */;
+    pthread_create(&amp;t1, NULL, f1, NULL);
+    pthread_create(&amp;t2, NULL, f2, NULL);
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+    pthread_barrier_destroy(&amp;barrier);
+}
+</code></pre>
+
+<p>The <code>_</code>s marked "BLANK x" (for some <em>x</em>) 
+represent some omitted code which is the subject of a question below.</p>
+<div class='question' id='q3' slug='794e2004'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>In order to make <code>global</code> have the largest value possible <em>without creating race conditions</em>
+and without adding additional assignments to <code>global</code>,
+what is an appropriate expression to place in the blank marked <code>BLANK 1</code>?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div><div class='question' id='q4' slug='d0ab853d'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>What is an appropriate expression to place in the blank marked <code>BLANK 2</code> to allow <code>run()</code> to terminate?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div></div><div class="multiquestion"><p>Consider the following C code that uses the POSIX API
+(where identifiers in ALL_CAPITALS are integers defined elsewhere):</p>
+
+<pre><code>struct PageVersion {
+    pthread_mutex_t lock;
+
+    /* only accessed after locking 'lock' */
+    char *label;
+    char *data;
+    struct Page *page;
+
+    /* only accessed after locking 'page-&gt;lock' */
+    struct PageVersion *next;
+};
+
+struct Page {
+    pthread_mutex_t lock;
+    struct PageVersion *all_versions;
+    struct PageVersion *active_version;
+};
+
+struct PageVersion *add_version_to(struct Page *page, char *label, char *data) {
+    struct PageVersion *version = malloc(sizeof(struct PageVersion));
+    version-&gt;label = label;
+    version-&gt;data = data;
+    version-&gt;page = page;
+    pthread_mutex_init(&amp;version-&gt;lock);
+    pthread_mutex_lock(&amp;page-&gt;lock);
+    version-&gt;next = page-&gt;all_versions;
+    page-&gt;all_versions = version;
+    pthread_mutex_unlock(&amp;page-&gt;lock);
+    return version;
+}
+
+void move_version_to_page(struct PageVersion *version, struct Page *new_page) {
+    pthread_mutex_lock(&amp;version-&gt;lock);
+    pthread_mutex_lock(&amp;version-&gt;page-&gt;lock);
+    pthread_mutex_lock(&amp;new_page-&gt;lock);
+    struct PageVersion *iterator = version-&gt;page-&gt;all_versions;
+    if (iterator == version) {
+        version-&gt;page-&gt;all_versions = version-&gt;next;
+    } else {
+        while (iterator-&gt;next != version) {
+            iterator = iterator-&gt;next;
+        }
+        iterator-&gt;next = iterator-&gt;next-&gt;next;
+    }
+    version-&gt;next = new_page-&gt;all_versions;
+    new_page-&gt;all_versions = version;
+    pthread_mutex_unlock(&amp;new_page-&gt;lock);
+    pthread_mutex_unlock(&amp;version-&gt;lock);
+    pthread_mutex_unlock(&amp;version-&gt;page-&gt;lock);
+}
+
+bool set_active_by_label(struct Page *page, char *label) {
+    bool found = false;
+    pthread_mutex_lock(&amp;page-&gt;lock);
+    struct PageVersion *iterator = page-&gt;all_versions;
+    while (iterator) {
+        pthread_mutex_lock(&amp;iterator-&gt;lock);
+        if (0 == strcmp(iterator-&gt;label, label)) {
+            found = true;
+            page-&gt;active_version = iterator;
+            break;
+        }
+        iterator = iterator-&gt;next;
+        pthread_mutex_unlock(&amp;iterator-&gt;lock);
+    }
+    pthread_mutex_unlock(&amp;page-&gt;lock);
+    return found;
+}
+</code></pre>
+<div class='question' id='q5' slug='182246a1'><div class='description' id='d5'><strong>Question 5</strong> (5 points) (see above)
+<p>It is possible for simulatenous calls to the functions above to cause a deadlock.
+Which of the following calls (if run simulatenously from different threads)
+could result in a deadlock? <strong>Select all that apply.</strong></p>
+
+<p>In the calls below <code>A</code>, <code>B</code>, <code>C</code>, etc. represent distinct <code>struct Page*</code> values
+and <code>A1</code>, <code>A2</code>, <code>A3</code>, etc. represent distinct <code>PageVersion*</code> values that
+are on the list of all versions in <code>A</code>.</p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans5' value='aa03eaa8' /><div><p>set_active_by_label(A, A1->label) and set_active_by_label(A, A2->label)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='f8945db5' /><div><p>move_version_to_page(A1, B) and move_version_to_page(A2, B) and move_version_to_page(A3, C)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='27fd3d91' /><div><p>move_version_to_page(A1, B) and move_version_to_page(A1, C) and move_version_to_page(B1, C)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='3d703583' /><div><p>move_version_to_page(A1, B) and move_version_to_page(B1, C) and move_version_to_page(C1, A)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='4118ded3' /><div><p>set_active_by_label(A, A2->label) and move_version_to_page(A1, B)</p>
+</div></label></li></ol></div><div class='question' id='q6' slug='699337ab'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>One possible deadlock occurs when <code>move_version_to_page(A1, B)</code> and <code>move_version_to_page(B1, A)</code>
+are called simulatenously (using the conventions for A1, B1, A, B from the previous question).</p>
+
+<p>Which of the following changes would resolve this deadlock?
+<strong>Select all that apply</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans6' value='08efcc2c' /><div><p>change <code>pthread_mutex_lock(&amp;version-&gt;page-&gt;lock)</code> to <br><code>while (0 != pthread_mutex_trylock(&amp;version-&gt;page-&gt;lock)) {</code><br>&nbsp;&nbsp;<code>pthread_mutex_unlock(&amp;version-&gt;lock);</code><br>&nbsp;&nbsp;<code>pthread_mutex_lock(&amp;version-&gt;lock); }</code><br><code>}</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='35887164' /><div><p>change the <code>pthread_mutex_lock(&amp;new_page-&gt;lock)</code> to <code>while (0 != pthread_mutex_trylock(&amp;new_page-&gt;lock)) {}</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='759b618f' /><div><p>change the sequence of lock calls to: <br><code>pthread_mutex_lock(&amp;version-&gt;lock);</code><br><code>if (new_page &lt; version-&gt;page) {</code><br>&nbsp;&nbsp;<code>pthread_mutex_lock(&amp;new_page-&gt;lock);</code><br>&nbsp;&nbsp;<code>pthread_mutex_lock(&amp;version-&gt;page-&gt;lock);</code><br><code>} else {</code><br>&nbsp;&nbsp;<code>pthread_mutex_lock(&amp;version-&gt;page-&gt;lock)</code><br><code>&nbsp;&nbsp;<code>pthread_mutex_lock(&amp;new_page-&gt;lock);</code></code><br><code>}</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='dac313fe' /><div><p>move the <code>pthread_mutex_lock(&amp;new_page-&gt;lock)</code> to the beginning of the <code>move_version_to_page</code> function</p>
+</div></label></li></ol></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 11</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Consider the following incomplete code that uses monitors:</p>
+
+<pre><code>pthread_mutex_t lock;
+char *files[NUM_FILES];
+bool file_is_ready_to_process[NUM_FILES];
+bool file_is_processed[NUM_FILES];
+pthread_cond_t file_is_ready_cv[NUM_FILES];
+pthread_cond_t file_is_processed_cv[NUM_FILES];
+pthread_cond_t any_file_processed_cv;
+
+void PrepareFile(int index) {
+    SetupFileToBeProcessed(files[index]);
+    pthread_mutex_lock(&amp;lock);
+    file_is_ready_to_process[index] = true;
+    pthread_cond_broadcast(&amp;file_is_ready_cv[index]);
+    pthread_mutex_unlock(&amp;lock);
+}
+
+void ProcessFileWhenReady(int index) {
+    pthread_mutex_lock(&amp;lock);
+    while (!file_is_ready_to_process[index]) {
+        pthread_cond_wait(&amp;file_is_ready_cv[index], &amp;lock);
+    }
+    pthread_mutex_unlock(&amp;lock);    /* LINE A */
+    ProcessFile(files[index]);
+    pthread_mutex_lock(&amp;lock);      /* LINE B */
+    file_is_processed[index] = true;
+    pthread_cond_broadcast(&amp;any_file_processed_cv);
+    pthread_cond_broadcast(&amp;file_is_processed_cv[index]);
+    pthread_mutex_unlock(&amp;lock);
+}
+
+void WaitForTwoFilesToBeProcessed(int index1, int index2) {
+    pthread_mutex_lock(&amp;lock);
+
+    while (_______________________________________________ /* BLANK 1 */) {
+
+        pthread_cond_wait(&amp;file_is_processed_cv[_____ /* BLANK 2 */], &amp;lock);
+    }
+    while (_______________________________________________ /* BLANK 3 */) {
+
+        pthread_cond_wait(&amp;file_is_processed_cv[_____ /* BLANK 4 */], &amp;lock);
+    }
+    pthread_mutex_unlock(&amp;lock);
+}
+
+/* returns first file_index_list[i] such that file_is_processed[file_index_list[i]]
+   is false; if no such entry is exists, returns -1
+ */
+int FirstNonReadyFile(int *file_index_list, int files_index_list_length) {
+    for (int i = 0; i &lt; file_index_list_length; i += 1) {
+        if (!file_is_processed[file_index_list[i]]))
+            return file_index_list[i];
+    }
+    return -1;
+}
+
+void WaitForManyFilesToBeProcessed(int *file_index_list, int file_index_list_length) {
+    pthread_mutex_lock(&amp;lock);
+    while (_______________________________________________ /* BLANK 5 */) {
+
+        pthread_cond_wait(&amp;any_file_processed_cv, &amp;lock);  /* LINE C */
+    }
+    pthread_mutex_unlock(&amp;lock);
+}
+</code></pre>
+
+<p>Assume all relevant header files are included (and <code>NUM_FILES</code> is an integer
+constant larger than 10).</p>
+
+<p>A line of <code>_</code>s marked with a comment like <code>/* BLANK 1 */</code> indicates a place
+where code may need to be added to complete the code above.</p>
+
+<p>When <code>WaitForTwoFilesToBeProcessed(index1, index2)</code> returns,
+<code>file_is_processed[index1]</code> and <code>file_is_processed[index2]</code> should both be true
+because they were set by ProecssFileWhenReady() in other threads.</p>
+
+<p>Similarly, when <code>WaitForManyFilesToBeProcessed(index_array, index_array_length)</code>
+returns, <code>file_is_processed[index_array[i]]</code> should be true for all <code>i</code>
+from 0 to index_array_length - 1, inclusive.</p>
+<div class='question' id='q1' slug='88ad8d52'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>what code would be <em>most</em> appropriate to place in the blanks marked <code>/* BLANK 1 */</code>
+and <code>/* BLANK 3 */</code>?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans1' value='1452a90d' /><div><p><code>file_is_processed[index1]</code> and <code>file_is_processed[index2]</code></p>
+</div></label></li><li><label><input type='radio' name='ans1' value='66143a78' /><div><p><code>!file_is_processed[index1]</code> and <code>!file_is_processed[index2]</code></p>
+</div></label></li><li><label><input type='radio' name='ans1' value='30df9c30' /><div><p><code>!file_is_processed[index1] &amp;&amp; !file_is_processed[index2]</code> and <code>!file_is_processed[index1] || !file_is_processed[index2]</code></p>
+</div></label></li><li><label><input type='radio' name='ans1' value='a8ca7ddd' /><div><p><code>file_is_processed[index1] == file_is_processed[index2]</code> and <code>!file_is_processed[index1] || !file_is_processed[index2]</code></p>
+</div></label></li><li><label><input type='radio' name='ans1' value='02f7426c' /><div><p><code>!file_is_processed[index1] &amp;&amp; !file_is_processed[index2]</code> and <code>!file_is_processed[index2]</code></p>
+</div></label></li><li><label><input type='radio' name='ans1' value='2e574a55' /><div><p>none of the above (explain in comments)</p>
+</div></label></li></ol></div><div class='question' id='q2' slug='94862b16'><div class='description' id='d2'><strong>Question 2</strong> (4 points) (see above)
+<p>Which of the following code would be <strong>most</strong> appropriate to place in the blank marked <code>/* BLANK 5 */</code>?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans2' value='98b1377f' /><div><p><code>FirstNonReadyFile(file_index_list, file_index_list_length) == -1</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='f68b9aa2' /><div><p><code>FirstNonReadyFile(file_index_list, file_index_list_length) != -1</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='cd60cbc7' /><div><p><code>FirstNonReadyFile(file_index_list, file_index_list_length) == file_index_list[0]</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='7619f038' /><div><p><code>FirstNonReadyFile(file_index_list, file_index_list_length) != file_index_list[0]</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='7a53541a' /><div><p><code>file_is_processed[file_index_list[file_index_list_length - 1]]</code></p>
+</div></label></li><li><label><input type='radio' name='ans2' value='2c0811b4' /><div><p><code>!file_is_processed[file_index_list[file_index_list_length - 1]]</code></p>
+</div></label></li></ol></div><div class='question' id='q3' slug='68b7e95e'><div class='description' id='d3'><strong>Question 3</strong> (5 points) (see above)
+<p>Assuming the best answer to the previous question, the line marked LINE C could be replaced
+with which of the following without making <code>WaitForManyFilesToBeProcessed</code> behave incorrectly?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans3' value='b2d71801' /><div><p><code>int index = FirstNonReadyFile(file_index_list, file_index_list_length); if (index != -1) pthread_cond_wait(&amp;file_is_processed_cv[index], &amp;lock)</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='4bbfd249' /><div><p><code>int index = FirstNonReadyFile(file_index_list, file_index_list_length); if (index != -1) pthread_cond_wait(&amp;any_file_processed_cv, &amp;file_is_processed_cv[index])</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='69be8f0b' /><div><p><code>for (int i = 0; i &lt; file_index_list_length; i += 1) {</code><br>&nbsp;&nbsp;<code>pthread_cond_wait(&amp;file_is_processed_cv[file_index_list[i]], &amp;lock);</code><br><code>}</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='4a37165c' /><div><p><code>for (int i = 0; i &lt; file_index_list_length; i += 1) {</code><br>&nbsp;&nbsp;<code>if (file_is_processed[file_index_list[i]]) pthread_cond_wait(&amp;file_is_processed_cv[file_index_list[i]], &amp;lock);</code><br><code>}</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='5e36edea' /><div><p><code>for (int i = 0; i &lt; file_index_list_length; i += 1) {</code><br>&nbsp;&nbsp;<code>if (!file_is_processed[file_index_list[i]]) pthread_cond_wait(&amp;file_is_processed_cv[file_index_list[i]], &amp;lock);</code><br><code>}</code></p>
+</div></label></li></ol></div><div class='question' id='q4' slug='687204ef'><div class='description' id='d4'><strong>Question 4</strong> (4 points) (see above)
+<p>If the <code>pthread_mutex_unlock</code> and <code>pthread_mutex_lock</code> calls marked with the comments <code>LINE A</code> and <code>LINE B</code> above
+were removed, then ____. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans4' value='632f668d' /><div><p>it would be possible for <code>file_is_processed[index]</code> to be modified by two different threads at the same time when it was not previously</p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='2b15a9b4' /><div><p>only one file would be processed at a time, no matter how many threads called <code>ProcessFileWhenReady</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='ae6e587a' /><div><p><code>PrepareFile</code>'s call to <code>pthread_cond_broadcast</code> would take longer because it would sometimes wait until the corresponding file was processed when it would not previously</p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='6f5cba21' /><div><p>it would be possible for two calls to <code>ProcessFileWhenReady</code> to deadlock when they would not previously</p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Suppose two machines A and B are connected via a network that implements the "mailbox model" we discussed in lecture.</p>
+
+<p>To send data reliably this way, one machine sends a message with that data, and expects the receiving machine to send an acknowledgments of each message with data sent.
+When acknowledgments are not received after waiting a long time, the data-sending machine is responsible for resending the message with data.</p>
+<div class='question' id='q5' slug='d1ad7ee5'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Suppose machine A sends machine B ten messages with data using this scheme.
+Machine B's network has a problem where every other acknowledgment message (starting with the first one sent) is lost. (So, for example, if machine B attempted to send four acknowledgments in total, the first and third would be lost, regardless of which messages with data they were acknowledging.)
+Also, the network loses the first message the first time it is sent.</p>
+
+<p>Including messages that are lost, how many messages are sent in total?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' /></div></div><div class='question' id='q6' slug='0bc04b99'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>Suppose it takes 1 time unit to send a message with data, 10 time units for it to cross the network and be received,
+and 1 time unit to send an acknowledgment of that message, and 10 time units for the
+acknowledgment to cross the network be received.</p>
+
+<p>If machine A sends machine B ten messages with data, how long (in time units) will it take <em>for machine B
+to receive all ten messages with data</em> assuming:</p>
+
+<ul>
+<li>there are no lost or corrupted messages</li>
+<li>machine A waits until it receives an acknowledgment of message with data N before sending message with data N + 1</li>
+</ul>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans6' /></div></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 12</h1><div class='directions'><p>Answer the following quesitons about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Suppose machine A and machine B are on separate wifi networks.
+The routers for these wifi networks are connected to a common
+wired network.</p>
+<div class='question' id='q1' slug='22192a6d'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>If machine A sends a packet to B and B sends a packet acknowledging reciept of
+the original packet, what is the minimum number of <em>link-layer</em> frames (link-layer
+messages) that must be sent as part of this process?
+(Briefly identify them in the comments.)</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' /></div></div><div class='question' id='q2' slug='210753a7'><div class='description' id='d2'><strong>Question 2</strong> (3 points) (see above)
+<p>As part of sending the packet from machine A to machine B,
+the wifi router for machine B's wifi network will send
+a frame (link-layer message) to machine B (possibly contained within another message).</p>
+
+<p>What will the source address of this frame represent?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans2' value='339918a7' /><div><p>the identity of machine B's wifi router</p>
+</div></label></li><li><label><input type='radio' name='ans2' value='278d35e7' /><div><p>the identity of machine A's wifi router</p>
+</div></label></li><li><label><input type='radio' name='ans2' value='c492bc96' /><div><p>the identity of machine A</p>
+</div></label></li><li><label><input type='radio' name='ans2' value='3c7501d2' /><div><p>something else (explain briefly in comments)</p>
+</div></label></li></ol></div><div class='question' id='q3' slug='14dc4231'><div class='description' id='d3'><strong>Question 3</strong> (3 points) (see above)
+<p>As part of sending the packet from machine A to machine B,
+the wifi router for machine B's wifi network will send
+a packet (network-layer message) to machine B (which will be contained within
+link-layer frames as it crosses the network).</p>
+
+<p>What will the source address of this packet represent?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans3' value='18fcf2d3' /><div><p>the identity of machine B's wifi router</p>
+</div></label></li><li><label><input type='radio' name='ans3' value='4fb106c0' /><div><p>the identity of machine A's wifi router</p>
+</div></label></li><li><label><input type='radio' name='ans3' value='64efe007' /><div><p>the identity of machine A</p>
+</div></label></li><li><label><input type='radio' name='ans3' value='0a77cb89' /><div><p>something else (explain briefly in comments)</p>
+</div></label></li></ol></div></div><div class='question' id='q4' slug='5d7aa518'><div class='description' id='d4'><strong>Question 4</strong> (4 points)
+<p>Suppose a machine moves from a wifi network to a wired network while it has active connections.
+If we wanted to make this change as seamless as possible for the programs using those
+connections, which of the following would be the best strategy?</p>
+</div><ol class="options"><li><label><input type='radio' name='ans4' value='42434416' /><div><p>have the machine get a new IP address on the wired network and start using that for its connections, and make the wifi network's router copy the messages intended for its old IP address, but editing the destination IP address</p>
+</div></label></li><li><label><input type='radio' name='ans4' value='3a9ffc48' /><div><p>have the machine get a new IP address on the wired network but keep using the original port numbers so the connections continue working</p>
+</div></label></li><li><label><input type='radio' name='ans4' value='992dce64' /><div><p>have the machine get a new IP address on the wired network but change the destination IP address on the packets it sends to its old IP address (from the wifi network)</p>
+</div></label></li><li><label><input type='radio' name='ans4' value='3aeab8b3' /><div><p>have the machine keep its original IP address from the wifi network and edit routing tables on all relevant routers so that messages intended for the machine's IP address go to the wired network instead</p>
+</div></label></li></ol></div><div class="multiquestion"><p>Suppose A, B, and C attempt to secure communication using (symmetric) cryptography. To do this, they have three shared keys:</p>
+
+<ul>
+<li>key 1 is known by A, B, and C</li>
+<li>key 2 is known by just A and B</li>
+</ul>
+
+<p>Suppose A is sending data to B via C and wants to ensure that C cannot interfere or eavesdrop
+despite C's role in forwarding the message. To do this, A will encode the message using some cryptographic
+scheme before providing it to C to forward.
+Suppose (like the examples in lecture) we have an encryption and decryption functions E(key, message) (which produces a ciphertext) and D(key, ciphertext) (which recovers the original message),
+and a MAC function E(key, message) (which produces a MAC "tag"). In the options below, E(x, y) means the result of applying E to x and y, and similar for MAC(x, y).</p>
+
+<p>The following questions ask which schemes prevent C from interfereing or eavesdropping in a
+particular way.</p>
+<div class='question' id='q5' slug='30945a22'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Assuming C only forwards A's message unchanged,
+which of the following schemes would prevent C from learning information about the contents of the
+data other than its length that it did not already know? 
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans5' value='8d510e00' /><div><p>A's message consists of E(key 2, the data)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='d77f85c3' /><div><p>A's message consists of E(key 2, the data) and MAC(key 1, the data)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='e34343f7' /><div><p>A's message consists of E(key 1, the data)</p>
+</div></label></li><li><label><input type='checkbox' name='ans5' value='775b6795' /><div><p>A's message consists of E(key 1, the data) and MAC(key 2, the data)</p>
+</div></label></li></ol></div><div class='question' id='q6' slug='aba54f8f'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>Which of the following schemes would prevent C from changing the data without B being able to easily
+detect this? (For this question, you may assume that C can guess what the data A intended to send was, even
+if C cannot infer this from the message.) <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans6' value='67dc07f7' /><div><p>A's message consists of E(key 2, the data)</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='2eede426' /><div><p>A's message consists of E(key 2, the data) and MAC(key 1, the data)</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='6d784d86' /><div><p>A's message consists of E(key 1, the data)</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='a5a47bb4' /><div><p>A's message consists of E(key 1, the data) and MAC(key 2, the data)</p>
+</div></label></li></ol></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 13</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>Consider a system for allowing students to submit course registration 
+requests to the registrar.</p>
+
+<p>The system uses the following <em>insecure</em> (as partly revealed
+in the correct answers to the questions below) scheme.</p>
+
+<ul>
+<li>the registrar and each student has their own private keys (separate keys for encryption
+and signing; assume the appropriate key is used depending on the operation required),
+which are not shared with anyone;
+the corresponding public keys are shared with all parties securely in advance</li>
+<li>a student's registration request consists of:
+
+<ul>
+<li>the student's name; and</li>
+<li>a list of course registration requests, each containing:
+
+<ul>
+<li>a cryptographic hash of the identity of the course being registered for</li>
+<li>a digital signature made using the student's private key over the cryptographic hash</li>
+<li>a message encrypted using the registrar's public key containing:
+
+<ul>
+<li>the student's name</li>
+<li>the section of the course the student is requesting</li>
+<li>the identity of the course being registered for</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>the student sends the request to the registrar over an (insecure) network</li>
+<li>the registrar verifies all signatures, that the messages decrypt properly,
+and that the student names all match when it receives them</li>
+<li>after processing the request, the registrar sends back a message containing:
+
+<ul>
+<li>the current time</li>
+<li>a submessage encrypted using the student's public key containing:
+
+<ul>
+<li>a list of the courses the student is registered for</li>
+</ul></li>
+<li>a digital signature made using the registrar's private key over:
+
+<ul>
+<li>the current time and the student's name</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class='question' id='q1' slug='8cb684b1'><div class='description' id='d1'><strong>Question 1</strong> (7 points) (see above)
+<p>An attacker with the ability to read, replace, and introduce new messages on the network
+can do which of the following?
+(You may assume that the attacker has access to all relevant public keys and that
+asymmetric encrypted messages cannot be meaningfully changed by transforming the ciphertext,
+but they can be replaced by the attacker with new messages or messages obtained from elsewhere.
+In addition, you may assume the attacker is aware of the scheme described above, including
+the choice of cryptographic functions (hash, encryption, digital signature, etc.) in use.)
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='4a141013' /><div><p>given a small list of interesting classes, determine which students are registering for that class</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='3ebea0e1' /><div><p>given a small list of interesting sections of classes, determine which students are registering for that particular class section</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='655df82f' /><div><p>make the registrar think a student requested to register for fewer classes than they actually requested (but still at least one class)</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='5ee3808c' /><div><p>make the registrar think a student requested to register for an additional class they did not request</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='f3f23cdc' /><div><p>make the registrar think a student requested to register for a different section of the class than they actually requested</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='6f6bb41b' /><div><p>make a student think they were registered for fewer courses than they actually were</p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='ec7d8a37' /><div><p>make a student think they were registered for courses they were not actually registered for</p>
+</div></label></li></ol></div></div><div class='question' id='q2' slug='f3963c99'><div class='description' id='d2'><strong>Question 2</strong> (5 points)
+<p>In lecture, we mentioned that in a public-key infrastructure, often rather than just presenting one certificate to distribute a public key,
+an entity will present a "chain" of several certificates, where the public key used to verify the second certificate is contained
+with in the first certificate, the public key used to verify the third is contained within the second, and so on.
+The final certificate in the chain will have the public key of interest, for example the public key for the web site the browser
+is contacting.
+Which of the following are advantages of this scheme
+compared to just sending a single certificate?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans2' value='55cb9a17' /><div><p>it allows multiple certificate authorities to verify the public key in the final certificate is correct</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='ba6fe776' /><div><p>it allows the individual certificates in the chain to be shorter, so less information is sent overall</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='0ba4d654' /><div><p>it decreases the size of messages sent</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='ec575537' /><div><p>it decreases the size of the database of certificate authorities stored by a certificate verifying program (like a web browser)</p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='27453b45' /><div><p>it makes it easier to create new certificate authorities without updating certificate verifying programs</p>
+</div></label></li></ol></div><div class="multiquestion"><p>As an alternative to the asymmetric key exchange scheme we discussed in lecture (which we mentioned was commonly used in TLS),
+two communicating parties A and B can use asymmetric encryption or signatures in place of the special "asymmetric key exchange" operator.
+There is a secure way to do this, but the following questions discuss insecure ideas.</p>
+
+<p>In the question<!--s--> below PE and PD represents asymmetric encryption and decryption<!--; and S, V and represent digital signature creation and verification-->.
+Assume that A and B have shared public keys for encryption and signature verification in advance, and that the corresponding private keys
+are never available to any attacker.</p>
+<div class='question' id='q3' slug='15a4cbce'><div class='description' id='d3'><strong>Question 3</strong> (5 points) (see above)
+<p>Consider the following <em>insecure</em> protocol:</p>
+
+<ul>
+<li>A chooses a new, secret value K</li>
+<li>A sends to B: PE(B's public key, K)</li>
+<li>B sends to A: PE(A's public key, K)</li>
+<li>then A and B use K as a symmetric key for symmetric authenticated encryption</li>
+</ul>
+
+<p>Which of the following are omissions of this scheme assuming no additional steps are
+added to mitigate them? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans3' value='fb01fb9b' /><div><p>A cannot verify that it ever received a message from B or successfully sent a message to B</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='57e4abc7' /><div><p>B cannot verify that it ever received a message from A or successfully sent a message to A</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='4c9a77c3' /><div><p>if B runs this protocol with an attacker instead of A, then the attacker can trick B into decrypting someone else's encrypted message to B and sending the decrypted data to the attacker</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='2c58a00c' /><div><p>an attacker pretending to be A that intercepted an earlier use of the protocol can cause the K value from that earlier version of the protocol to be reused</p>
+</div></label></li><li><label><input type='checkbox' name='ans3' value='c1953193' /><div><p>an attacker pretending to be B that intercepted an earlier use of the protocol can cause the K value from that earlier version of the protocol to be reused</p>
+</div></label></li></ol></div></div><div class='question' id='q4' slug='da676c62'><div class='description' id='d4'><strong>Question 4</strong> (3 points)
+<p>Suppose a pipelined processor divides up instruction execution into 4 stages
+and is running a program with instruction A followed by instruction B
+followed by instruction C.</p>
+
+<p>(Assume nothing stops the processor from starting an instruction's first stage immediately
+after the previous instruction finishes that stage.)</p>
+
+<p>If instruction A executes its first stage during cycle number 0, then we would expect
+instruction C to executing its <strong><em>last</em></strong> stage during cycle number ___.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' /></div></div><div class='question' id='q5' slug='5201696b'><div class='description' id='d5'><strong>Question 5</strong> (3 points)
+<p>A pipelined processor with a cycle time of 1 ns and 8 pipeline stages will
+take ____ to run 1000 instructions.</p>
+
+<p>(Assume nothing stops the processor from starting an instruction's first stage immediately
+after the previous instruction finishes that stage.)</p>
+</div><ol class="options"><li><label><input type='radio' name='ans5' value='01580819' /><div><p>less than 1500 ns</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='b3df99a1' /><div><p>less than 3000 ns</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='22167817' /><div><p>less than 6000 ns</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='1189abf5' /><div><p>less than 9000 ns</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='54824fed' /><div><p>less than 12000 ns</p>
+</div></label></li><li><label><input type='radio' name='ans5' value='18982256' /><div><p>12000 ns or more</p>
+</div></label></li></ol></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 14</h1><div class='directions'></div><div class='question' id='q1' slug='20b4b514'><div class='description' id='d1'><strong>Question 1</strong> (4 points)
+<p>Suppose a single-cycle processor takes 1000 picoseconds to execute each instruction.</p>
+
+<p>Suppose it is divided into a 8 pipeline stages, using pipeline registers that
+have a register delay of 20 picoseconds.</p>
+
+<p>Assuming that the pipelined processor can start one instruction every cycle,
+one would expect the pipelined processor
+to have a <em>latency</em> (time from instruction start to finish, including all stages
+of the instruction) of <em>at least</em> ____ picoseconds.
+(Give the tightest bound possible with the given information. If needed, state any assumptions in the comments.)</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' /></div></div><div class='question' id='q2' slug='97f3d5cd'><div class='description' id='d2'><strong>Question 2</strong> (4 points)
+<p>Consider a 7-stage pipelined processor with a cycle time of 500 ps.</p>
+
+<p>Suppose the processor runs 1000000 instructions and:</p>
+
+<ul>
+<li>1% of the instructions require an additional cycle before the following instruction can be fetched due to data hazards</li>
+<li>2% of the instructions are branch mispreidctions, and for each such branch prediction, the
+processor fetches 3 instructions that are not completed</li>
+</ul>
+
+<p>What is the average throughput of the processor in picoseconds per instruction, rounded to the nearest picosecond per instruction?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' /></div></div><div class="multiquestion"><p>Consider a seven-stage pipelined processor with the following pipeline stages:</p>
+
+<ul>
+<li>fetch</li>
+<li>decode (include register file read)</li>
+<li>execute part 1</li>
+<li>execute part 2</li>
+<li>execute part 3</li>
+<li>memory</li>
+<li>writeback</li>
+</ul>
+
+<p>Assume the stages do the same thing as the stages we discussed in lecture, except some
+of the stages we discussed in lecture are divided into multiple parts. When this happens,
+the divided stages need the inputs near the beginning of the stage for the first part
+and only have the results of that stage near the end of the stage for the last part.</p>
+
+<p>Assume the processor resolves data hazards with a combination of stalling and forwarding.</p>
+<div class='question' id='q3' slug='320e1483'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>When executing</p>
+
+<pre><code>addq %r8, %r9
+subq %r9, %r10
+xorq %r9, %r11
+imulq %r8, %r12
+</code></pre>
+
+<p>if the <code>addq</code> completes its <strong>fetch</strong> stage in cycle 0
+then the <code>imulq</code> will complete its <strong>writeback</strong> stage in cycle ___.
+Account for any stalling necessary to resolve data hazards in the code above
+(and remember that the stalling will be combined with forwarding).</p>
+
+<p>(In each of the instructions above, the first operand is a source
+and the second is a source and destination of the instruction.)</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div><div class='question' id='q4' slug='6fcfd2b6'><div class='description' id='d4'><strong>Question 4</strong> (6 points) (see above)
+<p>Consider executing the following assembly, with the following
+pipeline diagram:</p>
+
+<pre><code>instruction / cycle:    0  1  2  3  4  5  6  7  8  9  10 11 12
+addq %r8, %r9           F  D  E1 E2 E3 M  W
+imulq %r10, %r13           F  D  E1 E2 E3 M  W
+movq (%r9), %r10              F  D  E1 E2 E3 M  W
+subq %r8, %r9                    F  D  E1 E2 E3 M  W
+nop                                 F  D  E1 E2 E3 M  W
+nop                                    F  D  E1 E2 E3 M  W
+xorq %r10, %r9                            F  D  E1 E2 E3 M  W
+</code></pre>
+
+<p>the processor will use forwarding alone (the explicit <code>nop</code>s are sufficient to avoid stalling) to resolved data hazards.
+(In each of the instructions above, the first operand is a source
+and the second is a source and destination of the instruction.)
+Which of the following forwarding
+operations will occur? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans4' value='3c43f277' /><div><p><code>%r9</code> from <code>addq</code> to <code>movq</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='8222ce84' /><div><p><code>%r9</code> from <code>addq</code> to <code>subq</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='e0811a23' /><div><p><code>%r9</code> from <code>movq</code> to <code>subq</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='cadd8198' /><div><p><code>%r9</code> from <code>movq</code> to <code>xorq</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='13b13c86' /><div><p><code>%r9</code> from <code>subq</code> to <code>xorq</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='6551a8ac' /><div><p><code>%r10</code> from <code>movq</code> to <code>xorq</code></p>
+</div></label></li></ol></div></div><div class="multiquestion"><p>Consider the following C code:</p>
+
+<pre><code>int x = 100;
+do {
+    if (5 == x % 10)
+        foo();
+    quux();
+    x -= 1;
+} while (x &gt;= 0);
+</code></pre>
+<div class='question' id='q5' slug='6f525f75'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Suppose the above code is executed with a branch predictor that predicts all
+conditional branches as taken if and only if they were taken the last time
+time they were run. (Branches are identified by the address
+of the corresponding instruction.)</p>
+
+<p>If the loop above is run repeatedly (by surrounding some outer loop)
+then how many branch mispredictions would occur
+each time the loop runs?</p>
+
+<p>Assume that:</p>
+
+<ul>
+<li>the initial predictions for each conditional branches are based on what happened at the end of a previous run of the loop;</li>
+<li>the <code>foo</code> and <code>quux</code> functions contain no conditional branches;</li>
+<li>the compiler generates code that has one conditional branch instruction to implement the do-while condition
+and one conditional branch instruction to implement the 5 == x % 10 condition;</li>
+<li>each conditional branch instruction is taken if the condition written in the C code (<code>5 == x % 10</code> or <code>x &gt;= 0</code>) is true;</li>
+<li>each conditional branch instruction runs once per iteration of the do-while loop;</li>
+</ul>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' /></div></div><div class='question' id='q6' slug='da5fc9b8'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>Which (if any) of the following changes to branch prediction would decrease
+the number of branch mispredictions versus the previous scenario?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans6' value='7474e4f4' /><div><p>if a branch was predicted as taken if and only if the last conditional branch (regardless of whether it was the same branch) was predicted as taken</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='59fa06e5' /><div><p>if the conditional branch from the if statement was always predicted as not taken</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='893795e5' /><div><p>if conditional branches were predicted as taken if and only if they were taken the last <em>two</em> times the same conditional branch was run</p>
+</div></label></li><li><label><input type='checkbox' name='ans6' value='839e8cc5' /><div><p>if conditional branches were predicted as not taken if and only if they were not taken the last <em>two</em> times the same conditional branch was run</p>
+</div></label></li></ol></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 15</h1><div class='directions'><p>Answer the following questions about the lecture material for this week.</p>
+</div><div class="multiquestion"><p>For the following questions, consider an out-of-order processor
+with a similar design to what we discussed in lecture
+(with register renaming and a single instruction queue).</p>
+
+<p>Suppose the processor executing the following assembly code:</p>
+
+<pre><code>addq %r8, %r9
+subq %r9, %r10
+xorq %r8, %r12
+andq %r8, %r10
+imulq %r12, %r10
+</code></pre>
+
+<p>(In each of the instructions above, the first operand is a source
+and the second is a source and destination of the instruction.)</p>
+<div class='question' id='q1' slug='d2e907d6'><div class='description' id='d1'><strong>Question 1</strong> (4 points) (see above)
+<p>The computation for <code>addq %r8, %r9</code> could occur at the same time as
+the computation for ____. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans1' value='4aea9ef1' /><div><p><code>subq %r9, %r10</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='e19ecc6d' /><div><p><code>xorq %r8, %r12</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='cfd4515c' /><div><p><code>andq %r8, %r10</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans1' value='9c4513c9' /><div><p><code>imulq %r12, %r10</code></p>
+</div></label></li></ol></div><div class='question' id='q2' slug='c5f366b2'><div class='description' id='d2'><strong>Question 2</strong> (3 points) (see above)
+<p>The computation for <code>xorq %r8, %r12</code> could occur at the same time as
+the computation for ____. <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans2' value='f7990ef0' /><div><p><code>subq %r9, %r10</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='814dcea4' /><div><p><code>andq %r8, %r10</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans2' value='b94bf99f' /><div><p><code>imulq %r12, %r10</code></p>
+</div></label></li></ol></div><div class='question' id='q3' slug='61b3455a'><div class='description' id='d3'><strong>Question 3</strong> (4 points) (see above)
+<p>If the processor has two ALUs that each can do the computation for
+any instruction in one cycle, then the minimum number of cycles
+it would need to do the computation for the instructions
+above would be ____ cycles.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' /></div></div></div><div class='question' id='q4' slug='15e53c60'><div class='description' id='d4'><strong>Question 4</strong> (4 points)
+<p>Consider the following C code:</p>
+
+<pre><code>unsigned char array[4096];
+for (int i = 0; i &lt; 4096; i += 1) { 
+    array[i] += 1;
+}
+*pointer += 1;
+</code></pre>
+
+<p>Suppose we run this:</p>
+
+<ul>
+<li>on a system has a 4096-byte direct-mapped cache with 32-byte blocks and where (to simplify this problem) virtual memory is not in use; and</li>
+<li>only accesses to <code>*pointer</code> and <code>array</code> use the cache.</li>
+</ul>
+
+<p>In that case, the for loop will fill the data cache with the elements of <code>array</code>,
+and then the addition to <code>*pointer</code> will evict something something from the cache.</p>
+
+<p>Suppose we don't know the exact value of <code>pointer</code> but have limited it to two possibilities.
+By timing how long it takes to access parts of <code>array</code> after running this code,
+we can sometimes distinguish between two values and sometimes cannot.
+For which pairs of possible values <strong>could</strong> we distinguish them by timing
+access to the <code>array</code>? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><input type='checkbox' name='ans4' value='9ba02592' /><div><p><code>0x402100</code> and <code>0x401200</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='50053218' /><div><p><code>0x123789</code> and <code>0x234789</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='4ad64094' /><div><p><code>0x123700</code> and <code>0x123710</code></p>
+</div></label></li><li><label><input type='checkbox' name='ans4' value='00c67bfb' /><div><p><code>0x995533</code> and <code>0x994433</code></p>
+</div></label></li></ol></div><div class="multiquestion"><p>Consider the following C code:</p>
+
+<pre><code>unsigned char table[256] = {
+    0,
+    11 % 256 , (2 * 11) % 256,
+    (3 * 11) % 256, (4 * 11) % 256,
+    ... /* and so on */
+};
+
+
+int Example(int x, int y) {
+    if (x &lt; 256) {
+        unsigned char result = table[x];
+        return table[(result + y) % 256];
+    } else {
+        return -1;
+    }
+}
+</code></pre>
+
+<p>Suppose <code>table</code> is located at address <code>0x100000</code>, and the system has an 4-way L1 cache with 64-byte blocks
+and 256 sets.</p>
+
+<p>To simplify this problem, assume that virtual memory is not in use.</p>
+<div class='question' id='q5' slug='1bd17250'><div class='description' id='d5'><strong>Question 5</strong> (4 points) (see above)
+<p>Suppose this function is vulnerable to a Spectre-style attack through which an attacker who can control
+the values of <code>x</code> and <code>y</code> and has access the ability to detect what's evicted from the cache
+can determine information about parts of memory they are not supposed to be able to access.</p>
+
+<p>If attacker wants to find out about the 1-byte value in memory
+at address <code>0x143000</code>, what value would be best to supply for <code>x</code> to perform this attack?
+Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' /></div></div><div class='question' id='q6' slug='92e67142'><div class='description' id='d6'><strong>Question 6</strong> (4 points) (see above)
+<p>Suppose an attacker finds out that for the value of <code>x</code> that is the correct answer to the previous question,
+setting <code>y</code> to 15 results in an access that evicts a value from set index 2 of the L1 cache,
+and setting <code>y</code> to 16 results in an access that evicts a value from set index 3 of the L1 cache.</p>
+
+<p>Based on this behavior, give a possible 1-byte value from memory at 0x143000.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans6' /></div></div></div><div class='explanation'><a href='.&showkey'>click here to preview key</a></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2024/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+
+    </body>
+    </html>
+    
