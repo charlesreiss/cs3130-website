@@ -85,10 +85,10 @@ The final may not be taken late (or early) without special-case permission.
 
 # Miscellanea
 
-## Personal accommodations
+## Personal/religious/medical accommodations
 
 If you believe that circumstances (illness, religious observations, family emergency, etc.)
-warrant an change in deadline or some other adjustment, please let me know and we'll
+warrant an change in deadline or some other adjustment, please let the instructors know and we'll
 figure out what we can do to accommodate your situation.
 
 If you anticipate issues related to this course due to a disability, you also may want to work
@@ -127,7 +127,7 @@ This includes not asking for/accepting code from students, stack overflow, gener
 the assignment).
 Beware of looking at other students code or code you find online: it is hard to unsee and can spoil your ability to compose your own solutions!
 
-(As should go without saying, you should also not help others in the class avoid composing their own code.)
+As should go without saying, you should also not help others in the class avoid composing their own code.
 
 ### Understand what you submit
 
@@ -147,11 +147,17 @@ and consult other resources (reference manuals, stack overflow-like sites, gener
 or help with reviewing related lecture, lab, or reading material, but not to
 ask specifically about (or look for instances where others asked specifically about) the quiz questions.
 
+### Use of generative AI tools
+
+Generally, you may only obtain assistance from generative AI tools that would be acceptable for you to
+obtain from a fellow student in the class. So you can ask conceptual questions, etc. but not for code or
+specific quiz answers. (However, I [Reiss] am skeptical that using generative AI in this way is a good idea
+since you may have trouble checking when the answers are accurate in the context of the course.)
+
 ### Consequences of Dishonesty
 
 If I believe you have acted dishonestly (such as by submitting code that are not yours as if they were yours
-<small>*[added 29 Feb:]*</small> or helping someone else do the same), I will communicate this fact to you and propose a penalty. 
+or helping someone else do the same), I will communicate this fact to you and propose a penalty. 
 If you have information I lack, please share that with me; I may thereafter change my belief and/or proposed penalty.
 
 This penalty is independent of and may be in addition to any referral to the University Honor System.
-
