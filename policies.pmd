@@ -9,9 +9,7 @@ index_title: Policies
 
 Lecture is optional but strongly encouraged.
 
-Lectures are Tuesdays and Thursdays at 3:30pm. I will attempt to record all lectures.
-
-I do not schedule review sessions or the like outside of usual class time.
+Lectures are Tuesdays and Thursdays at 12:30pm (Skadron's section) and 2pm (Reiss's sectoin). We will attempt to record all lectures.
 
 ## Tasks
 
@@ -22,14 +20,14 @@ You will be asked to
     - Most labs will permit/encourage collaboration (in contrast to homeworks/quizzes)
     - For most labs, we will allow either submission via the submission site *or* in-person lab check-off with a TA. When labs are checked off in-person, we will be less strict about checking for completion/correctness since the TA will know more about how much time you spent on the lab.
     - Some labs must be completed during the lab time and checked off with a TA, primarily for logistical reasons.
-    - If you have a reason you cannot attend lab (illness, etc.), please let me know about your situation and we'll make some accommodation.
+    - If you have a reason you cannot attend lab (illness, etc.), please let us know about your situation and we'll make some accommodation.
 - Do homework
     - Each homework is an individual assignment unless otherwise announced.
     - Some homework will be programming assignments; others will be puzzles, worksheets, or other kinds of activities.
 - Take quizzes
     - We will have weekly quizzes, administered online. Quizzes are open-book, open-notes, and untimed. They are to be completed individually.
 - Take a final
-    - I expect to have an in-person final exam during our official scheduled exam time.
+    - We expect to have an in-person final exam during our official scheduled exam time.
 
 
 ## Readings
@@ -51,17 +49,14 @@ The target difficulty is 5–10 hours of focused effort each week.
 
 ## Points per Activity Type
 
-Since this course has not been offered before, we may adjust these weights as the semester progresses.
-Any such adjustment will be discussed in class before being implemented.
-
 Task | Weight | Comments
 -----|--------|-----------------------------------------------------------------
-Quizzes | 30% | Drop lowest score
-Labs    | 15% | 
+Quizzes | 25% | Drop lowest score
+Labs    | 20% | 
 Homeworks | 40% | 
 Final | 15% |
 
-Your final grade is computed based on the percentage of points you have earned and then converted to a letter grade. At the end of the semester, I will decide on a mapping from points to letter grades based on the actual difficulty of homeworks, exams, etc. This mapping will give at least a D- for a 60%,  at least a C- for a 70%, at least a B- for an 80%, and at least a A- for a 90%.
+Your final grade is computed based on the percentage of points you have earned and then converted to a letter grade. At the end of the semester, we will decide on a mapping from points to letter grades based on the actual difficulty of homeworks, exams, etc. This mapping will give at least a D- for a 60%,  at least a C- for a 70%, at least a B- for an 80%, and at least a A- for a 90%.
 
 ## Submitting late
 
@@ -107,7 +102,7 @@ Let our TAs be students when they are not being TAs.
 
 I always hope everyone will behave honestly.
 I know we all are tempted to do what we ought not;
-if you do something you regret, the sooner you tell me the sooner (and more leniently) we can correct it.
+if you do something you regret, the sooner you tell us the sooner (and more leniently) we can correct it.
 
 ### No plagiarism (nor anything like it)
 
@@ -161,3 +156,38 @@ or helping someone else do the same), I will communicate this fact to you and pr
 If you have information I lack, please share that with me; I may thereafter change my belief and/or proposed penalty.
 
 This penalty is independent of and may be in addition to any referral to the University Honor System.
+
+## Student Safety
+
+The University of Virginia is dedicated to providing a safe and equitable learning environment for all students. If you or someone you know has been affected by power-based personal violence, information about reporting options and other resources can be found on [the UVA Sexual Violence website](htttps://www.virginia.edu/sexualviolence).
+
+The same resources and options for individuals who experience sexual misconduct are available for discrimination, harassment, and retaliation. UVA prohibits discrimination and harassment based on age, color, disability, family medical or genetic information, gender identity or expression, marital status, military status, national or ethnic origin, political affiliation, pregnancy (including childbirth and related conditions), race, religion, sex, sexual orientation, or veteran status. UVA policy also prohibits retaliation for reporting such behavior.
+
+If you witness or are aware of someone who has experienced prohibited conduct, you are encouraged to submit a report to [Just Report It](https://justreportit.virginia.edu) or contact the office of [Equal Opportunity and Civil Rights](https://eocr.virginia.edu).
+
+If you would prefer to disclose such conduct to a confidential resource where what you share is not reported to the University, you can turn to [Counseling & Psychological Services](https://www.studenthealth.virginia.edu/CAPS) (“CAPS”) and [Women’s Center](https://womenscenter.virginia.edu/about/welcome-faq) [Counseling Staff](https://womenscenter.virginia.edu/counseling/our-counseling-services) and Confidential Advocates (for students of all genders).
+
+As faculty members, we stand ready to support you and connect you with appropriate resources. However, our ability to provide confidentiality may sometimes be limited: as a faculty members, we are *responsible employees*, so we are required by University policy and by federal law to report certain kinds of conduct that you report to us to the University's Title IX Coordinator. The Title IX Coordinator's job is to ensure that the reporting student receives the resources and support that they need, while also determining whether further action is necessary to ensure survivor safety and the safety of the University community.
+
+## Student support team
+
+You have many resources available to you when you experience academic or personal stresses. In addition to your professor (and if you are in the College of Arts and Sciences, your association dean), the School of Engineering and Applied Science has staff members located in Thornton Hall who you can contact to help manage academic or personal challenges. Please do not wait until the end of the semester to ask for help! 
+
+Learning:
+
+*  Lisa Lampe, Director of Undergraduate Education
+*  Georgina Nembhard, Director of Student Success
+*  Courtney MacMasters, Accessibility Specialist
+*  Free tutoring is available for many classes.
+
+Health and Wellbeing
+
+*  Kelly Garrett, Assistant Dean of Students, Student Safety and Support  
+*  Elizabeth Ramirez-Weaver, CAPS counselor
+*  Katie Fowler, CAPS counselor
+
+You may schedule time with the CAPS counselors through Student Health (https://www.studenthealth.virginia.edu/getting-started-caps). When scheduling, be sure to specify that you are an Engineering student. You are also urged to use TimelyCare for either scheduled or on-demand 24/7 mental health care.
+
+## Community and identity
+
+The [Center for Diversity in Engineering](https://engineering.virginia.edu/about-our-school/diversity-equity-and-engagement/center-diversity-engineering) (CDE) is a student space dedicated to advocating for underrepresented groups in STEM. It exists to connect students with the academic, financial, health, and community resources they need to thrive both at UVA and in the world.  The CDE includes an open study area, event space, and staff members on site. Through this space, we affirm and empower equitable participation toward intercultural fluency and provide the resources necessary for students to be successful during their academic journey and future careers.
