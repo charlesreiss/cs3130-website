@@ -49,9 +49,9 @@ exclude:
   - Gemfile.lock
 
 destination: /u/cr4bd/public_html/3130/F2024
-submit_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/submit/"
-quiz_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/quizzes/"
-ohq_site: "https://kytos02.cs.virginia.edu/cs3130-spring2024/ohq/"
+submit_site: "https://kytos02.cs.virginia.edu/cs3130-fall2024/submit/"
+quiz_site: "https://kytos02.cs.virginia.edu/cs3130-fall2024/quizzes/"
+ohq_site: "https://kytos02.cs.virginia.edu/cs3130-fall2024/ohq/"
 kytos: "kytos02.cs.virginia.edu"
 katex: "https://www.cs.virginia.edu/~cr4bd/katex"
 
