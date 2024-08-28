@@ -19,4 +19,4 @@ def read_all_valid(dir):
 
 if __name__ == '__main__':
     with open('./_data/recordings.yaml', 'w') as fh:
-        yaml.dump(read_all_valid('/u/cr4bd/public_html/3130/S2024/recordings'), stream=fh)
+        yaml.dump(read_all_valid('/u/cr4bd/public_html/3130/F2024/recordings'), stream=fh)

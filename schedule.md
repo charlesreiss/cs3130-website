@@ -33,11 +33,25 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
 {%- assign open_quizzes = site.data.quizzes | where:"open_date",day.date -%}
 {%- assign due_quizzes = site.data.quizzes | where:"due_date",day.date -%}
 {%- capture file_prefix -%}{{ day.date | date: "%Y%m%d" }}{%- endcapture -%}
+{%- capture file_prefix_12 -%}{{ day.date | date: "%Y%m%d-12pm" }}{%- endcapture -%}
+{%- capture file_prefix_2 -%}{{ day.date | date: "%Y%m%d-2pm" }}{%- endcapture -%}
 {%- assign video_raw = site.data.recordings | where:"prefix",file_prefix-%}
+{%- assign video_raw_12 = site.data.recordings | where:"prefix",file_prefix_12-%}
+{%- assign video_raw_2 = site.data.recordings | where:"prefix",file_prefix_2-%}
 {%- if video_raw.size > 0 -%}
     {%- assign video = true %}
 {%- else -%}
     {%- assign video = false %}
+{%- endif -%}
+{%- if video_raw_12.size > 0 -%}
+    {%- assign video_12 = true %}
+{%- else -%}
+    {%- assign video_12 = false %}
+{%- endif -%}
+{%- if video_raw_2.size > 0 -%}
+    {%- assign video_2 = true %}
+{%- else -%}
+    {%- assign video_2 = false %}
 {%- endif -%}
 {%- if week_day == "Fri" or week_day == "Sat" or week_day == "Sun" -%}
 {%- assign non_lecture_day = true -%}
@@ -95,13 +109,17 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
   {%- endif -%}
 {%- endif -%}
 {%- if video -%}
-      | screencapture (<a href="/~cr4bd/videoplayer/?3130/S2024/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
+      | screencapture (<a href="/~cr4bd/videoplayer/?3130/F2024/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
     )
-{%- else -%}
-    {%- if day.video_mp4 -%}
-      | screencapture (download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>)
-    {%- endif -%}
-{%- endif -%} 
+{%- endif -%}
+{%- if video_12 -%}
+      | 12pm screencapture (<a href="/~cr4bd/videoplayer/?3130/F2024/recordings/{{ file_prefix_12 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_12 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_12 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_12 }}-audio.mp3">audio</a>
+    )
+{%- endif -%}
+{%- if video_2 -%}
+      | 2pm screencapture (<a href="/~cr4bd/videoplayer/?3130/F2024/recordings/{{ file_prefix_2 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_2 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_2 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_2 }}-audio.mp3">audio</a>
+    )
+{%- endif -%}
 {%- if day.slides or day.slides_ref or day.video_webm or day.who or day.slides_see -%}
 &nbsp;]
 {%- endif -%}
