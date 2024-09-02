@@ -27,7 +27,6 @@
     *  dynamic and static linking
     *  make
        *  rules
-       *  pattern rules
 
 - date: 2024-08-30
   week: 1
@@ -37,8 +36,11 @@
   title: accounts
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   slides_ref:
+  - building
   - accounts
   description: |
+    *  make (finish)
+
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
     *  set-user-ID, sudo is not kernel mode
