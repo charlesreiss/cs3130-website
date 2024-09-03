@@ -19,6 +19,10 @@ that Reiss has built over the years. You can see a list of those slidedecks [her
 Often not everything in the slide deck will be covered in one day (or sometimes, at all in the semester).
 </p>
 
+<p>
+Skadron's annotated slides are available as PDFs on Canvas, under Files.
+</p>
+
 <p id="weekJump" style="display: none"></p>
 <p id="hideOutline" style="display: none"></p>
 
