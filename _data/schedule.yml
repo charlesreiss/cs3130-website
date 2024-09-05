@@ -60,9 +60,7 @@
   description: |
     *  kernel mode
     *  system calls
-    *  exceptions, other events triggering
-
-    *  threads and context switches
+    *  memory protection
 
 - date: 2024-09-06
   week: 2
@@ -75,10 +73,13 @@
   - kernel
   - signals
   description: |
+    *  non-system-call exceptions
+       *  timer interrupt
+       *  I/O
+    *  context switches
+    
     *  Unix signals
        *  signal handlers and implementation
-       *  signal unsafety
-       *  handling signals without signal handlers
 
 - date: 2024-09-11
   week: 3
@@ -92,11 +93,13 @@
   - kernel
   - unix-api
   description: |
+    *  Unix signals (con't)
+       *  signal unsafety
+       *  handling signals without signal handlers
     *  processes, threads
 
     *  creating new processes
        *  fork, exec*
-    *  waiting for processes
 
 - date: 2024-09-13
   week: 3
@@ -111,6 +114,7 @@
   description: |
     (Reiss out of town)
 
+    *  waiting for processes
     *  file descriptors
     *  dup2
     *  pipe
