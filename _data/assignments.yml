@@ -242,7 +242,7 @@
   submit_files:
   - "*.c"
   - "performance.txt"
-  due: 2024-11-04
+  due: 2024-11-06
 
 - name: TLB
   short_name: tlb
@@ -260,7 +260,7 @@
     <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
         or because you evict the wrong entry sometimes.
     </ul>
-  due: 2024-11-06
+  due: 2024-11-08
 
 - name: networking
   lab: true
