@@ -109,10 +109,11 @@
   title: processes 2
   reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
   slides_ref:
-  - kernel
   - unix-api
   description: |
     (Reiss out of town)
+
+    (See Panopto on Canvas for videos; videos won't be posted here for some time.)
 
     *  waiting for processes
     *  file descriptors
@@ -131,6 +132,8 @@
   - vm
   description: |
     (Reiss out of town)
+
+    (See Panopto on Canvas for videos; videos won't be posted here for some time.)
 
     *  virtual memory concept
         *   address space and address sizes
