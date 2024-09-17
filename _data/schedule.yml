@@ -219,7 +219,7 @@
   lab: true
   week: 7
 
-- date: 2024-10-11
+- date: 2024-10-10
   week: 7
   title: "threads"
   reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
@@ -233,7 +233,7 @@
     *  atomicity, race conditions
 
 
-- date: 2024-10-12
+- date: 2024-10-11
   week: 7
 
 

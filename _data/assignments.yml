@@ -99,7 +99,7 @@
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2024-10-12
+  due: 2024-10-11
   grade_describe: |
     Note that the results below include many tests which aren't part of the grade for part 1.
   submit_files:
