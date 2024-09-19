@@ -50,8 +50,8 @@
     This assignment will be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
     <p>
-    (*[added 19 Sep 2024]* there are some automated checks for whether signals are sent/received,
-    but we do not have automation for determining if you are timing the right things.)
+    (<small>[added 19 Sep 2024:]</small> there are some automated checks that can usually detect
+    whether signals are sent/received, but we do not have automation for determining if you are timing the right things.)
   submit_files:
   - timings.txt
   - "*.txt"
