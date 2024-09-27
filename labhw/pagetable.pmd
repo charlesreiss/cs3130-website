@@ -3,15 +3,6 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  22 Feb 2024: add example of computing number of bits virtual address in use in page tbale format section; provide forward reference in "your task" part that POBITS determines page table sizes
-*  26 Feb 2024: update use of `__attribute__((aligned))` in manual testing code to possibly more portable `alignas()` from `<stdalign.h>`
-*  28 Feb 2024: add section on pointers versus integers to common C issues in hints
-*  6 March 2024: "memory is gaurenteed" -> "the address `x` is gaurenteed"; other clarification to hints
-</div>
-
 {.exercise ...}
 Your task:
 
@@ -109,9 +100,13 @@ Your task:
 
 5.   Include a `LICENSE` and `licenses.txt` files as described below.
 
-6.   See if you can add some kind of de-allocate interface without substantially
-     reworking your prior implementation. You can decide what kind of function(s)
-     should be part of this interface.
+6.   The interface we describe above does not support deallocating memory.
+
+     Propose some kind of de-allocation interface. (You can decide what kind
+     of function(s) should be part of this interface.)
+
+     Then, see if the interface you chose is possible to implement that interface without
+     substantially reworking your prior implementation.
 
      If so, add it to 
      your implementation (including `mlpt.h`) and document how it may be used
@@ -119,17 +114,14 @@ Your task:
 
      If not, put in your `README`, a proposed de-allocation interface.
      Then document why this interface is not practical in your README.
-     This explanation should include (at least) one of (depending on the
-     interface you proposed) --- 
+     This explanation *must* include at least one of ---
 
      *  a description of changes that would need to be made to the `page_allocate`
         and/or `translate` implementations to implement the de-allocation interface
-        effectively;
+        effectively; or
      *  an explanation of how the interfaces for `page_allocate` and/or `translate`
         (and related functionality) should be changed to accomodate de-allocation
-        (in addition to any new de-allocation-specific functions); or
-     *  an example of how the library will still not have enough information to 
-        practically deallocate memory safely when the proposed interface is used;
+        (in addition to any new de-allocation-specific functions)
 
 {/}
 
