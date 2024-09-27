@@ -105,7 +105,7 @@ Your task:
      Propose some kind of de-allocation interface. (You can decide what kind
      of function(s) should be part of this interface.)
 
-     Then, see if the interface you chose is possible to implement that interface without
+     Then, see if the interface you chose is possible to implement without
      substantially reworking your prior implementation.
 
      If so, add it to 
