@@ -9,6 +9,7 @@ author: Charles Reiss
 Changelog:
 
 *  2 Oct 2024: remove things left over from last semester.
+*  2 Oct 2024: mention overhead from malloc() for item 3; describe how to use mmap() for allocation item 3.
 </div>
 
 {.exercise ...} Possibly working with a partner ---
@@ -53,6 +54,12 @@ Changelog:
     runs code that increases the "virtual memory size" by 1048576 bytes and the
     "resident set size" by 131072 bytes and performs the *fewest memory accesses
     possible to do so*.
+
+    Hint: since `malloc()` uses some extra space for bookkeeping, if you use malloc()
+    you may need to adjust how much space is allocated (to somewhat below
+    1048576 bytes) or how many pages you access slightly to compensate for this.
+    Alternately, you can use `mmap` to allocate memory (which won't use extra memory for bookkeeping),
+    as documented in [the hint below](#mmap-alloc).
 
     Hint: You should only need to access each allocated page once.
 
@@ -220,18 +227,15 @@ allocation itself. In this case, it's possible that if you values access near
 the beginning or end of the allocation, that your access will be part of
 the same page that `malloc` used and therefore caused to be allocated already.
 
-## Item 4 and Item 5 {#item-45}
+## Item 3 {#item-3}
 
-### find the location of the heap
-
-1.  The memory layout we display indicates the range of the address that correspond to the heap (labeled `[heap]`)
-
-    If you run the program with address randomization disabled, it should be the same every time.
-
-### mmap to allocate memory at a particular location
+### using mmap to allocate memory {#mmap-alloc}
 
 1.  On Linux, `mmap` can also be used for memory allocation, without involving any actual files.
-    To do this one supplies
+    Unlike `malloc`, this invokes the kernel directly and therefore does not use any of the process's
+    memory for bookkeeping (just the OS's memory).
+
+    To use `mmap` to allocate memory, one supplies
     the invalid file descriptor `-1` and specifies `MAP_ANONYMOUS` as one of the 
     `mmap` "flags". (The mapping is anonymous in the sense that there is no file name it corresponds to.)
     For example, 
@@ -247,6 +251,19 @@ the same page that `malloc` used and therefore caused to be allocated already.
         if (ptr == MAP_FAILED) { handle_error(); }
 
     will make `ptr` point to a new allocation of 8192 bytes.
+
+## Item 4 and Item 5 {#item-45}
+
+### find the location of the heap
+
+1.  The memory layout we display indicates the range of the address that correspond to the heap (labeled `[heap]`)
+
+    If you run the program with address randomization disabled, it should be the same every time.
+
+### mmap to allocate memory at a particular location {#mmap_allocate}
+
+1.  As documented in the hint for item 3 above, `mmap` can be used for memory allocation without
+    involving any actual files. 
 
 2.  By defaut `mmap` chooses a new location for the mapping.
 
