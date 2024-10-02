@@ -3,26 +3,17 @@ title: Virtual memory exploration
 author: Charles Reiss
 ...
 
+> This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
+
 <div class="changelog">
 Changelog:
 
-*  20 Feb 2024: change 0x10000 to 0x200000 in item 4 to more consistently trigger page table size change; note that address should be multiple of 4096
-*  21 Feb 2024: for item 1, request writing to the array instead of just accessing, since this more consistently triggers resident set size changes (the OS can use copy-on-write to avoid allocated all-zero pages); mention that the array declaration deliberately avoids setting an initial value
-*  21 Feb 2024: for item 2, only request virtual memory size increase by 'about 1MB' to avoid issues with interpreting 1 MB as 10 to 6 bytes versus 2 to 20 bytes and with malloc bookkeeping/etc. that we want to save until item 3
-*  21 Feb 2024: fix missing ,s in mmap examples; be explicit about rounding up for item 5; mention that malloc bookkeeping also increases virtual memory size (not just resident size)
-*  21 Feb 2024: make MAP_FIXED mmap example cast first argument to avoid a warning
+*  2 Oct 2024: remove things left over from last semester.
 </div>
-
-> This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
-
-> Since this is the first time we are using this lab, I am not sure how much time
-> the lab will take in practice. I am hoping that finishing the lab in time is not
-> an issue. But if not, we intend to give full credit for in-person checkoffs if you
-> spend the lab time primarily working on the lab and make substantial progress.
 
 {.exercise ...} Possibly working with a partner ---
 
-0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
+0.  Download the skeleton code ([here](files/vm-explore.tar)  or `wget https://www.cs.virginia.edu/~cr4bd/3130/F2024/labhw/files/vm-explore.tar`) and run `make` to compile it.
 
     Run the code like `./lab 0` and observe the output, which is explained below in the "[the ./lab program](#program)" section below
 
@@ -72,7 +63,7 @@ Changelog:
     Determine the location of the heap, from `./lab`'s output.
 
     Modify `labStuff` so that when the parameter is `4`, it allocates and *uses* (reads or writes) 
-    4096 bytes of memory at an address 0x200000[^item4count] bytes after the end of the heap (rounded up, if necessary,
+    4096 bytes of memory at an address 0x200000 bytes after the end of the heap (rounded up, if necessary,
     to the next address that is a multiple of 4096 (= 0x1000)).
 
     See [below](#item-45) for information about how to do this.
@@ -96,11 +87,6 @@ Changelog:
     or submit your `lab.c` (making sure it indicates in a comment anyone you worked with) to the submission site.
 
 {/}
-
-[^item4count]:
-    The original version of this writeup used 0x10000, and it's okay to use that, too, but 0x200000 may be more consistent
-    at ensuring a change in page table entry space.
-
 
 # the `./lab` program {#program}
 
