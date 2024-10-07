@@ -3,6 +3,13 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+changelog:
+
+*  6 Oct 2024: clarify item 6 regarding what kind of reworking of page_allocate/translate is not expected
+
+</div>
+
 {.exercise ...}
 Your task:
 
@@ -102,26 +109,25 @@ Your task:
 
 6.   The interface we describe above does not support deallocating memory.
 
-     Propose some kind of de-allocation interface. (You can decide what kind
-     of function(s) should be part of this interface.)
+     Propose some kind of interface to support de-allocation for the page table
+     implementation. You can decide what kind of function(s) should be part of this interface.
+     Document this interface in your README.
 
-     Then, see if the interface you chose is possible to implement without
-     substantially reworking your prior implementation.
+     Then, determine whether the interface you chose is possible to implement without
+     changing the existing page_allocate/translate interface or reworking the internals of
+     your implementation of those functions.
 
-     If so, add it to 
-     your implementation (including `mlpt.h`) and document how it may be used
-     in your `README`.
+     If so, add it to your implementation (including `mlpt.h`).
 
-     If not, put in your `README`, a proposed de-allocation interface.
-     Then document why this interface is not practical in your README.
+     If not, document why did not implement the interface in your README.
      This explanation *must* include at least one of ---
 
-     *  a description of changes that would need to be made to the `page_allocate`
-        and/or `translate` implementations to implement the de-allocation interface
-        effectively; or
+     *  a description of specific changes that should be made to the `page_allocate`
+        and/or `translate` implementations to allow the de-allocation interface
+        to be implemented; or
      *  an explanation of how the interfaces for `page_allocate` and/or `translate`
         (and related functionality) should be changed to accomodate de-allocation
-        (in addition to any new de-allocation-specific functions)
+        (in addition to the code in any new de-allocation-specific functions)
 
 {/}
 
