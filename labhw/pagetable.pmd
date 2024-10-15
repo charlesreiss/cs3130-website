@@ -84,11 +84,11 @@ Your task:
 
 3.  Prepare a `Makefile` for your code that: 
 
-        -  produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
-        -  has CC, CFLAGS and LDFLAGS defined
-        -  uses defined arguments in its work
-        -  has correct dependencies for each target
-        -  has `all` and `clean` targets
+        *  produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
+        *  has CC, CFLAGS and LDFLAGS defined
+        *  uses defined arguments in its work
+        *  has correct dependencies for each target
+        *  has `all` and `clean` targets
 
 
 4.   Write a `README` explaining (at a minimum):
