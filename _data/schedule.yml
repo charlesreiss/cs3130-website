@@ -191,30 +191,27 @@
 
 - date: 2024-10-03
   week: 6
-  title: caches 2
+  title: caches 1
   reading: "[cache](readings/cache.html)"
   slides_ref:
   - caching
   description: |
     *  direct-mapped caches
         *  valid bits, tags
-    *  set-associative caches
-    *  (briefly) replacement policies
-    *  cache misses and C code (start)
 
 - date: 2024-10-04
   week: 6
 
 - date: 2024-10-08
   week: 7
-  title: caches 3
+  title: caches 2
   reading: "[cache](readings/cache.html)"
   slides_ref:
   - caching
   description: |
-   *  cache misses and C code (finish)
-   *  cache write policies
-   *  the TLB
+   *  set-associative caches
+   *  (briefly) replacement policies
+   *  cache misses and C code (start)
 
 - date: 2024-10-09
   lab: true
@@ -222,16 +219,13 @@
 
 - date: 2024-10-10
   week: 7
-  title: "threads"
-  reading: "[threads](readings/threads.html) §1-2, [pthreads](readings/pthreads.html) §1-2"
+  title: "caches 3"
+  reading: "[cache](readings/cache.html)"
   slides_ref:
-  - threads
+  - caching
   description: |
-    *  creating new threads
-    *  thread use examples
- 
-    *  problem of synchronization
-    *  atomicity, race conditions
+   *  cache misses and C code (finish)
+   *  cache write policies
 
 
 - date: 2024-10-11
@@ -248,18 +242,18 @@
 
 - date: 2024-10-17
   week: 8
-  title: "synchronization 1"
-  reading: "[sync](readings/sync.html), [deadlock](readings/deadlock.html), [consistency](readings/consistency.html) §1"
+  title: "TLB / threads"
+  reading: "[cache](readings/cache.html), [threads](readings/threads.html), [pthreads](readings/pthreads.html)"
   slides_ref:
+  - caching
   - threads
-  - sync
-  - deadlock
   description: |
-   *  reordering
-   *  locks and mutexes
-   *  barriers
-   *  deadlock
-      *  examples
+   *  the TLB
+
+   *  creating new threads
+   *  thread use examples
+ 
+   *  problem of synchronization
 
 - date: 2024-10-18
   week: 8
@@ -267,16 +261,18 @@
 
 - date: 2024-10-22
   week: 9
-  title: synchronization 2 / deadlock
+  title: synchronization 1 / deadlock
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
   slides_ref:
   - sync
+  - deadlock
   description: |
-    *  deadlock (con't)
-       *  definition
-       *  preventing/avoiding
+    *  problem of synchronziation 
+    *  locks and mutexes
+    *  barriers
 
-    *  producer/consumer problem
+    *  deadlock
+       *  examples
 
 - date: 2024-10-23
   lab: true
@@ -284,25 +280,33 @@
 
 - date: 2024-10-24
   week: 9
-  title: synchronization 3
-  reading: "[sync](readings/sync.html),  [protocols](readings/protocols.html) §1-2"
+  title: synchronization 2
+  reading: "[sync](readings/sync.html)"
   slides_ref:
+  - deadlock
   - sync
   description: |
-    *  monitors
-    *  false sharing
-    *  briefly, transactions
+    *  deadlock (con't)
+       *  definition
+       *  preventing/avoiding
+
+    *  producer/consumer problem
+    *  monitors (start)
 
 - date: 2024-10-25
   week: 9
 
 - date: 2024-10-29
   week: 10
-  title: networking 1
+  title: synchronization 3 / networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
   slides_ref:
   - network
   description: |
+    *  monitors (start)
+    *  false sharing
+    *  (if time) briefly, transactionA
+    
     *  layers
     *  mailbox analogy
        *  best-effort delivery
