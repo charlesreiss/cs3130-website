@@ -301,18 +301,17 @@
   title: synchronization 3 / networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
   slides_ref:
+  - sync
   - network
   description: |
-    *  monitors (start)
+    *  monitors 
     *  false sharing
-    *  (if time) briefly, transactionA
+    *  (if time) briefly, transactions
     
     *  layers
     *  mailbox analogy
        *  best-effort delivery
        *  envelope versus contents
-    *  connections atop mailbox model
-    *  names and addresses
 
 
 - date: 2024-10-30
@@ -326,6 +325,8 @@
   slides_ref:
   - network
   description: |
+    *  connections atop mailbox model
+    *  names and addresses
     *  example: a frame
        *  layers (link, network, transport)
     *  IP
