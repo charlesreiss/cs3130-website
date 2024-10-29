@@ -8,7 +8,7 @@ Changelog:
 *  25 March 2024: update deadlocking code to use barriers to hopefully make deadlock more consistent, instead of hvaing separate advice about using barriers
 *  27 March 2024: remove stray backticks in commands
 *  27 March 2024: correct "four approaches" to "three approaches"
-
+*  29 Oct 2024: adjust discussion of arbitrator strategy not to suggest it was not mentioned in lecture at all (sinec it was in some sections)
 </div>
 
 # Logistics
@@ -118,7 +118,7 @@ A correct solution can be just four lines:
 3. lock it and
 4. unlock it, both in `eat`, so that only one philosopher can reach for chopsticks at a time
 
-(This is not one of the deadlock prevention strategies we discussed in lecture, but it makes the thread take turns waiting for resources (the chopsticks), so only one thread can wait at a time. With only one thread waiting at a time, we can't have a cyclic dependency.)
+(This deadlock strategy makes the thread take turns waiting for resources (the chopsticks), so only one thread can wait at a time. With only one thread waiting at a time, we can't have a cyclic dependency.)
 
 If correctly implemented,
 
