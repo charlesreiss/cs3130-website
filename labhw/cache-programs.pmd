@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  25 March 2024: add note about possibility of using volatile in hints
+*  30 Oct 2024: update phrasing in skeleton code comment to avoid using "edit the code" in a way some might read as a limiting instruction and to mention changing initialization of global_array
 </div>
 
 # Your Task
