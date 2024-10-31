@@ -5,7 +5,7 @@ title: Networking lab
 <div class="changelog">
 Changelog:
 
-*  6 April 2024: update netlab.tar to actually include necesary libnetsim.a and correct function call in starter code
+*  31 Oct 2024: add clarificaiton of what it means for packets to arrive out of order
 </div>
 
 You've already worked with TCP sockets in CSO1.
@@ -18,9 +18,7 @@ We've provided a simple network simulator for you.
 {.exercise ...} Possibly working with a partner ---
 
 1. Download [netlab.tar](../files/netlab.tar) *[last updated 6 April]* on a linux system
-    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2024/files/netlab.tar`{.bash}).
-
-    > Versions of netlab.tar before 6 April around 9:18pm were incomplete
+    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/F2024/files/netlab.tar`{.bash}).
 
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
@@ -106,8 +104,9 @@ and
 After receiving a message, you should reply with a four-byte message (plus a checksum)
 to acknowledge it and request the next message.
 The first three bytes should be the ASCII characters for `ACK`; the fourth should be the sequence number you received.
-If the next message is not delivered, you should reply with the `ACK` of the last message you got in order (or re-send the `GET` if the very first message is not delivered) to request the next message be resent.
-However, messages may be delayed in transit and may arrive out of order.
+If the next message is not delivered, you should reply with the `ACK` of the last message you got in order
+(or re-send the `GET` if the very first message is not delivered) to request the next message be resent.
+However, messages may be delayed in transit and may arrive out of order. (You will not receive a packet you haven’t requested yet, e.g. you won’t get packet 4+ after ACKing packet 2.  But you could get items 1 or 2 again after ACKing packet 2)
 You should wait at least a few seconds before deciding a message will not arrive and re-sending its request.
 
 Each `GET` will give a different message, and with a different level of errors you need to handle.
