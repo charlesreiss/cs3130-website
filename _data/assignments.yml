@@ -294,10 +294,10 @@
 
 - name: pipeline
   short_name: pipeline
-  page: labhw/pipeline.html
+  xxxpage: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   tentative: true
-  missing-if-no-feedback: true
+  missing-if-no-feedback: false
   due: 2024-11-22
 
 - name: side channel

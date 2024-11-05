@@ -3,11 +3,6 @@ title: Translation lookaside buffer
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  24 October 2024: add additional example that might help with checking tlb_clear behaves correctly.
-</div>
 
 Implement a TLB wrapper around the page table interface from previous assignments.
 Note you will *not* need to implement a page table for this assignment;
