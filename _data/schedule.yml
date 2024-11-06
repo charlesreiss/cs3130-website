@@ -298,20 +298,13 @@
 
 - date: 2024-10-29
   week: 10
-  title: synchronization 3 / networking 1
-  reading: "[protocols](readings/protocols.html) §1-6"
+  title: synchronization 3
+  reading: "[sync](readings/sync.html)"
   slides_ref:
   - sync
-  - network
   description: |
     *  monitors 
     *  false sharing
-    *  (if time) briefly, transactions
-    
-    *  layers
-    *  mailbox analogy
-       *  best-effort delivery
-       *  envelope versus contents
 
 
 - date: 2024-10-30
@@ -320,11 +313,18 @@
 
 - date: 2024-10-31
   week: 10
-  title: networking 2
+  title: networking 1
   reading: "[protocols](readings/protocols.html) §1-6"
   slides_ref:
+  - sync
   - network
   description: |
+    *  briefly, transactions
+
+    *  layers
+    *  mailbox analogy
+       *  best-effort delivery
+       *  envelope versus contents
     *  connections atop mailbox model
     *  names and addresses
     *  example: a frame
@@ -349,15 +349,13 @@
 
 - date: 2024-11-07
   week: 11
-  title: networking 3 / secure channels 1
+  title: networking 2 / secure channels 1
   reading: "[security](readings/sec.html) §1-3"
   slides_ref:
   - network
   - secure
   description: |
-   *  mapping between addresses and names/other addresses (con't)
-       *  MAC <-> IP mapping
-       *  NAT
+   *  NAT
    *  URLs
    *  DHCP
 
