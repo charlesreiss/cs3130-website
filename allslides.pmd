@@ -3,6 +3,12 @@ title: Reiss's Slidedecks
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  14 Nov 2024: fix broken link to pipeline slides
+</div>
+
 Reiss's slides for each day are typically drawn from these slidedecks organized by topic:
 
 - [intro](slides/intro.pdf)
@@ -19,7 +25,7 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 - [deadlock](slides/deadlock.pdf) 
 - [network](slides/network.pdf) 
 - [secure](slides/secure.pdf) (secure channels, cryptography)
-- [pipeline](slides/secure.pdf) (pipeline)
+- [pipeline](slides/pipeline.pdf) (pipeline)
 - [ooo](slides/ooo.pdf)
 - [spectre](slides/spectre.pdf) (side-channels, Meltdown, Spectre)
 
