@@ -1,120 +1,20 @@
 ---
-title: Pipeline Diagrams
-author: Luther Tychnoviech
+title: Pipeline Diagram Homework
 ...
-
-<div class="changelog">
-Changelog:
-
-*  10 April 2024: change code slightly for this semester.
-*  15 April 2024: change specification of arguments to actually match function used this semester, since its arguments are passed differently
-*  16 April 2024: also make online tool's copy of explanation use a matching description of the arguments
-*  22 April 2024: adjust answer sheet to mention choice of interpretation re: whether condition codes are in register file
-</div>
-
 
 # Your Task
 
-Fill in a pipeline diagram for a small function's full execution.
+Go to the homework site at <https://kytos02.cs.virginia.edu/cs3130-fall2024/pipeline/pipeline.php>
+and follow the instructions there.
 
-Place you answer in the online tool <https://kytos02.cs.virginia.edu/cs3130-fall2024/pld.php>.
+Answers on the submission site
+are saved but not submitted automatically. (You can submit by pressing the buttons at the bottom
+for each of the two parts.)
 
-# Guidelines
+First you will need to identify the instruction fetch order, then fill out a pipeline diagram and forwarding information correctly.
 
-Consider the following code:
-
-```c
-long sum_squared(long *array_start, long *array_end) {
-    long *pointer;
-    pointer = array_start;
-    long result = 0;
-    while (pointer != array_end) {
-        long current = *pointer;
-        pointer += 1;
-        result += current * current;
-    }
-    return result;
-}
-```
-
-which has been compiled to (numbers inserted for ease of reference)
-
-```asm
-    sum_squared:
-0.  	xorl	%eax, %eax
-1.  	cmpq	%rsi, %rdi
-2.  	je	.LBB0_2
-    .LBB0_1:
-3.  	movq	(%rdi), %rcx
-4.  	imulq	%rcx, %rcx
-5.  	addq	$8, %rdi
-6.  	addq	%rcx, %rax
-7.  	cmpq	%rdi, %rsi
-8.  	jne	.LBB0_1
-    .LBB0_2:
-9.  	retq
-```
-
-Assume that this is run on a five-stage pipeline, where
-
-- every instruction must go through all five stages in order
-
-- each stage may handle at most one instruction per cycle
-
-- decode needs to stall until values (program register and condition code) are available, but only needs values by the end of its cycle.
-   
-   - e.g., if a memory read is followed by an operation on the read value, the decode stage of the operation can be co-scheduled with the memory stage of the read.
-    
-        |     |   |   |   |   |   |   |   |
-        |:----|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-        |read | F | D | E | M | W |   |   |
-        |use  |   | F | D | D | E | M | W |
-
-    - e.g., if a computation is followed by an operation on the computed value, the decode stage of the operation can be co-scheduled with the execute stage of the computation.
-   
-        |        |   |   |   |   |   |   |
-        |:-------|:-:|:-:|:-:|:-:|:-:|:-:|
-        |compute | F | D | E | M | W |   |
-        |use     |   | F | D | E | M | W |
-
-- computation not available until the end of execute includes
-    - results of arithmetic, logic, and address computation
-    - condition code creation from test, compare, arithmetic, and logic
-    - condition code comparison for conditional moves and jumps
-
-    e.g., if a conditional jump is poorly speculated (predicted), the correct instruction will be fetched after the jump completes its execute stage.
-   
-    |        |   |   |   |   |   |   |   |   |
-    |:-------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-    |jump    | F | D | E | M | W |   |   |   |
-    |guess~1~|   | F | D |   |   |   |   |   |
-    |guess~2~|   |   | F |   |   |   |   |   |
-    |correct |   |   |   | F | D | E | M | W |
-
-    (where guess~1~ and guess~2~ represent two incorrect predicted instructions that are fetched
-    and then squashed (cancelled) before they can complete).
-
-- conditional jumps are speculated using the "backwards-taken forwards-not-taken" branch prediction heuristic (meaning that jumps to a later instruction are predicted to be not taken and jumps to an earlier instruction are predicted to be taken)
-
-  When a conditional jump is predicted to be taken, the processor will fetch the target of the jump in the cycle after the jump is fetched. When a conditional jump is predicted to be not taken, the processor will fetch the following instruction in memory in the cycle after the jump is fetched.
-
-  When a prediction is correct, the processor will continue executing instructions without delay:
-    
-    |        |   |   |   |   |   |   |   |   |
-    |:-------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-    |jump    | F | D | E | M | W |   |   |   |
-    |guess   |   | F | D | E | M | W |   |   |
-
-  When a prediction is incorrect, the processor will need to cancel the predicted instructions
-  and fetch the correct instruction during the jump's memory stage, as in the example timeline
-  under the previous bullet
-
-
-You're asked to expand this assuming 
-
-1. you start with the first instruction after `sum_squared` is called
-1. the first instruction of `sum_squared` does not need to stall
-1. `array_start` pointing to the array `{1, 2}`
-1. `array_end` points to `array_start + 2` (one past of the end of the array)
-1. the `retq` is the last instruction you need to handle
-
+Similarly to the cache lab, you will be allowed a certain number of mistakes which
+each problem until you complete one correctly. You can request a new problem if
+you make too many mistakes.
+Once you complete a problem correctly without too many mistakes (before the deadline), you will have full
+credit for the homework.
