@@ -284,7 +284,6 @@
 
 - name: secure channels lab
   lab: true
-  tentative: true
   short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
