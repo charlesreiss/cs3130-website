@@ -274,7 +274,7 @@
 - name: life
   short_name: life
   page: labhw/life.html
-  due: 2024-11-15
+  due: 2024-11-18
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
