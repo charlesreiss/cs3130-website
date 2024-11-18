@@ -1,15 +1,9 @@
 --
 title: OOO Exercise
+author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  22 April 2024: actually post answer sheet link; change part 1/part 2 instructions to match answer sheet
-*  22 April 2024: add footnote about %x19 reuse in part 2
-</div>
-
-See [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2024/ooo.php). 
+See (when it's setup for this semester) [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2024/ooo.php). 
 
 # Hypothetical OOO processor
 
