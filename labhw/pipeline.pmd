@@ -12,6 +12,7 @@ are saved but not submitted automatically. (You can submit by pressing the butto
 for each of the two parts.)
 
 First you will need to identify the instruction fetch order, then fill out a pipeline diagram and forwarding information correctly.
+(These will display side-by-side if your window is wide enough.)
 
 Similarly to the cache lab, you will be allowed a certain number of mistakes which
 each problem until you complete one correctly. You can request a new problem if

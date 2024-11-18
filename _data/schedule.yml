@@ -399,6 +399,10 @@
    *  pipelining idea
    *  pipelining for the CPU 
    *  pipelining tradeoffs
+   *  hazards and hazard handling
+       * stalling
+       * branch prediction, briefly
+       * forwarding
 
 - date: 2024-11-15
   week: 12
@@ -415,14 +419,13 @@
   reading: "[processors](readings/procesors.html) §2-3"
   slides_ref:
   - pipeline
+  - ooo
   description: |
-    *  hazards and hazard handling
-       * stalling
-       *  forwarding and forwarding logic
-    *  speculation: guess and check later
-    *  briefly, branch prediction ideas
-       *  static prediction
-       *  local history
+    *  combining forwarding and stalling
+    *  some pipeline exercises
+
+    *  idea of multiple issue + out-of-order
+    *  (start) register renaming
 
 - date: 2024-11-20
   week: 13
@@ -434,12 +437,14 @@
   reading: "[processors](readings/procesors.html) §2-3"
   slides_ref:
   - ooo
+  - bpred
   description: |
-    *  idea of multiple issue + out-of-order
-    *  out-of-order pipeline
-    *  register renaming
-    *  instruction queues
-    *  OOO limits
+    *  (finish) register renaming
+    *  instruction queues, dispatch
+
+    *  (if time) branch prediction ideas
+       *  static prediction
+       *  1/2-bit histroy tables, pattern
 
 - date: 2024-11-22
   week: 13
@@ -448,12 +453,10 @@
   week: 14
   title: out of order 2 / side channels
   slides_ref:
-  - ooo
   - spectre
   description: |
-    *  OOO limits
-    *  side channels generally
-    *  side channels in the cache  
+    *  side chnanels generally
+    *  side channels in the cache
 
 - date: 2024-11-27
   week: 14
