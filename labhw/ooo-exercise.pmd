@@ -10,7 +10,7 @@ See (when it's setup for this semester) [answer sheet](https://kytos02.cs.virgin
 For this assignment, we will consider an out-of-order processor which has two execution units for
 arithmetic instructions, and one execution unit for memory instructions.
 
-### This Processor's Pipeline 
+### This processor's pipeline 
 Instructions in this processor are executed as follows:
 
 *  first, they go through a set of in-order pipeline stages, two a time:
@@ -18,7 +18,7 @@ Instructions in this processor are executed as follows:
     *  fetch, where instructions are read from the pipeline stage. For this exercise, assume branch prediction is perfect so two new instructions
        are fetched every cycle
     *  decode, where the machine is interpreted
-    *  rename, where register renaming takes place and instructions are placed into an instruction queue, available ot be issued as early
+    *  rename, where register renaming takes place and instructions are placed into an instruction queue, available to be issued as early
        as the next cycle
 
 *  then, each cycle instructions are issued from the instruction queue:
@@ -31,13 +31,9 @@ Instructions in this processor are executed as follows:
 
 *  when an instruction is issued, in the following cycles it is executed on an execution unit
     *  for memory instructions, this execution unit is a pipelined data cache. It receives one instruction per cycle
-        and produces the result after three cycles. To simplfy this exercise, we will assume no cache misses.
-    *  for non-memory instructions, this execution unit is one of two arithmetic logic unit. It receives one instruction per
+        and produces the result after three cycles. To simplify this exercise, we will assume no cache misses.
+    *  for non-memory instructions, this execution unit is one of two arithmetic logic units. It receives one instruction per
         cycle and produces the result near the end of this cycle. 
-    *  the first available memory instruction (if any) is sent to a data cache, which is pipelined. The data cache accepts one instruction per cycle
-        and takes three cycles to produce the result of the read or write
-    *  the first two available non-memory instructions are sent to one of two arithmetic execution units. These execution units each take one cycle
-        to compute their result
 
 *  in the cycle after an instruction is executed it is written back to the register file in one cycle
 *  finally, up to two instructions are *committed* each cycle using information placed in a reorder buffer during the issue stage.
@@ -136,7 +132,7 @@ Identify the stages as:
 *  R for when an instruction is renamed and dispatched into an instruction queue
 *  I for when an instruction is issued from an instruction queue and its registers are read
 *  E for when an instruction is being executed (after it is issued)
-*  W for when an instruction's results are written back
+*  W for when an instruction's results are written back to the physical register file
 *  C for when an instruction is committed
 
 Leave the specified stage blank when an instruction is not being processed in any of the above ways (such as when
