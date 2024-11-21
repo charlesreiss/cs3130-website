@@ -326,6 +326,5 @@
   due_exact: 2024-12-05 12:29:59
   feedback: "extracted*,autograder*"
   no-late: true
-  tentative: true
-  missing-if-no-feedback: true
+  xxx-missing-if-no-feedback: true
   due_message: OOO due <em>before 12:29PM</em>, late submissions <em>not normally accepted</em>
