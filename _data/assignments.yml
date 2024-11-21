@@ -304,6 +304,7 @@
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
+  open: 2024-11-21
   due: 2024-12-04
 
 - name: C++ OR templates
