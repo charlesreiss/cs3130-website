@@ -68,41 +68,41 @@ Rewrite the following instructions using the `%x01` taking into account how regi
 might occur that would allow all of these instructions to be placed in the instruction queue
 at once:
 
-    add %r01, %r01-> %r01   
-    imul %r02, %r03-> %r04  
-    add %r01, %r01-> %r01   
-    add %r02, %r01-> %r01   
-    add %r03, %r01-> %r01   
-    imul %r02, %r03-> %r03  
-    movq 0x1234(%r01)-> %r02
-    imul %r02, %r03-> %r03  
-    movq 0x1234(%r04)-> %r03
+    add %r01, %r01-> %r01  
+    imul %r02, %r03-> %r04 
+    add %r01, %r01-> %r01  
+    add %r02, %r04-> %r04  
+    add %r03, %r01-> %r01  
+    imul %r01, %r04-> %r01 
+    movq 0x0(%r01)-> %r01
+    imul %r01, %r03-> %r03 
+    movq %r03, 0x0(%r01)
 
 Record your answer at the answer sheet linked above.
 
 ## Part 2: instruction dispatch
 
 Suppose the instruction queue for this processor contains the following instructions
-*after renaming*^[Since instruciton E and G both use `%x19` as their second input but have different destinations, it can't
-be the case that this was generated from normal x86-64 assembly. To make this happen, the processor must support some
-other form of `add` that takes three operands (two sources and a destination) instead of just two.]
+*after renaming*
 
     A. add %x05, %x06 -> %x16
     B. sub %x16, %x07 -> %x17
     C. movq 0x100(%x05) -> %x18
-    D. imul %x17, %x09 -> %x19
-    E. add %x05, %x08 -> %x20
-    F. sub %x18, %x19 -> %x21
-    G. add %x20, %x19 -> %x22
-    H. movq 0x200(%x22) -> %x23
-    I. imul %x08, %x16 -> %x24
+    D. movq 0x108(%x05) -> %x19
+    E. imul %x01, %x02 -> %x20
+    F. add %x05, %x08 -> %x21
+    G. sub %x18, %x19 -> %x22
+    H. add %x01, %x16 -> %x23
+    I. movq 0x200(%x22) -> %x24
+    J. imul %x08, %x16 -> %x25
+    K. addq %x25, %x20 -> %x26
+    L. movq %x26 -> 0x200(%x22)
 
 Initially the value of registers `%x01` through `%x15` is available.
 
-
 Complete the timeline to show how all the instructions can be issued and executed:
 
-                    cycle 1    2    3   4    5    6   7
+                    cycle 1    2    3   4    5    6   7    8     9    10   11    12 
     execution unit:       
     arithmetic 1          A
     arithmetic 2          E
