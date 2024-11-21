@@ -96,7 +96,7 @@ Suppose the instruction queue for this processor contains the following instruct
     I. movq 0x200(%x22) -> %x24
     J. imul %x08, %x16 -> %x25
     K. addq %x25, %x20 -> %x26
-    L. movq %x26 -> 0x200(%x22)
+    L. movq %x26, 0x200(%x22)
 
 Initially the value of registers `%x01` through `%x15` is available.
 
@@ -118,12 +118,13 @@ Complete a pipeline diagram for the processor running the following instructions
 (shown in the form from **before** register renaming):
 
     1. add %r02, %r01 -> %r01
-    2. add %r02, %r03 -> %r03
-    3. add %r04, %r05 -> %r05
-    4. add %r05, %r01 -> %r01
-    5. add %r01, %r01 -> %r01
-    6. add %r03, %r05 -> %r05
-    7. add %r02, %r04 -> %r04
+    2. add %r02, %r01 -> %r01
+    3. add %r02, %r03 -> %r03
+    4. add %r04, %r05 -> %r05
+    5. add %r05, %r01 -> %r01
+    6. add %r01, %r01 -> %r01
+    7. add %r03, %r05 -> %r05
+    8. add %r02, %r04 -> %r04
 
 Identify the stages as:
 
@@ -142,7 +143,7 @@ and when it is committed).
 The first three rows are:
 
     1 F D R I E W C
-    2 F D R I E W C
+    2   F D R I E W C
     3   F D R I E W C
 
 complete the remaining rows of the table at the answer sheet linked above.
