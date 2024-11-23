@@ -323,6 +323,7 @@
 - name: OOO
   short_name: OOO
   page: labhw/ooo-exercise.html
+  open: 2024-11-23
   due: 2024-12-05
   due_exact: 2024-12-05 12:29:59
   feedback: "extracted*,autograder*"
