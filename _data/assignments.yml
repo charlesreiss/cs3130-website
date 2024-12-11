@@ -123,6 +123,7 @@
   page: labhw/cache-lab.html
   lab: true
   due: 2024-10-16
+  missing-if-no-feedback: true
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
