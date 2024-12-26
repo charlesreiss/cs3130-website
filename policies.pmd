@@ -52,11 +52,14 @@ The target difficulty is 5–10 hours of focused effort each week.
 Task | Weight | Comments
 -----|--------|-----------------------------------------------------------------
 Quizzes | 20% | Drop lowest score
-Labs    | 20% | 
-Homeworks | 40% | 
+Labs    | 20% |
+Homeworks | 40% |
 Final | 20% |
 
-Your final grade is computed based on the percentage of points you have earned and then converted to a letter grade. At the end of the semester, we will decide on a mapping from points to letter grades based on the actual difficulty of homeworks, exams, etc. This mapping will give at least a D- for a 60%,  at least a C- for a 70%, at least a B- for an 80%, and at least a A- for a 90%.
+Your final grade is computed based on the percentage of points you have earned and then converted to a letter grade. At the end of the semester, we will decide on a mapping from points to letter grades based on the actual difficulty of homeworks, exams, etc. This mapping will give at least a D- for a 60.0%,  at least a C- for a 70.0%, at least a B- for an 80.0%, and at least a A- for a 90.0%.
+Other than adjustments to the grading scale made on the basis of difficulty of
+coursework, there will no `rounding' of grades.
+
 
 ## Submitting late
 
@@ -165,7 +168,7 @@ If we believe you have acted dishonestly (such as by submitting code that are no
 or helping someone else do the same), we will communicate this fact to you and propose a penalty.
 A typical penalty would include a grade deduction more severe than just receiving an "F" on the assignment,
 up to and potentially including assigning "F" in the course.
-If you have information we lack, please share that with us; we may thereafter change my belief and/or proposed penalty.
+If you have information we lack, please share that with us; we may thereafter change our belief and/or proposed penalty.
 
 This penalty is independent of and may be in addition to any referral to the University Honor System.
 

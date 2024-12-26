@@ -18,7 +18,13 @@ To run the code, compile with the `-lm` flag and give it file names as command-l
 
 To parallelize, separate the code into Map and Reduce steps and try several OpenMP parallelization strategies described below; keep track of which was best.
 
-For full credit on submission, you must measure all the strategies not labeled "not required" or "extra" below, plus one of the extra strategies for map.
+For full credit on submission, you must:
+
+*  implement and time all the Map and Reduce strategies below, except those labeled "not required" or "extra"; 
+*  time one of the strategies labeled "extra"; and
+*  choose your combinations of Map and Reduce strategies so you have a reasonable guess about the best combination.
+   (For example, you could do this by timing all combinations, or by timing all the map strategies with a single reduce strategy
+    and vice-versa.)
 
 For full credit for an in-person checkoff, we may accept somewhat less being measured if you run out of time in the lab.
 
@@ -336,6 +342,40 @@ That value can be increased if it is merged with the mapping loop into a single 
 - `#pragma omp parallel for`{.c} means "have each thread run the next statement (a `for`{.c} loop) with different bounds".
 
 - `#pragma omp atomic update`{.c} means "the next statement (`result op= local_result`{.c}) is an update-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
+
+### OpenMP's built-in reduction operator
+
+Rather than manually perform the reduction (like the strategies) here, you can annotate an OpenMP block with
+`#pragma omp ... reduction(OP:variable)` to indicate that OpenMP should combine the values of `variable` from
+each thread using the `OP` operation.
+
+Probably the operation OpenMP performs internally ends up being similar to the "many-to-few" reduction strategy
+one can perform "manually" described below.
+
+For example, when combined with the "even split" strategy, this would yield code similar to:
+
+    my_type result = zero_for_my_type;
+    # pragma omp parallel for reduction(op:result)
+    for(int i=0; i<N; i+=1) {
+        result op= array[i];
+    }
+
+Or with the task queue strategy code like
+
+    my_type result = zero_for_my_type;
+    int j = 0;
+    #pragma omp parallel reduction(op:result)
+    while (1) {
+        int i;
+        #pragma omp atomic capture
+        i = j++;
+        if (i >= N) break;
+        result op= array[i];
+    }
+
+**OpenMP pragmas used**:
+
+- `#pragma omp reduction(op:variable)`{.c} means to combine the values of `variable` computed by each thread using the operation `op`.
 
 
 ### Many-to-few reduction -- atomic version
