@@ -75,7 +75,11 @@ Your task:
     *  `void page_allocate(size_t va)` --- 
         setup a mapping in the page tables pointed to by `ptbr` so that
         it contains a mapping from the virtual address `va` to physical
-        address (if such a mapping does not already exist). 
+        address (if such a mapping does not already exist).
+
+        Or, put another way, allocate the virtual page containing
+        the virtual address `va` if it not already.
+
         Any page tables and pages needed and not yet allocated must be allocated using
         `posix_memalign`. (Any pages or page tables already created, such as by a prior
         call to `page_allocate`, should be reused. If the mapping is already entirely
@@ -112,11 +116,16 @@ Your task:
 
      Propose some kind of interface to support de-allocation for the page table
      implementation. You can decide what kind of function(s) should be part of this interface.
-     Document this interface in your README.
+     Document this interface in your README, including at least:
 
-     Then, determine whether the interface you chose is possible to implement without
-     changing the existing page_allocate/translate interface or reworking the internals of
-     your implementation of those functions.
+     *  function prototype(s) for the interface;
+     *  an explanation of what any arguments to the function(s) mean;
+     *  what each function will deallocate when it is called (including any way
+        in which this depends on its arguments or other factors)
+
+     Then, determine whether the interface you chose is possible to implement
+     without either changing the existing page_allocate/translate interface
+     or reworking the internals of your implementation of those functions.
 
      If so, add it to your implementation (including `mlpt.h`).
 
@@ -225,7 +234,7 @@ void page_allocate(size_t va);
         (e.g., `if (` but `translate(`)
 - No postfix `++`{.c} or `--`{.c} unless part of an expression that uses the return value (such as `a[i++]`).
         Replacing with either prefix `++`{.c} or `+= 1`{.c} is OK.
-- Lower-case identifiers with underscores separating words
+- Lower-case identifiers with underscores separating words (identifiers include all function and variable names)
 - Upper-case `#define`{.c} constants
 - `typedef`{.c} such that each type name uses a single identifier
         (e.g., no `unsigned char`{.c} except as part of a `typedef`).
@@ -233,6 +242,8 @@ void page_allocate(size_t va);
 - Use variable names that indicate the meaning of the contents of the variable;
 	function names that indicate the purpose of the function;
 	etc.
+
+- Use variable and function names which are consistent throughout your code;
 
 - Have a readable code organization; as rough (not strict) guidelines,
 	- If a sequence of lines of code depend upon one another more than they depend on the code around them
@@ -254,8 +265,9 @@ you should use an existing license, not try to create your own.
 ## `licenses.txt`
 
 In `licenses.txt`, list at least three licenses you considered;
-include a short (sentence or two) summary of what they seemed to say;
-and why you chose to or not to use each as your license.
+include a short (sentence or two) summary of what they seemed to say (ideally
+focused on the factors that mattered to you).
+Then describe briefly (sentence or two) why you chose the license you chose.
 
 Your review should include at least three licenses, including
 
