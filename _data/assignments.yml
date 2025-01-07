@@ -306,7 +306,7 @@
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
-  open: 2025-04-22
+  open: 2025-04-23
 
 
 - name: OOO
