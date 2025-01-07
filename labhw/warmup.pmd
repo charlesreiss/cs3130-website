@@ -7,20 +7,20 @@ author: Charles Reiss
 
 1.  Create C files as follows:
 
-    *  in `split.c`, write an implementation of the function 
-        
+    *  in `split.c`, write an implementation of the function
+
             char **string_split(const char *input, const char *sep, int *num_words);
 
        You can see examples of what this function should do below.
 
-       The function takes a `\0`-terminated string `input` and a 
+       The function takes a `\0`-terminated string `input` and a
        `\0`-terminated string listing separating characters in `sep`.
 
        The function interprets `input` into a sequence of "words" (which it returns as described
        in the next paragraph).
-       These words are separated by one or more of the seperating characters in `sep`. `input`
+       These words are separated by one or more of the separating characters in `sep`. `input`
        should be considered to always start and end with a word. If the `input`
-       starts or ends with a separating charcter, this word will be empty (zero-length). Empty
+       starts or ends with a separating character, this word will be empty (zero-length). Empty
        words must not be generated in any other circumstance.
 
        The function should return the words using a dynamically allocated array of `\0`-terminated strings.
@@ -46,7 +46,7 @@ author: Charles Reiss
        of `strsep`, `index`, and `rindex`.
        You can determine if a function meets this criteria by looking for
 
-       *  the "CONFORMING TO" section of its manpage listing some verison of "POSIX"
+       *  the "CONFORMING TO" section of its manpage listing some version of "POSIX"
           or C89 or C99 or C11 (or multiple of these); or
        *  it appearing in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
           from the 2018 POSIX specification
@@ -59,7 +59,7 @@ author: Charles Reiss
 
        *  constructs a value for `sep` by the command line arguments, or,
           if no command line arguments are provided, uses `" \t"`.
-          When there are command-line arguments, 
+          When there are command-line arguments,
           the value of `sep` should be the result of concatenating all the command line
           arguments. For example, if the `main()` is compiled into an executable `split`, then
           running
@@ -159,7 +159,7 @@ author: Charles Reiss
         size = 3;
 
 1.  Running
-    
+
         char **result;
         int size;
         result = string_split(":foo!:bar::quux!", ":!", &size);
@@ -203,7 +203,7 @@ $ <br>
 ### Example 2
 
 <code><tt>
-$ <b>./split XY Z</b><br> 
+$ <b>./split XY Z</b><br>
 <b>fooXXXXbarZXYXYXZbazYYYYY</b><br>
 [foo][bar][baz][]<br>
 <b>XXXXXXXXXXXXX</b><br>
