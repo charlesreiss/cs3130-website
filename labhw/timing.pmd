@@ -141,10 +141,10 @@ To mitigate this, usually one would:
      alt="Diagram showing getppid running. The timeline shows a call to getppid labeled 'what you want to measured', surrounded by events of getppid being called and calls to clock_gettime. Two points in the calls to clock_gettime are marked with dotted lines to indicate the point where clock_gettime reads the clock. The time between these two points is marked 'time measured directly'."
 >
 
-Whenever you time something, in addition to timing that something you will also end up timing some of your timing code. 
-For example, in the timeline diagram above, comparing the two results of `clock_gettime` calls measure `getppid` and also part of 
+Whenever you time something, in addition to timing that something you will also end up timing some of your timing code.
+For example, in the timeline diagram above, comparing the two results of `clock_gettime` calls measure `getppid` and also part of
 `clock_gettime` and the code that called `getppid` and `clock_gettime`. Because clock_gettime and other time reading functions
-can't be called instaneously, your raw time measurements will always include the time for some "extra" stuff.
+can't be called instantaneously, your raw time measurements will always include the time for some "extra" stuff.
 To compensate for this,
 I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings.
 
@@ -169,21 +169,21 @@ of issues like:
 
 *  not repeating measurements of overhead enough times to discount "warmup" effects (where the measurements will be slower the first few times they run). For example, if the overhead measurement needs to spend extra time loading the code for reading the clock into the processor's caches (fast memories).
 
-If you you make an significnat effort to eliminate/diagnose measurement errors that would
+If you you make an significant effort to eliminate/diagnose measurement errors that would
 cause a negative time and still have a negative time and you report it accurately when
 you report your results, that is fine. In some rare cases, these results could be "real"
 due to how modern processors work:
 
 Because processors try to run multiple instructions at a time, in some unusual cases,
 it might be possible
-that something that takes a very short amount of time runs entirely simulatenously with your timing code around it
+that something that takes a very short amount of time runs entirely simultaneously with your timing code around it
 and so takes "no" time.
 In other unusual cases, it's possible that relocating or making apparently inconsequential
 changes the timing code speeds that code up
 slightly (due to arranging code or data on the stack in a slightly better way in memory, etc.).
 
 There are ways to avoid instructions overlapping (by including instructions
-that the proecssor manufacturer designates to prevent this;
+that the processor manufacturer designates to prevent this;
 see, for example, [this Intel document](https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf))
 to make sure you are only timing the task of interest and not how it interacts with instructions around it, but that
 is not required for this assignment.
@@ -196,11 +196,11 @@ with the compiler's optimizer replacing a function call with the body of that fu
 
 *  write the function in a separately compiled file, so the compiler will not have the information to do this optimization
 *  write the function call itself in assembly file, so it won't be subject to the compiler's optimizations at all
-*  make a C function marked with the `__attribute__((noinline))` before its reutrn type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
+*  make a C function marked with the `__attribute__((noinline))` before its return type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
 
 ## If `sigaction` or `sigset_t` is not defined
 
-If you compile with `-std=c11` or similar, , this requests only C standard functions by default, and <signal.h> is part of standard C, but includes only a limited set of funtions/types
+If you compile with `-std=c11` or similar, , this requests only C standard functions by default, and <signal.h> is part of standard C, but includes only a limited set of functions/types
 (not including most of what we discussed for signal handling).
 
 You can request the full set of Linux/Unix functions (despite using `-std=c11`)
@@ -238,7 +238,7 @@ To avoid this problem, some approaches for doing this:
 
 "Blocking" a signal ensures that the operating system will not deliver it (that is, will not run its signal handler), but blocked signals will still be recorded as "pending" (that is, needing to be handled at some point). In documentation, you may see the set of signals a process (or thread) has blocked referred to as the "signal mask".
 
-[^atomic]: To be most reliable/portable, the flag should be declared as a `volatile sig_atomic_t` to tell the compiler to expect the value to be modified by signal handlers, but as long as the loop calls something like `nanosleep`, probably other types will work. 
+[^atomic]: To be most reliable/portable, the flag should be declared as a `volatile sig_atomic_t` to tell the compiler to expect the value to be modified by signal handlers, but as long as the loop calls something like `nanosleep`, probably other types will work.
 
 [^mask]: sigsuspend sets the "signal mask", which is the set of blocked signals. So you will want to ensrue that the set of signals you pass to sigsuspend does _not_ include the signal you want to wait for. This is different than how `sigwait` would work.
 
