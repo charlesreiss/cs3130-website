@@ -129,7 +129,7 @@
   short_name: pagetable2
   page: labhw/pagetable.html
   portion: 0.25
-  open: 2025-02-29
+  open: 2025-02-28
   due: 2025-03-19
   due_exact: 2025-03-19 13:59:59
   pre_lab: true
