@@ -73,16 +73,16 @@ Your task:
         return a value with all bits set to 1.
 
     *  `void page_allocate(size_t va)` --- 
-        setup a mapping in the page tables pointed to by `ptbr` so that
-        the virtual page that the virtual address `va` is in
-        maps to a physical page allocated with `posix_memalign`
-        (unless such a mapping does not already exist).
+        Allocate the virtual page that the virtual address `va` is in (if it is not
+        allocated already).
+        This includes setting up a mapping in the page tables pointed to by `ptbr` so that
+        that virtual page maps to a physical page allocated with `posix_memalign`
+        (unless such a mapping already exists).
 
         Any page tables not yet allocated will be allocated using `posix_memalign`.
         (Any pages or page tables already created, such as by a prior
         call to `page_allocate` will be reused. If the mapping is already entirely
         setup, the function should do nothing.)
-
 
 3.  Prepare a `Makefile` for your code that: 
 
@@ -125,7 +125,7 @@ Your task:
      without either changing the existing page_allocate/translate interface
      or reworking the internals of your implementation of those functions.
 
-     If so, add it to your implementation (including `mlpt.h`).
+     If so, implement it (including approrpiate `mlpt.h` and your .c files).
 
      If not, document why did not implement the interface in your README.
      This explanation *must* include at least one of ---
