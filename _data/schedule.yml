@@ -347,7 +347,7 @@
     *  mapping between addresses and names/other addresses:
         *  DNS
 
-   *  cryptography (start)
+    *  cryptography (start)
        *  symmetric encryption
        *  asymmetric encryption
        *  digital signature
