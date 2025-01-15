@@ -4,6 +4,8 @@ title: Code Reviews
 
 A code review is a chance to get feedback from others on the design and implementation of code. In this lab, you'll perform peer code reviews of other students [pagetable 2](pagetable.html) submissions.
 
+This lab **must be completed in person in lab** unless you have made other arrangements with the instructors.
+
 {.exercise ...}
 1. Submit your current [pagetable 2](pagetable.html) material before lab on the submission site.
     We may compare your before-and-after code and expect to see citations for any changes inspired by the code review.
@@ -18,6 +20,7 @@ A code review is a chance to get feedback from others on the design and implemen
         - code organization, including functional decomposition and whether there is redundant code
         - organization of the Makefile
     d. If time remains after the above are handled, go line-by-line, discussing if there could be an error on that line (e.g., an unchecked return type, integer overflow, etc).
+6. Check-off the lab with a TA. Everyone should be able to explain what feedback that received from others.
 {/}
 
 # Tips for reviewers
