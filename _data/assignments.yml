@@ -297,7 +297,7 @@
   short_name: pipeline
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
-  xxx-tentative: true
+  tentative: true
   missing-if-no-feedback: true
   due: 2025-04-18
 
@@ -314,6 +314,7 @@
   page: labhw/ooo-exercise.html
   due: 2025-04-25
   feedback: "extracted*,autograder*"
+  tentative: true
   no-late: true
 
 - name: C++ OR templates
