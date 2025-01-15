@@ -1,7 +1,7 @@
 - name: make
   lab: true
   page: labhw/make.html
-  open: 2025-01-15
+  open: 2025-01-16
   due: 2025-01-22
   submit_file: Makefile
 
@@ -13,7 +13,7 @@
   due: 2025-01-29
 
 - name: warmup
-  open: 2025-01-15
+  open: 2025-01-16
   due: 2025-01-31
   page: labhw/warmup.html
   grade_describe: |
