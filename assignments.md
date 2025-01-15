@@ -10,7 +10,7 @@ This schedule is tentative and subject to change (especially before the semester
 </div> -->
 
 This page lists all lab and homework assignments and their currently anticipated due times.
-(The schedule may change based on the actual pacing of the course material and other factors.)
+The schedule/assignments may change based on the actual pacing of the course material and other factors.
 
 There are also [quizzes]({{site.quiz_site}}){:target="_top"} after each week of lecture.
 
@@ -19,7 +19,7 @@ Labs which allow submission are due by 11:59am (before noon) the following day u
 
 Homeworks are due at 11:59pm Eastern Time unless otherwise noted.
 
-If an assignment is linked but tentative, there may be some changes to the assignment before it is officially released or some infrastructure for
+If an assignment is linked but tentative, we expect there may be some significant changes to the assignment before it is officially released or some infrastructure for
 the assignment is not setup yet for this semester.
 
 {: #assignments}
