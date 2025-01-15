@@ -10,6 +10,7 @@
   lab: true
   page: labhw/permissions.html
   submit_file: permissions-lab.tar
+  tentative: true
   due: 2025-01-29
 
 - name: warmup
@@ -32,6 +33,7 @@
   lab: true
   page: labhw/signals.html
   due: 2025-02-05
+  tentative: true
   submit_file: "*.c"
 
 - name: fork lab
@@ -46,6 +48,7 @@
 - name: timing
   due: 2025-02-14
   page: labhw/timing.html
+  tentative: true
   grade_describe: |
     This assignment will be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
