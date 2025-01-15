@@ -3,13 +3,6 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-changelog:
-
-*  6 Oct 2024: clarify item 6 regarding what kind of reworking of page_allocate/translate is not expected
-
-</div>
-
 {.exercise ...}
 Your task:
 
