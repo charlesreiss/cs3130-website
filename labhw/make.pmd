@@ -3,6 +3,12 @@ title: Make lab
 author: Luther Tychnoviech
 ...
 
+<div class="changelog">
+Changelog:
+
+*  20 Jan 2025: reference `gcc` instead of `clang` becaues of what's easily available on portal at the moment
+</div>
+
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
 
