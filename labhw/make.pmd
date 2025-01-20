@@ -15,7 +15,7 @@ We would recommend working with a partner, but it is also fine if you do this al
 
 2. Expand it using `tar xvf make-lab.tar`{.bash}
 
-3. Read enough of the files to get an idea what they do. Then build them with `clang *.c` and run `./a.out` to verify your understanding. Ask a TA for help if you are not sure you fully understand.
+3. Read enough of the files to get an idea what they do. Then build them with `gcc *.c` and run `./a.out` to verify your understanding. Ask a TA for help if you are not sure you fully understand.
 
 4. Add a `Makefile` in the resulting `make-lab` directory, which
     - has rules for the following
