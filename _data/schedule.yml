@@ -59,6 +59,8 @@
     *  kernel mode
     *  system calls
     *  memory protection
+    *  context switches
+    *  non-system-call exceptions (start)
 
 - date: 2025-01-24
   week: 2
@@ -71,10 +73,9 @@
   - kernel
   - signals
   description: |
-    *  non-system-call exceptions
+    *  non-system-call exceptions (finish)
        *  timer interrupt
        *  I/O
-    *  context switches
     
     *  Unix signals
        *  signal handlers and implementation
