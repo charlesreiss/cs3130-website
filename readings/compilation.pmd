@@ -8,11 +8,12 @@ Changelog:
 
 *  17 Jan 2024: merge text previously in "glossary" under makefiles into here; mention explicitly that standard library is linked by default
 *  20 Jan 2025: note re: clang availabiity
+*  21 Jan 2025: adjust note re: clang availability
 </div>
 
 # (review?) `clang`/`gcc` modes
 
->  Note: as of 20 Jan 2025, `clang` isn't easily accessible on portal; this will likely be fixed soon. `gcc` does work and accepts most of the same options
+>  Note: to enable using clang on portal, you can run `module load gcccore/13.2.0 clang`
 
 The `clang` program (or the `gcc` or `cc` programs, which work essentially the same way)
 can perform assembly, linking, and compilation, depending on how it is invoked:

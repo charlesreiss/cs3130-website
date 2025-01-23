@@ -6,6 +6,7 @@ title: POSIX permissions
 Changelog:
 
 *  14 Sep 2023: change "owning users" to "owning user"
+*  22 Jan 2025: add note re: independent of execute and read permission
 </div>
 
 # "Users" and "Groups"
@@ -50,8 +51,9 @@ w
 
 x
 :   for files
-    :   permission to execute its contents (e.g. `./file` works)
-    
+    :   permission to execute its contents (e.g. `./file` works). For compiled executables, this is usually sufficient to execute the file. For [executable test files]( ("scripts"),
+        the interpreter program may also need permission to run the file in addition.
+ 
     for directories
     :   permission to access its contents (e.g. `directory/whatever` works)
 
@@ -156,18 +158,22 @@ There are many ways of doing this, as `man setfacl` shows, but three examples wi
 
 While ACLs are not commonly needed, they are a safe way of handling cases where they are needed.
 
-# Executable text files
+# Executable text files {#exec-text}
 
 What does it mean for a file to be executable?
 On POSIX, there are two main cases where this is sensible:
 
-- If the file is an executable binary (typically an ELF executable), then being executable means the loader will agree to give it memory and jump to its starting code.
+- If the file is an executable binary (typically an ELF executable produced with help from something like a C compiler), then being executable means the loader will agree to give it memory and jump to its starting code.
 
 - If the file is a plain text file, then being executable means "check for a shebang^["shebang" comes from the colloqial name of the first two characters: `#` is "hash" and `!` is "bang". "Hashbang" was shortened to "shbang," with a vowel added for readability. You can still sometimes hear "hashbang" used to mean the `#!` itself, as in "a shebang begins with a hashbang, then path to the interpreter."] line."
     
-    A "shebang" is a line of the form `#!/path/to/program` (or sometimes `#!/usr/bin/env program`).
-    One common shebang is `#!/bin/bash`.
-    If a file `gloop.sh` begins `#!/bin/bash` and is executable, then running `./gloop.sh` is equivalent to running `/bin/bash ./gloop.sh`
+    A "shebang" is a line of the form `#!/path/to/program` (or sometimes `#!/usr/bin/env program`). That program, often called an "interpreter", will be used to run the text file.
+
+    One common shebang is `#!/bin/bash`, which runs `/bin/bash`, the most common Linux shell.
+    If a file `gloop.sh` begins `#!/bin/bash` and is executable, then running `./gloop.sh` is equivalent to running `/bin/bash ./gloop.sh`.
+
+    Because the interpreter program needs to read the text file, it will usually require read permission on the text file, even though an executable binary often will not.
+
 
 {.example ...}
 A **quine** is a program that, when run, displays its own contents.
