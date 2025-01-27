@@ -12,6 +12,15 @@ Changelog:
 *  15 Feb 2024: "OS X" -> "macOS X" for clarity
 </div>
 
+{.exercise ...}
+
+1.  Write a program `gettimings` that measures the time required for a list of
+    operations as described below.
+2.  Create a file `timings.txt` with the resulting measurements. The file must
+    include all required data when submitted.
+
+{/}
+
 # Your task
 
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
