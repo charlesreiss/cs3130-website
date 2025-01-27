@@ -62,7 +62,7 @@ Changelog:
     *  make an attempt to account for any measurement overhead (that is, the time unintentionally included in raw timings not used to do the task being timed but instead to
        obtain clock measurements, setup the task, etc.)
        One strategy might be to measure the time required for "nothing" and subtract this time from other
-       measurements.
+       measurements. See below for more discussion on how to do this.
     *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
@@ -155,7 +155,7 @@ For example, in the timeline diagram above, comparing the two results of `clock_
 `clock_gettime` and the code that called `getppid` and `clock_gettime`. Because clock_gettime and other time reading functions
 can't be called instantaneously, your raw time measurements will always include the time for some "extra" stuff.
 To compensate for this,
-I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings.
+I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings. Note that "nothing" has to be, in fact, _nothing_ to make the overhead subtraction valid.
 
 In addition, the amount of overhead is generally lower when you compile with optimizations (for example, `-Og` or `-O1`)
 and (when timing) without enabling slow debugging features like `-fsanitize=address`, so I would
