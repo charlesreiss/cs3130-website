@@ -180,7 +180,7 @@ size_t translate(size_t va);
  * Setup a mapping in the page tables pointed to by `ptbr` so that
  * the virtual page that the virtual address `va` is in
  * maps to a physical page allocated with `posix_memalign`
- * (unless such a mapping does not already exist).
+ * (unless such a mapping already exists).
  *
  * Any page tables not yet allocated will be allocated using `posix_memalign`.
  * (Any pages or page tables already created, such as by a prior
