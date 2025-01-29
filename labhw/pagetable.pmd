@@ -13,7 +13,7 @@ Your task:
     give warnings when compiled with `-Wall`^[ ...because you resolved the warnings,
 		not because you disabled them with warning-ignoring `#pragma`s or the like.
 	].
-    
+
     For the first submission, you must complete one of the following:
     1.  `ptbr` and `translate` from item 2 for LEVELS=1 and POBITS=12.
         We describe below how you
@@ -60,12 +60,12 @@ Your task:
     *  `extern size_t ptbr` --- page table base register; must be initially 0.
         Later, will contain the address of a page table your code
         allocates as a result of calls to `page_allocate`.
-   
+
     *  `size_t translate(size_t va)` --- translate the virtual address `va`
         using the currently setup page table. If the address is not allocated,
         return a value with all bits set to 1.
 
-    *  `void page_allocate(size_t va)` --- 
+    *  `void page_allocate(size_t va)` ---
         Allocate the virtual page that the virtual address `va` is in (if it is not
         allocated already).
         This includes setting up a mapping in the page tables pointed to by `ptbr` so that
@@ -77,7 +77,7 @@ Your task:
         call to `page_allocate` will be reused. If the mapping is already entirely
         setup, the function should do nothing.)
 
-3.  Prepare a `Makefile` for your code that: 
+3.  Prepare a `Makefile` for your code that:
 
      *  produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
      *  has CC, CFLAGS and LDFLAGS defined
@@ -90,9 +90,9 @@ Your task:
 
      *  How to customize `config.h`, with some guidance on how to pick values for that file.
      *   Any known bugs or limitations (if you know of none, there is no need to say so; if you have an incomplete implementation so far, you'll probably have some to document).
-	
+
      You are encouraged to add additional detail, such as
-	
+
      *  Any limitations, aspects you think are incomplete, or suggestions for future expansion.
      *  Big-O analysis (time, space, or both).
      *  Description of any testing hooks you added.
@@ -153,7 +153,7 @@ For example, if we compile with a different `config.h` that `#define`s `LEVELS` 
 your code should create a 3-level page table instead of a 1-level page table.
 Your code should work for all integer values of `LEVELS` between `1` and `6` inclusive
 and all integer values of `POBITS` between `4` and `18` inclusive.
-As an exception, it does not need to (but may) support cases where 
+As an exception, it does not need to (but may) support cases where
 (`POBITS` − 3) × (`LEVELS` + 1) > 60.
 
 ## `mlpt.h`
@@ -309,7 +309,7 @@ To test that these work properly,
 
 ### posix_memalign issues
 1.  `posix_memalign(&x, ...)` is similar to `x = malloc(...)` except that the address `x` is guarenteed at a multiple of a particular value.
-    The pointer to pointer passed into `posix_memalign` is used in lieu of returning a pointer to the memory allocated. 
+    The pointer to pointer passed into `posix_memalign` is used in lieu of returning a pointer to the memory allocated.
     (The return value of `posix_memalign` indicates success (`0`) or failure (non-zero error code).)
 
 2.  If `posix_memalign` is not defined after `#include <stdlib.h>`, adding `#define _XOPEN_SOURCE 700` or similar before
@@ -395,7 +395,7 @@ To test that these work properly,
 
     With a proper implementation of `translate()`, `translate(X)` will be `~0` (all 1 bits) for every address (that is not too big to be a virtual address).
 
-4.  Since page table entries are 8 bytes (the size of `size_t`), setting index _X_ of the array declared will set 
+4.  Since page table entries are 8 bytes (the size of `size_t`), setting index _X_ of the array declared will set
     index _X_ of the page table. So, let's say (with POBITS = 12 and LEVELS = 1), we want to set virtual page 3
     to point to a (simulated) "physical" page of data. We'll first allocate memory for that physical page of data
     as a global variable:
@@ -406,7 +406,7 @@ To test that these work properly,
     Then, we need to convert the physical address of `data_for_page_3` into a page table entry. To do this, we
     can first extract the page number from the address:
 
-        size_t address_of_data_for_page_3_as_integer = (size_t) &data_for_page_3[0]; 
+        size_t address_of_data_for_page_3_as_integer = (size_t) &data_for_page_3[0];
         size_t physical_page_number_of_data_for_page_3 = address_of_data_for_page_3_as_integer >> 12;
             // instead of >> 12, we could have written:
                 // address_of_data_for_page_3_as_integer / 4096
@@ -417,7 +417,7 @@ To test that these work properly,
                 // valid bit in least significant bit, set to 1
                 1
         );
-    
+
     Then, we can store that page number at index 3 in a page table:
 
         // assuming testing_page_table initialized as above and ptbr points to it
@@ -438,7 +438,7 @@ To test that these work properly,
 
     *  on the first call, two physical pages should be allocated --- one to create the page table (and set `ptbr`
        to a non-zero value) and one to allocate a page for data
-    *  on later calls: 
+    *  on later calls:
        *  if the page number supplied to `page_allocate` hasn't been used before
           (is not marked valid in the page table), then
           one page for data should be allocated;
@@ -480,19 +480,19 @@ int main() {
 
     page_allocate(0x456789abcd00);
     // no new pages allocated (still 5)
-    
+
     int *p1 = (int *)translate(0x456789abcd00);
     *p1 = 0xaabbccdd;
     short *p2 = (short *)translate(0x456789abcd02);
     printf("%04hx\n", *p2); // prints "aabb\n"
 
     assert(translate(0x456789ab0000) == 0xFFFFFFFFFFFFFFFF);
-    
+
     page_allocate(0x456789ab0000);
     // 1 new page allocated (now 6; 4 page table, 2 data)
 
     assert(translate(0x456789ab0000) != 0xFFFFFFFFFFFFFFFF);
-    
+
     page_allocate(0x456780000000);
     // 2 new pages allocated (now 8; 5 page table, 3 data)
 }
