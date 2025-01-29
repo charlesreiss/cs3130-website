@@ -153,9 +153,9 @@ author: Charles Reiss
         result[0] = malloc(4);
         strcpy(result[0], "foo");
         result[1] = malloc(4);
-        strcpy(result[0], "bar");
+        strcpy(result[1], "bar");
         result[2] = malloc(5);
-        strcpy(result[0], "quux");
+        strcpy(result[2], "quux");
         size = 3;
 
 1.  Running
