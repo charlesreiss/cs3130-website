@@ -4,12 +4,6 @@ author: Charles Reiss
 ...
 
 
-<div class="changelog">
-Changelog:
-
-*  29 Jan 2025: correct wrong use of `result[0]` repeatedly instead of `result[0]`, `result[1]`, `result[2]` in equivalent code for second string_split example.
-</div>
-
 # Your task
 
 1.  Create C files as follows:
