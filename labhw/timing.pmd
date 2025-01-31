@@ -6,12 +6,12 @@ author: Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  30 Jan 2025: attempt ot rearrange task description to declutter description
+*  30 Jan 2025: attempt to rearrange task description to declutter description
 </div>
 
 # Your task
 
-1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each the 5 secnarios below
+1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each the 5 scenarios below
     (under the heading "[Scenarios to time](#scenarios)").
 
     Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
@@ -19,7 +19,7 @@ Changelog:
 
 2.  Run your program and collect the data it outputs.
 
-3.  Create a file called `timings.txt` with a single overall time estimate for each of the five scnearios:
+3.  Create a file called `timings.txt` with a single overall time estimate for each of the five scenarios:
 
     Your overall time estimates *must* comply the requirements below (under "[Requirements for time estimates](#estimates)").
 
@@ -61,7 +61,7 @@ Changelog:
 
 # Requirements for time estimates {#estimates}
 
-The overall time estmates you report must:
+The overall time estimates you report must:
 
 *  have been produced using a program compiled with some optimizations enabled (at least `-Og` or `-O1` or `-Os` or similar) to avoid timing the very awkward assembly clang or gcc generate when
    all optimizations are disabled;
