@@ -51,7 +51,7 @@ Changelog:
     *  identifying that the signal was sent back in the original process using a function like `sigwait`
 
     For scenario 5, we need to run two copies of your program, similar to the signals lab:
-    *  The "other process" (the one not outputting timings), should we should be able to run as `./gettimings -1`. It should print its PID and read a pid from stdin.
+    *  The "other process" (the one not sending the first signal) we should be able to run as `./gettimings -1`. It should print its PID and read a pid from stdin.
     *  When we run `./gettimings 5` it should print its PID and read a pid from stdin.
     *  We will test by entering the PID of the `./gettimings 5` process into the `./gettimings -1` process first, then entering the PID of the `./gettimings -1` process into the `./gettimings 5` process.
     *  (It's okay if we need to use control-C or similar to terminate `./gettimings -1` process.)
