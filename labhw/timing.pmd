@@ -23,11 +23,12 @@ Changelog:
 
     Your overall time estimates *must* comply the requirements below (under "[Requirements for time estimates](#estimates)").
 
-3.  If your program did not output the overall estimates in `timings.txt` directly,
-    then also record in `timings.txt`:
+3.  If you needed to calculations (e.g. averages) on your program's output to get those time estimates,
+    then also include in `timings.txt`:
 
-    *  the data output by your program used to produce your estimates (or a reference to .txt or .csv file containing that output), and
+    *  the data output by your program you used to produce the estimates (or a reference to .txt or .csv file containing that output), and
     *  a description of the calculations you performed on your program's output to get the overall estimates
+
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
