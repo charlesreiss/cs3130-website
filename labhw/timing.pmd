@@ -6,70 +6,67 @@ author: Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  9 Feb 2024: change suggestion of `usleep` to `nanosleep` to match change to signals lab this semester
-*  12 Feb 2024: give definition of signal mask in discussion of strategies re: item 5; add footnote about what sigsuspend's argument does
-*  12 Feb 2024: be more specific about clock_gettime with CLOCK_MONOTONIC/REALTIME on OS X being microsecond precision, not necessarily "clocks" clock_gettime might support
-*  15 Feb 2024: "OS X" -> "macOS X" for clarity
+*  30 Jan 2025: attempt ot rearrange task description to declutter description
 </div>
-
-{.exercise ...}
-
-1.  Write a program `gettimings` that measures the time required for a list of
-    operations as described below.
-2.  Create a file `timings.txt` with the resulting measurements. The file must
-    include all required data when submitted.
-
-{/}
 
 # Your task
 
-1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for:
-
-    1.  calling an empty function (such that the function call is not optimized away) and having it return
-    2.  running the `getppid` function from `<unistd.h>`
-    3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bin/true` does, you may use `system("/usr/bin/true")` instead]
-    4.  sending a signal to the current process and having its signal handler start executing (but not including the signal handler returning)
-    5.  sending a signal to another process, then having that process's signal handler send a signal back, then either:
-        *  having a signal handler for signal sent back start executing in the original process (but not including the signal handler returning); or
-        *  identifying that the signal was sent back in the original process using a function like `sigwait`
+1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each the 5 secnarios below
+    (under the heading "[Scenarios to time](#scenarios)").
 
     Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
     above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
 
-    For scenario 5 above, we need to run two copies of your program, similar to the signals lab:
-    *  The "other process" (the one not outputting timings), should be run as `./gettimings -1`. It should print its PID and read a pid from stdin.
+2.  Run your program and collect the data it outputs.
+
+    Create a file called `timings.txt`, place:
+
+    *  a single overall time estimate for each of the 5 scenarios (be sure to include units) 
+    *  if your program did not output the overall estimates directly:
+        *  the data output by your program used to produce these estimates (or a reference to .txt or .csv file containing that output), and
+        *  a description of the calculations you performed on your program's output to get the overall estimates
+
+    Your overall time estimates *must* comply the requirements below (under "[Requirements for time estimates](#estimates)").
+
+3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
+
+4.  Submit all the `timings.txt` you created, any data files your `timings.txt` references, and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
+
+    (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt.)
+
+# Scenarios to time {#scenarios}
+
+1.  calling an empty function (such that the function call is not optimized away) and having it return
+
+2.  running the `getppid` function from `<unistd.h>` (this is not the same as `getpid`)
+
+3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bin/true` does, you may use `system("/usr/bin/true")` instead]
+
+4.  sending a signal to the current process and having its signal handler start executing (but not including the signal handler returning)
+
+5.  sending a signal to another process, then having that process's signal handler send a signal back, then either:
+
+    *  having a signal handler for signal sent back start executing in the original process (but not including the signal handler returning); or
+
+    *  identifying that the signal was sent back in the original process using a function like `sigwait`
+
+    For scenario 5, we need to run two copies of your program, similar to the signals lab:
+    *  The "other process" (the one not outputting timings), should we should be able to run as `./gettimings -1`. It should print its PID and read a pid from stdin.
     *  When we run `./gettimings 5` it should print its PID and read a pid from stdin.
     *  We will test by entering the PID of the `./gettimings 5` process into the `./gettimings -1` process first, then entering the PID of the `./gettimings -1` process into the `./gettimings 5` process.
     *  (It's okay if we need to use control-C or similar to terminate `./gettimings -1` process.)
 
-2.  Run your program and record the measurements it outputs.
+# Requirements for time estimates {#estimates}
 
-    In a file called `timings.txt`:
+The overall time estmates you report must:
 
-    *  either place the measurements output by your program or identify which data file(s) they are in
-    *  if necessary, convert the measurements from your programs to time estimates for each of the items listed above (be sure to include units)
-    *  describe what calculations (if any) were necessary to convert the measurements output from your program to time estimates
-
-    If you place measurements output by your program in separate data files, make them `.txt` or `.csv` files.
-
-    In either `timings.txt` or separate data files, your submission must include the parts of your program's output you used to compute the final time estimates you report;
-    if your program outputs additional data, that does not need to be submitted. Also, it is acceptable if your program only outputs summaries of the measurements it takes rather than every individual measurement.
-
-    When producing the time estimates, you and/or your program must:
-
-    *  have C code be compiled with some optimizations enabled (at least `-Og` or `-O1` or `-Os` or similar) to avoid timing the very awkward assembly clang or gcc generate when
-       all optimizations are disabled;
-    *  make an attempt to account for any measurement overhead (that is, the time unintentionally included in raw timings not used to do the task being timed but instead to
-       obtain clock measurements, setup the task, etc.)
-       One strategy might be to measure the time required for "nothing" and subtract this time from other
-       measurements. See below for more discussion on how to do this.
-    *  measure multiple instances of the above events to obtain your estimate (to limit the impact of variation in system performance on your estimates)
-
-3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
-
-4.  Submit all your `timings.txt`, any needed data files, and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
-
-    (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt.)
+*  have been produced using a program compiled with some optimizations enabled (at least `-Og` or `-O1` or `-Os` or similar) to avoid timing the very awkward assembly clang or gcc generate when
+   all optimizations are disabled;
+*  make an attempt to account for any measurement overhead (that is, the time unintentionally included in raw timings not used to do the task being timed but instead to
+   obtain clock measurements, setup the task, etc.)
+   One strategy might be to measure the time required for "nothing" and subtract this time from other
+   measurements. See below for more discussion on how to do this.
+*  be based on measuring multiple instances of the each scenario to obtain your estimate for that scenario (to limit the impact of variation in system performance on your estimates)
 
 # Hints
 
