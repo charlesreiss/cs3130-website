@@ -19,14 +19,15 @@ Changelog:
 
 2.  Run your program and collect the data it outputs.
 
-    Create a file called `timings.txt`, place:
-
-    *  a single overall time estimate for each of the 5 scenarios (be sure to include units) 
-    *  if your program did not output the overall estimates directly:
-        *  the data output by your program used to produce these estimates (or a reference to .txt or .csv file containing that output), and
-        *  a description of the calculations you performed on your program's output to get the overall estimates
+3.  Create a file called `timings.txt` with a single overall time estimate for each of the five scnearios:
 
     Your overall time estimates *must* comply the requirements below (under "[Requirements for time estimates](#estimates)").
+
+3.  If your program did not output the overall estimates in `timings.txt` directly,
+    then also record in `timings.txt`:
+
+    *  the data output by your program used to produce your estimates (or a reference to .txt or .csv file containing that output), and
+    *  a description of the calculations you performed on your program's output to get the overall estimates
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
