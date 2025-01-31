@@ -32,7 +32,7 @@ user's programs.)
    As described below, the template program sets up access to two shared memory regions:
 
     - "my_inbox" which is this process's "inbox" for chat messages;
-    - "other_inbox" which is the other process's "inbox" for chaat messages.
+    - "other_inbox" which is the other process's "inbox" for chat messages.
 
    Your code will write to `other_inbox` and read from `my_inbox`.
 
@@ -139,10 +139,6 @@ int main(void) {
 `getpid()` (from `unistd.h`) returns the PID of the current process as a `pid_t`, which can be treated like an `int` in most situations.
 This can be printed (e.g., with `printf`) by one process and input to the other (e.g., with `scanf`).
 
-If you use something like `scanf("%d", ...)`, note that this does not read a full line. For example,
-if the input is `"12\n"`, then it will read only the `"12"`, leaving `"\n"` on the input.
-This means a later call to `fgets()` will return that `"\n"` as an empty line immediately,
-which you may need to account for later.
 
 # Signals
 
@@ -256,3 +252,19 @@ When you handle `SIGUSR1`
 
 3.  If you're having issues with "segmentation faults" and "bus errors", then it might be useful to use AddressSanitizer
     (a memory error detector) by compiling and linking with `-fsanitize=address` and `-g`.
+
+# Some explanations about the supplied code
+
+1.  For reading in the PID, our code uses getline() instead of something like `scanf("%d", ...)`.
+    This is primarily because `scanf("%d", ...)` does not read a full line. For example,
+    if the input is `"12\n"`, then it will read only the `"12"`, leaving `"\n"` on the input.
+    This means a later call to `fgets()` or similar would  later return that `"\n"` as an empty line immediately,
+
+2.  As we'll discuss when we cover virtual memory, the `mmap` function makes the contents of a file part of the process's memory.
+    When called with the `MAP_SHARED` argument, that memory is the same memory for every process that maps the file. (One way
+    the OS could implement this is by loading the contents of the file into memory, and setting the memory mapping for each
+    process that uses the file to refer to the same "real" addresses.)
+
+    `shm_open("/foo", ...)` gets a file descriptor (file handle, essentially) for a special type of file meant
+    to be used specifically for sharing memory between processes. The name `/foo` serves to identify which
+    shared memory region this should be associated with.
