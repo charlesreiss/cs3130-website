@@ -38,7 +38,6 @@
   short_name: fork-lab
   lab: true
   page: labhw/fork-lab.html
-  tentative: true
   submit_files:
   - "my_system.c"
   - "*.c"
@@ -47,7 +46,6 @@
 - name: timing
   due: 2025-02-14
   page: labhw/timing.html
-  tentative: true
   grade_describe: |
     This assignment will be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
