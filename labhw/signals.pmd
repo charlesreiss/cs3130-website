@@ -3,6 +3,13 @@ title: Signals Lab
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  4 Feb 2025: unlink both inboxes from cleanup_inboxes instead of just my_inbox for more symmetry with setup_inboxes (though this shouldn't be needed
+    as long as both processes run cleanup_inboxes)
+</div>
+
 In this lab you'll write yet another chat application.
 
 It will only work on a **single machine**, not over a network file system or the Internet,
@@ -114,6 +121,7 @@ void cleanup_inboxes() {
     munmap(my_inbox, BOX_SIZE);
     munmap(other_inbox, BOX_SIZE);
     shm_unlink(my_inbox_shm_open_name);
+    shm_unlink(other_inbox_shm_open_name);
 }
 
 int main(void) {
