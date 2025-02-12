@@ -42,6 +42,7 @@
   - "my_system.c"
   - "*.c"
   due: 2025-02-12
+  due_exact: 2025-02-12 11:59:59
 
 - name: timing
   due: 2025-02-14
