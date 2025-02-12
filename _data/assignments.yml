@@ -73,7 +73,6 @@
   due: 2025-02-19
 
 - name: fork HW
-  tentative: true
   short_name: fork
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
