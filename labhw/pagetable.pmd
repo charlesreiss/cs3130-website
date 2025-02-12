@@ -212,8 +212,10 @@ void page_allocate(size_t va);
 4.  There will be `LEVELS` level of page tables (where `LEVELS` is a constant defined in `config.h` that we may change).
 
     The number of LEVELS and the size of page tables will determine the effective
-    size of virtual addresses. The virtual page number part for the first level
-    uses the most significant bits of virtual addresses.
+    size of virtual addresses. Typically, the effective size of virtual addresses will be less than
+    64 bits, so the most significant bits of the `size_t` passed into translate and page_allocate will
+    be unused.
+    The virtual page number for the first part will appear immediately after these unused bits.
 
     {.example} With `POBITS` set to 12 and `LEVELS` set to 2, page tables each contain 2^12^/8 = 512 = 2^9^ entries and only 30 bits from virtual addresses will be used: a 12-bit page offset and an 18-bit (2 times 9 bits) virtual page number, which will be divided into two parts for the page table lookup. Bits 21-29 will be used for virtual page number part 1, bits 12-20 will be used for virtual page number part 2, and bits 0-11 will be used for the page offset.
 
