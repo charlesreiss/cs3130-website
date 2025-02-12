@@ -97,7 +97,7 @@ see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 
 # `char *parallelgetoutput(int count, const char **argv_base)`
 
-Run `count` child processes simulatenously and collect their output into a single string,
+Run `count` child processes *simulatenously* and collect their output into a single string,
 returning only after all the child processes have finished. (You may assume the output
 does not include `\0`. Like `getoutput()` the string you return should be dynamically
 allocated.)
