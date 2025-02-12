@@ -109,7 +109,7 @@ Your task:
      implementation. You can decide what kind of function(s) should be part of this interface.
      Document this interface in your README, including at least:
 
-     *  function prototype(s) for the interface;
+     *  function prototype(s)^[In C, a function prototype is a function declaration like you might find in a header file, including the function's return type and argument types.] for the interface;
      *  an explanation of what any arguments to the function(s) mean;
      *  what each function will deallocate when it is called (including any way
         in which this depends on its arguments or other factors)
@@ -118,16 +118,16 @@ Your task:
      without either changing the existing page_allocate/translate interface
      or reworking the internals of your implementation of those functions.
 
-     If so, implement it (including approrpiate `mlpt.h` and your .c files).
+     If so, implement it (including appropriate changes to `mlpt.h` and your .c files).
 
-     If not, document why did not implement the interface in your README.
+     If not, document why you did not implement the interface in your README.
      This explanation *must* include at least one of ---
 
      *  a description of specific changes that should be made to the `page_allocate`
         and/or `translate` implementations to allow the de-allocation interface
         to be implemented; or
      *  an explanation of how the interfaces for `page_allocate` and/or `translate`
-        (and related functionality) should be changed to accomodate de-allocation
+        (and related functionality) should be changed to accommodate de-allocation
         (in addition to the code in any new de-allocation-specific functions)
 
 {/}
