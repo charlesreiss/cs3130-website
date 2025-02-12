@@ -33,8 +33,9 @@ Your task:
 
     (This assignment will be worth considerably more than a normal one-week assignment.
     A vast majority of the grade for the assignment will be based on what you submit
-    on the final submission. For the final submission, we will grade (again) tasks which
-    should have been completed on earlier submissions.)
+    on the final submission.
+    A significant part of the grade for the final submission will be based on functionality
+    which should also have been completed in earlier submissions.)
 
 2.  Implement a simulation of multi-level page table lookup and allocation.
 
