@@ -45,7 +45,7 @@
   due_exact: 2025-02-14 11:59:59
 
 - name: timing
-  due: 2025-02-14
+  due: 2025-02-17
   page: labhw/timing.html
   grade_describe: |
     This assignment will be mostly hand-graded (since a lot of it is hard to check automatically),
