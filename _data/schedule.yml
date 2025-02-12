@@ -162,6 +162,8 @@
 - date: 2025-02-14
   week: 5
 
+- date: 2025-02-17
+  week: 6
 - date: 2025-02-18
   week: 6
   title: virtual memory 3 / caches 0
