@@ -166,17 +166,14 @@
   week: 6
 - date: 2025-02-18
   week: 6
-  title: virtual memory 3 / caches 0
+  title: virtual memory 3 
   reading: "[VM](readings/vm.html) §2.1, 3.2; [cache](readings/cache.html)"
   slides_ref:
-  - caching
+  - vm
   description: |
     *  pagetable assignment
     *  as a tree
     *  multi-level lookup example
-
-    *  caching idea
-    *  memory hierarchy
 
 - date: 2025-02-19
   lab: true
@@ -189,6 +186,7 @@
   slides_ref:
   - caching
   description: |
+    *  caching idea, locality
     *  direct-mapped caches
         *  valid bits, tags
     *  set-associative caches
