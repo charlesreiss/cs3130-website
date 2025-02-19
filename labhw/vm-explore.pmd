@@ -8,6 +8,7 @@ Changelog:
 
 *  17 Feb 2025: remove some text leftover from last semester regarding late changes to this lab; add footnote regarding
    why page table sie would change.
+*  19 Feb 2025: add missing `,` to mmap example code
 </div>
 
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
@@ -260,8 +261,8 @@ the same page that `malloc` used and therefore caused to be allocated already.
     For example, 
 
         char *ptr;
-        ptr = mmap(NULL /* hint address */
-                   8192 /* length */,
+        ptr = mmap(NULL, /* hint address */
+                   8192, /* length */
                    PROT_READ | PROT_WRITE,
                    MAP_PRIVATE | MAP_ANONYMOUS,
                    -1, /* file descriptor (-1 for "none") */
