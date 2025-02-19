@@ -69,9 +69,9 @@
   page: labhw/vm-explore.html
   short_name: vmexplore
   lab: true
-  tentative: true
   submit_file: "lab.c"
   due: 2025-02-19
+  due_exact: 2025-02-21 11:59:59
 
 - name: fork HW
   short_name: fork
