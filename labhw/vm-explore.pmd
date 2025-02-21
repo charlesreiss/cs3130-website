@@ -9,6 +9,7 @@ Changelog:
 *  17 Feb 2025: remove some text leftover from last semester regarding late changes to this lab; add footnote regarding
    why page table sie would change.
 *  19 Feb 2025: add missing `,` to mmap example code
+*  20 Feb 2025: correct x86-64 page table layout footnote not appearing as a footnote
 </div>
 
 > This lab requires a **64-bit Linux environment** with 4096 byte pages, like on portal.
@@ -80,26 +81,7 @@ Changelog:
     *  the allocation should be visible on the memory layout output by the `./lab` program at the end
 
     *  this results in a small increase in the space used for page table entries, which you may not have seen on
-       the previous items^[On x86-64 Linux, the 36-bit virtual page number (VPN) is split up into 9-bit parts
-       and used to do a lookup in a four-level page table structure.
-
-       The first part is used to lookup the first-level page table entry and find the second-level page table.
-       After finding the second level page table, the second part of the VPN is used to lookup
-       the second-level page table entry and find the third-level page table. Then third part similarly
-       finds the fourth-level page table, and fourth-level page table entry finds the actual
-       program data page.
-
-       So, addresses that share the same first, second, and third parts of their VPN will all use the
-       same fourth-leve page table. When we only allocate a small amount of heap space or
-       mmap space close the heap, all the addresses we allocated will likely share the
-       beginning of their VPN.
-
-       When we add 0x200000 to address, we end up with an address which will have a different
-       third part of its VPN. This means the OS will need to allocate a different fourth-level page
-       table for it. Because of this, you should see an increase the space used for page tables
-       by the size of one page table -- 4096 on x86-64 Linux.]
-
-
+       the previous items[^vpnsize]
 5.  Do the same as item 4, but make it so when  `5`
     it allocates and uses 4096 bytes of
     memory 0x10000000000 bytes after the end of the heap (again, with the address rounded up to a multiple of 4096 if necessary).
@@ -114,6 +96,28 @@ Changelog:
     or submit your `lab.c` (making sure it indicates in a comment anyone you worked with) to the submission site.
 
 {/}
+
+[^vpnsize]:
+    On x86-64 Linux, the 36-bit virtual page number (VPN) is split up into 9-bit parts
+    and used to do a lookup in a four-level page table structure.
+
+    The first part is used to lookup the first-level page table entry and find the second-level page table.
+    After finding the second level page table, the second part of the VPN is used to lookup
+    the second-level page table entry and find the third-level page table. Then third part similarly
+    finds the fourth-level page table, and fourth-level page table entry finds the actual
+    program data page.
+
+    So, addresses that share the same first, second, and third parts of their VPN will all use the
+    same fourth-leve page table. When we only allocate a small amount of heap space or
+    mmap space close the heap, all the addresses we allocated will likely share the
+    beginning of their VPN.
+
+    When we add 0x200000 to address, we end up with an address which will have a different
+    third part of its VPN. This means the OS will need to allocate a different fourth-level page
+    table for it. Because of this, you should see an increase the space used for page tables
+    by the size of one page table -- 4096 on x86-64 Linux.
+
+
 
 # the `./lab` program {#program}
 
