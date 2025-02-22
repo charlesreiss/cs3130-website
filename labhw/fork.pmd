@@ -9,6 +9,7 @@ author:
 Changelog:
 
 *  21 Feb 2025: correct grammatical error in second parallelgetoutput example's introduction of the example python program
+*  21 Feb 2025: add equivalent C program in footnote to second parallelgetoutput example
 </div>
 
 
@@ -193,7 +194,7 @@ python program:
     import sys
     print("args =",sys.argv)
 
-prints out its arguments. (You could also write and compile a similar C program.)
+prints out its arguments. (You could also write and compile a similar C program.[^cargs])
 If you save this a file called 'args.py' and make that file
 executable, then a main() like:
 
@@ -214,6 +215,16 @@ should output something like:
 but possibly with the lines in a different order and/or interleaved.
 {/}
 
+[^cargs]:
+    Like:
+
+        #include <stdio.h>
+        int main(int argc, char **argv) {
+            printf("args = [");
+            for (int i = 0; i < argc; i += 1)
+                printf("'%s'%s", argv[i], i == argc - 1 ? "" : ", ");
+            printf("]\n");
+        }
 
 # Hints
 
