@@ -5,6 +5,12 @@ author:
     - Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  21 Feb 2025: correct grammatical error in second parallelgetoutput example's introduction of the example python program
+</div>
+
 
 {.exercise ...}
 
@@ -180,7 +186,7 @@ allocated and never `free`d.
 
 {.example ...}
 You can test more directly that your parallelgetoutput passes the correct arguments by
-writing a program that checks the arguments it gets. For example, if you have the following
+writing a program that checks the arguments it gets. For example, the following
 python program:
 
     #!/usr/bin/python3
