@@ -4,6 +4,8 @@ title: Synchonization Experience
 
 The purpose of this lab is to provide you with some experiencing seeing how various synchronization primitives play out in practice. It will take the form of playing four versions of a simple competitive online game.
 
+> This lab must be completed **in person** in lab unless you've made other arrangements with the instructors.
+
 # Getting with a group
 
 In the lab, create groups of 3--5 people each. TAs should help you form appropriate groups.
