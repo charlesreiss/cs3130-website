@@ -3,6 +3,12 @@ title: Caches -- Keep a finger in it
 author: Luther Tychnoviech, with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  3 March 2025: add additional set-associative cache examples
+</div>
+
 # A thought experiment
 
 Suppose I handed you a book and asked you to tell me the 211^th^ word on the 83^rd^ page,
@@ -226,7 +232,7 @@ misses that could have been avoided with a different cache design (conflict)
 and misses that could only have been avoided by having a larger cache (capacity).
 
 {.example ...}
-Suppose a 2-way set associative set has 16-byte blocks
+Suppose a 2-way set associative cache has 16-byte blocks
 and 256 lines and uses a least-recently used policy
 to decide which block to replace within a set.
 
@@ -254,6 +260,35 @@ the following notes if it is a hit or miss and if a miss, what type.
 4. address `0xbf1234` -- conflict miss
    *  since set only has 2 lines in it, the least recently used `0xbf9230` through `0xb9123f` is replaced
    *  afterwards: set with index `0x23`: `0xbfaa30` through `0xbfaa3f`; `0xbf1230` through `0bf123f`
+{/}
+
+
+{.example ...}
+Consider the same cache has the previous example,
+and the folowing accesses:
+
+1. address `0xbf1234` --- cold miss
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`
+1. address `0xbf9230` --- cold miss
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`, `0xbf9230` through `0xbf923f`
+1. address `0xbf1240` --- cold miss
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`, `0xbf9230` through `0xbf923f`; set with index `0x24`: `0xbf1240` throuhg `0xbf124f`;
+1. address `0xbf1234` --- hit
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`, `0xbf9230` through `0xbf923f`; set with index `0x24`: `0xbf1240` throuhg `0xbf124f`;
+1. address `0xbfaa30` --- cold miss
+   *  since set `0x23` only has 2 lines in it, the least recently used `0xbf9230` through `0xbf923f` is replaced. (Although `0xbf1230` was brought into the cache first,
+      it was accessed more recently than `0xbf9230`)
+   *  afterwards: set with index `0x23`: `0xbf1230` through `0xbf123f`, `0xbfaa30` through `0xbfaa3f`; set with index `0x24`: `0xbf1240` throuhg `0xbf124f`;
+{/}
+
+{.example ...}
+Suppose a 8-way set associative cache has a size of 4096 bytes
+and 32-byte blocks.
+
+Since it has 32-byte blocks, it has 5 offset bits.
+
+The cache has 4096/32 = 128 lines. Since these lines are grouped in sets of 8,
+it has 128/8 = 16 sets. So, it has 4 index bits.
 {/}
 
 # Hierarchies of memory caches
