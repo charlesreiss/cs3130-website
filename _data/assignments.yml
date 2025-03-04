@@ -133,9 +133,10 @@
   short_name: cachelab
   old_page: labhw/memoize.html
   page: labhw/cache-lab.html
-  tentative: true
+  due_message: cache exercises due 25 March 2025
   lab: true
   due: 2025-03-05
+  due_exact: 2025-03-25 23:59:59
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
@@ -226,6 +227,9 @@
   - "*.txt"
   - "*.gz"
 
+- name: cache exercises due
+  page: labhw/cachelab.html
+  no_assignments_json: true
 
 - name: pthreads (dining philosophers) 
   lab: true
