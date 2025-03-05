@@ -228,7 +228,7 @@
   - "*.gz"
 
 - name: cache exercises due
-  page: labhw/cachelab.html
+  page: labhw/cache-lab.html
   due: 2025-03-25
   no_assignments_json: true
 
