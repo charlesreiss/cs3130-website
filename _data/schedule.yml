@@ -201,6 +201,7 @@
   slides_ref:
   - caching
   description: |
+   *  set associative caches
    *  (briefly) replacement policies
    *  cache misses and C code
 
@@ -232,8 +233,9 @@
   slides_ref:
   - caching
   description: |
-   *  cache write policies
-   *  the TLB
+   *  set associative caches
+   *  (briefly) replacement policies
+   *  cache misses and C code
 
 
 - date: 2025-03-07
@@ -257,17 +259,16 @@
 
 - date: 2025-03-18
   week: 10
-  title: "TLB / threads"
+  title: "caches 3 / TLB / threads"
   reading: "[cache](readings/cache.html), [threads](readings/threads.html), [pthreads](readings/pthreads.html)"
   slides_ref:
   - caching
   - threads
   description: |
+   *  cache write policies
+   *  the TLB
 
    *  creating new threads
-   *  thread use examples
- 
-   *  problem of synchronization
 
 - date: 2025-03-19
   lab: true
@@ -278,9 +279,13 @@
   title: synchronization 1 / deadlock
   reading: "[sync](readings/sync.html), [pthreads](readings/pthreads.html)"
   slides_ref:
+  - threads
   - sync
   - deadlock
   description: |
+    *  thread use examples
+ 
+    *  problem of synchronization
     *  problem of synchronziation 
     *  locks and mutexes
     *  barriers
