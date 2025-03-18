@@ -3,6 +3,12 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  18 March 2025: clarify "defined arguments" -> "defined argument variables"
+</div>
+
 {.exercise ...}
 Your task:
 
@@ -82,7 +88,7 @@ Your task:
 
      *  produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
      *  has CC, CFLAGS and LDFLAGS defined
-     *  uses defined arguments in its work
+     *  uses the defined argument variables (CFLAGS, etc.) in its work
      *  has correct dependencies for each target
      *  has `all` and `clean` targets
 
