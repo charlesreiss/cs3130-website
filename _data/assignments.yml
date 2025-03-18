@@ -232,6 +232,25 @@
   due: 2025-03-25
   no_assignments_json: true
 
+- name: openmp
+  short_name: openmp
+  lab: true
+  page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
+  due: 2025-03-26
+
+
+- name: cache programs
+  short_name: cache-programs
+  tentative: true
+  page: labhw/cache-programs.html
+  submit_file: "*submit*.tar"
+  tentative: true
+  due: 2025-03-28
+
+
 - name: pthreads (dining philosophers) 
   lab: true
   tentative: true
@@ -247,25 +266,6 @@
   - dp-arb.c
   - dp-rh.c
   - dp-backoff.c
-  due: 2025-03-26
-
-
-- name: cache programs
-  short_name: cache-programs
-  tentative: true
-  page: labhw/cache-programs.html
-  submit_file: "*submit*.tar"
-  tentative: true
-  due: 2025-03-28
-
-
-- name: openmp
-  short_name: openmp
-  lab: true
-  page: labhw/openmp.html
-  submit_files:
-  - "*.c"
-  - "performance.txt"
   due: 2025-04-02
 
 - name: TLB
