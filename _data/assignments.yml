@@ -180,7 +180,6 @@
 
 - name: code reviews
   lab: true
-  tentative: true
   short_name: codereview
   page: labhw/code-review.html
   comments: needs submission site link correction
