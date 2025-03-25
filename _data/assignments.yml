@@ -246,13 +246,11 @@
   tentative: true
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
-  tentative: true
   due: 2025-03-28
 
 
 - name: pthreads (dining philosophers) 
   lab: true
-  tentative: true
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
@@ -271,7 +269,6 @@
   short_name: tlb
   comment: no introducing lab
   page: labhw/tlb.html
-  tentative: true
   submit_files:
   - "*.c"
   - "*.h"
