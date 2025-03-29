@@ -9,6 +9,7 @@ Changelog:
 *  25 March 2024: add note about possibility of using volatile in hints
 *  30 Oct 2024: update phrasing in skeleton code comment to avoid using "edit the code" in a way some might read as a limiting instruction and to mention changing initialization of global_array
 *  25 March 2025: don't mention `module load valgrind` anymore, since it's not needed this semester
+*  29 March 2025: remove some stray module load valgrind mentions
 </div>
 
 # Your Task
@@ -149,9 +150,6 @@ If you would rather write your own code entirely to achieve these cache miss rat
 but I believe the supplied template code would make this task easier.
 
 # Compiling and Testing
-
-**For any of these commands to work on the department machines,
-you will need to first run `module load valgrind`.**
 
 ## Testing individual programs
 
