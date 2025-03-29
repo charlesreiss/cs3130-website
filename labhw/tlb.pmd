@@ -3,6 +3,13 @@ title: Translation lookaside buffer
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  29 March 2025: update example 2 test to access all other tests and more aggressively
+    use page offsets, so it hopefully finds errors more reliably
+</div>
+
 
 Implement a TLB wrapper around the page table interface from previous assignments.
 Note you will *not* need to implement a page table for this assignment;
@@ -166,7 +173,23 @@ assert(tlb_peek(0x2301000) == 1);
 assert(tlb_peek(0x0501000) == 3);
 assert(tlb_peek(0x0801000) == 4);
 assert(tlb_peek(0x0A01000) == 2);
-assert(tlb_translate(0x404000) == 0x424000);
+for (int i = 0; i < 16; i += 1) {
+    if (i != 1) {
+        assert(tlb_translate(0x400000 + (i << 12)) == (0x420000 + (i << 12)));
+        assert(tlb_translate(0x500000 + (i << 12)) == (0x520000 + (i << 12)));
+        assert(tlb_translate(0x600000 + (i << 12)) == (0x620000 + (i << 12)));
+        assert(tlb_translate(0x700000 + (i << 12)) == (0x720000 + (i << 12)));
+        assert(tlb_translate(0x800000 + (i << 12)) == (0x820000 + (i << 12)));
+        assert(tlb_peek(0x800000 + (i << 12)) == 1);
+        assert(tlb_peek(0x400000 + (i << 12)) == 0);
+        assert(tlb_peek(0x0001000) == 0);
+        assert(tlb_peek(0x2101000) == 0);
+        assert(tlb_peek(0x2301000) == 1);
+        assert(tlb_peek(0x0501000) == 3);
+        assert(tlb_peek(0x0801000) == 4);
+        assert(tlb_peek(0x0A01000) == 2);
+    }
+}
 tlb_clear();
 assert(tlb_peek(0x301000) == 0);
 assert(tlb_peek(0x501000) == 0);
