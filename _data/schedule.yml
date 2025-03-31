@@ -449,6 +449,9 @@
 
 - date: 2025-04-18
   week: 14
+
+- date: 2025-04-22
+  week: 15
   title: out of order 2 / side channels
   slides_ref:
   - spectre
@@ -456,7 +459,11 @@
     *  side chnanels generally
     *  side channels in the cache
 
-- date: 2025-04-22
+- date: 2025-04-23
+  lab: true
+  week: 15
+
+- date: 2025-04-24
   week: 15
   title: meltdown/spectre
   slides_ref:
@@ -467,13 +474,6 @@
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
-
-- date: 2025-04-23
-  lab: true
-  week: 15
-
-- date: 2025-04-24
-  week: 15
 
 - date: 2025-04-25
   week: 15
