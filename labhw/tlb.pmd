@@ -6,7 +6,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  29 March 2025: update example 2 test to access all other tests and more aggressively
+*  29 March 2025: update example 2 test to access all other sets and more aggressively
     use page offsets, so it hopefully finds errors more reliably
 </div>
 
