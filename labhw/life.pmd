@@ -9,6 +9,7 @@ author:
 Changelog:
 
 *  6 April 2025: add instructions re: enabling clang on porta; update skeleton code to avoid warning when compiled with GCC
+*  9 April 2025: add note re: getting proper stack traces on portal by setting ASAN_SYMBOLIZER_PATH
 </div>
 
 # Your Task
@@ -74,6 +75,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
 - `life-asan 10 input/make-a time`{.bash} to check for memory leaks and other memory errors (but do not trust its timing, the address sanitizer slows things down a lot).
 
+    
 - `life-tsan 10 input/make-a time`{.bash} to check for race conditions and some other types of synchornization errors (but do not trust its timing, the address sanitizer slows things down a lot).
 
     - if you get an error about a race condition with pthread_barrier_destroy and pthread_barrier_wait, see the first caveat below.
@@ -86,7 +88,15 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
   
 - `./time-examples.sh`{.bash} to get a sense of how you are doing on parallel performance.
 
-- `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer, ThreadSanitizer
+- `./sanitizer-test.sh`{.bash} to try a bunch of sizes in AddressSanitizer, ThreadSanitizer.
+
+
+>    On portal, if you get stack traces with no line numbers from the life-asan, life-tsan, and/or sanitizer-test, try running
+>
+>         export ASAN_SYMBOLIZER_PATH=$(which llvm-symbolizer)
+>
+>    and rerunning the command. (This should select a different program to convert addresses into line numbers for AddressSanitizer
+>    and ThreadSanitizer.)
 
 # Tips
 
