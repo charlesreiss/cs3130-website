@@ -10,6 +10,7 @@ Changelog:
 
 *  6 April 2025: add instructions re: enabling clang on porta; update skeleton code to avoid warning when compiled with GCC
 *  9 April 2025: add note re: getting proper stack traces on portal by setting ASAN_SYMBOLIZER_PATH
+* 10 April 2025: correct course policies link
 </div>
 
 # Your Task
@@ -63,7 +64,7 @@ Additional constraints:
 
    (With small numbers of rows or columns, it is okay if the work is not split up as evenly. For extremely small numbers of rows or columns, it is okay if some threads have no work to do.)
 
-1. And, of course, you are still bound by all the usual [course policies](policies.html#write-your-own-code).
+1. And, of course, you are still bound by all the usual [course policies](../policies.html#write-your-own-code).
 
 1. You must not use OpenMP (subject of one of our labs) in your solution: we are trying to measure your understanding of the lower-level tools OpenMP uses.
     
