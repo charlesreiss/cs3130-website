@@ -70,15 +70,15 @@ Rewrite the following instructions using the `%x01` taking into account how regi
 might occur that would allow all of these instructions to be placed in the instruction queue
 at once:
 
-    add %r01, %r01-> %r01  
-    imul %r02, %r03-> %r04 
-    add %r01, %r01-> %r01  
-    add %r02, %r04-> %r04  
-    add %r03, %r01-> %r01  
-    imul %r01, %r04-> %r01 
-    movq 0x0(%r01)-> %r01
-    imul %r01, %r03-> %r03 
-    movq %r03, 0x0(%r01)
+    add %r01, %r02 -> %r01  
+    add %r01, %r01 -> %r01  
+    imul %r02, %r03 -> %r03 
+    add %r02, %r01 -> %r01  
+    add %r03, %r04 -> %r04  
+    imul %r01, %r04 -> %r01 
+    movq 0x0(%r01) -> %r01  
+    imul %r01, %r03 -> %r03 
+    movq %r03, 0x0(%r01)-> 
 
 Record your answer at the answer sheet linked above.
 
@@ -88,17 +88,16 @@ Suppose the instruction queue for this processor contains the following instruct
 *after renaming*
 
     A. add %x05, %x06 -> %x16
-    B. sub %x16, %x07 -> %x17
-    C. movq 0x100(%x05) -> %x18
-    D. movq 0x108(%x05) -> %x19
-    E. imul %x01, %x02 -> %x20
-    F. add %x05, %x08 -> %x21
-    G. sub %x18, %x19 -> %x22
-    H. add %x01, %x16 -> %x23
-    I. movq 0x200(%x22) -> %x24
-    J. imul %x08, %x16 -> %x25
-    K. addq %x25, %x20 -> %x26
-    L. movq %x26, 0x200(%x22)
+    B. imul %x01, %x02 -> %x17
+    C. add %x05, %x08 -> %x18
+    D. movq 0x100(%x05) -> %x19
+    E. movq 0x108(%x05) -> %x20
+    F. sub %x17, %x19 -> %x21
+    G. add %x01, %x15 -> %x22
+    H. movq 0x200(%x21) -> %x23
+    I. imul %x20, %x18 -> %x24
+    J. addq %x24, %x19 -> %x25
+    K. movq %x25, 0x200(%x21)
 
 Initially the value of registers `%x01` through `%x15` is available.
 
@@ -106,11 +105,11 @@ Complete the timeline to show how all the instructions can be issued and execute
 
                     cycle 1    2    3   4    5    6   7    8     9    10   11    12 
     execution unit:       
-    arithmetic 1          A
-    arithmetic 2          E
-    memory stage 1        C
-    memory stage 2             C
-    memory stage 3                  C
+    arithmetic 1          
+    arithmetic 2          
+    memory stage 1        
+    memory stage 2        
+    memory stage 3        
     
 Record your answer at the answer sheet linked above.
 
@@ -119,13 +118,13 @@ Record your answer at the answer sheet linked above.
 Complete a pipeline diagram for the processor running the following instructions
 (shown in the form from **before** register renaming):
 
-    1. add %r02, %r01 -> %r01
-    2. add %r02, %r01 -> %r01
-    3. add %r02, %r03 -> %r03
-    4. add %r04, %r05 -> %r05
-    5. add %r05, %r01 -> %r01
-    6. add %r01, %r01 -> %r01
-    7. add %r03, %r05 -> %r05
+    1. add %r02, %r01 -> %r01                                                                                                                          
+    2. add %r02, %r01 -> %r01                                                                                                                          
+    3. add %r02, %r03 -> %r03                                                                                                                          
+    4. add %r02, %r04 -> %r04                                                                                                                          
+    5. add %r04, %r05 -> %r05                                                                                                                          
+    6. add %r03, %r04 -> %r04                                                                                                                          
+    7. add %r06, %r07 -> %r07                                                                                                                          
     8. add %r02, %r04 -> %r04
 
 Identify the stages as:
