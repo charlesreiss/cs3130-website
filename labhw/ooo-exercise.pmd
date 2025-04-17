@@ -123,7 +123,7 @@ Complete a pipeline diagram for the processor running the following instructions
     3. add %r02, %r03 -> %r03                                                                                                                          
     4. add %r02, %r04 -> %r04                                                                                                                          
     5. add %r04, %r05 -> %r05                                                                                                                          
-    6. add %r03, %r04 -> %r04                                                                                                                          
+    6. add %r05, %r04 -> %r04                                                                                                                          
     7. add %r06, %r07 -> %r07                                                                                                                          
     8. add %r02, %r04 -> %r04
 
