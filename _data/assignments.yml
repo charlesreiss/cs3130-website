@@ -328,8 +328,7 @@
   page: labhw/ooo-exercise.html
   due: 2025-04-25
   feedback: "extracted*,autograder*"
-  tentative: true
-  no-late: true
+  xxx-no-late: true
 
 - name: C++ OR templates
   short_name: cpp
