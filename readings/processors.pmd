@@ -7,6 +7,7 @@ author: Luther Tychnoviech, with modifications by Charles Reiss
 Changelog:
 
 *  10 Apr 2023: add section on OOO pipelines, and handling misspeculation
+*  21 Apr 2025: correct register renaming example where wrong tag was updated
 </div>
 
 
@@ -642,8 +643,8 @@ it would become
  index       ready   tag
 ---------   ------- --------------
 0 = RAX     1       0
-1 = RCX     0       19
-2 = RDX     1       9
+1 = RCX     0       18
+2 = RDX     0       19
 3 = RBX     1       15
 ⋮           ⋮       ⋮
 
