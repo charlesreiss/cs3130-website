@@ -228,6 +228,7 @@
 
 - name: cache exercises due
   page: labhw/cache-lab.html
+  lab: true
   due: 2025-03-25
   no_assignments_json: true
 
