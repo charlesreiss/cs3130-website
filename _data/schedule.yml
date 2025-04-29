@@ -481,6 +481,8 @@
 - date: 2025-04-29
   week: 16
   title: exam review
+  description: |
+    - [notes from 12pm section](recordings/20250429-notes.txt)
 
 - date: 2025-05-01
   title: final exam (9:30am) section
