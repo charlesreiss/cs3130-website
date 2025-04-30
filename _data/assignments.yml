@@ -322,6 +322,7 @@
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
+  missing-if-no-feedback: true
   due: 2025-04-23
 
 
