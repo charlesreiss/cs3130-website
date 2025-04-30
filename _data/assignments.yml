@@ -136,6 +136,7 @@
   due_message: cache exercises due 25 March 2025
   lab: true
   due: 2025-03-05
+  missing-if-no-feedback: true
   due_exact: 2025-03-25 23:59:59
 
 - name: pagetable 2 (pre code review)
