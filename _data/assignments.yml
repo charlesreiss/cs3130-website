@@ -333,6 +333,7 @@
   feedback: "extracted*,autograder*"
   xxx-no-late: true
   missing-if-no-feedback: true
+  close_exact: 2025-05-01T00:00:00
 
 - name: C++ OR templates
   short_name: cpp
