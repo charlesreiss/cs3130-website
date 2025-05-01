@@ -332,6 +332,7 @@
   due: 2025-04-25
   feedback: "extracted*,autograder*"
   xxx-no-late: true
+  missing-if-no-feedback: true
 
 - name: C++ OR templates
   short_name: cpp
