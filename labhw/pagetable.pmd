@@ -14,8 +14,8 @@ Your task:
 
 1.  This assignment has multiple submissions.
 
-    For **all** parts of this assignment, follow the coding style described below
-    and make sure your code does not
+    For **all** parts of this assignment, please follow the coding style described below
+    (although we won't grade it until part 3) and make sure your code does not
     give warnings when compiled with `-Wall`^[ ...because you resolved the warnings,
 		not because you disabled them with warning-ignoring `#pragma`s or the like.
 	].
@@ -24,12 +24,10 @@ Your task:
     1.  `ptbr` and `translate` from item 2 for LEVELS=1 and POBITS=12.
         We describe below how you
         can test translate without working `page_allocate`.
-    2.  `ptbr` and `page_allocate` from item 2 for LEVELS=1 and POBITS=12, where `ptbr` is manually
-        set to an allocated, empty page table as described below
-        (i.e., its lower 12 bits are 0).
+    2.  `ptbr` and `allocate_page` from item 2 for LEVELS=1 and POBITS=12.
 
-    (You can choose which to complete; if you attempt both, we will take the grade based on whichever
-    option's implementation is more complete.)
+    (You can choose which to complete; if you attempt both,
+    we will take the grade based on whichever option's implementation is more complete.)
 
     For the second submission, which is in preparation for a code review,
     you must complete all of items 2 and 3 below.
@@ -39,9 +37,10 @@ Your task:
 
     (This assignment will be worth considerably more than a normal one-week assignment.
     A vast majority of the grade for the assignment will be based on what you submit
-    on the final submission.
-    A significant part of the grade for the final submission will be based on functionality
-    which should also have been completed in earlier submissions.)
+    on the final submission. The submissions for the first two parts will be worth
+    less than a normal submission.
+    A significant part of the grade for the final submission will
+    be based on functionality which should also have been completed in earlier submissions.)
 
 2.  Implement a simulation of multi-level page table lookup and allocation.
 
@@ -72,16 +71,18 @@ Your task:
         using the currently setup page table. If the address is not allocated,
         return a value with all bits set to 1.
 
-    *  `void page_allocate(size_t va)` ---
-        Allocate the virtual page that the virtual address `va` is in (if it is not
-        allocated already).
-        This includes setting up a mapping in the page tables pointed to by `ptbr` so that
-        that virtual page maps to a physical page allocated with `posix_memalign`
-        (unless such a mapping already exists).
+    *  `int allocate_page(size_t start_va)` ---
+        allocates and maps the virtual page which starts at virtual address `start_va`
+        (if it is not allocated ready).
 
-        Any page tables not yet allocated will be allocated using `posix_memalign`.
-        (Any pages or page tables already created, such as by a prior
-        call to `page_allocate` will be reused. If the mapping is already entirely
+        If `start_va` is not the address at the start of a page, returns `-1`.
+        If `start_va` is the address at the start of a page, but the
+        page is already allocated, returns `0`; otherwise, returns `1`.
+
+        Any data pages and page tables not yet allocated will be
+        allocated using `posix_memalign`.
+        (Any data pages or page tables already created, such as by a prior
+        call to `allocate_page` will be reused. If the mapping is already entirely
         setup, the function should do nothing.)
 
 3.  Prepare a `Makefile` for your code that:
@@ -113,7 +114,10 @@ Your task:
 6.   The interface we describe above does not support deallocating memory.
 
      Propose some kind of interface to support de-allocation for the page table
-     implementation. You can decide what kind of function(s) should be part of this interface.
+     implementation.
+     You can decide what kind of function(s) should be part of this interface,
+     but it must be possible to implement your interface without modifications
+     to `allocate_page` or `translate`.
      Document this interface in your README, including at least:
 
      *  function prototype(s)^[In C, a function prototype is a function declaration like you might find in a header file, including the function's return type and argument types.] for the interface;
@@ -121,21 +125,8 @@ Your task:
      *  what each function will deallocate when it is called (including any way
         in which this depends on its arguments or other factors)
 
-     Then, determine whether the interface you chose is possible to implement
-     without either changing the existing page_allocate/translate interface
-     or reworking the internals of your implementation of those functions.
-
-     If so, implement it (including appropriate changes to `mlpt.h` and your .c files).
-
-     If not, document why you did not implement the interface in your README.
-     This explanation *must* include at least one of ---
-
-     *  a description of specific changes that should be made to the `page_allocate`
-        and/or `translate` implementations to allow the de-allocation interface
-        to be implemented; or
-     *  an explanation of how the interfaces for `page_allocate` and/or `translate`
-        (and related functionality) should be changed to accommodate de-allocation
-        (in addition to the code in any new de-allocation-specific functions)
+    Then, implement this interface (including appropriate changes to `mlpt.h`
+    and your .c files).
 
 {/}
 
@@ -184,17 +175,20 @@ extern size_t ptbr;
 size_t translate(size_t va);
 
 /**
- * Setup a mapping in the page tables pointed to by `ptbr` so that
- * the virtual page that the virtual address `va` is in
- * maps to a physical page allocated with `posix_memalign`
- * (unless such a mapping already exists).
+ * Allocates and maps the virtual page which starts at virtual address `start_va`
+ * (if it is not allocated ready).
  *
- * Any page tables not yet allocated will be allocated using `posix_memalign`.
- * (Any pages or page tables already created, such as by a prior
- * call to `page_allocate` will be reused. If the mapping is already entirely
+ * If `start_va` is not the address at the start of a page, returns `-1`.
+ * If `start_va` is the address at the start of a page, but the
+ * page is already allocated, returns `0`; otherwise, returns `1`.
+ *
+ * Any data pages and page tables not yet allocated will be
+ * allocated using `posix_memalign`.
+ * (Any data pages or page tables already created, such as by a prior
+ * call to `allocate_page` will be reused. If the mapping is already entirely
  * setup, the function should do nothing.)
  */
-void page_allocate(size_t va);
+void allocate_page(size_t va);
 ```
 
 # Pages, page table and ptbr format
@@ -219,7 +213,7 @@ void page_allocate(size_t va);
 
     The number of LEVELS and the size of page tables will determine the effective
     size of virtual addresses. Typically, the effective size of virtual addresses will be less than
-    64 bits, so the most significant bits of the `size_t` passed into translate and page_allocate will
+    64 bits, so the most significant bits of the `size_t` passed into translate and allocate_page will
     be unused.
     The virtual page number for the first part will appear immediately after these unused bits.
 
@@ -263,19 +257,19 @@ You need to choose a license for the code you supply. Include the chosen license
 
 This should be based on an existing family of license agreements.
 Unless you have had formal training in commercial law,
-you should use an existing license, not try to create your own.
+we recommend using an existing license, not trying to create your own.
 
 ## `licenses.txt`
 
-In `licenses.txt`, list at least three licenses you considered;
+In `licenses.txt`, list at least three licenses you considered,
 include a short (sentence or two) summary of what they seemed to say (ideally
 focused on the factors that mattered to you).
 Then describe briefly (sentence or two) why you chose the license you chose.
 
-Your review should include at least three licenses, including
+Your review should include
 
-- at least one of GPL or LGPL
-- at least one of MIT, BSD, Boost, Apache, SQLite
+- at least one of GPL, LGPL, or AGPL
+- at least one of MIT, BSD, Boost, Apache, or SQLite
 
 All should be *software* licenses; this excludes licenses
 such as the various CC licenses for creative works,
@@ -304,7 +298,7 @@ I don't personally know anyone who writes roff by hand;
 generally it is output from a source-code processing tool like `doxygen`^[which is installed on department machines; see `man doxygen`{.bash} for more.]
 or a converter like `pandoc` from an easier-to-write format like markdown or reStrucuredText.
 
-Including man page `page_allocate.3.gz` and `translate.3.gz` in your submission will earn you kudos.
+Including man page `allocate_page.3.gz` and `translate.3.gz` in your submission will earn you kudos.
 To test that these work properly,
 
 1. create a directory `man3` (i.e., `mkdir man3`{.sh})
@@ -369,9 +363,9 @@ To test that these work properly,
     seems to think that page table entries don't contain the addresses you think they do, using a different format
     might be why.
 
-## Testing `translate` without `page_allocate`
+## Testing `translate` without `allocate_page`
 
-1.  You can manually set `ptbr` to a hard-coded page table array to test `translate` without `page_allocate` being implemented.
+1.  You can manually set `ptbr` to a hard-coded page table array to test `translate` without `allocate_pgae` being implemented.
     The below items show examples of how to do this with POBITS = 12 and LEVELS = 1.
 
 2.  After including `<stdalign.h>`, you can use `alignas(4096)`^[An alternate way to do this, mentioned by previous version of this writeup,
@@ -439,22 +433,22 @@ To test that these work properly,
 
         translate(0x3045) == (size_t) &data_for_page_3[0x45]
 
-## Testing `page_allocate`
+## Testing `allocate_page`
 
-1.  Since `page_allocate`'s primary job is to allocate memory when neeeded, for testing, I would recommend having some
+1.  Since `allocate_page`'s primary job is to allocate memory when neeeded, for testing, I would recommend having some
     way to count how many allocations occur.
 
-2.  With `LEVELS=1`, there are three cases to test for `page_allocate`:
+2.  With `LEVELS=1`, there are three cases to test for `allocate_page`:
 
     *  on the first call, two physical pages should be allocated --- one to create the page table (and set `ptbr`
        to a non-zero value) and one to allocate a page for data
     *  on later calls:
-       *  if the page number supplied to `page_allocate` hasn't been used before
+       *  if the page number supplied to `allocate_page` hasn't been used before
           (is not marked valid in the page table), then
           one page for data should be allocated;
        *  otherwise, no pages should be allocated
 
-3.  `page_allocate` should set page table entries pointed to by `ptbr`. You can treat `ptbr` like an array of `size_t`s
+3.  `allocate_page` should set page table entries pointed to by `ptbr`. You can treat `ptbr` like an array of `size_t`s
     to examine them. For example, to print out the page table entry with index 3 (with POBITS=12, LEVELS=1):
 
         size_t *pointer_to_table;
@@ -484,11 +478,11 @@ int main() {
     // 0 pages have been allocated
     assert(ptbr == 0);
 
-    page_allocate(0x456789abcdef);
+    allocate_page(0x456789abc000);
     // 5 pages have been allocated: 4 page tables and 1 data
     assert(ptbr != 0);
 
-    page_allocate(0x456789abcd00);
+    allocate_page(0x456789abc000);
     // no new pages allocated (still 5)
 
     int *p1 = (int *)translate(0x456789abcd00);
@@ -498,12 +492,12 @@ int main() {
 
     assert(translate(0x456789ab0000) == 0xFFFFFFFFFFFFFFFF);
 
-    page_allocate(0x456789ab0000);
+    allocate_page(0x456789ab0000);
     // 1 new page allocated (now 6; 4 page table, 2 data)
 
     assert(translate(0x456789ab0000) != 0xFFFFFFFFFFFFFFFF);
 
-    page_allocate(0x456780000000);
+    allocate_page(0x456780000000);
     // 2 new pages allocated (now 8; 5 page table, 3 data)
 }
 ```
@@ -526,7 +520,7 @@ indicates that the size of that region is computed from the virtual page number 
 
 <img src="files/pagetable/translate-1level.svg" width="50%">
 
-### 1-level page_allocate
+### 1-level allocate_page
 
 <img src="files/pagetable/allocate-1level.svg" width="50%">
 
