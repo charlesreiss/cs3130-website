@@ -114,8 +114,8 @@ Your task:
      *  what each function will deallocate when it is called (including any way
         in which this depends on its arguments or other factors)
 
-    Then, implement this interface (including appropriate changes to `mlpt.h`
-    and your .c files).
+     Then, implement this interface (including appropriate changes to `mlpt.h`
+     and your .c files).
 
 {/}
 
