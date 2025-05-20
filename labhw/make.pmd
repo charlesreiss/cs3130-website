@@ -3,12 +3,6 @@ title: Make lab
 author: Luther Tychnoviech
 ...
 
-<div class="changelog">
-Changelog:
-
-*  20 Jan 2025: reference `gcc` instead of `clang` becaues of what's easily available on portal at the moment
-</div>
-
 This lab is designed to help you feel comfortable using GNU Make, one of the oldest and still most-common build tools; as well as with many-file C projects.
 
 
@@ -28,7 +22,7 @@ We would recommend working with a partner, but it is also fine if you do this al
         - building each `.c` file into a `.o` file
         - combining `cheer.o` and `grunt.o` into a library (either `libsay.a` or `libsay.so`)
         - combining the library and `guesser.o` into program `guesser`
-    - has `CC`, `CFLAGS`, and `LDFLAGS` we can edit
+    - has `CC`, `CFLAGS`, and `LDFLAGS` we can edit; `CC` and `CFLAGS` must be used when running the compiler, and `LDFLAGS` when generating any `.so` library or executable
     - `make all` creates `guesser` and its dependencies
     - `make clean` deletes all files that `make` can recreate
 
