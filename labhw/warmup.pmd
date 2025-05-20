@@ -4,12 +4,6 @@ author: Charles Reiss
 ...
 
 
-<div class="changelog">
-Changelog:
-
-*  29 Jan 2025: correct wrong use of `result[0]` repeatedly instead of `result[0]`, `result[1]`, `result[2]` in equivalent code for second string_split example.
-</div>
-
 # Your task
 
 1.  Create C files as follows:
@@ -58,6 +52,9 @@ Changelog:
        *  it appearing in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
           from the 2018 POSIX specification
 
+      Some examples of how `string_split` should behave, that you can use to test your
+      function, are shown below.
+
     *  in `split.h`, write an appropriate header file declaring `string_split()` and include
        [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
        against multiple inclusion.
@@ -65,7 +62,8 @@ Changelog:
     *  in `main.c`, write a `main()` function that:
 
        *  constructs a value for `sep` by the command line arguments, or,
-          if no command line arguments are provided, uses `" \t"`.
+          if no command line arguments are provided, uses `" \t"` [a space
+          character followed by a tab character].
           When there are command-line arguments,
           the value of `sep` should be the result of concatenating all the command line
           arguments. For example, if the `main()` is compiled into an executable `split`, then
@@ -81,39 +79,48 @@ Changelog:
 
                ./split ab c
 
-          should choose a sep value of `abc`.
+          should choose a sep value of `"abc"`.
 
       *  reads lines of input (without prompting). For each line, it should:
 
-         *  exit if the line is one period (`.`) with no other text or whitespace;
-         *  otherwise call `string_split` with that input and the chosen `sep` value,
-            then print out the resulting array with each word surrounded by square
-            brackets (`[` and `]`) and without spaces between words, followed by a newline, then frees
-            the resulting array.
+         *  exit if the line is one period (`.`) with no other text or whitespace
+            (other than a trailing newline, which we will not consider part of the line);
+         *  otherwise call `string_split` with that input
+            (without any trailing newline or similar),
+            and the chosen `sep` value, then print out the resulting array with
+            each word surrounded by square
+            brackets (`[` and `]`) and without spaces between words,
+            followed by a newline, then frees the resulting array.
 
-      Your program must support lines of input of at least 4000 bytes.
-      If an input line is more than 4000 bytes, your program may not
+      Some examples of expected transcripts from the `split` program are shown below.
+
+      Your program must support lines of input lines of at least 5000 bytes.
+      If an input line is more than 5000 bytes, your program may not
       access out of bounds memory (such as might cause a segfault), but
-      otherwise we do not care what it does.
+      otherwise we do not care what it does. Your `string_split` function may
+      not have any arbitrary limits on the size of its arguments (but we
+      do not care how it handles running out of memory).
 
-      We intend to test your `main.c` with our own `split.c`, so
-      please put any functions other than `string_split` that it needs
-      within `main.c`. Your implementation may use functions defined in the C or POSIX standards.
+      We will test your `main.c` with our own `split.c`, so
+      put any functions other than `string_split` that it needs within `main.c`.
 
-      (Some examples of expected transcripts are shown below.)
-
-2.  Create a Makefile such that typing `make` will build (if necessary) `split.o`, `main.o`
-    and link them into an executable `split`.
+2.  Create a Makefile such that typing `make` will build (if necessary) `split.o`,
+    `main.o` and link them into an executable `split`.
 
 3.  Make sure your C files do not produce any warnings when compiled with `-D_XOPEN_SOURCE=700 -Og -g -std=c11 -Wall -pedantic` (assuming GCC or Clang). (It is okay if your Makefile uses different options.)
 
-4.  Make sure your code does not have memory leaks or errors. We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
+4.  Make sure your code does not have memory leaks or errors.
+    We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
+
+    Also, we will test your `string_split` by calling it with buffers that are just
+    big enough for the arguments, so going just one byte out of bounds would
+    be an error. (This may not match how your `main.c` calls `string_split`.)
 
 5.  We may use automated tests to assess your submission. Your solution may not hard-code the solution for any of the test cases or intentionally interfere with the testing environment.
     <small>(By "hard-code the solution", we mean code that looks for our specific test inputs (such as checking if the input contains the "XfooX" because one of the test cases is "XfooXbar")
     rather than the more general situation being tested (such checking for separator characters at the beginning of the input); it's not a prohibition on having less specific special cases.)</small>
 
-6.  Submit your solution to the [submission site](https://kytos02.cs.virginia.edu/cs3130-spring2025/submit/)
+6.  Submit your solution to the [submission site](https://kytos02.cs.virginia.edu/cs3130-fall2025/submit/)
 
 #  Examples
 
