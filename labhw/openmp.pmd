@@ -3,12 +3,6 @@ title: OpenMP -- parallelism made easy
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  26 March 2025 5:30pm: use /usr/bin/emacs as example file instead of /usr/bin/emacs-gtk since portal12 appears not to have the latter
-</div>
-
 # Task
 
 {.exercise ...}
@@ -25,8 +19,10 @@ To parallelize, separate the code into Map and Reduce steps and try several Open
 
 For full credit on submission, you must:
 
-*  implement and time all the Map and Reduce strategies below, except those labeled "not required" or "extra"; 
-*  time one of the strategies labeled "extra"; and
+*  implement multiple parallel versions of `geomean`, each of which uses a combination of
+    a Map and Reduce version;
+*  test at least 3 Map strategies (among all your versions of `geomean`)
+*  test at least 3 Reduce strategies (among all your verisons of `geomean`)
 *  choose your combinations of Map and Reduce strategies so you have a reasonable guess about the best combination.
    (For example, you could do this by timing all combinations, or by timing all the map strategies with a single reduce strategy
     and vice-versa.)
@@ -213,7 +209,7 @@ like you to try first with the lower-level tools to better understand what is go
 
 - `#pragma omp atomic capture`{.c} means "the next statement (`i = j++`{.c}) is a capture-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
-### (extra) Task queue with larger tasks
+### Task queue with larger tasks
 
 A variant of the task queue method to reduce the impact of the performance the atomic operation might be to have threads increment the shared counter
 by some value `K` (instead of `1`) and do work for `K` items instead of 1:
@@ -230,7 +226,7 @@ while (1) {
 }
 ```
 
-### (extra) OpenMP's parallel for schedules
+### OpenMP's parallel for schedules
 
 OpenMP's `parallel for` construct supports a "schedule" option where rather than dividing up the threads statically
 in as large chunks as possible, it can use another strategy.
@@ -432,7 +428,7 @@ then atomically update the shared total
 - `#pragma omp atomic update`{.c} means "the next statement (`result op= local_result`{.c}) is an update-type statement and needs to run atomically". There are other atomic statement types; see <https://www.openmp.org/spec-html/5.0/openmpsu95.html>.
 
 
-### (not required) Many-to-few reduction -- array version 
+### Many-to-few reduction -- array version 
 
 If your reduction step is more than a single update operation, a more complicated solution is needed. See [the Appendix](#appendix-fancy-reduce) for more.
 
