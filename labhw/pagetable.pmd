@@ -3,12 +3,6 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  18 March 2025: clarify "defined arguments" -> "defined argument variables"
-</div>
-
 {.exercise ...}
 Your task:
 
@@ -88,7 +82,7 @@ Your task:
 3.  Prepare a `Makefile` for your code that:
 
      *  produces, as its default target, a library called libmlpt.a that exports the API defined in `mlpt.h` (and does not export a function called `main`)
-     *  has CC, CFLAGS and LDFLAGS defined
+     *  has CC, CFLAGS defined
      *  uses the defined argument variables (CFLAGS, etc.) in its work
      *  has correct dependencies for each target
      *  has `all` and `clean` targets
@@ -99,12 +93,7 @@ Your task:
      *  How to customize `config.h`, with some guidance on how to pick values for that file.
      *   Any known bugs or limitations (if you know of none, there is no need to say so; if you have an incomplete implementation so far, you'll probably have some to document).
 
-     You are encouraged to add additional detail, such as
-
-     *  Any limitations, aspects you think are incomplete, or suggestions for future expansion.
-     *  Big-O analysis (time, space, or both).
-     *  Description of any testing hooks you added.
-     *  Code samples for how to use this library.
+     You may also include additional detail in your README.
 
      If anyone or any resource helped your implementation, also include an
      `ACKNOWLEDGEMENTS` file acknowledging those people and/or resources.
@@ -224,9 +213,21 @@ void allocate_page(size_t va);
 # Coding Style
 
 - 4-space indentation
-- `{`{.c} on the same line as `)` and `}`{.c} on a line by itself
+- `{`{.c} on the same line as `)` and `}`{.c} on a line by itself;
+  this means that else-if statements should be written like
+
+        if (condition) {
+            ...
+        }
+        else if (condition) {
+            ...
+        }
+        else {
+            ...
+        }
+
 - No empty statements
-- Spaces around operators
+- Spaces around binary operators (including `<<`, `=`, `|`, etc., but not including `(` or `)` or `[` or `]` or `~`))
 - Space before `(` if and only if it is preceded by a control construct
         (e.g., `if (` but `translate(`)
 - No postfix `++`{.c} or `--`{.c} unless part of an expression that uses the return value (such as `a[i++]`).
@@ -247,7 +248,7 @@ void allocate_page(size_t va);
 		and appear together in multiple places, they should be in their own function.
 	- Functions should be small enough to look at on one screen
 		unless that have a very orderly structure such as a long `switch`{.c} with simple code in the `case`{.c}s.
-	- Comments should be present to describe any esoteric code decisions.
+	- Comments should be present to describe any esoteric code decisions
 	- All code should have a clear purpose.
 
 # `LICENSE` and `licenses.txt`
