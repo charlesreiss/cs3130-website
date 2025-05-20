@@ -1,21 +1,24 @@
 - name: make
   lab: true
   page: labhw/make.html
-  open: 2025-01-16
-  due: 2025-01-22
+  open: 2025-08-27
+  due: 2025-09-03
   submit_file: Makefile
+  tentative: true
 
 
 - name: permissions
   lab: true
   page: labhw/permissions.html
   submit_file: permissions-lab.tar
-  due: 2025-01-29
+  due: 2025-09-11
+  tentative: true
 
 - name: warmup
-  open: 2025-01-16
-  due: 2025-01-31
+  open: 2025-08-26
+  due: 2025-09-13
   page: labhw/warmup.html
+  tentative: true
   grade_describe: |
     When the output below indicates "not yet graded" that means your output did not match
     something the autograder recognized. Usually, this means something is wrong, but we
@@ -30,23 +33,25 @@
 - name: signal handling
   short_name: signal
   lab: true
+  tentative: true
   page: labhw/signals.html
-  due: 2025-02-05
+  due: 2025-09-17
   submit_file: "*.c"
 
 - name: fork lab
   short_name: fork-lab
   lab: true
+  tentative: true
   page: labhw/fork-lab.html
   submit_files:
   - "my_system.c"
   - "*.c"
-  due: 2025-02-12
-  due_exact: 2025-02-14 11:59:59
+  due: 2025-09-24
 
 - name: timing
-  due: 2025-02-17
+  due: 2025-09-26
   page: labhw/timing.html
+  tentative: true
   grade_describe: |
     This assignment will be mostly hand-graded (since a lot of it is hard to check automatically),
     so there will probably not that much useful automated output below.
@@ -67,16 +72,17 @@
 
 - name: virtual memory exploration
   page: labhw/vm-explore.html
+  tentative: true
   short_name: vmexplore
   lab: true
   submit_file: "lab.c"
-  due: 2025-02-19
-  due_exact: 2025-02-21 11:59:59
+  due: 2025-10-01
 
 - name: fork HW
   short_name: fork
   comment: "FIXUP: missing HW?"
   comment: for pipelines? after covered in lecture?
+  tentative: true
   page: labhw/fork.html
   grade_describe: |
     If all tests fail/do not run, it may be because:
@@ -88,7 +94,7 @@
     <p>
      Memory errors reported below can include issues related to our testing code outputting what you return (in which case they make indicate a line number in your code related to the allocation you return).
   submit_file: "fork_run.c"
-  due: 2025-02-21
+  due: 2025-10-03
 
 - name: sync games
   lab: true
@@ -98,14 +104,15 @@
   comments: needs changes for in-person?
   comments: need .php stuff
   missing-if-no-feedback: true
-  due: 2025-02-26
+  due: 2025-10-08
 
 - name: pagetable part 1
   short_name: pagetable1
+  tentative: true
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
-  due: 2025-02-28
+  due: 2025-10-10
   grade_describe: |
     Note that the results below include many tests which aren't part of the grade for part 1.
     <p>
@@ -131,21 +138,21 @@
 
 - name: cache exercises
   short_name: cachelab
+  tentative: true
   old_page: labhw/memoize.html
   page: labhw/cache-lab.html
-  due_message: cache exercises due 25 March 2025
   lab: true
-  due: 2025-03-05
+  due: 2025-10-15
   missing-if-no-feedback: true
-  due_exact: 2025-03-25 23:59:59
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
+  tentative: true
   page: labhw/pagetable.html
   portion: 0.25
-  open: 2025-02-28
-  due: 2025-03-19
-  due_exact: 2025-03-19 13:59:59
+  open: 2025-10-01
+  due: 2025-10-22
+  due_exact: 2025-10-22 15:29:59
   pre_lab: true
   no_late: true
   no-late: true
@@ -180,15 +187,17 @@
   - "*.txt"
 
 - name: code reviews
+  tentative: true
   lab: true
   short_name: codereview
   page: labhw/code-review.html
   comments: needs submission site link correction
   missing-if-no-feedback: true
-  due: 2025-03-19
+  due: 2025-10-22
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3
+  tentative: true
   comment: no introducing lab
   comment: connected to code review lab
   comment: manual page???
@@ -196,7 +205,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2025-03-21
+  due: 2025-10-24
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
@@ -227,31 +236,28 @@
   - "*.txt"
   - "*.gz"
 
-- name: cache exercises due
-  page: labhw/cache-lab.html
-  lab: true
-  due: 2025-03-25
-  no_assignments_json: true
-
 - name: openmp
   short_name: openmp
+  tentative: true
   lab: true
   page: labhw/openmp.html
   submit_files:
   - "*.c"
   - "performance.txt"
-  due: 2025-03-26
+  due: 2025-10-29
 
 
 - name: cache programs
   short_name: cache-programs
+  tentative: true
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
-  due: 2025-03-28
+  due: 2025-10-31
 
 
 - name: pthreads (dining philosophers) 
   lab: true
+  tentative: true
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
@@ -264,10 +270,11 @@
   - dp-arb.c
   - dp-rh.c
   - dp-backoff.c
-  due: 2025-04-02
+  due: 2025-11-05
 
 - name: TLB
   short_name: tlb
+  tentative: true
   comment: no introducing lab
   page: labhw/tlb.html
   submit_files:
@@ -282,18 +289,20 @@
     <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
         or because you evict the wrong entry sometimes.
     </ul>
-  due: 2025-04-04
+  due: 2025-11-07
 
 - name: networking
   lab: true
+  tentative: true
   page: labhw/networking.html
   submit_file: "*.c"
-  due: 2025-04-09
+  due: 2025-11-12
 
 - name: life
   short_name: life
+  tentative: true
   page: labhw/life.html
-  due: 2025-04-11
+  due: 2025-11-14
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
@@ -303,37 +312,40 @@
 
 - name: secure channels lab
   lab: true
+  tentative: true
   short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
-  due: 2025-04-16
+  due: 2025-11-19
   submit_file: attack.c
-
 
 - name: pipeline
   short_name: pipeline
+  tentative: true
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
-  missing-if-no-feedback: true
-  due: 2025-04-18
+  xxx-missing-if-no-feedback: true
+  due: 2025-11-21
 
 - name: side channel
   short_name: side-channel
+  tentative: true
   lab: true
+  hide: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
-  missing-if-no-feedback: true
-  due: 2025-04-23
+  xxx-missing-if-no-feedback: true
+  due: 2025-12-03
 
 
 - name: OOO
   short_name: OOO
+  tentative: true
   page: labhw/ooo-exercise.html
-  due: 2025-04-25
+  due: 2025-12-05
   feedback: "extracted*,autograder*"
   xxx-no-late: true
-  missing-if-no-feedback: true
-  close_exact: 2025-05-01T00:00:00
+  xxx-missing-if-no-feedback: true
 
 - name: C++ OR templates
   short_name: cpp
