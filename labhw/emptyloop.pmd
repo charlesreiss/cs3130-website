@@ -1,0 +1,117 @@
+---
+title: Signals Lab
+author: Charles Reiss
+...
+
+{.exercise ...}
+Work, perhaps with a partner:
+
+1.  Download and extract the [skeleton code](files/emptyloop/emptyloop.zip)
+    (either on portal or [NX](https://www.cs.virginia.edu/wiki/doku.php?id=nx_lab)
+    or on another system with a Unix-like environment and a C compiler).
+
+2.  Look at the function `measure_times_plain` in `empty-time.c` and/or read its
+    description below.
+
+3.  Use `make` to build the `empty-time` and `long-loop` programs.
+
+4.  Obtain measurements from `empty-time` for at least 1 million iterations.
+    You can do this with a command like `./empty-time plain 1000000 output.csv`.
+
+5.  Plot the times you recorded. I recommend plotting in one or more of the following ways:
+
+    *  with the start time on the x axis and the duration on the y axis, and a log scale for
+        the y axis
+    *  with a histogram of the durations, using log-scale-based buckets
+
+6.  Based on your plots determine a threshold above which an exception likely interrupted
+    the execution of your program.
+    Obtain measurements filtering out items below that threshold until you have at least 10000 such
+    smaples. You can do this with a command like
+    `THRESHOLD=XXX ./empty-time threshold 10000 output.csv` where XXX is your chosen threshold.
+
+7.  Based on your measurements, answer the following questions in a text document:
+
+    *  Do there appear to be exceptions that happen on a regular schedule?
+    *  What are the typical handling times for exceptions?
+    *  Can you estimate the context switch interval?
+
+8.  If you have time, compare your results above with one or more of the following variations:
+
+    a.  If you originally measured on a non-portal machine, measure on portal or vice-versa
+        and compare.  Note that you may need to set a different threshold.
+    a.  Run `./empty-time` "pinned" to particular cores. On portal (or other Linux systems),
+        you can do this with by running `taskset -c X ./empty-time` instead of `./empty-time`
+        where `X` is one of the numbers output by `lscpu --extended=CPU`.
+    a.  Run `./empty-time` at the same time as some application that should make substantial
+        use of the system. To maximize the change of them interferring, run both applications
+        on the same cores using `taskset -c X ...` (where X is a core number).
+
+        You can use the provided `./long-loop` application for this; for example doing something
+        like
+
+            taskset -c 3 ./long-loop &
+            THRESHOLD=X taskset -c 3 ./empty-time threshold 10000 output.csv
+
+
+    Answer the following questions in a text document:
+
+    *  Is there a different pattern of exceptions under these variations?
+       If so, what characterizes these differences.
+
+9.  Show a TA:
+
+    *  Your plots.
+
+    *  Your answers to the questions in item 7 and 8.
+
+{/}
+
+# `measure_times_plain`
+
+    static void measure_times_plain(int count, long *starts, long *durations) {
+        struct timespec first, current, previous;
+        clock_gettime(WHICH_CLOCK, &first);
+        clock_gettime(WHICH_CLOCK, &previous);
+        for (int i = 0; i < count; i += 1) {
+            clock_gettime(WHICH_CLOCK, &current);
+            starts[i] = nsec_difference(&previous, &first);
+            durations[i] = nsec_difference(&previous, &current);
+            previous = current;
+        }
+    }
+
+This function reads a clock in a loop `count` times, and records the results to the
+`starts` and `durations` array.
+The only thing that happens between obtaining samples is storing the time and related bookkeeping.
+
+If this loop were the only thing running, we would expect to see the `durations`
+are roughly constant. You should
+
+# `measure_times_threhsold`
+
+This function adds the following to `measure_times_plain`
+
+1.  Code to read from the environment variable `THRESHOLD` into the local variable `threshold`:
+
+        const char *threshold_string = getenv("THRESHOLD");
+        if (!threshold_string) {
+            fprintf(stderr, "THRESHOLD environment variable not set (example: THRESHOLD=100 ./empty-time ...)\n");
+            exit(EXIT_FAILURE);
+        }
+        long threshold = atoi(threshold_string);
+
+2.  Code to check the the threshold before recording a value (and corresponding
+    adjustments to the loop):
+
+        long difference = nsec_difference(&previous, &current);
+        if (difference > threshold) {
+            starts[i] = nsec_difference(&previous, &first);
+            durations[i] = nsec_difference(&previous, &current);
+            i += 1;
+        }
+
+
+# Plotting advice
+
+<!-- FIXME -->
