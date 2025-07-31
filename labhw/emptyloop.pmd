@@ -6,9 +6,9 @@ author: Charles Reiss
 {.exercise ...}
 Work, perhaps with a partner:
 
-1.  Download and extract the [skeleton code](files/emptyloop/emptyloop.zip)
+1.  Download and extract the [skeleton code](files/emptyloop.tgz)
     (either on portal or [NX](https://www.cs.virginia.edu/wiki/doku.php?id=nx_lab)
-    or on another system with a Unix-like environment and a C compiler).
+    or on another Linux system. The Windows Subsystem for Linux will probably not work).
 
 2.  Look at the function `measure_times_plain` in `empty-time.c` and/or read its
     description below.
@@ -16,54 +16,101 @@ Work, perhaps with a partner:
 3.  Use `make` to build the `empty-time` and `long-loop` programs.
 
 4.  Obtain measurements from `empty-time` for at least 1 million iterations.
-    You can do this with a command like `./empty-time plain 1000000 output.csv`.
+    You can do this with a command like `./empty-time plain 1000000 output`:
+   
+    In this command: 
+    *  `plain` selects the `measure_time_plain` function in `empty-time.c`; the other option is "threshold"
+    *  `10000000` options selects to obtian 1000000 measurement
+    *  `output` selects the base name of the output files
 
-5.  Plot the times you recorded. I recommend plotting in one or more of the following ways:
+    This will produce three output files:
 
-    *  with the start time on the x axis and the duration on the y axis, and a log scale for
-        the y axis
-    *  with a histogram of the durations, using log-scale-based buckets
+    *  `output-times.csv` --- records the amount of time between iterations of an otherwise "empty" loop
+    *  `output-before-int`, `output-after-int` --- records the contents of /proc/interrupts,
+        which contains counters of asynchronous exceptions, separated by cause and which core
+        handled them.
+        The contents are sampled before and after (respectively) executing the timing loop
 
-6.  Based on your plots determine a threshold above which an exception likely interrupted
-    the execution of your program.
-    Obtain measurements filtering out items below that threshold until you have at least 10000 such
-    smaples. You can do this with a command like
-    `THRESHOLD=XXX ./empty-time threshold 10000 output.csv` where XXX is your chosen threshold.
+5.  Examine the output files:
 
-7.  Based on your measurements, answer the following questions in a text document:
+    *  Plot the times you recorded (and save the plots for later). I strongly recommend plotting using a log-scale for the duration axis.
 
-    *  Do there appear to be exceptions that happen on a regular schedule?
-    *  What are the typical handling times for exceptions?
-    *  Can you estimate the context switch interval?
+       You can use the `plot.py` script to do this, as described below.
 
-8.  If you have time, compare your results above with one or more of the following variations:
+    *  Look at what asynchronous exceptions occurred based ont the `before-int` and `after-int` files.
+       You can use the `interrupts-difference.py` program to aid in comparing these (since doing so by hand
+       would be very hard.)
 
-    a.  If you originally measured on a non-portal machine, measure on portal or vice-versa
-        and compare.  Note that you may need to set a different threshold.
-    a.  Run `./empty-time` "pinned" to particular cores. On portal (or other Linux systems),
-        you can do this with by running `taskset -c X ./empty-time` instead of `./empty-time`
-        where `X` is one of the numbers output by `lscpu --extended=CPU`.
-    a.  Run `./empty-time` at the same time as some application that should make substantial
-        use of the system. To maximize the change of them interferring, run both applications
-        on the same cores using `taskset -c X ...` (where X is a core number).
+6.  You'll notice that, in contrast to what a very simple model of a processor would suggest,
+    that the time varies significantly.
 
-        You can use the provided `./long-loop` application for this; for example doing something
-        like
+    There are probably a few main causes:
 
-            taskset -c 3 ./long-loop &
-            THRESHOLD=X taskset -c 3 ./empty-time threshold 10000 output.csv
+    *  exceptions interrupting the execution of the program;
+    *  variations in what data is cached (already loaded into fast memory) versus not;
+    *  variations in speculative execution's accuracy (the processor guessing what instructions to run before it is sure); and
+    *  variations in processor clock speed (usually done by the hardware to control power usage and/or heat dissipation)
 
+6.  Try to estimate a threshold time which will separate time measurements which are high
+    from an exception from the other measurements.
 
-    Answer the following questions in a text document:
+    We can then use this threshold to avoid measuring these shorter measurements and get a sample of more longer
+    durations. `empty-time.c` has a `measure_time_threshold` function (described below) we'll use for this purpose.
 
-    *  Is there a different pattern of exceptions under these variations?
-       If so, what characterizes these differences.
+7.  Then verify and, if needed, refine your threshold:
 
-9.  Show a TA:
+    *  Choose a core number to run on (one of the indices listed by `lscpu --extended=CPU`).
+
+    *  Obtain measurements only greater than the threshold and on that core using
+       a command like
+
+          THRESHOLD=AAA taskset -c BBB ./empty-time threshold 10000 new-output
+
+       where `AAA` is your threshold, `BBB` is your selected core number.
+
+       In this command:
+
+       *  `THRESHOLD=AAA` sets an "environment variable" called `THRESHOLD`,
+           which `empty-loop.c` reads with the `getenv` function
+       *  `taskset -c BBB ...` runs `...` only on the cores specified by
+           BBB.
+       *  10000 is the number of measurements to obtain (you can adjust this number
+          if you wish)
+       *  `new-output` selects the name of the output files
+    
+    *  Plot the resulting times (and save the plots for later). Try to determine if it's likely that your program
+       was context swithced away from for an extended period of time.
+
+    *  Use `interrupts-difference.py` to see how closely the actual number of
+       asynchronous exceptions corresponds to the actual count on that core.
+    
+       Note that if your program was context switched away from, then we would not
+       expect to see asynchornous exceptions from the time when it was not running.
+
+    Write a brief explanation of how you choose your threshold and whether your attempts
+    to verify it give you confidence in it.
+
+9.  If you have time:
+
+    *  If it looks like the measurement program was context switched away from, try to estimate
+       the duration of that context switch.
+
+    *  If you don't think you have measurements including a context switch, run the long-loop
+       program on a core using a comman dlike
+
+            taskset -c AAA ./long-loop &
+
+       and then do a measurement on the same core (before the long-loop prorgam terminates in about a minute).
+       Assuming enough samples, this should cause you to observe a context switch between the `empty-time`
+       and `long-loop`, even if no other programs are active.
+
+10. Show a TA:
 
     *  Your plots.
 
-    *  Your answers to the questions in item 7 and 8.
+    *  Your explanation for item 8.
+
+    *  (If you had time) your estimate for item 9 and corresponding graph/data.
 
 {/}
 
@@ -75,7 +122,7 @@ Work, perhaps with a partner:
         clock_gettime(WHICH_CLOCK, &previous);
         for (int i = 0; i < count; i += 1) {
             clock_gettime(WHICH_CLOCK, &current);
-            starts[i] = nsec_difference(&previous, &first);
+            starts[i] = nsec_difference(&first, &previous);
             durations[i] = nsec_difference(&previous, &current);
             previous = current;
         }
@@ -106,12 +153,56 @@ This function adds the following to `measure_times_plain`
 
         long difference = nsec_difference(&previous, &current);
         if (difference > threshold) {
-            starts[i] = nsec_difference(&previous, &first);
+            starts[i] = nsec_difference(&first, &previous);
             durations[i] = nsec_difference(&previous, &current);
             i += 1;
         }
 
 
-# Plotting advice
+# Plotting script
 
-<!-- FIXME -->
+We supply a plotting script in `plot.py`, which requires the Python libraries `numpy` and `matplotlib`.
+
+To make these work on portal:
+
+*  First run (you'll need to repeat this for each shell or set this to run automatically):
+
+        module load gcccore/13.3.0 python/3.12.3
+
+*  Then, if you haven't already run
+
+        bash venv.sh
+
+   which will create a venv directory containing a "[virtual environment](https://docs.python.org/3/library/venv.html)"
+   and install numpy and matplotlib in that virtual environment.
+
+*  Then (you'll need to repeat this for each shell), run:
+
+        source venv/bin/activate
+
+   (This should cause your shell prompt to be prefixed with `(venv)`.)
+
+
+After you've done the above setup you can use
+
+    python plot.py time output-times.csv output-times.png
+
+to plot data from `output-times.csv` and write the result to the image file `output-times.png`.
+
+#  `interrupts-difference.py`
+
+The `interrupts-difference.py` script will compute the difference between two /proc/interrupts snapshot.
+
+    python interrupts-difference.py output-before-int output-after-int
+
+will show the number of interrupts, split up by the type idenified. Interrupts will be attributes
+to specific cores, labeled `CPU0`, `CPU1` and so on. If an interrupt type or CPU is not in the output,
+then the difference was zero.
+
+If you only want the count of interrupts for a specific core, you can use a command like
+
+    python3 interrupts-difference.py --core=3 output-before-int output-after-int
+
+to show only the differences for core number 3. (Core numbers start at 0.)
+
+
