@@ -5,13 +5,20 @@ author:
     - Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  21 Feb 2025: correct grammatical error in second parallelgetoutput example's introduction of the example python program
+*  21 Feb 2025: add equivalent C program in footnote to second parallelgetoutput example
+</div>
+
 
 {.exercise ...}
 
 1.  Write and submit a single file `fork_run.c` that defines the following two functions, specified below:
 
-    *  `void writeoutput(const char *command, const char *out_path, const char *err_path)`
-    *  `char *parallelwriteoutput(int count, const char **argv_base, const char *out_path)`
+    *  `char *getoutput(const char *command)`
+    *  `char *parallelgetoutput(int count, const char **argv_base)`
 
     You should not submit any other files (i.e., no `.h` files, `Makefile`, etc).
     You may include helper functions in the file, but it should not contain `main`.
@@ -21,11 +28,9 @@ author:
 
 # `char *getoutput(const char *command)`
 
-This should behave something like `system`, except that instead of letting the child print to stdout, it should write what the child prints to stdout to
-the file `out_path` and to stderr to the file `err_path`.
+This should behave something like `system`, except that instead of letting the child print to stdout, it should collect what the child prints and return it as a `\0`-terminated `malloc`-allocated `char *`. If the command's output includes a `\0` itself, it should return your choice of the output up to the first `\0` or the entire output (with an additional terminating `\0`).
 
-You must do this by forking, execing, and dup2'ing yourself.
-You may not use any standard library function that does some of those operations for you, including but not limited to `popen`.
+You must do this by forking, execing, and piping yourself. You may not use any standard library function that does some of those operations for you, including but not limited to `popen`.
 
 We will supply an example implementation of `my_system` from the prior fork lab as a potential starting point sometime after the late deadline for that lab on Canvas under the 'Files' tab.
 
@@ -34,7 +39,8 @@ We will supply an example implementation of `my_system` from the prior fork lab 
 ```c
 int main() {
     printf("Hi!\n");
-    getoutput("echo 1 2 3; sleep 2; echo 5 5", "out.txt");
+    printf("Text: [[[%s]]]\n", 
+        getoutput("echo 1 2 3; sleep 2; echo 5 5"));
     printf("Bye!\n");
 }
 ```
@@ -45,14 +51,12 @@ Should print
 
 then wait for 2 seconds before printing
 
+    Text: [[[1 2 3
+    5 5
+    ]]]
     Bye!
 
-And should leave
-
-    1 2 3
-    5 5
-
-In out.txt.
+Note that this `main` also has a memory leak: `getoutput` invokes `malloc` and `main` is not invoking `free`.
 {/}
 
 To do this, use the following outline.
@@ -98,10 +102,10 @@ is to use `getdelim`{.c} with the delimiter `'\0'`{.c}.
 `getdelim`{.c} wants a `FILE *`{.c}, not a file descriptor;
 see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 
-# `char *parallelwriteoutput(int count, const char **argv_base, const char *out_file)`
+# `char *parallelgetoutput(int count, const char **argv_base)`
 
-Run `count` child processes *simulatenously*, arranging for them to write all their outputs
-to `out_file, returning only after all the child processes have finished. (You may assume the output
+Run `count` child processes *simulatenously* and collect their output into a single string,
+returning only after all the child processes have finished. (You may assume the output
 does not include `\0`. Like `getoutput()` the string you return should be dynamically
 allocated.)
 Each of the child processes
@@ -122,10 +126,15 @@ that does this is simpler than one that does not).
 You may optionally strip a trailing newline from the output; in the examples below
 we do not do this.
 
+In order to ensure that the processes run in parallel, if they are writing to a pipe, you need
+to be reading from that pipe to prevent them from hanging (if they write too much).
+With multiple processes, the easiest way of doing this would be to use a single pipe for all the programs,
+which will result in their output being interleaved as if you ran them simulatenously in a terminal.
+
 You may assume the executable `argv_base[0]` exists and executes normally and that we supply
 the full path of the executable.
 
-Before returning, `parallelwriteoutput` must `waitpid` for *each* child process.
+Before returning, `parallelgetoutput` must `waitpid` for *each* child process.
 
 {.example ...}
 For example, a `main()` like:
@@ -134,7 +143,9 @@ For example, a `main()` like:
         const char *argv_base[] = {
             "/bin/echo", "running", NULL
         };
-        parallelwriteoutput(2, argv_base, "out.txt");
+        const char *output = parallelgetoutput(2, argv_base);
+
+        printf("Text: [%s]\n", output);
     }
 
 would start two child processes. One of them would run something equivalent to:
@@ -148,23 +159,30 @@ And another would run something equivalent to:
     execv("/bin/echo", argv);
 
 Then, it would wait for both child processes to finish and collect their combined output
-into a single file output.txt. On a system with a `/bin/echo` program like exists in portal,
-the out.txt would probably be either:
+into a single string `output`. On a system with a `/bin/echo` program like exists in portal,
+the output would probably be either:
 
-    running 0
+    Text: [running 0
     running 1
+    ]
 
 or:
 
-    running 1
+    Text: [running 1
     running 0
+    ]
 
 (but on some systems, maybe other interleaved outputs would be possible like:
 
-    running running 1
+    Text: [running running 1
     0
 
+    ]
+
 )
+
+Like with the `getoutput` example, the program above has a memory leak; `output` is dynamically
+allocated and never `free`d.
 {/}
 
 {.example ...}
@@ -182,14 +200,17 @@ executable, then a main() like:
 
     int main() {
         const char *argv_base[] = { "./args.py", "first", "second", "third", NULL };
-        parallelwriteoutput(3, argv_base, "out.txt");
+        const char *output = parallelgetoutput(3, argv_base);
+
+        printf("Text: [%s]\n", output);
     }
 
-Should result in an out.txt like:
+should output something like:
 
-    args = ['./args.py', 'first', 'second', 'third', '0']
+    Text: [args = ['./args.py', 'first', 'second', 'third', '0']
     args = ['./args.py', 'first', 'second', 'third', '1']
     args = ['./args.py', 'first', 'second', 'third', '2']
+    ]
 
 but possibly with the lines in a different order and/or interleaved.
 {/}
