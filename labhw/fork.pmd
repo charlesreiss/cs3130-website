@@ -19,7 +19,7 @@ author:
 {/}
 
 
-# `char *getoutput(const char *command)`
+# `char *writeoutput(const char *command)`
 
 This should behave something like `system`, except that instead of letting the child print to stdout, it should write what the child prints to stdout to
 the file `out_path` and to stderr to the file `err_path`.
@@ -34,7 +34,7 @@ We will supply an example implementation of `my_system` from the prior fork lab 
 ```c
 int main() {
     printf("Hi!\n");
-    getoutput("echo 1 2 3; sleep 2; echo 5 5", "out.txt");
+    writeoutput("echo 1 2 3; sleep 2; echo 5 5", "out.txt");
     printf("Bye!\n");
 }
 ```
@@ -102,7 +102,7 @@ see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 
 Run `count` child processes *simulatenously*, arranging for them to write all their outputs
 to `out_file, returning only after all the child processes have finished. (You may assume the output
-does not include `\0`. Like `getoutput()` the string you return should be dynamically
+does not include `\0`. Like `writeoutput()` the string you return should be dynamically
 allocated.)
 Each of the child processes
 should run a command specified by the NULL-pointer-terminated array `argv_base` 
@@ -113,8 +113,7 @@ as follows:
    the child process converted to a string
 
 (Running a command this way easiest if you do *not* run a shell (like `/bin/sh`),
-so your call to an exec function will likely be different than it was for `getoutput` or
-`parallelgetoutput`.)
+so your call to an exec function will likely be different than it was for `writeoutput`.)
 
 The output collected may interleave the outputs of the child processes (and an implementation
 that does this is simpler than one that does not).
@@ -168,7 +167,7 @@ or:
 {/}
 
 {.example ...}
-You can test more directly that your parallelgetoutput passes the correct arguments by
+You can test more directly that your parallelwriteoutput passes the correct arguments by
 writing a program that checks the arguments it gets. For example, the following
 python program:
 
@@ -230,26 +229,20 @@ an example solution will be available on Canvas, under the files tab.
 
 ## Testing that you `waitpid`
 
-If your `getoutput` and `parallelgetoutput` call `waitpid` properly, then after they return running 
+If your `writeoutput` and `parallelwriteoutput` call `waitpid` properly, then after they return running 
 
     waitpid(-1, NULL, 0)
 
 should return `-1` and set `errno` to ECHILD (indicating that there are no child processes to wait for).
 
-## On reading all data from a pipe
-
-1.  The operating system maintains a limited amount of space to hold values which have been written to a pipe but not read yet. When it runs out of space, writes to the pipe will hang (until space is freed up by reading from the pipe). For this reason, you should not wait for one of the child processes to terminate before reading their output --- otherwise, they might never terminate.
-
-2.  Reading from a pipe will result indicate end-of-file if the all the file descriptors referencing the write end of the pipe are closed. If the child processes have exited, then exiting will, as a side effect, close all their file descriptors. So, if you setup the pipes so the write end is only open in the child processes, then you can read the pipe until it indicates end-of-file.
-
-3.  For `parallelgetoutput`, I would strongly recommend using just one pipe. Since you need to read from a pipe to preevent processes producing a lot of output from hanging, if you have multiple pipes and read from then one at a time, it is very unlikely you'll actually run them in parallel in general.
 
 ## Some corner cases to test
 
 I would recommend testing:
 
-*  `parallelgetoutput` with 0 arguments after the program name or with a bunch of arguments after the program name
-*  programs that output a lot (tens of kilobytes) at least.
-*  programs that output something, then wait, then output another thing, then wait, etc. If you're writing programs to simulate this, I recommend using `fflush()` or similar to make sure the output is sent when you expect it.
+*  `parallelwriteoutput` with 0 arguments after the program name or with a bunch of arguments after the program name
+*  `parallelwriteoutput` with programs that wait a few seconds --- verify that it waits until the program finishes
+    and runs them all at once. (For example, if each of 10 programs it runs wait 5 seconds, it should take around 5 seconds,
+    not 50.)
 
 
