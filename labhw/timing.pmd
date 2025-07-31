@@ -11,7 +11,7 @@ Changelog:
 </div>
 
 {.exercise ...}
-1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each the 5 scenarios below
+1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each of the 5 scenarios below
     (under the heading "[Scenarios to time](#scenarios)").
 
     Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
