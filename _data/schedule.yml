@@ -1,4 +1,3 @@
-
 - date: 2025-08-26
   week: 1
   title: introduction / building intro
@@ -67,18 +66,20 @@
 
 - date: 2025-09-09
   week: 3
-  title: exceptions / signals
-  reading: "[thread](readings/thread.html) §1-2 / [kernel](readings/kernel.html) §2-2.2, 3, 2.3.1"
+  title: exceptions / processes 1
+  reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, 3 / [thread](readings/thread.html) §1-3.2"
   slides_ref:
   - kernel
-  - signals
+  - unix-api
   description: |
     *  non-system-call exceptions (finish)
        *  timer interrupt
        *  I/O
-    
-    *  Unix signals
-       *  signal handlers and implementation
+
+    *  OS-customized non-system-call handling: signals
+
+    *  creating new processes (start)
+       *  fork, exec*
 
 - date: 2025-09-11
   week: 3
@@ -86,32 +87,26 @@
 
 - date: 2025-09-12
   week: 3
-  title: processes 1
-  reading: "[kernel](readings/kernel.html) §2.3.1"
+  title: processes 2
+  reading: "[threads](readings/thread.html) §3-4.1"
   slides_ref:
-  - kernel
   - unix-api
+  - signals
   description: |
-    *  Unix signals (con't)
-       *  signal unsafety
-       *  handling signals without signal handlers
-    *  processes, threads
+    *  fork con't
 
-    *  creating new processes
-       *  fork, exec*
+    *  waiting for processes
+    *  kill
+    *  file descriptors
+    *  redirection
 
 - date: 2025-09-13
   week: 3
 
 - date: 2025-09-16
   week: 4
-  title: processes 2
-  reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
-  slides_ref:
-  - unix-api
-  description: |
-    *  waiting for processes
-    *  file descriptors
+  title: processes 3
+  reading: "[threads](readings/thread.html) §3-4.1"
 
 - date: 2025-09-17
   week: 4
@@ -119,20 +114,6 @@
 
 - date: 2025-09-18
   week: 4
-  title: process 3
-  reading: "[kernel](readings/kernel.html) §3.3.3; [threads](readings/thread.html)"
-  slides_ref:
-  - unix-api
-  description: |
-    *  dup2
-    *  pipe, redirection
-
-
-- date: 2025-09-19
-  week: 4
-
-- date: 2025-09-23
-  week: 5
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   slides_ref:
@@ -141,7 +122,23 @@
     *  virtual memory concept
         *   address space and address sizes
     *  page tables
-    *  loading data on demand  (start)
+    *  page table lookup examples
+    *  page tables and context switches
+
+- date: 2025-09-19
+  week: 4
+
+- date: 2025-09-23
+  week: 5
+  title: virtual memory 2
+  reading: "[VM](readings/vm.html) §2.1, 3.2"
+  slides_ref:
+  - vm
+  description: |
+    *  loading data on demand
+    *  copy-on-write, other "page table tricks" 
+    *  swapping
+    *  mmap, linux /proc/$$/maps
 
 - date: 2025-09-24
   lab: true
@@ -149,14 +146,14 @@
 
 - date: 2025-09-25
   week: 5
-  title: virtual memory 2
+  title: virtual memory 3 
   reading: "[VM](readings/vm.html) §2.1, 3.2"
   slides_ref:
   - vm
   description: |
-    *  loading data on demand  (finish)
-    *  copy-on-write, other "page table tricks" 
-    *  storing page tables in memory (start)
+    *  storing page tables in memory
+    *  pagetable assignment
+    *  multi-level page tables (start)
 
 
 - date: 2025-09-26
@@ -165,13 +162,12 @@
 - date: 2025-09-30
   week: 6
   title: virtual memory 3 
-  reading: "[VM](readings/vm.html) §2.1, 3.2; [cache](readings/cache.html)"
+  reading: "[VM](readings/vm.html) §2.1, 3.2"
   slides_ref:
   - vm
   description: |
-    *  pagetable assignment
-    *  as a tree
-    *  multi-level lookup example
+    *  multi-level page tables (finish)
+    *  multi-level page table examples
 
 - date: 2025-10-01
   lab: true
@@ -187,7 +183,7 @@
     *  caching idea, locality
     *  direct-mapped caches
         *  valid bits, tags
-    *  set-associative caches
+    *  cache parameter exercises
 
 - date: 2025-10-03
   week: 6
@@ -199,8 +195,9 @@
   slides_ref:
   - caching
   description: |
+   *  set-associative caches
    *  replacement policies
-   *  cache misses and C code
+   *  cache misses and C code (start)
 
 - date: 2025-10-08
   lab: true
@@ -238,6 +235,7 @@
   - caching
   - threads
   description: |
+   *  cache misses and C code (finish)
    *  cache write policies
    *  the TLB
 

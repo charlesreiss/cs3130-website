@@ -427,6 +427,8 @@ by library code that runs in user mode that makes simpler system calls.
 
 ### Signals
 
+#### Introduction
+
 One view of exceptions is that they enable communication from user code to the kernel.
 Signals permit the opposite direction of communication.
 
