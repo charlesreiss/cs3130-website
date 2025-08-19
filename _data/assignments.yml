@@ -30,13 +30,16 @@
   - split.c
   - split.h
 
-- name: signal handling
-  short_name: signal
+- name: empty loop
+  short_name: emptyloop
   lab: true
   tentative: true
-  page: labhw/signals.html
+  page: labhw/emptyloop.html
   due: 2025-09-17
-  submit_file: "*.c"
+  submit_files:
+  - "*.png"
+  - "*.pdf"
+  - "*.txt"
 
 - name: fork lab
   short_name: fork-lab
@@ -360,3 +363,12 @@
   - "*.hh"
   due: never
   no_assignments_json: true
+
+- name: signal handling
+  short_name: signal
+  lab: true
+  tentative: true
+  hide: true
+  page: labhw/signals.html
+  due: never
+  submit_file: "*.c"

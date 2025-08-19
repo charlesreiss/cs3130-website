@@ -3,11 +3,18 @@ title: timing homework
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  30-31 Jan 2025: attempt to rearrange task description to declutter description
+*  9 Feb 2025: replace confusing ":" before nothing with "."
+</div>
+
 {.exercise ...}
-1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each of the scenarios below
+1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each of the 5 scenarios below
     (under the heading "[Scenarios to time](#scenarios)").
 
-    Your program should take one command-line argument which is a number from `1` to `7` indicating which scenario
+    Your program should take one command-line argument which is a number from `1` to `5` indicating which scenario
     above to produce timings for. (So we'd run it like `./gettimings 1`, `./gettimings 2`, etc.)
 
 2.  Run your program and collect the data it outputs.
@@ -36,17 +43,23 @@ author: Charles Reiss
 
 1.  calling an empty function (such that the function call is not optimized away) and having it return
 
-2.  generating a psuedo-random number with `drand48`
+2.  running the `getppid` function from `<unistd.h>` (this is not the same as `getpid`)
 
-3.  running the `getppid` function from `<unistd.h>` (this is *not* the same as `getpid`)
+3.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bin/true` does, you may use `system("/usr/bin/true")` instead]
 
-4.  running a `system("/bin/true")` (which runs the command `/bin/true` in a shell) [or if you are on a system where `/bin/true` does not exist, but `/usr/bin/true` does, you may use `system("/usr/bin/true")` instead]
+4.  sending a signal to the current process and having its signal handler start executing (but not including the signal handler returning)
 
-5.  failing to open a file because the file does not exist
+5.  sending a signal to another process, then having that process's signal handler send a signal back, then either:
 
-6.  failing to open a file because of insufficient permissions
+    *  having a signal handler for signal sent back start executing in the original process (but not including the signal handler returning); or
 
-7.  creating and then removing a directory (in `/tmp` if on portal)
+    *  identifying that the signal was sent back in the original process using a function like `sigwait`
+
+    For scenario 5, we need to run two copies of your program, similar to the signals lab:
+    *  The "other process" (the one not sending the first signal) we should be able to run as `./gettimings -1`. It should print its PID and read a pid from stdin.
+    *  When we run `./gettimings 5` it should print its PID and read a pid from stdin.
+    *  We will test by entering the PID of the `./gettimings 5` process into the `./gettimings -1` process first, then entering the PID of the `./gettimings -1` process into the `./gettimings 5` process.
+    *  (It's okay if we need to use control-C or similar to terminate `./gettimings -1` process.)
 
 # Requirements for time estimates {#estimates}
 
@@ -195,6 +208,50 @@ with the compiler's optimizer replacing a function call with the body of that fu
 *  write the function in a separately compiled file, so the compiler will not have the information to do this optimization
 *  write the function call itself in assembly file, so it won't be subject to the compiler's optimizations at all
 *  make a C function marked with the `__attribute__((noinline))` before its return type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
+
+## If `sigaction` or `sigset_t` is not defined
+
+If you compile with `-std=c11` or similar, , this requests only C standard functions by default, and <signal.h> is part of standard C, but includes only a limited set of functions/types
+(not including most of what we discussed for signal handling).
+
+You can request the full set of Linux/Unix functions (despite using `-std=c11`)
+by using a "feature test macro" like `#define _XOPEN_SOURCE 700` before including anything (or, equivalently, by compiling with
+an option like `-D_XOPEN_SOURCE=700`). This #define requests features from X/Open System Interfaces associated with the [POSIX.1-2017 standard](https://pubs.opengroup.org/onlinepubs/9699919799/).
+
+There are similar feature test macros that request slightly different sets of functionality; Linux documents all of these in the "feature_test_macros" manpage.
+
+## Timing the signal handler
+
+When sending a signal **to the current thread**, `kill()` is guaranteed to return only after the signal is delivered. (This is **not** guaranteed if you send to another process.) If you want to avoid specifying the process ID, you can also use the function `raise()` [which can only send a signal to the current process] instead of `kill()` [which can send to any process].
+
+## Timing receiving a signal back
+
+### Need to wait for signal
+
+If you send a signal to another process `kill()` can and often will return before the signal is handled, so you can't just call `kill()` the appropriate number of times.
+Also, if you send the same signal twice to a process before it is handled, then the signal may only be handled once.
+
+### Missing signals coming back
+
+The last timing task requires waiting for a signal to be received by your current process. The naive approach of:
+
+    send_signal_to_other_program();
+    /* MIDDLE */
+    wait_for_signal();
+
+has the problem that the signal can be received at "MIDDLE" and "lost".
+To avoid this problem, some approaches for doing this:
+
+*  "[block](../readings/kernel.html#blocking)" the signal temporarily with `sigprocmask`, then use `sigwait` to wait for the signal _instead of_ installing a signal handler
+*  install a signal handler that finishes timing and have it set a flag in a global variable that is checked in a loop that calls something like `nanosleep`, similar to checking for `outbox[0]` to be 0 in the lab.[^atomic]
+*  install a signal handler, "block" the signal temporarily with `sigprocmask`, then use `sigsuspend` to briefly unblock the signal[^mask] and wait for the signal handler to run
+*  install a signal handler that uses a function like `siglongjmp` to continue execution of the post-timing code and call `sigsetjmp` before running the signal handler. `sigsetjmp` and `siglongjmp` work very similar to `setjmp` and `longjmp` with are described in the "[setjmp, longjmp, and software exceptions](kernel.html#setjmp-longjmp-and-software-exceptions)" section of the kernel reading. Have the code that waits for the signal handler to run call a function like `pause()` to avoid wasting CPU time before `siglongjmp` runs. (You can also use the plain version of `setjmp` and `longjmp` provided that you restore the signal mask afterwards with a call to `sigprocmask` or register the signal handler with the SA_NODEFER flag.)
+
+"Blocking" a signal ensures that the operating system will not deliver it (that is, will not run its signal handler), but blocked signals will still be recorded as "pending" (that is, needing to be handled at some point). In documentation, you may see the set of signals a process (or thread) has blocked referred to as the "signal mask".
+
+[^atomic]: To be most reliable/portable, the flag should be declared as a `volatile sig_atomic_t` to tell the compiler to expect the value to be modified by signal handlers, but as long as the loop calls something like `nanosleep`, probably other types will work.
+
+[^mask]: sigsuspend sets the "signal mask", which is the set of blocked signals. So you will want to ensrue that the set of signals you pass to sigsuspend does _not_ include the signal you want to wait for. This is different than how `sigwait` would work.
 
 # Collaboration
 
