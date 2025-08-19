@@ -9,6 +9,8 @@ Changelog:
 *  10 Oct 2023: cleanup description of compiler requirements re: synchronization guarnetees; fix a bunch of grammatical issues in memory barriers section, add mention of partial barriers + the term "fence"
 </div>
 
+# Introduction
+
 In practice, true shared-memory concurrency (where there is only one piece of hardware that stores the bits of a particular memory location) is not very scalable.
 L1 caches routinely create separate copies for each core;
 systems with multiple CPU chips may replicate across all cache layers;
