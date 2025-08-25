@@ -62,7 +62,8 @@ The overall time estimates you report must:
    One strategy might be to measure the time required for "nothing" and subtract this time from other
    measurements. See below for more discussion on how to do this.
 
-   Note that you must account for measurement overhead for the first scenario (function call) as well as others, so it is not sufficient to just subtract the time for scenario 1 from scenario 2.
+   Note that you must account for measurement overhead for the first scenario (function call) as well as others, so it is not sufficient to just subtract the time for scenario 1 from the
+   other scenarios.
 
 *  be based on measuring multiple instances of the each scenario to obtain your estimate for that scenario (to limit the impact of variation in system performance on your estimates)
 
