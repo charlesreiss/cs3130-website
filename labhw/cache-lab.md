@@ -3,12 +3,6 @@ title: Cache lab
 author: Charles Reiss
 ...
 
-<div class='changelog'>
-changelog:
-
-*  5 March 2025: fixup typo'd link to reading on caches
-</div>
-
 
 1.  For this lab, you will need to answer several questions about *set-associative* caches. Normally, we would have consistently covered this in lecture before the lab,
     but we had some disruptions last week, so you can find some description:
@@ -17,7 +11,7 @@ changelog:
     *  in the [reading on caches](../readings/cache.html), including some examples that are similar to lab exercises
     *  the 26 Feb lecture 9am recording from 24:20 through around 55:00;
 
-1.  Answer the questions at the [lab interface](https://kytos02.cs.virginia.edu/cs3130-spring2025/cachelab/cachelab.php).
+1.  Answer the questions at the [lab interface](https://kytos02.cs.virginia.edu/cs3130-fall2025/cachelab/cachelab.php).
 
     Each person should answer an individual set of questions, but you may work with others to figure how to do
     so.
