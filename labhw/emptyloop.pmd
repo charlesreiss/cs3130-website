@@ -17,10 +17,10 @@ Work, perhaps with a partner:
 
 4.  Obtain measurements from `empty-time` for at least 1 million iterations.
     You can do this with a command like `./empty-time plain 1000000 output`:
-   
-    In this command: 
+
+    In this command:
     *  `plain` selects the `measure_time_plain` function in `empty-time.c`; the other option is "threshold"
-    *  `10000000` options selects to obtian 1000000 measurement
+    *  `10000000` options selects to obtain 1000000 measurements
     *  `output` selects the base name of the output files
 
     This will produce three output files:
@@ -37,7 +37,7 @@ Work, perhaps with a partner:
 
        You can use the `plot.py` script to do this, as described below.
 
-    *  Look at what asynchronous exceptions occurred based ont the `before-int` and `after-int` files.
+    *  Look at what asynchronous exceptions occurred based on the `before-int` and `after-int` files.
        You can use the `interrupts-difference.py` program to aid in comparing these (since doing so by hand
        would be very hard.)
 
@@ -79,13 +79,13 @@ Work, perhaps with a partner:
        *  `new-output` selects the name of the output files
     
     *  Plot the resulting times (and save the plots for later). Try to determine if it's likely that your program
-       was context swithced away from for an extended period of time.
+       was context-switched away from for an extended period of time.
 
     *  Use `interrupts-difference.py` to see how closely the actual number of
        asynchronous exceptions corresponds to the actual count on that core.
     
        Note that if your program was context switched away from, then we would not
-       expect to see asynchornous exceptions from the time when it was not running.
+       expect to see asynchronous exceptions from the time when it was not running.
 
     Write a brief explanation of how you choose your threshold and whether your attempts
     to verify it give you confidence in it.
@@ -96,11 +96,11 @@ Work, perhaps with a partner:
        the duration of that context switch.
 
     *  If you don't think you have measurements including a context switch, run the long-loop
-       program on a core using a comman dlike
+       program on a core using a command like
 
             taskset -c AAA ./long-loop &
 
-       and then do a measurement on the same core (before the long-loop prorgam terminates in about a minute).
+       and then do a measurement on the same core (before the long-loop program terminates in about a minute).
        Assuming enough samples, this should cause you to observe a context switch between the `empty-time`
        and `long-loop`, even if no other programs are active.
 
@@ -110,7 +110,8 @@ Work, perhaps with a partner:
 
     *  Your explanation for item 8.
 
-    *  (If you had time) your estimate for item 9 and corresponding graph/data.
+    *OR* place an explanation for item 8 in a file `README.txt` and
+    submit your plots and explanation to the submission site.
 
 {/}
 
