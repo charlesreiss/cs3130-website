@@ -6,7 +6,7 @@ author: Charles Reiss
 {.exercise ...}
 Work, perhaps with a partner:
 
-1.  Download and extract the [skeleton code](files/emptyloop.tgz)
+1.  Download and extract the [skeleton code](files/emptyloop.tgz) *[last updated 1 Sep 2025]*
     (either on portal or [NX](https://www.cs.virginia.edu/wiki/doku.php?id=nx_lab)
     or on another Linux system. The Windows Subsystem for Linux will probably not work).
 
