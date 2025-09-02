@@ -38,6 +38,10 @@
   - building
   - accounts
   description: |
+    >  The quality of the 11am audio recording is poorer than usual. You may also refer to the 2pm audio and/or
+    >  [last semester's recordings](https://www.cs.virginia.edu/~cr4bd/3130/S2025/schedule.html#week-2) (though
+    >  some exercises covered in the 11am section are new this semester).
+
     *  make (finish)
 
     *  user IDs/account abstraction
