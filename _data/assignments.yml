@@ -4,7 +4,6 @@
   open: 2025-08-27
   due: 2025-09-03
   submit_file: Makefile
-  tentative: true
 
 
 - name: permissions
