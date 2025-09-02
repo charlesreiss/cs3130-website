@@ -370,5 +370,5 @@
   tentative: true
   hide: true
   page: labhw/signals.html
-  due: never
+  xxxdue: never
   submit_file: "*.c"
