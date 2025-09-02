@@ -38,15 +38,12 @@
   - building
   - accounts
   description: |
-    >  The quality of the 11am audio recording is poorer than usual. You may also refer to the 2pm audio and/or
-    >  [last semester's recordings](https://www.cs.virginia.edu/~cr4bd/3130/S2025/schedule.html#week-2) (though
-    >  some exercises covered in the 11am section are new this semester).
+    >  The quality of the 11am audio recording is poorer than usual (not recorded the usual way) though seems acceptable.
 
     *  make (finish)
 
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
-    *  set-user-ID, sudo is not kernel mode
 
 - date: 2025-09-03
   week: 2
@@ -59,11 +56,11 @@
   slides_ref:
   - kernel
   description: |
+    *  set-user-ID, sudo is not kernel mode
     *  kernel mode
     *  system calls
     *  memory protection
     *  context switches
-    *  non-system-call exceptions (start)
 
 - date: 2025-09-05
   week: 2
@@ -78,7 +75,7 @@
   description: |
     (add deadline)
 
-    *  non-system-call exceptions (finish)
+    *  non-system-call exceptions
        *  timer interrupt
        *  I/O
 
