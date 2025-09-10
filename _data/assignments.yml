@@ -11,7 +11,6 @@
   page: labhw/permissions.html
   submit_file: permissions-lab.tar
   due: 2025-09-10
-  tentative: true
 
 - name: warmup
   open: 2025-08-26
