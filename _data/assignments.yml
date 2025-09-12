@@ -30,7 +30,6 @@
 - name: empty loop
   short_name: emptyloop
   lab: true
-  tentative: true
   page: labhw/emptyloop.html
   due: 2025-09-17
   submit_files:
