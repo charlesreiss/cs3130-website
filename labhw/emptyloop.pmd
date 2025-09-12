@@ -1,7 +1,13 @@
 ---
-title: Signals Lab
+title: Emptyloop Lab
 author: Charles Reiss
 ...
+
+<div class="changelog">
+Changelog:
+
+*  12 Sep 2025: move context switch "forcing" instructions out of main exercise part
+</div>
 
 {.exercise ...}
 Work, perhaps with a partner:
@@ -39,7 +45,7 @@ Work, perhaps with a partner:
 
     *  Look at what asynchronous exceptions occurred based on the `before-int` and `after-int` files.
        You can use the `interrupts-difference.py` program to aid in comparing these (since doing so by hand
-       would be very hard.)
+       would be tedious.)
 
 6.  You'll notice that, in contrast to what a very simple model of a processor would suggest,
     that the time varies significantly.
@@ -77,32 +83,22 @@ Work, perhaps with a partner:
        *  10000 is the number of measurements to obtain (you can adjust this number
           if you wish)
        *  `new-output` selects the name of the output files
-    
+
     *  Plot the resulting times (and save the plots for later). Try to determine if it's likely that your program
        was context-switched away from for an extended period of time.
 
     *  Use `interrupts-difference.py` to see how closely the actual number of
        asynchronous exceptions corresponds to the actual count on that core.
-    
+
        Note that if your program was context switched away from, then we would not
        expect to see asynchronous exceptions from the time when it was not running.
 
     Write a brief explanation of how you choose your threshold and whether your attempts
     to verify it give you confidence in it.
 
-9.  If you have time:
-
-    *  If it looks like the measurement program was context switched away from, try to estimate
-       the duration of that context switch.
-
-    *  If you don't think you have measurements including a context switch, run the long-loop
-       program on a core using a command like
-
-            taskset -c AAA ./long-loop &
-
-       and then do a measurement on the same core (before the long-loop program terminates in about a minute).
-       Assuming enough samples, this should cause you to observe a context switch between the `empty-time`
-       and `long-loop`, even if no other programs are active.
+9.  If you have time, estimate how long your measurement program is context switched away from.
+    If your measurement program is not context switched away from, see the advice on "encouraging
+    context switches" below.
 
 10. Show a TA:
 
@@ -206,4 +202,14 @@ If you only want the count of interrupts for a specific core, you can use a comm
 
 to show only the differences for core number 3. (Core numbers start at 0.)
 
+# encouraging context switches
+
+*  If you don't think you have measurements including a context switch, you can run the long-loop
+   program on a core using a command like
+
+        taskset -c AAA ./long-loop &
+
+   and then do a measurement on the same core (before the long-loop program terminates in about a minute).
+   Assuming enough samples, this should cause you to observe a context switch between the `empty-time`
+   and `long-loop`, even if no other programs are active.
 
