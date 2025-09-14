@@ -95,6 +95,7 @@
 
     *  creating new processes
        *  fork, exec*
+    *  waiting for processees (start)
 
 - date: 2025-09-12
   week: 3
