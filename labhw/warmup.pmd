@@ -58,8 +58,8 @@ Changelog:
        *  it appearing in [this list of functions](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/idx/functions.html)
           from the 2018 POSIX specification
 
-      Some examples of how `string_split` should behave, that you can use to test your
-      function, are shown below.
+       Some examples of how `string_split` should behave, that you can use to test your
+       function, are shown below.
 
     *  in `split.h`, write an appropriate header file declaring `string_split()` and include
        [`#include` guards](https://en.wikipedia.org/wiki/Include_guard) to protect
