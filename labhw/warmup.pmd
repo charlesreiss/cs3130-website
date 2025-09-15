@@ -87,16 +87,16 @@ Changelog:
 
           should choose a sep value of `"abc"`.
 
-      *  reads lines of input (without prompting). For each line, it should:
+       *  reads lines of input (without prompting). For each line, it should:
 
-         *  exit if the line is one period (`.`) with no other text or whitespace
-            (other than a trailing newline, which we will not consider part of the line);
-         *  otherwise call `string_split` with that input
-            (without any trailing newline or similar),
-            and the chosen `sep` value, then print out the resulting array with
-            each word surrounded by square
-            brackets (`[` and `]`) and without spaces between words,
-            followed by a newline, then frees the resulting array.
+          *  exit if the line is one period (`.`) with no other text or whitespace
+             (other than a trailing newline, which we will not consider part of the line);
+          *  otherwise call `string_split` with that input
+             (without any trailing newline or similar),
+             and the chosen `sep` value, then print out the resulting array with
+             each word surrounded by square
+             brackets (`[` and `]`) and without spaces between words,
+             followed by a newline, then frees the resulting array.
 
       Some examples of expected transcripts from the `split` program are shown below.
 
