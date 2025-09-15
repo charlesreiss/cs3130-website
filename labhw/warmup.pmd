@@ -125,7 +125,7 @@ Changelog:
 
 5.  We may use automated tests to assess your submission. Your solution may not hard-code the solution for any of the test cases or intentionally interfere with the testing environment.
     <small>(By "hard-code the solution", we mean code that looks for our specific test inputs (such as checking if the input contains the "XfooX" because one of the test cases is "XfooXbar")
-    rather than the more general situation being tested (such checking for separator characters at the beginning of the input); it's not a prohibition on having less specific special cases.)</small>
+    rather than the more general situation being tested (such as checking for separator characters at the beginning of the input); it's not a prohibition on having less specific special cases.)</small>
 
 6.  Submit your solution to the [submission site](https://kytos02.cs.virginia.edu/cs3130-fall2025/submit/)
 
