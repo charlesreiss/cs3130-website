@@ -98,17 +98,17 @@ Changelog:
              brackets (`[` and `]`) and without spaces between words,
              followed by a newline, then frees the resulting array.
 
-      Some examples of expected transcripts from the `split` program are shown below.
+       Some examples of expected transcripts from the `split` program are shown below.
 
-      Your program must support lines of input lines of at least 5000 bytes.
-      If an input line is more than 5000 bytes, your program may not
-      access out of bounds memory (such as might cause a segfault), but
-      otherwise we do not care what it does. Your `string_split` function may
-      not have any arbitrary limits on the size of its arguments (but we
-      do not care how it handles running out of memory).
+       Your program must support lines of input lines of at least 5000 bytes.
+       If an input line is more than 5000 bytes, your program may not
+       access out of bounds memory (such as might cause a segfault), but
+       otherwise we do not care what it does. Your `string_split` function may
+       not have any arbitrary limits on the size of its arguments (but we
+       do not care how it handles running out of memory).
 
-      We will test your `main.c` with our own `split.c`, so
-      put any functions other than `string_split` that it needs within `main.c`.
+       We will test your `main.c` with our own `split.c`, so
+       put any functions other than `string_split` that it needs within `main.c`.
 
 2.  Create a Makefile such that typing `make` will build (if necessary) `split.o`,
     `main.o` and link them into an executable `split`.
