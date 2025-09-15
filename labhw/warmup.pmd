@@ -3,6 +3,12 @@ title: warmup
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  15 Sep 2025: mention the `-g` compiler option when talking about address sanitizer in item 4 and in the hints.
+</div>
+
 
 # Your task
 
@@ -110,7 +116,8 @@ author: Charles Reiss
 3.  Make sure your C files do not produce any warnings when compiled with `-D_XOPEN_SOURCE=700 -Og -g -std=c11 -Wall -pedantic` (assuming GCC or Clang). (It is okay if your Makefile uses different options.)
 
 4.  Make sure your code does not have memory leaks or errors.
-    We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`).
+    We will test your code with AddressSanitizer enabled to help check for this (which can be enabled by compiling and linking with `-fsanitize=address`;
+    you should also add `-g` so AddressSanitizer can show line numbers).
 
     Also, we will test your `string_split` by calling it with buffers that are just
     big enough for the arguments, so going just one byte out of bounds would
@@ -236,4 +243,7 @@ $ <br>
 
 3.  You may find referencing the CSO1 labs on using C helpful, see for example labs 9 through 12 of the [Spring 2023 offering of CSO1](https://www.cs.virginia.edu/~jh2jf/courses/cs2130/spring2023/labs/)
 
+5.  When using AddressSanitizer or debuggers, if you want to get line numbers, local variables, etc., you may neeed to compile with `-g` or a simlar option.
+
 4.  In addition to the problems caught by AddressSanitizer, you might have memory errors that arise from assuming local variables are initialized in a particular way even though you don't set them explicitly. With recent versions of GCC and with clang you can use the `-ftrivial-auto-var-init=pattern` flag to help catch this --- this will make the compiler initialize any uninitialized local variables to a pattern likely to cause issues if it is used.
+
