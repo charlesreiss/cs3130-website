@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  12 Sep 2025: move context switch "forcing" instructions out of main exercise part
+*  16 Sep 2025: update module load command to something that works with current portal modules
 </div>
 
 {.exercise ...}
@@ -164,7 +165,7 @@ To make these work on portal:
 
 *  First run (you'll need to repeat this for each shell or set this to run automatically):
 
-        module load gcccore/13.3.0 python/3.12.3
+        module load gcc python
 
 *  Then, if you haven't already run
 
