@@ -8,6 +8,7 @@ Changelog:
 
 *  7 Feb 2024: in further resources, note exception terms used by textbooks
 *  13 Feb 2024: correct typo in URL of link to processes and threads reading
+*  16 Sep 2025: "the could" -> "the OS could" in I/O patterns section
 </div>
 
 # Kernel Mode vs. User Mode
@@ -738,7 +739,7 @@ input operation might work like this:
 4.  Eventually, the device will indicate it has more input by triggering
     an interrupt. The OS can handle interrupt by copying the data
     and marking the waiting program as runnable again.
-    Possibly, the could context switch to the waiting program immediately,
+    Possibly, the OS could context switch to the waiting program immediately,
     or it might decide to let other programs run more first.
 
 ## Output
