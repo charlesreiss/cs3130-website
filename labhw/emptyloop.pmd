@@ -8,6 +8,7 @@ Changelog:
 
 *  12 Sep 2025: move context switch "forcing" instructions out of main exercise part
 *  16 Sep 2025: update module load command to something that works with current portal modules
+*  17 Sep 2025: mention using "module load gcc clang" to get access to clang on portal before running `make`
 </div>
 
 {.exercise ...}
@@ -20,7 +21,8 @@ Work, perhaps with a partner:
 2.  Look at the function `measure_times_plain` in `empty-time.c` and/or read its
     description below.
 
-3.  Use `make` to build the `empty-time` and `long-loop` programs.
+3.  Use `make` to build the `empty-time` and `long-loop` programs.  (On portal, you may need to
+    use `module load gcc clang` first or edit the Makefile to use gcc instead of clang or similar.)
 
 4.  Obtain measurements from `empty-time` for at least 1 million iterations.
     You can do this with a command like `./empty-time plain 1000000 output`:
