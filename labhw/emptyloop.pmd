@@ -9,6 +9,7 @@ Changelog:
 *  12 Sep 2025: move context switch "forcing" instructions out of main exercise part
 *  16 Sep 2025: update module load command to something that works with current portal modules
 *  17 Sep 2025: mention using "module load gcc clang" to get access to clang on portal before running `make`
+*  17 Sep 2025: add note about trying to remove `venv` directories in case they're half setup
 </div>
 
 {.exercise ...}
@@ -169,12 +170,15 @@ To make these work on portal:
 
         module load gcc python
 
-*  Then, if you haven't already run
+*  Then, if *you haven't already* run
 
         bash venv.sh
 
    which will create a venv directory containing a "[virtual environment](https://docs.python.org/3/library/venv.html)"
    and install numpy and matplotlib in that virtual environment.
+
+   If you get an error about `ensurepip` not existing, one possibility is that you have a partially setup `venv` directory;
+   try removing the `venv` directory and running the command again.
 
 *  Then (you'll need to repeat this for each shell), run:
 
