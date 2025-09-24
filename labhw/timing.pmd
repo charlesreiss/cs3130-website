@@ -3,6 +3,12 @@ title: timing homework
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment.
+</div>
+
 {.exercise ...}
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each of the scenarios below
     (under the heading "[Scenarios to time](#scenarios)").
@@ -143,7 +149,7 @@ To mitigate this, usually one would:
 ## Avoiding measurement overhead
 
 <img src="files/timing-overhead.svg"
-     alt="Diagram showing getppid running. The timeline shows a call to getppid labeled 'what you want to measured', surrounded by events of getppid being called and calls to clock_gettime. Two points in the calls to clock_gettime are marked with dotted lines to indicate the point where clock_gettime reads the clock. The time between these two points is marked 'time measured directly'."
+     alt="Diagram showing getppid running. The timeline shows a call to getppid labeled 'what you want to measured', surrounded calls to clock_gettime. Two points in the calls to clock_gettime are marked with dotted lines to indicate the point where clock_gettime reads the clock. The time between these two points is marked 'time measured directly'."
 >
 
 Whenever you time something, in addition to timing that something you will also end up timing some of your timing code.
