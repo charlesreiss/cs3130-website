@@ -8,6 +8,7 @@ Changelog:
 
 *  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment and update corresponding text
 *  24 Sep 2025: correct "each of five scenarios" to "each of the eight scenarios"
+*  24 Sep 2025: move examples of calulcations later in item 3 for hopefully increased clarity;
 </div>
 
 {.exercise ...}
@@ -23,8 +24,8 @@ Changelog:
 
     Your overall time estimates *must* comply the requirements below (under "[Requirements for time estimates](#estimates)").
 
-3.  If you needed to do any calculations (e.g. averages, subtracting something) on
-    your program's output to get those time estimates,
+3.  If you needed to do any calculations on
+    your program's output to get those time estimates (e.g. averages, subtracting something),
     then also include in `timings.txt`:
 
     *  the data output by your program you used to produce the estimates (or a reference to .txt or .csv file containing that output), and
