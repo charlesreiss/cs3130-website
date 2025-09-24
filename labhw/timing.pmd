@@ -8,7 +8,7 @@ Changelog:
 
 *  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment and update corresponding text
 *  24 Sep 2025: correct "each of five scenarios" to "each of the eight scenarios"
-*  24 Sep 2025: move examples of calulcations later in item 3 for hopefully increased clarity;
+*  24 Sep 2025: move examples of calulcations later in item 3 for hopefully increased clarity; "all the timings.txt" -> "the timings.txt"
 </div>
 
 {.exercise ...}
@@ -34,7 +34,7 @@ Changelog:
 
 3.  Produce a `Makefile` whose default target (the one run by `make`) will compile and link your `gettimings` program.
 
-4.  Submit all the `timings.txt` you created, any data files your `timings.txt` references, and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
+4.  Submit the `timings.txt` you created, any data files your `timings.txt` references, and all your source files (`Makefile`, and all the C and assembly source files) to the submission site.
 
     (If your data files are quite large (many megabytes) and would be hard to upload, you may instead put it something like [Box](https://virginia.service-now.com/its/?id=itsweb_kb_article&sys_id=13f08053db7ac744f032f1f51d9619da) and give a link in timings.txt.)
 
