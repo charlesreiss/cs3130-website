@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment and update corresponding text
+*  24 Sep 2025: correct "each of five scenarios" to "each of the eight scenarios"
 </div>
 
 {.exercise ...}
@@ -18,7 +19,7 @@ Changelog:
 
 2.  Run your program and collect the data it outputs.
 
-3.  Create a file called `timings.txt` with a single overall time estimate for each of the five scenarios.
+3.  Create a file called `timings.txt` with a single overall time estimate for each of the eight scenarios.
 
     Your overall time estimates *must* comply the requirements below (under "[Requirements for time estimates](#estimates)").
 
