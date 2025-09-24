@@ -6,7 +6,7 @@ author: Charles Reiss
 <div class="changelog">
 Changelog:
 
-*  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment.
+*  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment and update corresponding text
 </div>
 
 {.exercise ...}
@@ -154,7 +154,7 @@ To mitigate this, usually one would:
 
 Whenever you time something, in addition to timing that something you will also end up timing some of your timing code.
 For example, in the timeline diagram above, comparing the two results of `clock_gettime` calls measure `getppid` and also part of
-`clock_gettime` and the code that called `getppid` and `clock_gettime`. Because clock_gettime and other time reading functions
+`clock_gettime` and the code that called `clock_gettime`. Because clock_gettime and other time reading functions
 can't be called instantaneously, your raw time measurements will always include the time for some "extra" stuff.
 To compensate for this,
 I would recommend timing "nothing" (just running your timing code timing an empty block of code) and subtracting this from your other timings. Note that "nothing" has to be, in fact, _nothing_ to make the overhead subtraction valid.
