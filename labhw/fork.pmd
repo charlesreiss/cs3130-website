@@ -8,7 +8,7 @@ author:
 <div class="changleog">
 Changelog:
 
-*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions; fix formatting error in parallelwriteoutput description; remove remark about stripping newlines in parallelwriteoutput description
+*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions; fix formatting error in parallelwriteoutput description; remove remark about stripping newlines in parallelwriteoutput description: remove getdelim references that were about a version of this assignment that required reading from file descirptors
 </div>
 
 {.exercise ...}
@@ -63,11 +63,6 @@ In out.txt.
 {/}
 
 You may assume that the command exists and executes normally; no need to add any error-handling logic.
-
-As a tip, one of the easiest ways to read everything there is to read
-is to use `getdelim`{.c} with the delimiter `'\0'`{.c}.
-`getdelim`{.c} wants a `FILE *`{.c}, not a file descriptor;
-see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 
 # `void parallelwriteoutput(int count, const char **argv_base, const char *out_file)`
 
