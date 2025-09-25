@@ -8,7 +8,7 @@ author:
 <div class="changleog">
 Changelog:
 
-*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions; fix formatting error in parallelwriteoutput description
+*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions; fix formatting error in parallelwriteoutput description; remove remark about stripping newlines in parallelwriteoutput description
 </div>
 
 {.exercise ...}
@@ -88,9 +88,6 @@ so your call to an exec function will likely be different than it was for `write
 
 The output collected may interleave the outputs of the child processes (and an implementation
 that does this is simpler than one that does not).
-
-You may optionally strip a trailing newline from the output; in the examples below
-we do not do this.
 
 You may assume the executable `argv_base[0]` exists and executes normally and that we supply
 the full path of the executable.
