@@ -82,6 +82,7 @@ Changelog:
 
     *  this results in a small increase in the space used for page table entries, which you may not have seen on
        the previous items[^vpnsize]
+
 5.  Do the same as item 4, but make it so when  `5`
     it allocates and uses 4096 bytes of
     memory 0x10000000000 bytes after the end of the heap (again, with the address rounded up to a multiple of 4096 if necessary).

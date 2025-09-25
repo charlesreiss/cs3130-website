@@ -8,7 +8,7 @@ author:
 <div class="changleog">
 Changelog:
 
-*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions.
+*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions; fix formatting error in parallelwriteoutput description
 </div>
 
 {.exercise ...}
@@ -72,7 +72,7 @@ see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 # `void parallelwriteoutput(int count, const char **argv_base, const char *out_file)`
 
 Run `count` child processes *simulatenously*, arranging for them to write all their outputs
-to `out_file, returning only after all the child processes have finished. (You may assume the output
+to `out_file`, returning only after all the child processes have finished. (You may assume the output
 does not include `\0`. Like `writeoutput()` the string you return should be dynamically
 allocated.)
 Each of the child processes
