@@ -5,6 +5,11 @@ author:
     - Charles Reiss
 ...
 
+<div class="changleog">
+Changelog:
+
+*  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions.
+</div>
 
 {.exercise ...}
 
@@ -19,7 +24,7 @@ author:
 {/}
 
 
-# `char *writeoutput(const char *command, char *out_path, char *err_path)`
+# `void writeoutput(const char *command, char *out_path, char *err_path)`
 
 This should behave something like `system`, except that instead of letting the child print to stdout, it should write what the child prints to stdout to
 the file `out_path` and to stderr to the file `err_path`.
@@ -64,7 +69,7 @@ is to use `getdelim`{.c} with the delimiter `'\0'`{.c}.
 `getdelim`{.c} wants a `FILE *`{.c}, not a file descriptor;
 see `fdopen`{.c} for how to wrap a file descriptor in a `FILE *`.
 
-# `char *parallelwriteoutput(int count, const char **argv_base, const char *out_file)`
+# `void parallelwriteoutput(int count, const char **argv_base, const char *out_file)`
 
 Run `count` child processes *simulatenously*, arranging for them to write all their outputs
 to `out_file, returning only after all the child processes have finished. (You may assume the output
