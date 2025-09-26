@@ -9,6 +9,7 @@ Changelog:
 *  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment and update corresponding text
 *  24 Sep 2025: correct "each of five scenarios" to "each of the eight scenarios"
 *  24 Sep 2025: move examples of calulcations later in item 3 for hopefully increased clarity; "all the timings.txt" -> "the timings.txt"
+*  25 Sep 2025: fix deadlink to Intel white paper
 </div>
 
 {.exercise ...}
@@ -197,7 +198,7 @@ slightly (due to arranging code or data on the stack in a slightly better way in
 
 There are ways to avoid instructions overlapping (by including instructions
 that the processor manufacturer designates to prevent this;
-see, for example, [this Intel document](https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf))
+see, for example, [this Intel document](https://web.archive.org/web/20200626064700/https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf))
 to make sure you are only timing the task of interest and not how it interacts with instructions around it, but that
 is not required for this assignment.
 
