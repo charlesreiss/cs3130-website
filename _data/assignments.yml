@@ -40,7 +40,6 @@
 - name: fork lab
   short_name: fork-lab
   lab: true
-  tentative: true
   page: labhw/fork-lab.html
   submit_files:
   - "my_system.c"
@@ -68,7 +67,6 @@
 
 - name: virtual memory exploration
   page: labhw/vm-explore.html
-  tentative: true
   short_name: vmexplore
   lab: true
   submit_file: "lab.c"
