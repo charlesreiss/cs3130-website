@@ -10,6 +10,7 @@ Changelog:
 
 *  25 Sep 2025: make headings below consistent with instructions at the top about return types of these functions; fix formatting error in parallelwriteoutput description; remove remark about stripping newlines in parallelwriteoutput description: remove getdelim references that were about a version of this assignment that required reading from file descirptors
 *  27 Sep 2025: remove mention of \0 and things implying that writeoutput's return value would be a string
+*  28 Sep 2025: explicit specify that outputs means stdouts for parallelwriteoutput
 </div>
 
 {.exercise ...}
@@ -67,7 +68,7 @@ You may assume that the command exists and executes normally; no need to add any
 
 # `void parallelwriteoutput(int count, const char **argv_base, const char *out_file)`
 
-Run `count` child processes *simulatenously*, arranging for them to write all their outputs
+Run `count` child processes *simulatenously*, arranging for them to write all their outputs (stdouts)
 to `out_file`, returning only after all the child processes have finished.
 Each of the child processes
 should run a command specified by the NULL-pointer-terminated array `argv_base` 
