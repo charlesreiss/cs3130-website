@@ -174,10 +174,10 @@
   slides_ref:
   - caching
   description: |
+    *  virtual memory exercises 
     *  caching idea, locality
     *  direct-mapped caches
         *  valid bits, tags
-    *  cache parameter exercises
 
 - date: 2025-10-01
   lab: true
@@ -190,8 +190,9 @@
   slides_ref:
   - caching
   description: |
+   *  cache parameter exercises
    *  set-associative caches
-   *  replacement policies
+   *  replacement policies (start)
 
 - date: 2025-10-03
   week: 6
@@ -203,6 +204,7 @@
   slides_ref:
   - caching
   description: |
+   *  replacement policies (finish)
    *  cache misses and C code
    *  cache write policies
 
