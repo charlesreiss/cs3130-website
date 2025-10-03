@@ -96,7 +96,6 @@
 
 - name: pagetable part 1
   short_name: pagetable1
-  tentative: true
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
@@ -135,7 +134,6 @@
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
-  tentative: true
   page: labhw/pagetable.html
   portion: 0.25
   open: 2025-10-01
@@ -185,7 +183,6 @@
 
 - name: pagetable 3 (post code review)
   short_name: pagetable3
-  tentative: true
   comment: no introducing lab
   comment: connected to code review lab
   comment: manual page???
