@@ -3,6 +3,12 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  4 Oct 2025: correct references to old name page_allocate to allocate_page and make allocate_page consistently return int
+</div>
+
 {.exercise ...}
 Your task:
 
@@ -17,7 +23,7 @@ Your task:
     For the first submission, you must complete one of the following:
     1.  `ptbr` and `translate` from item 2 for LEVELS=1 and POBITS=12.
         We describe below how you
-        can test translate without working `page_allocate`.
+        can test translate without working `allocate_page`.
     2.  `ptbr` and `allocate_page` from item 2 for LEVELS=1 and POBITS=12.
 
     (You can choose which to complete; if you attempt both,
@@ -59,7 +65,7 @@ Your task:
 
     *  `extern size_t ptbr` --- page table base register; must be initially 0.
         Later, will contain the address of a page table your code
-        allocates as a result of calls to `page_allocate`.
+        allocates as a result of calls to `allocate_page`.
 
     *  `size_t translate(size_t va)` --- translate the virtual address `va`
         using the currently setup page table. If the address is not allocated,
@@ -177,7 +183,7 @@ size_t translate(size_t va);
  * call to `allocate_page` will be reused. If the mapping is already entirely
  * setup, the function should do nothing.)
  */
-void allocate_page(size_t va);
+int allocate_page(size_t va);
 ```
 
 # Pages, page table and ptbr format
