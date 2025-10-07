@@ -7,6 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  4 Oct 2025: correct references to old name page_allocate to allocate_page and make allocate_page consistently return int
+*  6 Oct 2024: supply updated mlpt.h to match allocate_page change
 </div>
 
 {.exercise ...}
@@ -61,7 +62,7 @@ Your task:
     you may assume that any unused bits will be set to `0` when your code is called.
 
     Your code must implement API provided by a header file called `mlpt.h`, an version of
-    which is supplied [here](files/mlpt.h). It includes:
+    which is supplied [here](files/mlpt.h) *[last updated 6 Oct 2025]*. It includes:
 
     *  `extern size_t ptbr` --- page table base register; must be initially 0.
         Later, will contain the address of a page table your code
@@ -183,7 +184,7 @@ size_t translate(size_t va);
  * call to `allocate_page` will be reused. If the mapping is already entirely
  * setup, the function should do nothing.)
  */
-int allocate_page(size_t va);
+int allocate_page(size_t start_va);
 ```
 
 # Pages, page table and ptbr format

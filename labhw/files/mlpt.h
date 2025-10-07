@@ -1,5 +1,6 @@
 #ifndef MLPT_H_
 #define MLPT_H_
+
 /**
  * Page table base register.
  * Declared here so tester code can look at it; because it is extern
@@ -15,9 +16,18 @@ extern size_t ptbr;
 size_t translate(size_t va);
 
 /**
- * Use posix_memalign to create page tables and other pages sufficient to
- * have a mapping between the given virtual address and some physical
- * address. If there already is such a page, does nothing.
+ * Allocates and maps the virtual page which starts at virtual address `start_va`
+ * (if it is not allocated ready).
+ *
+ * If `start_va` is not the address at the start of a page, returns `-1`.
+ * If `start_va` is the address at the start of a page, but the
+ * page is already allocated, returns `0`; otherwise, returns `1`.
+ *
+ * Any data pages and page tables not yet allocated will be
+ * allocated using `posix_memalign`.
+ * (Any data pages or page tables already created, such as by a prior
+ * call to `allocate_page` will be reused. If the mapping is already entirely
+ * setup, the function should do nothing.)
  */
-void page_allocate(size_t va);
+int allocate_page(size_t start_va);
 #endif
