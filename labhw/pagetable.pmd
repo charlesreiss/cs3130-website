@@ -7,7 +7,7 @@ author: Luther Tychnoviech with modifications by Charles Reiss
 Changelog:
 
 *  4 Oct 2025: correct references to old name page_allocate to allocate_page and make allocate_page consistently return int
-*  6 Oct 2024: supply updated mlpt.h to match allocate_page change
+*  6 Oct 2024: supply updated mlpt.h to match allocate_page change; clarify description of allocate_page by changing "should do nothing" to "should not change page tables" (since the function still returns a value) and using a singular data page
 </div>
 
 {.exercise ...}
@@ -82,9 +82,9 @@ Your task:
 
         Any data pages and page tables not yet allocated will be
         allocated using `posix_memalign`.
-        (Any data pages or page tables already created, such as by a prior
+        (Any data page or page tables already created, such as by a prior
         call to `allocate_page` will be reused. If the mapping is already entirely
-        setup, the function should do nothing.)
+        setup, the function should not change page tables.)
 
 3.  Prepare a `Makefile` for your code that:
 
@@ -180,9 +180,9 @@ size_t translate(size_t va);
  *
  * Any data pages and page tables not yet allocated will be
  * allocated using `posix_memalign`.
- * (Any data pages or page tables already created, such as by a prior
+ * (Any data page or page tables already created, such as by a prior
  * call to `allocate_page` will be reused. If the mapping is already entirely
- * setup, the function should do nothing.)
+ * setup, the function should not change page tables.)
  */
 int allocate_page(size_t start_va);
 ```

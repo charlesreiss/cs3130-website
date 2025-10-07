@@ -23,11 +23,11 @@ size_t translate(size_t va);
  * If `start_va` is the address at the start of a page, but the
  * page is already allocated, returns `0`; otherwise, returns `1`.
  *
- * Any data pages and page tables not yet allocated will be
+ * Any data page and page tables not yet allocated will be
  * allocated using `posix_memalign`.
  * (Any data pages or page tables already created, such as by a prior
  * call to `allocate_page` will be reused. If the mapping is already entirely
- * setup, the function should do nothing.)
+ * setup, the function should not change pagetables.)
  */
 int allocate_page(size_t start_va);
 #endif
