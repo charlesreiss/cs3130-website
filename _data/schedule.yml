@@ -246,7 +246,7 @@
 - date: 2025-10-21
   week: 9
   title: "TLB / threads"
-  reading: "[cache](readings/cache.html), [thread](readings/thread.html) §1.3-4, [pthreads](reading/pthreads.html) §1-2"
+  reading: "[cache](readings/cache.html), [thread](readings/thread.html) §1.3-4, [pthreads](readings/pthreads.html) §1-2"
   slides_ref:
   - caching
   - threads
