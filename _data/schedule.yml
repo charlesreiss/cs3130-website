@@ -246,16 +246,17 @@
 - date: 2025-10-21
   week: 9
   title: "TLB / threads"
-  reading: "[cache](readings/cache.html), [threads](readings/threads.html), [pthreads](reading/pthreads.html)"
+  reading: "[cache](readings/cache.html), [thread](readings/thread.html) §1.3-4, [pthreads](reading/pthreads.html) §1-2"
   slides_ref:
   - caching
   - threads
   description: |
    (withdraw deadline)
+   *  cache write policies
 
    *  the TLB
 
-   *  thread use examples
+   *  thread use examples (start)
 
 - date: 2025-10-22
   week: 9
@@ -264,14 +265,15 @@
 - date: 2025-10-23
   week: 9
   title: synchronization 1 --- reordering and locks
-  reading: "[consistency] §1-2, [sync](readings/sync.html) §1-2, 4, 8, [pthreads](readings/pthreads.html)"
+  reading: "[consistency](readings/consistency.html) §1-2, [sync](readings/sync.html) §1-2, 4, [pthreads](readings/pthreads.html) §3.1-2"
   slides_ref:
   - sync
   description: |
+    *  thread use examples (finish)
+
     *  problem of synchronization
        *  reordering by compilers, processors
     *  locks
-    *  barriers
 
 
 - date: 2025-10-24
@@ -280,11 +282,12 @@
 - date: 2025-10-28
   week: 10
   title: synchronization 2 --- deadlock  / producer/consumer
-  reading: "[sync](readings/sync.html) §4-7"
+  reading: "[sync](readings/sync.html) §8; [deadlock](readings/deadlock.html); [pthreads](readings/pthreads.html) §3.3"
   slides_ref:
   - sync
   - deadlock
   description: |
+    *  barriers
     *  deadlock
 
     *  producer/consumer problem
@@ -296,7 +299,7 @@
 - date: 2025-10-30
   week: 10
   title: synchronization 3 --- monitors, producer/consumer
-  reading: "[sync](readings/sync.html) §4-7"
+  reading: "[sync](readings/sync.html) §5-7, [pthreads](readings/pthreads.html) §3.5"
   slides_ref:
   - sync
   description: |
