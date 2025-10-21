@@ -162,12 +162,11 @@
   - "*.txt"
 
 - name: code reviews
-  tentative: true
   lab: true
   short_name: codereview
   page: labhw/code-review.html
   comments: needs submission site link correction
-  missing-if-no-feedback: true
+  xxx-missing-if-no-feedback: true
   due: 2025-10-22
 
 - name: pagetable 3 (post code review)
