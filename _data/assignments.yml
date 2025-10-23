@@ -230,7 +230,6 @@
 
 - name: pthreads (dining philosophers) 
   lab: true
-  tentative: true
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
@@ -247,7 +246,6 @@
 
 - name: TLB
   short_name: tlb
-  tentative: true
   comment: no introducing lab
   page: labhw/tlb.html
   submit_files:
