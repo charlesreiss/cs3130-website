@@ -211,7 +211,6 @@
 
 - name: openmp
   short_name: openmp
-  tentative: true
   lab: true
   page: labhw/openmp.html
   submit_files:
