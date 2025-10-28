@@ -221,7 +221,6 @@
 
 - name: cache programs
   short_name: cache-programs
-  tentative: true
   page: labhw/cache-programs.html
   submit_file: "*submit*.tar"
   due: 2025-10-31
