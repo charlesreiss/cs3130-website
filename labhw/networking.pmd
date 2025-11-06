@@ -7,9 +7,9 @@ Changelog:
 
 *  31 Oct 2024: add clarificaiton of what it means for packets to arrive out of order
 *  7 April 2025: update netlab.tar so one cannot run out timeouts due to internal use of setTimeout() when we receive your messages; correct wget command for this semester
+*  6 Nov 2025: update wget URL; remove mention of sockets in CSO1
 </div>
 
-You've already worked with TCP sockets in CSO1.
 In this lab you'll learn how to add reliability on top of unreliable "mailbox" type model of a network.
 
 You'll have enough to do in this lab, we'll not worry about doing it over an actual network.
@@ -19,7 +19,7 @@ We've provided a simple network simulator for you.
 {.exercise ...} Possibly working with a partner ---
 
 1. Download [netlab.tar](../files/netlab.tar) *[last updated 7 April 2025]* on a linux system
-    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/S2025/files/netlab.tar`{.bash}).
+    (e.g., with `wget https://www.cs.virginia.edu/~cr4bd/3130/F2025/files/netlab.tar`{.bash}).
 
 2. Extract it and enter the directory (e.g., with `tar xvf netlab.tar; cd netlab`{.bash}).
 3. Test it with
