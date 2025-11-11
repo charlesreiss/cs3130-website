@@ -354,6 +354,7 @@
     *  port numbers and UDP
     *  mapping between addresses and names/other addresses:
         *  DNS
+    *  (briefly) HTTP, network address translation
 
 
 - date: 2025-11-12
@@ -452,7 +453,7 @@
   slides_ref:
   - spectre
   description: |
-    *  side chnanels generally
+    *  side channels generally
     *  side channels in the cache
 
 
