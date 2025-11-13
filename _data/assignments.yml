@@ -268,7 +268,6 @@
 
 - name: life
   short_name: life
-  tentative: true
   page: labhw/life.html
   due: 2025-11-14
   submit_file: "life-parallel.c"
@@ -280,7 +279,6 @@
 
 - name: secure channels lab
   lab: true
-  tentative: true
   short_name: securechannel
   removed_page: labhw/signatures.html
   page: labhw/secure-channel.html
