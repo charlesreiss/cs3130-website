@@ -309,6 +309,7 @@
   short_name: OOO
   tentative: true
   page: labhw/ooo-exercise.html
+  due: 2025-12-09
   due_exact: 2025-12-09 10:45:59
   due_message: OOO due 10:45am &mdash; normal late policy does not apply
   feedback: "extracted*,autograder*"
