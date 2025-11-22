@@ -76,7 +76,7 @@ at once:
     add %r01, %r02 -> %r02  
     add %r02, %r01 -> %r01  
     imul %r02, %r03 -> %r03 
-    imul %r01, %r04 -> %r01 
+    imul %r04, %r01 -> %r01
     sub %r02, %r01 -> %r01  
     add %r03, %r04 -> %r04  
     movq 0x0(%r04) -> %r01  
@@ -90,16 +90,16 @@ Record your answer at the answer sheet linked above.
 Suppose the instruction queue for this processor contains the following instructions
 *after renaming*
 
-    A. movq (%x05)-> %x16
-    B. add %x05, %x08 -> %x18
-    C. sub %x01, %x02 -> %x19
-    D. imul %x16, %x02 -> %x20
-    E. movq (%x06) -> %x21
-    F. add %x19, %x08 -> %x22
-    G. add %x01, %x18 -> %x21
-    H. movq (%x23) -> %x24
-    I. imul %x20, %x18 -> %x25
-    K. movq %x25, (%x23) ->
+     A. movq (%x05)-> %x16
+     B. add %x05, %x08 -> %x18
+     C. sub %x01, %x02 -> %x19
+     D. imul %x16, %x02 -> %x20
+     E. movq (%x06) -> %x21
+     F. add %x19, %x08 -> %x22
+     G. add %x21, %x18 -> %x23
+     H. movq (%x22) -> %x24
+     I. imul %x22, %x20 -> %x25
+     J. movq %x25, (%x23) -> 
 
 Initially the value of registers `%x01` through `%x15` is available.
 
@@ -128,6 +128,7 @@ Complete a pipeline diagram for the processor running the following instructions
     5. add %r04, %r05 -> %r05
     6. add %r05, %r06 -> %r06
     7. add %r02, %r03 -> %r03
+    8. add %r01, %r08 -> %r08
 
 Identify the stages as:
 
