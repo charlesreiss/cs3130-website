@@ -32,8 +32,8 @@ Instructions in this processor are executed as follows:
     
     *  each cycle, the instruction queue is scanned for instructions whose operands are ready. (For this exercise, we'll only account for their register operands
         being ready and assume that we do not need to worry about data memory-related dependencies.)
-        *  an instruction can be issued if its operands values will be available by the beginning next cycle (when it executes); so operands are considered "ready" during
-           the cycle in which they finish execution
+        *  an instruction can be issued if its operand values will be available by the beginning next cycle (when it executes); so operands are considered "ready" during
+           the cycle in which the instruction computing them executes
         *  once an instruction to issue is identified, the issue stage will handle forwarding its operand values or reading them from the register file, as appropriate
     *  the first memory instruction available and first two non-memory instructions available are selected to be issued. (If fewer instructions are available, as many are issued as possible.)
     *  during the cycle an instruction is issued, its register value inputs are read or forwarded
