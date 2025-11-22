@@ -306,8 +306,6 @@
   description: |
     *  monitors
        *  solving producer/consumer problem
-       *  (if time) and reader-writer locks
-    *  false sharing
 
 - date: 2025-10-31
   week: 10
@@ -329,6 +327,7 @@
   - sync
   - network
   description: |
+    *  reader/writer locks, briefly
     *  transactions, briefly
 
     *  networking layers
