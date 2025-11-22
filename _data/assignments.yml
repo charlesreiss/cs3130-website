@@ -287,7 +287,6 @@
 
 - name: pipeline
   short_name: pipeline
-  tentative: true
   page: labhw/pipeline.html
   feedback: "extracted*,autograder*"
   xxx-missing-if-no-feedback: true
