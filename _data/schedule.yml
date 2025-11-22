@@ -445,6 +445,7 @@
 - date: 2025-11-28
   week: 14
   no_class: true
+  due_message: "pipeline HW due <b>following TUESDAY</b>"
 
 - date: 2025-12-02
   week: 15
@@ -474,7 +475,7 @@
 
 - date: 2025-12-05
   week: 15
-  due_message: "OOO HW due **following TUESDAY**"
+  due_message: "OOO HW due <b>following TUESDAY</b>"
 
 - date: 2025-12-09
   week: 16
