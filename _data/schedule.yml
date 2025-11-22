@@ -474,6 +474,7 @@
 
 - date: 2025-12-05
   week: 15
+  due_message: "OOO HW due **following TUESDAY**"
 
 - date: 2025-12-09
   week: 16
