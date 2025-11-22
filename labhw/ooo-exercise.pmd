@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  21 Nov 2025 (while still tentative): adjust assembly code in all problems to be different for this semester; enable answer sheet
+*  22 Nob 2025 (while still tentative): try to clarify description of what it means for operands to be ready for an instruction to be issued
 </div>
 
 See the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2025/ooo.php). 
@@ -31,7 +32,9 @@ Instructions in this processor are executed as follows:
     
     *  each cycle, the instruction queue is scanned for instructions whose operands are ready. (For this exercise, we'll only account for their register operands
         being ready and assume that we do not need to worry about data memory-related dependencies.)
-        *  operands for an instruction are considered ready during the cycle in which they finish execution
+        *  an instruction can be issued if its operands values will be available by the beginning next cycle (when it executes); so operands are considered "ready" during
+           the cycle in which they finish execution
+        *  once an instruction to issue is identified, the issue stage will handle forwarding its operand values or reading them from the register file, as appropriate
     *  the first memory instruction available and first two non-memory instructions available are selected to be issued. (If fewer instructions are available, as many are issued as possible.)
     *  during the cycle an instruction is issued, its register value inputs are read or forwarded
 
