@@ -295,9 +295,7 @@
 
 - name: side channel
   short_name: side-channel
-  tentative: true
   lab: true
-  hide: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
   xxx-missing-if-no-feedback: true
