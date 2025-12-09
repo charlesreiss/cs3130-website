@@ -8,7 +8,7 @@ Changelog:
 
 *  21 Nov 2025 (while still tentative): adjust assembly code in all problems to be different for this semester; enable answer sheet
 *  22 Nov 2025 (while still tentative): try to clarify description of what it means for operands to be ready for an instruction to be issued
-*  8 Dec 2025: in description of the issue change replace "it" with "the data cache" and "each one of these ALUs" to hopefully avoid misinterpretation; also change "this cycle" to "the same cycle"
+*  8 Dec 2025: in description of the issue change replace "it" with "the data cache" and "each of these ALUs" to hopefully avoid misinterpretation; also change "this cycle" to "the same cycle"
 </div>
 
 See the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2025/ooo.php). 
@@ -42,7 +42,7 @@ Instructions in this processor are executed as follows:
 *  when an instruction is issued, in the following cycles it is executed on an execution unit
     *  for memory instructions, this execution unit is a pipelined data cache. The data cache receives one instruction per cycle
         and produces the result after three cycles. To simplify this exercise, we will assume no cache misses.
-    *  for non-memory instructions, this execution unit is one of two arithmetic logic units. Each one of these ALUs receives one instruction per
+    *  for non-memory instructions, this execution unit is one of two arithmetic logic units. Each of these ALUs receives one instruction per
         cycle and produces the result near the end of the same cycle.
 
 *  in the cycle after an instruction is executed it is written back to the register file in one cycle
