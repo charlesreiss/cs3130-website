@@ -27,7 +27,7 @@
     *  make
        *  rules
 
-- date: 2026-01-17
+- date: 2026-01-16
   week: 1
 
 - date: 2026-01-20
@@ -38,8 +38,6 @@
   - building
   - accounts
   description: |
-    >  The quality of the 11am audio recording is poorer than usual (not recorded the usual way) though seems acceptable.
-
     *  make (finish)
 
     *  user IDs/account abstraction
@@ -51,7 +49,7 @@
 
 - date: 2026-01-22
   week: 2
-  title: privilege / exceptions
+  title: privilege / exceptions 1
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 "
   slides_ref:
   - kernel
@@ -72,40 +70,28 @@
 
 - date: 2026-01-27
   week: 3
-  title: exceptions
+  title: exceptions 2 / processes 1
   reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, 3 / [thread](readings/thread.html) §1-3.2"
   slides_ref:
   - kernel
   - unix-api
   description: |
-    *  non-system-call exceptions
-       *  timer interrupt
-       *  I/O
+    *  timer interrupt
+
+    *  creating new processes
+       *  fork, exec*
+    *  waiting for processees (start)
+
 
 
 - date: 2026-01-28
   week: 3
   lab: true
 
-- date: 2026-02-03
+- date: 2026-01-29
   week: 3
-  title: exceptions 2 / processes 1
-  reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, [threads](readings/thread.html) §3-4.1"
-  slides_ref:
-  - unix-api
-  description: |
-    *  non-system-call exceptions (fininsh)
-
-    *  creating new processes
-       *  fork, exec*
-    *  waiting for processees (start)
-
-- date: 2026-02-04
-  week: 3
-
-- date: 2026-02-05
-  week: 4
-  title: processes 2 
+  title: processes 2
+  reading: "[threads](readings/thread.html) §3-4.1"
   slides_ref:
   - unix-api
   description: |
@@ -114,11 +100,25 @@
     *  file descriptors
     *  redirection, dup2
 
-- date: 2026-02-06
+- date: 2026-01-30
+  week: 3
+
+- date: 2026-02-03
+  week: 4
+  title: "exceptions 3: exceptions and IO / virtual memory 0"
+  reading: "[kernel](readings/kernel.html) §2.2, 4 / [thread](readings/thread.html) §1-3.2"
+  slides_ref:
+  - kernel
+  description: |
+    *  exceptions and IO
+
+    *  virtual memory (start)
+
+- date: 2026-02-04
   week: 4
   lab: true
 
-- date: 2026-02-07
+- date: 2026-02-05
   week: 4
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
@@ -135,7 +135,7 @@
     *  page tables and context switches
 
 
-- date: 2026-02-08
+- date: 2026-02-06
   week: 4
 
 - date: 2026-02-10
@@ -188,16 +188,9 @@
 
 - date: 2026-02-19
   week: 6
-  title: caches 2
-  reading: "[cache](readings/cache.html)"
-  slides_ref:
-  - caching
+  title: midterm 1
   description: |
-   (Reiss out of town)
-
-   *  cache parameter exercises
-   *  set-associative caches
-   *  replacement policies (start)
+    (Reiss out of town)
 
 - date: 2026-02-20
   week: 6
@@ -209,6 +202,22 @@
 
 - date: 2026-02-24
   week: 7
+  title: caches 2
+  reading: "[cache](readings/cache.html)"
+  slides_ref:
+  - caching
+  description: |
+
+   *  cache parameter exercises
+   *  set-associative caches
+   *  replacement policies (start)
+
+- date: 2026-02-25
+  lab: true
+  week: 7
+
+- date: 2026-02-26
+  week: 7
   title: caches 3
   reading: "[cache](readings/cache.html)"
   slides_ref:
@@ -217,14 +226,6 @@
    *  replacement policies (finish)
    *  cache misses and C code
    *  cache write policies
-
-- date: 2026-02-25
-  lab: true
-  week: 7
-
-- date: 2026-02-26
-  week: 7
-  title: (slack)
 
 
 - date: 2026-02-27
@@ -330,12 +331,20 @@
     *  names and addresses
 
 
-- date: 2026-03-24
+- date: 2026-03-25
   lab: true
   week: 11
 
-- date: 2026-03-25
+- date: 2026-03-26
   week: 11
+  title: midterm 2
+
+- date: 2026-03-27
+  week: 11
+
+- date: 2026-03-31
+  week: 12
+  reading: "[security](readings/sec.html) §1-3"
   title: networking 2
   reading: "[protocols](readings/protocols.html) §1-6"
   slides_ref:
@@ -351,12 +360,12 @@
         *  DNS
     *  (briefly) HTTP, network address translation
 
-- date: 2026-03-26
-  week: 11
-
-- date: 2026-03-31
+- date: 2026-04-01
   week: 12
-  reading: "[security](readings/sec.html) §1-3"
+  lab: true
+
+- date: 2026-04-02
+  week: 12
   title: secure channels 1
   slides_ref:
   - network
@@ -369,12 +378,11 @@
    *  replay attacks
    *  public key infrastructure
 
-- date: 2026-04-01
+- date: 2026-04-03
   week: 12
-  lab: true
 
-- date: 2026-04-02
-  week: 12
+- date: 2026-04-07
+  week: 13
   title: secure channels 2 / pipelining 1
   reading: "[processors](readings/processors.html) §1-3"
   slides_ref:
@@ -391,10 +399,11 @@
    *  pipelining idea
    *  pipelining for the CPU 
 
-- date: 2026-04-03
-  week: 12
+- date: 2026-04-08
+  week: 13
+  lab: true
 
-- date: 2026-04-07
+- date: 2026-04-09
   week: 13
   title: pipelining 2
   reading: "[processors](readings/procesors.html) §2-3"
@@ -411,12 +420,11 @@
 
     *  idea of multiple issue + out-of-order
 
-- date: 2026-04-08
+- date: 2026-04-10
   week: 13
-  lab: true
 
-- date: 2026-04-09
-  week: 13
+- date: 2026-04-14
+  week: 14
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
   slides_ref:
@@ -428,11 +436,12 @@
 
     *  (if time) branch prediction ideas
 
-- date: 2026-04-10
-  week: 13
+
+- date: 2026-04-15
+  week: 14
   lab: true
 
-- date: 2026-04-14
+- date: 2026-04-16
   week: 14
   title: side channels
   slides_ref:
@@ -442,11 +451,10 @@
     *  side channels in the cache
 
 
-- date: 2026-04-15
-  week: 15
-  lab: true
+- date: 2026-04-17
+  week: 14
 
-- date: 2026-04-16
+- date: 2026-04-21
   week: 15
   title: meltdown/spectre
   slides_ref:
@@ -458,24 +466,22 @@
         *   speculation past a bounds chcek
         *   using cache side-channels
 
-
-- date: 2026-04-17
-  week: 15
-
-- date: 2026-04-21
-  week: 16
-
 - date: 2026-04-22
-  week: 16
+  week: 15
   lab: true
 
 - date: 2026-04-23
-  week: 16
+  week: 15
+  title: (slack)
+
+- date: 2026-04-24
+  week: 15
 
 - date: 2026-04-28
-  week: 17
+  week: 16
+  title: (slack)
 
 - date: 2026-05-04
   title: final exam (both sections; 7pm)
-  week: 18
+  week: 17
 
