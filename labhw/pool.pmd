@@ -1,0 +1,69 @@
+---
+title: Thread Pool
+author: Charles Reiss
+...
+
+{.exercise ...}
+Your task:
+
+1.  Implement a "[thread pool](https://en.wikipedia.org/wiki/Thread_pool)" library with the following functions:
+
+    *  `void pool_setup(int threads);`
+        
+        Create exactly `threads` threads, each of which will later run tasks submitted by `pool_submit_task`.
+
+        You may assume that this is called before any of the below functions are called.
+
+    *  `void pool_submit_task(const char *name, void *(*function)(void*), void *argument);
+
+        Record a task as submitted so it will later be run by one of the threads created by the thread pool,
+        then return.
+
+        When the task is eventually run from one of the threads created by `pool_setup`,
+        call the function specified by the function pointer `function` with the single argument `argument`.
+        Then record the return value for later retreival with `pool_wait_for_task`.
+
+        This function must make a copy of `name` (so it will not break if `name` is later modified
+        or deallocated). You may assume the `name` is unique.
+
+        This function must be safe to call from a task.
+
+    *  `void *pool_wait_for_task(const char *name);`
+
+        Wait for a task called `name` to complete running, if it hasn't alredy. You may assume the task
+        was previously submitted using `pool_submit_task` and that this function is called
+        exactly once for each task.
+
+        Returns the value returned by the task's function when it was run.
+
+        This function must be safe to call from a task.
+
+    *  `void pool_stop();`
+
+        Cause all threads in the thread pool to finish processing currently submitted tasks
+        and then terminate. Wait for all the threads to be joined.
+
+        Note that the tasks may still be waited for (to collect return values) after `pool_stop`
+        returns.
+
+        After `pool_stop()` returns and all tasks are waited for, it should be possible
+        to call `pool_setup()` again (possibly with a different number of threads)
+        and then submit and wait functions normally again.
+
+        We do not care how this function behaves if new tasks are submitted after it is started
+        but before a subsequent call to `pool_setup().`
+
+{/}
+
+# Supplied list library
+
+To aid your implementation, we supply some [linked list code](pool-files/tasklist.c) you can use in your implementation.
+
+This code implements a doubly linked list of `struct Task`s, which have a `name` field. The linked list is represented by
+a `struct TaskList`, which contains a head and tail pointer. We supply the following functions:
+
+*  `list_is_empty`: return true if the list is empty
+*  `list_remove`: remove the specified struct Task from the list. (Does not check the task is actually on the list.)
+*  `list_remove_tail`: remove a node from the tail of the list and return it (or NULL if the list was empty)
+*  `list_insert_head`: add an item at the head of the list
+*  `list_find_named`: search the list for an item with the specified name value and return it (or NULL if no such item was found)
