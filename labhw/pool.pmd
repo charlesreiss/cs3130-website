@@ -15,7 +15,7 @@ author: Charles Reiss
 
         You may assume that this is called before any of the below functions are called.
 
-    *  `void pool_submit_task(const char *name, void *(*function)(void*), void *argument);
+    *  `void pool_submit_task(const char *name, void *(*function)(void*), void *argument);`
 
         Record a task as submitted so it will later be run by one of the threads created by the thread pool,
         then return.
