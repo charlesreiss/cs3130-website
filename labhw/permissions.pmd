@@ -13,7 +13,7 @@ be your partner's username. But you won't be able to verify that some of your pe
 I would very strongly recommend having a partner.], to achieve the following:
 
 1. Answer the first question about converting from a letter permission to numeric permission or vice-versa
-   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2025/quizzes/quiz.php?qid=permissions-answer-sheet).
+   on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2026/quizzes/quiz.php?qid=permissions-answer-sheet).
 1. Create a directory in `/localtmp` on the portal machines. (`/bigtemp` will not work, it does not support ACLs.)
    Do each of the following steps in that directory.
 1. Make sure the directory is accessible to your partner. Use `chmod` or `setfacl` to set permissions on the directory.
@@ -41,7 +41,7 @@ I would very strongly recommend having a partner.], to achieve the following:
   (See the section of the reading on executable text files.)
 
 1. Determine which of the following are possible after creating a file `xyxxy` and setting its permissions. Write your answers
-   with a brief explanation on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2025/quizzes/quiz.php?qid=permissions-answer-sheet).
+   with a brief explanation on the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2026/quizzes/quiz.php?qid=permissions-answer-sheet).
     a. `cat xyxxy`{.bash} works but `echo 'hi' >> xyxxy`{.bash} does not
     a. `echo hi >> xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
     a. `./xyxxy`{.bash} works but `cat xyxxy`{.bash} does not
