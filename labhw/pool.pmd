@@ -53,7 +53,55 @@ Your task:
         We do not care how this function behaves if new tasks are submitted after it is started
         but before a subsequent call to `pool_setup().`
 
+    An example of how these functions might be used is given below.
+
+    We also supply some code to maintain lists that you can use if you choose.
+
+2.  Test your implementation. To help you with this, we supply [this test file](pool-files/pool-test.c). You could
+    also write your own test.
+
+3.  Submit your implementation using the submission site.
+
 {/}
+
+# Example of pool library usage
+
+Suppose a user wanted to use the thread pool library to handle summing arrays of numbers. They might make
+a function to do this like:
+
+    struct SumInfo {
+        int *array;
+        int array_size;
+    };
+
+    void *sum_function(void *argument) {
+        SumInfo *sum_info = argument;
+        int sum = 0;
+        for (int i = 0; i < sum_info->array_size; i += 1) {
+            sum += sum_info->array[i];
+        }
+        return (void*) sum;
+    }
+
+Then arrange for many sums to be computed by the thread pool:
+
+    pool_setup(num_threads);
+
+    struct SumInfo sum_A_info = { .array = arrayA, .array_size = ARRAY_SIZE };
+    pool_submit_task("sum arrayA", sum_function, &sum_A_info);
+    struct SumInfo sum_B_info = { .array = arrayB, .array_size = ARRAY_SIZE };
+    pool_submit_task("sum arrayB", sum_function, &sum_B_info);
+    ...
+
+    int sum_A = (int) pool_wait_for_task("sum arrayA")
+    int sum_B = (int) pool_wait_for_task("sum arrayB")
+    ...
+
+    pool_stop();
+
+The thread pool will start exactly `num_threads` threads, regardless of how many arrays
+there are to sum. Then it will have those threads run array-summing operations until
+there are no operations left.
 
 # Supplied list library
 
