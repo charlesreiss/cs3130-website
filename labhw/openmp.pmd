@@ -21,22 +21,41 @@ For full credit on submission, you must:
 
 *  implement multiple parallel versions of `geomean`, each of which uses a combination of
     a Map and Reduce version;
-*  test at least 3 Map strategies (among all your versions of `geomean`)
-*  test at least 3 Reduce strategies (among all your verisons of `geomean`)
-*  choose your combinations of Map and Reduce strategies so you have a reasonable guess about the best combination.
-   (For example, you could do this by timing all combinations, or by timing all the map strategies with a single reduce strategy
-    and vice-versa.)
+*  test at least 3 Map strategies listed below (among all your versions of `geomean`)
+*  test at least 3 Reduce strategies listed below (among all your verisons of `geomean`)
+*  choose your combinations of Map and Reduce strategies so you have a reasonable guess about the best possible combination using any of the Map strategies and Reduce strategies you tested.
+   Most simply, you could do this by timing all combinations.
+   (Alternately, you could time all the map strategies with a single reduce strategy and vice-versa.)
 
 For full credit for an in-person checkoff, we may accept somewhat less being measured if you run out of time in the lab.
 
 When timing:
 
+*  test with an input file that is _at least_ one megabyte in size;
 *  make sure the answer (`4.75838` in the output example above) does not change substantially because of our optimizations; and
 *  take multiple measurements so other activity on the machines doesn't dramatically affect your results
 
+Then evaluate your results to make a reasonable guess about:
+
+*  the fastest Map strategy and Reduce strategy combination possible from combining
+   all the Map and Reduce strategies you tested.
+
+   (If you did not test all possible
+   combinations, it may be that the best combination is not a combination you tested.
+   In this case, you would infer what is likely best by separately timing map and
+   reduce strategies. You would choose a map strategy that performed better
+   than all other map strategies in the same circumstances. In the same way,
+   you would choose a reduce strategy and guess that the speed difference
+   would be preserved when combining them.)
+
+*  why that combination would be fastest
+
 Then either:
 
-*  submit your code (preferably as one file with multiple copies of the geomean function, including all versions you timed) and a text file "performance.txt" explaining which was fastest and your guess as to why; or
+*  submit your code (preferably as one file with multiple copies of the geomean function, including all versions you timed) and a text file "performance.txt" containing:
+    *  your measurements of performance; and
+    *  your guess about the fastest possible combination
+    *  your guess as to why that combination would be fastest (1-2 sentences)
 *  check-off with a TA, being prepared to explain which approach was fastest and your guess as to why
 
 {/}
