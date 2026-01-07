@@ -2,15 +2,6 @@
 title: Dining Philosophers
 ...
 
-<div class="changelog">
-Changelog:
-
-*  25 March 2024: update deadlocking code to use barriers to hopefully make deadlock more consistent, instead of hvaing separate advice about using barriers
-*  27 March 2024: remove stray backticks in commands
-*  27 March 2024: correct "four approaches" to "three approaches"
-*  29 Oct 2024: adjust discussion of arbitrator strategy not to suggest it was not mentioned in lecture at all (sinec it was in some sections)
-</div>
-
 # Logistics
 
 We encourage group work with "buddy programming"..
@@ -41,7 +32,7 @@ pthread_barrier_t barrier; // optional: to hopefully make deadlock more consiste
 pthread_t philosopher[5];
 pthread_mutex_t chopstick[5];
 
-void *eat(void *arg) {
+void *pickUpAndEat(void *arg) {
     int n = (int) (long)arg;
 
     // optional: sync up threads to make deadlock hopefully happen more consistently
@@ -71,7 +62,7 @@ int main(int argc, const char *argv[]) {
         pthread_mutex_init(&chopstick[i], NULL);
 
     for(int i =0; i < 5; i += 1)
-        pthread_create(&philosopher[i], NULL, eat, (void *)(size_t)i);
+        pthread_create(&philosopher[i], NULL, pickUpAndEat, (void *)(size_t)i);
 
     for(int i=0; i < 5; i += 1)
         pthread_join(philosopher[i], NULL);
@@ -116,7 +107,7 @@ A correct solution can be just four lines:
 1. declare a global arbitrator mutex
 2. initialize that mutex in `main`
 3. lock it and
-4. unlock it, both in `eat`, so that only one philosopher can reach for chopsticks at a time
+4. unlock it, both in `pickUpAndEat`, so that only one philosopher can reach for chopsticks at a time. Make sure to unlock before printing the "eating" message, so two philosophers can still eat at the same time.
 
 (This deadlock strategy makes the thread take turns waiting for resources (the chopsticks), so only one thread can wait at a time. With only one thread waiting at a time, we can't have a cyclic dependency.)
 

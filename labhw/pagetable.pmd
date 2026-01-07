@@ -3,13 +3,6 @@ title: page table
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  4 Oct 2025: correct references to old name page_allocate to allocate_page and make allocate_page consistently return int
-*  6 Oct 2024: supply updated mlpt.h to match allocate_page change; clarify description of allocate_page by changing "should do nothing" to "should not change page tables" (since the function still returns a value) and using a singular data page
-</div>
-
 {.exercise ...}
 Your task:
 
