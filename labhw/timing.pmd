@@ -3,15 +3,6 @@ title: timing homework
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  24 Sep 2025: update timing overhead timeline picture to not include confusing "call getppid" segment and update corresponding text
-*  24 Sep 2025: correct "each of five scenarios" to "each of the eight scenarios"
-*  24 Sep 2025: move examples of calulcations later in item 3 for hopefully increased clarity; "all the timings.txt" -> "the timings.txt"
-*  25 Sep 2025: fix deadlink to Intel white paper
-</div>
-
 {.exercise ...}
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each of the scenarios below
     (under the heading "[Scenarios to time](#scenarios)").
@@ -51,7 +42,7 @@ Changelog:
 
 4.  calling `fork()` and having it return in the parent process. (Make sure you do `waitpid()` for the child process in between each measurement, but do not include that in your timing.)
 
-5.  `waitpid()`ing for a process that has already terminated
+5.  `waitpid()`ing to successfully retrieve the exit status for a process terminated before waitpid() was called. (It is okay if you use a not-100%-reliable way to have the process terminate before waitpid() is called, such as by using `nanosleep()` to wait for it to terminate.)
 
 6.  starting a new process that immediately exits and retrieving its exit status with `waitpid()`
 
