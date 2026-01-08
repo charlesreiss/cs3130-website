@@ -81,6 +81,7 @@ keep_files:
     - "*.mp3"
     - "*.m4a"
     - "*.svg"
+    - slides-quarto
 
 
 sass:

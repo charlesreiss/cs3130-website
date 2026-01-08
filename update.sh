@@ -7,6 +7,7 @@ chmod -R a+r files
 chmod -R a+r oldquiz
 chmod -R a+r readings/files
 chmod -R a+r slides
+chmod -R a+r slides-quarto
 chmod -R a+rX ~/public_html/3130/S2026/recordings
 pd=/u/cr4bd/bin/pandoc
 
@@ -25,7 +26,7 @@ if [ ! -e jekyll-dir ]; then
     popd
 fi
 
-for input in assets Gemfile _* files slides; do
+for input in assets Gemfile _* files slides slides-quarto; do
     if [ ! -e jekyll-dir/$input ]; then
         ln -s ../$input jekyll-dir
     fi
