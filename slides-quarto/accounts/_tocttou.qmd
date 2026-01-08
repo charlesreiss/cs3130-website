@@ -1,0 +1,61 @@
+
+### a delegation problem 
+
+
+* consider printing program marked setuid to access printer 
+
+   * decision: no accessing printer directly
+   * printing program enforces page limits, etc.
+
+* command line: file to print
+* can printing program just call open()?
+
+
+### a broken solution  {.smaller}
+
+
+```
+if (original user can read file from argument) {
+    open(file from argument);
+    read contents of file;
+    write contents of file to printer
+    close(file from argument);
+}
+```
+ 
+
+* hope: this prevents users from printing files than can't read
+* problem: race condition!
+
+
+### a broken solution / why  {.smaller}
+
+<table>
+<tr><td>setuid program</td><td>other user program</td></tr>
+<tr><td>\hline{}</td><td>create normal file <code>toprint.txt</code></td></tr>
+<tr><td>check: can user access? (yes)</td><td>---</td></tr>
+<tr><td>&nbsp;</td><td><code>unlink("toprint.txt")</code></td></tr>
+<tr><td>&nbsp;</td><td><code>link("/secret", "toprint.txt")</code></td></tr>
+<tr><td><code>open("toprint.txt")</code></td><td>---</td></tr>
+<tr><td>read …</td><td>---</td></tr>
+</table>
+ 
+
+* link: create new directory entry for file 
+
+   * another option: rename, symlink (‘‘symbolic link’’ --- alias for file/directory)
+   * another possibility: run a program that creates secret file <br> (e.g. temporary file used by password-changing program)
+
+* time-to-check-to-time-of-use vulnerability
+
+
+### TOCTTOU solution  {.smaller}
+
+
+* temporarily ‘become’ original user
+* then open
+* then turn back into set-uid user 
+
+* this is why POSIX processes have multiple user IDs
+* can swap out effective user ID temporarily
+

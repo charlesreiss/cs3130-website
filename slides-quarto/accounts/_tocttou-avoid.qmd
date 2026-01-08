@@ -1,0 +1,10 @@
+
+### exercise 
+
+
+* which (if any) of the following would fix for a TOCTTOU vulnerability in our setuid printing application? (assume the Unix-permissions without ACLs are in use) 
+
+* \relax{}[A] \textbf{both before and after} opening the path passed in for reading, check that the path is accessible to the user who ran our application
+* \relax{}[B] after opening the path passed in for reading, using <code>fstat</code> with the file descriptor opened to check the permissions on the file
+* \relax{}[C] before opening the path, verify that the user controls the file referred to by the path \textbf{and} the directory containing it
+

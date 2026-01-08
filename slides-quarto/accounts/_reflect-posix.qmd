@@ -1,0 +1,27 @@
+
+### some security tasks (1) 
+
+
+* helping students collaborate in ad-hoc small groups on shared server? 
+
+* Q1: what to allow/prevent?
+* Q2: how to use POSIX mechanisms to do this?
+
+
+### some security tasks (2) 
+
+
+* letting students assignment files to faculty on shared server? 
+
+* Q1: what to allow/prevent?
+* Q2: how to use POSIX mechanisms to do this?
+
+
+### some security tasks (3) 
+
+
+* running untrusted game program  from Internet? 
+
+* Q1: what to allow/prevent?
+* Q2: how to use POSIX mechanisms to do this?
+

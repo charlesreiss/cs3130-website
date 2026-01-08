@@ -1,0 +1,34 @@
+
+### superuser  {.smaller}
+
+
+* user ID <code>0</code> is special
+* <it>superuser</it> or <it>root</it> 
+
+   * (non-Unix) or Administrator or SYSTEM or …
+ 
+
+* some OS funtionality: only work for uid <code>0</code> 
+
+   * shutdown, mount new file systems, etc.
+
+* automatically passes all (or almost all) permission checks
+
+
+### superuser v kernel mode  {.smaller}
+
+
+* processor has two modes  
+
+   * kernel mode (what core part of OS uses)
+   * user mode (every thing else)
+
+* programs running as <em>superuser still in user mode</em> 
+
+   * just change in how OS acts when program asks for things
+ 
+
+* superuser : OS :: kernel mode : hardware 
+
+* certain hardware instructions/operations only enabled in kernel mode
+

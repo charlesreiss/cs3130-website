@@ -1,0 +1,69 @@
+
+### POSIX file permissions  {.smaller}
+
+
+* POSIX files support a per-file access control list 
+
+   * interface is very narrow/limited
+
+* binary permissions are <it>read</it>, <it>write</it>, and <it>execute</it> 
+
+   * set for three categories: user, group, other
+ 
+
+* one user ID + read/write/execute bits for user 
+
+   * ‘‘owner’’ --- also can change permissions
+
+* one group ID + read/write/execute bits for group
+* default setting --- read/write/execute 
+
+* on directories, ‘execute’ means ‘search’ instead
+
+
+### permissions encoding  {.smaller}
+
+
+* permissions encoded as 9-bit number, can write as octal: <code>XYZ</code>
+* octal divides into three 3-bit parts: 
+
+   * user permissions (X), group permissions (Y), other permission (Z)
+
+* each 3-bit part has a bit for ‘read’ (4), ‘write’ (2), ‘execute’ (1) 
+
+   * binary number: <code>0bRWE</code>
+ 
+
+* <code>700</code> --- user read+write+execute; group none; other none
+* <code>451</code> --- user read; group read+execute; other execute
+
+
+### chmod --- exact permissions  {.smaller}
+
+
+```
+chmod 700 file
+chmod u=rwx,og= file
+```
+ user read write execute; group/others no accesss 
+ <hr />
+ 
+```
+chmod 451 file
+chmod u=r,g=rx,o=x file
+```
+ user read; group read/execute; others execute
+
+### chmod --- adjusting permissions 
+
+
+```
+chmod u+rx foo
+```
+ add user read and execute permissions <br> leave other settings unchanged 
+ <hr />
+ 
+```
+chmod o-rwx,u=rx foo
+```
+ remove other read/write/execute permissions <br> set user permissions to read/execute <br> leave group settings unchanged

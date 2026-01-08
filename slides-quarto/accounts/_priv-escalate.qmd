@@ -1,0 +1,15 @@
+
+### privilege escalation  {.smaller}
+
+
+* <it>privilege escalation</it> --- vulnerabilities that allow more privileges 
+
+* code execution/corruption in utilities that run with high privilege 
+
+   * e.g. buffer overflow, command injection 
+
+   * login, sudo, system services, …
+   * bugs in system call implementations
+
+* logic errors in checking delegated operations
+

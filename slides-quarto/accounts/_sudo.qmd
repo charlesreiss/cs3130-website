@@ -1,0 +1,33 @@
+
+### sudo 
+
+
+```
+tj1a@somemachine$ Ysudo restartY
+Password: *********
+```
+ 
+
+* sudo: run command with superuser permissions 
+
+   * started by non-superuser
+
+* recall: inherits non-superuser UID
+* can't just call <code>setuid(0)</code>
+
+
+### set-user-ID sudo  {.smaller}
+
+
+* extra metadata bit on <it>executables</it>: set-user-ID
+* if set: <code>exec()</code> syscall changes effective user ID to owner's ID 
+
+   * ‘‘extra’’ user IDs track what original user was
+
+* <code>sudo</code> program: owned by root, marked set-user-ID 
+
+   * sudo's code: if (original user allowed) ...; else print error
+ 
+
+* marking setuid: <code>chmod u+s</code>
+

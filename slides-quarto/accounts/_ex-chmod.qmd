@@ -1,0 +1,20 @@
+
+### exercise  {.smaller}
+
+
+* <code>foo/bar/baz</code> (all directories) 
+
+   * <code>foo</code>: owner 613; group 75; permissions <code>0755</code>
+   * <code>bar</code>: owner 1219; group 75; permissions <code>0750</code>
+   * <code>baz</code>: owner 1219; group 75; permissions <code>0730</code>
+
+* users 613+1219s processes are part of group 75
+* (1 = execute/search; 2 = write; 4 = read)
+* which will work? 
+
+   * user 613 does <code>ls -l foo</code>
+   * user 613 does <code>ls foo/bar</code>
+   * user 613 writes <code>foo/bar/quux</code>
+   * user 613 deletes <code>foo/bar/baz</code>
+
+

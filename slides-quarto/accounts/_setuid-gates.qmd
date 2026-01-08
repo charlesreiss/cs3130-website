@@ -1,0 +1,31 @@
+
+### set-user ID gates  {.smaller}
+
+
+* set-user ID program: gate to higher privilege 
+
+* controlled access to extra functionality
+* make authorization/authentication decisions <it>outside the kernel</it>
+* way to allow normal users to do <it>one thing that needs privileges</it> 
+
+   * write program that does that one thing --- nothing else!
+   * make it owned by user that can do it (e.g. root)
+   * mark it set-user-ID
+
+* want to allow only some user to do the thing 
+
+   * make program check which user ran it
+
+
+
+### set-user-ID program v syscalls  {.smaller}
+
+
+* hardware decision: some things only for kernel
+* system calls: <it>controlled</it> access to things kernel can do
+* decision about how can do it: in the kernel 
+
+* kernel decision: some things only for root (or other user)
+* set-user-ID programs: controlled access to things root/… can do
+* decision about how can do it: made by root/…
+

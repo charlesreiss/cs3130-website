@@ -1,0 +1,16 @@
+
+### system call = ???  {.smaller}
+
+
+* (more detail in later lecture)
+* way for programs to make request to OS:
+* program sets registers to indicate requested operation  
+
+   * example: ‘‘open foo.txt’’
+   * ‘‘system call number’’ (open) and ‘‘arguments’’ (foo.txt)
+
+* program runs special instruction (x86-64: <code>syscall</code>)
+* hardware switches into <it>privileged</it> mode + runs OS function
+* OS function decodes requested operation from registers
+* OS function <it>decides</it> if operation is allowed to proceed
+

@@ -1,0 +1,33 @@
+
+### a broken setuid program: setup  {.smaller}
+
+
+* suppose I have a directory all-grades on shared server
+* in it I have a folder for each assignment
+* and within that a text file for each user's grade + other info
+* say I don't have flexible ACLs and want to give each user access 
+
+* one (bad?) idea: setuid program to read grade for assignment
+* <code>./print_grade assignment</code>
+* outputs grade from <code>all-grades/assignment/USER.txt</code>
+
+
+### a very broken setuid program  {.smaller}
+
+print_grade.c: 
+```
+int main(int argc, char **argv) {
+    char filename[500];
+    sprintf(filename, "all-grades/%s/%s.txt",
+            argv[1], getenv("USER"));
+    int fd = open(filename, O_RDWR);
+    char buffer[1024];
+    read(fd, buffer, 1024);
+    printf("%s: %s\n", argv[1], buffer);
+}
+```
+ 
+
+* HUGE amount of stuff can go wrong
+* examples?
+

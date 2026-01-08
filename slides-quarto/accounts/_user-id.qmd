@@ -1,0 +1,38 @@
+
+### user IDs  {.smaller}
+
+
+* most common way OSes identify ‘‘who’’ process belongs to:  
+
+   * process = instance of running program (w/ own registers+memory)
+   * (we'll be more specific about processes later)
+ 
+
+* (unspecified for now) procedure sets user IDs
+* every process has a user ID
+* user ID used to decide what process is authorized to do
+
+
+### POSIX user IDs  {.smaller}
+
+
+```
+uid_t geteuid(); // get current process's "effective" user ID
+```
+ 
+
+* process's user identified with unique number
+* core part of OS only knows number (not name!) 
+
+   * core, always loaded part of OS = ‘‘kernel’’
+   * the part of the OS with extra privs with hardware
+   * the part of the OS that enforces program restrictions
+
+* effective user ID is used for all permission checks
+* also some other user IDs
+* standard programs/library maintain number to name mapping 
+
+   * <code>/etc/passwd</code> on typical single-user systems
+   * network database on department machines
+
+

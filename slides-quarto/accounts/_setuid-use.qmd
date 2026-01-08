@@ -1,0 +1,24 @@
+
+### uses for setuid programs  {.smaller}
+
+
+* mount USB stick 
+
+   * setuid program controls option to kernel mount syscall
+   * make sure user can't replace sensitive directories
+   * make sure user can't mess up filesystems on normal hard disks
+   * make sure user can't mount new setuid root files
+
+* control access to device --- printer, monitor, etc. 
+
+   * setuid program talks to device + decides who can
+
+* write to secure log file 
+
+   * setuid program ensures that log is append-only for normal users
+
+* bind to a particular port number $\<$ 1024 
+
+   * setuid program creates socket, then becomes not root
+
+

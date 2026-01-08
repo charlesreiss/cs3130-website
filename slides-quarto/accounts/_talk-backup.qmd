@@ -1,0 +1,42 @@
+
+# permissions exercise {visibility="hidden"}
+
+{{< include ../accounts/_ex-chmod.qmd >}}
+
+# ACLs exercise {visibility="hidden"}
+
+{{< include ../accounts/_ex-acls-possible.qmd >}}
+
+# authentication v authorization {visibility="hidden"}
+
+{{< include ../accounts/_authz-v-authn.qmd >}}
+
+# exercises on the POSIX model {visibility="hidden"}
+
+{{< include ../accounts/_reflect-posix.qmd >}}
+
+## setuid ‘‘gates’’ {visibility="hidden"}
+
+{{< include ../accounts/_setuid-gates.qmd >}}
+
+## buggy set-user-ID program 1 {visibility="hidden"}
+
+{{< include ../accounts/_setuid-worry.qmd >}}
+
+## other privilege escalation contexts {visibility="hidden"}
+
+{{< include ../accounts/_other-escalation.qmd >}}
+
+## buggy set-user-ID program 2 {visibility="hidden"}
+
+{{< include ../accounts/_setuid-worry-2.qmd >}}
+
+## TOCTTOU example {visibility="hidden"}
+
+{{< include ../accounts/_tocttou.qmd >}}
+
+{{< include ../accounts/_tocttou-race.qmd >}}
+
+## exercise{visibility="hidden"}
+
+{{< include ../accounts/_tocttou-avoid.qmd >}}

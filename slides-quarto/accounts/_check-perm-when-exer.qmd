@@ -1,0 +1,10 @@
+
+### keeping permissions? 
+
+
+* which of the following would still be secure? 
+
+* A. performing authorization checks in the standard library in addition to system call handlers
+* B. performing authorization checks in the standard library instead of system call handlers
+* C. making the user ID a system call argument rather than storing it persistently in the OS's memory
+

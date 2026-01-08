@@ -1,0 +1,19 @@
+
+### authorization v authentication 
+
+
+* <it>authentication</it> --- who is who 
+
+* <it>authorization</it> --- who can do what 
+
+   * probably need authentication first…
+
+
+
+### authentication 
+
+
+* password
+* hardware token
+* …
+

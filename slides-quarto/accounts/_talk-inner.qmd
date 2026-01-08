@@ -1,0 +1,69 @@
+
+# accounts {visibility="hidden"}
+
+{{< include ../accounts/_intro.qmd >}}
+
+# user ID idea {visibility="hidden"}
+
+{{< include ../accounts/_user-id.qmd >}}
+
+## group IDs {visibility="hidden"}
+
+{{< include ../accounts/_group-id.qmd >}}
+
+### id and group id establish identity 
+
+
+* <it>who</it> is running a process or accessing a resource
+* but also need <it>permissions</it>  
+
+   * what users can access
+
+
+
+# permissions and access control lists {visibility="hidden"}
+
+## file permissions {visibility="hidden"}
+
+{{< include ../accounts/_file-chmod.qmd >}}
+
+{{< include ../accounts/_file-acls.qmd >}}
+
+### ACLs establish permissions 
+
+
+* identity: <it>who</it> is running a process or accessing a resource
+* permissions: who has what access to a file or resource
+* now need <it>enforcement</it>  
+
+   * ensure that permissions are implemented correctly
+
+
+
+# enforcing permissions {visibility="hidden"}
+
+{{< include ../accounts/_auth-unix-check.qmd >}}
+
+# superuser {visibility="hidden"}
+
+{{< include ../accounts/_auth-unix-superuser.qmd >}}
+
+# becoming superuser {visibility="hidden"}
+
+## on boot, /bin/login {visibility="hidden"}
+
+{{< include ../accounts/_bin-login.qmd >}}
+
+## set-user-ID/sudo {visibility="hidden"}
+
+{{< include ../accounts/_sudo.qmd >}}
+
+{{< include ../accounts/_setuid-use.qmd >}}
+
+## a litany of silly setuid program issues {visibility="hidden"}
+
+{{< include ../accounts/_setuid-hard-to-write.qmd >}}
+
+# privilege escalation {visibility="hidden"}
+
+{{< include ../accounts/_priv-escalate.qmd >}}

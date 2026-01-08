@@ -1,0 +1,43 @@
+
+### exercise: ACLs versus chmod 
+
+
+
+* which ACL rulesets are possible to imitate with chmod?
+ <table>
+<tr><td>A.</td><td>
+:::: {.columns}
+
+::: {.column width="99%"}
+<code>user:foo:rw-<br><code>user:bar:r--</code><br><code>user:quux:-w-</code><br><code>other:---</code></code>
+:::
+
+::::
+</td><td>B.</td><td>
+:::: {.columns}
+
+::: {.column width="99%"}
+<code>user:foo:rw-<br><code>user:bar:r--</code><br><code>user:quux:---</code><br><code>other:---</code></code>
+:::
+
+::::
+</td></tr>
+<tr><td>C.</td><td>
+:::: {.columns}
+
+::: {.column width="99%"}
+<code>user:foo:rw-<br><code>user:bar:rw-</code><br><code>user:quux:r--</code><br><code>other:r--</code></code>
+:::
+
+::::
+</td><td>D.</td><td>
+:::: {.columns}
+
+::: {.column width="99%"}
+<code>user:foo:rw-<br><code>group:G:r--</code><br><code>user:quux:rw-</code><br><code>other:---</code></code>
+:::
+
+::::
+</td></tr>
+</table>
+

@@ -1,0 +1,11 @@
+
+### set-user ID programs are very hard to write  {.smaller}
+
+
+* what if stdin, stdout, stderr start closed?
+* what if the PATH env. var. set to directory of malicious programs?
+* what if <code>argc == 0</code>?
+* what if dynamic linker env. vars are set?
+* what if some bug allows memory corruption?
+* …
+

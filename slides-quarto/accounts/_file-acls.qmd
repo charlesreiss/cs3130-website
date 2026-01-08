@@ -1,0 +1,62 @@
+
+### POSIX/NTFS ACLs 
+
+
+* more flexible access control lists 
+
+* list of (user or group, read or write or execute or …) 
+
+* supported by NTFS (Windows)
+* a version standardized by POSIX, but usually not supported
+
+
+### POSIX ACL syntax  {.smaller}
+
+
+```
+# group students have read+execute permissions
+group:students:r-x
+# group faculty has read/write/execute permissions
+group:faculty:rwx
+# user mst3k has read/write/execute permissions
+user:mst3k:rwx
+# user tj1a has no permissions
+user:tj1a:---
+
+# POSIX acl rule:
+    # user take precedence over group entries
+```
+
+
+### POSIX ACLs on command line  {.smaller}
+
+
+```
+getfacl file
+```
+ 
+ <hr />
+ 
+```
+setfacl -m 'user:tj1a:---' file
+```
+ add line to ACL 
+ <hr />
+ 
+```
+setfacl -x 'user:tj1a' file
+```
+ REMOVE line from acl 
+ <hr />
+ 
+```
+setfacl -M acl.txt file
+```
+ add to acl, but read what to add from a file 
+ <hr />
+ 
+```
+setfacl -X acl.txt file
+```
+ remove from acl, but read what to remove from a file 
+

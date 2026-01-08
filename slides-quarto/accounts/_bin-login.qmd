@@ -1,0 +1,70 @@
+
+### how does login work?  {.smaller}
+
+
+```
+XsomemachineX login: YjoY
+password: ********
+
+jo@XsomemachineX$ YlsY
+...
+```
+ 
+
+* this is a program which…
+* [checks if the password is correct]{.fragment fragment-index=2 .custom .myem-only}, and
+* [changes user IDs]{.fragment fragment-index=3 .custom .myem-only}, and
+* runs a shell
+
+
+### againframe(loginProgram)
+
+### Unix password storage  {.smaller}
+
+
+* typical single-user system: <code>/etc/shadow</code> 
+
+   * only readable by root/superuser
+
+* department machines: network service 
+
+   * Kerberos / Active Directory:
+   * server takes (encrypted) passwords
+   * server gives tokens: ‘‘yes, really this user’’
+   * can cryptographically verify tokens come from server
+
+
+
+### aside: beyond passwords  {.smaller}
+
+
+* /bin/login entirely user-space code
+* only thing special about it: when it's run
+* could use any criteria to decide, not just passwords 
+
+   * physical tokens
+   * biometrics
+   * …
+
+
+
+### againframe(loginProgram)
+
+### changing user IDs 
+
+
+```
+int setuid(uid_t uid);
+```
+ 
+
+* if superuser: sets effective user ID to arbitrary value 
+
+   * and a ‘‘real user ID'’ and a ‘‘saved set-user-ID’’ (we’ll talk later)
+ 
+
+* system starts as superuser and login programs run as superuser 
+
+   * voluntarily restrict own access before running shell, etc.
+
+

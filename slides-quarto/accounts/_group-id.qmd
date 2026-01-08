@@ -1,0 +1,50 @@
+
+### POSIX groups  {.smaller}
+
+
+```
+gid_t getegid(void);
+    // process's "effective" group ID
+
+int getgroups(int size, gid_t list[]);
+    // process's extra group IDs
+```
+ 
+
+* POSIX also has <it>group IDs</it>
+* like user IDs: kernel (= core part of OS) only knows numbers 
+
+   * standard library+databases for mapping to names
+
+* [also process has some other group IDs --- we'll talk later]{.my-small}
+
+
+### id command  {.smaller}
+
+
+```
+: /u/bjc8c ; id
+uid=858545(bjc8c) gid=90002(csfaculty)
+groups=90002(csfaculty),150015(slurm-cs-brad-campbell)
+```
+ 
+ 
+
+* id command displays uid, gid, group list
+* names looked up in database 
+
+   * kernel doesn't know about this database
+   * code in the C standard library
+
+
+
+### groups that don't correspond to users 
+
+
+* example: video group for access to monitor 
+
+* put process in video group when logged in directly
+* don't do it when SSH'd in 
+
+* … but: user can keep program running with video group <br> in the background after logout?
+

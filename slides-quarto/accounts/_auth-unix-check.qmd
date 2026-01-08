@@ -1,0 +1,14 @@
+
+### authorization checking on Unix  {.smaller}
+
+
+* request made to core part of OS = system call
+* handler for system calls checks permissions 
+
+   * no relying on libraries, etc. to do checks
+ 
+
+* files (open, rename, …) --- file/directory permissions include UID or GID
+* processes (kill, …) --- process UID = user UID
+* …
+

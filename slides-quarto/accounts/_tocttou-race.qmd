@@ -1,0 +1,14 @@
+
+### practical TOCTTOU races?  {.smaller}
+
+
+* can use symlinks <it>maze</it> to make check slower 
+
+   * symlink <code>toprint.txt</code> $\rightarrow{}$ <code>a/b/c/d/e/f/g/normal.txt</code>
+   * symlink <code>a/b</code> $\rightarrow{}$ <code>../a</code>
+   * symlink <code>a/c</code> $\rightarrow{}$ <code>../a</code>
+   * …
+
+* lots of time spent following symbolic links when program opening toprint.txt
+* gives more time to sneak in unlink/link or (more likely) rename
+

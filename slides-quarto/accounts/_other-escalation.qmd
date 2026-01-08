@@ -1,0 +1,13 @@
+
+### other privileged escalation issues  {.smaller}
+
+
+* sudo problem: trusted code that's supposed to enforce restriction <br> can be fooled into not really enforcing it
+* also can occur in other contexts: 
+
+* system call letting program access things it shouldn't?
+* browser letting web page javascript access things it shouldn't?
+* web application giving users access to files they shouldn't have?
+* mobile phone OS allowing location access without location permission?
+* …
+
