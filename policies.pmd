@@ -155,7 +155,7 @@ supervised evaluation or online quiz unless specifically announced otherwise by 
 
 However, quizzes (unless otherwise specified) are open book/open notes. You may ask TAs, other students,
 and consult other resources (reference manuals, stack overflow-like sites, generative AI tools)
-or help with reviewing related lecture, lab, or reading material, but not to
+for help with reviewing related lecture, lab, or reading material, but not to
 ask specifically about (or look for instances where others asked specifically about) the quiz questions.
 
 ### Use of generative AI tools
@@ -166,7 +166,22 @@ So you can ask conceptual questions, etc. but not for code (even for labs), spec
 answers, "checking over" your code or specific written answers, etc.
 
 (However, I [Reiss] am skeptical that using generative AI in this way is a good idea
-since you may have trouble checking when the answers are accurate in the context of the course.)
+since you may have trouble checking when the answers are accurate in the context of the course.
+As always, I would encourage you to consider using help from the course staff (Piazza, office hours, etc.).)
+
+To help illustrate the policy, here are a few examples of acceptable and prohibited generative AI use. Note, these are not exhaustive examples,
+but are intended to help clarify the difference between conceptual help like what you could get from a fellow student, and
+prohibited support that is specific to individual questions or your code.
+
+Acceptable examples:
+*  "In POSIX, explain what a user id is, and how it relates to a group id."
+*  "What is the difference between a direct mapped cache and a 1-way set associative cache?"
+*  "What prevents one process from accessing the memory of another process?"
+
+Examples of prohibited generative AI use:
+*  "Write C code that creates a new instance of a process running a user-provided executable."
+*  <Copying a quiz question directly.>
+*  "I'm getting <insert error> when I compile this code <insert code>, how do I fix it?"
 
 ### Consequences of Dishonesty
 
