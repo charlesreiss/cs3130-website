@@ -1,0 +1,38 @@
+
+### files in building C programs [dynamic linking] 
+
+
+::: {.r-stack .my-full}
+![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-1.svg){.fragment .fade-in-then-out fragment-index=1 alt="{self.alt_text}"}
+
+![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-2.svg){.fragment .fade-in-then-out fragment-index=2 alt="{self.alt_text}"}
+
+![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-3.svg){.fragment .fade-in-then-out fragment-index=3 alt="{self.alt_text}"}
+
+![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-4.svg){.fragment .fade-in-then-out fragment-index=4 alt="{self.alt_text}"}
+
+![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-5.svg){.fragment .fade-in-then-out fragment-index=5 alt="{self.alt_text}"}
+
+:::
+
+
+### files in building C programs [static linking] 
+
+![](texfig/_c-file-types-files-in-building-c-programs-static-linking.figure.svg){alt="{self.alt_text}"}
+
+
+### file extensions  {.smaller}
+
+<table>
+<tr><td>name</td><td>&nbsp;</td><td></td></tr>
+<tr><td>\hline{}  <code>.c</code></td><td></td><td>C source code</td></tr>
+<tr><td><code>.h</code></td><td></td><td>C header file</td></tr>
+<tr><td><code>.s</code></td><td>(or <code>.asm</code>)</td><td>assembly file</td></tr>
+<tr><td><code>.o</code></td><td>(or <code>.obj</code>)</td><td>object file (binary of assembly)</td></tr>
+<tr><td>(none)</td><td>(or <code>.exe</code>)</td><td>executable file</td></tr>
+<tr><td>.a</td><td>(or <code>.lib</code>)</td><td>statically linked library</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>[collection of .o files]</td></tr>
+<tr><td>.so</td><td>(or <code>.dll</code> or <code>.dylib</code>)</td><td>dynamically linked library</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>[‘shared object’]</td></tr>
+</table>
+

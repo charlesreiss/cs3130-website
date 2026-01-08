@@ -1,0 +1,39 @@
+
+### labs  {.smaller}
+
+
+* attend lab in person and get checked off by TA, <it>or</it>
+* (most labs) submit something to submission site and we'll grade it 
+
+   * submit to submission site? don't care if you attend the lab
+   * more strict about submissions without checkoffs
+   * in-person lab checkoff of incomplete lab at least 50% credit
+
+* some labs will require attendance 
+
+   * or contact me for other arrangements if you can't (sick, etc.)
+   * logistically won't work otherwise --- e.g. code review
+
+* if can't make lab in-person (example: sick) 
+
+   * let me know, can arrange late/alternate checkoff
+
+
+
+### lab collaboration and submissions 
+
+
+* please collaborate on labs! 
+
+* when working with others on lab and submitting code files
+* please indicate who you worked with in those files 
+
+   * via comment or similar
+
+
+
+### lab space 
+
+
+* if labs are full, might kick out students from ‘wrong’ lab section
+

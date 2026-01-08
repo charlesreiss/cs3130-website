@@ -1,0 +1,20 @@
+
+### exercise (incremental compilation)  {.smaller}
+
+
+
+* program built from main.c + extra.c
+* main.c, extra.c both include extra.h, stdio.h
+ 
+ 
+```
+clang -c main.c                 # command 1
+clang -c extra.c                # command 2
+clang -o program main.o extra.o # command 3
+```
+ What commands need to be rerun if… 
+ 
+
+* Question A: … main.c changes?
+* Question B: … extra.h changes?
+

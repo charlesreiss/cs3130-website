@@ -1,0 +1,13 @@
+
+### aside: make versions 
+
+
+* multiple implementations of <code>make</code>
+* for stuff we've talked about so far, no differences 
+
+* most common on Linux: GNU make
+* will talk about ‘pattern rules', which aren’t supported by some other make versions  
+
+   * older, portable, (in my opinion less intuitive) alternative: suffix rules
+
+

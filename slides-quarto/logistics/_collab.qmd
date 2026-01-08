@@ -1,0 +1,48 @@
+
+### collaboration (1)  {.smaller}
+
+
+* labs --- you can/should work with other <it>students</it> 
+
+   * everyone should understand the work submitted
+   * we may ask questions/etc. to check on occassion
+
+* homeworks --- individual 
+
+   * write your own code / do not share your code
+   * can ask/look up <it>conceptual</it> questions of others
+   * others includes other students, Q&amp;A sites, code generation tools, etc.
+   * \textbf{cite} any sources you use (comments in code)
+
+
+
+### collaboration (2)  {.smaller}
+
+
+* quizzes --- individual 
+
+* but open book+notes+etc.
+* can/should have help reviewing lecture/readings/etc. 
+
+   * legitimate questions for office hours
+
+* don't ask other students, stack overflow, gen AI tools, etc. the quiz questions
+* don't try to find exactly the quiz question on stack overflow
+
+
+### generative AI tools  {.smaller}
+
+
+* can use for things you might ask fellow/former student for individual assignment 
+
+   * use should be cited in relevant submission
+   * <it>not</it> an ‘extra lab partner’
+ 
+
+* cannot use for things you cannot ask fellow/former student for individual assignment 
+
+   * write some code/written answer
+   * look over my written answer, tell me if it's okay
+   * show me your code as a reference, but I won't copy it
+
+

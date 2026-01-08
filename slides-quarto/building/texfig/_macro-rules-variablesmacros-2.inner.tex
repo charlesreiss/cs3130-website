@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+\node[minimum width=15cm,minimum height=9cm] (current page) {};
+\begin{scope}[overlay]
+
+\node[ultra thick,draw=red,anchor=north east,align=left] at ([xshift=-1cm,yshift=-1cm]current page.north east) {
+\texttt{\$@}: target \\
+\texttt{\$<}: first dependency \\
+\texttt{\$\textasciicircum}: all dependencies
+};
+\end{scope}
+\end{tikzpicture}

@@ -1,0 +1,35 @@
+
+### static libraries  {.smaller}
+
+
+* Unix-like <it>static</it> libraries: libfoo.a
+* internally: archive of .o files with index
+* create: <code>ar rcs libfoo.a file1.o file2.o …</code> 
+
+   * ‘archive’ utility <code>ar</code> and not normal C compiler
+
+* use: <code><it>cc</it> …&nbsp;-o program -L/path/to/lib …&nbsp;-lfoo</code>  
+
+   * no space between <code>-l</code> and library name
+   * <code><it>cc</it></code> could be clang, gcc, clang++, g++, etc.
+   * <code>-L/path/to/lib</code> not needed if in standard location
+
+
+
+### shared libraries (AKA dynamically-linked libraries)  {.smaller}
+
+
+* Linux <it>shared</it> libraries: libfoo.so
+* create: 
+
+   * compile .o files with [<code>-fPIC</code>]{.fragment fragment-index=1 .custom .myem-only} (position independent code)
+   * then: <code><it>cc</it> [-shared]{.fragment fragment-index=1 .custom .myem-only} …&nbsp;-o libfoo.so</code>
+
+* use: <code><it>cc</it> … -o program [-L/path/to/lib]{.fragment fragment-index=2 .custom .myem-only} … -lfoo</code> 
+
+   * <code><it>cc</it></code> = C compiler (clang, gcc, etc.)
+ 
+
+* <code>-L...</code> sets path <it>[only when making executable]{.fragment fragment-index=2 .custom .myem-only}</it>
+* [runtime path set separately]{.fragment fragment-index=2 .custom .myem-only}
+

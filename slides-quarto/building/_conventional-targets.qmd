@@ -1,0 +1,11 @@
+
+### conventional targets 
+
+common convention: <br> <table>
+<tr><td>target name</td><td>purpose</td></tr>
+<tr><td>(default), <code>all</code></td><td>build everything</td></tr>
+<tr><td><code>install</code></td><td>install to standard location</td></tr>
+<tr><td><code>test</code></td><td>run tests</td></tr>
+<tr><td><code>clean</code></td><td>remove generated files</td></tr>
+</table>
+

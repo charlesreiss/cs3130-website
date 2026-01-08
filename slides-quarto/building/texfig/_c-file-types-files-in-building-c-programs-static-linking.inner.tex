@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+\tikzset{
+    file/.style={font=\small,draw,align=center},
+    file C/.style={file},
+    file H/.style={file},
+    file system/.style={file,dotted,fill=blue!10},
+    file S/.style={file},
+    file O/.style={file},
+    produce main/.style={draw,very thick,-Latex},
+    produce minor/.style={draw,thick},
+}
+\begin{scope}[every node/.style={on chain},start chain=going right,node distance=.5cm]
+\node[file C] (main c) {main.c};
+\node[file H] (main h) {main.h};
+\node[file H] (extra h) {extra.h};
+\node[file system] (stdio h) {stdio.h};
+\node[file C] (extra c){extra.c};
+\end{scope}
+\node[file O,anchor=north] (main o) at ([yshift=-2cm]main c.south) {main.o};
+\draw[produce main] (main c) -- (main o);
+\foreach \nm in {main h,extra h,stdio h} {
+    \draw[produce minor] ([xshift=-1mm]\nm.south) |- ([yshift=.5cm]main o.north) -- (main o.north);
+}
+\node[file O,anchor=north] (extra o) at ([yshift=-2cm]extra c.south) {extra.o};
+\draw[produce main] (extra c) -- (extra o);
+\foreach \nm in {extra h,stdio h} {
+    \draw[produce minor] ([xshift=1mm]\nm.south) |- ([yshift=1cm]extra o.north) -- (extra o.north);
+}
+\node[file] (program) at ([xshift=3cm,yshift=-2cm]main o.south) { program \\ \scriptsize executable };
+\node[anchor=west, file system] (compiler o) at ([xshift=.5cm]extra o.east) { (compiler files) };
+\node[file system,anchor=west] (libc a) at ([xshift=.5cm]compiler o.east) {
+    libc.a
+};
+\foreach \nm in {main o,extra o,compiler o,libc a} {
+    \draw[produce main] ([xshift=1mm]\nm.south) |- ([yshift=1cm]program.north) -- (program.north);
+}
+\end{tikzpicture}

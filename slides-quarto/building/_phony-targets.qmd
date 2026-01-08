@@ -1,0 +1,52 @@
+
+### ‘phony’ targets (1) 
+
+
+
+* common to have Makefile targets that aren't files
+ 
+<code>all: program1 program2 libfoo.a</code>
+ 
+
+* ‘‘<code>make all</code>’’ effectively shorthand for ‘‘<code>make program1 program2 libfoo.a</code>’’
+* no actual file called ‘‘all’’
+
+
+### ‘phony’ targets (2) 
+
+
+
+* sometimes want targets that don't actually build file
+* example: ‘‘<code>make clean</code>’’ to remove generated files
+ 
+<code>clean:</code><br />
+<code>▶ rm --force main.o extra.o</code>
+
+
+### but what if I create 
+
+
+<code>clean:</code><br />
+<code>▶ rm --force main.o extra.o</code><br />
+<code>&nbsp;</code><br />
+<code>all: program1 program2 libfoo.a</code>
+ 
+
+* Q: if I make a file called ‘‘all’’ and then ‘‘make all’’ what happens?
+* Q: same with ‘‘clean’’ and ‘‘make clean’’?
+
+
+### marking phony targets 
+
+
+<code>clean:</code><br />
+<code>▶ rm --force main.o extra.o</code><br />
+<code>&nbsp;</code><br />
+<code>all: program1 program2 libfoo.a</code><br />
+<code>&nbsp;</code>
+ 
+
+* special .PHONY rule says ‘‘ ‘all’ and ‘clean’ not real files’’ 
+
+* []{.my-small} (not required by POSIX, but in every <code>make</code> version I know)
+

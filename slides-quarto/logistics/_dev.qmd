@@ -1,0 +1,32 @@
+
+### development enviroment 
+
+
+* we will test via something like SSH into portal  
+
+   * officially supported environment
+ 
+
+* no restrictions re: IDEs  
+
+   * but make sure you test/know how to run from command line
+
+* many students had success with VSCode + its SSH support
+
+
+### some notes on VSCode  {.smaller}
+
+
+* I don't use VSCode (I use vim via SSH+tmux…)
+* but many of our TAs do; their advice:… 
+
+* use SSH support to run on portal (dept machine) 
+
+   * tutorial in prior CSO1 lab (linked off course website)
+
+* install Microsoft's C/C++ extension 
+
+   * set C standard in settings as ‘gnu17’ or similar
+
+* install Microsoft's Makefile Tools extension
+

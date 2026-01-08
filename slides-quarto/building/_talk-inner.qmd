@@ -1,0 +1,62 @@
+
+# files in building C programs {visibility="hidden"}
+
+{{< include ../building/_c-file-types.qmd >}}
+
+## libraries, static and shared {visibility="hidden"}
+
+{{< include ../building/_libraries.qmd >}}
+
+## libraries, finding {visibility="hidden"}
+
+{{< include ../building/_libraries-finding.qmd >}}
+
+## static v shared {visibility="hidden"}
+
+{{< include ../building/_static-v-shared-example.qmd >}}
+
+## library order{visibility="hidden"}
+
+{{< include ../building/_library-order.qmd >}}
+
+## exercise: commands to build {visibility="hidden"}
+
+{{< include ../building/_c-build-exercise.qmd >}}
+
+# make {visibility="hidden"}
+
+## basics {visibility="hidden"}
+
+{{< include ../building/_make-intro.qmd >}}
+
+## exercise: what will be run {visibility="hidden"}
+
+{{< include ../building/_make-what-runs.qmd >}}
+
+## phony targets {visibility="hidden"}
+
+{{< include ../building/_phony-targets.qmd >}}
+
+## conventional targets {visibility="hidden"}
+
+{{< include ../building/_conventional-targets.qmd >}}
+
+## variables, macro rules {visibility="hidden"}
+
+{{< include ../building/_macro-rules.qmd >}}
+
+## aside: make versions {visibility="hidden"}
+
+{{< include ../building/_make-versions.qmd >}}
+
+## pattern rules {visibility="hidden"}
+
+{{< include ../building/_pattern-rules.qmd >}}
+
+## built-in rules {visibility="hidden"}
+
+{{< include ../building/_builtin-rules.qmd >}}
+
+# other build system stuff {visibility="hidden"}
+
+{{< include ../building/_more-build-system.qmd >}}

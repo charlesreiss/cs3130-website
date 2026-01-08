@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+\begin{scope}[every node/.style={draw,very thick,minimum width=4cm}]
+\node[alt={<2>{fill=red!10}},alt=<5>{fill=red!10}] (W) {W (1 min old)};
+\node[alt=<3>{fill=red!10}] (X) at ([yshift=-1cm]W.south) {X (\alt<4->{\myemph<5>{just updated}}{3 h old})};
+\node[alt=<4>{fill=red!10}] (Y) at ([yshift=-1cm,xshift=6cm]W.south) {Y (\alt<5->{\myemph{just updated}}{not existant})};
+\node (Q) at ([yshift=-1cm]X.south)  {Q (2 h old)};
+\node (Z) at ([yshift=-1cm]Y.south)  {Z (3 h old)};
+\end{scope}
+\begin{scope}[-Latex,thick]
+\draw[alt=<2>{red,dotted},alt=<5>{red,ultra thick}] (W) -- (X);
+\draw[alt=<2>{red,dotted},alt=<5>{red,ultra thick}] (W) -- (Y);
+\draw[alt=<3>{red,ultra thick}] (X) -- (Q);
+\draw[alt=<4>{red,dotted}] (Y) -- (X);
+\draw[alt=<4>{red,dotted}] (Y) -- (Z);
+\end{scope}
+\end{tikzpicture}

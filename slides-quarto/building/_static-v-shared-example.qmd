@@ -1,0 +1,78 @@
+
+### exercise (1)  {.smaller}
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+ a.c: 
+```
+void foo() { puts("A"); }
+```
+ 
+:::
+
+::: {.column width="50%"}
+ b.c: 
+```
+void foo() { puts("B"); }
+```
+ 
+:::
+
+::::
+ main.c: 
+```
+int main() {foo();}
+```
+ <hr />
+ <pre><code>$ clang -c main.c -o main.o
+$ clang -c a.c -o a.o
+$ ar rcs libfoo.a a.o
+$ clang main.o -L. -lfoo -o program
+$ ./program
+<em>A</em>
+$ rm libfoo.a
+$ clang -c b.c -o b.o
+$ ar rcs libfoo.a b.o
+$ <em>./program</em>
+</code></pre> exercise: output?
+
+### exercise (2)  {.smaller}
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+ a.c: 
+```
+void foo() { puts("A"); }
+```
+ 
+:::
+
+::: {.column width="50%"}
+ b.c: 
+```
+void foo() { puts("B"); }
+```
+ 
+:::
+
+::::
+ main.c: 
+```
+int main() {foo();}
+```
+ <hr />
+ <pre><code>$ clang -c main.c -o main.o
+$ clang -fPIC -c a.c -o a.o
+$ clang -shared -o libfoo.so a.o
+$ clang main.o -Wl,-rpath . -L. -lfoo -o program
+$ ./program
+<em>A</em>
+$ rm libfoo.so
+$ clang -fPIC -c b.c -o b.o
+$ clang -shared -o libfoo.so b.o
+$ <em>./program</em>
+</code></pre> exercise: output?

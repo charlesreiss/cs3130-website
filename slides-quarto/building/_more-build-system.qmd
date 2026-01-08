@@ -1,0 +1,31 @@
+
+### writing Makefiles? 
+
+
+* error-prone to write all .h dependencies 
+
+* <code>-MM</code> (and related) options to <code>gcc</code> or <code>clang</code> 
+
+   * outputs make rule
+   * ways of having make run this + use output
+
+* Makefile generators 
+
+   * other programs that write Makefiles
+
+
+
+### other build systems 
+
+
+* alternatives to writing Makefiles: 
+
+* other make-ish build systems 
+
+   * ninja, scons, bazel, maven, xcodebuild, msbuild, …
+
+* tools that generate inputs for make-ish build systems 
+
+   * cmake, autotools, qmake, …
+
+

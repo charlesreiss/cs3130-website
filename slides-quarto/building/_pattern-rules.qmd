@@ -1,0 +1,18 @@
+
+### pattern rules  {.smaller}
+
+
+<code>CC = gcc</code><br />
+<code>CFLAGS = -Wall</code><br />
+<code>LDFLAGS = -Wall</code><br />
+<code>LDLIBS = -lm</code><br />
+<code>&nbsp;</code><br />
+<code>program: main.o extra.o</code><br />
+<code>▶ \$(CC) \$(LDFLAGS) -o \$@ \$^ \$(LDLIBS)</code><br />
+<code>&nbsp;</code><br />
+<code><em>%.o: %.c</em></code><br />
+<code>▶ \$(CC) \$(CFLAGS) -o \$@ -c \$\<</code><br />
+<code>&nbsp;</code><br />
+<code>extra.o: extra.c extra.h</code><br />
+<code>main.o: main.c main.h extra.h</code>
+ <br> [ aside: these rules work on GNU make (usual on Linux), but less portable than suffix rules.]{.my-small}

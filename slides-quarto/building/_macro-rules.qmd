@@ -1,0 +1,70 @@
+
+### redundancy (1)  {.smaller}
+
+
+<code>program: main.o extra.o</code><br />
+<code>▶ clang -Wall -o program main.o extra.o</code><br />
+<code>&nbsp;</code><br />
+<code>extra.o: extra.c extra.h</code><br />
+<code>▶ clang -Wall -o extra.o -c extra.c</code><br />
+<code>main.o: main.c main.h extra.h</code><br />
+<code>&nbsp;</code><br />
+<code>▶ clang -o main.o -c main.c</code>
+ 
+
+* what if I want to run <code>clang</code> with <code>-fsanitize=address</code> instead of <code>-Wall</code>?
+* what if I want to change <code>clang</code>to <code>gcc</code>?
+
+
+### variables/macros (1)  {.smaller}
+
+<div class="my-small">
+<code><em>CC = gcc</em></code><br />
+<code><em>CFLAGS = -Wall -pedantic -std=c11 -fsanitize=address</em></code><br />
+<code><em>LDFLAGS = -Wall -pedantic -fsanitize=address</em></code><br />
+<code><em>LDLIBS = -lm</em></code><br />
+<code>&nbsp;</code><br />
+<code>program: main.o extra.o</code><br />
+<code>▶ \$(CC) \$(LDFLAGS) -o program main.o extra.o \$(LDLIBS)</code><br />
+<code>&nbsp;</code><br />
+<code>extra.o: extra.c extra.h</code><br />
+<code>▶ \$(CC) \$(CFLAGS) -o extra.o -c extra.c</code><br />
+<code>&nbsp;</code><br />
+<code>main.o: main.c main.h extra.h</code><br />
+<code>▶ \$(CC) \$(CFLAGS) -o main.o -c main.c</code>
+</div>
+
+
+### aside: conventional names 
+
+
+
+* chose names <code>CC</code>, <code>CFLAGS</code>, <code>LDFLAGS</code>, etc.
+* not required, but conventional names (incomplete list follows)
+ <table>
+<tr><td><code>CC</code></td><td>C compiler</td></tr>
+<tr><td><code>CFLAGS</code></td><td>C compiler options</td></tr>
+<tr><td><code>LDFLAGS</code></td><td>linking options</td></tr>
+<tr><td><code>LIBS</code> or <code>LDLIBS</code></td><td>libraries</td></tr>
+</table>
+
+
+### variables/macros (2)  {.smaller}
+
+<div class="my-small">
+<code>CC = gcc</code><br />
+<code>CFLAGS = -Wall</code><br />
+<code>LDFLAGS = -Wall</code><br />
+<code>LDLIBS = -lm</code><br />
+<code>&nbsp;</code><br />
+<code>program: main.o extra.o</code><br />
+<code>▶ \$(CC) \$(LDFLAGS) -o <em>\$@</em> <em>\$^</em> \$(LDLIBS)</code><br />
+<code>&nbsp;</code><br />
+<code>extra.o: extra.c extra.h</code><br />
+<code>▶ \$(CC) \$(CFLAGS) -o <em>\$@</em> -c <em>\$\<</em></code><br />
+<code>&nbsp;</code><br />
+<code>main.o: main.c main.h extra.h</code><br />
+<code>▶ \$(CC) \$(CFLAGS) -o <em>\$@</em> -c <em>\$\<</em></code>
+</div>
+ [ aside: <code>\$^</code> works on GNU make (usual on Linux), but not portable.]{.my-small} ![](texfig/_macro-rules-variablesmacros-2.figure.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center }
+

@@ -1,0 +1,8 @@
+
+## suffix rules {visibility="hidden"}
+
+{{< include ../building/_suffix-rules.qmd >}}
+
+## exercise with custom compiler {visibility="hidden"}
+
+{{< include ../building/_ex-make-custom.qmd >}}

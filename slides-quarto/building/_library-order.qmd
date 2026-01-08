@@ -1,0 +1,11 @@
+
+### libraries and command line 
+
+
+* when linking against libraries use: <br> <code>clang -o executable foo.o bar.o -lName</code> <br> rather than <br> ~~<code>clang -o executable -lName foo.o bar.o</code>~~ <br>
+* by default, linker processes files in order
+* might only grab things that previous files needed from library 
+
+   * (especially for static libraries)
+
+

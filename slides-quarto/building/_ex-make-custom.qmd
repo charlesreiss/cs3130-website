@@ -1,0 +1,83 @@
+
+### exericse setup  {.smaller}
+
+
+* a program has source files compiler.c, main.c, functions.customlang
+* compiler.c builds a custom compiler
+* functions.customlang needs to be compiled with that compiler
+* so normal build process is: 
+```
+clang -c compiler.c
+clang -c main.c
+clang -o compiler compiler.o
+./compiler -c functions.customlang
+clang -o program main.o functions.o
+```
+
+
+
+### exercise part 1  {.smaller}
+
+
+```
+clang -c compiler.c
+clang -c main.c
+clang -o compiler compiler.o
+./compiler -c functions.customlang
+clang -o program main.o functions.o
+```
+ 
+
+* besides <code>program</code>, <code>main.o</code>, makefile should have what targets? <table>
+   <tr><td>A. <code>functions.customlang</code></td><td>B. <code>functions.o</code></td></tr>
+<tr><td>C. <code>compiler.o</code></td><td>D. <code>compiler</code></td></tr>
+<tr><td>E. all of the above</td><td>F. B and C</td></tr>
+<tr><td>G. A and B and D</td><td>H. B and C and D</td></tr>
+</table>
+   
+
+
+### exercise part 2  {.smaller}
+
+
+```
+clang -c compiler.c
+clang -c main.c
+clang -o compiler compiler.o
+./compiler -c functions.customlang
+clang -o program main.o functions.o
+```
+ 
+
+* part 2: make rule for functions.o? first blank = ??? 
+```
+functions.o: ____________________________________
+▶     _____________________________________
+```
+ <table>
+   <tr><td>A.</td><td><code>functions.customlang</code></td><td>B.</td><td><code>functions.customlang compiler</code></td></tr>
+<tr><td>C.</td><td><code>compiler</code></td><td>D.</td><td><code>functions.customlang compiler.o</code></td></tr>
+<tr><td>E.</td><td><code>functions.c</code></td><td>F.</td><td><code>program</code></td></tr>
+<tr><td>G.</td><td>something else</td></tr>
+</table>
+   
+
+
+### exercise part 3  {.smaller}
+
+
+```
+clang -c compiler.c #1
+clang -c main.c #2
+clang -o compiler compiler.o #3
+./compiler -c functions.customlang #4
+clang -o program main.o functions.o #5
+```
+ 
+
+* command 1 goes in rule for which target? command 3? 4? <table>
+   <tr><td>A. <code>compiler.o</code></td><td>B. <code>main.o</code></td><td>C. <code>compiler</code></td></tr>
+<tr><td>D. <code>functions.o</code></td><td>E. <code>program</code></td><td>F. something else</td></tr>
+</table>
+   
+

@@ -1,0 +1,23 @@
+
+### built-in rules  {.smaller}
+
+
+
+* ‘make’ has the ‘make .o from .c’ rule built-in already, so:
+ 
+<code>CC = gcc</code><br />
+<code>CFLAGS = -Wall</code><br />
+<code>LDFLAGS = -Wall</code><br />
+<code>LDLIBS = -lm</code><br />
+<code>&nbsp;</code><br />
+<code>program: main.o extra.o</code><br />
+<code>▶ \$(CC) \$(LDFLAGS) -o \$@ \$^ \$(LDLIBS)</code><br />
+<code>&nbsp;</code><br />
+<code>extra.o: extra.c extra.h</code><br />
+<code>main.o: main.c main.h extra.h</code>
+ 
+
+* (don't actually need to write supplied rule!)
+ ![](texfig/_builtin-rules-built-in-rules.figure-1.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center  .fragment .fade-in-then-out fragment=index=1}
+![](texfig/_builtin-rules-built-in-rules.figure-2.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center  .fragment .fade-in-then-out fragment=index=2}
+

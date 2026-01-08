@@ -1,0 +1,39 @@
+
+### exercise: what will run?  {.smaller}
+
+![](texfig/makeWhatRun.figure.svg)
+ exercise: ‘‘make W’’ will run what commands? 
+  <table>
+<tr><td>A. none</td><td>B. <code>buildY</code> only</td><td>C. <code>buildW</code> then <code>buildY</code></td></tr>
+<tr><td>D. <code>buildY</code> then <code>buildW</code></td><td>\multicolumn{2lE. <code>buildX</code> then <code>buildY</code> then <code>buildW</code>}</td></tr>
+<tr><td>F. <code>buildX</code> then <code>buildW</code></td><td>G. something else</td></tr>
+</table>
+
+
+### explanation  {.smaller}
+
+
+::: {.r-stack}
+![](texfig/makeWhatRunExplain.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/makeWhatRunExplain.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/makeWhatRunExplain.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+![](texfig/makeWhatRunExplain.figure-4.svg){.fragment .fade-in-then-out fragment-index=4}
+
+![](texfig/makeWhatRunExplain.figure-5.svg){.fragment .fade-in-then-out fragment-index=5}
+
+:::
+ 
+
+* first: to make W, [need X, Y up to date]{.fragment fragment-index=2 .custom .myem-only} 
+
+   * to make X up to date: <br> need Q up to date $\checkmark{}$ <br> [then build X if less recent than Q (yes)]{.fragment fragment-index=3 .custom .myem-only} $\checkmark{}$ <hr />
+
+   * to make Y up to date: need X up to date $\checkmark{}$ <br> need Z up to date $\checkmark{}$ <br> [then build Y if less recent than X (yes) or Z (yes)]{.fragment fragment-index=4 .custom .myem-only} $\checkmark{}$
+
+* [then build W if less recent than X (yes, now) or Y (yes)]{.fragment fragment-index=5 .custom .myem-only} $\checkmark{}$
+
+
+<!-- \iftoggle(heldback,,makeWhatRunExplain) -->

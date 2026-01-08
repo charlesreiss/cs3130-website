@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+\node[minimum width=15cm,minimum height=9cm] (current page) {};
+\begin{scope}[overlay]
+
+\begin{visibleenv}<2->
+\node[rotate=15,draw=red,font=\Large,ultra thick,fill=white] at (current page.center) {
+    note: built-in rules not allowed on the make lab
+};
+\end{visibleenv}
+\end{scope}
+\end{tikzpicture}

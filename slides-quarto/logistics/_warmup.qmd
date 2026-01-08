@@ -1,0 +1,13 @@
+
+### warmup assignment 
+
+
+* first homework 
+
+* write C function to split a string into array of strings 
+
+   * with dynamic memory allocation
+
+* write C program to call function using input/command-line arguments
+* write Makefile for it (next topic, next week's lab)
+

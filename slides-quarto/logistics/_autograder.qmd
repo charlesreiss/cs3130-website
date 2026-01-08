@@ -1,0 +1,15 @@
+
+### homework/lab automatic testing  {.smaller}
+
+
+* some homeworks/labs have automatic testing
+* with some delay after you submit 
+
+   * usually 10s of minutes
+   * depending on assignment, number of submissions in queue
+   * if you submit very early, testing program might not be setup yet
+
+* when testing program doesn't understand/can't test something, <br> left for manual grading (‘‘not yet graded’’)
+* intention is that testing results are not surprises <br> if you did some manual testing (no hidden requirements, etc.)
+* if you think testing program made a mistake, <br> please submit regrade request
+

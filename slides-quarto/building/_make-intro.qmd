@@ -1,0 +1,65 @@
+
+### make 
+
+
+* <code>make</code> --- Unix program for ‘‘making’’ things…
+* … by running commands based on what's changed 
+
+* what commands? based on <it>rules</it> in <it>makefile</it> 
+
+   * (text file called <code>makefile</code> or <code>Makefile</code> (no extension))
+
+
+
+### make rules  {.smaller}
+
+
+<code>[main.o]{.fragment fragment-index=2 .custom .myem-only}: [main.c main.h extra.h]{.fragment fragment-index=3 .custom .myem-only}</code><br />
+<code>[▶]{.fragment fragment-index=4 .custom .myem-only} [clang -Wall -c main.c]{.fragment fragment-index=5 .custom .myem-only}</code>
+ 
+ 
+
+* before colon: [target(s)]{.fragment fragment-index=2 .custom .myem-only} (file(s) generated/updated)
+* after colon: [prerequisite(s)]{.fragment fragment-index=3 .custom .myem-only} [ (also known as dependencies)]{.my-small}
+* following lines prefixed by a [tab]{.fragment fragment-index=4 .custom .myem-only} character: [command(s) to run]{.fragment fragment-index=5 .custom .myem-only} 
+
+* <code>make</code> runs commands [if any prereq modified date after target]{.fragment fragment-index=6 .custom .myem-only}
+* … <em>after making sure prerequisites up to date</em>
+
+
+### make rule chains 
+
+
+<code>program: main.o extra.o</code><br />
+<code>▶ clang -Wall -o program main.o extra.o</code><br />
+<code>&nbsp;</code><br />
+<code>extra.o: extra.c extra.h</code><br />
+<code>▶ clang -Wall -c extra.c</code><br />
+<code>&nbsp;</code><br />
+<code>main.o: main.c main.h extra.h</code><br />
+<code>▶ clang -Wall -c main.c</code>
+ 
+
+* to <it>make</it> <code>program</code>, first…
+* update main.o and extra.o if they aren't
+
+
+### running make  {.smaller}
+
+
+* ‘‘<code>make <it>target</it></code>’’ 
+
+   * look in <code>Makefile</code> in current directory for rules
+   * check if <code><it>target</it></code> is up-to-date
+   * if not, rebuild it (and prerequisites, if needed) so it is
+
+* ‘‘<code>make <it>target1</it> <it>target2</it></code>’’ 
+
+   * check if both target1 and target2 are up-to-date
+   * if not, rebuild it as needed so they are
+
+* ‘‘<code>make</code>’’ 
+
+   * if ‘‘<code><it>firstTarget</it></code>’’ is the first rule in Makefile,<br> same as ‘<code>make <it>firstTarget</it></code>'’
+
+

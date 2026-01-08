@@ -1,0 +1,50 @@
+
+### finding shared libraries (1)  {.smaller}
+
+
+```
+$ ls
+libexample.so  main.c
+$ clang -o main main.c -lexample
+/usr/bin/ld: cannot find -lexample
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+$ clang -o main main.c -L. -lexample
+$ ./main
+./main: error while loading shared libraries:
+    libexample.so: cannot open shared object file: No such
+    file or directory
+```
+ 
+<div class="fragment fade-in" data-fragment-index=2 >
+ <hr />
+ 
+```
+$ LD_LIBRARY_PATH=. ./main
+```
+ <it>or</it> 
+```
+$ export LD_LIBRARY_PATH=.
+$ ./main
+```
+ <it>or</it> 
+```
+$ clang -o main main.c -L. -lexample -Wl,-rpath .
+$ ./main
+```
+ </div>
+
+### finding shared libraries (1)  {.smaller}
+
+
+* <code><it>cc</it> … -o program -L/path/to/lib … -lfoo</code> 
+
+   * on Linux: <code>/path/to/lib</code> only used to create program
+   * program contains <code>libfoo.so</code> <it>without full path</it>
+
+* Linux default: <code>libfoo.so</code> expected to be in /usr/lib, /lib, and other ‘standard’ locations
+* possible overrides: 
+
+   * LD_LIBRARY_PATH environment variable
+   * paths specified with <code>-Wl,-rpath=/path/to/lib</code> when creating executable
+
+

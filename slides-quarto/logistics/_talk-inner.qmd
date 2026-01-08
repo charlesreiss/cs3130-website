@@ -1,0 +1,60 @@
+
+# two sections {visibility="hidden"}
+
+{{< include ../logistics/_two-sections.qmd >}}
+
+# labs {visibility="hidden"}
+
+{{< include ../logistics/_labs.qmd >}}
+
+# homeworks {visibility="hidden"}
+
+{{< include ../logistics/_homeworks.qmd >}}
+
+## testing feedback {visibility="hidden"}
+
+{{< include ../logistics/_autograder.qmd >}}
+
+## warmup assignment {visibility="hidden"}
+
+{{< include ../logistics/_warmup.qmd >}}
+
+# quizzes {visibility="hidden"}
+
+{{< include ../logistics/_quizzes.qmd >}}
+
+# readings {visibility="hidden"}
+
+{{< include ../logistics/_readings.qmd >}}
+
+# sync note {visibility="hidden"}
+
+{{< include ../logistics/_sync.qmd >}}
+
+# exams {visibility="hidden"}
+
+{{< include ../logistics/_final.qmd >}}
+
+# dev environment {visibility="hidden"}
+
+{{< include ../logistics/_dev.qmd >}}
+
+# getting help {visibility="hidden"}
+
+{{< include ../logistics/_help.qmd >}}
+
+# collaboration {visibility="hidden"}
+
+{{< include ../logistics/_collab.qmd >}}
+
+# feedback {visibility="hidden"}
+
+{{< include ../logistics/_feedback.qmd >}}
+
+# late policy {visibility="hidden"}
+
+{{< include ../logistics/_late.qmd >}}
+
+# attendance/etc. {visibility="hidden"}
+
+{{< include ../logistics/_attendance.qmd >}}

@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+\node[draw,very thick,align=left] (makefile) {
+\tt
+\begin{tabular}{l}
+W: X Y \\
+▶\hspace{1cm}buildW \\
+X: Q \\
+▶\hspace{1cm}buildX \\
+Y: X Z \\
+▶\hspace{1cm}buildY \\
+\end{tabular}
+};
+\node[anchor=north west,align=left] at ([xshift=1cm]makefile.north east) {
+\begin{tabular}{ll}
+W & modified 1 minute ago \\
+X & modified 3 hours ago \\
+Y & does not exist \\
+Z & modified 1 hour ago \\
+Q & modified 2 hours ago \\
+\end{tabular}
+};
+\end{tikzpicture}

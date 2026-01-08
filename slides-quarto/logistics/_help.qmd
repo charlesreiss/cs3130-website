@@ -1,0 +1,15 @@
+
+### getting help 
+
+
+* office hours --- calendar will be posted on website 
+
+   * mix of in-person and remote, indicated on calendar \item{} [small number of] remote OH will use Discord + online queue
+   * in-person OH may or may not --- indicated on whiteboard, probably
+
+* Piazza 
+
+   * use private questions if homework code, etc.
+
+* emailing instructors (preferably with ‘3130’ in subject)
+
