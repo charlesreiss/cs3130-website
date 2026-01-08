@@ -18,6 +18,6 @@
  
 
 * (don't actually need to write supplied rule!)
- ![](texfig/_builtin-rules-built-in-rules.figure-1.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center  .fragment .fade-in-then-out fragment=index=1}
-![](texfig/_builtin-rules-built-in-rules.figure-2.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center  .fragment .fade-in-then-out fragment=index=2}
+ ![](texfig/builtin-rules-built-in-rules.figure-1.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center  .fragment .fade-in-then-out fragment=index=1}
+![](texfig/builtin-rules-built-in-rules.figure-2.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center  .fragment .fade-in-then-out fragment=index=2}
 

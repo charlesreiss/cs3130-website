@@ -28,7 +28,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="talk_files/libs/revealjs/dist/theme/quarto-cce0ec8e43a80b5d7fdff78770993590.css">
+  <link rel="stylesheet" href="talk_files/libs/revealjs/dist/theme/quarto-bd8f98c6fd05ee50f2e7765e6898e502.css">
   <link href="talk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="talk_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="talk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -140,17 +140,17 @@
 <section id="files-in-building-c-programs-dynamic-linking" class="slide level3">
 <h3>files in building C programs [dynamic linking]</h3>
 <div class="r-stack my-full">
-<p><img data-src="texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-1.svg" class="fragment fade-in-then-out" data-fragment-index="1" alt="{self.alt_text}"></p>
-<p><img data-src="texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-2.svg" class="fragment fade-in-then-out" data-fragment-index="2" alt="{self.alt_text}"></p>
-<p><img data-src="texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-3.svg" class="fragment fade-in-then-out" data-fragment-index="3" alt="{self.alt_text}"></p>
-<p><img data-src="texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-4.svg" class="fragment fade-in-then-out" data-fragment-index="4" alt="{self.alt_text}"></p>
-<p><img data-src="texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-5.svg" class="fragment fade-in-then-out" data-fragment-index="5" alt="{self.alt_text}"></p>
+<p><img data-src="texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-1.svg">{.fragment .fade-in-then-out fragment-index=1 alt=” Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime. The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like “clang -c main.c”. Then, the .S files are added with commands like “clang -S -c main.c” that produces them shown. A later slide also show the command “clang -o program main.o extra.o” (used to produce the program from the .o files and some system files). “}</p>
+<p><img data-src="texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-2.svg">{.fragment .fade-in-then-out fragment-index=2 alt=” Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime. The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like “clang -c main.c”. Then, the .S files are added with commands like “clang -S -c main.c” that produces them shown. A later slide also show the command “clang -o program main.o extra.o” (used to produce the program from the .o files and some system files). “}</p>
+<p><img data-src="texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-3.svg">{.fragment .fade-in-then-out fragment-index=3 alt=” Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime. The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like “clang -c main.c”. Then, the .S files are added with commands like “clang -S -c main.c” that produces them shown. A later slide also show the command “clang -o program main.o extra.o” (used to produce the program from the .o files and some system files). “}</p>
+<p><img data-src="texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-4.svg">{.fragment .fade-in-then-out fragment-index=4 alt=” Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime. The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like “clang -c main.c”. Then, the .S files are added with commands like “clang -S -c main.c” that produces them shown. A later slide also show the command “clang -o program main.o extra.o” (used to produce the program from the .o files and some system files). “}</p>
+<p><img data-src="texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-5.svg">{.fragment .fade-in-then-out fragment-index=5 alt=” Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime. The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like “clang -c main.c”. Then, the .S files are added with commands like “clang -S -c main.c” that produces them shown. A later slide also show the command “clang -o program main.o extra.o” (used to produce the program from the .o files and some system files). “}</p>
 </div>
 </section>
 <section id="files-in-building-c-programs-static-linking" class="slide level3">
 <h3>files in building C programs [static linking]</h3>
-
-<img data-src="texfig/_c-file-types-files-in-building-c-programs-static-linking.figure.svg" alt="{self.alt_text}" class="r-stretch"></section>
+<p><img data-src="texfig/c-file-types-files-in-building-c-programs-static-linking.figure.svg">{alt=” same dependency diagram as previous slide, but instead of loading libc.so at runtime, the program is built using libc.a in addition to other files “}</p>
+</section>
 <section id="file-extensions" class="slide level3 smaller">
 <h3>file extensions</h3>
 <table>
@@ -679,7 +679,7 @@ libraries
 <div class="my-small">
 <p><code>CC = gcc</code><br> <code>CFLAGS = -Wall</code><br> <code>LDFLAGS = -Wall</code><br> <code>LDLIBS = -lm</code><br> <code>&nbsp;</code><br> <code>program: main.o extra.o</code><br> <code>▶ $(CC) $(LDFLAGS) -o <em>$@</em> <em>$^</em> $(LDLIBS)</code><br> <code>&nbsp;</code><br> <code>extra.o: extra.c extra.h</code><br> <code>▶ $(CC) $(CFLAGS) -o <em>$@</em> -c <em>$&lt;</em></code><br> <code>&nbsp;</code><br> <code>main.o: main.c main.h extra.h</code><br> <code>▶ $(CC) $(CFLAGS) -o <em>$@</em> -c <em>$&lt;</em></code></p>
 </div>
-<p><span class="my-small">aside: <code>$^</code> works on GNU make (usual on Linux), but not portable.</span> <img data-src="texfig/_macro-rules-variablesmacros-2.figure.svg" class="absolute my-center" style="top: 0%; left: 0%; width: 1050px; height: 700px; "></p>
+<p><span class="my-small">aside: <code>$^</code> works on GNU make (usual on Linux), but not portable.</span> <img data-src="texfig/macro-rules-variablesmacros-2.figure.svg" class="absolute my-center" style="top: 0%; left: 0%; width: 1050px; height: 700px; "></p>
 </section>
 
 
@@ -710,7 +710,7 @@ libraries
 </ul>
 <p><code>CC = gcc</code><br> <code>CFLAGS = -Wall</code><br> <code>LDFLAGS = -Wall</code><br> <code>LDLIBS = -lm</code><br> <code>&nbsp;</code><br> <code>program: main.o extra.o</code><br> <code>▶ $(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)</code><br> <code>&nbsp;</code><br> <code>extra.o: extra.c extra.h</code><br> <code>main.o: main.c main.h extra.h</code></p>
 <ul>
-<li>(don’t actually need to write supplied rule!) <img data-src="texfig/_builtin-rules-built-in-rules.figure-1.svg" class="absolute my-center fragment fade-in-then-out" style="top: 0%; left: 0%; width: 1050px; height: 700px; " data-fragment="index=1"> <img data-src="texfig/_builtin-rules-built-in-rules.figure-2.svg" class="absolute my-center fragment fade-in-then-out" style="top: 0%; left: 0%; width: 1050px; height: 700px; " data-fragment="index=2"></li>
+<li>(don’t actually need to write supplied rule!) <img data-src="texfig/builtin-rules-built-in-rules.figure-1.svg" class="absolute my-center fragment fade-in-then-out" style="top: 0%; left: 0%; width: 1050px; height: 700px; " data-fragment="index=1"> <img data-src="texfig/builtin-rules-built-in-rules.figure-2.svg" class="absolute my-center fragment fade-in-then-out" style="top: 0%; left: 0%; width: 1050px; height: 700px; " data-fragment="index=2"></li>
 </ul>
 </section>
 </section>

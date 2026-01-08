@@ -3,22 +3,49 @@
 
 
 ::: {.r-stack .my-full}
-![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-1.svg){.fragment .fade-in-then-out fragment-index=1 alt="{self.alt_text}"}
+![](texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-1.svg){.fragment .fade-in-then-out fragment-index=1 alt="
+Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; 
+and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime.
+The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like "clang -c main.c". Then, the .S files are added
+with commands like "clang -S -c main.c" that produces them shown. A later slide also show the command "clang -o program main.o extra.o" (used to produce the program from the .o files and some system files).
+"}
 
-![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-2.svg){.fragment .fade-in-then-out fragment-index=2 alt="{self.alt_text}"}
+![](texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-2.svg){.fragment .fade-in-then-out fragment-index=2 alt="
+Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; 
+and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime.
+The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like "clang -c main.c". Then, the .S files are added
+with commands like "clang -S -c main.c" that produces them shown. A later slide also show the command "clang -o program main.o extra.o" (used to produce the program from the .o files and some system files).
+"}
 
-![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-3.svg){.fragment .fade-in-then-out fragment-index=3 alt="{self.alt_text}"}
+![](texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-3.svg){.fragment .fade-in-then-out fragment-index=3 alt="
+Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; 
+and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime.
+The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like "clang -c main.c". Then, the .S files are added
+with commands like "clang -S -c main.c" that produces them shown. A later slide also show the command "clang -o program main.o extra.o" (used to produce the program from the .o files and some system files).
+"}
 
-![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-4.svg){.fragment .fade-in-then-out fragment-index=4 alt="{self.alt_text}"}
+![](texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-4.svg){.fragment .fade-in-then-out fragment-index=4 alt="
+Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; 
+and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime.
+The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like "clang -c main.c". Then, the .S files are added
+with commands like "clang -S -c main.c" that produces them shown. A later slide also show the command "clang -o program main.o extra.o" (used to produce the program from the .o files and some system files).
+"}
 
-![](texfig/_c-file-types-files-in-building-c-programs-dynamic-linking.figure-5.svg){.fragment .fade-in-then-out fragment-index=5 alt="{self.alt_text}"}
+![](texfig/c-file-types-files-in-building-c-programs-dynamic-linking.figure-5.svg){.fragment .fade-in-then-out fragment-index=5 alt="
+Dependency diagram (repeated with slight variations on several slides) showing source files main.c, main.h, extra.h, stdio.h, extra.c; main.s built from main.c, main.h, extra.h, stdio.h; extra.s built from extra.c, extra.h; main.o built from main.s; extra.o built from extra.s; 
+and program (an executable) built from main.o, extra.o and system files. The program is shown to load libc.so at runtime.
+The first version of the diagram omits the .s files and then shows the .o files produced from the .c and .h files with commands like "clang -c main.c". Then, the .S files are added
+with commands like "clang -S -c main.c" that produces them shown. A later slide also show the command "clang -o program main.o extra.o" (used to produce the program from the .o files and some system files).
+"}
 
 :::
 
 
 ### files in building C programs [static linking] 
 
-![](texfig/_c-file-types-files-in-building-c-programs-static-linking.figure.svg){alt="{self.alt_text}"}
+![](texfig/c-file-types-files-in-building-c-programs-static-linking.figure.svg){alt="
+same dependency diagram as previous slide, but instead of loading libc.so at runtime, the program is built using libc.a in addition to other files
+"}
 
 
 ### file extensions  {.smaller}

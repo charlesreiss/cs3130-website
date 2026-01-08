@@ -66,5 +66,5 @@
 <code>main.o: main.c main.h extra.h</code><br />
 <code>▶ \$(CC) \$(CFLAGS) -o <em>\$@</em> -c <em>\$\<</em></code>
 </div>
- [ aside: <code>\$^</code> works on GNU make (usual on Linux), but not portable.]{.my-small} ![](texfig/_macro-rules-variablesmacros-2.figure.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center }
+ [ aside: <code>\$^</code> works on GNU make (usual on Linux), but not portable.]{.my-small} ![](texfig/macro-rules-variablesmacros-2.figure.svg){.absolute top="0%" left="0%" width=1050 height=700 .my-center }
 
