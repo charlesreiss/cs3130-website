@@ -64,4 +64,5 @@ pushd jekyll-dir
 chmod -R a+r readings/*
 chmod -R a+r labhw/*
 chmod -R a+r labhw/files/*
+chmod -R a+r slides-quarto
 $BUNDLE exec jekyll b --trace "${@}"
