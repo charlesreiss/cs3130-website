@@ -174,11 +174,13 @@ but are intended to help clarify the difference between conceptual help like wha
 prohibited support that is specific to individual questions or your code.
 
 Acceptable examples:
+
 *  "In POSIX, explain what a user id is, and how it relates to a group id."
 *  "What is the difference between a direct mapped cache and a 1-way set associative cache?"
 *  "What prevents one process from accessing the memory of another process?"
 
 Examples of prohibited generative AI use:
+
 *  "Write C code that creates a new instance of a process running a user-provided executable."
 *  <Copying a quiz question directly.>
 *  "I'm getting <insert error> when I compile this code <insert code>, how do I fix it?"
