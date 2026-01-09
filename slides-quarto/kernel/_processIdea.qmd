@@ -1,0 +1,12 @@
+
+### The Process 
+
+
+* <em>process</em> = thread(s) + address space
+* illusion of <em>dedicated machine</em>: 
+
+   * thread = illusion of own CPU
+   * (process could have multiple threads --- with independent registers)
+   * address space = illusion of own memory
+
+

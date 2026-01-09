@@ -1,0 +1,65 @@
+
+### exceptions in exceptions 
+
+
+::: {.r-stack .my-full}
+![](texfig/nestedExcept.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/nestedExcept.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/nestedExcept.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+:::
+
+
+### interrupt disabling  {.smaller}
+
+
+* CPU supports <em>disabling</em> (most) interrupts
+* interrupts will <em>wait</em> until it is reenabled
+* CPU has extra state: 
+
+   * are interrupts enabled?
+   * is keyboard interrupt pending?
+   * is timer interrupt pending?
+
+
+
+### exceptions in exceptions 
+
+<!-- \lstset{
+    language=myasm,
+    style=small,
+    moredelim=**[is][\btHL<1|handout:1>]{@1}{@},
+    moredelim=**[is][\btHL<2|handout:2>]{@2}{@},
+    moredelim=**[is][\btHL<3|handout:3>]{@3}{@},
+    moredelim=**[is][\btHL<4|handout:4>]{@4}{@},
+} -->
+ 
+::: {.r-stack}
+![](texfig/nestedExcept2.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/nestedExcept2.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/nestedExcept2.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+:::
+
+
+### disabling interrupts  {.smaller}
+
+
+
+* automatically disabled when exception handler starts
+* also can be done with privileged instruction:
+ 
+```
+change_keyboard_parameters:
+  disable_interrupts
+  ...
+  /* change things used by
+     handle_keyboard_interrupt here */
+  ...
+  enable_interrupts
+```
+

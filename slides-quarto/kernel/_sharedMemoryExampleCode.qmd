@@ -1,0 +1,21 @@
+
+### one way to set shared memory on Linux  {.smaller}
+
+<!-- \lstset{style=smaller,language=C++} -->
+ 
+```
+/* regular file, OR: */
+int fd = open("/tmp/somefile.dat", O_RDWR);
+/* special in-memory file */
+int fd = shm_open("/name", O_RDWR);
+...
+/* make file's data accessible as memory */
+void *memory = mmap(NULL, size, PROT_READ | PROT_WRITE,
+                    MAP_SHARED, fd, 0);
+```
+ 
+
+* mmap: ‘‘map'’ a file’s data into your memory
+* will discuss a bit more when we talk about virtual memory
+* part of how Linux loads dynamically linked libraries
+

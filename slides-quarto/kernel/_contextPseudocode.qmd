@@ -1,0 +1,22 @@
+
+### context switch pseudocode  {.smaller}
+
+<!-- \lstset{
+    style=small,
+    language=myasm,
+    morekeywords={copy_preexception_pc},
+} -->
+ 
+```
+context_switch(last, next):
+  copy_preexception_pc last->pc
+  mov rax,last->rax 
+  mov rcx, last->rcx 
+  mov rdx, last->rdx
+  ...
+  mov next->rdx, rdx
+  mov next->rcx, rcx
+  mov next->rax, rax
+  jmp next->pc
+```
+

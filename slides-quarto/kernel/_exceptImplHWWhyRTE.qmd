@@ -1,0 +1,23 @@
+
+### why return from exception?  {.smaller}
+
+<!-- \lstset{language=myasm} -->
+ 
+
+* reasons related to protection (later)
+* not just ret --- can't modify process's stack 
+
+   * would break the <em>illusion of dedicated CPU/memory</em>
+   * program could use stack in weird way 
+```
+movq $100, -8(%rsp)
+...
+movq -8(%rsp), %rax
+```
+ 
+
+      * (even though this wouldn't be following calling conventions)
+
+   * need to restart program <em>undetectably</em>!
+
+

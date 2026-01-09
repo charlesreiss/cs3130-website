@@ -1,0 +1,12 @@
+
+### context 
+
+
+* all registers values 
+
+   * `%rax` `%rbx`, …, <em><code></code> %rsp</em>, …
+
+* condition codes
+* program counter
+* address space (map from program to real addresses)
+

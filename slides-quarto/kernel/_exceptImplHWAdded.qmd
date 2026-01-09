@@ -1,0 +1,18 @@
+
+### added to CPU for exceptions 
+
+
+* new instruction: set [exception table base]{.fragment fragment-index=2 .custom .myem-only}
+* new logic: [jump based on exception table]{.fragment fragment-index=2 .custom .myem-only} 
+
+   * may need to cancel partially completed instructions before jumping
+
+* new logic: [save the old PC]{.fragment fragment-index=3 .custom .myem-only} (and maybe more) 
+
+   * to special register or to memory
+
+* new instruction: [return from exception]{.fragment fragment-index=4 .custom .myem-only}  
+
+   * i.e. jump to saved PC
+
+

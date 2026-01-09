@@ -1,0 +1,10 @@
+
+### kernel services  {.smaller}
+
+
+* allocating memory? (change address space)
+* reading/writing to file? (communicate with hard drive)
+* read input? (communicate with keyborad)
+* all need privileged instructions!
+* need to <em>run code in kernel mode</em>
+

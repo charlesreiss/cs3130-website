@@ -1,0 +1,10 @@
+
+### shared memory  {.smaller}
+
+
+
+* recall: dynamically linked libraries
+* would be nice not to duplicate code/data…
+* we can!
+ ![](texfig/sharedMemAddr.figure.svg)
+

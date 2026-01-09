@@ -1,0 +1,30 @@
+
+### controlled entry to kernel mode (1)  {.smaller}
+
+
+* special instruction: ‘‘make system call’’ 
+
+   * similar idea as <code>call</code> instruction --- jump to function elsewhere
+   * (and allow that function to return later)
+ 
+
+* runs OS code in kernel mode at location specified earlier
+* OS sets up at boot
+* location can't be changed without privilieged instrution
+
+
+### controlled entry to kernel mode (2) 
+
+
+* OS needs to make specified location: 
+
+* figure out what operation the program wants 
+
+   * calling convention, similar to function arguments + return value
+
+* be ‘‘safe’’ --- not allow the program to do ‘bad’ things 
+
+   * example: checks whether current program is allowed to read file before reading it
+   * requires exceptional care --- program can try weird things
+
+

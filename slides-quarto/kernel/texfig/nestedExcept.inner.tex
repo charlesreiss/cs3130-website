@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+\node (code1) {
+\usebox{\codeBoxA}
+};
+\node[anchor=north west] (code1b) at ([yshift=1mm]code1.south west) {
+\usebox{\codeBoxB}
+};
+\begin{visibleenv}<2->
+\node[draw,thick,blue!70!black,anchor=north west] (code2) at ([yshift=0.5cm,xshift=5cm]code1b.south west) {
+\usebox{\codeBoxC}
+};
+\draw[very thick,blue,-Latex] (code1.south west) -- (code1.south east) -- (code1.south east |- code2.north);
+\end{visibleenv}
+\begin{visibleenv}<3->
+\node[draw,red,ultra thick,cross out,fit=(code2)] at (code2) {};
+\node[left=.1cm of code2,red] {
+    oops, overwrote saved values?
+};
+\end{visibleenv}
+\end{tikzpicture}

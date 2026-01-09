@@ -1,0 +1,10 @@
+
+### hardware + system call interface 
+
+![](texfig/unixDesignHWNoLib.figure.svg)
+
+
+### hardware + system call + library interface 
+
+![](texfig/unixDesignHWLib.figure.svg)
+

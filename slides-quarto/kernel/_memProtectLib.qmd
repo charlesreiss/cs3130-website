@@ -1,0 +1,30 @@
+
+### program memory (two programs) 
+
+
+::: {.r-stack .my-full}
+![](texfig/progMem.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/progMem.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/progMem.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+:::
+
+
+### address space 
+
+
+
+* programs have <em>illusion of own memory</em>
+* called a program's <em>address space</em>
+ 
+::: {.r-stack}
+![](texfig/addrSpace.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/addrSpace.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/addrSpace.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+:::
+

@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+\node (code1) {
+\usebox{\codeBoxA}
+};
+\node[anchor=north west] (code1b) at ([yshift=1mm]code1.south west) {
+\usebox{\codeBoxB}
+};
+\begin{visibleenv}<3->
+\node[draw,thick,blue!70!black,anchor=north west] (code2) at ([yshift=0.5cm,xshift=5cm]code1b.south west) {
+\usebox{\codeBoxC}
+};
+\draw[very thick,blue,-Latex] (code1.south west) -- ([xshift=-2cm]code1.south east) -- ([xshift=-2cm]code1.south east |- code2.north);
+\end{visibleenv}
+
+\end{tikzpicture}

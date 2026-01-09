@@ -1,0 +1,48 @@
+
+### system call wrappers  {.smaller}
+
+
+
+* library functions to not write assembly:
+ <!-- \lstset{language=myasm,style=small,morekeywords={syscall,cmp,jl,ret,neg,movq,ret},
+    moredelim=**[is][\btHL<1>]{@1}{@},
+    moredelim=**[is][\btHL<2>]{@2}{@},
+} -->
+ <pre><code>open:
+    movq $2, %rax // 2 = sys_open
+    // 2 arguments happen to use same registers
+    <span data-fragment-index="1" class="fragment custom myem-only">syscall</span>
+    // return value in %eax
+    <span data-fragment-index="2" class="fragment custom myem-only">cmp $0, %rax</span>
+    jl has_error
+    ret
+has_error:
+    neg %rax
+    movq %rax, <span data-fragment-index="2" class="fragment custom myem-only">errno</span>
+    movq $-1, %rax
+    ret
+</code></pre>
+
+### system call wrapper: usage  {.smaller}
+
+<!-- \lstset{
+    language=C,
+    style=small,
+    moredelim=**[is][\btHL<1>]{@1}{@},
+    moredelim=**[is][\btHL<2>]{@2}{@},
+} -->
+ <pre><code>/* unistd.h contains definitions of:
+    O_RDONLY (integer constant), open() */
+#include &lt;unistd.h&gt;
+int main(void) {
+  int file_descriptor;
+  file_descriptor = <span data-fragment-index="1" class="fragment custom myem-only">open("input.txt", O_RDONLY)</span>;
+  if (<span data-fragment-index="2" class="fragment custom myem-only">file_descriptor &lt; 0</span>) {
+      printf("error: %s\\n", <span data-fragment-index="2" class="fragment custom myem-only">strerror(errno)</span>);
+      exit(1);
+  }
+  ...
+  result = read(file_descriptor, ...);
+  ...
+}
+</code></pre>

@@ -1,0 +1,15 @@
+
+### system call handled slowly? 
+
+
+::: {.r-stack .my-full}
+![](texfig/syscallThreadLaterDiag-system-call-handled-slowly.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/syscallThreadLaterDiag-system-call-handled-slowly.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/syscallThreadLaterDiag-system-call-handled-slowly.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+![](texfig/syscallThreadLaterDiag-system-call-handled-slowly.figure-4.svg){.fragment .fade-in-then-out fragment-index=4}
+
+:::
+

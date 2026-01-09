@@ -1,0 +1,28 @@
+
+### memory protection  {.smaller}
+
+
+
+* modifying another program's memory?
+ <!-- \lstset{language=C++,style=small} -->
+ <table>
+<tr><td>Program 1</td><td>Program 2</td></tr>
+<tr><td>
+```
+{{< include /kernel/memprot-ex1.c >}}
+```
+</td><td>
+```
+{{< include /kernel/memprot-ex2.c >}}
+```
+</td></tr>
+</table>
+ 
+
+* What happens?
+ <table>
+<tr><td>A.</td><td>42 is printed</td><td>B.</td><td>100 is printed</td></tr>
+<tr><td>C.</td><td>program 1 crashes</td><td>D.</td><td>program 2 crashes</td></tr>
+<tr><td>E.</td><td>something else</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+

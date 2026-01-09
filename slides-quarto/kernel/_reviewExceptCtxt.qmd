@@ -1,0 +1,15 @@
+
+### review: definitions 
+
+
+* exception: hardware calls OS specified routine 
+
+   * many possible reasons
+   * system calls: type of exception
+
+* context switch: OS switches to another thread 
+
+   * by saving old register values + loading new ones
+   * part of OS routine run by exception
+
+

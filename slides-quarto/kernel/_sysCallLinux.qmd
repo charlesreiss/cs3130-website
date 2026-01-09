@@ -1,0 +1,69 @@
+
+### Linux x86-64 system calls 
+
+
+* special instruction: <code>syscall</code>
+* runs OS specified code in kernel mode
+
+
+### Linux syscall calling convention  {.smaller}
+
+
+* before <code>syscall</code>:
+* `%rax` --- system call number
+* `%rdi`, `%rsi`, `%rdx`, `%r10`, `%r8`, `%r9` --- args 
+
+* after <code>syscall</code>:
+* `%rax` --- return value
+* on error: `%rax` contains -1 times ‘‘error number’’ 
+
+* <em>almost</em> the same as normal function calls
+
+
+### Linux x86-64 hello world 
+
+<!-- \lstset{language=myasm,style=small,morekeywords={syscall,movq,.asciz,.globl}} -->
+ 
+```
+{{< include /kernel/hello_world.s >}}
+```
+
+
+### approx. system call handler  {.smaller}
+
+<!-- \lstset{
+    language=myasm,
+    morekeywords={.quad,pushq,jmp},
+    escapechar=@,
+    style=small,
+} -->
+ 
+```
+sys_call_table:
+    .quad handle_read_syscall
+    .quad handle_write_syscall
+    // ...
+
+handle_syscall:
+    ... // save old PC, etc.
+    pushq %rcx // save registers
+    pushq %rdi
+    ...
+    call *sys_call_table(,%rax,8)
+    ...
+    popq %rdi
+    popq %rcx
+    return_from_exception
+```
+
+
+### Linux system call examples  {.smaller}
+
+
+* <code>mmap</code>, <code>brk</code> --- allocate memory
+* <code>fork</code> --- create new process
+* <code>execve</code> --- run a program in the current process
+* <code>open</code>, <code>[read]{.fragment fragment-index=2 .custom .myem-only}</code>, <code>write</code> --- access files
+* <code>[_exit]{.fragment fragment-index=2 .custom .myem-only}</code> --- terminate a process
+* <code>socket</code>, <code>accept</code>, <code>getpeername</code> --- socket-related
+

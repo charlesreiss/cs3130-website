@@ -1,0 +1,14 @@
+
+### threads  {.smaller}
+
+
+* thread = illusion of own processor 
+
+* own register values
+* own program counter value 
+
+* actual implementation: <br> many threads sharing one processor 
+
+   * problem: where are register/program counter values <br> when thread not active on processor?
+
+

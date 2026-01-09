@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+\tikzset{
+    mylabel/.style={font=\ttfamily},
+    mybox/.style={draw,rectangle,minimum width=5cm,fill=white,inner sep=1mm},
+    myhigh/.style={draw,rectangle,line width=1mm, draw=blue!80!black,opacity=.3},
+}
+\begin{scope}[name prefix=A-]
+\node[mybox,minimum height=1cm,pattern=north west lines,pattern color=black!5!white] (kernel) {Used by OS};
+\node[above=0cm of kernel] {Program A};
+\node[mybox, minimum height=.5cm, below=1cm of kernel] (stack) {Stack};
+\node[mybox, minimum height=.5cm, below=1cm of stack] (heap) {Heap / other dynamic};
+\node[mybox, minimum height=.5cm, below=0mm of heap] (data) {Writable data};
+\node[mybox, minimum height=.5cm, below=0mm of data] (sdata) {Code + Constants};
+\coordinate (memBottom) at ($(sdata.south east) + (0mm, -2mm)$);
+\begin{pgfonlayer}{bg}
+\draw[pattern=north west lines, pattern color=black!40!white] (kernel.north west) rectangle (memBottom);
+\end{pgfonlayer}
+\end{scope}
+
+\begin{scope}[name prefix=B-,xshift=6cm]
+\node[mybox,minimum height=1cm,pattern=north west lines,pattern color=black!5!white] (kernel) {Used by OS};
+\node[above=0cm of kernel] {Program B};
+\node[mybox, minimum height=.6cm, below=1cm of kernel] (stack) {Stack};
+\node[mybox, minimum height=1.4cm, below=.3cm of stack] (heap) {Heap / other dynamic};
+\node[mybox, minimum height=.5cm, below=0mm of heap] (data) {Writable data};
+\node[mybox, minimum height=.5cm, below=0mm of data] (sdata) {Code + Constants};
+\coordinate (memBottom) at ($(sdata.south east) + (0mm, -2mm)$);
+\begin{pgfonlayer}{bg}
+\draw[pattern=north west lines, pattern color=black!40!white] (kernel.north west) rectangle (memBottom);
+\end{pgfonlayer}
+\end{scope}
+
+\begin{visibleenv}<2>
+\node[myhigh,fit=(A-heap.north west) (A-stack.south east)] {};
+\node[myhigh,fit=(B-heap.north west) (B-stack.south east)] {};
+\node[myhigh,fit=(A-memBottom) (A-sdata.south west)] {};
+\node[myhigh,fit=(B-memBottom) (B-sdata.south west)] {};
+\node[myhigh,fit=(A-stack.north west) (A-kernel.south east)] {};
+\node[myhigh,fit=(B-stack.north west) (B-kernel.south east)] {};
+\end{visibleenv}
+
+\begin{visibleenv}<3>
+\node[myhigh,fit=(A-kernel)] {};
+\node[myhigh,fit=(B-kernel)] {};
+\end{visibleenv}
+\end{tikzpicture}

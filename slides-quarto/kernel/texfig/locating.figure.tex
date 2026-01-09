@@ -1,0 +1,47 @@
+\documentclass[tikz]{standalone}
+\input{common/tikzBase}
+\usetikzlibrary{}
+\ifdefined\codeBoxA\else\newsavebox\codeBoxA\fi
+\ifdefined\codeBoxB\else\newsavebox\codeBoxB\fi
+\ifdefined\codeBoxC\else\newsavebox\codeBoxC\fi
+\begin{document}
+\begin{lrbox}{\codeBoxA}
+\lstset{
+    language=myasm,
+    style=script,
+}
+\begin{lstlisting}
+handle_divide_by_zero:
+  movq %rax, save_rax
+  movq %rbx, save_rbx
+  ...
+\end{lstlisting}
+\end{lrbox}
+\begin{lrbox}{\codeBoxB}
+\lstset{
+    language=myasm,
+    style=script,
+}
+\begin{lstlisting}
+handle_system_call:
+  movq %rax, save_rax
+  movq %rbx, save_rbx
+  ...
+\end{lstlisting}
+\end{lrbox}
+\begin{lrbox}{\codeBoxC}
+\lstset{
+    language=myasm,
+    style=script,
+}
+\begin{lstlisting}
+handle_keyboard_interrupt:
+  movq %rax, save_rax
+  movq %rbx, save_rbx
+  ...
+\end{lstlisting}
+\end{lrbox}
+
+\setSlide{1}
+\input{kernel/texfig/locating.inner.tex}
+\end{document}

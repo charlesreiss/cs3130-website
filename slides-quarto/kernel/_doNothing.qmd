@@ -1,0 +1,30 @@
+
+### an infinite loop 
+
+
+```
+{{< include /kernel/loop.c >}}
+```
+ 
+
+* If I run this on a shared department machine, can you still use it? <br> … if the machine only has one core?
+
+
+### timing nothing 
+
+
+```
+{{< include /kernel/timedloop.c >}}
+```
+ 
+
+* same instructions --- <em>same difference</em> each time?
+
+
+### doing nothing on a busy system 
+
+\includegraphics{../kernel/empty-samples}
+
+### doing nothing on a busy system 
+
+\includegraphics{../kernel/empty-samples-big-marked}

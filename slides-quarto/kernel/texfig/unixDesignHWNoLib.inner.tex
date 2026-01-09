@@ -1,0 +1,34 @@
+\begin{tikzpicture}
+\tikzset{
+    user/.style={fill=blue!10},
+    iface/.style={fill=black!15},
+    kernel/.style={fill=red!10},
+    hardware/.style={},
+}
+% FIXME: show standard libraries/etc. can use HW directly
+\matrix[matrix of nodes,
+        inner sep=1pt, outer sep=0pt,
+        row sep=-\pgflinewidth,
+        column sep=-\pgflinewidth,
+        nodes={draw,rectangle,inner sep=1pt,outer sep=0pt,thick,text width=14cm,align=center},
+        ] {
+    |[minimum height=1cm,alias=apps,user]| applications + libraries \\
+    |[minimum height=0.5cm,alias=syscalls,iface,text width=10cm,xshift=2cm]| system call interface \\
+    |[minimum height=1cm,alias=kernel,kernel,text width=10cm,xshift=2cm,font=\Large]| kernel {\small part of OS that runs in kernel mode}\\
+    |[minimum height=2cm,alias=hwIface,iface]| ~ \\
+    |[minimum height=1cm,alias=hw,hardware,font=\Large]| hardware \\
+};
+\path[iface] (hwIface.north west) -- ++(4cm, 0cm) |- (apps.south west) |- (apps.south west) -- cycle;
+\path[draw,very thick,black!15] ([xshift=4cm]hwIface.north west) -- (hwIface.north west);
+\path[draw,thick] ([xshift=4cm]hwIface.north west) |- (apps.south west) |- (apps.south west) -- (hwIface.north west);
+\path[draw,very thick,dotted] (kernel.south west) -- (kernel.south west |- hw.north);
+\node[align=center] at ([xshift=2cm,yshift=0cm]hwIface.north west) {
+    user-mode \\
+    hardware \\
+    interface \\
+    (limited)
+};
+\node[anchor=north,align=center] at (kernel.south) {
+    kernel-mode \\ hardware interface \\ (complete)
+};
+\end{tikzpicture}

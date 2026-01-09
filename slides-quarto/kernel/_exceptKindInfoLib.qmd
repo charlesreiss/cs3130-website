@@ -1,0 +1,52 @@
+
+### types of exceptions  {.smaller}
+
+
+
+* \tikzmark{trap bot}[system calls]{.fragment fragment-index=2 .custom .myem-only} 
+
+   * intentional --- ask OS to do something
+
+* \tikzmark{fault bot}[errors/events in programs]{.fragment fragment-index=3 .custom .myem-only} 
+
+   * [memory not in address space]{.fragment fragment-index=8 .custom .myem-only} (‘‘Segmentation fault’’)
+   * [privileged instruction]{.fragment fragment-index=9 .custom .myem-only}
+   * [divide by zero, invalid instruction]{.fragment fragment-index=10 .custom .myem-only}
+   * \tikzmark{invalid bot}…
+ \only{(and more we'll talk about later)}
+* \tikzmark{int bot}[external --- I/O, etc.]{.fragment fragment-index=5 .custom .myem-only}  
+
+   * [timer]{.fragment fragment-index=6 .custom .myem-only} --- configured by OS to run OS at certain time
+   * [I/O devices]{.fragment fragment-index=7 .custom .myem-only} --- key presses, hard drives, networks, …
+   * \tikzmark{abort bot}hardware is broken (e.g. memory parity error)
+
+ <!--
+```
+\begin{tikzpicture}[overlay,remember picture]
+    \coordinate (int top) at ([yshift=.6cm]pic cs:int bot);
+    \coordinate (fault top) at ([yshift=.6cm]pic cs:fault bot);
+    \coordinate (trap top) at ([yshift=.6cm]pic cs:trap bot);
+    \coordinate (fault bot) at (pic cs:fault bot);
+    \coordinate (over) at ([xshift=-4.5cm]current page.east);
+    \coordinate (abort bot)  at (pic cs:abort bot);
+    \coordinate (invalid bot)  at ([yshift=.6cm]pic cs:invalid bot);
+    \begin{visibleenv}<5->
+    \draw[very thick,decorate,decoration={brace}] (int top -| over) -- (abort bot -| over) 
+        node[midway,right,font=\large] (async label) {\myemph<5>{asynchronous}};
+        \node[anchor=north west,font=\small,align=left] at ([xshift=.15cm,yshift=.3cm]async label.south west) {
+            not triggered by \\
+            running program
+        };
+    \end{visibleenv}
+    \begin{visibleenv}<4->
+    \draw[very thick,decorate,decoration={brace}] (trap top -| over) -- (invalid bot -| over) 
+        node[midway,right,font=\large] (sync label) {\myemph<4>{synchronous}};
+        \node[anchor=north west,font=\small,align=left] at ([xshift=.15cm,yshift=.3cm]sync label.south west) {
+            triggered by \\
+            current program
+        };
+    \end{visibleenv}
+\end{tikzpicture}
+```
+-->
+

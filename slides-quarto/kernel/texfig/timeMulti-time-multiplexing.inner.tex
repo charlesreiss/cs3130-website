@@ -1,0 +1,44 @@
+\begin{tikzpicture}
+\tikzset{
+    prog1/.style={draw,fill=cyan!70},
+    prog2/.style={draw,fill=green,visible on=<3->},
+    prog3/.style={draw,fill=violet!30,visible on=<3->},
+    proglabel/.style={font=\tt\scriptsize},
+    labelprog1/.style={execute at begin node={\strut loop.exe}},
+    labelprog2/.style={execute at begin node={\strut ssh.exe},visible on=<3->},
+    labelprog3/.style={execute at begin node={\strut firefox.exe},visible on=<3->},
+}
+\begin{scope}[xscale=1.5,yscale=1]
+\foreach \s/\e/\p [count=\x] in {0/2/1,2/3/2,3/5/3,5/6/1,6/7/2}{
+    \draw[prog\p] (\s, 0) rectangle (\e, 1) coordinate[midway] (mid-\x);
+    \node[anchor=center,proglabel,labelprog\p] at (mid-\x) {};
+}
+\end{scope}
+\node[anchor=east] at (-0.25, 0.5) {processor:};
+\begin{scope}[yscale=1,yshift=-2.5mm]
+\draw[thick,-Latex] (1,0) node[left] {time} -- (10.5,0);
+\end{scope}
+\begin{visibleenv}<2->
+    \begin{scope}[xscale=1.5]
+    \draw[red,thick] (1.9,-.1) coordinate (firstStart) rectangle (2.0, 1.1);
+    \draw[red,thick] (5.1,-.1) coordinate (lastEnd) rectangle (5.0, 1.1);
+    \end{scope}
+    \node[anchor=north west,font=\small\tt,align=left] (asmPre) at (0, -1) {
+... \\
+loop: ... \\
+\hspace{1cm}... \\
+\hspace{1cm}jmp loop \\
+loop: ... \\
+\hspace{1cm}...
+    };
+    \draw[red, ultra thick] ([xshift=-1cm,yshift=-.2cm]asmPre.south west) -- ([xshift=1cm,yshift=-.2cm]asmPre.south east) node [draw=none,midway,fill=white,
+        inner sep=3pt] 
+        {million cycle delay};
+    \node[anchor=north west,font=\small\tt,align=left] (asmPost) at ([yshift=-.5cm]asmPre.south west) {
+\hspace{1cm}... \\
+\hspace{1cm}jmp loop \\
+loop: ... \\
+\hspace{1cm}...
+    };
+\end{visibleenv}
+\end{tikzpicture}

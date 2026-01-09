@@ -1,0 +1,14 @@
+
+### system call terminology  {.smaller}
+
+
+* some inconsistency: 
+
+* system call = event of entering kernel mode on request?
+* system call = whole process from beginning to end? 
+
+* same issue as with ‘function call’  
+
+   * is it just starting the function, or the whole time the function runs?
+
+

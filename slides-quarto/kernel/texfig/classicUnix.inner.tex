@@ -1,0 +1,64 @@
+\begin{tikzpicture}
+\tikzset{
+    user/.style={fill=blue!10},
+    iface/.style={fill=black!15},
+    kernel/.style={fill=red!10},
+    hardware/.style={},
+}
+% FIXME: show standard libraries/etc. can use HW directly
+\matrix[tight matrix,
+        nodes={draw,thick,text width=13cm,align=left},
+        ] {
+    |[minimum height=1cm,alias=apps,user]| applications \\
+    |[minimum height=0.5cm,alias=slibiface,iface,text width=11cm,xshift=1cm]| standard library functions / shell commands \\
+    |[minimum height=1cm,alias=stdlib,user,text width=11cm,xshift=1cm]| {standard libraries and \\utility programs} \\
+    |[minimum height=0.5cm,alias=syscalls,iface,text width=9.5cm,xshift=1.75cm]| system call interface \\
+    |[minimum height=2cm,alias=kernel,kernel,text width=9.5cm,xshift=1.75cm]| kernel \\
+    |[minimum height=1cm,alias=hwIface,iface]| \hspace{2cm}\only<1>{hardware interface}~ \\
+    |[minimum height=1.5cm,alias=hw,hardware]| hardware \\
+};
+\path[iface] (hwIface.north west) -- ++(3.5cm, 0cm) |- (stdlib.south west) |- (apps.south west) -- cycle;
+\path[draw,very thick,black!15] ([xshift=3.5cm]hwIface.north west) -- (hwIface.north west);
+\path[draw,thick] ([xshift=3.5cm]hwIface.north west) |- (stdlib.south west) |- (apps.south west) -- (hwIface.north west);
+\begin{visibleenv}<2->
+\path[draw,very thick,dotted] (kernel.south west) -- ++(0cm, -1cm);
+\node[align=center,alt=<3>{red},alt=<6>{red}] at ([xshift=1.5cm,yshift=1cm]hwIface.north west) {
+    user-mode \\
+    hardware \\
+    interface \\
+    (limited)
+};
+\node[anchor=north,alt=<2>{red},alt=<6>{red}] at (kernel.south) {
+    kernel-mode hardware interface (complete)
+};
+\end{visibleenv}
+\tikzset{
+    component parts/.style={font=\small,anchor=east,align=left}
+}
+\node[text width=8cm,minimum height=2cm,component parts] at (kernel.east) {
+    \begin{tabular}{lll}
+    CPU scheduler & filesystems & networking \\
+    virtual memory & device drivers & signals \\
+    pipes & swapping & \ldots
+    \end{tabular}
+};
+\node[text width=6cm,minimum height=1cm,component parts] at (stdlib.east) {
+    \begin{tabular}{ll}
+    libc (C standard library) & the shell\\
+    login & login\ldots \\
+    \end{tabular}
+};
+\node[text width=10cm,minimum height=1cm,component parts] at (hw.east) {
+    \begin{tabular}{lll}
+    memory management unit & device controllers & \ldots \\
+    \end{tabular}
+};
+\begin{visibleenv}<4>
+\draw[ultra thick,decorate,decoration={brace}] ([xshift=.25cm]slibiface.north east) -- ([xshift=.25cm]kernel.south east) 
+    node[midway,right] {the OS?};
+\end{visibleenv}
+\begin{visibleenv}<5>
+\draw[ultra thick,decorate,decoration={brace}] ([xshift=.5cm]syscalls.north east) -- ([xshift=.5cm]kernel.south east) 
+    node[midway,right] {the OS?};
+\end{visibleenv}
+\end{tikzpicture}

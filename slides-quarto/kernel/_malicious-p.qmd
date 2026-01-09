@@ -1,0 +1,9 @@
+
+### things programs on portal shouldn't do 
+
+
+* [read other user's files]{.fragment fragment-index=2 .custom .myem-only}
+* [modify OS's memory]{.fragment fragment-index=3 .custom .myem-only}
+* [read other user's data in memory]{.fragment fragment-index=3 .custom .myem-only}
+* [hang the entire system]{.fragment fragment-index=4 .custom .myem-only}
+

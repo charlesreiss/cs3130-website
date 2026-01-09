@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+\tikzset{
+    every node/.style={font=\small},
+}
+\node[align=center] (progAAddr) {Program A \\ addresses};
+\node[below=1cm of progAAddr,align=center] (progBAddr) {Program B \\ addresses};
+\node[draw, right=1cm of progAAddr,align=center] (translationA) { mapping \\ (set by OS) };
+\node[draw, right=1cm of progBAddr,align=center] (translationB) { mapping \\ (set by OS) };
+\node[draw,rectangle split, rectangle split parts=6, anchor=north west,label={north:real memory}] (mem) at ([xshift=1cm]translationA.north east) {
+    \nodepart{one}
+    Program A code 
+    \nodepart{two}
+    Program B code
+    \nodepart{three}
+    Program A data
+    \nodepart{four}
+    Program B data
+    \nodepart{five}
+    Shared code or data
+    \nodepart{six}
+    OS data
+    \nodepart{seven}
+    \ldots
+};
+\draw[-Latex,green,thick] (progAAddr) -- (translationA) (translationA.east) -- (mem.one west);
+\draw[-Latex,green,thick] (translationA.east) -- (mem.three west);
+\draw[-Latex,blue,thick] (progBAddr) -- (translationB) (translationB.east) -- (mem.two west);
+\draw[-Latex,blue,thick] (translationB.east) -- (mem.four west);
+%\draw[-Latex,green,ultra thick,dotted] (translationA.east) -- (mem.six west);
+%\draw[-Latex,blue,ultra thick,dotted] (translationB.east) -- (mem.six west);
+    \node[inner sep=0mm,fit=(mem.five split east) (mem.four split west),draw=red,ultra thick] {};
+    \begin{pgfonlayer}{bg}
+    \node[inner sep=0mm,fit=(mem.five split east) (mem.four split west),draw=red,fill=red!10,ultra thick] {};
+    \end{pgfonlayer}
+\draw[-Latex,red,ultra thick] (translationA.east) -- (mem.five west);
+\draw[-Latex,red,ultra thick] (translationB.east) -- (mem.five west);
+\end{tikzpicture}

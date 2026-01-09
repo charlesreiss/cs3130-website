@@ -1,0 +1,6 @@
+0x10000: .long 42
+// ...
+// do work
+// ...
+movq 0x10000, %rax
+// RAX <- MEMORY[0x10000]

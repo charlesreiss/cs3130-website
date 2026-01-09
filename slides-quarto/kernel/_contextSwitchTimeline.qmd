@@ -1,0 +1,11 @@
+
+### time multiplexing 
+
+
+::: {.r-stack .my-full}
+![](texfig/contextSwitchTimeline-time-multiplexing.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/contextSwitchTimeline-time-multiplexing.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+:::
+

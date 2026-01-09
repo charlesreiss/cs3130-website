@@ -1,0 +1,14 @@
+
+### terms for exceptions  {.smaller}
+
+
+* terms for exceptions aren't standardized 
+
+* our readings use one set of terms 
+
+   * interrupts = externally-triggered
+   * faults = error/event in program
+   * trap = intentionally triggered
+
+* all these terms appear differently elsewhere
+

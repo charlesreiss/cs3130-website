@@ -1,0 +1,5 @@
+
+### exceptions [Venn diagram] 
+
+![](texfig/exceptVenn-exceptions-venn-diagram.figure.svg)
+

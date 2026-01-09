@@ -1,0 +1,55 @@
+\documentclass[tikz]{standalone}
+\input{common/tikzBase}
+\usetikzlibrary{shapes.misc,positioning,fit}
+\ifdefined\codeBoxA\else\newsavebox\codeBoxA\fi
+\ifdefined\codeBoxB\else\newsavebox\codeBoxB\fi
+\ifdefined\codeBoxC\else\newsavebox\codeBoxC\fi
+\begin{document}
+\begin{lrbox}{\codeBoxA}
+\lstset{
+    language=myasm,
+    style=small,
+    moredelim=**[is][\btHL<1>]{@1}{@},
+    moredelim=**[is][\btHL<2>]{@2}{@},
+    moredelim=**[is][\btHL<3>]{@3}{@},
+    moredelim=**[is][\btHL<4>]{@4}{@},
+}
+\begin{lstlisting}
+handle_timer_interrupt:
+  save_old_pc @2save_pc@
+  movq %r15, @2save_r15@
+  /* key press here */
+\end{lstlisting}
+\end{lrbox}
+\begin{lrbox}{\codeBoxB}
+\lstset{
+    language=myasm,
+    style=small,
+}
+\begin{lstlisting}
+  movq %r14, save_r14
+  ...
+\end{lstlisting}
+\end{lrbox}
+\begin{lrbox}{\codeBoxC}
+\lstset{
+    language=myasm,
+    style=small,
+}
+\begin{lstlisting}
+handle_keyboard_interrupt:
+  save_old_pc save_pc
+  movq %r15, save_r15
+  movq %r14, save_r14
+  movq %r13, save_r13
+  ...
+\end{lstlisting}
+\end{lrbox}
+
+\setSlide{1}
+\input{kernel/texfig/nestedExcept.inner.tex}
+\setSlide{2}
+\input{kernel/texfig/nestedExcept.inner.tex}
+\setSlide{3}
+\input{kernel/texfig/nestedExcept.inner.tex}
+\end{document}

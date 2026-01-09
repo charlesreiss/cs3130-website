@@ -1,0 +1,136 @@
+
+# some malicious things we'd like to stop {visibility="hidden"}
+
+{{< include ../kernel/_malicious-p.qmd >}}
+
+# privileged instruction idea {visibility="hidden"}
+
+### againframe(portalShouldnt)
+
+{{< include ../kernel/_priv-instr-intro.qmd >}}
+
+## preview: unix design {visibility="hidden"}
+
+{{< include ../kernel/_unix-design-build-lib.qmd >}}
+
+### againframe(unixDesignHWNoLib)
+
+## OS code in memory {visibility="hidden"}
+
+{{< include ../kernel/_calling-the-OS-naive.qmd >}}
+
+## exception entry point {visibility="hidden"}
+
+{{< include ../kernel/_syscall-setup-boot-simple.qmd >}}
+
+## system call idea {visibility="hidden"}
+
+{{< include ../kernel/_syscallThreadDiag.qmd >}}
+
+## aside: terminology {visibility="hidden"}
+
+{{< include ../kernel/_syscall-term-parts.qmd >}}
+
+## system calls on Linux {visibility="hidden"}
+
+{{< include ../kernel/_sysCallLinux.qmd >}}
+
+## maybe not return? {visibility="hidden"}
+
+{{< include ../kernel/_syscallThreadLaterDiag.qmd >}}
+
+## system call wrappers {visibility="hidden"}
+
+{{< include ../kernel/_syscallWrap.qmd >}}
+
+# interlude: strace {visibility="hidden"}
+
+{{< include ../kernel/_strace-hello.qmd >}}
+
+# kernel + standard library {visibility="hidden"}
+
+### againframe(unixDesignHWNoLib)
+
+### againframe(unixDesignHWLib)
+
+# memory protection {visibility="hidden"}
+
+### againframe(portalShouldnt)
+
+## exercise: expected behavior?{visibility="hidden"}
+
+{{< include ../kernel/_memProtectQC.qmd >}}
+
+## address spaces{visibility="hidden"}
+
+{{< include ../kernel/_memProtectAddressSpaces.qmd >}}
+
+# extending system calls: exception idea {visibility="hidden"}
+
+{{< include ../kernel/_exceptIdea.qmd >}}
+
+## reasons for exceptions, generally {visibility="hidden"}
+
+{{< include ../kernel/_exceptKindInfoLib.qmd >}}
+
+### againframe(exceptTypesN)
+
+# infinite loop {visibility="hidden"}
+
+### againframe(portalShouldnt)
+
+### againframe(exceptTypesN)
+
+# exception kinds, summarized {visibility="hidden"}
+
+{{< include ../kernel/_exceptVenn.qmd >}}
+
+## exception handling generalized {visibility="hidden"}
+
+{{< include ../kernel/_exceptThreadDiag.qmd >}}
+
+## operating system runs {visibility="hidden"}
+
+{{< include ../kernel/_contextSwitchTimeline.qmd >}}
+
+## context switches {visibility="hidden"}
+
+{{< include ../kernel/_contextSwitch.qmd >}}
+
+# thread idea {visibility="hidden"}
+
+{{< include ../kernel/_thread.qmd >}}
+
+# not just timers {visibility="hidden"}
+
+### againframe(exceptTypesN)
+
+## typical I/O pattern {visibility="hidden"}
+
+{{< include ../kernel/_exceptIOPattern.qmd >}}
+
+{{< include ../kernel/_keyInTimeline.qmd >}}
+
+# combined timeline {visibility="hidden"}
+
+{{< include ../kernel/_ioTimeline.qmd >}}
+
+# preview: empty loop lab {visibility="hidden"}
+
+{{< include ../kernel/_emptyLoopLab.qmd >}}
+
+# review: exception / context switch {visibility="hidden"}
+
+{{< include ../kernel/_reviewExceptCtxt.qmd >}}
+
+# exercise {visibility="hidden"}
+
+{{< include ../kernel/_howManyEx.qmd >}}
+
+## aside: terms {visibility="hidden"}
+
+{{< include ../kernel/_exceptTerms.qmd >}}
+
+# process {visibility="hidden"}
+
+{{< include ../kernel/_processIdea.qmd >}}

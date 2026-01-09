@@ -1,0 +1,21 @@
+
+### exception implementation 
+
+
+* detect condition (program error or external event)
+* save current value of PC somewhere
+* jump to <em>exception handler</em> (part of OS) 
+
+   * jump done without program instruction to do so
+
+
+
+### exception implementation: notes 
+
+
+* I describe a <em>simplified</em> version
+* real x86/x86-64 is a bit more complicated 
+
+   * (mostly for historical reasons)
+
+

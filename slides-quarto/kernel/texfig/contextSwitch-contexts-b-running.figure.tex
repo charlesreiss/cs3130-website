@@ -1,0 +1,31 @@
+\documentclass[tikz]{standalone}
+\input{common/tikzBase}
+\usetikzlibrary{arrows.meta,calc,patterns,matrix,positioning}
+\tikzset{a/.style={fill=blue!10,pattern=north west lines,pattern color=blue!30},b/.style={fill=green!30},>=Latex}
+\newsavebox{\aContext}
+\savebox{\aContext}{
+\begin{tikzpicture}
+\matrix[tight matrix,nodes={font=\small\tt,a},fill=white] (cpuState) {
+    \%rax \& SF \\
+    \%rbx \& ZF \\
+    \%rcx \& PC \\
+    \ldots \& \ldots \\
+};
+\end{tikzpicture}
+}
+\newsavebox{\bContext}
+\savebox{\bContext}{
+\begin{tikzpicture}
+\matrix[tight matrix,nodes={font=\small\tt,b},fill=white] (cpuState) {
+    \%rax \& SF \\
+    \%rbx \& ZF \\
+    \%rcx \& PC \\
+    \ldots \& \ldots \\
+};
+\end{tikzpicture}
+}
+\begin{document}
+
+\setSlide{1}
+\input{kernel/texfig/contextSwitch-contexts-b-running.inner.tex}
+\end{document}

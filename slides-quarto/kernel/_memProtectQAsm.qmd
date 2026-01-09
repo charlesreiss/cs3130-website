@@ -1,0 +1,25 @@
+
+### memory protection 
+
+
+
+* modifying another program's memory?
+ <!-- \lstset{language=myasm,style=small,morekeywords={movq,.word}} -->
+ <table>
+<tr><td>Program A</td><td>Program B</td></tr>
+<tr><td>\hline{} 
+```
+{{< include /kernel/memprot-ex1.s >}}
+```
+</td><td>
+```
+{{< include /kernel/memprot-ex2.s >}}
+```
+</td></tr>
+<tr><td>\hline{} &nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>\only{result: <code>%rax</code> (in A) is …} \only{result: <code>%rax</code> (in A) is <code>42</code>}</td><td>\only{result: <code>%rax</code> (in B) is …} \only{result: <em>might crash</em>}</td></tr>
+<tr><td>\only{(with ‘normal’ multiuser OSes)}</td></tr>
+</table>
+ 
+<div class="fragment fade-in-and out" data-fragment-index=25 >
+ []{.my-small} A. 42   B. 99   C. 0x10000  <br> D. 42 or 99 (depending on timing/program layout/etc) <br> E. 42 or 99 or program might crash (depending on …)   F. something else <br> </div>

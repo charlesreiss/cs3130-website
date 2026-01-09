@@ -1,0 +1,42 @@
+\begin{tikzpicture}
+\tikzset{
+    >=Latex,
+    every node/.style={font=\small},
+}
+\matrix[tight matrix,
+    nodes={text width=3cm,font=\small},
+    column 1/.append style={nodes={draw=none}},
+    column 2/.append style={nodes={text width=1.5cm}},
+    row 1/.append style={nodes={draw=none}},
+    label={[inner sep=0mm,align=center]north:{{\bfseries exception table} (in memory)}},
+    label distance=1mm,
+] (eTable) {
+    |[align=center]| address \& pointer \\
+    base + {\tt 0x000} \& ~ \\
+    base + {\tt 0x008} \& ~ \\
+    base + {\tt 0x010} \& ~ \\
+    base + {\tt 0x018} \& ~ \\
+    |[align=center]| \ldots \& |[draw=none,align=center]| \ldots \\
+    base + {\tt 0x108} \& ~ \\
+    |[align=center]| \ldots \& |[draw=none,align=center]| \ldots \\
+    base + {\tt 0x400} \&  ~ \\
+    |[align=center]| \ldots \& |[draw=none,align=center]| \ldots \\
+};
+\node[draw,text width=2.8cm, align=center, anchor=south] (baseReg) at ([yshift=1cm,xshift=5mm]eTable-1-1.north west){ exception table base register };
+\draw[dashed,very thick,->] ([xshift=-1.2cm]baseReg.south) |- (eTable-2-1.west);
+\node[draw,anchor=north west] (hDivZero) at ([xshift=2cm,yshift=2cm]eTable-2-2.north east) {
+\usebox{\codeBoxA}
+};
+\node[draw,anchor=north west] (hSyscall) at ([yshift=-2.5cm]hDivZero.south west){
+\usebox{\codeBoxB}
+};
+\node[draw,anchor=north west] (hKbd) at ([yshift=-.5cm,xshift=2cm]hDivZero.south west){
+\usebox{\codeBoxC}
+};
+\draw[->,thick] (eTable-2-2.center) -- ++(2,0) |- ([yshift=-1ex]hDivZero.north west);
+\draw[thick] (eTable-3-2.center) -- ++ (1, 0) node[right]{\ldots};
+\draw[thick] (eTable-4-2.center) -- ++ (1, 0) node[right]{\ldots};
+\draw[thick] (eTable-5-2.center) -- ++ (1, 0) node[right]{\ldots};
+\draw[->,thick] (eTable-7-2.center) -- ++(2,0) |- ([yshift=-1ex]hKbd.north west);
+\draw[->,thick] (eTable-9-2.center) -- ++(2,0) |- ([yshift=-1ex]hSyscall.north west);
+\end{tikzpicture}

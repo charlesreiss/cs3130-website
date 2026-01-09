@@ -1,0 +1,38 @@
+
+### exception patterns with I/O (1)  {.smaller}
+
+
+* input --- available now: 
+
+   * exception: device says ‘‘I have input now’’
+   * handler: OS stores input for later
+   * exception (syscall): program says ‘‘I want to read input’’
+   * handler: OS returns that input
+
+* input --- not available now: 
+
+   * exception (syscall): program says ‘‘I want to read input’’
+   * handler: OS runs other things (context switch)
+   * exception: device says ‘‘I have input now’’
+   * handler: OS retrieves input
+   * handler: (possibly) OS switches back to program that wanted it
+
+
+
+### exception patterns with I/O (2)  {.smaller}
+
+
+* output --- ready now: 
+
+   * exception (syscall): program says ‘`I want to output this’
+   * handler: OS sends output to device
+
+* output --- not ready now 
+
+   * exception (syscall): program says ‘‘I want to output’’
+   * handler: OS realizes device can't accept output yet
+   * (other things happen)
+   * exception: device says ‘‘I'm ready for output now’’
+   * handler: OS sends output requested earlier
+
+

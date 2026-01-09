@@ -1,0 +1,10 @@
+
+### running the exception handler 
+
+
+* hardware saves the <em>old program counter</em> (and maybe more)
+* identifies location of exception handler via table
+* then jumps to that location 
+
+* OS code can save anything else it wants to , etc.
+

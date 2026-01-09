@@ -1,0 +1,28 @@
+
+### switching programs 
+
+
+* OS starts running somehow 
+
+   * some sort of exception
+
+* saves old registers + program counter + address mapping 
+
+   * (optimization: could omit when program crashing/exiting)
+
+* sets new registers + address mapping, jumps to new program counter
+* called <em>context switch</em>  
+
+   * saved information called <em>context</em>
+
+
+
+### contexts (A running) 
+
+![](texfig/contextSwitch-contexts-a-running.figure.svg)
+
+
+### contexts (B running) 
+
+![](texfig/contextSwitch-contexts-b-running.figure.svg)
+

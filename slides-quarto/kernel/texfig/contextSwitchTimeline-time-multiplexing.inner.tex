@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+\tikzset{
+    prog1/.style={draw,fill=cyan},
+    prog2/.style={draw,fill=green},
+    prog3/.style={draw,fill=violet!30},
+    proglabel/.style={font=\tt\scriptsize},
+    labelprog1/.style={execute at begin node={\strut loop.exe}},
+    labelprog2/.style={execute at begin node={\strut ssh.exe}},
+    labelprog3/.style={execute at begin node={\strut firefox.exe}},
+}
+
+\begin{scope}[xscale=1.5,yscale=1]
+\foreach \s/\e/\p [count=\x] in {0/2/1,2/3/2,3/5/3,5/6/1,6/7/2}{
+    \coordinate (s-\x) at (\s, 0);
+    \coordinate (e-\x) at (\e, 0);
+    \draw[prog\p] (\s, 0) rectangle (\e, 1) coordinate[midway] (mid-\x);
+    \node[anchor=center,proglabel,labelprog\p] at (mid-\x) {};
+    \begin{pgfonlayer}{fg}
+    \draw[fill=white] ([xshift=-.05cm]e-\x) rectangle ([xshift=.05cm,yshift=1cm]e-\x);
+    \draw[pattern=north west lines] ([xshift=-.05cm]e-\x) rectangle ([xshift=.05cm,yshift=1cm]e-\x);
+   \end{pgfonlayer}
+}
+\end{scope}
+\begin{scope}[xshift=5cm]
+\draw[fill=white,pattern=north west lines] (0, -1) rectangle (1, -2);
+\node[anchor=west] at (1, -1.5) {\strut = operating system};
+\end{scope}
+\begin{visibleenv}<2->
+    \draw[red,very thick,Latex-] ([xshift=-.05cm]e-1) -- (1, -4) node[fill=white,draw] {exception happens};
+    \draw[red,very thick,Latex-] ([xshift=+.05cm]e-1) -- (7, -4) node[fill=white,draw] {return from exception};
+\end{visibleenv}
+\end{tikzpicture}

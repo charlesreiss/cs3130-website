@@ -1,0 +1,59 @@
+
+### which of these require exceptions? context switches?  {.smaller}
+
+
+* A. program calls a function in the standard library
+* B. program writes a file to disk
+* C. program A goes to sleep, letting program B run
+* D. program exits
+* E. program returns from one function to another function
+* F. program pops a value from the stack
+
+
+### which require exceptions [answers] (1) 
+
+
+* A. program calls a function in the standard library 
+
+   * no (same as other functions in program); many standard library functions make no system calls (and do not otherwise trigger exceptions --- for example <code>strlen</code>, <code>pow</code>; also if we consider the calling of a function just the <code>call</code> instruction, then the library functions that <it>do</it> make system calls won't do so until later)
+
+* B. program writes a file to disk 
+
+   * yes (requires kernel mode only operations)
+
+* C. program A goes to sleep, letting program B run 
+
+   * yes (kernel mode usually required to change the address space to acess program B's memory)
+
+
+
+### which require exceptions [answer] (2) 
+
+
+* D. program exits 
+
+   * yes (requires switching to another program, which requires accessing OS data + other program's memory)
+
+* E. program returns from one function to another function 
+
+   * no
+
+* F. program pops a value from the stack 
+
+   * no
+
+
+
+### which require context switches [answer]  {.smaller}
+
+
+* no: A. program calls a function in the standard library
+* no: B. program writes a file to disk 
+
+   * (but might be done if program needs to wait for disk and other things could be run while it does)
+
+* yes: C. program A goes to sleep, letting program B run
+* yes: D. program exits
+* no: E. program returns from one function to another function
+* no: F. program pops a value from the stack
+

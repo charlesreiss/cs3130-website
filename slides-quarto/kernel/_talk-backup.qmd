@@ -1,0 +1,62 @@
+
+## exercise: expected behavior?{visibility="hidden"}
+
+{{< include ../kernel/_memProtectQAsm.qmd >}}
+
+## exercise: why not check {visibility="hidden"}
+
+{{< include ../accounts/_check-perm-when-exer.qmd >}}
+
+## address spaces{visibility="hidden"}
+
+{{< include ../kernel/_memProtectAddressSpaces.qmd >}}
+
+## shared memory example code {visibility="hidden"}
+
+{{< include ../kernel/_sharedMemoryExampleCode.qmd >}}
+
+## timing nothing {visibility="hidden"}
+
+{{< include ../kernel/_doNothing.qmd >}}
+
+# time multiplexing {visibility="hidden"}
+
+{{< include ../kernel/_timeMulti.qmd >}}
+
+## crash timeline {visibility="hidden"}
+
+{{< include ../kernel/_crashTimeline.qmd >}}
+
+## exception table {visibility="hidden"}
+
+{{< include ../kernel/_exceptTable.qmd >}}
+
+## key-in timeline {visibility="hidden"}
+
+{{< include ../kernel/_keyInTimeline.qmd >}}
+
+## nested exceptions? {visibility="hidden"}
+
+{{< include ../kernel/_nestingExcept.qmd >}}
+
+# exception table + dispatch {visibility="hidden"}
+
+{{< include ../kernel/_exceptImplHW.qmd >}}
+
+## in the context {visibility="hidden"}
+
+{{< include ../kernel/_contextList.qmd >}}
+
+## context switch pseudocode {visibility="hidden"}
+
+{{< include ../kernel/_contextPseudocode.qmd >}}
+
+## Unix design [full] {visibility="hidden"}
+
+{{< include ../kernel/_unix-design.qmd >}}
+
+# exception dispatch {visibility="hidden"}
+
+{{< include ../kernel/_exceptImplHW.qmd >}}
+
+{{< include ../kernel/_exceptHWRun.qmd >}}

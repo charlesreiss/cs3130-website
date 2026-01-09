@@ -1,0 +1,30 @@
+\documentclass[tikz]{standalone}
+\input{common/tikzBase}
+\usetikzlibrary{patterns,decorations.pathreplacing,arrows.meta}
+\ifdefined\codeBoxA\else\newsavebox\codeBoxA\fi
+\ifdefined\codeBoxB\else\newsavebox\codeBoxB\fi
+\begin{document}
+\begin{lrbox}{\codeBoxA}
+\lstset{language=C++,style=script}
+\begin{lstlisting}
+void readFromDiskInto(int diskLocation, char *dest) {
+    ...
+    runPrivilegedInstruction(...);
+    ...
+}
+\end{lstlisting}
+\end{lrbox}
+\begin{lrbox}{\codeBoxB}
+\lstset{language=C++,style=script}
+\begin{lstlisting}
+void readFileSafely(const char *name, char *dest) {
+    if (canCurrentProgramCanAccessFile(name)) {
+        readFromDiskInto(lookupFile(name), dest)
+    }
+}
+\end{lstlisting}
+\end{lrbox}
+
+\setSlide{1}
+\input{kernel/texfig/callOSDirectP.inner.tex}
+\end{document}

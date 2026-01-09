@@ -1,0 +1,9 @@
+
+### context switches and exceptions 
+
+![](texfig/ioTimeline-context-switches-and-exceptions.figure.svg)
+ 
+
+* program execution interleaves with OS
+* OS might context switch when it is run, might not
+

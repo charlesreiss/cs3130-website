@@ -1,0 +1,43 @@
+
+### program memory (two programs) 
+
+
+::: {.r-stack .my-full}
+![](texfig/progMem.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/progMem.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/progMem.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+:::
+
+
+### address space 
+
+
+
+* programs have <em>illusion of own memory</em>
+* called a program's <em>address space</em>
+ 
+::: {.r-stack}
+![](texfig/addrSpace.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/addrSpace.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+![](texfig/addrSpace.figure-3.svg){.fragment .fade-in-then-out fragment-index=3}
+
+:::
+
+
+### againframe(progMem)
+
+### againframe(addrSpace)
+
+### address space mechanisms 
+
+
+* topic after exceptions
+* called <em>virtual memory</em>
+* mapping called <em>page tables</em>
+* mapping part of what is changed in context switch
+

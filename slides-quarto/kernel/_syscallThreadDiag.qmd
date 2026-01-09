@@ -1,0 +1,11 @@
+
+### system call process 
+
+
+::: {.r-stack .my-full}
+![](texfig/syscallThreadDiag-system-call-process.figure-1.svg){.fragment .fade-in-then-out fragment-index=1}
+
+![](texfig/syscallThreadDiag-system-call-process.figure-2.svg){.fragment .fade-in-then-out fragment-index=2}
+
+:::
+

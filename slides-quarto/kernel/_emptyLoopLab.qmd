@@ -1,0 +1,46 @@
+
+### emptyloop lab (1)  {.smaller}
+
+
+```
+long last_time = GetTime();
+while (NotDone()) {
+    long current_time = GetTime();
+    RecordDelta(current_time - last_time);
+    last_time = current_time;
+}
+```
+ 
+
+* naive computer model: RecordDelta called with roughly same number each time
+
+
+### emptyloop lab (2)  {.smaller}
+
+
+```
+long last_time = GetTime();
+while (NotDone()) {
+    long current_time = GetTime();
+    /* maybe OS handles I/O here? */
+    /* maybe OS runs ssh for a bit here? */
+    /* ... */
+    RecordDelta(current_time - last_time);
+    last_time = current_time;
+}
+```
+ 
+
+* will see spikes in recorded times from exceptions
+* can infer what system is doing
+
+
+### emptyloop lab (3) 
+
+
+* upcoming lab: we'll supply program that times in loop
+* also will look at Linux counters for asynchronous exceptions 
+
+* should be able to observe when OS/other programs run
+* (and about how long)
+

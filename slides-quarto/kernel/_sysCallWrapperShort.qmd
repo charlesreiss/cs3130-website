@@ -1,0 +1,13 @@
+
+### system call wrappers 
+
+
+
+* can't write C code to generate syscall instruction
+* solution: call ‘‘wrapper’’ function written in assembly
+ <!-- \lstset{language=C++,style=smaller} -->
+ ```
+\begin{lstlisting}
+ 
+\end{lstlsiting}```
+

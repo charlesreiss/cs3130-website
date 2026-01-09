@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+\matrix[tight matrix,label={north:in CPU},nodes={font=\small\tt,a}] (cpuState) {
+    \%rax \\
+    \%rbx \\
+    \%rcx \\
+    \%rsp \\
+    \ldots \\
+    SF \\
+    ZF \\
+    PC \\
+};
+
+\matrix[tight matrix,right=3cm of cpuState, nodes={minimum height=2cm,text width=5cm,align=left},label={in Memory}] (memState) {
+    |[a]| {Process A memory: \\ code, stack, etc.} \\
+    |[b]| {Process B memory: \\ code, stack, etc.} \\
+    |[fill=black!10]|{OS memory: \\ \usebox{\bContext} }\\
+};
+\draw[thick,dashed,->] (cpuState-4-1.east) -- (memState-1-1.west);
+\draw[thick,dashed,->] (cpuState-8-1.east) -- (memState-1-1.west);
+\end{tikzpicture}
