@@ -48,6 +48,9 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
+include:
+  - 'slides-quarto/**'
+
 destination: /u/cr4bd/public_html/3130/S2026
 submit_site: "https://kytos02.cs.virginia.edu/cs3130-spring2026/submit/"
 quiz_site: "https://kytos02.cs.virginia.edu/cs3130-spring2026/quizzes/"
