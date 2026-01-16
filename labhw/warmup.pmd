@@ -7,6 +7,7 @@ author: Charles Reiss
 Changelog:
 
 *  15 Sep 2025: mention the `-g` compiler option when talking about address sanitizer in item 4 and in the hints.
+*  16 Jan 2026: mention `module load gcc clang` in hints
 </div>
 
 
@@ -236,6 +237,8 @@ $ <br>
 </tt></code>
 
 # Hints
+
+1.  To get access to `clang` on portal, you may need to use something like `module load gcc clang`.
 
 1.  I found the C standard library functions `strspn` and `strcspn` useful in my solution.
 
