@@ -71,17 +71,15 @@
 - date: 2026-01-27
   week: 3
   title: exceptions 2 / processes 1
-  reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, 3 / [thread](readings/thread.html) §1-3.2"
+  reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, 2.4, 3 / [thread](readings/thread.html) §1-3.2"
   slides_ref:
   - kernel
   - unix-api
   description: |
-    *  timer interrupt
+    *  exceptions and I/O
 
     *  creating new processes
        *  fork, exec*
-    *  waiting for processees (start)
-
 
 
 - date: 2026-01-28
@@ -95,7 +93,7 @@
   slides_ref:
   - unix-api
   description: |
-    *  waiting for processes (finish)
+    *  waiting for processes
     *  kill
     *  file descriptors
     *  redirection, dup2
@@ -105,12 +103,12 @@
 
 - date: 2026-02-03
   week: 4
-  title: "exceptions 3: exceptions and IO / virtual memory 0"
-  reading: "[kernel](readings/kernel.html) §2.2, 4 / [thread](readings/thread.html) §1-3.2"
+  title: "virtual memory 0"
+  reading: "[kernel](readings/kernel.html) §4 / [thread](readings/thread.html) §1-3.2"
   slides_ref:
-  - kernel
+  - vm
   description: |
-    *  exceptions and IO
+    *  processes (finish)
 
     *  virtual memory (start)
 
