@@ -47,6 +47,7 @@ theme: minima
 exclude:
   - Gemfile
   - Gemfile.lock
+  - slides-quarto
 
 include:
   - 'slides-quarto/**'
