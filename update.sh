@@ -1,4 +1,4 @@
-#eval "$(~/bin/rbenv init -)"
+eval "$(~/bin/rbenv init -)"
     
 umask 022
 python3 quizzes_to_data.py    # XXX
