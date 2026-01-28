@@ -10,6 +10,7 @@ Changelog:
 *  18 Jan 2024: add section on suffix rules
 *  18 Jan 2024: correct typo in := versus = example code; format that discussion as endnote as intended
 *  24 Jan 2024: mention that variables can be overriden on command line
+*  27 Jan 2026: reference Dive Into Systems as alternate reference
 </div>
 
 # The `make` tool
@@ -281,10 +282,11 @@ Generally, this Makefile will have targets and corresponding rules:
 *  for common tasks (like "all" for building everything and "clean" for removing built files) that just depend on other targets or run certain commands, so users can run things like `make clean` to
    do those tasks
 
-# Some additional references
+# Some additional/alternate references
 
 On make in particular:
 
+*  [Dive Into Systems, Section 17.5](https://diveintosystems.org/book/Appendix2/makefiles.html)
 *  The [manual for GNU make](https://www.gnu.org/software/make/manual/) (the version of `make` on the department machines and most Linux systems).
 *  The POSIX specification for [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html).
 

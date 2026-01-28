@@ -7,6 +7,7 @@ Changelog:
 
 *  14 Sep 2023: change "owning users" to "owning user"
 *  22 Jan 2025: add note re: independent of execute and read permission
+*  27 Jan 2026: add reference Dive Into Systems as alternate reading for chmod
 </div>
 
 # "Users" and "Groups"
@@ -190,3 +191,13 @@ So is the following:
 
 {/}
 
+# Alternate/additional sources
+
+Alternate reading on `chmod`-style permissions:
+
+*  [Dive Into Systems, section 17.7](https://diveintosystems.org/book/Appendix2/chmod.html)
+
+command references:
+
+*  POSIX's specification for [chmod](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chmod.html)
+*  running `man setfacl` on portal

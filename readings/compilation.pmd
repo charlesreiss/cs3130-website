@@ -9,6 +9,7 @@ Changelog:
 *  17 Jan 2024: merge text previously in "glossary" under makefiles into here; mention explicitly that standard library is linked by default
 *  20 Jan 2025: note re: clang availabiity
 *  21 Jan 2025: adjust note re: clang availability
+*  27 Jan 2026: reference Dive Into Systems a alternate reference
 </div>
 
 # (review?) `clang`/`gcc` modes
@@ -148,12 +149,16 @@ Source File
 
 # Additional resources
 
+On libraries in C and compilation steps generally:
+
+*  [Dive Into Systems section 2.9.5](https://diveintosystems.org/book/C2-C_depth/advanced_libraries.html)
+
 On Clang and GCC options:
 
 *  [Clang manual section on options](https://clang.llvm.org/docs/UsersManual.html#command-line-options)
 *  [GCC manual section on options](https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html)
 
-On linking and libraries:
+On the details of linking and libraries:
 
 *  Ulrich Drepper, "[How To Write Shared Libraries](https://akkadia.org/drepper/dsohowto.pdf)" (2011) (also provides an explanation of how dynamic linking works on Linux)
 *  [toolchains.net](https://www.toolchains.net/) --- index of references on compiler toolchains, including many references about what linkers do
