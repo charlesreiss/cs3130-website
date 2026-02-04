@@ -108,6 +108,9 @@
   - vm
   description: |
     *  virtual memory (start)
+    *  virtual memory concept
+        *   address space and address sizes
+    *  page tables
 
 - date: 2026-02-04
   week: 4
@@ -120,11 +123,10 @@
   slides_ref:
   - vm
   description: |
-    *  virtual memory concept
-        *   address space and address sizes
-    *  page tables
     *  page table lookup examples
     *  page tables and context switches
+    *  loading data on demand
+    *  copy-on-write, other "page table tricks" 
 
 
 - date: 2026-02-06
@@ -137,8 +139,6 @@
   slides_ref:
   - vm
   description: |
-    *  loading data on demand
-    *  copy-on-write, other "page table tricks" 
     *  swapping
     *  mmap, linux /proc/$$/maps
     *  storing page tables in memory
