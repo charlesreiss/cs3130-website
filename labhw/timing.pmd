@@ -3,6 +3,12 @@ title: timing homework
 author: Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  4 Feb 2026: clarify why `__asm__ ("")` prevents some optimizations
+</div>
+
 {.exercise ...}
 1.  Write a program `gettimings` in C and/or assembly to take measurements needed to estimate the time required for each of the scenarios below
     (under the heading "[Scenarios to time](#scenarios)").
@@ -201,7 +207,9 @@ with the compiler's optimizer replacing a function call with the body of that fu
 
 *  write the function in a separately compiled file, so the compiler will not have the information to do this optimization
 *  write the function call itself in assembly file, so it won't be subject to the compiler's optimizations at all
-*  make a C function marked with the `__attribute__((noinline))` before its return type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that calls to the function cannot be omitted even though the function does not appear to do anything.
+*  make a C function marked with the `__attribute__((noinline))` before its return type and put `__asm__("")` in its body. The `noinline` attribute will tell Clang and GCC that they cannot copy the function's body rather than calling the function. The inline assembly will tell Clang and GCC that it needs to run that exactly that assembly code; because the compiler needs to run the assembly code each time the function is called, it will not omit calls to the function when it might otherwise.
+
+You can also apply the technique of using inline assembly or calls to external functions to prevent the compiler from optimizing away things like for loops when it might otherwise determine the loop does nothing and can be omitted.
 
 # Collaboration
 
