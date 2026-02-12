@@ -1,0 +1,76 @@
+---
+title: Fork and run
+author: 
+    - Brad Campbell
+    - Charles Reiss
+...
+
+
+{.exercise ...}
+
+1.  Write a file `pool.c` that implements a thread pool capable of running tasks from multiple threads.
+
+{/}
+
+
+# Thread Pool
+
+Implement a _thread pool_ which runs tasks across a fixed number of threads.
+Each thread should take tasks from an array and run them, waiting for new
+tasks whenever there are no pending tasks. Your thread pool will start tasks
+in the other they are submitted.
+
+Your thread pool must start threads only in the `pool_initialize()` function
+and deallocate them when `pool_finish()` is called. You **_may not_** start
+new threads each time a task is submitted.
+
+## `pool.h`
+
+`pool.h` defines the interface you must implement.
+
+```c
+#define NUM_THREADS 8
+
+// The function signature for a task.
+//
+// A task should be a function like:
+//
+//     int my_task() { ... }
+//
+typedef int (*task_fn)(void);
+
+// Initialize the thread pool.
+void pool_initialize(void);
+
+// Submit a new task to the thread pool.
+void pool_submit_task(task_fn task);
+
+// Tell the thread pool threads to finish any current task and then exit.
+void pool_finish(void);
+```
+
+Your implementation must start and use the number of threads specified by
+`NUM_THREADS`. It must be possible for all threads in your thread pool to run
+tasks if enough tasks are submitted.
+
+## `task_fn`
+
+A task supported by your thread pool is a C function with the signature:
+
+```c
+int my_task_function(void);
+```
+
+For convenience we provide a `typedef` called `task_fn` that is a function
+pointer to a task function.
+
+
+# Task Array
+
+Your thread pool needs to support at least 100 tasks being submitted. It does
+not matter what happens if more than 100 tasks are submitted.
+
+# Libraries
+
+You must use the `pthread.h` library.
+
