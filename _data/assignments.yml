@@ -86,7 +86,6 @@
 - name: sync games
   lab: true
   short_name: sync
-  tentative: true
   page: labhw/sync.html
   comments: needs changes for in-person?
   comments: need .php stuff
