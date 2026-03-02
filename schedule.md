@@ -83,7 +83,11 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
   {%- if day.slides_ref -%}
       Reiss's slides from:&nbsp;
       {%- for slide_ref in day.slides_ref -%}
-          <a href="slides/{{slide_ref}}.pdf">{{slide_ref}}</a>{%- unless forloop.last -%},&nbsp;{%- endunless -%}
+          {%- assign slide_infos = site.data.slides | where:"name",slide_ref -%}
+          {%- for slide_info in slide_infos -%}
+              {{ slide_info.link }}
+          {%- endfor -%}
+          {%- unless forloop.last -%},&nbsp;{%- endunless -%}
       {%- endfor -%}
   {%- else -%}
       <a href="slides/{{ file_prefix }}-slides.pdf">{%- if day.slides_tentative or day.slides_prelim -%}&nbsp;tentative&nbsp;{%- else -%} <!-- -->{%- endif -%}slides</a>
