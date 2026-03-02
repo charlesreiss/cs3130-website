@@ -67,7 +67,8 @@ author:
 # `pool.h`
 
 ```c
-#pragma once
+#ifdef POOL_H_
+#define POOL_H_
 
 // The function signature for a task.
 //
@@ -91,6 +92,8 @@ void pool_wait(void);
 
 // Tell the thread pool threads to finish any current task and then exit.
 void pool_stop(void);
+
+#endif
 ```
 
 # Example of pool library usage
