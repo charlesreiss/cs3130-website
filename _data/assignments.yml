@@ -218,10 +218,12 @@
   due: 2026-03-25
 
 
-- name: cache programs
-  short_name: cache-programs
-  page: labhw/cache-programs.html
-  submit_file: "*submit*.tar"
+- name: pool
+  short_name: pool
+  page: labhw/pool.html
+  submit_files:
+  - "*.c"
+  - "*.h"
   tentative: true
   due: 2026-03-27
 
