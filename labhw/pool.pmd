@@ -22,12 +22,15 @@ author:
         Record a task as submitted so it will later be run by one of the threads created by the thread pool,
         then return.
 
+        Tasks must be started in the order they are submitted.
+
         When the task is eventually run from one of the threads created by `pool_setup`,
         call the function specified by the function pointer `task` with the single argument `argument`.
         Then record the return value for later retrieval with `pool_get_task_result`.
 
-        This function must return a unique identifier that represents this instance of the task.
-        This identifier can be used to retrieve the return value.
+        This function must return an identifier that represents this instance of the task.
+        This identifier can be used to retrieve the return value (as long as `pool_setup` is not
+        called again).
 
         This function must be safe to call from a task.
 
@@ -37,11 +40,18 @@ author:
 
         You may assume this will not be called from a task.
 
+        If new tasks are submitted while `pool_wait()` is running, you may either:
+
+        *  let those tasks run normally (possibly only finishing after `pool_wait` returns); or
+        *  delay those tasks until after `pool_wait()` returns
+
     * `void *pool_get_task_result(int task_id);`
 
         Retrieve the return value from the task with the given `task_id`.
 
         Return `NULL` if the task as not finished or does not exist.
+
+        We do not care what this function does if there has been a new call to `pool_setup` since the task returned.
 
     *  `void pool_stop();`
 
