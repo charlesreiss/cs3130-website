@@ -56,7 +56,8 @@ author:
         and then submit and wait functions normally again.
 
         We do not care how this function behaves if new tasks are submitted after it is started
-        but before a subsequent call to `pool_setup().`
+        but before a subsequent call to `pool_setup()`. We also do not care how this function behaves
+        if there is a pending call to `pool_wait()` in another thread.
 
     Your implementation does not need to support more than 200 tasks. You may assume no more than
     200 tasks will be submitted.
