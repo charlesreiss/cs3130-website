@@ -218,13 +218,23 @@
   due: 2026-03-25
 
 
-- name: pool
-  short_name: pool
-  page: labhw/pool.html
+- name: TLB
+  short_name: tlb
+  comment: no introducing lab
+  page: labhw/tlb.html
   submit_files:
   - "*.c"
   - "*.h"
+  - "Makefile"
+  - "makefile"
+  - "*.txt"
   tentative: true
+  grade_describe: |
+    Selected notes on tests:
+    <ul><li>The testing scripts call tlb_clear() in between groups of tests, so if your tlb_clear() doesn't really reset everything that could cause apparently unrelated tests to fail.
+    <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
+        or because you evict the wrong entry sometimes.
+    </ul>
   due: 2026-03-27
 
 
@@ -245,22 +255,13 @@
   - dp-backoff.c
   due: 2026-04-01
 
-- name: TLB
-  short_name: tlb
-  comment: no introducing lab
-  page: labhw/tlb.html
+- name: pool
+  short_name: pool
+  page: labhw/pool.html
   submit_files:
   - "*.c"
   - "*.h"
-  - "Makefile"
-  - "makefile"
-  - "*.txt"
-  grade_describe: |
-    Selected notes on tests:
-    <ul><li>The testing scripts call tlb_clear() in between groups of tests, so if your tlb_clear() doesn't really reset everything that could cause apparently unrelated tests to fail.
-    <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
-        or because you evict the wrong entry sometimes.
-    </ul>
+  tentative: true
   due: 2026-04-03
 
 - name: networking
