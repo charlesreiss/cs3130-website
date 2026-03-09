@@ -5,6 +5,8 @@ author:
     - Brad Campbell
 ...
 
+>  This assignment may change substantially before it is released.
+
 # Your Task
 
 1.  Implement a "[thread pool](https://en.wikipedia.org/wiki/Thread_pool)" library with the following functions:
