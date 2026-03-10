@@ -318,7 +318,7 @@
   feedback: "extracted*,autograder*"
   missing-if-no-feedback: false
   tentative: true
-  due: never (but would be good practice)
+  due: never (may be turned into quiz replacement)
 
 
 - name: C++ OR templates
