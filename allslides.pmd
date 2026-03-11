@@ -26,7 +26,7 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 - synchronization --
   *  [sync-reorder](slides/sync-reorder.html)<sup>[pdf](slides/sync-reorder.pdf)</sup> (race conditions; interleaving; compiler/processor reordering)
       *  [sync-cc](slides/sync-cc.html)<sup>[pdf](slides/sync-cc.pdf)</sup> (cache coherency; typically not covered)
-  *  [sync-locks](slides/sync-lock.html)<sup>[pdf](slides/sync-lock.pdf)</sup> (mutex-type locks)
+  *  [sync-locks](slides/sync-locks.html)<sup>[pdf](slides/sync-locks.pdf)</sup> (mutex-type locks)
      *  [sync-lock-impl](slides/sync-lock-impl.html)<sup>[pdf](sync-lock-impl.pdf)</sup> (implementation; typically not covered)
   *  [sync-barriers](slides/sync-barriers.html)<sup>[pdf](slides/sync-barriers.pdf)</sup>
   *  [sync-monitors](slides/sync-monitors.html)<sup>[pdf](slides/sync-monitors.pdf)</sup>
