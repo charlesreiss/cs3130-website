@@ -14,19 +14,30 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 - [intro](slides/intro.pdf)
 - [logistics](slides/logistics.pdf) (course logistics, might not be updated for current semester)
 - [building](slides/building.pdf)
-- [accounts](slides/accounts.pdf)
+- [accounts](slides/accounts.html)<sup>[pdf](slides/accounts.pdf)</sup>
 - [kernel](slides/kernel.pdf) (including exceptions)
-- [signals](slides/signals.pdf)
-- [unix-api](slides/unix-api.pdf) (fork, dup2, etc.)
+- [signals](slides/signals.pdf) (Unix signals, now typically not covered)
+- [unix-api](slides/unix-api.pdf) (fork, dup2, etc)
 - [vm](slides/vm.pdf) (virtual memory)
-- [caching](slides/caching.pdf)
-- [threads](slides/threads.pdf)
-- [sync](slides/sync.pdf) (synchronization)
+- [caching](slides/caching.html)<sup>[pdf](slides/caching.pdf)</sup>
+  *  [caching-blocking](slides/caching-blocking.html)<sup>(slides/caching-blocking.pdf)</sup> (cache blocking; typically not covered)
+- [threads](slides/threads.html)<sup>[pdf](slides/threads.pdf)</sup>
+- synchronization --
+  *  [sync-reorder](slides/sync-reorder.html)<sup>[pdf](slides/sync-reorder.pdf)</sup> (race conditions; interleaving; compiler/processor reordering)
+      *  [sync-cc](slides/sync-cc.html)<sup>[pdf](slides/sync-cc.pdf)</sup> (cache coherency; typically not covered)
+  *  [sync-locks](slides/sync-lock.html)<sup>[pdf](slides/sync-lock.pdf)</sup> (mutex-type locks)
+     *  [sync-lock-impl](slides/sync-lock-impl.html)<sup>[pdf](sync-lock-impl.pdf)</sup> (implementation; typically not covered)
+  *  [sync-barriers](slides/sync-barriers.html)<sup>[pdf](slides/sync-barriers.pdf)</sup>
+  *  [sync-monitors](slides/sync-monitors.html)<sup>[pdf](slides/sync-monitors.pdf)</sup>
+  *  [sync-false-share](slides/sync-false-share.html)<sup>[pdf](slides/sync-false-share.pdf)</sup>
+  *  [sync-rwlocks](slides/sync-rwlocks.html)<sup>[pdf](slides/sync-rwlocks.pdf)</sup> (reader-writer locks)
+  *  [sync-semaphores](slides/sync-semaphores.html)<sup>[pdf](slides/sync-semaphores.pdf)</sup> (typically not covered)
+  *  [sync-xact](slides/sync-xact.html)<sup>[pdf](slides/sync-xact.pdf)</sup> (transactions, very briefly)
 - [deadlock](slides/deadlock.pdf) 
 - [network](slides/network.pdf) 
 - [secure](slides/secure.pdf) (secure channels, cryptography)
-- [pipeline](slides/pipeline.pdf) (pipeline)
-- [ooo](slides/ooo.pdf)
+- [pipeline](slides/pipeline.pdf) (pipelined processors)
+- [ooo](slides/ooo.pdf) (out-of-order processors)
 - [spectre](slides/spectre.pdf) (side-channels, Meltdown, Spectre)
 
 - [bpred](slides/bpred.pdf) (branch prediction)

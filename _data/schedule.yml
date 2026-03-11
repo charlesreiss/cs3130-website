@@ -262,7 +262,8 @@
   title: synchronization 1 --- reordering and locks
   reading: "[consistency](readings/consistency.html) §1-2, [sync](readings/sync.html) §1-2, 4, [pthreads](readings/pthreads.html) §3.1-2"
   slides_ref:
-  - sync
+  - sync-reorder
+  - sync-locks
   description: |
     *  thread use examples (finish)
 
@@ -276,16 +277,16 @@
 
 - date: 2026-03-17
   week: 10
-  title: synchronization 2 --- deadlock  / producer/consumer
+  title: synchronization 2 --- barriers / deadlock 
   reading: "[sync](readings/sync.html) §8; [deadlock](readings/deadlock.html); [pthreads](readings/pthreads.html) §3.3"
   slides_ref:
-  - sync
+  - sync-locks
+  - sync-barriers
   - deadlock
   description: |
     *  barriers
     *  deadlock
-
-    *  producer/consumer problem
+    *  (if time) producer/consumer problem
 
 - date: 2026-03-18
   lab: true
@@ -296,7 +297,7 @@
   title: synchronization 3 --- monitors, producer/consumer
   reading: "[sync](readings/sync.html) §5-7, [pthreads](readings/pthreads.html) §3.5"
   slides_ref:
-  - sync
+  - sync-monitors
   description: |
     (Reiss out of town)
 
@@ -312,7 +313,8 @@
   title: transactions / networking 1
   reading: "[sync](readings/sync.html) §9, [protocols](readings/protocols.html) §1-2"
   slides_ref:
-  - sync
+  - sync-xact
+  - sync-rwlocks
   - network
   description: |
     *  reader/writer locks, briefly
