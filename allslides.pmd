@@ -21,7 +21,7 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 - [unix-api](slides/unix-api.pdf) (fork, dup2, etc)
 - [vm](slides/vm.pdf) (virtual memory)
 - [caching](slides/caching.html)<sup>[pdf](slides/caching.pdf)</sup>
-  *  [caching-blocking](slides/caching-blocking.html)<sup>(slides/caching-blocking.pdf)</sup> (cache blocking; typically not covered)
+  *  [caching-blocking](slides/caching-blocking.html)<sup>[pdf](slides/caching-blocking.pdf)</sup> (cache blocking; typically not covered)
 - [threads](slides/threads.html)<sup>[pdf](slides/threads.pdf)</sup>
 - synchronization --
   *  [sync-reorder](slides/sync-reorder.html)<sup>[pdf](slides/sync-reorder.pdf)</sup> (race conditions; interleaving; compiler/processor reordering)
