@@ -265,8 +265,6 @@
   - sync-reorder
   - sync-locks
   description: |
-    >   [Video link](recordings/20260312-11am-video-and-audio.mp4)
-
     *  thread use examples (finish)
 
     *  problem of synchronization
