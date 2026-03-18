@@ -254,15 +254,6 @@
   due: 2026-04-03
 
 
-- name: openmp
-  short_name: openmp
-  lab: true
-  page: labhw/openmp.html
-  submit_files:
-  - "*.c"
-  - "performance.txt"
-  due: 2026-03-25
-
 
 - name: networking
   lab: true
