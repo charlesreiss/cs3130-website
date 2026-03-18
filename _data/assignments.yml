@@ -208,20 +208,9 @@
   - "*.txt"
   - "*.gz"
 
-- name: openmp
-  short_name: openmp
-  lab: true
-  page: labhw/openmp.html
-  submit_files:
-  - "*.c"
-  - "performance.txt"
-  due: 2026-03-25
-
-
 
 - name: pthreads (dining philosophers) 
   lab: true
-  tentative: true
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
@@ -234,6 +223,15 @@
   - dp-arb.c
   - dp-rh.c
   - dp-backoff.c
+  due: 2026-03-25
+
+- name: openmp
+  short_name: openmp
+  lab: true
+  page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
   due: 2026-04-01
 
 - name: TLB
@@ -254,6 +252,16 @@
         or because you evict the wrong entry sometimes.
     </ul>
   due: 2026-04-03
+
+
+- name: openmp
+  short_name: openmp
+  lab: true
+  page: labhw/openmp.html
+  submit_files:
+  - "*.c"
+  - "performance.txt"
+  due: 2026-03-25
 
 
 - name: networking
