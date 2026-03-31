@@ -244,7 +244,6 @@
   - "Makefile"
   - "makefile"
   - "*.txt"
-  tentative: true
   grade_describe: |
     Selected notes on tests:
     <ul><li>The testing scripts call tlb_clear() in between groups of tests, so if your tlb_clear() doesn't really reset everything that could cause apparently unrelated tests to fail.
@@ -261,14 +260,20 @@
   submit_file: "*.c"
   due: 2026-04-08
 
+
+- name: life
+  short_name: life
+  page: labhw/life.html
+  due: 2026-04-10
+  submit_file: "life-parallel.c"
+  comment: may need skeleton code to be modified
+  comment: adjust skeleton code to avoid workarounds
+  comment: figure out SLURM setup
+  comment: sanitize-examples.sh script
+  comment: ThreadSanitizer stuff
 - name: pool
   short_name: pool
-  page: labhw/pool.html
-  submit_files:
-  - "*.c"
-  - "*.h"
-  tentative: true
-  due: 2026-04-10
+
 
 - name: secure channels lab
   lab: true
@@ -279,18 +284,12 @@
   due: 2026-04-15
   submit_file: attack.c
 
-- name: life
-  short_name: life
-  page: labhw/life.html
-  due: 2026-04-17
+  page: labhw/pool.html
+  submit_files:
+  - "*.c"
+  - "*.h"
   tentative: true
-  submit_file: "life-parallel.c"
-  comment: may need skeleton code to be modified
-  comment: adjust skeleton code to avoid workarounds
-  comment: figure out SLURM setup
-  comment: sanitize-examples.sh script
-  comment: ThreadSanitizer stuff
-
+  due: 2026-04-17
 
 - name: side channel
   short_name: side-channel
@@ -317,7 +316,7 @@
   feedback: "extracted*,autograder*"
   missing-if-no-feedback: false
   tentative: true
-  xxxdue: never (may be turned into quiz replacement)
+  due_message: (previous semester homework; may be turned into quiz replacement)
 
 
 - name: C++ OR templates

@@ -72,6 +72,10 @@ author:
     Your implementation does not need to support more than 200 tasks. You may assume no more than
     200 tasks will be submitted.
 
+    Whenever a thread needs to wait for an event (such as one of the threads started by `pool_setup`
+    waiting for a new task), it may not consume a lot of compute time. The most likely way you'd do this
+    is by having the thread call a synchronization function that will waits until the event has likely happened.
+
 2.  Test your implementation. To help you with this, we supply [this test file](pool-files/pool-test.c). You could
     also write your own test.
 
