@@ -284,7 +284,7 @@
   due: 2026-04-15
   submit_file: attack.c
 
-  page: labhw/pool.html
+- page: labhw/pool.html
   submit_files:
   - "*.c"
   - "*.h"
