@@ -3,6 +3,12 @@ title: OpenMP -- parallelism made easy
 author: Luther Tychnoviech with modifications by Charles Reiss
 ...
 
+<div class="changelog">
+Changelog:
+
+*  3 April 2026: correct nongrammatical placement of and in list of what performance.txt needs to contain
+</div>
+
 # Task
 
 {.exercise ...}
@@ -53,8 +59,8 @@ Then evaluate your results to make a reasonable guess about:
 Then either:
 
 *  submit your code (preferably as one file with multiple copies of the geomean function, including all versions you timed) and a text file "performance.txt" containing:
-    *  your measurements of performance; and
-    *  your guess about the fastest possible combination
+    *  your measurements of performance;
+    *  your guess about the fastest possible combination; and
     *  your guess as to why that combination would be fastest (1-2 sentences)
 *  check-off with a TA, being prepared to explain which approach was fastest and your guess as to why
 
