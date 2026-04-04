@@ -271,8 +271,6 @@
   comment: figure out SLURM setup
   comment: sanitize-examples.sh script
   comment: ThreadSanitizer stuff
-- name: pool
-  short_name: pool
 
 
 - name: secure channels lab
@@ -284,7 +282,9 @@
   due: 2026-04-15
   submit_file: attack.c
 
-- page: labhw/pool.html
+- name: pool
+  short_name: pool
+  page: labhw/pool.html
   submit_files:
   - "*.c"
   - "*.h"
