@@ -5,6 +5,12 @@ author:
     - Brad Campbell
 ...
 
+<div class="changelog">
+changelog:
+
+*  6 Apr 2026: fix bug in `fail_test()` call in `pool-test.c`
+</div>
+
 >  This assignment may change substantially before it is released.
 
 # Your Task

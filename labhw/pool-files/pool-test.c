@@ -368,7 +368,7 @@ static void run_current_test() {
                    test_order[i] > test_scenario->max_test_order[i]) {
             fail_test("task with index %d (id %d) was"
                       "run %d%s (expected between %d%s and %d%s inclusive)",
-                      i, task_ids[i], test_order[i],
+                      i, task_ids[i],
                       test_order[i] + 1, th_string(test_order[i] + 1),
                       test_scenario->min_test_order[i] + 1, th_string(test_scenario->min_test_order[i] + 1),
                       test_scenario->max_test_order[i] + 1, th_string(test_scenario->max_test_order[i] + 1));
