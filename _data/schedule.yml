@@ -372,7 +372,6 @@
        *  digital signature
    *  replay attacks
    *  public key infrastructure
-   *  TLS outline
 
 - date: 2026-04-03
   week: 12
@@ -382,12 +381,16 @@
   title: pipelining 1
   reading: "[processors](readings/processors.html) §1-3"
   slides_ref:
-  - processors
+  - secure
   - pipeline
   description: |
+   *  TLS outline
+
    *  review: single-cycle CPU
    *  pipelining idea
    *  pipelining for the CPU 
+   *  pipelining tradeoffs
+   *  hazards (start)
 
 - date: 2026-04-08
   week: 13
@@ -401,7 +404,6 @@
   - pipeline
   - ooo
   description: |
-   *  pipelining tradeoffs
    *  hazards and hazard handling
        * stalling
        * branch prediction, briefly
