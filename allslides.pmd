@@ -34,8 +34,8 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
   *  [sync-rwlocks](slides/sync-rwlocks.html)<sup>[pdf](slides/sync-rwlocks.pdf)</sup> (reader-writer locks)
   *  [sync-semaphores](slides/sync-semaphores.html)<sup>[pdf](slides/sync-semaphores.pdf)</sup> (typically not covered)
   *  [sync-xact](slides/sync-xact.html)<sup>[pdf](slides/sync-xact.pdf)</sup> (transactions, very briefly)
-- [deadlock](slides/deadlock.pdf) 
-- [network](slides/network.pdf) 
+- [deadlock](slides/deadlock.pdf)
+- [network](slides/network.html)<sup>[pdf](slides/network.pdf)</sup>
 - [secure](slides/secure.pdf) (secure channels, cryptography)
 - [pipeline](slides/pipeline.pdf) (pipelined processors)
 - [ooo](slides/ooo.pdf) (out-of-order processors)
