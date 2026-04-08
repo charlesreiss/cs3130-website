@@ -36,7 +36,7 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
   *  [sync-xact](slides/sync-xact.html)<sup>[pdf](slides/sync-xact.pdf)</sup> (transactions, very briefly)
 - [deadlock](slides/deadlock.pdf)
 - [network](slides/network.html)<sup>[pdf](slides/network.pdf)</sup>
-- [secure](slides/secure.pdf) (secure channels, cryptography)
+- [secure](slides/secure.html)<sup>[pdf](slides/secure.pdf) (secure channels, cryptography)
 - [pipeline](slides/pipeline.pdf) (pipelined processors)
 - [ooo](slides/ooo.pdf) (out-of-order processors)
 - [spectre](slides/spectre.pdf) (side-channels, Meltdown, Spectre)
