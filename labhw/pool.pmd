@@ -9,6 +9,7 @@ author:
 changelog:
 
 *  6 Apr 2026: fix bug in `fail_test()` call in `pool-test.c`
+*  8 Apr 2026: add note about ThreadSanitizer
 </div>
 
 >  This assignment may change substantially before it is released.
@@ -84,6 +85,9 @@ changelog:
 
 2.  Test your implementation. To help you with this, we supply [this test file](pool-files/pool-test.c). You could
     also write your own test.
+
+    I would **strongly recommend** compiling and linking with `-fsanitize=thread` as part of your testing to enable
+    ThreadSanitizer, which can help identify race conditions. We will do this as part of our grading.
 
 3.  Submit your implementation using the submission site.
 
