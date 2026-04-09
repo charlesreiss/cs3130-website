@@ -190,6 +190,15 @@ struct TestScenario scenarios[] = {
         .max_test_order = {2, 5, 2, 5, 5, 5},
     },
     {
+        .description = "two threads, four tasks, all waiting on barrier",
+        .thread_count = 2,
+        .submit_count = 4,
+        .barrier_count = 2,
+        .need_barrier = {true, true, true, true},
+        .min_test_order = {0, 0, 2, 2},
+        .max_test_order = {1, 1, 3, 3},
+    },
+    {
         .description = "two threads, five tasks, 1/2/4/5 waiting on barrier, pausing between submissions",
         .thread_count = 2,
         .submit_count = 5,
@@ -205,8 +214,8 @@ struct TestScenario scenarios[] = {
         .submit_count = 5,
         .barrier_count = 2,
         .need_barrier = {true, true, false, true, true},
-        .min_test_order = {0, 0, 2, 3, 3},
-        .max_test_order = {1, 1, 2, 4, 4},
+        .min_test_order = {0, 0, 2, 2, 2},
+        .max_test_order = {1, 1, 4, 4, 4},
     },
     {
         .description = "two threads, six tasks, 2nd/4th/5th/6th waiting on barrier",
@@ -214,8 +223,8 @@ struct TestScenario scenarios[] = {
         .submit_count = 6,
         .barrier_count = 2,
         .need_barrier = {false, true, false, true, true, true},
-        .min_test_order = {0, 2, 1, 2, 4, 4},
-        .max_test_order = {0, 3, 1, 3, 5, 5},
+        .min_test_order = {0, 0, 1, 2, 4, 4},
+        .max_test_order = {1, 3, 2, 3, 5, 5},
     },
     {
         .description = "one thread, one task submitting extra task",
@@ -276,9 +285,6 @@ static void *test_task_function(void *argument) {
     if (test_scenario->need_task_pause[index]) {
         test_pause();
     }
-    if (test_scenario->need_barrier[index]) {
-        pthread_barrier_wait(&test_barrier);
-    }
     if (test_scenario->need_submit_extra_index[index] > 0) {
         test_submit_index(test_scenario->need_submit_extra_index[index]);
     }
@@ -290,6 +296,9 @@ static void *test_task_function(void *argument) {
     test_order[index] = test_order_index;
     test_order_index += 1;
     pthread_mutex_unlock(&test_lock);
+    if (test_scenario->need_barrier[index]) {
+        pthread_barrier_wait(&test_barrier);
+    }
     return (void*) (long) (index + 1000);
 }
 
@@ -366,7 +375,7 @@ static void run_current_test() {
             fail_test("task with index %d (id %d) not run", i, task_ids[i]);
         } else if (test_order[i] < test_scenario->min_test_order[i] ||
                    test_order[i] > test_scenario->max_test_order[i]) {
-            fail_test("task with index %d (id %d) was"
+            fail_test("task with index %d (id %d) was "
                       "run %d%s (expected between %d%s and %d%s inclusive)",
                       i, task_ids[i],
                       test_order[i] + 1, th_string(test_order[i] + 1),
