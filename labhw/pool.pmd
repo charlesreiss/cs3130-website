@@ -11,6 +11,7 @@ changelog:
 *  6 Apr 2026: fix bug in `fail_test()` call in `pool-test.c`
 *  8 Apr 2026: add note about ThreadSanitizer
 *  8 Apr 2026: fix test cases which were too picky about task numbering in `pool-test.c`
+*  8 Apr 2026: add pool-example.c
 </div>
 
 # Your Task
@@ -82,9 +83,11 @@ changelog:
     waiting for a new task), it may not consume a lot of compute time. The most likely way you'd do this
     is by having the thread call a synchronization function that will waits until the event has likely happened.
 
-2.  Test your implementation. To help you with this, we supply this [test file](pool-files/pool-test.c) *[last updated 2026-04-08]*
-    You could
-    also write your own test.
+2.  Test your implementation.
+
+    To help you with this, we supply this [relatively small example](pool-files/pool-example.c) (which has some #defines you can
+    use to adjust it) and this [more complex test file](pool-files/pool-test.c) *[last updated 2026-04-08]*
+    You could also write your own test.
 
     I would **strongly recommend** compiling and linking with `-fsanitize=thread` as part of your testing to enable
     ThreadSanitizer, which can help identify race conditions. We will do this as part of our grading.
