@@ -285,6 +285,7 @@
 - name: pool
   short_name: pool
   page: labhw/pool.html
+  tentative: true
   submit_files:
   - "*.c"
   - "*.h"

@@ -13,8 +13,6 @@ changelog:
 *  8 Apr 2026: fix test cases which were too picky about task numbering in `pool-test.c`
 </div>
 
->  This assignment may change substantially before it is released.
-
 # Your Task
 
 1.  Implement a "[thread pool](https://en.wikipedia.org/wiki/Thread_pool)" library with the following functions:
@@ -84,7 +82,7 @@ changelog:
     waiting for a new task), it may not consume a lot of compute time. The most likely way you'd do this
     is by having the thread call a synchronization function that will waits until the event has likely happened.
 
-2.  Test your implementation. To help you with this, we supply [this test file](pool-files/pool-test.c) *[last updated 2026-04-08 to fix some bugs]*.
+2.  Test your implementation. To help you with this, we supply this [test file](pool-files/pool-test.c) *[last updated 2026-04-08]*
     You could
     also write your own test.
 
