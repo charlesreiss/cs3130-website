@@ -8,9 +8,7 @@ author:
 <div class='changelog'>
 Changelog:
 
-*  6 April 2025: add instructions re: enabling clang on porta; update skeleton code to avoid warning when compiled with GCC
-*  9 April 2025: add note re: getting proper stack traces on portal by setting ASAN_SYMBOLIZER_PATH
-* 10 April 2025: correct course policies link
+*  9 April 2026: correct `LB_print` to `LB_display` to match the actual name in the supplied skeleton code
 </div>
 
 # Your Task
@@ -171,7 +169,7 @@ Uncomment the lines of `main.c` that are marked as appropriate to uncomment afte
 
     *  You can look at the actual board your parallel code computed using commands like `life-asan 10 input/tiny time-and-result`.
 
-    *  You can call `LB_print` to print out the contents of a LifeBoard for debugging.
+    *  You can call `LB_display` to print out the contents of a LifeBoard for debugging.
 
 ## ThreadSanitizer "data races"
 
