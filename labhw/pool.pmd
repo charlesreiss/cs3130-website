@@ -10,7 +10,7 @@ changelog:
 
 *  6 Apr 2026: fix bug in `fail_test()` call in `pool-test.c`
 *  8 Apr 2026: add note about ThreadSanitizer
-*  8 Apr 2026: fix test cases which were too picky about task numbering in `pool-test.c`d
+*  8 Apr 2026: fix test cases which were too picky about task numbering in `pool-test.c`
 </div>
 
 >  This assignment may change substantially before it is released.
