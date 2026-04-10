@@ -14,7 +14,7 @@ changelog:
 *  8 Apr 2026: add pool-example.c
 *  9 Apr 2026: fix an additional test case which was too picky about task numbering in `pool-test.c`
 *  9 Apr 2026: reorganize section on testing; add some more advice on testing
-* 10 Apr 2026: make pool-test.c wait longer for tests that "pause"; cleanup grammar in with section on testing
+* 10 Apr 2026: make pool-test.c wait longer for tests that "pause"; cleanup grammar in with section on testing; note that pool-test.c is bad at testing waiting
 </div>
 
 # Your Task
@@ -94,7 +94,8 @@ changelog:
     *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-10]*.
 
     I would recommend modifying pool-example.c to have the tasks take longer (such as by having them call `nanosleep`) and
-    then use that check that your `pool_wait` and `pool_stop` actually wait for the tasks to finish.
+    then use that check that your `pool_wait` and `pool_stop` actually wait for the tasks to finish. (`pool-test.c` may not
+    reliably detect this type of problem.)
 
     In addition, I would **strongly recommend** compiling and linking with `-fsanitize=thread` as
     part of your testing to enable ThreadSanitizer, which can help identify race conditions more reliably. We
