@@ -11,7 +11,7 @@
 #include <time.h>
 
 #define MAX_TEST_TASKS 24
-#define PAUSE_NSEC (1000L * 1000L * 100L) /* 100 ms */
+#define PAUSE_NSEC (1000L * 1000L * 500L) /* 500 ms */
 
 static pthread_mutex_t test_lock = PTHREAD_MUTEX_INITIALIZER;
 static int task_ids[MAX_TEST_TASKS];
