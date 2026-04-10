@@ -9,6 +9,7 @@ author:
 Changelog:
 
 *  9 April 2026: correct `LB_print` to `LB_display` to match the actual name in the supplied skeleton code
+* 10 April 2026: update module load instance to match current portal configuration
 </div>
 
 # Your Task
@@ -20,7 +21,7 @@ You should only edit `life-parallel.c`, but that interacts with many other files
 
 Make sure you look at `input/README.md`, as well as `life.h` and any other files you wish.
 
-The provided code will compile and run. On portal you may need to use `module load gcccore/13.2.0 clang/17` to make `clang` available for its makefile.
+The provided code will compile and run. On portal you may need to use `module load gcc clang` or similar to make `clang` available for its makefile.
 We encourage experimenting with it before adding any code of your own.
 
 Make sure you understand how `simulate_life_serial` works.
