@@ -91,7 +91,7 @@ changelog:
     To help you with this, we supply:
 
     *   this [pool-example.c](pool-files/pool-example.c), a relatively small example you can use as a base for writing tests and for manual testing and debugging, and
-    *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-10]*.
+    *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-10]*, which tries a bunch of patterns for running tasks
 
     I would recommend modifying pool-example.c to have the tasks take longer (such as by having them call `nanosleep`) and
     then use that check that your `pool_wait` and `pool_stop` actually wait for the tasks to finish. (`pool-test.c` may not
