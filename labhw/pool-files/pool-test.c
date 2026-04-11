@@ -84,6 +84,14 @@ struct TestScenario scenarios[] = {
         .max_test_order = {0},
     },
     {
+        .description = "three threads, one task, wait, two tasks",
+        .thread_count = 3,
+        .submit_count = 3,
+        .need_wait_after_submit = {true},
+        .min_test_order = {0, 1, 1},
+        .max_test_order = {0, 2, 2},
+    },
+    {
         .description = "three threads, one task",
         .thread_count = 3,
         .submit_count = 1,
@@ -93,6 +101,14 @@ struct TestScenario scenarios[] = {
     {
         .description = "one thread, one task, wait, one task",
         .thread_count = 1,
+        .submit_count = 2,
+        .need_wait_after_submit = {true, false},
+        .min_test_order = {0, 1},
+        .max_test_order = {0, 1},
+    },
+    {
+        .description = "two threads, one task, wait, one task",
+        .thread_count = 2,
         .submit_count = 2,
         .need_wait_after_submit = {true, false},
         .min_test_order = {0, 1},
