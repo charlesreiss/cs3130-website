@@ -3,15 +3,7 @@ title: OOO Exercise
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  21 Nov 2025 (while still tentative): adjust assembly code in all problems to be different for this semester; enable answer sheet
-*  22 Nov 2025 (while still tentative): try to clarify description of what it means for operands to be ready for an instruction to be issued
-*  8 Dec 2025: in description of the issue change replace "it" with "the data cache" and "each of these ALUs" to hopefully avoid misinterpretation; also change "this cycle" to "the same cycle"; change "it is written back" to "its result is written back"
-</div>
-
-See the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2026/ooo.php). 
+See the [answer sheet](https://kytos02.cs.virginia.edu/cs3130-spring2026/ooo/ooo.php). 
 
 # Hypothetical OOO processor
 
@@ -78,15 +70,15 @@ Rewrite the following instructions using the `%x01` taking into account how regi
 might occur that would allow all of these instructions to be placed in the instruction queue
 at once:
 
-    add %r01, %r02 -> %r02  
-    add %r02, %r01 -> %r01  
-    imul %r02, %r03 -> %r03 
-    imul %r04, %r01 -> %r01
-    sub %r02, %r01 -> %r01  
-    add %r03, %r04 -> %r04  
-    movq 0x0(%r04) -> %r01  
-    imul %r01, %r03 -> %r03 
-    movq %r03, 0x0(%r01)-> 
+    add %r01, %r02-> %r02   
+    add %r02, %r03-> %r03   
+    imul %r02, %r03-> %r03  
+    mov 0x0(%r03)-> %r01    
+    sub %r02, %r03-> %r03   
+    add %r03, %r04-> %r04   
+    movq 0x0(%r01)-> %r01   
+    imul %r01, %r04-> %r04  
+    add %r04 %r04-> %r04
 
 Record your answer at the answer sheet linked above.
 
@@ -95,16 +87,16 @@ Record your answer at the answer sheet linked above.
 Suppose the instruction queue for this processor contains the following instructions
 *after renaming*
 
-     A. movq (%x05)-> %x16
-     B. add %x05, %x08 -> %x18
-     C. sub %x01, %x02 -> %x19
-     D. imul %x16, %x02 -> %x20
-     E. movq (%x06) -> %x21
-     F. add %x19, %x08 -> %x22
-     G. add %x21, %x18 -> %x23
-     H. movq (%x22) -> %x24
-     I. imul %x22, %x20 -> %x25
-     J. movq %x25, (%x23) ->
+    A. movq (%x05) -> %x16
+    B. add %x04, %x06 -> %x17
+    C. sub %x01, %x02 -> %x18
+    D. imul %x16, %x18 -> %x19
+    E. movq (%x06) -> %x20
+    F. add %x03, %x08 -> %x21
+    G. add %x21, %x18 -> %x22
+    H. movq (%x18) -> %x23
+    I. imul %x22, %x20 -> %x24
+    J. movq %x21, (%x23) ->
 
 Initially the value of registers `%x01` through `%x15` is available.
 
@@ -129,10 +121,10 @@ Complete a pipeline diagram for the processor running the following instructions
     1. add %r02, %r01 -> %r01
     2. add %r02, %r01 -> %r01
     3. add %r02, %r03 -> %r03
-    4. add %r05, %r04 -> %r04
-    5. add %r04, %r05 -> %r05
-    6. add %r05, %r06 -> %r06
-    7. add %r02, %r03 -> %r03
+    4. add %r03, %r04 -> %r04
+    5. add %r04, %r06 -> %r06
+    6. add %r01, %r02 -> %r05
+    7. add %r04, %r03 -> %r03
     8. add %r01, %r08 -> %r08
 
 Identify the stages as:
