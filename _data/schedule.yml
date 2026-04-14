@@ -421,12 +421,9 @@
   reading: "[processors](readings/procesors.html) §2-3"
   slides_ref:
   - ooo
-  - bpred
   description: |
     *  register renaming
     *  instruction queues, dispatch
-
-    *  (if time) branch prediction ideas
 
 
 - date: 2026-04-15
@@ -435,12 +432,13 @@
 
 - date: 2026-04-16
   week: 14
-  title: side channels
+  title: out-of-order 2
   slides_ref:
-  - spectre
+  - ooo
+  - bpred
   description: |
-    *  side channels generally
-    *  side channels in the cache
+    *  execution units
+    *  branch prediction ideas
 
 
 - date: 2026-04-17
@@ -448,10 +446,12 @@
 
 - date: 2026-04-21
   week: 15
-  title: meltdown/spectre
+  title: side channels / meltdown/spectre
   slides_ref:
   - spectre
   description: |
+    *  side channels generally
+    *  side channels in the cache
     *  meltdown:
         *  speculation past a priv/protection fault
     *   spectre
