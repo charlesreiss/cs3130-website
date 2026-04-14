@@ -257,7 +257,7 @@ struct TestScenario scenarios[] = {
         .submit_count = 4,
         .barrier_count = 2,
         .need_barrier = {true, true, false, true, true},
-        .need_submit_extra_index = {4, 0, 0, 0, 0},
+        .need_submit_extra_index = {0, 4, 0, 0, 0},
         .min_test_order = {0, 0, 0, 2, 2},
         .max_test_order = {2, 2, 4, 4, 4},
     },

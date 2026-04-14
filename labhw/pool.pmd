@@ -16,6 +16,7 @@ changelog:
 *  9 Apr 2026: reorganize section on testing; add some more advice on testing
 * 10 Apr 2026: make pool-test.c wait longer for tests that "pause"; cleanup grammar in with section on testing; note that pool-test.c is bad at testing waiting
 * 11 Apr 2026: add some test cases to pool-test.c to hopefully notice broken pool_wait()s more often
+* 14 Apr 2026: adjust "two thread, four tasks, one submitting extra task, tasks 0/1, 4/5 using barriers" in pool-test.c not to be too picky about ordering
 </div>
 
 # Your Task
@@ -92,7 +93,7 @@ changelog:
     To help you with this, we supply:
 
     *   this [pool-example.c](pool-files/pool-example.c), a relatively small example you can use as a base for writing tests and for manual testing and debugging, and
-    *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-11]*, which tries a bunch of patterns for running tasks
+    *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-14]*, which tries a bunch of patterns for running tasks
 
     I would recommend modifying pool-example.c to have the tasks take longer (such as by having them call `nanosleep`) and
     then use that check that your `pool_wait` and `pool_stop` actually wait for the tasks to finish. (`pool-test.c` might not
