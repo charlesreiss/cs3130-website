@@ -17,6 +17,7 @@ changelog:
 * 10 Apr 2026: make pool-test.c wait longer for tests that "pause"; cleanup grammar in with section on testing; note that pool-test.c is bad at testing waiting
 * 11 Apr 2026: add some test cases to pool-test.c to hopefully notice broken pool_wait()s more often
 * 14 Apr 2026: adjust "two thread, four tasks, one submitting extra task, tasks 0/1, 4/5 using barriers" in pool-test.c not to be too picky about ordering
+* 15 Apr 2026: remove redundant "and all tasks are waited for" from description of pool_stop
 </div>
 
 # Your Task
@@ -73,7 +74,7 @@ changelog:
         Note that the task return values may still be retrieved after `pool_stop`
         returns.
 
-        After `pool_stop()` returns and all tasks are waited for, it should be possible
+        After `pool_stop()` returns, it should be possible
         to call `pool_setup()` again (possibly with a different number of threads)
         and then submit and wait functions normally again.
 
