@@ -9,6 +9,7 @@ Changelog:
 *  6 Nov 2023: remove notes about old versions of securelab.tar
 *  6 Nov 2023: for scenario 3 request that B not think A sent too many payments
 *  12 Nov 2023: hopefully be more clear about `./lab X attack` being what you have to get "working"
+*  16 Apr 2026: add missing comma to exmaple code for adding  a message
 </div>
 
 {.exercise ...}
@@ -131,7 +132,7 @@ You can modify this to change the messages in various ways, for example:
             if (counter == 0) {
                 send_message(new_message(
                     'A', 'B',
-                    "This is an additional message."
+                    "This is an additional message.",
                     false, false
                 ))
                 counter += 1;
