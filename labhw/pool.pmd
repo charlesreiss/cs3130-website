@@ -18,6 +18,7 @@ changelog:
 * 11 Apr 2026: add some test cases to pool-test.c to hopefully notice broken pool_wait()s more often
 * 14 Apr 2026: adjust "two thread, four tasks, one submitting extra task, tasks 0/1, 4/5 using barriers" in pool-test.c not to be too picky about ordering
 * 15 Apr 2026: remove redundant "and all tasks are waited for" from description of pool_stop
+* 17 Apr 2026: fix incorrect #ifdef to #ifndef in header guard
 </div>
 
 # Your Task
@@ -117,7 +118,7 @@ changelog:
 # `pool.h`
 
 ```c
-#ifdef POOL_H_
+#ifndef POOL_H_
 #define POOL_H_
 
 // The function signature for a task.
