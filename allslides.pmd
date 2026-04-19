@@ -14,12 +14,12 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 
 - [intro](slides/intro.pdf)
 - [logistics](slides/logistics.pdf) (course logistics, might not be updated for current semester)
-- [building](slides/building.pdf)
+- [building](slides/building.pdf) <sup>[pdf](slides/building.pdf)</sup>
 - [accounts](slides/accounts.html)<sup>[pdf](slides/accounts.pdf)</sup>
-- [kernel](slides/kernel.pdf) (including exceptions)
+- [kernel](slides/kernel.html)<sup>[pdf](slides/kernel.pdf)</sup> (including exceptions)
 - [signals](slides/signals.pdf) (Unix signals, now typically not covered)
 - [unix-api](slides/unix-api.pdf) (fork, dup2, etc)
-- [vm](slides/vm.pdf) (virtual memory)
+- [vm](slides/vm.html)<sup>[pdf](slides/vm.pdf)</sup> (virtual memory)
 - [caching](slides/caching.html)<sup>[pdf](slides/caching.pdf)</sup>
   *  [caching-blocking](slides/caching-blocking.html)<sup>[pdf](slides/caching-blocking.pdf)</sup> (cache blocking; typically not covered)
 - [threads](slides/threads.html)<sup>[pdf](slides/threads.pdf)</sup>
@@ -34,13 +34,13 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
   *  [sync-rwlocks](slides/sync-rwlocks.html)<sup>[pdf](slides/sync-rwlocks.pdf)</sup> (reader-writer locks)
   *  [sync-semaphores](slides/sync-semaphores.html)<sup>[pdf](slides/sync-semaphores.pdf)</sup> (typically not covered)
   *  [sync-xact](slides/sync-xact.html)<sup>[pdf](slides/sync-xact.pdf)</sup> (transactions, very briefly)
-- [deadlock](slides/deadlock.pdf)
+- [deadlock](slides/deadlock.html)<sup>[pdf](slides/deadlock.pdf)</sup>
 - [network](slides/network.html)<sup>[pdf](slides/network.pdf)</sup>
 - [secure](slides/secure.html)<sup>[pdf](slides/secure.pdf) (secure channels, cryptography)
-- [pipeline](slides/pipeline.pdf) (pipelined processors)
-- [ooo](slides/ooo.pdf) (out-of-order processors)
-- [spectre](slides/spectre.pdf) (side-channels, Meltdown, Spectre)
+- [pipeline](slides/pipeline.html)<sup>[pdf](slides/pipeline.pdf)</sup> (pipelined processors)
+- [ooo](slides/ooo.html)<sup>[pdf](slides/ooo.pdf)</sup> (out-of-order processors)
+- [spectre](slides/spectre.html)<sup>[pdf](slides/spectre.pdf)</sup> (side-channels, Meltdown, Spectre)
 
-- [bpred](slides/bpred.pdf) (branch prediction)
+- [bpred](slides/bpred.html)<sup>[pdf](slides/bpred.pdf)</sup> (branch prediction)
 
 Note that these slidedecks frequently contain extra slides that will not be used in most semesters.
