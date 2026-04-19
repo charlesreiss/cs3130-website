@@ -285,7 +285,6 @@
 - name: pool
   short_name: pool
   page: labhw/pool.html
-  tentative: true
   submit_files:
   - "*.c"
   - "*.h"
@@ -294,7 +293,6 @@
 - name: side channel
   short_name: side-channel
   lab: true
-  tentative: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
   missing-if-no-feedback: false
