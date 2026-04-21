@@ -446,17 +446,12 @@
 
 - date: 2026-04-21
   week: 15
-  title: side channels / meltdown/spectre
+  title: side channels
   slides_ref:
   - spectre
   description: |
     *  side channels generally
     *  side channels in the cache
-    *  meltdown:
-        *  speculation past a priv/protection fault
-    *   spectre
-        *   speculation past a bounds chcek
-        *   using cache side-channels
 
 - date: 2026-04-22
   week: 15
@@ -464,7 +459,13 @@
 
 - date: 2026-04-23
   week: 15
-  title: (slack)
+  title: meltdown/spectre
+  description: | 
+    *  meltdown:
+        *  speculation past a priv/protection fault
+    *   spectre
+        *   speculation past a bounds chcek
+        *   using cache side-channels
 
 - date: 2026-04-24
   week: 15
