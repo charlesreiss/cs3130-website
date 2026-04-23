@@ -472,7 +472,12 @@
 
 - date: 2026-04-28
   week: 16
-  title: (slack)
+  title: spectre 2 / exam review
+  description: |
+    *  more spectre exercises
+    *  spectre mitigations, briefly
+
+    *  exam review
 
 - date: 2026-05-04
   title: final exam (both sections; 7pm)
