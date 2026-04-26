@@ -19,6 +19,7 @@ changelog:
 * 14 Apr 2026: adjust "two thread, four tasks, one submitting extra task, tasks 0/1, 4/5 using barriers" in pool-test.c not to be too picky about ordering
 * 15 Apr 2026: remove redundant "and all tasks are waited for" from description of pool_stop
 * 17 Apr 2026: fix incorrect #ifdef to #ifndef in header guard
+* 26 Apr 2026: update pool-test.c to avoid calling pool_stop before all tasks are submitted in some cases
 </div>
 
 # Your Task
@@ -95,7 +96,7 @@ changelog:
     To help you with this, we supply:
 
     *   this [pool-example.c](pool-files/pool-example.c), a relatively small example you can use as a base for writing tests and for manual testing and debugging, and
-    *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-14]*, which tries a bunch of patterns for running tasks
+    *   this [pool-test.c](pool-files/pool-test.c) *[last updated 2026-04-26]*, which tries a bunch of patterns for running tasks
 
     I would recommend modifying pool-example.c to have the tasks take longer (such as by having them call `nanosleep`) and
     then use that check that your `pool_wait` and `pool_stop` actually wait for the tasks to finish. (`pool-test.c` might not

@@ -32,6 +32,7 @@ struct TestScenario {
     bool need_barrier[MAX_TEST_TASKS];
     bool need_task_pause[MAX_TEST_TASKS];
     bool need_pause_after_submit[MAX_TEST_TASKS];
+    bool need_wait_before_stop;
     int min_test_order[MAX_TEST_TASKS];
     int max_test_order[MAX_TEST_TASKS];
 };
@@ -248,6 +249,7 @@ struct TestScenario scenarios[] = {
         .submit_count = 1,
         .barrier_count = 0,
         .need_submit_extra_index = {1, 0},
+        .need_wait_before_stop = true,
         .min_test_order = {0, 1},
         .max_test_order = {0, 1},
     },
@@ -257,6 +259,7 @@ struct TestScenario scenarios[] = {
         .submit_count = 4,
         .barrier_count = 2,
         .need_barrier = {true, true, false, true, true},
+        .need_wait_before_stop = true,
         .need_submit_extra_index = {0, 4, 0, 0, 0},
         .min_test_order = {0, 0, 0, 2, 2},
         .max_test_order = {2, 2, 4, 4, 4},
@@ -376,6 +379,9 @@ static void run_current_test() {
         if (test_scenario->need_barrier_after_submit[index]) {
             pthread_barrier_wait(&test_barrier);
         }
+    }
+    if (test_scenario->need_wait_before_stop) {
+        pool_wait();
     }
     pool_stop();
     // check number of submitted tasks
