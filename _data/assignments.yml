@@ -295,7 +295,7 @@
   lab: true
   page: labhw/side-channel.html
   submit_file: "lab.c"
-  missing-if-no-feedback: false
+  missing-if-no-feedback: true
   due: 2026-04-22
 
 
@@ -305,7 +305,7 @@
   due: 2026-04-24
   feedback: "extracted*,autograder*"
   xxx-no-late: true
-  missing-if-no-feedback: false
+  missing-if-no-feedback: true
 
 - name: pipeline
   short_name: pipeline
