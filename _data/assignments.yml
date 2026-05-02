@@ -89,7 +89,7 @@
   page: labhw/sync.html
   comments: needs changes for in-person?
   comments: need .php stuff
-  missing-if-no-feedback: false
+  missing-if-no-feedback: true
   due: 2026-02-25
 
 - name: pagetable part 1
@@ -118,7 +118,7 @@
   page: labhw/cache-lab.html
   lab: true
   due: 2026-03-11
-  missing-if-no-feedback: false
+  missing-if-no-feedback: true
 
 - name: pagetable 2 (pre code review)
   short_name: pagetable2
@@ -165,7 +165,7 @@
   short_name: codereview
   page: labhw/code-review.html
   comments: needs submission site link correction
-  missing-if-no-feedback: false
+  missing-if-no-feedback: true
   due: 2026-03-18
 
 - name: pagetable 3 (post code review)
