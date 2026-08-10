@@ -9,7 +9,7 @@ chmod -R a+r oldquiz
 chmod -R a+r readings/files
 chmod -R a+r slides
 chmod -R a+r slides-quarto
-chmod -R a+rX ~/public_html/3130/S2026/recordings
+chmod -R a+rX ~/public_html/3130/F2026/recordings
 pd=/u/cr4bd/bin/pandoc
 
 if [ ! -e $pd ]; then

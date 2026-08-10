@@ -113,15 +113,15 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
   {%- endif -%}
 {%- endif -%}
 {%- if video -%}
-      | screencapture (<a href="/~cr4bd/videoplayer/?3130/S2026/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
+      | screencapture (<a href="/~cr4bd/videoplayer/?3130/F2026/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
     )
 {%- endif -%}
 {%- if video_11 -%}
-      | 11am screencapture (<a href="/~cr4bd/videoplayer/?3130/S2026/recordings/{{ file_prefix_11 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_11 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_11 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_11 }}-audio.mp3">audio</a>
+      | 11am screencapture (<a href="/~cr4bd/videoplayer/?3130/F2026/recordings/{{ file_prefix_11 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_11 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_11 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_11 }}-audio.mp3">audio</a>
     )
 {%- endif -%}
 {%- if video_9 -%}
-      | 9am screencapture (<a href="/~cr4bd/videoplayer/?3130/S2026/recordings/{{ file_prefix_9 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_9 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_9 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_9 }}-audio.mp3">audio</a>
+      | 9am screencapture (<a href="/~cr4bd/videoplayer/?3130/F2026/recordings/{{ file_prefix_9 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_9 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_9 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_9 }}-audio.mp3">audio</a>
     )
 {%- endif -%}
 {%- if day.slides or day.slides_ref or day.video_webm or day.who or day.slides_see -%}

@@ -52,17 +52,23 @@ The target difficulty is 5–10 hours of focused effort each week.
 
 Task | Weight | Comments
 -----|--------|-----------------------------------------------------------------
-Quizzes | 15% | Drop lowest score
+Quizzes | 5% | Drop lowest score
 Labs    | 10% |
-Homeworks | 30% |
-Midterms | 25% |
-Final | 20% |
+Homeworks | 25% |
+Tests | 60% | 
 
 
 Your final grade is computed based on the percentage of points you have earned and then converted to a letter grade. At the end of the semester, we will decide on a mapping from points to letter grades based on the actual difficulty of homeworks, exams, etc. This mapping will give at least a D- for a 60.0%,  at least a C- for a 70.0%, at least a B- for an 80.0%, and at least a A- for a 90.0%.
 Other than adjustments to the grading scale made on the basis of difficulty of
 coursework, there will no `rounding' of grades.
 
+## Tests
+
+Tests will be taken at the computer-based testing facility at times to be announced.
+
+This is a pilot for this semester, and we may adjust the course as needed to accomodate how that actually goes.
+
+My current plan is that the final exam will consist of a normal size test and an opportunity to retake any previous test.
 
 ## Submitting late
 

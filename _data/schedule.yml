@@ -1,4 +1,4 @@
-- date: 2026-01-13
+- date: 2026-08-25
   week: 1
   title: introduction / building intro
   reading: "[overview](readings/intro.html), (partially) [compilation](readings/compilation.html)"
@@ -10,12 +10,12 @@
     * course outline
     * pointers in C (review?)
 
-- date: 2026-01-14
+- date: 2026-08-26
   week: 1
   no_class: true
   description: (no lab)
 
-- date: 2026-01-15
+- date: 2026-08-27
   week: 1
   title: building
   reading: "[compilation](readings/compilation.html), [makefiles](readings/make.html)"
@@ -27,10 +27,10 @@
     *  make
        *  rules
 
-- date: 2026-01-16
+- date: 2026-08-28
   week: 1
 
-- date: 2026-01-20
+- date: 2026-09-01
   week: 2
   title: accounts
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
@@ -43,11 +43,11 @@
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
 
-- date: 2026-01-21
+- date: 2026-09-02
   week: 2
   lab: true
 
-- date: 2026-01-22
+- date: 2026-09-03
   week: 2
   title: privilege / exceptions 1
   reading: "[kernel](readings/kernel.html) §1-2.2, 3 "
@@ -60,15 +60,10 @@
     *  memory protection
     *  context switches
 
-- date: 2026-01-23
+- date: 2026-09-04
   week: 2
 
-- date: 2026-01-26
-  week: 3
-  description: |
-    (add deadline)
-
-- date: 2026-01-27
+- date: 2026-09-08
   week: 3
   title: exceptions 2 / processes 1
   reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, 2.4, 3, 4 / [thread](readings/thread.html) §1-3.4"
@@ -76,17 +71,19 @@
   - kernel
   - unix-api
   description: |
+    (add deadline)
+
     *  exceptions and I/O
 
     *  creating new processes
        *  fork, exec*
 
 
-- date: 2026-01-28
+- date: 2026-09-09
   week: 3
   lab: true
 
-- date: 2026-01-29
+- date: 2026-09-10
   week: 3
   title: processes 2
   reading: "[threads](readings/thread.html) §3.4-4"
@@ -97,10 +94,10 @@
     *  file descriptors
     *  redirection, dup2
 
-- date: 2026-01-30
+- date: 2026-09-11
   week: 3
 
-- date: 2026-02-03
+- date: 2026-09-15
   week: 4
   title: "virtual memory 0"
   reading: "[VM](readings/vm.html) §1"
@@ -112,11 +109,11 @@
         *   address space and address sizes
     *  page tables
 
-- date: 2026-02-04
+- date: 2026-09-16
   week: 4
   lab: true
 
-- date: 2026-02-05
+- date: 2026-09-17
   week: 4
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
@@ -129,10 +126,10 @@
     *  copy-on-write, other "page table tricks" 
 
 
-- date: 2026-02-06
+- date: 2026-09-18
   week: 4
 
-- date: 2026-02-10
+- date: 2026-09-22
   week: 5
   title: virtual memory 2
   reading: "[VM](readings/vm.html) §2.1, 3.2"
@@ -144,11 +141,11 @@
     *  storing page tables in memory
     *  pagetable assignment
 
-- date: 2026-02-11
+- date: 2026-09-23
   lab: true
   week: 5
 
-- date: 2026-02-12
+- date: 2026-09-24
   week: 5
   title: virtual memory 3 
   reading: "[VM](readings/vm.html) §2.1, 3.2"
@@ -159,10 +156,10 @@
     *  multi-level page table examples
     *  virtual memory exercises
 
-- date: 2026-02-13
+- date: 2026-09-25
   week: 5
 
-- date: 2026-02-17
+- date: 2026-09-29
   week: 6
   title: caches 1
   reading: "[cache](readings/cache.html)"
@@ -173,25 +170,25 @@
     *  direct-mapped caches
         *  valid bits, tags
 
-- date: 2026-02-18
+- date: 2026-09-30
   lab: true
   week: 6
 
-- date: 2026-02-19
-  week: 6
-  title: midterm 1
-  description: |
-    (Reiss out of town)
-
-- date: 2026-02-20
+- date: 2026-10-01
   week: 6
 
-- date: 2026-02-23
+- date: 2026-10-02
+  week: 6
+
+- date: 2026-10-06
   week: 7
-  description: |
-    (drop deadline)
+  no_class: true
 
-- date: 2026-02-24
+- date: 2026-10-07
+  lab: true
+  week: 7
+
+- date: 2026-10-08
   week: 7
   title: caches 2
   reading: "[cache](readings/cache.html)"
@@ -203,39 +200,35 @@
    *  set-associative caches
    *  replacement policies (start)
 
-- date: 2026-02-25
-  lab: true
+
+- date: 2026-10-09
   week: 7
 
-- date: 2026-02-26
-  week: 7
+
+- date: 2026-10-13
+  week: 8
   title: caches 3
   reading: "[cache](readings/cache.html)"
   slides_ref:
   - caching
   description: |
+   (drop deadline)
+
    *  replacement policies (finish)
    *  cache misses and C code
    *  cache write policies
 
-
-- date: 2026-02-27
-  week: 7
-
-
-- date: 2026-03-03
+- date: 2026-10-14
   week: 8
-  no_class: true
+  lab: true
 
-- date: 2026-03-04
+- date: 2026-10-15
   week: 8
-  no_class: true
 
-- date: 2026-03-05
+- date: 2026-10-16
   week: 8
-  no_class: true
 
-- date: 2026-03-10
+- date: 2026-10-20
   week: 9
   title: "TLB / threads"
   reading: "[cache](readings/cache.html), [thread](readings/thread.html) §1.3-4, [pthreads](readings/pthreads.html) §1-2"
@@ -251,13 +244,11 @@
 
    *  thread use examples (start)
 
-- date: 2026-03-11
+- date: 2026-10-21
   week: 9
   lab: true
-  description: |
-    (withdraw deadline)
 
-- date: 2026-03-12
+- date: 2026-10-22
   week: 9
   title: synchronization 1 --- reordering and locks
   reading: "[consistency](readings/consistency.html) §1-2, [sync](readings/sync.html) §1-2, 4, [pthreads](readings/pthreads.html) §3.1-2"
@@ -272,10 +263,10 @@
     *  locks
 
 
-- date: 2026-03-13
+- date: 2026-10-23
   week: 9
 
-- date: 2026-03-17
+- date: 2026-10-27
   week: 10
   title: synchronization 2 --- barriers / deadlock 
   reading: "[sync](readings/sync.html) §8; [deadlock](readings/deadlock.html); [pthreads](readings/pthreads.html) §3.3"
@@ -288,27 +279,34 @@
     *  deadlock
     *  (if time) producer/consumer problem
 
-- date: 2026-03-18
+- date: 2026-10-28
   lab: true
   week: 10
 
-- date: 2026-03-19
+- date: 2026-10-29
   week: 10
   title: synchronization 3 --- monitors, producer/consumer
   reading: "[sync](readings/sync.html) §5-7, [pthreads](readings/pthreads.html) §3.5"
   slides_ref:
   - sync-monitors
   description: |
-    (Reiss out of town)
-
     *  monitors
        *  solving producer/consumer problem
 
-- date: 2026-03-20
+- date: 2026-10-30
   week: 10
 
 
-- date: 2026-03-24
+- date: 2026-11-03
+  week: 11
+  no_class: true
+
+
+- date: 2026-11-04
+  lab: true
+  week: 11
+
+- date: 2026-11-05
   week: 11
   title: transactions / networking 1
   reading: "[sync](readings/sync.html) §9, [protocols](readings/protocols.html) §1-2"
@@ -325,19 +323,10 @@
     *  connections atop mailbox model
     *  names and addresses
 
-
-- date: 2026-03-25
-  lab: true
+- date: 2026-11-06
   week: 11
 
-- date: 2026-03-26
-  week: 11
-  title: midterm 2
-
-- date: 2026-03-27
-  week: 11
-
-- date: 2026-03-31
+- date: 2026-11-10
   week: 12
   reading: "[security](readings/sec.html) §1-3"
   title: networking 2
@@ -355,11 +344,11 @@
         *  DNS
     *  (briefly) HTTP, network address translation
 
-- date: 2026-04-01
+- date: 2026-11-11
   week: 12
   lab: true
 
-- date: 2026-04-02
+- date: 2026-11-12
   week: 12
   title: secure channels 1
   slides_ref:
@@ -373,10 +362,10 @@
    *  replay attacks
    *  public key infrastructure
 
-- date: 2026-04-03
+- date: 2026-11-13
   week: 12
 
-- date: 2026-04-07
+- date: 2026-11-17
   week: 13
   title: pipelining 1
   reading: "[processors](readings/processors.html) §1-3"
@@ -392,11 +381,11 @@
    *  pipelining tradeoffs
    *  hazards (start)
 
-- date: 2026-04-08
+- date: 2026-11-18
   week: 13
   lab: true
 
-- date: 2026-04-09
+- date: 2026-11-19
   week: 13
   title: pipelining 2
   reading: "[processors](readings/procesors.html) §2-3"
@@ -412,10 +401,10 @@
 
     *  idea of multiple issue + out-of-order
 
-- date: 2026-04-10
+- date: 2026-11-20
   week: 13
 
-- date: 2026-04-14
+- date: 2026-11-24
   week: 14
   title: out-of-order 1
   reading: "[processors](readings/procesors.html) §2-3"
@@ -425,13 +414,20 @@
     *  register renaming
     *  instruction queues, dispatch
 
-
-- date: 2026-04-15
+- date: 2026-11-25
   week: 14
-  lab: true
+  no_class: true
 
-- date: 2026-04-16
+- date: 2026-11-26
   week: 14
+  no_class: true
+
+- date: 2026-11-27
+  week: 14
+  no_class: true
+
+- date: 2026-12-01
+  week: 15
   title: out-of-order 2
   slides_ref:
   - ooo
@@ -441,10 +437,11 @@
     *  branch prediction ideas
 
 
-- date: 2026-04-17
-  week: 14
+- date: 2026-12-02
+  week: 15
+  lab: true
 
-- date: 2026-04-21
+- date: 2026-12-03
   week: 15
   title: side channels
   slides_ref:
@@ -453,12 +450,11 @@
     *  side channels generally
     *  side channels in the cache
 
-- date: 2026-04-22
+- date: 2026-12-04
   week: 15
-  lab: true
 
-- date: 2026-04-23
-  week: 15
+- date: 2026-12-08
+  week: 16
   title: meltdown/spectre
   description: | 
     *  meltdown:
@@ -466,22 +462,5 @@
     *   spectre
         *   speculation past a bounds chcek
         *   using cache side-channels
-
-- date: 2026-04-24
-  week: 15
-
-- date: 2026-04-28
-  week: 16
-  title: spectre 2 / exam review
-  description: |
-    *  notes: [9am](recordings/20260428-9am-notes.txt) / [11am](recordings/20260428-11am-notes.txt)
-
-    *  more spectre exercises
-    *  spectre mitigations, briefly
-
-    *  exam review
-
-- date: 2026-05-04
-  title: final exam (both sections; 7pm)
-  week: 17
+        *  spectre mitigations, briefly
 
