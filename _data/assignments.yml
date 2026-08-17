@@ -39,7 +39,7 @@
 
 - name: test 1
   test: true
-  open: 2026-09-17
+  released: 2026-09-17
   due: 2026-09-21
   topics:
   - makefiles
@@ -104,7 +104,7 @@
 
 - name: test 2
   test: true
-  open: 2026-10-08
+  released: 2026-10-08
   due: 2026-10-12
   topics:
   - exceptions (w/ I/O)
@@ -247,7 +247,7 @@
 
 - name: test 3
   test: true
-  open: 2026-10-29
+  released: 2026-10-29
   due: 2026-11-02
   topics:
   - set-associative caches
@@ -318,7 +318,7 @@
 
 - name: test 4
   test: true
-  open: 2026-11-19
+  released: 2026-11-19
   due: 2026-11-23
   topics:
   - deadlock
@@ -344,7 +344,7 @@
 
 - name: test 5
   test: true
-  open: 2026-12-04
+  released: 2026-12-04
   due: 2026-12-08
   topics:
   - pipelining
