@@ -129,6 +129,9 @@
 - date: 2026-09-18
   week: 4
 
+- date: 2026-09-21
+  week: 5
+
 - date: 2026-09-22
   week: 5
   title: virtual memory 2
@@ -204,6 +207,9 @@
 - date: 2026-10-09
   week: 7
 
+
+- date: 2026-10-12
+  week: 8
 
 - date: 2026-10-13
   week: 8
@@ -296,6 +302,8 @@
 - date: 2026-10-30
   week: 10
 
+- date: 2026-11-02
+  week: 11
 
 - date: 2026-11-03
   week: 11
@@ -403,6 +411,9 @@
 
 - date: 2026-11-20
   week: 13
+
+- date: 2026-11-23
+  week: 14
 
 - date: 2026-11-24
   week: 14

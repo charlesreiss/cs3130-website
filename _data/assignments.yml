@@ -39,8 +39,8 @@
 
 - name: test 1
   test: true
-  open: 2026-09-16
-  due: 2026-09-18
+  open: 2026-09-17
+  due: 2026-09-21
   topics:
   - makefiles
   - permissions
@@ -104,8 +104,8 @@
 
 - name: test 2
   test: true
-  open: 2026-10-07
-  due: 2026-10-09
+  open: 2026-10-08
+  due: 2026-10-12
   topics:
   - exceptions (w/ I/O)
   - fork, waitpid, dup2
@@ -247,8 +247,8 @@
 
 - name: test 3
   test: true
-  open: 2026-10-28
-  due: 2026-10-30
+  open: 2026-10-29
+  due: 2026-11-02
   topics:
   - set-associative caches
   - TLBs
@@ -318,8 +318,8 @@
 
 - name: test 4
   test: true
-  open: 2026-11-18
-  due: 2026-11-20
+  open: 2026-11-19
+  due: 2026-11-23
   topics:
   - deadlock
   - monitors
