@@ -70,19 +70,37 @@ def make_argparser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument('--quarto-base', type=Path, default=Path('../cs3130-slides/quarto'))
     subparsers = parser.add_subparsers(title='subcomands')
-    render_parser = subparsers.add_parser('render-one')
-    render_parser.add_argument('name', type=str)
-    render_parser.add_argument('output_dir', type=Path)
-    render_parser.set_defaults(command='render-one')
+    render_one_parser = subparsers.add_parser('render-one')
+    render_one_parser.set_defaults(command='render-one')
+    render_one_parser.add_argument('name', type=str)
+    render_one_parser.add_argument('output_dir', type=Path)
     render_all_parser = subparsers.add_parser('render-all')
-    render_all_parser.add_argument('output_dir', type=Path)
     render_all_parser.set_defaults(command='render-all')
+    render_all_parser.add_argument('output_dir', type=Path)
+    render_copy_parser = subparsers.add_parser('render-copy')
+    render_copy_parser.set_defaults(command='render-copy')
+    render_copy_parser.add_argument('names', type=str, nargs='+')
+    render_copy_parser.add_argument('--singlefile-directory',
+                                    default=Path('slides-quarto-singlefile'),
+                                    type=Path)
+    render_copy_parser.add_argument('--slides-directory',
+                                    default=Path('slides'),
+                                    type=Path)
     return parser
 
 def main():
     parser = make_argparser()
     args = parser.parse_args()
-    if args.command == 'render-one':
+    if args.command == 'render-copy':
+        for name in args.names:
+            render_one(args, name, args.singlefile_directory)
+        for name in args.names:
+            for suffix in ('.pdf', '.html'):
+                shutil.copyfile(
+                    args.singlefile_directory / (name + suffix),
+                    args.slides_directory / (name + suffix)
+                )
+    elif args.command == 'render-one':
         render_one(args, args.name, args.output_dir)
     elif args.command == 'render-all':
         render_all(args, args.output_dir)
