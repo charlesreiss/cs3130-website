@@ -3,13 +3,6 @@ title: warmup
 author: Charles Reiss
 ...
 
-<div class="changelog">
-Changelog:
-
-*  15 Sep 2025: mention the `-g` compiler option when talking about address sanitizer in item 4 and in the hints.
-*  16 Jan 2026: mention `module load gcc clang` in hints
-*  26 Jan 2026: link to correct semester's submission site
-</div>
 
 
 # Your task
@@ -129,7 +122,7 @@ Changelog:
     <small>(By "hard-code the solution", we mean code that looks for our specific test inputs (such as checking if the input contains the "XfooX" because one of the test cases is "XfooXbar")
     rather than the more general situation being tested (such as checking for separator characters at the beginning of the input); it's not a prohibition on having less specific special cases.)</small>
 
-6.  Submit your solution to the [submission site](https://kytos02.cs.virginia.edu/cs3130-spring2026/submit/)
+6.  Submit your solution to the [submission site](https://kytos02.cs.virginia.edu/cs3130-fall2026/submit/)
 
 #  Examples
 
