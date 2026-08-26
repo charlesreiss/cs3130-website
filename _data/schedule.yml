@@ -1,11 +1,10 @@
 - date: 2026-08-25
   week: 1
   title: introduction / building intro
-  reading: "[overview](readings/intro.html), (partially) [compilation](readings/compilation.html)"
+  reading: "[overview](readings/intro.html)"
   slides_ref:
   - intro
   - logistics
-  - building
   description: |
     * course outline
     * pointers in C (review?)
