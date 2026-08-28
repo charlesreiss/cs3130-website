@@ -17,14 +17,12 @@
 - date: 2026-08-27
   week: 1
   title: building
-  reading: "[compilation](readings/compilation.html), [makefiles](readings/make.html)"
+  reading: "[compilation](readings/compilation.html)"
   slides_ref:
   - building
   description: |
     *  .o, .a, .so files
     *  dynamic and static linking
-    *  make
-       *  rules
 
 - date: 2026-08-28
   week: 1
@@ -32,12 +30,13 @@
 - date: 2026-09-01
   week: 2
   title: accounts
-  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
+  reading: "[makefiles](readings/make.html), [accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   slides_ref:
   - building
   - accounts
   description: |
-    *  make (finish)
+    *  make
+       *  rules
 
     *  user IDs/account abstraction
     *  POSIX permissions, briefly
