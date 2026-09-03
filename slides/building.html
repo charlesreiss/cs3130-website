@@ -1393,7 +1393,7 @@ G. something else
 </section>
 <section id="marking-phony-targets" class="slide level3">
 <h3>marking phony targets</h3>
-<p><code>clean:</code><br> <code>▶ rm –force main.o extra.o</code><br> <code> </code><br> <code>all: program1 program2 libfoo.a</code><br> <code> </code><br> <code>.PHONY: all clean</code></p>
+<p><code>clean:</code><br> <code>▶ rm -‌-force main.o extra.o</code><br> <code> </code><br> <code>all: program1 program2 libfoo.a</code><br> <code> </code><br> <code>.PHONY: all clean</code></p>
 <ul>
 <li><p>special .PHONY rule says ‘‘ ‘all’ and ‘clean’ not real files’’</p></li>
 <li><p><span class="my-small">(not required by POSIX, but in every <code>make</code> version I know)</span></p></li>
