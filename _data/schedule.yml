@@ -29,7 +29,7 @@
 
 - date: 2026-09-01
   week: 2
-  title: accounts
+  title: make
   reading: "[makefiles](readings/make.html), [accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   slides_ref:
   - building
@@ -37,9 +37,7 @@
   description: |
     *  make
        *  rules
-
-    *  user IDs/account abstraction
-    *  POSIX permissions, briefly
+    *  system call idea, user IDs
 
 - date: 2026-09-02
   week: 2
@@ -47,16 +45,14 @@
 
 - date: 2026-09-03
   week: 2
-  title: privilege / exceptions 1
-  reading: "[kernel](readings/kernel.html) §1-2.2, 3 "
+  title: accounts / privilege
+  reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   slides_ref:
-  - kernel
+  - accounts
   description: |
-    *  set-user-ID, sudo is not kernel mode
-    *  kernel mode
-    *  system calls
-    *  memory protection
-    *  context switches
+    *  user IDs/account abstraction
+    *  POSIX permissions, briefly
+    *  access control lists
 
 - date: 2026-09-04
   week: 2
@@ -64,17 +60,18 @@
 - date: 2026-09-08
   week: 3
   title: exceptions 2 / processes 1
-  reading: "[kernel](readings/kernel.html) §2-2.2, 2.3.1.1, 2.4, 3, 4 / [thread](readings/thread.html) §1-3.4"
+  reading: "[kernel](readings/kernel.html) §1-2.2, 2.3.1.1, 2.4, 3, 4"
   slides_ref:
+  - accounts
   - kernel
-  - unix-api
   description: |
     (add deadline)
-
-    *  exceptions and I/O
-
-    *  creating new processes
-       *  fork, exec*
+ 
+    *  set-user-ID, sudo is not kernel mode
+    *  kernel mode
+    *  system calls
+    *  memory protection
+    *  context switches
 
 
 - date: 2026-09-09
@@ -84,10 +81,15 @@
 - date: 2026-09-10
   week: 3
   title: processes 2
-  reading: "[threads](readings/thread.html) §3.4-4"
+  reading: "[threads](readings/thread.html) §1-4"
   slides_ref:
+  - kernel
   - unix-api
   description: |
+    *  exceptions and I/O
+
+    *  creating new processes
+       *  fork, exec*
     *  waiting for processes
     *  file descriptors
     *  redirection, dup2
