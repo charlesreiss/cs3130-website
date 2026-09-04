@@ -1076,6 +1076,17 @@ margin-right: 0; }
 <li>kernel needs to decide if this should work or not</li>
 </ul>
 </section>
+<section id="two-processor-modes" class="slide level3">
+<h3>two processor modes</h3>
+<ul>
+<li>processor has privileged mode and user mode
+<ul>
+<li>hardware restricts some operations to privileged mode</li>
+</ul></li>
+<li>only OS runs in privileged mode</li>
+<li>programs need to ask OS for help with doing operations that need privileged mode</li>
+</ul>
+</section>
 <section id="system-call" class="slide level3 smaller scrollable">
 <h3>system call = ???</h3>
 <ul>
@@ -1339,23 +1350,13 @@ user:tj1a:---
 A.
 </td>
 <td>
-<div class="columns">
-
-</div>
-
-<div class="column" style="width:99%;">
-<p><code>user:foo:rw-<br><code>user:bar:r–</code><br><code>user:quux:-w-</code><br><code>other:—</code></code></p>
-</div>
-::::
+<code>user:foo:rw-</code><br><code>user:bar:r--</code><br><code>user:quux:-w-</code><br><code>other:---</code>
 </td>
 <td>
 B.
 </td>
 <td>
-<div class="columns">
-<div class="column" style="width:99%;">
-<p><code>user:foo:rw-<br><code>user:bar:r–</code><br><code>user:quux:—</code><br><code>other:—</code></code></p>
-</div></div>
+<code>user:foo:rw-</code><br><code>user:bar:r--</code><br><code>user:quux:---</code><br><code>other:---</code>
 </td>
 </tr>
 <tr>
@@ -1363,23 +1364,18 @@ B.
 C.
 </td>
 <td>
-<div class="columns">
-<div class="column" style="width:99%;">
-<p><code>user:foo:rw-<br><code>user:bar:rw-</code><br><code>user:quux:r–</code><br><code>other:r–</code></code></p>
-</div></div>
+<code>user:foo:rw-</code><br><code>user:bar:rw-</code><br><code>user:quux:r--</code><br><code>other:r--</code>
 </td>
 <td>
 D.
 </td>
 <td>
-<div class="columns">
-<div class="column" style="width:99%;">
-<p><code>user:foo:rw-<br><code>group:G:r–</code><br><code>user:quux:rw-</code><br><code>other:—</code></code></p>
-</div></div>
+<code>user:foo:rw-</code><br><code>group:G:r--</code><br><code>user:quux:rw-</code><br><code>other:---</code>
 </td>
 </tr>
-</tbody></table>
-</li></ul></section></section>
+</tbody></table></li>
+</ul>
+</section></section>
 <section>
 
 <section id="authorization-checking-on-unix" class="slide level3 smaller">
