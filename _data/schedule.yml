@@ -45,7 +45,7 @@
 
 - date: 2026-09-03
   week: 2
-  title: accounts / privilege
+  title: accounts 1
   reading: "[accounts](readings/accounts.html), [POSIX permissions](readings/permissions.html)"
   slides_ref:
   - accounts
@@ -59,7 +59,7 @@
 
 - date: 2026-09-08
   week: 3
-  title: exceptions 2 / processes 1
+  title: accounts 2 / exceptions 1
   reading: "[kernel](readings/kernel.html) §1-2.2, 2.3.1.1, 2.4, 3, 4"
   slides_ref:
   - accounts
@@ -80,7 +80,7 @@
 
 - date: 2026-09-10
   week: 3
-  title: processes 2
+  title: exceptions 2 / processes 1
   reading: "[threads](readings/thread.html) §1-4"
   slides_ref:
   - kernel
@@ -91,23 +91,23 @@
     *  creating new processes
        *  fork, exec*
     *  waiting for processes
-    *  file descriptors
-    *  redirection, dup2
 
 - date: 2026-09-11
   week: 3
 
 - date: 2026-09-15
   week: 4
-  title: "virtual memory 0"
+  title: "processes 2 / virtual memory 0"
   reading: "[VM](readings/vm.html) §1"
   slides_ref:
   - vm
   description: |
-    *  virtual memory (start)
+    *  file descriptors
+    *  redirection, dup2
+
     *  virtual memory concept
         *   address space and address sizes
-    *  page tables
+    *  page tables (start)
 
 - date: 2026-09-16
   week: 4
