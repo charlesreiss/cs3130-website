@@ -30,7 +30,7 @@ the assignment is not setup yet for this semester.
 {%- endif -%}
 <li>
 {%- if assignment.test -%}
-Test (CBTF): {{assignment.name}} (between {{assignment.open}} and {{assignment.due}}); topics:<ul>
+Test (CBTF): {{assignment.name}} (between {{assignment.released}} and {{assignment.due}}); topics:<ul>
 {%- for topic in assignment.topics -%}
 <li>{{topic}}</li>
 {%- endfor -%}
