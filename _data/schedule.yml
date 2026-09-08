@@ -70,7 +70,7 @@
     *  set-user-ID, sudo is not kernel mode
     *  kernel mode
     *  system calls
-    *  memory protection
+    *  memory protection (start)
     *  context switches
 
 
@@ -86,11 +86,12 @@
   - kernel
   - unix-api
   description: |
+    *  memory protection (finish)
+    *  context switches
     *  exceptions and I/O
 
-    *  creating new processes
-       *  fork, exec*
-    *  waiting for processes
+    *  creating new processes (start)
+       *  fork
 
 - date: 2026-09-11
   week: 3
@@ -102,12 +103,12 @@
   slides_ref:
   - vm
   description: |
+    *  creating new processes (finish)
+       *  exec*
+
     *  file descriptors
     *  redirection, dup2
 
-    *  virtual memory concept
-        *   address space and address sizes
-    *  page tables (start)
 
 - date: 2026-09-16
   week: 4
@@ -120,10 +121,13 @@
   slides_ref:
   - vm
   description: |
+    *  aside: emptyloop lab
+
+    *  virtual memory concept
+        *   address space and address sizes
+    *  page table
     *  page table lookup examples
     *  page tables and context switches
-    *  loading data on demand
-    *  copy-on-write, other "page table tricks" 
 
 
 - date: 2026-09-18
@@ -139,10 +143,10 @@
   slides_ref:
   - vm
   description: |
+    *  loading data on demand
+    *  copy-on-write, other "page table tricks" 
     *  swapping
     *  mmap, linux /proc/$$/maps
-    *  storing page tables in memory
-    *  pagetable assignment
 
 - date: 2026-09-23
   lab: true
@@ -155,6 +159,8 @@
   slides_ref:
   - vm
   description: |
+    *  storing page tables in memory
+    *  pagetable assignment
     *  multi-level page tables
     *  multi-level page table examples
     *  virtual memory exercises
