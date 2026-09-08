@@ -11,6 +11,7 @@ Changelog:
 *  18 Jan 2024: correct typo in := versus = example code; format that discussion as endnote as intended
 *  24 Jan 2024: mention that variables can be overriden on command line
 *  27 Jan 2026: reference Dive Into Systems as alternate reference
+*  7 Sep 2026: add note about `$*` in pattern rules and that `%` does not work in system commands of pattern rules
 </div>
 
 # The `make` tool
@@ -158,6 +159,7 @@ There are a lot of things [you could learn](https://www.gnu.org/software/make/ma
 - Use `%.other_ending` as a dependency. `%` has the same meaning it did in the target.
 - Use `$<` in the system commands as the name of the first dependency.
 - Use `$@` in the system commands as the name of the target.
+- Use `$*` in the system commands as what replaced `%` in the target/dependencies. (Using `%` in the system command will _not_ do this.)
 
 
 {.example ...}
