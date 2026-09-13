@@ -42,7 +42,7 @@
   topics:
   - makefiles
   - permissions
-  - ?exceptions
+  - exceptions
 
 - name: empty loop
   short_name: emptyloop
