@@ -1,0 +1,1191 @@
+ 
+    <html>
+    <head>
+        <title>CS3130 Spring 2026</title>
+        <link rel="icon" type="image/svg+xml" href="favicon.svg">
+        <link rel="stylesheet" href="style.css">
+        <?php if (isset($_GET['view_only'])) { ?>
+        <style>
+            body { background:#fdb; }
+            .directions, .multiquestion { background: #fed;  }
+        </style>
+        <?php
+        }
+        ?>
+        
+        <link rel="stylesheet" href="katex/katex.min.css">
+        <script type="text/javascript" src="katex/katex.min.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelectorAll('span.mymath').forEach(x => 
+                    katex.render(x.textContent, x, 
+                        {throwOnError:false, displayMode:false})
+                )
+                document.querySelectorAll('div.mymath').forEach(x => 
+                    katex.render(x.textContent, x, 
+                        {throwOnError:false, displayMode:true})
+                )
+            });
+        </script>
+    </head>
+    <body>
+    <h1>CS3130 Spring 2026</h1>
+    
+﻿
+<h1 style='text-align:center'>quiz for week 2</h1><div class='directions'></div><div class="multiquestion"><p>Suppose we have a project that we want to write a Makefile for.</p>
+
+<p>That project is mostly written in C, but it also includes code that we have
+only been given in precompiled form as <code>secretlibrary.o</code> with a
+header file <code>secretlibrary.h</code></p>
+
+<p>Our normal compilation steps are:</p>
+
+<pre><code>clang -c main.c
+clang -c myutil.c
+clang -c secretutil.c
+ar rcs libsecret.a secretutil.o secretlibrary.o
+clang -o exec main.o myutil.o -L. -lsecret
+</code></pre>
+
+<p><code>main.c</code>, <code>myutil.c</code> and <code>secretutil.c</code> all include <code>program.h</code>;
+and <code>main.c</code> additionally includes <code>secretlib.h</code>. 
+The source file used to produce <code>secretlibrary.o</code> also included
+<code>secretlib.h</code>
+(No other relevant
+files are <code>#include</code>d.)</p>
+
+<p>Answer the following questions about what should be in a Makefile to automate this process.</p>
+<div class='question' id='q1' slug='9c3eaf8b'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.85) (see above)
+<p>A Makefile rule for <code>libsecret.a</code> should have which dependencies?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>96%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans1' value='40bf4453' disabled='disabled'/><div><p><code>secretutil.o</code> and <code>secretlibrary.o</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='caf9218a' disabled='disabled'/><div><p><code>secretutil.o</code> and <code>secretlibrary.o</code> and <code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='04079fbd' disabled='disabled'/><div><p><code>secretutil.c</code> and <code>secretlibrary.o</code> and <code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='6bbc21aa' disabled='disabled'/><div><p><code>secretutil.c</code> and <code>secretutil.o</code> and <code>secretlibrary.o</code> and <code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='488892f2' disabled='disabled'/><div><p><code>secretutil.o</code> and <code>myutil.o</code> and <code>main.o</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='8b013b9f' disabled='disabled'/><div><p><code>secretutil.o</code> and <code>secretlibrary.o</code> and <code>libsecret.a</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='3066a27b' disabled='disabled'/><div><p><code>exec</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='0e6057a5' disabled='disabled'/><div><p>none of the above; there shouldn't be a Makefile rule for libsecret.a</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='bd2cfa33' disabled='disabled'/><div><p>none of the above for some other reason (explain in comments)</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='9c3eaf8b'/></form></details></div><div class='question' id='q2' slug='801bab0d'><div class='description' id='d2'><strong>Question 2</strong> (4 pt; mean 3.43) (see above)
+<p>A Makefile rule for <code>secretlibrary.o</code> should have which dependencies?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='b5f1c2fd' disabled='disabled'/><div><p><code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='7fd37ff8' disabled='disabled'/><div><p><code>libsecret.a</code> and <code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>10%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='982ea2f0' disabled='disabled'/><div><p><code>secretlibrary.c</code> and <code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='5154f33f' disabled='disabled'/><div><p><code>secretlibrary.c</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='4e45e4df' disabled='disabled'/><div><p><code>secretlibrary.o</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='7c10da83' disabled='disabled'/><div><p><code>secretutil.o</code> and <code>secretlib.h</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='535a2f93' disabled='disabled'/><div><p><code>secretutil.o</code> only</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>84%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans2' value='e71281da' disabled='disabled'/><div><p>none of the above; there shouldn't be a Makefile rule for secretlibrary.o</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='914fc326' disabled='disabled'/><div><p>none of the above for some other reason (explain in comments)</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='801bab0d'/></form></details></div></div><div class='question' id='q3' slug='a2c4496e'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 3.85)
+<p>Consider the following C declarations:</p>
+
+<pre><code>int a[8] = {1,2,3,4,5,6,7,8};
+int *b[1] = {a};
+int *c[3] = {&amp;a[0], &amp;a[2], &amp;a[6]};
+</code></pre>
+
+<p>and after this code runs:</p>
+
+<pre><code>*(a+7) = 7;
+c[1] = b[0];
+*b = &amp;*c[2];
+</code></pre>
+
+<p>Which options, if any, are all pointers that point to the same location?
+<strong>Select all that apply</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='ce24702b' disabled='disabled'/><div><p><code>a</code>, <code>b</code>, <code>c</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='e1b3da6d' disabled='disabled'/><div><p><code>a</code>, <code>b[0]</code>, <code>c[0]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>95%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='d3edb165' disabled='disabled'/><div><p><code>a</code>, <code>c[0]</code>, <code>c[1]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>89%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='9874e82a' disabled='disabled'/><div><p><code>&amp;a[6]</code>, <code>b[0]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='61022b81' disabled='disabled'/><div><p><code>&amp;a[6]</code>, <code>b</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='eb35f46f' disabled='disabled'/><div><p><code>a[6]</code>, <code>b[0]</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='7ed308e2' disabled='disabled'/><div><p><code>*(c+1)</code>, <code>a[0]</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='a2c4496e'/></form></details></div><div class="multiquestion"><p>Consider the following files with permissions specified in <code>chmod</code> syntax and
+the associated user and group IDs.</p>
+
+<pre><code>a.txt: u=rw,g=rw,o= uid=101 gid=572
+b.txt: u=rx,g=r,o=r uid=101 gid=584
+c.txt: u=r,g=,o=    uid=102 gid=572
+</code></pre>
+<div class='question' id='q4' slug='626916a6'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.58) (see above)
+<p>Suppose the owner of <code>a.txt</code> wants to give user and group the execute permission. Which
+of these commands will achieve this, without changing any other existing permissions?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='7d2c01cd' disabled='disabled'/><div><p><code>chmod ugo+x a.txt</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='74a2656f' disabled='disabled'/><div><p><code>chmod 110 a.txt</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>98%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='6612692c' disabled='disabled'/><div><p><code>chmod u+x,g+x a.txt</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>82%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='9c17a0b6' disabled='disabled'/><div><p><code>chmod 770 a.txt</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>51%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='2e4132de' disabled='disabled'/><div><p><code>chmod u=7,g=7,o=0 a.txt</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='44fd16d7' disabled='disabled'/><div><p><code>chmod a+x a.txt</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='9bbe1cdc' disabled='disabled'/><div><p><code>chmod u+x,go+x a.txt</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='626916a6'/></form></details></div></div><div class='question' id='q5' slug='a9b9c0a5'><div class='description' id='d5'><strong>Question 5</strong> (4 pt; mean 3.85)
+<p>Consider the following Makefile:</p>
+
+<pre><code>all: a b c.c
+
+a: d f
+    build a
+
+b: a g
+    build $@
+
+%.c: a b e
+    build $@
+</code></pre>
+
+<p>Assume:</p>
+
+<ul>
+<li>all indented lines above use a tab character, and</li>
+<li>the <code>build</code> command modifies the file provided as its argument</li>
+<li><code>make all</code> has already been run</li>
+</ul>
+
+<p>Which of the following executions are valid after running <code>make all</code>?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='c9a1b062' disabled='disabled'/><div><p>modifying the file e causes <code>build a</code>, <code>build b</code>, and <code>build c.c</code> to run.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='1745369f' disabled='disabled'/><div><p>modifying the file d causes <code>build a</code> to run and <code>build b</code> and <code>build c.c</code> to not run.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>95%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans5' value='094f8a10' disabled='disabled'/><div><p>deleting the file a causes <code>build a</code>, <code>build b</code>, and <code>build c.c</code> to run.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='57a8499b' disabled='disabled'/><div><p>modifying the file g causes <code>build a</code> and <code>build b</code> to run and <code>build c.c</code> to not run.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>11%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='cb29bb03' disabled='disabled'/><div><p>modifying the file <code>a.c</code> causes <code>build a.c</code> to run.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='1c2f0ca1' disabled='disabled'/><div><p>make returns an error due to invalid syntax.</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='a9b9c0a5'/></form></details></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 3</h1><div class='directions'></div><div class="multiquestion"><p>Suppose the following sequence of events happens (in this order) on a
+single-core system:</p>
+
+<ol>
+<li>Initially program A is runnning on the processor performing a large calculation.</li>
+<li>Data for program B arrives from the network and is copied into memory by the OS.</li>
+<li>Program A resumes its computation for some time</li>
+<li>Program B processes its data that came from the network.</li>
+<li>Program B sends a new data on the network.</li>
+<li>Program B requests to read more data from the network</li>
+<li>Program A again resumes its computation for some time.</li>
+<li>Program A finishes its computation and prints its result</li>
+</ol>
+<div class='question' id='q1' slug='6d647f09'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.81) (see above)
+<p>During or just before which of the above steps must an asynchronous exception have occurred?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='b8ae921e' disabled='disabled'/><div><p>step 1</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>98%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='04572bfe' disabled='disabled'/><div><p>step 2</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='c7d37589' disabled='disabled'/><div><p>step 3</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>67%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct) (gave credit for any answer)</div><input type='checkbox' name='ans1' value='dbe04e3d' disabled='disabled'/><div><p>step 4</p>
+</div></label><div class='explanation'><p>[updated 2026-02-03 1pm] if you assume all relevant activity of these processes is mentioned, then process A not continuing running must have been triggered by an asynchornous exception. If you don't assume this, there are other possibilities (like process A requesting to give up the processor).</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='1f8f779b' disabled='disabled'/><div><p>step 5</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='fee8feae' disabled='disabled'/><div><p>step 6</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>18%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='b7f3c306' disabled='disabled'/><div><p>step 7</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='6d647f09'/></form></details></div><div class='question' id='q2' slug='ff8227d8'><div class='description' id='d2'><strong>Question 2</strong> (4 pt; mean 3.5) (see above)
+<p>Sometimes operating systems may perform a context switch while handling a system call.
+It is likely that this happened at which of the following times?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>10%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='ffb55fa5' disabled='disabled'/><div><p>between steps 1 and 2</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>27%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='f1420657' disabled='disabled'/><div><p>between steps 3 and 4</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>9%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='0cabac54' disabled='disabled'/><div><p>between steps 5 and 6</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>96%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans2' value='26b16a1e' disabled='disabled'/><div><p>between steps 6 and 7</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='ff8227d8'/></form></details></div></div><div class="multiquestion"><p>Suppose a program communicates on the network as follows:</p>
+
+<ol>
+<li>It asks to send a lot of data on the network, and some of that data is sent immediately.</li>
+<li>Other things run until some time later the rest of the data can be sent, and then it is sent immediately.</li>
+<li>Other things run until data for the program from the network is received and copied into a buffer by the operating system.</li>
+<li>Other things continue to run until some time later, the program runs and processes the data received earlier.</li>
+<li>Based on processing the data received, the program asks to send some more data on the network, and that is sent immediately.</li>
+</ol>
+<div class='question' id='q3' slug='03217daa'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 3.81) (see above)
+<p>Which of the steps above involve an exception triggered by the network interface device?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='8077d051' disabled='disabled'/><div><p>step 1</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>86%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='362cda87' disabled='disabled'/><div><p>step 2</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>98%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='c2c8507a' disabled='disabled'/><div><p>step 3</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='98c194d3' disabled='disabled'/><div><p>step 4</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='d167e70f' disabled='disabled'/><div><p>step 5</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='03217daa'/></form></details></div></div><div class='question' id='q4' slug='2e634754'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.33)
+<p>Consider the following C code:</p>
+
+<pre><code>pid_t p, q;
+p = fork();
+q = fork();
+if (p == q) {
+    exit(1);
+}
+printf("%d %d\n", p, q);
+if (q == 0) {
+    exit(1);
+}
+waitpid(q, NULL, 0);
+waitpid(p, NULL, 0);
+</code></pre>
+
+<p>Suppose this runs and the output is:</p>
+
+<pre><code>100 200
+100 0
+0 300
+</code></pre>
+
+<p>Given that, which of the following <em>could</em> be true? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>96%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='b06837e3' disabled='disabled'/><div><p>at least four processes were running part of the above code simulatenously</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>64%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='344acee4' disabled='disabled'/><div><p>all processes created when the above snippet was run were waited for with <code>waitpid</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>89%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='69be83a0' disabled='disabled'/><div><p>process ID <code>300</code>'s parent process's ID is <code>100</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>15%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='54b30756' disabled='disabled'/><div><p>process ID <code>200</code>'s parent process's ID is <code>100</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='2e634754'/></form></details></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 4</h1><div class='directions'></div><div class='question' id='q1' slug='897c9a45'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.49)
+<p>Consider the following C code:</p>
+
+<!-- FIXME something with dup2  + fork + etc.
+    questions about whether same file is opened in parent/child, etc.
+-->
+
+<pre><code>int fd1 = open("f1", O_WRONLY | O_CREAT);
+int fd2 = open("f2", O_WRONLY | O_CREAT);
+write(fd1, "A", 1);
+dup2(STDOUT_FILENO, fd2);
+dup2(fd1, STDOUT_FILENO);
+pid_t p = fork();
+if (p == 0) {
+    write(fd1, "B", 1);
+    fd1 = open("f3", O_WRONLY | O_CREAT);
+    dup2(fd1, STDOUT_FILENO);
+    write(STDOUT_FILENO, "C", 1);
+    close(fd1); close(fd2);
+    exit(0);
+} else {
+    write(fd1, "D", 1);
+    write(STDOUT_FILENO, "E");
+    waitpid(p, NULL, 0);
+    exit(1);
+}
+</code></pre>
+
+<p>Assume that when the above code runs, <code>open</code>, <code>fork</code>, and <code>waitpid</code> do not fail, and <code>write</code> does not
+fail as long as the file it is writing to is open.
+Which of the following is true about the above code?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>6%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='c60b3a21' disabled='disabled'/><div><p>if the child process runs first, then it's possible for <code>B</code> not to appear in any output files because it is overwritten by the parent process writing <code>D</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='f66a019a' disabled='disabled'/><div><p>which file <code>D</code> is output to (if any) depends on the order in which the OS runs processes</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>84%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='6addbcb5' disabled='disabled'/><div><p>when <code>exit(0)</code> is called, the file <code>f3</code> is open in the process calling <code>exit(0)</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>25%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='4544fd23' disabled='disabled'/><div><p>when <code>exit(1)</code> is called, the file <code>f2</code> is open in the process calling <code>exit(1)</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='897c9a45'/></form></details></div><div class="multiquestion"><p>Suppose a system with virtual memory uses 16384-byte pages and supports 1024 virtual pages
+and 4096 physical pages.</p>
+<div class='question' id='q2' slug='d25c934b'><div class='description' id='d2'><strong>Question 2</strong> (4 pt; mean 3.81) (see above)
+<p>What is the maximum value for a virtual address on this system?
+Write your answer a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' disabled='disabled'/></div>Key: <tt>0xffffff</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='d25c934b'/></form></details></div></div><div class="multiquestion"><p>Consider a system that uses virtual memory with 4096-byte pages and the following page table:</p>
+
+<table>
+<tr><th>virtual page number</th><th>valid</th><th>physical page number</th></tr>
+<tr><td>0</td><td>0</td><td>&mdash;</td></tr>
+<tr><td>1</td><td>1</td><td>0x6</td></tr>
+<tr><td>2</td><td>1</td><td>0x5</td></tr>
+<tr><td>3</td><td>1</td><td>0x1</td></tr>
+<tr><td>4</td><td>1</td><td>0x7</td></tr>
+<tr><td>5</td><td>1</td><td>0xf</td></tr>
+<tr><td>6</td><td>0</td><td>&mdash;</td></tr>
+<tr><td>7</td><td>1</td><td>0x0</td></tr>
+</table>
+
+<p>Suppose a program is running on this system with its stack pointer set to 0x5800, then pushes
+an 8-byte integer with the value 0x3fff to the stack. Assume that like on x86-64, the
+stack grows toward lower addresses, and the stack pointer points the last value pushed.</p>
+<div class='question' id='q3' slug='d0cdc317'><div class='description' id='d3'><strong>Question 3</strong> (3 pt; mean 2.8) (see above)
+<p>At what <em>physical</em> address will 0x3fff be stored?
+Write your answer as a hexadecimal number.
+If the value will not be stored in physical memory, write "none". If there is not enough information
+to determine where the value will be stored in physical memory, write "unknown" and explain <em>briefly</em>
+in the comments what additional information would be needed.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' disabled='disabled'/></div>Key: <tt>0xf7f8</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='d0cdc317'/></form></details></div></div><div class="multiquestion"><p>Suppose a system with 12-bit page offsets uses allocate on demand strategy to load programs and copy-on-write to implement fork().
+Assume the operating system implements allocate-on-demand and copy-on-write by doing the minimal amount of allocation
+or copying necessary to keep a program running.
+This means, for example, that a virtual page will only be allocated after a process tries to access it
+and that a page will only be copied after a fork when a process tries to write to it.</p>
+
+<p>A program is running with the following memory allocation:</p>
+
+<ul>
+<li>0x1000-0x4fff inclusive: contains code, which is loaded in memory and valid in its page tables</li>
+<li>0x5000-0x5fff inclusive: assigned to constants the program has not yet accessed. These values have not yet been loaded from disk, so this memory region is marked invalid in the program's page table.</li>
+<li>0x6000-0x6fff inclusive: contains constants the program has used, which are loaded and valid in its page table</li>
+<li>0x7000-0x7fff inclusive: contains global variable values, which are loaded and valid in its page table</li>
+<li>0x7f0000-0x7fdfff inclusive: assigned to the program's stack, but not yet been accessed. This region does not have physical memory allocated for it yet, so it is marked invalid in the program's page table.</li>
+<li>0x7fe000-0x7fffff inclusive: assigned to the program's stack, and has been used and allocated physical memory and made valid in the program's page table.</li>
+</ul>
+<div class='question' id='q4' slug='913df3c2'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.56) (see above)
+<p>If, starting from the above memory allocation, the program fork()s, immediately after the fork(), how many physical pages will it share with the child process?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' disabled='disabled'/></div>Key: <tt>8 (VPNs 0x1, 0x2, 0x3, 0x4, 0x6, 0x7, 0x7fe, 0x7ff)</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='913df3c2'/></form></details></div><div class='question' id='q5' slug='4f62070a'><div class='description' id='d5'><strong>Question 5</strong> (4 pt; mean 3.64) (see above)
+<p>If, starting from the above memory allocation and without forking,
+this program allocates an array on the stack at addresses <code>0x7fc888</code> through <code>0x7fe7ff</code> inclusive,
+then writes to it in a loop, one four-byte integer at a time starting from address 0x7fc888.</p>
+
+<p>How many page faults will occur as part of this process?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' disabled='disabled'/></div>Key: <tt>2 (virtual page 0x7fc, virtual page 0x7fd)</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='4f62070a'/></form></details></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 5</h1><div class='directions'></div><div class="multiquestion"><p>Suppose a system with 12-bit page offsets
+stores page tables in memory in a single-level structure.</p>
+
+<p>Each page table entry is stored as a 32-bit number where:</p>
+
+<ul>
+<li>the most significant 20 bits are the physical page number;</li>
+<li>the next 7 bits are unused and must be zero;</li>
+<li>then there are four permission bits (from most to least significant):
+
+<ul>
+<li>a user-mode accessible bit;</li>
+<li>a readable bit;</li>
+<li>a writeable bit;</li>
+<li>an executable bit</li>
+</ul></li>
+<li>then there is a valid bit</li>
+</ul>
+
+<p>The system has a page table base register which stores a physical byte address,
+and its value is 0x100000.</p>
+
+<p>A process runs the instruction</p>
+
+<pre><code>pushq %rbx
+</code></pre>
+
+<p>The machine code for this instruction is located at virtual address <code>0x4003f8</code>
+and physical address <code>0x9903f8</code>. When the instruction runs, it writes
+to virtual address <code>0x7ffff0</code>, which corresponds to physical address <code>0xa3fff0</code>.</p>
+<div class='question' id='q1' slug='49eb4f8a'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.81) (see above)
+<p>Based on the information above, what is the physical address of
+the page table entry used as part of reading the <strong>machine code</strong>
+for the push instruction?</p>
+
+<p>Write your answer as a hexadecimal number. Write "unknown" and explain <em>briefly</em>
+in the comments if not enough information is given.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' disabled='disabled'/></div>Key: <tt>0x100000 + 0x400 * 4 = 0x101000</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='49eb4f8a'/></form></details></div><div class='question' id='q2' slug='61742c61'><div class='description' id='d2'><strong>Question 2</strong> (4 pt; mean 3.68) (see above)
+<p>What is a plausible value of the page table entry accessed
+as part of reading the machine code for the push instruction?</p>
+
+<p>Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' disabled='disabled'/></div>Key: <tt>0x99001b (PPN 0x990, user-mode accessible, readable, executable)</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='61742c61'/></form></details></div><div class='question' id='q3' slug='5e26e66e'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 3.47) (see above)
+<p>In addition to reading a page table entry to read the machine code for
+the push instruction, a page table entry is accessed to do the write
+for the push instruction.</p>
+
+<p>What is a plausible value of this page table entry?
+Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' disabled='disabled'/></div>Key: <tt>0xa3f01d (PPN 0xa3f, user-mode accessible, readable, writeable)</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='5e26e66e'/></form></details></div></div><div class='question' id='q4' slug='dcf4675a'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 2.77)
+<p>Suppose a system uses a three-level page tables where:</p>
+
+<ul>
+<li>page offsets are 13 bits; and</li>
+<li>each page table has 1024 8-byte entries; and</li>
+<li>the page table base register is set to physical byte address 0xA0000</li>
+</ul>
+
+<p>A program acccesses virtual address <code>0x123456789A</code>. To perform this access,
+the processor accesses a first-level page table entry from physical address
+<code>0xa0048</code>.
+That page table entry is valid and contains physical page number
+<code>0xb2</code>.
+To continue with the lookup, the processor will then access a second-level page table entry
+from physical address _____.
+Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' disabled='disabled'/></div>Key: <tt>0x164340</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='dcf4675a'/></form></details></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 7</h1><div class='directions'></div><div class="multiquestion"><p>Consider the following C code:</p>
+
+<pre><code>struct Student {
+    char name[128];
+    int scores[16];
+    char feedback[16][128];
+};
+
+struct Student students[1000];
+
+int GetStudentScore(char *name, int assignment_index) {
+    for (int i = 0; i &lt; 1000; i += 1) {
+        if (strcmp(name, students[i].name) == 0)
+            return  students[i].scores[assignment_index];
+    }
+    return -1;
+}
+</code></pre>
+<div class='question' id='q1' slug='a3430984'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.97) (see above)
+<p>Suppose code repeatedly makes calls to <code>GetStudentScore</code> with names and assignment indexes selected at random.
+Which of the following changes would improve the <em>spatial locality</em> of that code?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='fda581ee' disabled='disabled'/><div><p>increasing the size of the <code>students</code> array from 1000 to 10000</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>51%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'> (gave credit for any answer)</div><input type='checkbox' name='ans1' value='c4c1949b' disabled='disabled'/><div><p>making the calls to <code>GetStudentScore</code> in the same order the students are stored in the <code>students</code> global array.</p>
+</div></label><div class='explanation'><p>We have to scan the students array from the beginning for each call, so the benefit isn't very much.</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>99%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='6764f988' disabled='disabled'/><div><p>removing the <code>feedback</code> array from <code>struct Student</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='fe45c228' disabled='disabled'/><div><p>storing the list of students in alphabetical order by name and changing <code>GetStudentScore</code> to do a binary search</p>
+</div></label></li></ol><div class='explanation'><p>question as originally written had excess { in code above</p>
+</div><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='a3430984'/></form></details></div><div class='question' id='q2' slug='634d0b83'><div class='description' id='d2'><strong>Question 2</strong> (3 pt; mean 2.19) (see above)
+<p>Suppose code repeatedly makes calls to <code>GetStudentScore</code> with names and assignment indexes selected at random.
+Which of the following changes would improve the <em>temporal locality</em> of that code?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>97%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans2' value='e56f46c3' disabled='disabled'/><div><p>if the names passed to <code>GetStudentScore</code> were instead selected so they were all found near the beginning of the <code>students</code> array</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='7b3c1960' disabled='disabled'/><div><p>removing the <code>feedback</code> array from <code>struct Student</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>25%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans2' value='a6b72bfb' disabled='disabled'/><div><p>storing the list of students in alphabetical order by name and changing <code>GetStudentScore</code> to do a binary search</p>
+</div></label><div class='explanation'><p>there's a significant chance the first couple things we access in each binary search will be the same. If we consider, for example, the first thing we check in the search: with a linear search, we access the same name at the beginning of the search and we access an average of 500 names per search. So we'll access the first name once every ~500 accesses. With a binary search, we access the same name at the beginning (the middle element) and do an average of around 10 names pe search. So, we'll access the middle name once every ~10 accesses</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>26%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='eaa0abc0' disabled='disabled'/><div><p>changing <code>students</code> into a hashtable and changing <code>GetStudentScore</code> to do a hashtable lookup</p>
+</div></label><div class='explanation'><p>although this is more efficient, we repeatedly access elements of the students array less often since we aren't scanning from the beginning</p>
+</div></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='634d0b83'/></form></details></div></div><div class="multiquestion"><p>Suppose a direct-mapped cache initially has the following contents:</p>
+
+<table>
+<tr><th>index</th><th>valid</th><th>tag (in binary)</th><th>data bytes (as hexadecimal bytes, lowest address first)</th></tr>
+<tr><td>0</td><td>1</td><td>1110</td><td>12 34 56 78</td></tr>
+<tr><td>1</td><td>1</td><td>1111</td> <td>89 AB CD EF</td></tr>
+<tr><td>2</td><td>0</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td>3</td><td>1</td><td>1110</td><td>BD EF AA BB</td></tr>
+</table>
+<div class='question' id='q3' slug='2411075d'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 3.88) (see above)
+<p>If the cache has the contents above, and then the processor asks to read one byte from address <code>0xED</code> (binary <code>11101101</code>),
+the result will be ___. Write your answer a hexadecimal number.
+If not enough information is given, write "unknown".</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' disabled='disabled'/></div>Key: <tt>EF</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='2411075d'/></form></details></div><div class='question' id='q4' slug='36be817f'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.87) (see above)
+<p>If the cache has the initial state shown above, give an example of
+an address the program could access that would
+result in a valid bit changing. Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' disabled='disabled'/></div>Key: <tt>some address ending in 8, 9, A, or B</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='36be817f'/></form></details></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 9</h1><div class='directions'></div><div class="multiquestion"><p>Consider the following TLB contents on a system with 4096 byte pages:</p>
+
+<table>
+<tr><th></th><th></th><th><th></th></th><th colspan="3">permissions</th></tr>
+<tr><th>set index</th><th>valid</th><th>tag</th><th>physical page number</th><th>user</th><th>write</th><th>exec</th></tr>
+<tr><td>0</td><td>1</td><td>0x1234</td><td>0x2345</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0x2345</td><td>0x2346</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>2</td><td>0</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td>1</td><td>0x0123</td><td>0x2347</td><td>1</td><td>0</td><td>1</td></tr>
+</table>
+<div class='question' id='q1' slug='71d45222'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.48) (see above)
+<p>Give an example of a virtual address that would be a hit in the above TLB and use the set with set index 1.
+Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans1' disabled='disabled'/></div>Key: <tt>0x8d15xxx</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='71d45222'/></form></details></div><div class='question' id='q2' slug='c7725995'><div class='description' id='d2'><strong>Question 2</strong> (3 pt; mean 2.77) (see above)
+<p>Give an example of a virtual address that would cause a value in the above TLB with set index 3 to be evicted
+if accessed.
+Write your answer as a hexadecimal number.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' disabled='disabled'/></div>Key: <tt>0x...3xxx or 0x...7xxx or 0x...bxxx or 0x...fxxx but not 0x48fxxx</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='c7725995'/></form></details></div></div><div class="multiquestion"><p>Consider the following C code:</p>
+
+<pre><code>void *three(void*);
+
+void *one(void *arg) {
+    int *z;
+    z = (int*) arg;
+    pthread_t t3;
+    printf("1");
+    pthread_create(&amp;t3, NULL, three, z);
+    *z += 20;
+    pthread_detach(t3);
+    return NULL;
+}
+
+void *two(void *arg) {
+    printf("2");
+    return NULL;
+}
+
+void *three(void *ignored_arg) {
+    printf("3");
+    return NULL;
+}
+
+int main() {
+    int x = 20;
+    pthread_t t1, t2;
+    pthread_create(&amp;t1, NULL, one, &amp;x);
+    pthread_create(&amp;t2, NULL, two, NULL);
+    pthread_join(t1, NULL);
+    pthread_create(&amp;t1, NULL, one, &amp;x);
+    pthread_join(t2, NULL);
+    pthread_join(t1, NULL);
+    return 0;
+}
+</code></pre>
+<div class='question' id='q3' slug='a90ce555'><div class='description' id='d3'><strong>Question 3</strong> (5 pt; mean 4.07) (see above)
+<p>One possible output of the above program is <code>12313</code>.
+Which of following are other possible outputs?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>96%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='38760186' disabled='disabled'/><div><p>12133</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>61%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='6923b086' disabled='disabled'/><div><p>1312</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>96%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='7f0fbff3' disabled='disabled'/><div><p>13132</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>61%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='5f7576a3' disabled='disabled'/><div><p>112</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>8%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='81c9a431' disabled='disabled'/><div><p>23113</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='a90ce555'/></form></details></div><div class='question' id='q4' slug='85bd9d0c'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.71) (see above)
+<p>Which of the following statement are true about the line <code>*z += 20</code>?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>5%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='f07bef8c' disabled='disabled'/><div><p>it is likely to modify a value on the stack of the thread running <code>one</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>93%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='0a2b1373' disabled='disabled'/><div><p>it is likely to read a value from the stack of a thread other than one running one</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>16%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='674c147c' disabled='disabled'/><div><p>it is likely to trigger a race condition, such that the final value of <code>*z</code> will be indeterminate</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='a1d17e17' disabled='disabled'/><div><p>it is likely to trigger a segfault if thread <code>t3</code> runs too quickly</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='85bd9d0c'/></form></details></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 10</h1><div class='directions'></div><div class='question' id='q1' slug='6dca2bdc'><div class='description' id='d1'><strong>Question 1</strong> (8 pt; mean 7.86)
+<p>Consider the following pseudocode library for a game where players try to
+change count to equal goal and be the first to call check when count matches
+goal.</p>
+
+<pre><code class="c">pthread_mutex_t count_lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t goal_lock = PTHREAD_MUTEX_INITIALIZER;
+
+int goal = 5;
+int count = 0;
+
+void change_goal(int new_goal) {
+  pthread_mutex_lock(&amp;goal_lock);
+  goal = new_goal;
+  pthread_mutex_unlock(&amp;goal_lock);
+}
+
+void add_count(int add) {
+  pthread_mutex_lock(&amp;count_lock);
+  count += add;
+  pthread_mutex_unlock(&amp;count_lock);
+}
+
+void subtract_count(int subtract) {
+  pthread_mutex_lock(&amp;goal_lock);
+  pthread_mutex_lock(&amp;count_lock);
+  count -= subtract;
+  pthread_mutex_unlock(&amp;goal_lock);
+  pthread_mutex_unlock(&amp;count_lock);
+}
+
+bool check() {
+  pthread_mutex_lock(&amp;count_lock);
+  if (goal == count) printf("Winner! Goal %d reached by count %d.\n", goal, count);
+  pthread_mutex_unlock(&amp;count_lock);
+}
+</code></pre>
+
+<p>Assume there are exactly three threads playing this game. The threads can only
+access <code>count_lock</code>, <code>goal_lock</code>, <code>goal</code>, and <code>count</code> using the functions
+listed. No other threads are accessing this library.</p>
+
+<p>What is possible while this game is being played? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='f1848aba' disabled='disabled'/><div><p><code>add_count()</code> and <code>subtract_count()</code> are called simultaneously and an addition operation is lost.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='bddaf13a' disabled='disabled'/><div><p><code>add_count()</code> and <code>subtract_count()</code> are called simultaneously and a subtraction operation is lost.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='7cbc8a96' disabled='disabled'/><div><p><code>subtract_count()</code> and <code>check()</code> are called simultaneously and the game deadlocks.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='31866390' disabled='disabled'/><div><p><code>subtract_count()</code> and <code>change_goal()</code> are called simultaneously and the game deadlocks.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>97%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='087bbaf2' disabled='disabled'/><div><p>The winner prints "Winner!" but the printed goal does not match the printed count.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='dafe0329' disabled='disabled'/><div><p>Two threads deadlock and the third thread is able to play by itself.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>97%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='2e681a72' disabled='disabled'/><div><p>The goal can change after one thread calls check().</p>
+</div></label><div class='explanation'><p>was originally miskeyed</p>
+</div></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='6dca2bdc'/></form></details></div><div class="multiquestion"><p>Consider the following code snippet.</p>
+
+<pre><code class="c">struct hardware_resource {
+  pthread_mutex_t lock;
+  int id;
+}
+
+struct interrupt {
+  struct hardware *hardware_resource[5];
+  int operation;
+}
+
+pthread_mutex_t interrupts_lock;
+struct interrupt *pending_interrupts[100];
+
+void service_next_interrupt(int interrupt_index) {
+  pthread_mutex_lock(&amp;interrupts_lock);
+  struct interrupt *Interrupt = pending_interrupts[interrupt_index];
+  pthread_mutex_unlock(&amp;interrupts_lock);
+
+  for (int i=0; i&lt;5; i++) {
+    if (Interrupt-&gt;hardware_resource[i] != NULL) {
+      pthread_mutex_lock(&amp;Interrupt-&gt;hardware_resource[i]-&gt;lock);
+    }
+  }
+
+  do_operation(Interrupt-&gt;hardware_resource, Interrupt-&gt;operation);
+
+  for (int i=0; i&lt;5; i++) {
+    if (Interrupt-&gt;hardware_resource[i] != NULL) {
+      pthread_mutex_unlock(&amp;Interrupt.hardware_resource[i]-&gt;lock);
+    }
+  }
+}
+</code></pre>
+
+<p><code>service_next_interrupt()</code> is called from multiple threads.</p>
+<div class='question' id='q2' slug='2e4b7b85'><div class='description' id='d2'><strong>Question 2</strong> (6 pt; mean 5.68) (see above)
+<p>Assume no other relevant code references the above structures or their locks other than to initialize them.
+Which of the following conditoins are <em>sufficient</em> to ensure that deadlock will not occur for the above code
+as a result of how it uses mutexes?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>97%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans2' value='331d8be9' disabled='disabled'/><div><p>All hardware resources in every <code>struct interrupt</code> are listed in the same order.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>19%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='05b2e646' disabled='disabled'/><div><p>Any two <code>struct interrupt</code>s have at most 1 hardware resource in common.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>92%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct) (gave credit for any answer)</div><input type='checkbox' name='ans2' value='6e9ce8e1' disabled='disabled'/><div><p>Each <code>struct interrupt</code> points to a distinct set of hardware resources, and each thread calling <code>service_next_interrupt</code> uses a distinct <code>interrupt_index</code></p>
+</div></label><div class='explanation'><p>accepted either way on the basis on some interpreting "distinct" as non-overlapping and some interruptting it as "non-same"</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='61f79905' disabled='disabled'/><div><p>Each time <code>service_next_interrupt</code> is called, any other threads calling <code>service_next_interrupt</code> have at least reached the first for loop.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>91%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans2' value='1ddc77af' disabled='disabled'/><div><p>The list of hardware resources in each <code>struct interrupt</code> has 4 NULL items.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans2' value='182ebb76' disabled='disabled'/><div><p>When multiple threads call <code>service_next_interrupt()</code>, each thread calls it with a different <code>interrupt_index</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='2e4b7b85'/></form></details></div><div class='question' id='q3' slug='3eca37be'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 2.77) (see above)
+<p>Suppoes some code modifies the list of hardware resources for <code>*pending_interrupts[10]</code> while <code>service_next_interrupt(10)</code> is running.
+As a result, we find that <code>service_next_interrupt</code> attempts to unlock a <code>struct hardware</code> lock is that is not actually locked.
+This occurs even though the code that modifies the list of hardware resources holds the <code>interrupts_lock</code> while doing that modification.</p>
+
+<p>What would be ways of preventing this issue?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>74%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='420c527f' disabled='disabled'/><div><p>add a lock to each <code>struct interrupt</code>, have service_next_interrupt acquire that lock just before its first for loop and release it just after, and have the code that modifies the hardware resources also acquire that lock before it modifies the list and release it afterwards</p>
+</div></label><div class='explanation'><p>was originally miskeyed; We need the service_next_interrupt code to wait until it unlocks to release this new lock for this strategy to work. (So sometihng like "lock ust before its first for loop and release it just after the second for loop" would prevent the issue.)</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>9%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='daf4bef1' disabled='disabled'/><div><p>have <code>service_next_interrupt</code> unlock the interrupts_lock immediately after the first for loop instead of earlier</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>35%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans3' value='51a4cf47' disabled='disabled'/><div><p>have the code that modifies the list of hardware resources acquire the lock of each of those hardware resources before changing the list</p>
+</div></label><div class='explanation'><p>possible for list to be modified between <code>Interrupt-&gt;hardware_resource[i] != NULL</code> and locking of hardware_resource[i]; also doesn't handle replacing NULL with non-NULL</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>92%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans3' value='605345ba' disabled='disabled'/><div><p>replace <code>struct interrupt *Interrupt = pending_interrupts[interrupt_index]</code> with <code>struct interrupt Interrupt = *pending_interrupts[interrupt_index]</code> and cahgning instances of <code>Interrupt-&gt;</code> to <code>Interrupt.</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='3eca37be'/></form></details></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 12</h1><div class='directions'></div><div class="multiquestion"><p>Consider the following incomplete code that uses monitors:</p>
+
+<pre><code>struct MailMessage {
+    const char *from;
+    const char *contents;
+    pthread_cond_t cv;
+}
+
+struct Mailbox {
+    pthread_mutex_t lock;
+    MailMessage *messages[MAX_MESSAGES];
+    int message_count;
+    pthread_cond_t cv;
+};
+
+typedef struct Mailbox Mailbox;
+typedef struct MailMessage MailMessage;
+
+void AddMessage(Mailbox *box, MailMessage *message) {
+    pthread_mutex_lock(&amp;box-&gt;lock);
+    if (box-&gt;message_count == MAX_MESSAGES) handle_error();
+    box-&gt;messages[box-&gt;message_count] = message;
+    number_messages += 1;
+
+    _____________________________________ /* BLANK 1 */
+    pthread_mutex_unlock(&amp;box-&gt;lock);
+}
+
+int FirstMessageFrom(Mailbox *box, const char *who) {
+    for (int i = 0; i &lt; box-&gt;message_count; ++i) {
+        if (0 == strcmp(box-&gt;messages[i]-&gt;from, who)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int WaitForMessageFrom(Mailbox *box, const char *who) {
+    int result = -1;
+    pthread_mutex_lock(&amp;box-&gt;lock);
+    while (________________________________________) { /* BLANK 2 */
+
+        ___________________________________________________ /* BLANK 3 */
+    }
+
+    result = FirstMessageFrom(box, who);
+    pthread_mutex_unlock(&amp;box-&gt;lock);
+    return result;
+}
+</code></pre>
+<div class='question' id='q1' slug='4a67fe88'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.24) (see above)
+<p>Given the code above, what would make the most sense to place in BLANK 1?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='01a57e47' disabled='disabled'/><div><p><code>box-&gt;cv = true;</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='37eb3954' disabled='disabled'/><div><p><code>message-&gt;cv = box-&gt;cv = true;</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>81%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans1' value='8a28ce52' disabled='disabled'/><div><p><code>pthread_cond_broadcast(&amp;box-&gt;cv);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='5ea759e5' disabled='disabled'/><div><p><code>pthread_cond_broadcast(&amp;message-&gt;cv);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>16%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='c722e2dc' disabled='disabled'/><div><p><code>pthread_cond_signal(&amp;box-&gt;cv);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='9ed1668b' disabled='disabled'/><div><p><code>pthread_cond_signal(&amp;message-&gt;cv);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='e6fccecf' disabled='disabled'/><div><p><code>pthread_cond_wait(&amp;box-&gt;cv, &amp;box-&gt;lock);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='98f063d0' disabled='disabled'/><div><p><code>pthread_cond_wait(&amp;message-&gt;cv, &amp;message-&gt;lock);</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='4a67fe88'/></form></details></div><div class='question' id='q2' slug='2ca2ba06'><div class='description' id='d2'><strong>Question 2</strong> (3 pt; mean 2.86) (see above)
+<p>Given the code above, what would make the most sense to place in BLANK 2?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='cb710559' disabled='disabled'/><div><p><code>box-&gt;cv</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='69f3db3d' disabled='disabled'/><div><p><code>!box-&gt;cv</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='5d667744' disabled='disabled'/><div><p><code>box-&gt;messages[FirstMessageFrom(box, who)]-&gt;cv</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>95%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans2' value='1dabe92f' disabled='disabled'/><div><p><code>FirstMessageFrom(box, who) == -1</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='74c97fbd' disabled='disabled'/><div><p><code>FirstMessageFrom(box, who) != -1</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='55e8b162' disabled='disabled'/><div><p><code>pthread_cond_broadcast(&amp;box-&gt;cv)</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='4826303c' disabled='disabled'/><div><p><code>pthread_cond_signal(&amp;box-&gt;cv)</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='0d4be0e7' disabled='disabled'/><div><p><code>pthread_cond_wait(&amp;box-&gt;cv, &amp;lock)</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='96443b40' disabled='disabled'/><div><p><code>pthread_cond_wait(&amp;box-&gt;messages[FirstMessageFrom(box, who)]-&gt;cv, &amp;lock)</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='e98f9a9b' disabled='disabled'/><div><p><code>pthread_mutex_unlock(box-&gt;lock);</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='2ca2ba06'/></form></details></div><div class='question' id='q3' slug='be04eb7a'><div class='description' id='d3'><strong>Question 3</strong> (3 pt; mean 2.85) (see above)
+<p>Given the code above, what would make the most sense to place in BLANK 3?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>95%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans3' value='ae35e7ad' disabled='disabled'/><div><p><code>pthread_cond_wait(&amp;box-&gt;cv, &amp;lock);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='342712ed' disabled='disabled'/><div><p><code>pthread_cond_wait(&amp;box-&gt;messages[FirstMessageFrom(box, who)]-&gt;cv, &amp;lock);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='107685c1' disabled='disabled'/><div><p><code>pthread_mutex_unlock(&amp;box-&gt;lock); pthread_mutex_lock(&amp;box-&gt;lock);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='0f933b3b' disabled='disabled'/><div><p><code>pthread_mutex_unlock(&amp;box-&gt;lock); pthread_cond_wait(&amp;box-&gt;cv, &amp;lock); pthread_mutex_lock(&amp;box-&gt;lock);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='346786e9' disabled='disabled'/><div><p><code>pthread_cond_broadcast(&amp;box-&gt;cv);</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='688c5106' disabled='disabled'/><div><p><code>pthread_cond_signal(&amp;box-&gt;cv);</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='be04eb7a'/></form></details></div></div><div class='question' id='q4' slug='17f8a447'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.84)
+<p>Suppose a router using network address translation has the following table in place:</p>
+
+<table>
+<tr><td>remote address:port</td><td>public local IP port</td><td>private local IP address:port</td></tr>
+<tr><td>128.165.17.3:22</td><td>23423</td><td>192.168.1.7:55938</td></tr>
+<tr><td>128.101.45.111:443</td><td>23424</td><td>192.168.1.8:40180</td></tr>
+<tr><td>128.101.45.111:443</td><td>23425</td><td>192.168.1.5:51491</td></tr>
+</table>
+
+<p>Assume this is on a router with an IP address of 1.2.3.4 on the public network and 192.168.1.1 on a private network. The router assigns public IP ports starting at 23420.</p>
+
+<p>If a packet comes in from the private network to the router with a
+source address of 192.168.1.5, source port of 800, and a destination address of 128.101.45.111, destination port of 22,
+the router should update its table by ____.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='b711de14' disabled='disabled'/><div><p>Adding <code>(1.2.3.4:22, 800, 192.168.1.5:22)</code> to the table.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='d630ef6f' disabled='disabled'/><div><p>Adding <code>(1.2.3.4:22, 22, 192.168.1.5:800)</code> to the table.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='ad4f841a' disabled='disabled'/><div><p>Adding <code>(128.101.45.111:22, 800, 192.168.1.5:22)</code> to the table.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='0a6e5aa7' disabled='disabled'/><div><p>Adding <code>(128.101.45.111:22, 22, 192.168.1.5:800)</code> to the table.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>96%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans4' value='43a44933' disabled='disabled'/><div><p>Adding <code>(128.101.45.111:22, 23426, 192.168.1.5:800)</code> to the table.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='139a317d' disabled='disabled'/><div><p>Adding <code>(128.101.45.111:22, 800, 192.168.1.5:23426)</code> to the table.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='ebf19723' disabled='disabled'/><div><p>Doing nothing as the necessary entry already exists.</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='17f8a447'/></form></details></div><div class='question' id='q5' slug='9a780bac'><div class='description' id='d5'><strong>Question 5</strong> (4 pt; mean 3.78)
+<p>Consider a network like what we discussed in class, except it never drops any packets. 
+In <em>this network</em>, what does a reliability protocol need?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>19%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans5' value='7dac5716' disabled='disabled'/><div><p>A reliability protocol needs acknowledgements, sequence numbers, timeouts, and checksums.</p>
+</div></label><div class='explanation'><p>accepted for the assumption we have to treat corrupted packets like dropped packets</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans5' value='60e9ef34' disabled='disabled'/><div><p>A reliability protocol needs sequence numbers, timeouts, and checksums, but not acknowledgements.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans5' value='5dd19a01' disabled='disabled'/><div><p>A reliability protocol needs timeouts and checksums, but not acknowledgements or sequence numbers.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>75%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans5' value='751c1c74' disabled='disabled'/><div><p>A reliability protocol needs sequence numbers and checksums, but not acknowledgements or timeouts.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans5' value='6317b675' disabled='disabled'/><div><p>A reliability protocol needs timeouts, but not acknowledgements, checksums, or sequence numbers.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans5' value='cc5f4f36' disabled='disabled'/><div><p>A reliability protocol needs sequence numbers, but not acknowledgements, checksums, or timeouts.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans5' value='19dc57ac' disabled='disabled'/><div><p>A reliability protocol needs acknowledgements and timeouts, but not checksums or sequence numbers.</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='9a780bac'/></form></details></div><div class='question' id='q6' slug='e20219ce'><div class='description' id='d6'><strong>Question 6</strong> (4 pt; mean 3.76)
+<p>A new reliable transport protocol is designed to run on systems <strong>without</strong> the ability to set a timer for a timeout,
+but uses the other standard reliability mechanisms.
+Machine A and Machine B use this new reliable transport protocol.
+Machine A wants to send 100 unique data packets to Machine B. While using the new protocol, the network drops one packet
+about halfway through the 100 packets.</p>
+
+<p>Which are true about this scenario? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>29%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans6' value='7879b585' disabled='disabled'/><div><p>The communication has failed because Machine B will not have the contents of the missed packet and Machine A has no way to resend.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans6' value='de195353' disabled='disabled'/><div><p>As long as the reliable transport protocol uses checksums, Machine B will know the dropped packet is lost.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>95%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans6' value='59428a3a' disabled='disabled'/><div><p>As long as the reliable transport protocol uses sequence numbers, Machine B will know which packet is lost.</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'> (gave credit for any answer)</div><input type='checkbox' name='ans6' value='0f79dcbb' disabled='disabled'/><div><p>Machine A can know to resend the lost packet if Machine B sends acknowledgements without sequence numbers.
+a Machine A needs to send acknowledgements to confirm acknowledgements from Machine B due to the lack of timers.</p>
+</div></label><div class='explanation'><p>dropped because of formatting issue</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>64%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct) (gave credit for any answer)</div><input type='checkbox' name='ans6' value='61540ec4' disabled='disabled'/><div><p>The reliable communication protocol can ensure Machine B receives all packets in this case with only one packet re-sent.</p>
+</div></label><div class='explanation'><p>dropped because of ambiguity about what happens if resent packet is lost</p>
+</div></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans6' value='3d51ff6c' disabled='disabled'/><div><p>Machine B must send all acknowledgements twice due to the lack of timers.</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='e20219ce'/></form></details></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 13</h1><div class='directions'></div><div class='question' id='q1' slug='1b7ec297'><div class='description' id='d1'><strong>Question 1</strong> (4 pt; mean 3.42)
+<p>Consider the following <em>insecure</em> system that accepts requests to reserve rooms for events on campus.</p>
+
+<p>Since there are requirements about the confidentiality of events and about ensuring
+that events are only booked or modified by authorized people, the system uses
+asymmetric encryption and signatures, where each user and a booking server
+has public keys securely distributed to everyone and private keys not distributed.</p>
+
+<p>To reserve a room, a user sends a message to the server containing</p>
+
+<ul>
+<li>the user's ID (not encrypted)</li>
+<li>a submessage, encrypted to the server's public key, containing
+
+<ul>
+<li>the user's ID, and</li>
+<li>the name of the room they are requested</li>
+</ul></li>
+<li>a submessage, encrypted to the server's public key, containing
+
+<ul>
+<li>the times they are requesting that room for</li>
+</ul></li>
+<li>a digital signature generated using the user's private key over a submessage containing
+
+<ul>
+<li>the user's ID</li>
+<li>the times they are requesting a room for</li>
+</ul></li>
+</ul>
+
+<p>Then, the booking server sends back a response containing</p>
+
+<ul>
+<li>a submessage, encrypted to the user's public key, containing
+
+<ul>
+<li>the user's ID,</li>
+<li>the times successfully reserved, and</li>
+<li>the times not successfully reserved</li>
+</ul></li>
+</ul>
+
+<p>Assume each submessage is encrypted or signed separately.</p>
+
+<p>How could a machine-in-the-middle interfere with this protocol? <strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>66%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='36887d53' disabled='disabled'/><div><p>if the machine-in-the-middle guesses what room and times a user is requesting, they can make the server appear to reserve that room when it does not</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>95%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='d36c0487' disabled='disabled'/><div><p>if a user requests a room at some time, the machine-in-the-middle can change that request to be for a different room at the same time without the user noticing from the server's response</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='66bfb446' disabled='disabled'/><div><p>if a user requests a room at some time, and the machine-in-the-middle knows what time that is, they can change that request to be for a different time without the user noticing from the server's response</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>16%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='06ec296f' disabled='disabled'/><div><p>if the machine-in-the-middle guesses what room and times a user is requesting, they can tell which times the user successfully reserved</p>
+
+<!--
+    pipelining throughput/latency
+
+    pipelining stalling
+
+    pipelining forwarding
+-->
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='1b7ec297'/></form></details></div><div class='question' id='q2' slug='19459a7b'><div class='description' id='d2'><strong>Question 2</strong> (4 pt; mean 3.9)
+<p>Suppose a pipeliend processor divide the work of an running instruction into four stages.
+The stages require time for their computation or storage operations
+as follows:</p>
+
+<table>
+<tr><th>stage</th><th>time</th></tr>
+<tr><td>1</td><td>300 ps</td></tr>
+<tr><td>2</td><td>400 ps</td></tr>
+<tr><td>3</td><td>600 ps</td></tr>
+<tr><td>4</td><td>200 ps</td></tr>
+</table>
+
+<p>Also, we need to add pipeline registers between the stages, and these pipeline registers
+require 10 ps to store a value.</p>
+
+<p>In instructions per second rounded to the whole number, what is the expected
+throughput of the processor? 
+(There are 10 to the 12th power picoseconds per second.)
+Assume no relevant hazards require stalling or similar.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' disabled='disabled'/></div>Key: <tt>1639344262</tt><div class='explanation'><p>1/(610 * 10^-12)</p>
+</div><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='19459a7b'/></form></details></div><div class='question' id='q3' slug='50453b51'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 3.89)
+<p>Suppose we have a pipelined processor an 1000 ps (1 ns) cycle time.</p>
+
+<p>We run a program on that processor which needs to run 1 billion instructions.
+To resolve data hazards, 5% of those instructions need to stall for 1 cycle.
+Also, 1% of instructions are mispredicted branches, for which the processor
+will fetch the wrong instruction for 2 cycles.
+Assume no other action is needed to resolve hazards.</p>
+
+<p>How long, in milliseconds to the nearest millisecond, will the program take to run?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans3' disabled='disabled'/></div>Key: <tt>1070</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='50453b51'/></form></details></div><div class="multiquestion"><p>For the following questions, consider a <em>six</em> stage pipelined processor, with the following pipeline
+stages (following the naming convention we used in lecture):</p>
+
+<ul>
+<li>fetch</li>
+<li>decode</li>
+<li>execute, part 1</li>
+<li>execute, part 2</li>
+<li>memory</li>
+<li>writeback</li>
+</ul>
+
+<p>For the two part execute stage, the processor performs the same operation the 5-stage processor
+we discussed in lecture did, but across two cycles</p>
+
+<p>Assume the processor resolves data hazards with forwarding and stalling,
+and that the processor's register file supports reading a register's value
+during the same cycle in which is written.</p>
+<div class='question' id='q4' slug='aec3a0a2'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.82) (see above)
+<p>Consider the following assembly snippet:</p>
+
+<pre><code>addq %r8, %r9
+subq %r10, %r11
+xorq %r8, %r9
+movq %r13, (%r11)
+nop
+andq %r11, %r12
+</code></pre>
+
+<p>(Recall that x86-64 assembly, <code>addq %r8, %r9</code> adds the register %r8 to the regsiter %r9 and places the result
+in register %r9. <code>movq %r11, (%r9)</code> takes the value of register %r11 and stores it in memory
+at the address specified by <code>%r9</code>.)</p>
+
+<p>When the above assembly snippet runs, some values will be forwarded to resolve data hazards.
+Which of the following are examples of forwarding that would be expected?
+(It's possible not all forwarding is listed.)
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='40682b71' disabled='disabled'/><div><p>of <code>%r8</code> from <code>addq</code> to <code>xorq</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>99%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='7993909e' disabled='disabled'/><div><p>of <code>%r9</code> from <code>addq</code> to <code>xorq</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>97%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans4' value='ccc01632' disabled='disabled'/><div><p>of <code>%r11</code> from <code>subq</code> to <code>movq</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='d22f4274' disabled='disabled'/><div><p>of <code>%r11</code> from <code>movq</code> to <code>andq</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>17%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans4' value='4ec4e5ca' disabled='disabled'/><div><p>of <code>%r11</code> from <code>subq</code> to <code>andq</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='aec3a0a2'/></form></details></div><div class='question' id='q5' slug='a65b1dc1'><div class='description' id='d5'><strong>Question 5</strong> (4 pt; mean 3.56) (see above)
+<p>Which of the following situations would require stalling on this processor?
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='8c051d43' disabled='disabled'/><div><p><code>addq %r8, %r9</code><br><code>nop</code><br><code>movq (%r9), %rax</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>56%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans5' value='0e3fd25f' disabled='disabled'/><div><p><code>addq %r8, %r9</code><br><code>addq %r8, %r9</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>97%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans5' value='47ba1d6c' disabled='disabled'/><div><p><code>movq (%r9), %rax</code><br><code>addq %rax, %r8</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='b31c2a3b' disabled='disabled'/><div><p><code>movq (%r9), %rax</code><br><code>movq (%r10), %rbx</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans5' value='bf43b08b' disabled='disabled'/><div><p><code>addq %r8, %r9</code><br><code>xorq %r8, %r10</code><br><code>subq %r11, %r9</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='a65b1dc1'/></form></details></div></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 14</h1><div class='directions'></div><div class="multiquestion"><p>Consider the following sequence of instructions on an out-of-order processor:</p>
+
+<pre><code>movq (%rax), %r8
+addq %r8, %r9
+subq %r10, %r11
+xorq %r11, %r9
+orq  %r8, %r13
+andq %r8, %r9
+</code></pre>
+<div class='question' id='q1' slug='ab3fa0e9'><div class='description' id='d1'><strong>Question 1</strong> (5 pt; mean 4.53) (see above)
+<p>On an out-of-order processor, depending on what previous instructions do, the instruction <code>subq %r10, %r11</code> may execute the same time as ___.
+<strong>Select all that apply.</strong></p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>100%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='4c6bd59c' disabled='disabled'/><div><p><code>movq (%rax), %r8</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>98%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='da4628da' disabled='disabled'/><div><p><code>addq %r8, %r9</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='8706f753' disabled='disabled'/><div><p><code>xorq %r11, %r9</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>98%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='checkbox' name='ans1' value='0184aaf1' disabled='disabled'/><div><p><code>orq %r8, %r13</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>42%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='checkbox' name='ans1' value='f5a220ba' disabled='disabled'/><div><p><code>andq %r8, %r9</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='ab3fa0e9'/></form></details></div><div class='question' id='q2' slug='ed7c899f'><div class='description' id='d2'><strong>Question 2</strong> (4 pt; mean 3.25) (see above)
+<p>Suppose an out-of-order processor has:</p>
+
+<ul>
+<li>a memory access unit (which interfaces with the data cache) that is pipelined and takes 3 cycles to load a value;</li>
+<li>two pipelined ALUs (which can handle all arithmetic/bitwise instructions), each of which can
+produces its results 2 cycles later.</li>
+</ul>
+
+<p>Assume the processor implements forwarding so it can use a value that is produced in a cycle for a computation that starts
+in the following cycle.</p>
+
+<p>What is the <em>minimum</em> number of cycles the processor needs to execute (perform the arithmetic
+and load/store operations) the above instruction sequence? (Do not include time for fetching instructions, renaming instructions, committing, etc.)</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans2' disabled='disabled'/></div>Key: <tt>9</tt><div class='explanation'><p>cycle 1: [movq #1][subq #1]; cycle 2: [movq #2][subq #2]; cycle 3: [movq #3]; cycle 4: [addq #1][orq #1]; cycle 5: [addq #2][orq #2]; cycle 6: [xorq #1]; cycle 7: [xorq #2]; cycle 8: [andq #1]; cycle 9: [andq #2]</p>
+</div><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='ed7c899f'/></form></details></div></div><div class='question' id='q3' slug='597b7b45'><div class='description' id='d3'><strong>Question 3</strong> (4 pt; mean 2.96)
+<p>Consider the following sequence of instructions on an out-of-order processor where one instruction is missing:</p>
+
+<pre><code>addq %r8, %r9
+addq %r9, %r10
+&lt;missing&gt;
+addq %r9, %r8
+addq %r11, %r9
+</code></pre>
+
+<p>Assume the processor does register renaming as described in lecture.</p>
+
+<p>Which of these instructions, if it took the place of the missing instruction, would result in fewer
+free registers being used to complete the renaming process for these instructions compared to the alternatives?</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>3%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='b42e399b' disabled='disabled'/><div><p><code>addq %r8, %r10</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='38988e1c' disabled='disabled'/><div><p><code>addq %r10, %r12</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>4%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='984fccba' disabled='disabled'/><div><p><code>addq %r9, %r10</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>15%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='a6a1b621' disabled='disabled'/><div><p><code>addq %r8, %r9</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='189e8aee' disabled='disabled'/><div><p><code>addq %r10, %r9</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>74%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans3' value='8659d2bf' disabled='disabled'/><div><p>None, they are all equivalent</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='597b7b45'/></form></details></div><div class='question' id='q4' slug='1a1d12b8'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 3.85)
+<p>An out-of-order processor 
+includes 4 single-cycle ALUs that can handle all arithmetic/bitwise instructions
+and 3 pipelined memory access units that require three cycles to complete a load or store.
+The processor has seven stages
+(fetch, decode, rename, issue, execute, writeback, and commit) and is 4-wide, meaning the
+fetch, decode, rename, issue, writeback, and commit stages can handle four instructions simultaneously.
+The processor's clock speed is 1 GHz (so each clock cycle is 1 ns).</p>
+
+<p>The processor is executing a machine learning workload (with many multiply–accumulate operations)
+and runs a large number of consecutive add and multiply instructions
+where every instruction uses the output of the previous instruction.
+What will be the average performance of this processor? Assume cache misses and branch mispredictions are negligible.
+Specify your answer in a number of instructions
+committed per cycle.</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans4' disabled='disabled'/></div>Key: <tt>1</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='1a1d12b8'/></form></details></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+﻿
+<h1 style='text-align:center'>quiz for week 15</h1><div class='directions'></div><div class="multiquestion"><p>Consider the following C psuedocode:</p>
+
+<pre><code>struct FileInfo {
+    char filename[496];
+    long size;
+    long download_time;
+};
+
+struct FileInfo *files;
+int number_of_files;
+
+struct Download {
+    char url[504];
+    bool done_download;
+    int file_index;
+};
+
+struct Download *downloads;
+int number_of_downloads;
+
+long GetDownloadSize(long download_id) {
+    if (download_id &gt; 0 &amp;&amp; download_id &lt; number_of_downloads) {
+        struct Download *download = &amp;downloads[download_id];
+        if (download-&gt;done_download) {
+            if (download-&gt;file_index &gt;= 0 &amp;&amp; download-&gt;file_index &lt; number_of_files) {
+                struct File * files = &amp;files[download-&gt;file_index];
+                return files-&gt;size;
+            } else {
+                return -1;
+            }
+        } else {
+            return -2;
+        }
+    } else {
+        return -1;
+    }
+}
+</code></pre>
+
+<p>For the following questions, assume that the size of both structs above is 512 bytes and that each of the if statements
+above are implemented using a conditional jump that is not taken if the condition is true.</p>
+
+<p>The <code>GetDownloadSize</code> function is vulnerable to the Spectre attack we discussed in lecture
+if an attacker can control the value of <code>download_id</code> provided.
+In particular, the access to <code>files-&gt;size</code> may evict a value from the cache
+when it partially executes as a result of branch prediction (even though its other
+effects will be undone).
+By choosing <code>download_id</code> correctly and
+measuring which cache set the access to <code>files-&gt;size</code> evicts when executed
+speculatively, they attacker can learn about a value in memory they
+should not be able to access.</p>
+<div class='question' id='q1' slug='95f5a844'><div class='description' id='d1'><strong>Question 1</strong> (1 pt; mean 0.99) (see above)
+<p>Before doing the attack, the attacker should train the branch predictor so that <code>download_id &gt; 0 &amp;&amp; download_id &lt; number_of_downloads</code>
+is ___.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>99%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans1' value='0fab3a5e' disabled='disabled'/><div><p>predicted as true</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='1046df5c' disabled='disabled'/><div><p>predicted as false</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans1' value='d3f4b4ab' disabled='disabled'/><div><p>it does not matter</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='95f5a844'/></form></details></div><div class='question' id='q2' slug='09412f0c'><div class='description' id='d2'><strong>Question 2</strong> (1 pt; mean 0.99) (see above)
+<p>Before doing the attack, the attacker should train the branch predictor so that <code>download-&gt;done_download</code>
+is ___.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>99%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans2' value='da02f631' disabled='disabled'/><div><p>predicted as true</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='335f4898' disabled='disabled'/><div><p>predicted as false</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans2' value='6a959564' disabled='disabled'/><div><p>it does not matter</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='09412f0c'/></form></details></div><div class='question' id='q3' slug='2b875bc5'><div class='description' id='d3'><strong>Question 3</strong> (1 pt; mean 0.99) (see above)
+<p>Before doing the attack, the attacker should train the branch predictor so that <code>download-&gt;file_index &gt;= 0 &amp;&amp; download-&gt;file_index &lt; number_of_files</code>
+is ___.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>99%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans3' value='4e495816' disabled='disabled'/><div><p>predicted as true</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='da50c8da' disabled='disabled'/><div><p>predicted as false</p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans3' value='9a04f11e' disabled='disabled'/><div><p>it does not matter</p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='2b875bc5'/></form></details></div><div class='question' id='q4' slug='969b8dce'><div class='description' id='d4'><strong>Question 4</strong> (4 pt; mean 1.98) (see above)
+<p>The attacker should set the value of <code>download_id</code> such that the value they want to learn about is
+the same value the code will access if tries to access ___.</p>
+</div><ol class="options"><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='3d134965' disabled='disabled'/><div><p><code>downloads[download_id].done_download</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>49%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'>⊤ (correct)</div><input type='radio' name='ans4' value='aa5d388f' disabled='disabled'/><div><p><code>downloads[download_id].file_index</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'></div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='c71912ea' disabled='disabled'/><div><p><code>files[downloads[download_id % number_of_downloads].file_index].filename</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>2%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='1d4b9b50' disabled='disabled'/><div><p><code>files[downloads[download_id % number_of_downloads].file_index].size</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>1%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='dc0f9499' disabled='disabled'/><div><p><code>files[downloads[download_id].file_index].filename</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>46%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='a665e370' disabled='disabled'/><div><p><code>files[downloads[download_id].file_index].size</code></p>
+</div></label></li><li><label><div style='flex-basis: 2.8em; text-align:right; flex-grow:0; flex-shrink:0;'>0%</div><div style='flex-basis: 1.5em; text-align:right; flex-grow:0; flex-shrink:0; color:green;'></div><input type='radio' name='ans4' value='79b4feb6' disabled='disabled'/><div><p><code>files[download_id].size</code></p>
+</div></label></li></ol><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='969b8dce'/></form></details></div></div><div class="multiquestion"><p>Consider the following C function:</p>
+
+<pre><code>int hidden_x, hidden_y;
+
+bool is_close(int x, int y) {
+    if (x &gt;= hidden_x - 1) {
+        if (y &gt;= hidden_y - 1) {
+            if (x &lt;= hidden_x + 1) {
+                if (y &lt;= hidden_y + 1) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+</code></pre>
+
+<p>Assume the compiler generates code for this function where each if statement is compiled to a conditional jump.</p>
+
+<p>Consider the following observations:</p>
+
+<table>
+<tr><th>x</th><th>y</th><th>return value</th><th>exec time</th></tr>
+<tr><td>500</td><td>500</td><td>false</td><td>10</td></tr>
+<tr><td>500</td><td>625</td><td>false</td><td>10</td></tr>
+<tr><td>500</td><td>750</td><td>false</td><td>9</td></tr>
+<tr><td>500</td><td>1000</td><td>false</td><td>9</td></tr>
+<tr><td>625</td><td>500</td><td>false</td><td>9</td></tr>
+<tr><td>625</td><td>625</td><td>false</td><td>10</td></tr>
+<tr><td>625</td><td>750</td><td>false</td><td>9</td></tr>
+<tr><td>625</td><td>1000</td><td>false</td><td>10</td></tr>
+<tr><td>750</td><td>500</td><td>false</td><td>15</td></tr>
+<tr><td>750</td><td>625</td><td>false</td><td>25</td></tr>
+<tr><td>750</td><td>750</td><td>false</td><td>24</td></tr>
+<tr><td>750</td><td>1000</td><td>false</td><td>24</td></tr>
+<tr><td>1000</td><td>500</td><td>false</td><td>14</td></tr>
+<tr><td>1000</td><td>625</td><td>false</td><td>19</td></tr>
+<tr><td>1000</td><td>750</td><td>false</td><td>19</td></tr>
+<tr><td>1000</td><td>1000</td><td>false</td><td>20</td></tr>
+</table>
+<div class='question' id='q5' slug='b1744d95'><div class='description' id='d5'><strong>Question 5</strong> (3 pt; mean 2.84) (see above)
+<p>Based on the observations above, what is a probable value of <code>hidden_x</code>?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans5' disabled='disabled'/></div>Key: <tt>749 or 750 or 751</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='b1744d95'/></form></details></div><div class='question' id='q6' slug='10455e1f'><div class='description' id='d6'><strong>Question 6</strong> (3 pt; mean 2.87) (see above)
+<p>Based on the observations above, what is a probable value of <code>hidden_y</code>?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans6' disabled='disabled'/></div>Key: <tt>anything between 501 and 626</tt><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='10455e1f'/></form></details></div></div><div class='question' id='q7' slug='4c6adc67'><div class='description' id='d7'><strong>Question 7</strong> (4 pt; mean 2.98)
+<p>Consider the following C code:</p>
+
+<pre><code>array[148 * mystery] += 1;
+</code></pre>
+
+<p>Suppose we discover that running the above code evicts from cache set 54 in
+a 2-way, 128KiB  (131072 byte) cache with 64-byte blocks and an LRU replacement policy,
+and:</p>
+
+<ul>
+<li>the system does not use virtual memory;</li>
+<li><code>array</code> is an array of 4-byte integers; and</li>
+<li><code>array[0]</code> is located at address 0x123400 (which maps to tag 0x12, set index 0xd0, offset 0 in the cache)</li>
+</ul>
+
+<p>What is a possible value of <code>mystery</code>?</p>
+</div><div class='tinput text'><span>Answer:</span><input type='text' name='ans7' disabled='disabled'/></div>Key: <tt>869 (one possible answer; there are others)</tt><div class='explanation'><p>cache has 1024 sets (10 index bits), 6 offset bits</p>
+
+<p>array[0] is cache set <code>(0x123400 &gt;&gt; 6) &amp; 0x3FF == 0xd0</code></p>
+
+<p>148 * mystery will be cache set <code>(0xd0 + floor((mystery * 4 * 148) / 64)) mod 1024 = 54</code></p>
+
+<p><code>0xd0 + floor(mystery * 148 / 16) = 54 + 1024K</code></p>
+
+<p><code>floor(mystery * 148 / 16) = 870 + 1024K</code></p>
+
+<p>solving without floor, trying different K</p>
+
+<p>without floor, that's mystery = 94.05405 + 110.7027*K</p>
+
+<p>trying different K and checking rounding:</p>
+
+<p>K = 0: 94, 95 don't work b/c of rounding</p>
+
+<p>K = 1: 204, 205 don't work b/c of rounding</p>
+
+<p>...</p>
+
+<p>K = 7: 868 doesn't work b/c of roudning but 869 does</p>
+</div><details><summary>Regrade request</summary><form method='POST'><div class='tinput regrade'><textarea name='request'></textarea><input type='submit' value='submit request'/></div><input type='hidden' name='regrade' value='4c6adc67'/></form></details></div><a style="text-align:center; display:block;" href="https://www.cs.virginia.edu/~cr4bd/3130/S2026/">Return to course page</a></center><a href="." style="text-align:center; display:block;">Return to index</a>
+<!--<center><a href="../">Return to course page</a></center>-->
+</body>
+</html>
+
+
+    </body>
+    </html>
+    
