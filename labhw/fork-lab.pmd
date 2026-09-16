@@ -27,7 +27,7 @@ This is a simplified version of the `system` standard library function (see [`ma
 You must not use `system` in your implementation.
 You should use `fork`; `wait` or `waitpid`; and either `execve` or one of its front-ends (`execl`, `execlp`, `execle`, `execv`, `execvp`, or `execvpe`).
 
-In addition to manpages for the above functions, you may find it useful to refer to the lecture slides and/or the [threads reading](../reading/threads.html).
+In addition to manpages for the above functions, you may find it useful to refer to the lecture slides and/or the [threads reading](../readings/threads.html).
 
 Note that the "wait status" that `my_system` should return can be retrieved using `wait` or `waitpid`.
 
