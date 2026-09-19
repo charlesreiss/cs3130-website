@@ -71,7 +71,6 @@
     *  kernel mode
     *  system calls
     *  memory protection (start)
-    *  context switches
 
 
 - date: 2026-09-09
@@ -101,13 +100,11 @@
   title: "processes 2 / virtual memory 0"
   reading: "[VM](readings/vm.html) §1"
   slides_ref:
-  - vm
+  - unix-api
   description: |
     *  creating new processes (finish)
        *  exec*
-
-    *  file descriptors
-    *  redirection, dup2
+    *  wait
 
 
 - date: 2026-09-16
@@ -119,15 +116,14 @@
   title: virtual memory 1
   reading: "[VM](readings/vm.html) §1, 2.2, 3.1"
   slides_ref:
+  - unix-api
   - vm
   description: |
-    *  aside: emptyloop lab
+    *  file descriptors
+    *  redirection, dup2
 
     *  virtual memory concept
-        *   address space and address sizes
-    *  page table
-    *  page table lookup examples
-    *  page tables and context switches
+    *  page table (start)
 
 
 - date: 2026-09-18
@@ -143,6 +139,11 @@
   slides_ref:
   - vm
   description: |
+    *  aside: emptyloop lab
+
+    *  page table (finish)
+    *  page table lookup examples
+    *  page tables and context switches
     *  loading data on demand
     *  copy-on-write, other "page table tricks" 
     *  swapping
