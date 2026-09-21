@@ -8,6 +8,7 @@ Changelog:
 
 *  14 Nov 2024: fix broken link to pipeline slides
 *  11 Mar 2026: link to HTML versions of several slides (now that switching slide systems); subdivide synchornization slides
+*  21 Sep 2026: split up virtual memory slides
 </div>
 
 Reiss's slides for each day are typically drawn from these slidedecks organized by topic:
@@ -19,7 +20,10 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
 - [kernel](slides/kernel.html)<sup>[pdf](slides/kernel.pdf)</sup> (including exceptions)
 - [signals](slides/signals.pdf) (Unix signals, now typically not covered)
 - [unix-api](slides/unix-api.pdf) (fork, dup2, etc)
-- [vm](slides/vm.html)<sup>[pdf](slides/vm.pdf)</sup> (virtual memory)
+- virtual memory --
+  *  [vm-intro](slides/vm-intro.html)<sup>[pdf](slides/vm-intro.pdf)</sup> (introduction; what are page tables)
+  *  [vm-fault](slides/vm-fault.html)<sup>[pdf](slides/vm-fault.pdf)</sup> (tricks with page fault handling; OS memory map versus page tables)
+  *  [vm-format](slides/vm-format.html)<sup>[pdf](slides/vm-format.pdf)</sup> (storing page tables in memory; multi-level page tables)
 - [caching](slides/caching.html)<sup>[pdf](slides/caching.pdf)</sup>
   *  [caching-blocking](slides/caching-blocking.html)<sup>[pdf](slides/caching-blocking.pdf)</sup> (cache blocking; typically not covered)
 - [threads](slides/threads.html)<sup>[pdf](slides/threads.pdf)</sup>
