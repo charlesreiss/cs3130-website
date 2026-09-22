@@ -140,15 +140,13 @@
   - vm-intro
   - vm-fault
   description: |
-    *  aside: emptyloop lab
-
     *  page table (finish)
     *  page table lookup examples
     *  page tables and context switches
     *  loading data on demand
     *  copy-on-write, other "page table tricks" 
     *  swapping
-    *  mmap, linux /proc/$$/maps
+    *  mmap, linux /proc/$$/maps (start)
 
 - date: 2026-09-23
   lab: true
@@ -162,6 +160,8 @@
   - vm-fault
   - vm-format
   description: |
+    *  mmap, linux /proc/$$/maps (finish)
+
     *  storing page tables in memory
     *  pagetable assignment
     *  multi-level page tables
