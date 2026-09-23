@@ -10,6 +10,7 @@ Changelog:
 *  16 Sep 2025: update module load command to something that works with current portal modules
 *  17 Sep 2025: mention using "module load gcc clang" to get access to clang on portal before running `make`
 *  17 Sep 2025: add note about trying to remove `venv` directories in case they're half setup
+*  23 Sep 2026: fix cut-off sentence in measure_times_plain description
 </div>
 
 {.exercise ...}
