@@ -134,9 +134,10 @@ This function reads a clock in a loop `count` times, and records the results to 
 The only thing that happens between obtaining samples is storing the time and related bookkeeping.
 
 If this loop were the only thing running, we would expect to see the `durations`
-are roughly constant. You should
+are roughly constant. You should notice that there is some substantial variation
+instead because other things are running.
 
-# `measure_times_threhsold`
+# `measure_times_threshold`
 
 This function adds the following to `measure_times_plain`
 
