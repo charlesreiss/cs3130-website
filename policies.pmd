@@ -3,6 +3,12 @@ title: Policies
 index_title: Policies
 ...
 
+<div class="changelog">
+Changelog:
+
+*  24 Sep 2026: update "tasks" section to be consistent with rest of course with respect to tests
+</div>
+
 # Logistics
 
 ## Meetings
@@ -26,9 +32,7 @@ You will be asked to
     - Some homework will be programming assignments; others will be puzzles, worksheets, or other kinds of activities.
 - Take quizzes
     - We will have weekly quizzes, administered online. Quizzes are open-book, open-notes, and untimed. They are to be completed individually.
-- Take two midterms
-- Take a final
-    - We expect to have an in-person final exam during our official scheduled exam time, which is a combined final time.
+- Take tests
 
 
 ## Readings
