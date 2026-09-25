@@ -76,7 +76,6 @@
   page: labhw/vm-explore.html
   short_name: vmexplore
   lab: true
-  tentative: true
   submit_file: "lab.c"
   due: 2026-09-30
 
