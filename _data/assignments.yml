@@ -114,7 +114,6 @@
   comment: no introducing lab
   page: labhw/pagetable.html
   portion: 0.25
-  tentative: true
   due: 2026-10-09
   grade_describe: |
     Note that the results below include many tests which aren't part of the grade for part 1.
@@ -149,7 +148,6 @@
   pre_lab: true
   no_late: true
   no-late: true
-  tentative: true
   due_message: pagetable part 2 (pre code review) due BEFORE FIRST LAB &mdash; normal late policy does not apply
   grade_describe: |
     Selected notes on interpreting our testing output below:
