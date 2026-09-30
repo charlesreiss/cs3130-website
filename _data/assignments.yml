@@ -106,10 +106,8 @@
   released: 2026-10-08
   due: 2026-10-12
   topics:
-  - exceptions (w/ I/O)
   - fork, waitpid, dup2
-  - virutal memory
-  - ?direct-mapped caches
+  - virtual memory
 
 - name: pagetable part 1
   short_name: pagetable1
