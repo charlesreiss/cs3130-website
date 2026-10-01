@@ -172,7 +172,7 @@
   title: virtual memory 4 
   reading: "[VM](readings/vm.html) §2.1, 3.2"
   slides_ref:
-  - caching
+  - vm-format
   description: |
     *  pagetable assignment
     *  multi-level page tables
@@ -185,6 +185,9 @@
   week: 6
   title: "virtual memory 5 / caches 1"
   reading: "[cache](readings/cache.html)"
+  slides_ref:
+  - vm-format
+  - caching
   description: |
     *  multi-level page table examples
     *  virtual memory exercises
