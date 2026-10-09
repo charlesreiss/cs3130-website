@@ -193,8 +193,6 @@
     *  virtual memory exercises
 
     *  caching idea, locality
-    *  direct-mapped caches
-        *  valid bits, tags
 
 - date: 2026-10-02
   week: 6
@@ -215,8 +213,8 @@
   - caching
   description: |
    *  cache parameter exercises
-   *  set-associative caches
-   *  replacement policies (start)
+   *  direct-mapped caches
+        *  valid bits, tags
 
 
 - date: 2026-10-09
@@ -235,9 +233,9 @@
   description: |
    (drop deadline)
 
-   *  replacement policies (finish)
-   *  cache misses and C code
-   *  cache write policies
+   *  direct-mapped cache access pattern
+   *  set-associative caches
+   *  replacement policies (start)
 
 - date: 2026-10-14
   week: 8
@@ -245,6 +243,14 @@
 
 - date: 2026-10-15
   week: 8
+  title: caches 3
+  reading: "[cache](readings/cache.html)"
+  slides_ref:
+  - caching
+  description: |
+   *  replacement policies (finish)
+   *  cache misses and C code
+   *  cache write policies
 
 - date: 2026-10-16
   week: 8
