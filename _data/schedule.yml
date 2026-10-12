@@ -212,6 +212,8 @@
   slides_ref:
   - caching
   description: |
+   >  When the recording for this lecture was originally uploaded, audio was missing, this should be corrected as of 12 October.
+
    *  cache parameter exercises
    *  direct-mapped caches
         *  valid bits, tags
