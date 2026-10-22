@@ -224,23 +224,16 @@
   - "*.txt"
   - "*.gz"
 
-
-- name: pthreads (dining philosophers) 
+- name: openmp
+  short_name: openmp
   lab: true
   tentative: true
-  short_name: pthreads
-  page: labhw/dp.html
-  comments: needs changes for in-person
-  comments: "FIXME: HAS TA CHECK OFF"
-  comments: "FIXME: ThreadSanitizer"
-  comments: "FIXME: needs more infrastructure for second optional approach"
-  comments: "SHOULD HAVE ADDTL REQUIRED APPROACH"
-  comments: "Non-DP example?"
+  page: labhw/openmp.html
   submit_files:
-  - dp-arb.c
-  - dp-rh.c
-  - dp-backoff.c
+  - "*.c"
+  - "performance.txt"
   due: 2026-10-28
+
 
 - name: test 3
   test: true
@@ -270,14 +263,21 @@
     </ul>
   due: 2026-10-30
 
-- name: openmp
-  short_name: openmp
+- name: pthreads (dining philosophers) 
   lab: true
   tentative: true
-  page: labhw/openmp.html
+  short_name: pthreads
+  page: labhw/dp.html
+  comments: needs changes for in-person
+  comments: "FIXME: HAS TA CHECK OFF"
+  comments: "FIXME: ThreadSanitizer"
+  comments: "FIXME: needs more infrastructure for second optional approach"
+  comments: "SHOULD HAVE ADDTL REQUIRED APPROACH"
+  comments: "Non-DP example?"
   submit_files:
-  - "*.c"
-  - "performance.txt"
+  - dp-arb.c
+  - dp-rh.c
+  - dp-backoff.c
   due: 2026-11-04
 
 
