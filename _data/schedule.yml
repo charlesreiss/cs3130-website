@@ -290,7 +290,7 @@
   title: synchronization 1 --- reordering and locks
   reading: "[thread](readings/thread.html) §1.3-4, [pthreads](readings/pthreads.html) §1-2, [consistency](readings/consistency.html) §1-2, [sync](readings/sync.html) §1-2, 4, [pthreads](readings/pthreads.html) §3.1-2"
   slides_ref:
-  - threading
+  - threads
   - sync-reorder
   - sync-locks
   description: |
