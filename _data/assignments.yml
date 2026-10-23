@@ -193,7 +193,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2026-10-26
+  due: 2026-10-27
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
@@ -261,8 +261,7 @@
     <li>If you're failing the "correct sequence of translate() calls" test, this could be because you call translate() too many/few times in some cases,
         or because you evict the wrong entry sometimes.
     </ul>
-  due: 2026-10-30
-
+  due: 2026-11-02
 - name: pthreads (dining philosophers) 
   lab: true
   tentative: true
