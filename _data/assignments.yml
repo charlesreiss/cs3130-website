@@ -193,7 +193,7 @@
   comment: requires arbitrary multiple submission
   page: labhw/pagetable.html
   portion: 2.0
-  due: 2026-10-23
+  due: 2026-10-26
   grade_describe: |
     Selected notes on interpreting our testing output below <small>(updated 9 March)</small>:
     <ul>
