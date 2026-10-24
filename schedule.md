@@ -38,6 +38,12 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
 {%- assign video_raw = site.data.recordings | where:"prefix",file_prefix-%}
 {%- assign video_raw_9 = site.data.recordings | where:"prefix",file_prefix_9-%}
 {%- assign video_raw_11 = site.data.recordings | where:"prefix",file_prefix_11-%}
+{%- assign video_raw_canvas = site.data.recordings_canvas | where:"prefix",file_prefix-%}
+{%- if video_raw_canvas.size > 0 -%}
+    {%- assign video_canvas = true %}
+{%- else -%}
+    {%- assign video_canvas = false %}
+{%- endif -%}
 {%- if video_raw.size > 0 -%}
     {%- assign video = true %}
 {%- else -%}
@@ -115,6 +121,8 @@ Often not everything in the slide deck will be covered in one day (or sometimes,
 {%- if video -%}
       | screencapture (<a href="/~cr4bd/videoplayer/?3130/F2026/recordings/{{ file_prefix }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix }}-audio.mp3">audio</a>
     )
+{%- elsif video_canvas -%}
+     | recording on Canvas (Panopto Video tab)
 {%- endif -%}
 {%- if video_11 -%}
       | 11am screencapture (<a href="/~cr4bd/videoplayer/?3130/F2026/recordings/{{ file_prefix_11 }}-video-and-audio">browser</a>&nbsp; or download <a href="recordings/{{ file_prefix_11 }}-video-and-audio.mp4">mp4</a> <a href="recordings/{{ file_prefix_11 }}-video-and-audio.webm">webm</a> <a href="recordings//{{ file_prefix_11 }}-audio.mp3">audio</a>
