@@ -262,7 +262,6 @@
   due: 2026-11-02
 - name: pthreads (dining philosophers) 
   lab: true
-  tentative: true
   short_name: pthreads
   page: labhw/dp.html
   comments: needs changes for in-person
@@ -282,7 +281,6 @@
   short_name: life
   page: labhw/life.html
   due: 2026-11-06
-  tentative: true
   submit_file: "life-parallel.c"
   comment: may need skeleton code to be modified
   comment: adjust skeleton code to avoid workarounds
