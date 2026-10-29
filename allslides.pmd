@@ -40,6 +40,7 @@ Reiss's slides for each day are typically drawn from these slidedecks organized 
   *  [sync-locks](slides/sync-locks.html)<sup>[pdf](slides/sync-locks.pdf)</sup> (mutex-type locks)
      *  [sync-lock-impl](slides/sync-lock-impl.html)<sup>[pdf](sync-lock-impl.pdf)</sup> (implementation; typically not covered)
   *  [sync-barriers](slides/sync-barriers.html)<sup>[pdf](slides/sync-barriers.pdf)</sup>
+  *  [sync-perf](slides/sync-perf.html)<sup>[pdf](slides/sync-perf.pdf)</sup> (quick note on Amdahl's law)
   *  [sync-monitors](slides/sync-monitors.html)<sup>[pdf](slides/sync-monitors.pdf)</sup>
   *  [sync-false-share](slides/sync-false-share.html)<sup>[pdf](slides/sync-false-share.pdf)</sup>
   *  [sync-rwlocks](slides/sync-rwlocks.html)<sup>[pdf](slides/sync-rwlocks.pdf)</sup> (reader-writer locks)
