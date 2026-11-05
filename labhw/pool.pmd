@@ -5,23 +5,6 @@ author:
     - Brad Campbell
 ...
 
-<div class="changelog">
-changelog:
-
-*  6 Apr 2026: fix bug in `fail_test()` call in `pool-test.c`
-*  8 Apr 2026: add note about ThreadSanitizer
-*  8 Apr 2026: fix test cases which were too picky about task numbering in `pool-test.c`
-*  8 Apr 2026: add pool-example.c
-*  9 Apr 2026: fix an additional test case which was too picky about task numbering in `pool-test.c`
-*  9 Apr 2026: reorganize section on testing; add some more advice on testing
-* 10 Apr 2026: make pool-test.c wait longer for tests that "pause"; cleanup grammar in with section on testing; note that pool-test.c is bad at testing waiting
-* 11 Apr 2026: add some test cases to pool-test.c to hopefully notice broken pool_wait()s more often
-* 14 Apr 2026: adjust "two thread, four tasks, one submitting extra task, tasks 0/1, 4/5 using barriers" in pool-test.c not to be too picky about ordering
-* 15 Apr 2026: remove redundant "and all tasks are waited for" from description of pool_stop
-* 17 Apr 2026: fix incorrect #ifdef to #ifndef in header guard
-* 26 Apr 2026: update pool-test.c to avoid calling pool_stop before all tasks are submitted in some cases
-</div>
-
 # Your Task
 
 1.  Implement a "[thread pool](https://en.wikipedia.org/wiki/Thread_pool)" library with the following functions:
