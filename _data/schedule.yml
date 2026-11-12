@@ -406,6 +406,9 @@
   - network
   - secure
   description: |
+   >  More clearly worked out versions of the network address translation exercises can
+   >  be found [in the slides](https://www.cs.virginia.edu/~cr4bd/3130/F2026/slides/network.html#/nat-exercise-1)
+   *  network address translation exercise
    *  cryptography
        *  symmetric encryption
        *  asymmetric encryption
