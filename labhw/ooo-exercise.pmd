@@ -1,16 +1,21 @@
----
-title: OOO Exercise
+---s
+title: OOO Exercises
 author: Charles Reiss
 ...
 
-See the answer sheet (link TBA)
+For this assignment, there are randomized exercises on an [web-based answer sheet](https://kytos02.cs.virginia.edu/cs3130-fall2026/ooo-exercise/ooo_columnwise.php).
+
+For the exercises, you will simulate different pieces of an out-of-order processor described below. You will be given a randomized
+set of instructions to simulate. The answer sheet will indicate if your answer is correct. If it is not, you can get a new
+set of randomized instructions and try again. You will get full credit if you answer one attempt for each part correctly.
 
 # Hypothetical OOO processor
 
 For this assignment, we will consider an out-of-order processor which has two execution units for
 arithmetic instructions, and one execution unit for memory instructions.
 
-### This processor's pipeline 
+### This processor's pipeline
+
 Instructions in this processor are executed as follows:
 
 *  first, they go through a set of in-order pipeline stages, two a time:
@@ -60,95 +65,4 @@ We will show instructions in a three-argument form like (**regardless of whether
 this indicates to add %r01 and %r02 and put the result into %r03.
 
 Answer the questions on the answer sheet linked above.
-
-## Part 1: register renaming
-
-Assume initially that `%r01` is assigned to `%x01`, `%r02` to `%x02`, and so on.
-Registers `%x16` through `%x63` are available for register renaming.
-
-Rewrite the following instructions using the `%x01` taking into account how register renaming
-might occur that would allow all of these instructions to be placed in the instruction queue
-at once:
-
-    add %r01, %r02-> %r02   
-    add %r02, %r03-> %r03   
-    imul %r02, %r03-> %r03  
-    mov 0x0(%r03)-> %r01    
-    sub %r02, %r03-> %r03   
-    add %r03, %r04-> %r04   
-    movq 0x0(%r01)-> %r01   
-    imul %r01, %r04-> %r04  
-    add %r04 %r04-> %r04
-
-Record your answer at the answer sheet linked above.
-
-## Part 2: instruction dispatch
-
-Suppose the instruction queue for this processor contains the following instructions
-*after renaming*
-
-    A. movq (%x05) -> %x16
-    B. add %x04, %x06 -> %x17
-    C. sub %x01, %x02 -> %x18
-    D. imul %x16, %x18 -> %x19
-    E. movq (%x06) -> %x20
-    F. add %x03, %x08 -> %x21
-    G. add %x21, %x18 -> %x22
-    H. movq (%x18) -> %x23
-    I. imul %x22, %x20 -> %x24
-    J. movq %x21, (%x23) ->
-
-Initially the value of registers `%x01` through `%x15` is available.
-
-Complete the timeline to show how all the instructions can be issued and executed.
-(Assume there are no cases where loads and stores access the same or overlapping memory regions.)
-
-                    cycle 1    2    3   4    5    6   7    8     9    10   11    12 
-    execution unit:       
-    arithmetic 1          B
-    arithmetic 2          C
-    memory stage 1        A
-    memory stage 2             A
-    memory stage 3                  A
-    
-Record your answer at the answer sheet linked above.
-
-## Part 3: pipeline diagram
-
-Complete a pipeline diagram for the processor running the following instructions
-(shown in the form from **before** register renaming):
-
-    1. add %r02, %r01 -> %r01
-    2. add %r02, %r01 -> %r01
-    3. add %r02, %r03 -> %r03
-    4. add %r03, %r04 -> %r04
-    5. add %r04, %r06 -> %r06
-    6. add %r01, %r02 -> %r05
-    7. add %r04, %r03 -> %r03
-    8. add %r01, %r08 -> %r08
-
-Identify the stages as:
-
-*  F for when the instruction is feteched
-*  D for when an instruction is decoded
-*  R for when an instruction is renamed and dispatched into an instruction queue
-*  I for when an instruction is issued from an instruction queue and its registers are read
-*  E for when an instruction is being executed (after it is issued)
-*  W for when an instruction's results are written back to the physical register file
-*  C for when an instruction is committed
-
-Leave the specified stage blank when an instruction is not being processed in any of the above ways (such as when
-the instruction is in the instruction queue waiting to be issued or any cycles between when an instruction is written back
-and when it is committed).
-
-The first three rows are:
-
-    1 F D R I E W C
-    2 F D R   I E W C
-    3   F D R I E W C
-
-complete the remaining rows of the table at the answer sheet linked above.
-
-You may assume that register values computed by previous instructions are available and that physical registers are free
-such that stages will not be delayed for missing previous register values or lack of available physical registers.
 
