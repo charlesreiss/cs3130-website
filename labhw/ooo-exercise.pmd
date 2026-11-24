@@ -39,7 +39,8 @@ Instructions in this processor are executed as follows:
 *  when an instruction is issued, in the following cycles it is executed on an execution unit
     *  for memory instructions, this execution unit is a pipelined data cache. The data cache receives one instruction per cycle
         and produces the result after three cycles. To simplify this exercise, we will assume no cache misses.
-    *  for non-memory instructions, this execution unit is one of two arithmetic logic units. Each of these ALUs receives one instruction per
+    *  for multiply instructions, this execution is a two-cycle pipelined multiplier;
+    *  for non-memory, non-multiply instructions, this execution unit is one of two arithmetic logic units. Each of these ALUs receives one instruction per
         cycle and produces the result near the end of the same cycle.
 
 *  in the cycle after an instruction is executed its result is written back to the register file in one cycle
