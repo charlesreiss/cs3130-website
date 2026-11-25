@@ -336,7 +336,6 @@
   due: 2026-12-04
   feedback: "extracted*,autograder*"
   xxx-no-late: true
-  tentative: true
   missing-if-no-feedback: false
 
 - name: test 5
